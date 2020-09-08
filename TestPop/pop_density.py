@@ -27,8 +27,8 @@ if __name__ == '__main__':
 
     weight = dict()
 
-    prov = Image.open('test1.png')
-    pop = Image.open('test3.png')
+    prov = Image.open('provinces_ref.png')
+    pop = Image.open('Map_new_ref.png')
 
     for y in range(prov.height):
         print(y)
@@ -43,21 +43,7 @@ if __name__ == '__main__':
     loc = ''
 
     for prov, weight in weight.items():
-        loc += '\n\t\tprovince:%s = { set_variable = { name = pop_weight value = %s } }' % (prov, weight / 10000)
+        loc += 'province:%s = { set_variable = { name = pop_weight value = %s } }\n' % (prov, weight / 10000)
 
-    t = '''namespace = pop_weight
-
-pop_weight.0001 = {
-    hidden = yes
-
-    fire_only_once = yes
-
-    immediate = {%s   
-    }
-
-    option = {
-    }
-}''' % loc
-
-    with open('events\\pop_weight.txt', 'w') as f:
-        f.write(t)
+    with open('pop_weight.txt', 'w') as f:
+        f.write(loc)
