@@ -39,29 +39,43 @@ if __name__ == '__main__':
 
     weight = dict()
     farm = dict()
+    pasture = dict()
+    forest = dict()
 
     prov = Image.open('provinces_ref.png')
     pop = Image.open('Map_new_ref.png')
     cereal = Image.open('cereal_ref.png')
+    livestock = Image.open('Pasture_new_ref.png')
+    tree = Image.open('Forest_new_ref.png')
 
     for y in range(prov.height):
         print(y)
         for x in range(prov.width):
             pxl = prov.getpixel((x, y))[:3]
+            p = rgb_rev[pxl]
 
-            if rgb_rev[pxl] in weight:
-                weight[rgb_rev[pxl]] += density[pop.getpixel((x, y))[:3]]
+            if p in weight:
+                weight[p] += density[pop.getpixel((x, y))[:3]]
 
                 if cereal.getpixel((x, y))[:3] in score_cereal:
-                    farm[rgb_rev[pxl]][0] += score_cereal[cereal.getpixel((x, y))[:3]]
-                    farm[rgb_rev[pxl]][1] += 1
+                    farm[p][0] += score_cereal[cereal.getpixel((x, y))[:3]]
+                    farm[p][1] += 1
+
+                pasture[p][0] += livestock.getpixel((x, y))[0] / 2.55
+                pasture[p][1] += 1
+
+                forest[p][0] += max(150 - tree.getpixel((x, y))[0], 0) / 1.5
+                forest[p][1] += 1
             else:
-                weight[rgb_rev[pxl]] = density[pop.getpixel((x, y))[:3]]
+                weight[p] = density[pop.getpixel((x, y))[:3]]
 
                 if cereal.getpixel((x, y))[:3] in score_cereal:
-                    farm[rgb_rev[pxl]] = [score_cereal[cereal.getpixel((x, y))[:3]], 1]
+                    farm[p] = [score_cereal[cereal.getpixel((x, y))[:3]], 1]
                 else:
-                    farm[rgb_rev[pxl]] = [50, 1]
+                    farm[p] = [50, 1]
+
+                pasture[p] = [livestock.getpixel((x, y))[0] / 2.55, 1]
+                forest[p] = [max(150 - tree.getpixel((x, y))[0], 0) / 1.5, 1]
 
     loc = ''
 
@@ -77,6 +91,22 @@ if __name__ == '__main__':
         loc += 'province:%s = { set_variable = { name = farm_score value = %s } }\n' % (prov, round(pair[0] / pair[1], 3))
 
     with open('farm_score.txt', 'w') as f:
+        f.write(loc)
+
+    loc = ''
+
+    for prov, pair in pasture.items():
+        loc += 'province:%s = { set_variable = { name = pasture_score value = %s } }\n' % (prov, round(pair[0] / pair[1], 3))
+
+    with open('pasture_score.txt', 'w') as f:
+        f.write(loc)
+
+    loc = ''
+
+    for prov, pair in forest.items():
+        loc += 'province:%s = { set_variable = { name = forest_score value = %s } }\n' % (prov, round(pair[0] / pair[1], 3))
+
+    with open('forest_score.txt', 'w') as f:
         f.write(loc)
 
     size = dict()
