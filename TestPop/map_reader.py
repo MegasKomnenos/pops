@@ -78,3 +78,25 @@ if __name__ == '__main__':
 
     with open('farm_score.txt', 'w') as f:
         f.write(loc)
+
+    size = dict()
+
+    prov = Image.open('map_data\\provinces.png')
+
+    for y in range(prov.height):
+        print(y)
+        for x in range(prov.width):
+            pxl = prov.getpixel((x, y))[:3]
+
+            if rgb_rev[pxl] in size:
+                size[rgb_rev[pxl]] += 1
+            else:
+                size[rgb_rev[pxl]] = 1
+
+    loc = ''
+
+    for prov, size in size.items():
+        loc += 'province:%s = { set_variable = { name = prov_size value = %s } }\n' % (prov, size / 1000)
+
+    with open('prov_size.txt', 'w') as f:
+        f.write(loc)
