@@ -50,16 +50,6 @@ window = {
 		using = Animation_FadeOut_Standard
 		using = Sound_WindowHide_Standard
 	}
-	
-	hbox = {
-		parentanchor = center
-			
-		text_single = {
-			layoutpolicy_horizontal = expanding
-			text = "Pops: [HoldingView.GetProvince.MakeScope.Var('pop_total').GetValue]"
-			using = Font_Size_Small
-		}
-	}
 
 
 	vbox = {
@@ -67,12 +57,17 @@ window = {
 		margin_right = 35
 		margin_top = 30
 		
-		hbox = {
+		vbox = {
 			parentanchor = center
 				
 			text_single = {
 				layoutpolicy_horizontal = expanding
 				text = "Pops: [HoldingView.GetProvince.MakeScope.Var('pop_total').GetValue]"
+				using = Font_Size_Small
+			}
+			text_single = {
+				layoutpolicy_horizontal = expanding
+				text = "Farm Score: [HoldingView.GetProvince.MakeScope.Var('farm_score').GetValue]"
 				using = Font_Size_Small
 			}
 		}
