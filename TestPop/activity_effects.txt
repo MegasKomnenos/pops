@@ -1,0 +1,45 @@
+prod_open_crop = {
+    if = {
+        limit = {
+			var:pop_total >= prod_next_crop_pop
+			var:farm_total >= prod_next_crop_farm
+        }
+        set_variable = { name = prod_s$slot$ value = 1 }
+        set_variable = { name = prod_s$slot$_size value = 1 }
+		change_variable = { name = pop_usage_base add = 1 }
+		change_variable = { name = farm_usage_base add = 1 }
+		change_variable = { name = food_sply_base add = 3 }
+    }
+}
+prod_up_crop = {
+    if = {
+        limit = {
+			var:pop_total >= prod_next_crop_pop
+			var:farm_total >= prod_next_crop_farm
+        }
+        change_variable = { name = prod_s$slot$_size add = 1 }
+		change_variable = { name = pop_usage_base add = 1 }
+		change_variable = { name = farm_usage_base add = 1 }
+		change_variable = { name = food_sply_base add = 3 }
+    }
+}
+prod_down_crop = {
+    if = {
+        limit = {
+            var:prod_s$slot$ = 1
+            var:prod_s$slot$_size >= 1
+        }
+        change_variable = { name = prod_s$slot$_size subtract = 1 }
+
+        if = {
+            limit = {
+                var:prod_s$slot$_size < 1
+            }
+            remove_variable = prod_s$slot$
+            remove_variable = prod_s$slot$_size
+        }
+		change_variable = { name = pop_usage_base subtract = 1 }
+		change_variable = { name = farm_usage_base subtract = 1 }
+		change_variable = { name = food_sply_base subtract = 3 }
+    }
+}

@@ -1,0 +1,64 @@
+prod_open = {
+	if = { limit = { NOT = { has_variable = prod_s0 } } prod_open_$name$ = { slot = 0 } }
+	else_if = { limit = { NOT = { has_variable = prod_s1 } }prod_open_$name$ = { slot = 1 } }
+	else_if = { limit = { NOT = { has_variable = prod_s2 } } prod_open_$name$ = { slot = 2 } }
+	else_if = { limit = { NOT = { has_variable = prod_s3 } } prod_open_$name$ = { slot = 3 } }
+	else_if = { limit = { NOT = { has_variable = prod_s4 } } prod_open_$name$ = { slot = 4 } }
+	else_if = { limit = { NOT = { has_variable = prod_s5 } } prod_open_$name$ = { slot = 5 } }
+	else_if = { limit = { NOT = { has_variable = prod_s6 } } prod_open_$name$ = { slot = 6 } }
+	else_if = { limit = { NOT = { has_variable = prod_s7 } } prod_open_$name$ = { slot = 7 } }
+	else_if = { limit = { NOT = { has_variable = prod_s8 } } prod_open_$name$ = { slot = 8 } }
+	else_if = { limit = { NOT = { has_variable = prod_s9 } } prod_open_$name$ = { slot = 9 } }
+	else_if = { limit = { NOT = { has_variable = prod_s10 } } prod_open_$name$ = { slot = 10 } }
+	else_if = { limit = { NOT = { has_variable = prod_s11 } } prod_open_$name$ = { slot = 11 } }
+	else_if = { limit = { NOT = { has_variable = prod_s12 } } prod_open_$name$ = { slot = 12 } }
+	else_if = { limit = { NOT = { has_variable = prod_s13 } } prod_open_$name$ = { slot = 13 } }
+	else_if = { limit = { NOT = { has_variable = prod_s14 } } prod_open_$name$ = { slot = 14 } }
+	else_if = { limit = { NOT = { has_variable = prod_s15 } } prod_open_$name$ = { slot = 15 } }
+}
+
+prod_open_crop = {
+    if = {
+        limit = {
+			var:pop_total >= prod_next_crop_pop
+			var:farm_total >= prod_next_crop_farm
+        }
+        set_variable = { name = prod_s$slot$ value = 1 }
+        set_variable = { name = prod_s$slot$_size value = 1 }
+		change_variable = { name = pop_usage_base add = 1 }
+		change_variable = { name = farm_usage_base add = 1 }
+		change_variable = { name = food_sply_base add = 3 }
+    }
+}
+prod_up_crop = {
+    if = {
+        limit = {
+			var:pop_total >= prod_next_crop_pop
+			var:farm_total >= prod_next_crop_farm
+        }
+        change_variable = { name = prod_s$slot$_size add = 1 }
+		change_variable = { name = pop_usage_base add = 1 }
+		change_variable = { name = farm_usage_base add = 1 }
+		change_variable = { name = food_sply_base add = 3 }
+    }
+}
+prod_down_crop = {
+    if = {
+        limit = {
+            var:prod_s$slot$ = 1
+            var:prod_s$slot$_size >= 1
+        }
+        change_variable = { name = prod_s$slot$_size subtract = 1 }
+
+        if = {
+            limit = {
+                var:prod_s$slot$_size < 1
+            }
+            remove_variable = prod_s$slot$
+            remove_variable = prod_s$slot$_size
+        }
+		change_variable = { name = pop_usage_base subtract = 1 }
+		change_variable = { name = farm_usage_base subtract = 1 }
+		change_variable = { name = food_sply_base subtract = 3 }
+    }
+}
