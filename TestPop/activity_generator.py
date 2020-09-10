@@ -59,7 +59,7 @@ if __name__ == '__main__':
             trigger = ''
             
             for k, v in act['uses'].items():
-                svs += template_sv % (name, k, k, f'\n\tadd = {v}\n\tmultiply = var:{k}_usage_mult')
+                svs += template_sv % (name, k, k, f'\n\tadd = {v}\n\tmultiply = var:modi_{k}_usage')
                 trigger += f'\t\t\tvar:{k}_total >= prod_next_{name}_{k}\n'
                 uses += '\n\t\tchange_variable = { name = %s_usage_base foo = %s }' % (k, v)
         if 'sply' in act:
