@@ -1,46 +1,46 @@
 ﻿init_land = {
 	every_province = {
-		set_variable = { name = land_forest value = var:forest_score }
-		change_variable = { name = land_forest multiply = var:prov_size }
-		change_variable = { name = land_forest divide = 100 }
+		set_variable = { name = forest_total value = var:forest_score }
+		change_variable = { name = forest_total multiply = var:prov_size }
+		change_variable = { name = forest_total divide = 100 }
 		
 		set_variable = { name = land_cleared value = var:prov_size }
-		change_variable = { name = land_cleared subtract = var:land_forest }
+		change_variable = { name = land_cleared subtract = var:forest_total }
 		
-		set_variable = { name = land_farm value = var:farm_score }
-		set_variable = { name = land_pasture value = var:pasture_score }
-		change_variable = { name = land_farm multiply = var:land_farm }
-		change_variable = { name = land_pasture multiply = var:land_pasture }
+		set_variable = { name = farm_total value = var:farm_score }
+		set_variable = { name = pasture_total value = var:pasture_score }
+		change_variable = { name = farm_total multiply = var:farm_total }
+		change_variable = { name = pasture_total multiply = var:pasture_total }
 		
-		set_variable = { name = divisor value = var:land_farm }
-		change_variable = { name = divisor add = var:land_pasture }
+		set_variable = { name = divisor value = var:farm_total }
+		change_variable = { name = divisor add = var:pasture_total }
 		change_variable = { name = divisor add = 0.001 }
-		change_variable = { name = land_farm divide = var:divisor }
-		change_variable = { name = land_pasture divide = var:divisor }
-		change_variable = { name = land_farm multiply = var:land_cleared }
-		change_variable = { name = land_pasture multiply = var:land_cleared }
-		change_variable = { name = land_farm multiply = var:farm_score }
-		change_variable = { name = land_pasture multiply = var:pasture_score }
+		change_variable = { name = farm_total divide = var:divisor }
+		change_variable = { name = pasture_total divide = var:divisor }
+		change_variable = { name = farm_total multiply = var:land_cleared }
+		change_variable = { name = pasture_total multiply = var:land_cleared }
+		change_variable = { name = farm_total multiply = var:farm_score }
+		change_variable = { name = pasture_total multiply = var:pasture_score }
 		
-		change_variable = { name = land_forest multiply = 50 }
-		change_variable = { name = land_farm multiply = 1.5 }
-		change_variable = { name = land_pasture multiply = 1.5 }
+		change_variable = { name = forest_total multiply = 50 }
+		change_variable = { name = farm_total multiply = 1.5 }
+		change_variable = { name = pasture_total multiply = 1.5 }
 		
 		set_variable = { name = adder value = var:pop_total }
 		change_variable = { name = adder multiply = 0.5 }
-		change_variable = { name = land_farm add = var:adder }
+		change_variable = { name = farm_total add = var:adder }
 		
-		change_variable = { name = land_forest divide = 1000 }
-		change_variable = { name = land_farm divide = 1000 }
-		change_variable = { name = land_pasture divide = 1000 }
+		change_variable = { name = forest_total divide = 1000 }
+		change_variable = { name = farm_total divide = 1000 }
+		change_variable = { name = pasture_total divide = 1000 }
 		
-		change_variable = { name = land_forest multiply = 1000 }
-		change_variable = { name = land_farm multiply = 1000 }
-		change_variable = { name = land_pasture multiply = 1000 }
+		change_variable = { name = forest_total multiply = 1000 }
+		change_variable = { name = farm_total multiply = 1000 }
+		change_variable = { name = pasture_total multiply = 1000 }
 		
-		change_variable = { name = land_forest add = 1 }
-		change_variable = { name = land_farm add = 1 }
-		change_variable = { name = land_pasture add = 1 }
+		change_variable = { name = forest_total add = 1 }
+		change_variable = { name = farm_total add = 1 }
+		change_variable = { name = pasture_total add = 1 }
 		
 		remove_variable = land_cleared
 		remove_variable = divisor
