@@ -1,0 +1,43 @@
+﻿init_main = {
+	init_prov_size = yes
+	init_pop_weight = yes
+	init_pop_total = yes
+	init_farm_score = yes
+	init_pasture_score = yes
+	init_forest_score = yes
+	init_land = yes
+	
+	modi_main = yes
+	
+	every_county = {
+		set_variable = { name = pop_total value = 0 }
+		set_variable = { name = farm_total value = 0 }
+		set_variable = { name = pasture_total value = 0 }
+		set_variable = { name = forest_total value = 0 }
+		
+		every_county_province = {
+			prev = {
+				change_variable = { name = pop_total add = prev.var:pop_total }
+				change_variable = { name = farm_total add = prev.var:farm_total }
+				change_variable = { name = pasture_total add = prev.var:pasture_total }
+				change_variable = { name = forest_total add = prev.var:forest_total }
+			}
+			
+			remove_variable = pop_total
+			remove_variable = pop_weight
+			remove_variable = farm_total
+			remove_variable = farm_score
+			remove_variable = pasture_total
+			remove_variable = pasture_score
+			remove_variable = forest_total
+			remove_variable = forest_score
+		}
+		
+		title_province = {
+			set_variable = { name = pop_total value = prev.var:pop_total }
+			set_variable = { name = farm_total value = prev.var:farm_total }
+			set_variable = { name = pasture_total value = prev.var:pasture_total }
+			set_variable = { name = forest_total value = prev.var:forest_total }
+		}
+	}
+}
