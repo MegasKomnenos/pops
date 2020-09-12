@@ -1,0 +1,29 @@
+﻿pop_refresh = {
+	every_county = {
+		set_variable = { name = pop_residing value = var:pop_total }
+		change_variable = { name = pop_residing subtract = var:pop_roaming }
+		
+		if = {
+			limit = {
+				var:pop_residing >= var:pop_usage
+			}
+			set_variable = { name = pop_over value = 0 }
+			set_variable = { name = pop_working value = var:pop_usage }
+			set_variable = { name = pop_resting value = var:pop_residing }
+			change_variable = { name = pop_resting subtract = var:pop_working }
+		}
+		else = {
+			set_variable = { name = pop_over value = var:pop_usage }
+			change_variable = { name = pop_over subtract = var:pop_residing }
+			set_variable = { name = pop_working value = var:pop_residing }
+			set_variable = { name = pop_resting value = 0 }
+		}
+		
+		title_province = {
+			set_variable = { name = pop_residing value = prev.var:pop_residing }
+			set_variable = { name = pop_over value = prev.var:pop_over }
+			set_variable = { name = pop_working value = prev.var:pop_working }
+			set_variable = { name = pop_resting value = prev.var:pop_resting }
+		}
+	}
+}
