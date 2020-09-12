@@ -1,13 +1,13 @@
 ﻿prod_refresh = {
 	every_county = {
 		set_variable = { name = food_sply value = 0 }
-		
 		set_variable = { name = pop_usage value = 0 }
-		set_variable = { name = farm_usage value = 0 }
-		set_variable = { name = pasture_usage value = 0 }
-		set_variable = { name = forest_usage value = 0 }
 		
 		every_county_province = {
+			set_variable = { name = farm_usage value = 0 }
+			set_variable = { name = pasture_usage value = 0 }
+			set_variable = { name = forest_usage value = 0 }
+			
 			prod_refresh_activity = { slot = 0 }
 			prod_refresh_activity = { slot = 1 }
 			prod_refresh_activity = { slot = 2 }
@@ -30,11 +30,7 @@
 		
 		title_province = {
 			set_variable = { name = food_sply value = prev.var:food_sply }
-			
 			set_variable = { name = pop_usage value = prev.var:pop_usage }
-			set_variable = { name = farm_usage value = prev.var:farm_usage }
-			set_variable = { name = pasture_usage value = prev.var:pasture_usage }
-			set_variable = { name = forest_usage value = prev.var:forest_usage }
 		}
 	}
 }
@@ -44,12 +40,12 @@ prod_refresh_activity = {
 		limit = {
 			has_variable = prod_s$slot$
 		}
-		prod_refresh_activity_helper = { slot = $slot$ type = sply name = food }
+		prod_refresh_activity_helper = { slot = $slot$ type = sply name = food to = prev }
 		
-		prod_refresh_activity_helper = { slot = $slot$ type = usage name = pop }
-		prod_refresh_activity_helper = { slot = $slot$ type = usage name = farm }
-		prod_refresh_activity_helper = { slot = $slot$ type = usage name = pasture }
-		prod_refresh_activity_helper = { slot = $slot$ type = usage name = forest }
+		prod_refresh_activity_helper = { slot = $slot$ type = usage name = pop to = prev }
+		prod_refresh_activity_helper = { slot = $slot$ type = usage name = farm to = this }
+		prod_refresh_activity_helper = { slot = $slot$ type = usage name = pasture to = this }
+		prod_refresh_activity_helper = { slot = $slot$ type = usage name = forest to = this }
 	}
 }
 prod_refresh_activity_helper = {
@@ -60,7 +56,7 @@ prod_refresh_activity_helper = {
 		set_variable = { name = prod_s$slot$_$type$_$name$ value = var:prod_s$slot$_size }
 		change_variable = { name = prod_s$slot$_$type$_$name$ multiply = var:prod_s$slot$_base_$type$_$name$ }
 		
-		prev = {
+		$to$ = {
 			change_variable = { name = $name$_$type$ add = var:prod_s$slot$_$type$_$name$ }
 		}
 	}
