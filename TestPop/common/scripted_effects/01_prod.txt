@@ -1,117 +1,321 @@
-﻿prod_refresh = {
-	every_county = {
-		set_variable = { name = food_sply value = 0 }
-		set_variable = { name = pop_usage value = 0 }
-		
-		every_county_province = {
-			set_variable = { name = farm_usage value = 0 }
-			set_variable = { name = pasture_usage value = 0 }
-			set_variable = { name = forest_usage value = 0 }
-			
-			prod_refresh_activity = { slot = 0 }
-			prod_refresh_activity = { slot = 1 }
-			prod_refresh_activity = { slot = 2 }
-			prod_refresh_activity = { slot = 3 }
-			prod_refresh_activity = { slot = 4 }
-			prod_refresh_activity = { slot = 5 }
-			prod_refresh_activity = { slot = 6 }
-			prod_refresh_activity = { slot = 7 }
-			prod_refresh_activity = { slot = 8 }
-			prod_refresh_activity = { slot = 9 }
-			prod_refresh_activity = { slot = 10 }
-			prod_refresh_activity = { slot = 11 }
-			prod_refresh_activity = { slot = 12 }
-			prod_refresh_activity = { slot = 13 }
-			prod_refresh_activity = { slot = 14 }
-			prod_refresh_activity = { slot = 15 }
+﻿prod_build_activity = {
+	if = {
+		limit = {
+			NOT = {
+				has_variable = prod_b$project$
+			}
 		}
+		set_variable = { name = prod_b$project$ value = $activity$ }
+		set_variable = { name = prod_b$project$_id value = var:prod_s$activity$ }
+		set_variable = { name = prod_b$project$_pop value = 0 }
+		set_variable = { name = prod_b$project$_queue value = $queue$ }
+		change_variable = { name = prod_b$project$_queue subtract = 1 }
 		
-		change_variable = { name = food_sply multiply = var:modi_food_sply }
+		prod_run_eff_by_id = { eff = prod_build_start param0 = slot inp0 = $project$ id = var:prod_b$project$_id }
+	}
+	else_if = {
+		limit = {
+			var:prod_b$project$ = $activity$
+		}
+		change_variable = { name = prod_b$project$_queue add = $queue$ }
+	}
+}
+prod_check_project = {
+	if = {
+		limit = {
+			has_variable = prod_b$slot$
+			
+			var:prod_b$slot$_total = 0
+		}
+		prod_run_eff_by_slot = { eff = prod_check_project_helper slot = var:prod_b$slot$ }
 		
-		title_province = {
-			set_variable = { name = food_sply value = prev.var:food_sply }
-			set_variable = { name = pop_usage value = prev.var:pop_usage }
+		prod_run_eff_by_id = { eff = prod_build_done param0 = slot inp0 = $slot$ id = var:prod_b$slot$_id }
+		
+		if = {
+			limit = {
+				var:prod_b$slot$_queue >= 1
+			}
+			change_variable = { name = prod_b$slot$_queue subtract = 1 }
+			
+			prod_run_eff_by_id = { eff = prod_build_start param0 = slot inp0 = $slot$ id = var:prod_b$slot$_id }
+		}
+		else = {
+			change_variable = { name = pop_usage subtract = var:prod_b$slot$_pop }
+			change_variable = { name = pop_remain add = var:prod_b$slot$_pop }
+			
+			remove_variable = prod_b$slot$
+			remove_variable = prod_b$slot$_id
+			remove_variable = prod_b$slot$_pop
+			remove_variable = prod_b$slot$_queue
 		}
 	}
 }
+prod_check_project_helper = {
+	change_variable = { name = prod_s$slot$_size add = 1 }
+}
 
-prod_refresh_activity = {
+prod_assign_pop_activity = {
 	if = {
 		limit = {
 			has_variable = prod_s$slot$
+			
+			var:prod_s$slot$_size = {
+				compare_value > prev.var:prod_s$slot$_pop
+			}
 		}
-		prod_refresh_activity_helper = { slot = $slot$ type = sply name = food to = prev }
-		
-		prod_refresh_activity_helper = { slot = $slot$ type = usage name = pop to = prev }
-		prod_refresh_activity_helper = { slot = $slot$ type = usage name = farm to = this }
-		prod_refresh_activity_helper = { slot = $slot$ type = usage name = pasture to = this }
-		prod_refresh_activity_helper = { slot = $slot$ type = usage name = forest to = this }
+		change_variable = { name = prod_s$slot$_pop add = 1 }
+		change_variable = { name = pop_usage add = 1 }
+		change_variable = { name = pop_remain subtract = 1 }
 	}
 }
-prod_refresh_activity_helper = {
+prod_assign_pop_project = {
 	if = {
 		limit = {
-			has_variable = prod_s$slot$_base_$type$_$name$
+			has_variable = prod_b$slot$
 		}
-		set_variable = { name = prod_s$slot$_$type$_$name$ value = var:prod_s$slot$_size }
-		change_variable = { name = prod_s$slot$_$type$_$name$ multiply = var:prod_s$slot$_base_$type$_$name$ }
-		
-		$to$ = {
-			change_variable = { name = $name$_$type$ add = var:prod_s$slot$_$type$_$name$ }
+		change_variable = { name = prod_b$slot$_pop add = 1 }
+		change_variable = { name = pop_usage add = 1 }
+		change_variable = { name = pop_remain subtract = 1 }
+	}
+}
+prod_remove_pop_activity = {
+	if = {
+		limit = {
+			has_variable = prod_s$slot$
+			
+			var:prod_s$slot$_pop >= 1
 		}
+		change_variable = { name = prod_s$slot$_pop subtract = 1 }
+		change_variable = { name = pop_usage subtract = 1 }
+		change_variable = { name = pop_remain add = 1 }
+	}
+}
+prod_remove_pop_project = {
+	if = {
+		limit = {
+			has_variable = prod_b$slot$
+			
+			var:prod_b$slot$_pop >= 1
+		}
+		change_variable = { name = prod_b$slot$_pop subtract = 1 }
+		change_variable = { name = pop_usage subtract = 1 }
+		change_variable = { name = pop_remain add = 1 }
 	}
 }
 
-prod_open = {
+prod_run_eff_by_slot = {
+	set_variable = { name = prod_run_eff_by_slot_slot value = $slot$ }
+	
 	if = {
 		limit = {
-			prod_can_open_$name$ = yes
+			var:prod_run_eff_by_slot_slot >= 8
 		}
-		if = { limit = { NOT = { has_variable = prod_s0 } } prod_open_$name$ = { slot = 0 } }
-		else_if = { limit = { NOT = { has_variable = prod_s1 } } prod_open_$name$ = { slot = 1 } }
-		else_if = { limit = { NOT = { has_variable = prod_s2 } } prod_open_$name$ = { slot = 2 } }
-		else_if = { limit = { NOT = { has_variable = prod_s3 } } prod_open_$name$ = { slot = 3 } }
-		else_if = { limit = { NOT = { has_variable = prod_s4 } } prod_open_$name$ = { slot = 4 } }
-		else_if = { limit = { NOT = { has_variable = prod_s5 } } prod_open_$name$ = { slot = 5 } }
-		else_if = { limit = { NOT = { has_variable = prod_s6 } } prod_open_$name$ = { slot = 6 } }
-		else_if = { limit = { NOT = { has_variable = prod_s7 } } prod_open_$name$ = { slot = 7 } }
-		else_if = { limit = { NOT = { has_variable = prod_s8 } } prod_open_$name$ = { slot = 8 } }
-		else_if = { limit = { NOT = { has_variable = prod_s9 } } prod_open_$name$ = { slot = 9 } }
-		else_if = { limit = { NOT = { has_variable = prod_s10 } } prod_open_$name$ = { slot = 10 } }
-		else_if = { limit = { NOT = { has_variable = prod_s11 } } prod_open_$name$ = { slot = 11 } }
-		else_if = { limit = { NOT = { has_variable = prod_s12 } } prod_open_$name$ = { slot = 12 } }
-		else_if = { limit = { NOT = { has_variable = prod_s13 } } prod_open_$name$ = { slot = 13 } }
-		else_if = { limit = { NOT = { has_variable = prod_s14 } } prod_open_$name$ = { slot = 14 } }
-		else_if = { limit = { NOT = { has_variable = prod_s15 } } prod_open_$name$ = { slot = 15 } }
+		if = {
+			limit = {
+				var:prod_run_eff_by_slot_slot >= 12
+			}
+			if = {
+				limit = {
+					var:prod_run_eff_by_slot_slot >= 14
+				}
+				if = {
+					limit = {
+						var:prod_run_eff_by_slot_slot >= 15
+					}
+					$eff$ = { slot = 15 [[param0]$param0$ = $inp0$] [[param1]$param1$ = $inp1$] }
+				}
+				else = {
+					$eff$ = { slot = 14 [[param0]$param0$ = $inp0$] [[param1]$param1$ = $inp1$] }
+				}
+			}
+			else = {
+				if = {
+					limit = {
+						var:prod_run_eff_by_slot_slot >= 13
+					}
+					$eff$ = { slot = 13 [[param0]$param0$ = $inp0$] [[param1]$param1$ = $inp1$] }
+				}
+				else = {
+					$eff$ = { slot = 12 [[param0]$param0$ = $inp0$] [[param1]$param1$ = $inp1$] }
+				}
+			}
+		}
+		else = {
+			if = {
+				limit = {
+					var:prod_run_eff_by_slot_slot >= 10
+				}
+				if = {
+					limit = {
+						var:prod_run_eff_by_slot_slot >= 11
+					}
+					$eff$ = { slot = 11 [[param0]$param0$ = $inp0$] [[param1]$param1$ = $inp1$] }
+				}
+				else = {
+					$eff$ = { slot = 10 [[param0]$param0$ = $inp0$] [[param1]$param1$ = $inp1$] }
+				}
+			}
+			else = {
+				if = {
+					limit = {
+						var:prod_run_eff_by_slot_slot >= 9
+					}
+					$eff$ = { slot = 9 [[param0]$param0$ = $inp0$] [[param1]$param1$ = $inp1$] }
+				}
+				else = {
+					$eff$ = { slot = 8 [[param0]$param0$ = $inp0$] [[param1]$param1$ = $inp1$] }
+				}
+			}
+		}
 	}
+	else = {
+		if = {
+			limit = {
+				var:prod_run_eff_by_slot_slot >= 4
+			}
+			if = {
+				limit = {
+					var:prod_run_eff_by_slot_slot >= 6
+				}
+				if = {
+					limit = {
+						var:prod_run_eff_by_slot_slot >= 7
+					}
+					$eff$ = { slot = 7 [[param0]$param0$ = $inp0$] [[param1]$param1$ = $inp1$] }
+				}
+				else = {
+					$eff$ = { slot = 6 [[param0]$param0$ = $inp0$] [[param1]$param1$ = $inp1$] }
+				}
+			}
+			else = {
+				if = {
+					limit = {
+						var:prod_run_eff_by_slot_slot >= 5
+					}
+					$eff$ = { slot = 5 [[param0]$param0$ = $inp0$] [[param1]$param1$ = $inp1$] }
+				}
+				else = {
+					$eff$ = { slot = 4 [[param0]$param0$ = $inp0$] [[param1]$param1$ = $inp1$] }
+				}
+			}
+		}
+		else = {
+			if = {
+				limit = {
+					var:prod_run_eff_by_slot_slot >= 2
+				}
+				if = {
+					limit = {
+						var:prod_run_eff_by_slot_slot >= 3
+					}
+					$eff$ = { slot = 3 [[param0]$param0$ = $inp0$] [[param1]$param1$ = $inp1$] }
+				}
+				else = {
+					$eff$ = { slot = 2 [[param0]$param0$ = $inp0$] [[param1]$param1$ = $inp1$] }
+				}
+			}
+			else = {
+				if = {
+					limit = {
+						var:prod_run_eff_by_slot_slot >= 1
+					}
+					$eff$ = { slot = 1 [[param0]$param0$ = $inp0$] [[param1]$param1$ = $inp1$] }
+				}
+				else = {
+					$eff$ = { slot = 0 [[param0]$param0$ = $inp0$] [[param1]$param1$ = $inp1$] }
+				}
+			}
+		}
+	}
+	
+	remove_variable = prod_run_eff_by_slot_slot
 }
-prod_close = {
+
+prod_run_eff_by_id = {
+	set_variable = { name = prod_run_eff_by_id_id value = $id$ }
+    
 	if = {
 		limit = {
-			prod_can_close_$name$ = yes
+			var:prod_run_eff_by_id_id >= 2
 		}
-		prod_close_$name$ = { slot = $slot$ }
+		$eff$_timber = { $param0$ = $inp0$ [[param1]$param1$ = $inp1$] [[param2]$param2$ = $inp2$] }
 	}
+	else = {
+		$eff$_crop = { $param0$ = $inp0$ [[param1]$param1$ = $inp1$] [[param2]$param2$ = $inp2$] }
+	}
+
+	remove_variable = prod_run_eff_by_id_id
 }
 
 prod_open_crop = {
 	set_variable = { name = prod_s$slot$ value = 1 }
-	set_variable = { name = prod_s$slot$_size value = 1 }
-	
-	set_variable = { name = prod_s$slot$_base_usage_pop value = 1 }
-	set_variable = { name = prod_s$slot$_base_usage_farm value = 1 }
-	
-	set_variable = { name = prod_s$slot$_base_sply_food value = 3 }
+	set_variable = { name = prod_s$slot$_size value = 0 }
+	set_variable = { name = prod_s$slot$_pop value = 0 }
+	set_variable = { name = prod_s$slot$_land value = flag:farm }
+	set_variable = { name = prod_s$slot$_sply_base_food value = 2.5 }
 }
 prod_close_crop = {
 	remove_variable = prod_s$slot$
 	remove_variable = prod_s$slot$_size
-	
-	remove_variable = prod_s$slot$_base_usage_pop
-	remove_variable = prod_s$slot$_base_usage_farm
-	remove_variable = prod_s$slot$_usage_pop
-	remove_variable = prod_s$slot$_usage_farm
-	
-	remove_variable = prod_s$slot$_base_sply_food
+	remove_variable = prod_s$slot$_pop
+	remove_variable = prod_s$slot$_land
+	remove_variable = prod_s$slot$_sply_base_food
 	remove_variable = prod_s$slot$_sply_food
+}
+prod_build_start_crop = {
+    set_variable = { name = prod_b$slot$_total value = 9 }
+	set_variable = { name = prod_b$slot$_cost_pop value = 3 }
+	set_variable = { name = prod_b$slot$_cost_timber value = 4 }
+	set_variable = { name = prod_b$slot$_cost_metal value = 2 }
+}
+prod_build_done_crop = {
+    remove_variable = prod_b$slot$_total
+	remove_variable = prod_b$slot$_cost_pop
+	remove_variable = prod_b$slot$_cost_timber
+	remove_variable = prod_b$slot$_cost_metal
+}
+prod_demol_start_crop = {
+    set_variable = { name = prod_b$slot$_total value = 1 }
+	set_variable = { name = prod_b$slot$_cost_pop value = 1 }
+}
+prod_demol_done_crop = {
+    remove_variable = prod_b$slot$_total
+	remove_variable = prod_b$slot$_cost_pop
+	change_variable = { name = timber_gain_demol value = 2 }
+	change_variable = { name = metal_gain_demol value = 2 }
+}
+prod_open_timber = {
+	set_variable = { name = prod_s$slot$ value = 2 }
+	set_variable = { name = prod_s$slot$_size value = 0 }
+	set_variable = { name = prod_s$slot$_pop value = 0 }
+	set_variable = { name = prod_s$slot$_land value = flag:forest }
+	set_variable = { name = prod_s$slot$_sply_base_timber value = 2 }
+}
+prod_close_timber = {
+	remove_variable = prod_s$slot$
+	remove_variable = prod_s$slot$_size
+	remove_variable = prod_s$slot$_pop
+	remove_variable = prod_s$slot$_land
+	remove_variable = prod_s$slot$_sply_base_timber
+	remove_variable = prod_s$slot$_sply_timber
+}
+prod_build_start_timber = {
+    set_variable = { name = prod_b$slot$_total value = 7 }
+	set_variable = { name = prod_b$slot$_cost_pop value = 5 }
+	set_variable = { name = prod_b$slot$_cost_metal value = 2 }
+}
+prod_build_done_timber = {
+    remove_variable = prod_b$slot$_total
+	remove_variable = prod_b$slot$_cost_pop
+	remove_variable = prod_b$slot$_cost_metal
+}
+prod_demol_start_timber = {
+    set_variable = { name = prod_b$slot$_total value = 1 }
+	set_variable = { name = prod_b$slot$_cost_pop value = 1 }
+}
+prod_demol_done_timber = {
+    remove_variable = prod_b$slot$_total
+	remove_variable = prod_b$slot$_cost_pop
+	change_variable = { name = timber_gain_demol value = 2 }
+	change_variable = { name = metal_gain_demol value = 2 }
 }

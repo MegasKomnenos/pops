@@ -1,0 +1,121 @@
+if = {
+	limit = {
+		var:prod_run_eff_by_slot_slot >= 8
+	}
+	if = {
+		limit = {
+			var:prod_run_eff_by_slot_slot >= 12
+		}
+		if = {
+			limit = {
+				var:prod_run_eff_by_slot_slot >= 14
+			}
+			if = {
+				limit = {
+					var:prod_run_eff_by_slot_slot >= 15
+				}
+				$eff$ = { slot = 15 [[param0]$param0$ = $inp0$] [[param1]$param1$ = $inp1$] }
+			}
+			else = {
+				$eff$ = { slot = 14 [[param0]$param0$ = $inp0$] [[param1]$param1$ = $inp1$] }
+			}
+		}
+		else = {
+			if = {
+				limit = {
+					var:prod_run_eff_by_slot_slot >= 13
+				}
+				$eff$ = { slot = 13 [[param0]$param0$ = $inp0$] [[param1]$param1$ = $inp1$] }
+			}
+			else = {
+				$eff$ = { slot = 12 [[param0]$param0$ = $inp0$] [[param1]$param1$ = $inp1$] }
+			}
+		}
+	}
+	else = {
+		if = {
+			limit = {
+				var:prod_run_eff_by_slot_slot >= 10
+			}
+			if = {
+				limit = {
+					var:prod_run_eff_by_slot_slot >= 11
+				}
+				$eff$ = { slot = 11 [[param0]$param0$ = $inp0$] [[param1]$param1$ = $inp1$] }
+			}
+			else = {
+				$eff$ = { slot = 10 [[param0]$param0$ = $inp0$] [[param1]$param1$ = $inp1$] }
+			}
+		}
+		else = {
+			if = {
+				limit = {
+					var:prod_run_eff_by_slot_slot >= 9
+				}
+				$eff$ = { slot = 9 [[param0]$param0$ = $inp0$] [[param1]$param1$ = $inp1$] }
+			}
+			else = {
+				$eff$ = { slot = 8 [[param0]$param0$ = $inp0$] [[param1]$param1$ = $inp1$] }
+			}
+		}
+	}
+}
+else = {
+	if = {
+		limit = {
+			var:prod_run_eff_by_slot_slot >= 4
+		}
+		if = {
+			limit = {
+				var:prod_run_eff_by_slot_slot >= 6
+			}
+			if = {
+				limit = {
+					var:prod_run_eff_by_slot_slot >= 7
+				}
+				$eff$ = { slot = 7 [[param0]$param0$ = $inp0$] [[param1]$param1$ = $inp1$] }
+			}
+			else = {
+				$eff$ = { slot = 6 [[param0]$param0$ = $inp0$] [[param1]$param1$ = $inp1$] }
+			}
+		}
+		else = {
+			if = {
+				limit = {
+					var:prod_run_eff_by_slot_slot >= 5
+				}
+				$eff$ = { slot = 5 [[param0]$param0$ = $inp0$] [[param1]$param1$ = $inp1$] }
+			}
+			else = {
+				$eff$ = { slot = 4 [[param0]$param0$ = $inp0$] [[param1]$param1$ = $inp1$] }
+			}
+		}
+	}
+	else = {
+		if = {
+			limit = {
+				var:prod_run_eff_by_slot_slot >= 2
+			}
+			if = {
+				limit = {
+					var:prod_run_eff_by_slot_slot >= 3
+				}
+				$eff$ = { slot = 3 [[param0]$param0$ = $inp0$] [[param1]$param1$ = $inp1$] }
+			}
+			else = {
+				$eff$ = { slot = 2 [[param0]$param0$ = $inp0$] [[param1]$param1$ = $inp1$] }
+			}
+		}
+		else = {
+			if = {
+				limit = {
+					var:prod_run_eff_by_slot_slot >= 1
+				}
+				$eff$ = { slot = 1 [[param0]$param0$ = $inp0$] [[param1]$param1$ = $inp1$] }
+			}
+			else = {
+				$eff$ = { slot = 0 [[param0]$param0$ = $inp0$] [[param1]$param1$ = $inp1$] }
+			}
+		}
+	}
+}
