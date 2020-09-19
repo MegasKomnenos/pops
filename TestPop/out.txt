@@ -1,121 +1,65 @@
-if = {
-	limit = {
-		var:prod_run_eff_by_slot_slot >= 8
-	}
+prod_run_eff_by_act = {
+	set_variable = { name = prod_run_eff_by_act_act value = $act$ }
+    
 	if = {
 		limit = {
-			var:prod_run_eff_by_slot_slot >= 12
+			var:prod_run_eff_by_act_act >= 2
 		}
-		if = {
-			limit = {
-				var:prod_run_eff_by_slot_slot >= 14
-			}
-			if = {
-				limit = {
-					var:prod_run_eff_by_slot_slot >= 15
-				}
-				$eff$ = { slot = 15 [[param0]$param0$ = $inp0$] [[param1]$param1$ = $inp1$] }
-			}
-			else = {
-				$eff$ = { slot = 14 [[param0]$param0$ = $inp0$] [[param1]$param1$ = $inp1$] }
-			}
-		}
-		else = {
-			if = {
-				limit = {
-					var:prod_run_eff_by_slot_slot >= 13
-				}
-				$eff$ = { slot = 13 [[param0]$param0$ = $inp0$] [[param1]$param1$ = $inp1$] }
-			}
-			else = {
-				$eff$ = { slot = 12 [[param0]$param0$ = $inp0$] [[param1]$param1$ = $inp1$] }
-			}
-		}
+		$eff$ = { act = timber [[param0]$param0$ = $inp0$] [[param1]$param1$ = $inp1$] }
 	}
 	else = {
-		if = {
-			limit = {
-				var:prod_run_eff_by_slot_slot >= 10
-			}
-			if = {
-				limit = {
-					var:prod_run_eff_by_slot_slot >= 11
-				}
-				$eff$ = { slot = 11 [[param0]$param0$ = $inp0$] [[param1]$param1$ = $inp1$] }
-			}
-			else = {
-				$eff$ = { slot = 10 [[param0]$param0$ = $inp0$] [[param1]$param1$ = $inp1$] }
-			}
-		}
-		else = {
-			if = {
-				limit = {
-					var:prod_run_eff_by_slot_slot >= 9
-				}
-				$eff$ = { slot = 9 [[param0]$param0$ = $inp0$] [[param1]$param1$ = $inp1$] }
-			}
-			else = {
-				$eff$ = { slot = 8 [[param0]$param0$ = $inp0$] [[param1]$param1$ = $inp1$] }
-			}
-		}
+		$eff$ = { act = crop [[param0]$param0$ = $inp0$] [[param1]$param1$ = $inp1$] }
 	}
+
+	remove_variable = prod_run_eff_by_act_act
 }
-else = {
+
+prod_run_eff_by_land = {
+	set_variable = { name = prod_run_eff_by_land_land value = $land$ }
+    
 	if = {
 		limit = {
-			var:prod_run_eff_by_slot_slot >= 4
+			var:prod_run_eff_by_land_land >= 2
 		}
-		if = {
-			limit = {
-				var:prod_run_eff_by_slot_slot >= 6
-			}
-			if = {
-				limit = {
-					var:prod_run_eff_by_slot_slot >= 7
-				}
-				$eff$ = { slot = 7 [[param0]$param0$ = $inp0$] [[param1]$param1$ = $inp1$] }
-			}
-			else = {
-				$eff$ = { slot = 6 [[param0]$param0$ = $inp0$] [[param1]$param1$ = $inp1$] }
-			}
-		}
-		else = {
-			if = {
-				limit = {
-					var:prod_run_eff_by_slot_slot >= 5
-				}
-				$eff$ = { slot = 5 [[param0]$param0$ = $inp0$] [[param1]$param1$ = $inp1$] }
-			}
-			else = {
-				$eff$ = { slot = 4 [[param0]$param0$ = $inp0$] [[param1]$param1$ = $inp1$] }
-			}
-		}
+		$eff$ = { land = forest [[param0]$param0$ = $inp0$] [[param1]$param1$ = $inp1$] }
 	}
 	else = {
-		if = {
-			limit = {
-				var:prod_run_eff_by_slot_slot >= 2
-			}
-			if = {
-				limit = {
-					var:prod_run_eff_by_slot_slot >= 3
-				}
-				$eff$ = { slot = 3 [[param0]$param0$ = $inp0$] [[param1]$param1$ = $inp1$] }
-			}
-			else = {
-				$eff$ = { slot = 2 [[param0]$param0$ = $inp0$] [[param1]$param1$ = $inp1$] }
-			}
-		}
-		else = {
-			if = {
-				limit = {
-					var:prod_run_eff_by_slot_slot >= 1
-				}
-				$eff$ = { slot = 1 [[param0]$param0$ = $inp0$] [[param1]$param1$ = $inp1$] }
-			}
-			else = {
-				$eff$ = { slot = 0 [[param0]$param0$ = $inp0$] [[param1]$param1$ = $inp1$] }
-			}
-		}
+		$eff$ = { land = farm [[param0]$param0$ = $inp0$] [[param1]$param1$ = $inp1$] }
 	}
+
+	remove_variable = prod_run_eff_by_land_land
+}
+
+prod_iter_goods = {
+	$eff$ = { good = pop [[param0]$param0$ = $inp0$] [[param1]$param1$ = $inp1$] }
+	$eff$ = { good = timber [[param0]$param0$ = $inp0$] [[param1]$param1$ = $inp1$] }
+	$eff$ = { good = metal [[param0]$param0$ = $inp0$] [[param1]$param1$ = $inp1$] }
+	$eff$ = { good = food [[param0]$param0$ = $inp0$] [[param1]$param1$ = $inp1$] }
+}
+prod_open_crop = {
+	set_variable = { name = prod_crop value = $slot$ }
+	set_variable = { name = prod_s$slot$ value = 1 }
+	set_variable = { name = prod_s$slot$_size value = 0 }
+	set_variable = { name = prod_s$slot$_pop value = 0 }
+	set_variable = { name = prod_s$slot$_land value = 1 }
+	set_variable = { name = prod_s$slot$_sply_base_food value = 2.5 }
+}
+prod_build_start_crop = {
+    set_variable = { name = prod_b$slot$_total value = 9 }
+	set_variable = { name = prod_b$slot$_cost_pop value = 3 }
+	set_variable = { name = prod_b$slot$_cost_timber value = 4 }
+	set_variable = { name = prod_b$slot$_cost_metal value = 2 }
+}
+prod_open_timber = {
+	set_variable = { name = prod_timber value = $slot$ }
+	set_variable = { name = prod_s$slot$ value = 2 }
+	set_variable = { name = prod_s$slot$_size value = 0 }
+	set_variable = { name = prod_s$slot$_pop value = 0 }
+	set_variable = { name = prod_s$slot$_land value = 2 }
+	set_variable = { name = prod_s$slot$_sply_base_timber value = 2 }
+}
+prod_build_start_timber = {
+    set_variable = { name = prod_b$slot$_total value = 7 }
+	set_variable = { name = prod_b$slot$_cost_pop value = 5 }
+	set_variable = { name = prod_b$slot$_cost_metal value = 2 }
 }

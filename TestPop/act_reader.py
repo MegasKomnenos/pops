@@ -23,32 +23,14 @@ def repeat_str(lst, tmplt):
 
 if __name__ == '__main__':
     tmplt_open = '''prod_open_%s = {
+\tset_variable = { name = prod_%s value = $slot$ }
 \tset_variable = { name = prod_s$slot$ value = %s }
 \tset_variable = { name = prod_s$slot$_size value = 0 }
 \tset_variable = { name = prod_s$slot$_pop value = 0 }%s%s%s
 }
 '''
-    tmplt_close = '''prod_close_%s = {
-\tremove_variable = prod_s$slot$
-\tremove_variable = prod_s$slot$_size
-\tremove_variable = prod_s$slot$_pop
-\tremove_variable = prod_s$slot$_land%s%s
-}
-'''
     tmplt_build_start = '''prod_build_start_%s = {
     set_variable = { name = prod_b$slot$_total value = %s }%s
-}
-'''
-    tmplt_build_done = '''prod_build_done_%s = {
-    remove_variable = prod_b$slot$_total%s
-}
-'''
-    tmplt_demol_start = '''prod_demol_start_%s = {
-    set_variable = { name = prod_b$slot$_total value = %s }%s
-}
-'''
-    tmplt_demol_done = '''prod_demol_done_%s = {
-    remove_variable = prod_b$slot$_total%s%s
 }
 '''
 
@@ -61,27 +43,62 @@ if __name__ == '__main__':
 
     names.sort(key=lambda e : e[1])
 
-    cond = 'var:prod_run_eff_by_id_id >= %s'
-    body = '$eff$_%s = { $param0$ = $inp0$ [[param1]$param1$ = $inp1$] [[param2]$param2$ = $inp2$] }'
+    cond = 'var:prod_run_eff_by_act_act >= %s'
+    body = '$eff$ = { act = %s [[param0]$param0$ = $inp0$] [[param1]$param1$ = $inp1$] }'
     form = '\tif = {\n\t\tlimit = {\n\t\t\t%s\n\t\t}\n\t\t%s\n\t}\n\telse = {\n\t\t%s\n\t}' % (cond, '%s', '%s')
     
-    eff = '''prod_run_eff_by_id = {
-\tset_variable = { name = prod_run_eff_by_id_id value = $id$ }
+    eff = '''prod_run_eff_by_act = {
+\tset_variable = { name = prod_run_eff_by_act_act value = $act$ }
     
 %s
 
-\tremove_variable = prod_run_eff_by_id_id
+\tremove_variable = prod_run_eff_by_act_act
 }
 
 ''' % btree(names, form, body)
 
-    for act in acts:
-        eff += tmplt_open % (act['name'], act['id'], '\n\tset_variable = { name = prod_s$slot$_land value = flag:%s }' % act['land'], repeat_str(act['sply'], '\n\tset_variable = { name = prod_s$slot$_sply_base_%s value = %s }'), repeat_str(act['dmnd'], '\n\tset_variable = { name = prod_s$slot$_dmnd_base_%s value = %s }'))
-        eff += tmplt_close % (act['name'], repeat_str([(foo[0], foo[0]) for foo in act['sply']], '\n\tremove_variable = prod_s$slot$_sply_base_%s\n\tremove_variable = prod_s$slot$_sply_%s'), repeat_str([(foo[0], foo[0]) for foo in act['dmnd']], '\n\tremove_variable = prod_s$slot$_dmnd_base_%s\n\tremove_variable = prod_s$slot$_dmnd_%s'))
-        eff += tmplt_build_start % (act['name'], sum([foo[1] for foo in act['cost']]), repeat_str(act['cost'], '\n\tset_variable = { name = prod_b$slot$_cost_%s value = %s }'))
-        eff += tmplt_build_done % (act['name'], repeat_str([foo[0] for foo in act['cost']], '\n\tremove_variable = prod_b$slot$_cost_%s'))
-        eff += tmplt_demol_start % (act['name'], sum([foo[1] for foo in act['demol_cost']]), repeat_str(act['demol_cost'], '\n\tset_variable = { name = prod_b$slot$_cost_%s value = %s }'))
-        eff += tmplt_demol_done % (act['name'], repeat_str([foo[0] for foo in act['demol_cost']], '\n\tremove_variable = prod_b$slot$_cost_%s'), repeat_str(act['demol_gain'], '\n\tchange_variable = { name = %s_gain_demol value = %s }'))
+    lands = []
 
+    for act in acts:
+        if not act['land'] in lands:
+            lands.append(act['land'])
+
+    lands_t = [(land, i + 1) for i, land in enumerate(lands)]
+
+    cond = 'var:prod_run_eff_by_land_land >= %s'
+    body = '$eff$ = { land = %s [[param0]$param0$ = $inp0$] [[param1]$param1$ = $inp1$] }'
+    form = '\tif = {\n\t\tlimit = {\n\t\t\t%s\n\t\t}\n\t\t%s\n\t}\n\telse = {\n\t\t%s\n\t}' % (cond, '%s', '%s')
+    
+    eff += '''prod_run_eff_by_land = {
+\tset_variable = { name = prod_run_eff_by_land_land value = $land$ }
+    
+%s
+
+\tremove_variable = prod_run_eff_by_land_land
+}
+
+''' % btree(lands_t, form, body)
+
+    goods = []
+
+    for act in acts:
+        for good in act['cost']:
+            if not good[0] in goods:
+                goods.append(good[0])
+        for good in act['sply']:
+            if not good[0] in goods:
+                goods.append(good[0])
+        for good in act['dmnd']:
+            if not good[0] in goods:
+                goods.append(good[0])
+
+    eff += '''prod_iter_goods = {%s
+}
+''' % repeat_str(goods, '\n\t$eff$ = { good = %s [[param0]$param0$ = $inp0$] [[param1]$param1$ = $inp1$] }')
+
+    for act in acts:
+        eff += tmplt_open % (act['name'], act['name'], act['id'], '\n\tset_variable = { name = prod_s$slot$_land value = %s }' % str(lands.index(act['land']) + 1), repeat_str(act['sply'], '\n\tset_variable = { name = prod_s$slot$_sply_base_%s value = %s }'), repeat_str(act['dmnd'], '\n\tset_variable = { name = prod_s$slot$_dmnd_base_%s value = %s }'))
+        eff += tmplt_build_start % (act['name'], sum([foo[1] for foo in act['cost']]), repeat_str(act['cost'], '\n\tset_variable = { name = prod_b$slot$_cost_%s value = %s }'))
+        
     with open('out.txt', 'w') as f:
         f.write(eff)
