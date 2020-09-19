@@ -1,9 +1,40 @@
 ﻿modi_refresh = {
 	every_county = {
 		modi_prod = yes
+		
+		every_county_province = {
+			limit = {
+				is_city = yes
+			}
+			set_variable = { name = modi_food_sply value = prev.var:modi_food_sply }
+			set_variable = { name = modi_timber_sply value = prev.var:modi_timber_sply }
+			set_variable = { name = modi_metal_sply value = prev.var:modi_metal_sply }
+			
+			set_variable = { name = modi_food_dmnd value = prev.var:modi_food_dmnd }
+			set_variable = { name = modi_timber_dmnd value = prev.var:modi_timber_dmnd }
+			set_variable = { name = modi_metal_dmnd value = prev.var:modi_metal_dmnd }
+			
+			set_variable = { name = modi_crop_sply value = prev.var:modi_crop_sply }
+			set_variable = { name = modi_lumberyard_sply value = prev.var:modi_lumberyard_sply }
+			
+			set_variable = { name = modi_crop_dmnd value = prev.var:modi_crop_dmnd }
+			set_variable = { name = modi_lumberyard_dmnd value = prev.var:modi_lumberyard_dmnd }
+		}
 	}
 }
 
 modi_prod = {
 	set_variable = { name = modi_food_sply value = 1 }
+	set_variable = { name = modi_timber_sply value = 1 }
+	set_variable = { name = modi_metal_sply value = 1 }
+	
+	set_variable = { name = modi_food_dmnd value = 1 }
+	set_variable = { name = modi_timber_dmnd value = 1 }
+	set_variable = { name = modi_metal_dmnd value = 1 }
+	
+	set_variable = { name = modi_crop_sply value = 1 }
+	set_variable = { name = modi_lumberyard_sply value = 1 }
+	
+	set_variable = { name = modi_crop_dmnd value = 1 }
+	set_variable = { name = modi_lumberyard_dmnd value = 1 }
 }

@@ -3,12 +3,36 @@ prod_run_eff_by_act = {
     
 	if = {
 		limit = {
-			var:prod_run_eff_by_act_act >= 2
+			var:prod_run_eff_by_act_act >= 3
 		}
-		$eff$ = { act = timber [[param0]$param0$ = $inp0$] [[param1]$param1$ = $inp1$] }
+		if = {
+			limit = {
+				var:prod_run_eff_by_act_act >= 4
+			}
+			if = {
+				limit = {
+					var:prod_run_eff_by_act_act >= 5
+				}
+				$eff$ = { act = lumberyard [[param0]$param0$ = $inp0$] [[param1]$param1$ = $inp1$] }
+			}
+			else = {
+				$eff$ = { act = horses [[param0]$param0$ = $inp0$] [[param1]$param1$ = $inp1$] }
+			}
+		}
+		else = {
+			$eff$ = { act = sheep [[param0]$param0$ = $inp0$] [[param1]$param1$ = $inp1$] }
+		}
 	}
 	else = {
-		$eff$ = { act = crop [[param0]$param0$ = $inp0$] [[param1]$param1$ = $inp1$] }
+		if = {
+			limit = {
+				var:prod_run_eff_by_act_act >= 2
+			}
+			$eff$ = { act = cattle [[param0]$param0$ = $inp0$] [[param1]$param1$ = $inp1$] }
+		}
+		else = {
+			$eff$ = { act = crop [[param0]$param0$ = $inp0$] [[param1]$param1$ = $inp1$] }
+		}
 	}
 
 	remove_variable = prod_run_eff_by_act_act
@@ -21,7 +45,15 @@ prod_run_eff_by_land = {
 		limit = {
 			var:prod_run_eff_by_land_land >= 2
 		}
-		$eff$ = { land = forest [[param0]$param0$ = $inp0$] [[param1]$param1$ = $inp1$] }
+		if = {
+			limit = {
+				var:prod_run_eff_by_land_land >= 3
+			}
+			$eff$ = { land = forest [[param0]$param0$ = $inp0$] [[param1]$param1$ = $inp1$] }
+		}
+		else = {
+			$eff$ = { land = pasture [[param0]$param0$ = $inp0$] [[param1]$param1$ = $inp1$] }
+		}
 	}
 	else = {
 		$eff$ = { land = farm [[param0]$param0$ = $inp0$] [[param1]$param1$ = $inp1$] }
@@ -35,6 +67,8 @@ prod_iter_goods = {
 	$eff$ = { good = timber [[param0]$param0$ = $inp0$] [[param1]$param1$ = $inp1$] }
 	$eff$ = { good = metal [[param0]$param0$ = $inp0$] [[param1]$param1$ = $inp1$] }
 	$eff$ = { good = food [[param0]$param0$ = $inp0$] [[param1]$param1$ = $inp1$] }
+	$eff$ = { good = fiber [[param0]$param0$ = $inp0$] [[param1]$param1$ = $inp1$] }
+	$eff$ = { good = military [[param0]$param0$ = $inp0$] [[param1]$param1$ = $inp1$] }
 }
 prod_open_crop = {
 	set_variable = { name = prod_crop value = $slot$ }
@@ -50,15 +84,61 @@ prod_build_start_crop = {
 	set_variable = { name = prod_b$slot$_cost_timber value = 4 }
 	set_variable = { name = prod_b$slot$_cost_metal value = 2 }
 }
-prod_open_timber = {
-	set_variable = { name = prod_timber value = $slot$ }
+prod_open_cattle = {
+	set_variable = { name = prod_cattle value = $slot$ }
 	set_variable = { name = prod_s$slot$ value = 2 }
 	set_variable = { name = prod_s$slot$_size value = 0 }
 	set_variable = { name = prod_s$slot$_pop value = 0 }
 	set_variable = { name = prod_s$slot$_land value = 2 }
+	set_variable = { name = prod_s$slot$_sply_base_food value = 1.5 }
+	set_variable = { name = prod_s$slot$_sply_base_fiber value = 0.5 }
+}
+prod_build_start_cattle = {
+    set_variable = { name = prod_b$slot$_total value = 9 }
+	set_variable = { name = prod_b$slot$_cost_pop value = 3 }
+	set_variable = { name = prod_b$slot$_cost_food value = 5 }
+	set_variable = { name = prod_b$slot$_cost_metal value = 1 }
+}
+prod_open_sheep = {
+	set_variable = { name = prod_sheep value = $slot$ }
+	set_variable = { name = prod_s$slot$ value = 3 }
+	set_variable = { name = prod_s$slot$_size value = 0 }
+	set_variable = { name = prod_s$slot$_pop value = 0 }
+	set_variable = { name = prod_s$slot$_land value = 2 }
+	set_variable = { name = prod_s$slot$_sply_base_food value = 0.5 }
+	set_variable = { name = prod_s$slot$_sply_base_fiber value = 1.5 }
+}
+prod_build_start_sheep = {
+    set_variable = { name = prod_b$slot$_total value = 9 }
+	set_variable = { name = prod_b$slot$_cost_pop value = 3 }
+	set_variable = { name = prod_b$slot$_cost_food value = 5 }
+	set_variable = { name = prod_b$slot$_cost_metal value = 1 }
+}
+prod_open_horses = {
+	set_variable = { name = prod_horses value = $slot$ }
+	set_variable = { name = prod_s$slot$ value = 4 }
+	set_variable = { name = prod_s$slot$_size value = 0 }
+	set_variable = { name = prod_s$slot$_pop value = 0 }
+	set_variable = { name = prod_s$slot$_land value = 2 }
+	set_variable = { name = prod_s$slot$_sply_base_food value = 0.5 }
+	set_variable = { name = prod_s$slot$_sply_base_military value = 1 }
+}
+prod_build_start_horses = {
+    set_variable = { name = prod_b$slot$_total value = 9 }
+	set_variable = { name = prod_b$slot$_cost_pop value = 3 }
+	set_variable = { name = prod_b$slot$_cost_food value = 3 }
+	set_variable = { name = prod_b$slot$_cost_military value = 2 }
+	set_variable = { name = prod_b$slot$_cost_metal value = 1 }
+}
+prod_open_lumberyard = {
+	set_variable = { name = prod_lumberyard value = $slot$ }
+	set_variable = { name = prod_s$slot$ value = 5 }
+	set_variable = { name = prod_s$slot$_size value = 0 }
+	set_variable = { name = prod_s$slot$_pop value = 0 }
+	set_variable = { name = prod_s$slot$_land value = 3 }
 	set_variable = { name = prod_s$slot$_sply_base_timber value = 2 }
 }
-prod_build_start_timber = {
+prod_build_start_lumberyard = {
     set_variable = { name = prod_b$slot$_total value = 7 }
 	set_variable = { name = prod_b$slot$_cost_pop value = 5 }
 	set_variable = { name = prod_b$slot$_cost_metal value = 2 }

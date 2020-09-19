@@ -45,12 +45,12 @@ if __name__ == '__main__':
 
     cond = 'var:prod_run_eff_by_act_act >= %s'
     body = '$eff$ = { act = %s [[param0]$param0$ = $inp0$] [[param1]$param1$ = $inp1$] }'
-    form = '\tif = {\n\t\tlimit = {\n\t\t\t%s\n\t\t}\n\t\t%s\n\t}\n\telse = {\n\t\t%s\n\t}' % (cond, '%s', '%s')
+    form = 'if = {\n\t\tlimit = {\n\t\t\t%s\n\t\t}\n\t\t%s\n\t}\n\telse = {\n\t\t%s\n\t}' % (cond, '%s', '%s')
     
     eff = '''prod_run_eff_by_act = {
 \tset_variable = { name = prod_run_eff_by_act_act value = $act$ }
     
-%s
+\t%s
 
 \tremove_variable = prod_run_eff_by_act_act
 }
@@ -67,12 +67,12 @@ if __name__ == '__main__':
 
     cond = 'var:prod_run_eff_by_land_land >= %s'
     body = '$eff$ = { land = %s [[param0]$param0$ = $inp0$] [[param1]$param1$ = $inp1$] }'
-    form = '\tif = {\n\t\tlimit = {\n\t\t\t%s\n\t\t}\n\t\t%s\n\t}\n\telse = {\n\t\t%s\n\t}' % (cond, '%s', '%s')
+    form = 'if = {\n\t\tlimit = {\n\t\t\t%s\n\t\t}\n\t\t%s\n\t}\n\telse = {\n\t\t%s\n\t}' % (cond, '%s', '%s')
     
     eff += '''prod_run_eff_by_land = {
 \tset_variable = { name = prod_run_eff_by_land_land value = $land$ }
     
-%s
+\t%s
 
 \tremove_variable = prod_run_eff_by_land_land
 }
