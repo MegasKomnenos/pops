@@ -70,10 +70,10 @@ def parse_file(path):
             rhs = False
             
             for token in parse_line(line):
-                if token == '=':
+                if token == '=' or token == '>' or token == '<' or token == '>=' or token == '<=' or token == '==' or token == '!=':
                     rhs = True
-                    
-                    stack[-1][-1] = [stack[-1][-1]]
+
+                    stack[-1][-1] = [stack[-1][-1], token]
                     stack.append(stack[-1][-1])
                 elif token == '{':
                     rhs = False
@@ -85,11 +85,6 @@ def parse_file(path):
                 elif '[[' in token:
                     stack[-1].append([token[1:], list()])
                     stack.append(stack[-1][-1][1])
-                elif token == '>' or token == '<' or token == '>=' or token == '<=' or token == '==' or token == '!=':
-                    rhs = True
-
-                    stack[-1][-1] = [stack[-1][-1], token]
-                    stack.append(stack[-1][-1])
                 else:
                     stack[-1].append(token)
 
@@ -156,25 +151,20 @@ def reconstruct(file, t=''):
 
     for f in file:
         if f:
-            try:
-                f[1]
-            except:
-                print(f)
-            if type(f[1]) == type(list()):
-                txt += '%s%s = {' % (t, f[0])
+            if len(f) == 3 and type(f[0]) != type(list()) and type(f[1]) != type(list()):
+                if type(f[2]) == type(list()):
+                    txt += '%s%s %s {' % (t, f[0], f[1])
 
-                if not f[1]:
-                    txt += '}\n'
-                elif type(f[1][0]) != type(list()):
-                    for item in f[1]:
-                        txt += ' %s' % item
-                    txt += ' }\n'
+                    if not f[2]:
+                        txt += '}\n'
+                    elif type(f[2][0]) != type(list()):
+                        for item in f[2]:
+                            txt += ' %s' % item
+                        txt += ' }\n'
+                    else:
+                        txt += '\n%s%s}\n' % (reconstruct(f[2], t + '\t'), t)
                 else:
-                    txt += '\n%s%s}\n' % (reconstruct(f[1], t + '\t'), t)
-            elif len(f) == 3 and type(f[0]) != type(list()) and type(f[1]) != type(list()) and type(f[2]) != type(list()):
-                txt += '%s%s %s %s\n' % (t, f[0], f[1], f[2])
-            else:
-                txt += '%s%s = %s\n' % (t, f[0], f[1])
+                    txt += '%s%s %s %s\n' % (t, f[0], f[1], f[2])
 
     return txt
             
@@ -186,7 +176,7 @@ if __name__ == '__main__':
         file = parse_file(path)
 
         for block in file:
-            block = block[1]
+            block = block[2]
 
             if type(block) == type(list()):
                 has_entry = False
@@ -195,15 +185,15 @@ if __name__ == '__main__':
                     if entry[0] == 'is_shown':
                         has_entry = True
 
-                        new_entry = [['can_do_normal_interaction', 'yes']]
-                        new_entry.extend(entry[1])
+                        new_entry = [['can_do_normal_interaction', '=', 'yes']]
+                        new_entry.extend(entry[2])
 
-                        entry[1] = new_entry
+                        entry[2] = new_entry
 
                         break
 
                 if not has_entry:
-                    block.append(['is_shown', [['can_do_normal_interaction', 'yes']]])
+                    block.append(['is_shown', '=', [['can_do_normal_interaction', '=', 'yes']]])
 
         with open('foo\\%s' % path.split('\\')[-1], 'w', encoding='utf-8-sig') as f:
             f.write(reconstruct(file))
