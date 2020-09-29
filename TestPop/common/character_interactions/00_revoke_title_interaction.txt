@@ -186,7 +186,9 @@
 	}
 	on_decline = {
 		if = {
-			limit = { scope:landed_title.tier ['!', 'tier_barony'] }
+			limit = {
+				scope:landed_title.tier != tier_barony
+			}
 			scope:actor = {
 				revocation_tyranny_effect = yes
 				title_revocation_stress_effect = yes

@@ -86,7 +86,9 @@
 				right_icon = scope:recipient
 				add_tyranny = vassal_obligation_increase_tyranny_gain
 				if = {
-					limit = { vassal_obligation_increase_tyranny_gain ['!', '0'] }
+					limit = {
+						vassal_obligation_increase_tyranny_gain != 0
+					}
 					stress_impact = {
 						just = medium_stress_impact_gain
 						generous = medium_stress_impact_gain

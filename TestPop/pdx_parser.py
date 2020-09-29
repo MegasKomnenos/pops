@@ -5,6 +5,7 @@ def parse_line(line):
     line = line.replace('}', ' } ')
     line = line.replace('[', ' [ ')
     line = line.replace(']', ' ] ')
+    line = line.replace('!=', ' != ')
     line = line.replace('=', ' = ')
     line = line.replace('>', ' > ')
     line = line.replace('<', ' < ')
@@ -15,6 +16,7 @@ def parse_line(line):
     line = line.replace('> =', '>=')
     line = line.replace('< =', '<=')
     line = line.replace('= =', '==')
+    line = line.replace('! =', '!=')
 
     comma = False
     comment = False
@@ -83,7 +85,7 @@ def parse_file(path):
                 elif '[[' in token:
                     stack[-1].append([token[1:], list()])
                     stack.append(stack[-1][-1][1])
-                elif token == '>' or token == '<' or token == '>=' or token == '<=' or token == '==':
+                elif token == '>' or token == '<' or token == '>=' or token == '<=' or token == '==' or token == '!=':
                     rhs = True
 
                     stack[-1][-1] = [stack[-1][-1], token]
@@ -180,7 +182,7 @@ def reconstruct(file, t=''):
 if __name__ == '__main__':
     import glob
 
-    for path in glob.glob('common\\decisions\\*.txt'):
+    for path in glob.glob('common\\character_interactions\\*.txt'):
         file = parse_file(path)
 
         for block in file:
@@ -193,7 +195,7 @@ if __name__ == '__main__':
                     if entry[0] == 'is_shown':
                         has_entry = True
 
-                        new_entry = [['is_character', 'yes']]
+                        new_entry = [['can_do_normal_interaction', 'yes']]
                         new_entry.extend(entry[1])
 
                         entry[1] = new_entry
@@ -201,7 +203,7 @@ if __name__ == '__main__':
                         break
 
                 if not has_entry:
-                    block.append(['is_shown', [['is_character', 'yes']]])
+                    block.append(['is_shown', [['can_do_normal_interaction', 'yes']]])
 
-        with open('foo\\%s' % path.split('\\')[-1], 'w') as f:
+        with open('foo\\%s' % path.split('\\')[-1], 'w', encoding='utf-8-sig') as f:
             f.write(reconstruct(file))
