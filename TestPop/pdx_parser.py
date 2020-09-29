@@ -176,5 +176,32 @@ def reconstruct(file, t=''):
 
     return txt
             
+            
 if __name__ == '__main__':
-    print('foo')
+    import glob
+
+    for path in glob.glob('common\\decisions\\*.txt'):
+        file = parse_file(path)
+
+        for block in file:
+            block = block[1]
+
+            if type(block) == type(list()):
+                has_entry = False
+                
+                for entry in block:
+                    if entry[0] == 'is_shown':
+                        has_entry = True
+
+                        new_entry = [['is_character', 'yes']]
+                        new_entry.extend(entry[1])
+
+                        entry[1] = new_entry
+
+                        break
+
+                if not has_entry:
+                    block.append(['is_shown', [['is_character', 'yes']]])
+
+        with open('foo\\%s' % path.split('\\')[-1], 'w') as f:
+            f.write(reconstruct(file))

@@ -1,0 +1,52 @@
+action_can_create_title = {
+	combine_into_one = yes
+	check_create_action = {
+		ordered_alert_creatable_title = {
+			order_by = tier
+			max = 99
+			check_range_bounds = no
+			if = {
+				limit = {
+					is_character = yes
+				}
+				try_create_important_action = {
+					important_action_type = action_can_create_title
+					landed_title = this
+				}
+			}
+		}
+	}
+	effect = {
+		scope:landed_title = {
+			open_view_data = {
+				view = title_view_window
+			}
+		}
+	}
+}
+action_can_usurp_title = {
+	combine_into_one = yes
+	check_create_action = {
+		ordered_alert_usurpable_title = {
+			order_by = tier
+			max = 99
+			check_range_bounds = no
+			if = {
+				limit = {
+					is_character = yes
+				}
+				try_create_important_action = {
+					important_action_type = action_can_usurp_title
+					landed_title = this
+				}
+			}
+		}
+	}
+	effect = {
+		scope:landed_title = {
+			open_view_data = {
+				view = title_view_window
+			}
+		}
+	}
+}

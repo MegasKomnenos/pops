@@ -1,0 +1,915 @@
+unite_the_western_slavs_decision = {
+	picture = "gfx/interface/illustrations/decisions/decision_realm.dds"
+	major = yes
+	ai_check_interval = 120
+	desc = unite_the_western_slavs_decision_desc
+	is_shown = {
+		is_character = yes
+		has_culture_group = culture_group:west_slavic_group
+		NOT = {
+			is_target_in_global_variable_list = {
+				name = unavailable_unique_decisions
+				target = flag:unite_the_western_slavs_decision
+			}
+		}
+	}
+	is_valid = {
+		has_culture_group = culture_group:west_slavic_group
+		trigger_if = {
+			limit = {
+				title:k_poland = {
+					any_in_de_jure_hierarchy = {
+						tier = tier_county
+					}
+				}
+			}
+			completely_controls = title:k_poland
+		}
+		trigger_if = {
+			limit = {
+				title:k_pomerania = {
+					any_in_de_jure_hierarchy = {
+						tier = tier_county
+					}
+				}
+			}
+			completely_controls = title:k_pomerania
+		}
+		trigger_if = {
+			limit = {
+				title:k_bohemia = {
+					any_in_de_jure_hierarchy = {
+						tier = tier_county
+					}
+				}
+			}
+			completely_controls = title:k_bohemia
+		}
+		trigger_if = {
+			limit = {
+				title:k_moravia = {
+					any_in_de_jure_hierarchy = {
+						tier = tier_county
+					}
+				}
+			}
+			completely_controls = title:k_moravia
+		}
+		OR = {
+			OR = {
+				has_primary_title = title:k_poland
+				has_primary_title = title:k_pomerania
+				has_primary_title = title:k_bohemia
+				has_primary_title = title:k_moravia
+			}
+			AND = {
+				highest_held_title_tier = tier_empire
+				OR = {
+					has_title = title:k_poland
+					has_title = title:k_pomerania
+					has_title = title:k_bohemia
+					has_title = title:k_moravia
+				}
+			}
+		}
+	}
+	effect = {
+		save_scope_as = western_slav_uniter
+		show_as_tooltip = {
+			unite_the_western_slavs_decision_effects = yes
+		}
+		trigger_event = east_europe.0001
+		every_player = {
+			limit = {
+				NOT = {
+					this = scope:western_slav_uniter
+				}
+				is_within_diplo_range = {
+					CHARACTER = scope:western_slav_uniter
+				}
+			}
+			trigger_event = east_europe.0002
+		}
+		add_to_global_variable_list = {
+			name = unavailable_unique_decisions
+			target = flag:unite_the_western_slavs_decision
+		}
+	}
+	ai_potential = {
+		always = yes
+	}
+	ai_will_do = {
+		base = 100
+	}
+}
+unite_the_southern_slavs_decision = {
+	picture = "gfx/interface/illustrations/decisions/decision_realm.dds"
+	major = yes
+	ai_check_interval = 120
+	desc = unite_the_southern_slavs_decision_desc
+	is_shown = {
+		is_character = yes
+		has_culture_group = culture_group:south_slavic_group
+		NOT = {
+			has_culture = culture:vlach
+			is_target_in_global_variable_list = {
+				name = unavailable_unique_decisions
+				target = flag:unite_the_southern_slavs_decision
+			}
+		}
+	}
+	is_valid = {
+		has_culture_group = culture_group:south_slavic_group
+		trigger_if = {
+			limit = {
+				title:k_croatia = {
+					any_in_de_jure_hierarchy = {
+						tier = tier_county
+					}
+				}
+			}
+			completely_controls = title:k_croatia
+		}
+		trigger_if = {
+			limit = {
+				title:k_serbia = {
+					any_in_de_jure_hierarchy = {
+						tier = tier_county
+					}
+				}
+			}
+			completely_controls = title:k_serbia
+		}
+		trigger_if = {
+			limit = {
+				title:k_bulgaria = {
+					any_in_de_jure_hierarchy = {
+						tier = tier_county
+					}
+				}
+			}
+			completely_controls = title:k_bulgaria
+		}
+		trigger_if = {
+			limit = {
+				title:k_dacia = {
+					any_in_de_jure_hierarchy = {
+						tier = tier_county
+					}
+				}
+			}
+			completely_controls = title:k_dacia
+		}
+		trigger_if = {
+			limit = {
+				title:k_moldavia = {
+					any_in_de_jure_hierarchy = {
+						tier = tier_county
+					}
+				}
+			}
+			completely_controls = title:k_moldavia
+		}
+		OR = {
+			has_primary_title = title:k_croatia
+			has_primary_title = title:k_serbia
+			has_primary_title = title:k_bulgaria
+			has_primary_title = title:k_dacia
+			has_primary_title = title:k_moldavia
+		}
+	}
+	effect = {
+		save_scope_as = southern_slav_uniter
+		show_as_tooltip = {
+			unite_the_southern_slavs_decision_effects = yes
+		}
+		trigger_event = east_europe.0005
+		every_player = {
+			limit = {
+				NOT = {
+					this = scope:southern_slav_uniter
+				}
+				is_within_diplo_range = {
+					CHARACTER = scope:southern_slav_uniter
+				}
+			}
+			trigger_event = east_europe.0006
+		}
+		add_to_global_variable_list = {
+			name = unavailable_unique_decisions
+			target = flag:unite_the_southern_slavs_decision
+		}
+	}
+	ai_potential = {
+		always = yes
+	}
+	ai_will_do = {
+		base = 100
+	}
+}
+unite_the_slavs_decision = {
+	picture = "gfx/interface/illustrations/decisions/decision_realm.dds"
+	major = yes
+	ai_check_interval = 120
+	desc = unite_the_slavs_decision_desc
+	is_shown = {
+		is_character = yes
+		OR = {
+			has_culture_group = culture_group:west_slavic_group
+			has_culture_group = culture_group:east_slavic_group
+			has_culture_group = culture_group:south_slavic_group
+		}
+		NOR = {
+			has_culture = culture:vlach
+			is_target_in_global_variable_list = {
+				name = unavailable_unique_decisions
+				target = flag:unite_the_slavs_decision
+			}
+		}
+	}
+	is_valid = {
+		OR = {
+			has_culture_group = culture_group:west_slavic_group
+			has_culture_group = culture_group:east_slavic_group
+			has_culture_group = culture_group:south_slavic_group
+		}
+		completely_controls_region = custom_slavia
+	}
+	effect = {
+		save_scope_as = slav_uniter
+		show_as_tooltip = {
+			unite_the_slavs_decision_effects = yes
+		}
+		trigger_event = east_europe.0010
+		every_player = {
+			limit = {
+				NOT = {
+					this = scope:slav_uniter
+				}
+				is_within_diplo_range = {
+					CHARACTER = scope:slav_uniter
+				}
+			}
+			trigger_event = east_europe.0011
+		}
+		add_to_global_variable_list = {
+			name = unavailable_unique_decisions
+			target = flag:unite_the_slavs_decision
+		}
+	}
+	cost = {
+		gold = {
+			value = 600
+		}
+	}
+	ai_potential = {
+		always = yes
+	}
+	ai_will_do = {
+		base = 100
+	}
+}
+defenders_of_highgod_decision = {
+	picture = "gfx/interface/illustrations/decisions/decision_personal_religious.dds"
+	major = yes
+	ai_check_interval = 120
+	desc = defenders_of_highgod_decision_desc
+	is_shown = {
+		is_character = yes
+		OR = {
+			faith = faith:baltic_pagan
+			faith = faith:slavic_pagan
+			faith = faith:finnish_pagan
+		}
+		NOR = {
+			AND = {
+				faith = faith:baltic_pagan
+				is_target_in_global_variable_list = {
+					name = unavailable_unique_decisions
+					target = flag:defenders_of_highgod_baltic_decision
+				}
+			}
+			AND = {
+				faith = faith:slavic_pagan
+				is_target_in_global_variable_list = {
+					name = unavailable_unique_decisions
+					target = flag:defenders_of_highgod_slavic_decision
+				}
+			}
+			AND = {
+				faith = faith:finnish_pagan
+				is_target_in_global_variable_list = {
+					name = unavailable_unique_decisions
+					target = flag:defenders_of_highgod_finnish_decision
+				}
+			}
+		}
+	}
+	is_valid = {
+		faith = {
+			any_holy_site = {
+				county.holder = root
+			}
+		}
+		piety_level >= 3
+		trigger_if = {
+			limit = {
+				OR = {
+					highest_held_title_tier = tier_county
+					highest_held_title_tier = tier_duchy
+				}
+			}
+			any_vassal = {
+				count >= 3
+				is_powerful_vassal = yes
+				opinion = {
+					target = root
+					value >= high_positive_opinion
+				}
+			}
+		}
+		trigger_if = {
+			limit = {
+				highest_held_title_tier = tier_kingdom
+			}
+			any_vassal = {
+				count >= 4
+				is_powerful_vassal = yes
+				opinion = {
+					target = root
+					value >= high_positive_opinion
+				}
+			}
+		}
+		trigger_if = {
+			limit = {
+				highest_held_title_tier = tier_empire
+			}
+			any_vassal = {
+				count >= 5
+				is_powerful_vassal = yes
+				opinion = {
+					target = root
+					value >= high_positive_opinion
+				}
+			}
+		}
+	}
+	is_valid_showing_failures_only = {
+		is_independent_ruler = yes
+	}
+	effect = {
+		save_scope_as = defender_of_highgod
+		show_as_tooltip = {
+			defenders_of_highgod_decision_effects = yes
+		}
+		if = {
+			limit = {
+				faith = {
+					any_holy_site = {
+						count > 1
+						county.holder = root
+					}
+				}
+			}
+			trigger_event = east_europe.0015
+		}
+		else = {
+			faith = {
+				random_holy_site = {
+					limit = {
+						county.holder = root
+					}
+					save_scope_as = holy_site
+				}
+			}
+			trigger_event = east_europe.0016
+		}
+		if = {
+			limit = {
+				faith = faith:baltic_pagan
+			}
+			add_to_global_variable_list = {
+				name = unavailable_unique_decisions
+				target = flag:defenders_of_highgod_baltic_decision
+			}
+		}
+		else_if = {
+			limit = {
+				faith = faith:slavic_pagan
+			}
+			add_to_global_variable_list = {
+				name = unavailable_unique_decisions
+				target = flag:defenders_of_highgod_slavic_decision
+			}
+		}
+		else_if = {
+			limit = {
+				faith = faith:finnish_pagan
+			}
+			add_to_global_variable_list = {
+				name = unavailable_unique_decisions
+				target = flag:defenders_of_highgod_finnish_decision
+			}
+		}
+	}
+	cost = {
+		gold = {
+			value = 100
+		}
+	}
+	ai_potential = {
+		always = yes
+	}
+	ai_will_do = {
+		base = 100
+	}
+}
+promote_hungarian_settlement_decision = {
+	picture = "gfx/interface/illustrations/decisions/decision_realm.dds"
+	desc = promote_hungarian_settlement_decision_desc
+	selection_tooltip = promote_hungarian_settlement_decision_tooltip
+	major = yes
+	ai_goal = yes
+	is_shown = {
+		is_character = yes
+		is_ruler = yes
+		is_landed = yes
+		game_start_date < 1066.1.1
+		culture_group = culture_group:magyar_group
+		NOT = {
+			is_target_in_global_variable_list = {
+				name = unavailable_unique_decisions
+				target = flag:flag_promoted_hungarian_settlement
+			}
+		}
+		NOT = {
+			is_target_in_global_variable_list = {
+				name = unavailable_unique_decisions
+				target = flag:flag_revived_magyar_paganism
+			}
+		}
+		OR = {
+			has_title = title:k_hungary
+			has_title = title:e_carpathia
+		}
+		any_neighboring_top_liege_realm_owner = {
+			religion = religion:christianity_religion
+			count >= 2
+		}
+	}
+	is_valid = {
+		custom_description = {
+			text = promote_hungarian_settlement_decision_ecumenical_christian
+			faith = {
+				religion = religion:christianity_religion
+				has_doctrine = special_doctrine_ecumenical_christian
+			}
+		}
+		completely_controls = title:k_hungary
+		capital_province = {
+			culture_group = culture_group:magyar_group
+		}
+	}
+	is_valid_showing_failures_only = {
+		is_capable_adult = yes
+		is_imprisoned = no
+		is_independent_ruler = yes
+		is_at_war = no
+	}
+	cost = {
+		prestige = 2000
+		piety = 500
+	}
+	effect = {
+		show_as_tooltip = {
+			promote_hungarian_settlement_decision_scripted_effect = yes
+		}
+		trigger_event = {
+			id = east_europe.0030
+		}
+		hidden_effect = {
+			add_to_global_variable_list = {
+				name = unavailable_unique_decisions
+				target = flag:flag_promoted_hungarian_settlement
+			}
+		}
+	}
+	ai_potential = {
+		always = yes
+	}
+	ai_will_do = {
+		base = 50
+		ai_value_modifier = {
+			ai_zeal = 1.0
+			ai_greed = 1.0
+		}
+	}
+}
+revive_magyar_paganism_decision = {
+	picture = "gfx/interface/illustrations/decisions/decision_major_religion.dds"
+	desc = revive_magyar_paganism_decision_desc
+	selection_tooltip = revive_magyar_paganism_decision_tooltip
+	major = yes
+	ai_check_interval = 0
+	is_shown = {
+		is_character = yes
+		is_landed = yes
+		culture_group = culture_group:magyar_group
+		NOR = {
+			culture = {
+				has_cultural_era_or_later = culture_era_high_medieval
+			}
+			is_target_in_global_variable_list = {
+				name = unavailable_unique_decisions
+				target = flag:flag_revived_magyar_paganism
+			}
+		}
+		any_sub_realm_county = {
+			title_province = {
+				geographical_region = custom_hungary
+			}
+		}
+		has_government = feudal_government
+		NOT = {
+			faith.religion = {
+				is_in_family = rf_pagan
+			}
+		}
+		religion:magyar_religion = {
+			any_faith = {
+				count = all
+				has_doctrine = unreformed_faith_doctrine
+			}
+		}
+	}
+	is_valid = {
+		prestige_level >= high_prestige_level
+		OR = {
+			has_title = title:k_hungary
+			AND = {
+				has_title = title:e_carpathia
+				any_vassal = {
+					has_title = title:k_hungary
+				}
+			}
+		}
+		any_realm_county = {
+			count >= 30
+			culture_group = culture_group:magyar_group
+		}
+		has_realm_law = crown_authority_3
+		has_trait = theologian
+		NOT = {
+			culture = {
+				has_cultural_era_or_later = culture_era_high_medieval
+			}
+		}
+	}
+	is_valid_showing_failures_only = {
+		is_capable_adult = yes
+		is_imprisoned = no
+		is_at_war = no
+		is_independent_ruler = yes
+	}
+	cost = {
+		piety = 2000
+	}
+	effect = {
+		custom_tooltip = revive_magyar_paganism_decision.adjust_the_faith.tt
+		show_as_tooltip = {
+			revive_magyar_paganism_decision_scripted_effect = yes
+		}
+		trigger_event = {
+			id = east_europe.0032
+		}
+		hidden_effect = {
+			add_to_global_variable_list = {
+				name = unavailable_unique_decisions
+				target = flag:flag_revived_magyar_paganism
+			}
+		}
+	}
+	ai_potential = {
+		always = no
+	}
+}
+found_kingdom_of_bosnia_decision = {
+	picture = "gfx/interface/illustrations/decisions/decision_destiny_goal.dds"
+	major = yes
+	ai_check_interval = 120
+	desc = found_kingdom_of_bosnia_decision_desc
+	selection_tooltip = found_kingdom_of_bosnia_decision_tooltip
+	is_shown = {
+		is_character = yes
+		is_ruler = yes
+		is_landed = yes
+		exists = dynasty
+		OR = {
+			AND = {
+				OR = {
+					culture = culture:serbian
+					culture = culture:croatian
+				}
+				capital_county = {
+					OR = {
+						this = title:c_vodica
+						this = title:c_pset
+						this = title:c_vrbas
+						this = title:c_donjikraji
+						this = title:c_usora
+						this = title:c_rama
+						this = title:c_soli
+						this = title:c_vhrbosna
+						this = title:c_zavrsje
+						this = title:c_zachlumia
+						this = title:c_pagania
+					}
+				}
+			}
+			culture = culture:bosnian
+		}
+		NOT = {
+			is_target_in_global_variable_list = {
+				name = unavailable_unique_decisions
+				target = flag:flag_founded_kingdom_of_bosnia
+			}
+		}
+		OR = {
+			has_government = feudal_government
+			has_government = clan_government
+		}
+		highest_held_title_tier <= tier_duchy
+	}
+	is_valid = {
+		is_independent_ruler = yes
+		dynasty.dynasty_prestige_level >= medium_dynasty_prestige_level
+		has_title = title:d_bosna
+		has_title = title:d_usora
+		completely_controls = title:d_bosna
+		completely_controls = title:d_usora
+		culture = {
+			has_cultural_era_or_later = culture_era_early_medieval
+		}
+	}
+	is_valid_showing_failures_only = {
+		is_available_adult = yes
+	}
+	effect = {
+		save_scope_as = founder
+		show_as_tooltip = {
+			found_kingdom_of_bosnia_decision_scripted_effect = yes
+		}
+		trigger_event = {
+			id = east_europe.0101
+		}
+		every_player = {
+			limit = {
+				NOT = {
+					this = scope:founder
+				}
+				top_liege = {
+					OR = {
+						this = scope:founder
+						any_neighboring_and_across_water_top_liege_realm_owner = {
+							this = scope:founder
+						}
+					}
+				}
+			}
+			trigger_event = east_europe.0102
+		}
+		hidden_effect = {
+			add_to_global_variable_list = {
+				name = unavailable_unique_decisions
+				target = flag:flag_founded_kingdom_of_bosnia
+			}
+		}
+	}
+	cost = {
+		gold = 300
+		prestige = 200
+	}
+	ai_potential = {
+		always = yes
+	}
+	ai_will_do = {
+		base = 100
+	}
+}
+accuse_krstjani_of_heresy_decision = {
+	picture = "gfx/interface/illustrations/decisions/decision_major_religion.dds"
+	major = yes
+	ai_check_interval = 120
+	desc = accuse_krstjani_of_heresy_decision_desc
+	selection_tooltip = accuse_krstjani_of_heresy_decision_tooltip
+	is_shown = {
+		is_character = yes
+		is_independent_ruler = yes
+		is_landed = yes
+		exists = dynasty
+		faith = {
+			religion_tag = christianity_religion
+			has_doctrine = special_doctrine_ecumenical_christian
+		}
+		exists = faith.religious_head
+		NOT = {
+			faith = faith:bosnian_church
+		}
+		faith:bosnian_church = {
+			has_doctrine = special_doctrine_ecumenical_christian
+		}
+		any_neighboring_top_liege_realm = {
+			accuse_krstjani_of_heresy_decision_suitable_krstjani_realm_trigger = yes
+		}
+		NOT = {
+			is_target_in_global_variable_list = {
+				name = unavailable_unique_decisions
+				target = flag:flag_krstjani_accused_of_heresy
+			}
+		}
+		OR = {
+			has_government = feudal_government
+			has_government = clan_government
+		}
+	}
+	is_valid = {
+		piety_level >= high_piety_level
+		highest_held_title_tier >= tier_duchy
+	}
+	is_valid_showing_failures_only = {
+		is_available_adult = yes
+		NOT = {
+			has_trait = excommunicated
+		}
+	}
+	effect = {
+		save_scope_as = accuser
+		faith.religious_head = {
+			save_scope_as = hof
+		}
+		random_neighboring_top_liege_realm = {
+			limit = {
+				accuse_krstjani_of_heresy_decision_suitable_krstjani_realm_trigger = yes
+			}
+			holder = {
+				save_scope_as = heretic
+			}
+		}
+		custom_tooltip = accuse_krstjani_of_heresy_flavour_effect.tt
+		trigger_event = {
+			id = east_europe.0111
+		}
+		hidden_effect = {
+			add_to_global_variable_list = {
+				name = unavailable_unique_decisions
+				target = flag:flag_krstjani_accused_of_heresy
+			}
+		}
+	}
+	cost = {
+		piety = major_piety_value
+	}
+	ai_potential = {
+		always = yes
+	}
+	ai_will_do = {
+		base = 50
+		modifier = {
+			add = 25
+			has_trait = zealous
+		}
+		modifier = {
+			add = 15
+			has_trait = cynical
+		}
+		modifier = {
+			add = 10
+			has_trait = faith_warrior
+		}
+		modifier = {
+			add = 10
+			has_trait = order_member
+		}
+		modifier = {
+			add = 10
+			has_trait = theologian
+		}
+		modifier = {
+			add = -100
+			any_relation = {
+				type = friend
+				faith = faith:bosnian_church
+			}
+		}
+		modifier = {
+			add = -100
+			any_relation = {
+				type = lover
+				faith = faith:bosnian_church
+			}
+		}
+		modifier = {
+			add = -100
+			any_consort = {
+				faith = faith:bosnian_church
+			}
+		}
+		modifier = {
+			add = -100
+			any_ally = {
+				faith = faith:bosnian_church
+			}
+		}
+		modifier = {
+			add = -100
+			any_held_title = {
+				this = title:e_hre
+			}
+		}
+		modifier = {
+			add = -100
+			any_held_title = {
+				this = title:e_byzantium
+			}
+		}
+		modifier = {
+			add = -100
+			is_at_war = yes
+		}
+	}
+}
+launch_hungarian_migration_decision = {
+	picture = "gfx/interface/illustrations/decisions/decision_destiny_goal.dds"
+	major = yes
+	ai_check_interval = 60
+	desc = launch_hungarian_migration_decision_desc
+	selection_tooltip = launch_hungarian_migration_decision_tooltip
+	is_shown = {
+		is_character = yes
+		is_ruler = yes
+		is_landed = yes
+		exists = dynasty
+		OR = {
+			is_independent_ruler = yes
+			liege = {
+				culture = culture:mogyer
+			}
+		}
+		culture = culture:mogyer
+		NOT = {
+			any_county_in_region = {
+				region = custom_hungary
+				count >= 12
+				OR = {
+					holder = root
+					holder = {
+						any_liege_or_above = {
+							this = root
+						}
+					}
+				}
+			}
+		}
+		NOT = {
+			is_target_in_global_variable_list = {
+				name = unavailable_unique_decisions
+				target = flag:flag_launched_hungarian_migration
+			}
+		}
+		current_date <= 911.1.1
+	}
+	is_valid = {
+		highest_held_title_tier <= tier_kingdom
+		has_government = tribal_government
+		custom_description = {
+			text = launch_hungarian_migration_decision_before_last_date
+			current_date <= 911.1.1
+		}
+	}
+	is_valid_showing_failures_only = {
+		is_available_adult = yes
+		is_at_war = no
+	}
+	effect = {
+		save_scope_as = invader
+		custom_tooltip = launch_hungarian_migration_decision_flavour_effect
+		add_character_flag = undertaking_hungarian_migration
+		trigger_event = east_europe.0141
+		hidden_effect = {
+			add_to_global_variable_list = {
+				name = unavailable_unique_decisions
+				target = flag:flag_launched_hungarian_migration
+			}
+		}
+	}
+	cost = {
+		prestige = 1000
+	}
+	ai_potential = {
+		always = no
+	}
+	ai_will_do = {
+		base = 0
+	}
+}

@@ -6,3 +6,21 @@
 		has_holding_type = church_holding
 	}
 }
+
+is_character = {
+	NOT = {
+		has_trait = character_not_1
+		has_trait = character_not_2
+		has_trait = character_not_3
+		has_trait = character_not_4
+	}
+}
+
+can_do_normal_interaction = {
+	scope:actor = {
+		is_character = yes
+	}
+	scope:recipient = {
+		is_character = yes
+	}
+}
