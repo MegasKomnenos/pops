@@ -3,22 +3,22 @@
 	check_create_action = {
 		if = {
 			limit = {
-				gold >= 0
+				is_character = yes
 			}
-			every_neighboring_and_across_water_top_liege_realm_owner = {
+			if = {
 				limit = {
-					save_temporary_scope_as = this_ruler
-					root = {
-						has_any_cb_on = scope:this_ruler
-						NOR = {
-							is_allied_to = scope:this_ruler
-							has_truce = scope:this_ruler
-						}
-					}
+					gold >= 0
 				}
-				if = {
+				every_neighboring_and_across_water_top_liege_realm_owner = {
 					limit = {
-						is_character = yes
+						save_temporary_scope_as = this_ruler
+						root = {
+							has_any_cb_on = scope:this_ruler
+							NOR = {
+								is_allied_to = scope:this_ruler
+								has_truce = scope:this_ruler
+							}
+						}
 					}
 					try_create_important_action = {
 						important_action_type = action_has_any_display_cb_on
@@ -26,26 +26,21 @@
 						recipient = this
 					}
 				}
-			}
-			if = {
-				limit = {
-					is_independent_ruler = no
-				}
-				liege = {
-					every_vassal = {
-						limit = {
-							save_temporary_scope_as = this_ruler
-							root = {
-								has_any_cb_on = scope:this_ruler
-								NOR = {
-									is_allied_to = scope:this_ruler
-									has_truce = scope:this_ruler
-								}
-							}
-						}
-						if = {
+				if = {
+					limit = {
+						is_independent_ruler = no
+					}
+					liege = {
+						every_vassal = {
 							limit = {
-								is_character = yes
+								save_temporary_scope_as = this_ruler
+								root = {
+									has_any_cb_on = scope:this_ruler
+									NOR = {
+										is_allied_to = scope:this_ruler
+										has_truce = scope:this_ruler
+									}
+								}
 							}
 							try_create_important_action = {
 								important_action_type = action_has_any_display_cb_on
@@ -69,20 +64,20 @@
 action_can_call_ally = {
 	combine_into_one = yes
 	check_create_action = {
-		every_ally = {
-			save_temporary_scope_as = ally
-			if = {
-				limit = {
-					prev = {
-						is_character_interaction_valid = {
-							recipient = scope:ally
-							interaction = call_ally_interaction
-						}
-					}
-				}
+		if = {
+			limit = {
+				is_character = yes
+			}
+			every_ally = {
+				save_temporary_scope_as = ally
 				if = {
 					limit = {
-						is_character = yes
+						prev = {
+							is_character_interaction_valid = {
+								recipient = scope:ally
+								interaction = call_ally_interaction
+							}
+						}
 					}
 					try_create_important_action = {
 						important_action_type = action_can_call_ally
@@ -106,23 +101,23 @@ action_can_call_house_member = {
 	check_create_action = {
 		if = {
 			limit = {
-				is_house_head = yes
+				is_character = yes
 			}
-			house = {
-				every_house_member = {
-					save_temporary_scope_as = member
-					if = {
-						limit = {
-							root = {
-								is_character_interaction_valid = {
-									recipient = scope:member
-									interaction = call_house_member_to_war_interaction
-								}
-							}
-						}
+			if = {
+				limit = {
+					is_house_head = yes
+				}
+				house = {
+					every_house_member = {
+						save_temporary_scope_as = member
 						if = {
 							limit = {
-								is_character = yes
+								root = {
+									is_character_interaction_valid = {
+										recipient = scope:member
+										interaction = call_house_member_to_war_interaction
+									}
+								}
 							}
 							try_create_important_action = {
 								important_action_type = action_can_call_house_member
@@ -148,23 +143,23 @@ action_can_call_dynasty_member = {
 	check_create_action = {
 		if = {
 			limit = {
-				is_dynast = yes
+				is_character = yes
 			}
-			dynasty = {
-				every_dynasty_member = {
-					save_temporary_scope_as = member
-					if = {
-						limit = {
-							root = {
-								is_character_interaction_valid = {
-									recipient = scope:member
-									interaction = call_dynasty_member_to_war_interaction
-								}
-							}
-						}
+			if = {
+				limit = {
+					is_dynast = yes
+				}
+				dynasty = {
+					every_dynasty_member = {
+						save_temporary_scope_as = member
 						if = {
 							limit = {
-								is_character = yes
+								root = {
+									is_character_interaction_valid = {
+										recipient = scope:member
+										interaction = call_dynasty_member_to_war_interaction
+									}
+								}
 							}
 							try_create_important_action = {
 								important_action_type = action_can_call_dynasty_member
@@ -189,11 +184,11 @@ action_not_enough_knights = {
 	check_create_action = {
 		if = {
 			limit = {
-				max_number_of_knights > root.number_of_knights
+				is_character = yes
 			}
 			if = {
 				limit = {
-					is_character = yes
+					max_number_of_knights > root.number_of_knights
 				}
 				try_create_important_action = {
 					important_action_type = action_not_enough_knights

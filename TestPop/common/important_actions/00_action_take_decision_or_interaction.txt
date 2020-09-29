@@ -20,20 +20,20 @@ action_ask_for_pardon = {
 	check_create_action = {
 		if = {
 			limit = {
-				ask_for_pardon_available_trigger = {
-					ACTOR = root
-				}
-				OR = {
-					has_hook = top_liege
-					reverse_opinion = {
-						target = top_liege
-						value >= 50
-					}
-				}
+				is_character = yes
 			}
 			if = {
 				limit = {
-					is_character = yes
+					ask_for_pardon_available_trigger = {
+						ACTOR = root
+					}
+					OR = {
+						has_hook = top_liege
+						reverse_opinion = {
+							target = top_liege
+							value >= 50
+						}
+					}
 				}
 				try_create_important_action = {
 					important_action_type = action_ask_for_pardon
@@ -55,33 +55,33 @@ action_convert_at_war_interaction = {
 	check_create_action = {
 		if = {
 			limit = {
-				faith = {
-					has_doctrine_parameter = unreformed
-				}
+				is_character = yes
 			}
-			every_character_war = {
+			if = {
 				limit = {
-					primary_defender = root
-					using_non_ghw_holy_war_cb_trigger = yes
-					primary_attacker.max_military_strength > primary_defender.max_military_strength
+					faith = {
+						has_doctrine_parameter = unreformed
+					}
 				}
-				primary_attacker = {
-					save_scope_as = attacker
-				}
-				if = {
+				every_character_war = {
 					limit = {
-						root = {
-							is_character_interaction_valid = {
-								recipient = scope:attacker
-								interaction = convert_at_war_interaction
+						primary_defender = root
+						using_non_ghw_holy_war_cb_trigger = yes
+						primary_attacker.max_military_strength > primary_defender.max_military_strength
+					}
+					primary_attacker = {
+						save_scope_as = attacker
+					}
+					if = {
+						limit = {
+							root = {
+								is_character_interaction_valid = {
+									recipient = scope:attacker
+									interaction = convert_at_war_interaction
+								}
 							}
 						}
-					}
-					primary_defender = {
-						if = {
-							limit = {
-								is_character = yes
-							}
+						primary_defender = {
 							try_create_important_action = {
 								important_action_type = action_convert_at_war_interaction
 								actor = root

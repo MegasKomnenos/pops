@@ -3,11 +3,11 @@
 	check_create_action = {
 		if = {
 			limit = {
-				health <= death_chance_dying_health
+				is_character = yes
 			}
 			if = {
 				limit = {
-					is_character = yes
+					health <= death_chance_dying_health
 				}
 				try_create_important_action = {
 					important_action_type = action_dying
@@ -27,23 +27,23 @@
 action_can_assign_guardian = {
 	combine_into_one = yes
 	check_create_action = {
-		every_child = {
+		if = {
 			limit = {
-				is_adult = no
-				num_of_relation_guardian = 0
-				age >= childhood_education_start_age
-				exists = liege
-				liege = root
-				root = {
-					is_character_interaction_valid = {
-						recipient = prev
-						interaction = educate_child_interaction
-					}
-				}
+				is_character = yes
 			}
-			if = {
+			every_child = {
 				limit = {
-					is_character = yes
+					is_adult = no
+					num_of_relation_guardian = 0
+					age >= childhood_education_start_age
+					exists = liege
+					liege = root
+					root = {
+						is_character_interaction_valid = {
+							recipient = prev
+							interaction = educate_child_interaction
+						}
+					}
 				}
 				try_create_important_action = {
 					important_action_type = action_can_assign_guardian
@@ -66,37 +66,37 @@ action_can_assign_guardian = {
 action_can_ransom = {
 	combine_into_one = yes
 	check_create_action = {
-		every_prisoner = {
+		if = {
 			limit = {
-				OR = {
-					AND = {
-						OR = {
-							is_pool_guest = yes
-							is_ruler = yes
-						}
-						gold > 10
-					}
-					AND = {
-						is_ruler = no
-						exists = liege
-						liege = {
+				is_character = yes
+			}
+			every_prisoner = {
+				limit = {
+					OR = {
+						AND = {
+							OR = {
+								is_pool_guest = yes
+								is_ruler = yes
+							}
 							gold > 10
 						}
+						AND = {
+							is_ruler = no
+							exists = liege
+							liege = {
+								gold > 10
+							}
+						}
 					}
-				}
-				NOT = {
-					is_at_war_with = root
-				}
-				root = {
-					is_character_interaction_potentially_accepted = {
-						recipient = prev
-						interaction = ransom_interaction
+					NOT = {
+						is_at_war_with = root
 					}
-				}
-			}
-			if = {
-				limit = {
-					is_character = yes
+					root = {
+						is_character_interaction_potentially_accepted = {
+							recipient = prev
+							interaction = ransom_interaction
+						}
+					}
 				}
 				try_create_important_action = {
 					important_action_type = action_can_ransom
@@ -117,18 +117,18 @@ action_can_ransom = {
 action_can_vassalize = {
 	combine_into_one = yes
 	check_create_action = {
-		every_neighboring_top_liege_realm_owner = {
+		if = {
 			limit = {
-				root = {
-					is_character_interaction_potentially_accepted = {
-						recipient = prev
-						interaction = offer_vassalization_interaction
-					}
-				}
+				is_character = yes
 			}
-			if = {
+			every_neighboring_top_liege_realm_owner = {
 				limit = {
-					is_character = yes
+					root = {
+						is_character_interaction_potentially_accepted = {
+							recipient = prev
+							interaction = offer_vassalization_interaction
+						}
+					}
 				}
 				try_create_important_action = {
 					important_action_type = action_can_vassalize
@@ -149,18 +149,18 @@ action_can_vassalize = {
 action_can_propose_alliance_to_family_member = {
 	combine_into_one = yes
 	check_create_action = {
-		every_close_or_extended_family_member = {
+		if = {
 			limit = {
-				root = {
-					is_character_interaction_potentially_accepted = {
-						recipient = prev
-						interaction = negotiate_alliance_interaction
-					}
-				}
+				is_character = yes
 			}
-			if = {
+			every_close_or_extended_family_member = {
 				limit = {
-					is_character = yes
+					root = {
+						is_character_interaction_potentially_accepted = {
+							recipient = prev
+							interaction = negotiate_alliance_interaction
+						}
+					}
 				}
 				try_create_important_action = {
 					important_action_type = action_can_propose_alliance_to_family_member
@@ -181,18 +181,18 @@ action_can_propose_alliance_to_family_member = {
 action_can_demand_payment = {
 	combine_into_one = yes
 	check_create_action = {
-		every_hooked_character = {
+		if = {
 			limit = {
-				root = {
-					is_character_interaction_potentially_accepted = {
-						recipient = prev
-						interaction = demand_payment_interaction
-					}
-				}
+				is_character = yes
 			}
-			if = {
+			every_hooked_character = {
 				limit = {
-					is_character = yes
+					root = {
+						is_character_interaction_potentially_accepted = {
+							recipient = prev
+							interaction = demand_payment_interaction
+						}
+					}
 				}
 				try_create_important_action = {
 					important_action_type = action_can_demand_payment
@@ -214,21 +214,21 @@ action_can_ask_hof_for_money = {
 	check_create_action = {
 		if = {
 			limit = {
-				exists = faith.religious_head
-				faith.religious_head = {
-					root = {
-						is_character_interaction_potentially_accepted = {
-							recipient = prev
-							interaction = hof_ask_for_gold_interaction
+				is_character = yes
+			}
+			if = {
+				limit = {
+					exists = faith.religious_head
+					faith.religious_head = {
+						root = {
+							is_character_interaction_potentially_accepted = {
+								recipient = prev
+								interaction = hof_ask_for_gold_interaction
+							}
 						}
 					}
 				}
-			}
-			faith.religious_head = {
-				if = {
-					limit = {
-						is_character = yes
-					}
+				faith.religious_head = {
 					try_create_important_action = {
 						important_action_type = action_can_ask_hof_for_money
 						actor = root

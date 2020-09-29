@@ -3,13 +3,13 @@
 	check_create_action = {
 		if = {
 			limit = {
-				is_adult = yes
-				has_any_focus = no
-				can_select_lifestyle_focus = yes
+				is_character = yes
 			}
 			if = {
 				limit = {
-					is_character = yes
+					is_adult = yes
+					has_any_focus = no
+					can_select_lifestyle_focus = yes
 				}
 				try_create_important_action = {
 					important_action_type = action_can_choose_lifestyle
@@ -41,20 +41,20 @@ action_can_spend_perk_point = {
 	check_create_action = {
 		if = {
 			limit = {
-				has_any_focus = yes
-				NOR = {
-					has_focus_intrigue = yes
-					has_focus_diplomacy = yes
-					has_focus_learning = yes
-					has_focus_martial = yes
-					has_focus_stewardship = yes
-				}
-				perk_points > 0
-				is_adult = yes
+				is_character = yes
 			}
 			if = {
 				limit = {
-					is_character = yes
+					has_any_focus = yes
+					NOR = {
+						has_focus_intrigue = yes
+						has_focus_diplomacy = yes
+						has_focus_learning = yes
+						has_focus_martial = yes
+						has_focus_stewardship = yes
+					}
+					perk_points > 0
+					is_adult = yes
 				}
 				try_create_important_action = {
 					important_action_type = action_can_spend_perk_point
@@ -76,13 +76,13 @@ action_lifestyle_diplo = {
 	check_create_action = {
 		if = {
 			limit = {
-				has_focus_diplomacy = yes
-				perk_points > 0
-				is_adult = yes
+				is_character = yes
 			}
 			if = {
 				limit = {
-					is_character = yes
+					has_focus_diplomacy = yes
+					perk_points > 0
+					is_adult = yes
 				}
 				try_create_important_action = {
 					important_action_type = action_lifestyle_diplo
@@ -104,13 +104,13 @@ action_lifestyle_intrigue = {
 	check_create_action = {
 		if = {
 			limit = {
-				has_focus_intrigue = yes
-				perk_points > 0
-				is_adult = yes
+				is_character = yes
 			}
 			if = {
 				limit = {
-					is_character = yes
+					has_focus_intrigue = yes
+					perk_points > 0
+					is_adult = yes
 				}
 				try_create_important_action = {
 					important_action_type = action_lifestyle_intrigue
@@ -132,13 +132,13 @@ action_lifestyle_learning = {
 	check_create_action = {
 		if = {
 			limit = {
-				has_focus_learning = yes
-				perk_points > 0
-				is_adult = yes
+				is_character = yes
 			}
 			if = {
 				limit = {
-					is_character = yes
+					has_focus_learning = yes
+					perk_points > 0
+					is_adult = yes
 				}
 				try_create_important_action = {
 					important_action_type = action_lifestyle_learning
@@ -160,13 +160,13 @@ action_lifestyle_martial = {
 	check_create_action = {
 		if = {
 			limit = {
-				has_focus_martial = yes
-				perk_points > 0
-				is_adult = yes
+				is_character = yes
 			}
 			if = {
 				limit = {
-					is_character = yes
+					has_focus_martial = yes
+					perk_points > 0
+					is_adult = yes
 				}
 				try_create_important_action = {
 					important_action_type = action_lifestyle_martial
@@ -188,13 +188,13 @@ action_lifestyle_stewarship = {
 	check_create_action = {
 		if = {
 			limit = {
-				has_focus_stewardship = yes
-				perk_points > 0
-				is_adult = yes
+				is_character = yes
 			}
 			if = {
 				limit = {
-					is_character = yes
+					has_focus_stewardship = yes
+					perk_points > 0
+					is_adult = yes
 				}
 				try_create_important_action = {
 					important_action_type = action_lifestyle_stewarship

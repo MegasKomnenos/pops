@@ -3,14 +3,14 @@
 	check_create_action = {
 		if = {
 			limit = {
-				dynasty.dynast = this
-				dynasty = {
-					dynasty_can_unlock_relevant_perk = yes
-				}
+				is_character = yes
 			}
 			if = {
 				limit = {
-					is_character = yes
+					dynasty.dynast = this
+					dynasty = {
+						dynasty_can_unlock_relevant_perk = yes
+					}
 				}
 				try_create_important_action = {
 					important_action_type = action_can_choose_dynasty_perk

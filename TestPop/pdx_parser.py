@@ -172,28 +172,21 @@ def reconstruct(file, t=''):
 if __name__ == '__main__':
     import glob
 
-    for path in glob.glob('common\\character_interactions\\*.txt'):
+    for path in glob.glob('common\\important_actions\\*.txt'):
         file = parse_file(path)
 
         for block in file:
             block = block[2]
 
             if type(block) == type(list()):
-                has_entry = False
-                
                 for entry in block:
-                    if entry[0] == 'is_shown':
-                        has_entry = True
-
-                        new_entry = [['can_do_normal_interaction', '=', 'yes']]
-                        new_entry.extend(entry[2])
+                    if entry[0] == 'check_create_action':
+                        new_entry = [['if', '=', [['limit', '=', [['is_character', '=', 'yes']]]]]]
+                        new_entry[0][2].extend(entry[2])
 
                         entry[2] = new_entry
 
                         break
-
-                if not has_entry:
-                    block.append(['is_shown', '=', [['can_do_normal_interaction', '=', 'yes']]])
 
         with open('foo\\%s' % path.split('\\')[-1], 'w', encoding='utf-8-sig') as f:
             f.write(reconstruct(file))

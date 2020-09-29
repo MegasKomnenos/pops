@@ -3,30 +3,30 @@
 	check_create_action = {
 		if = {
 			limit = {
-				NOT = {
-					has_pending_interaction_of_type = marry_off_interaction
-				}
-				NOT = {
-					has_pending_interaction_of_type = arrange_marriage_interaction
-				}
-				exists = player_heir
-				player_heir = {
-					dynasty = root.dynasty
-					can_marry_trigger = yes
-					is_concubine = no
-					can_have_children = yes
-					is_married = no
-					is_adult = yes
-					is_betrothed = no
-				}
-				is_character_interaction_valid = {
-					recipient = player_heir
-					interaction = marry_off_interaction
-				}
+				is_character = yes
 			}
 			if = {
 				limit = {
-					is_character = yes
+					NOT = {
+						has_pending_interaction_of_type = marry_off_interaction
+					}
+					NOT = {
+						has_pending_interaction_of_type = arrange_marriage_interaction
+					}
+					exists = player_heir
+					player_heir = {
+						dynasty = root.dynasty
+						can_marry_trigger = yes
+						is_concubine = no
+						can_have_children = yes
+						is_married = no
+						is_adult = yes
+						is_betrothed = no
+					}
+					is_character_interaction_valid = {
+						recipient = player_heir
+						interaction = marry_off_interaction
+					}
 				}
 				try_create_important_action = {
 					important_action_type = action_adult_player_heir_not_married
@@ -49,25 +49,25 @@ action_adult_ruler_not_married = {
 	check_create_action = {
 		if = {
 			limit = {
-				NOT = {
-					has_pending_interaction_of_type = marry_off_interaction
-				}
-				NOT = {
-					has_pending_interaction_of_type = arrange_marriage_interaction
-				}
-				can_marry_trigger = yes
-				is_concubine = no
-				is_married = no
-				is_betrothed = no
-				is_adult = yes
-				is_character_interaction_valid = {
-					recipient = root
-					interaction = marry_off_interaction
-				}
+				is_character = yes
 			}
 			if = {
 				limit = {
-					is_character = yes
+					NOT = {
+						has_pending_interaction_of_type = marry_off_interaction
+					}
+					NOT = {
+						has_pending_interaction_of_type = arrange_marriage_interaction
+					}
+					can_marry_trigger = yes
+					is_concubine = no
+					is_married = no
+					is_betrothed = no
+					is_adult = yes
+					is_character_interaction_valid = {
+						recipient = root
+						interaction = marry_off_interaction
+					}
 				}
 				try_create_important_action = {
 					important_action_type = action_adult_ruler_not_married
@@ -90,24 +90,24 @@ action_non_adult_ruler_not_betrothed = {
 	check_create_action = {
 		if = {
 			limit = {
-				age > 10
-				NOT = {
-					has_pending_interaction_of_type = marry_off_interaction
-				}
-				NOT = {
-					has_pending_interaction_of_type = arrange_marriage_interaction
-				}
-				is_married = no
-				is_betrothed = no
-				is_adult = no
-				is_character_interaction_valid = {
-					recipient = root
-					interaction = marry_off_interaction
-				}
+				is_character = yes
 			}
 			if = {
 				limit = {
-					is_character = yes
+					age > 10
+					NOT = {
+						has_pending_interaction_of_type = marry_off_interaction
+					}
+					NOT = {
+						has_pending_interaction_of_type = arrange_marriage_interaction
+					}
+					is_married = no
+					is_betrothed = no
+					is_adult = no
+					is_character_interaction_valid = {
+						recipient = root
+						interaction = marry_off_interaction
+					}
 				}
 				try_create_important_action = {
 					important_action_type = action_non_adult_ruler_not_betrothed
@@ -128,28 +128,28 @@ action_non_adult_ruler_not_betrothed = {
 action_betrothed_can_marry = {
 	type = alert
 	check_create_action = {
-		every_potential_marriage_option = {
-			if = {
-				limit = {
-					is_betrothed = yes
-					is_adult = yes
-					betrothed = {
-						is_adult = yes
-						NAND = {
-							is_female = no
-							matchmaker = PREV.matchmaker
-						}
-					}
-					NOT = {
-						root = {
-							exists = prev.betrothed.court_owner
-							is_at_war_with = prev.betrothed.court_owner
-						}
-					}
-				}
+		if = {
+			limit = {
+				is_character = yes
+			}
+			every_potential_marriage_option = {
 				if = {
 					limit = {
-						is_character = yes
+						is_betrothed = yes
+						is_adult = yes
+						betrothed = {
+							is_adult = yes
+							NAND = {
+								is_female = no
+								matchmaker = PREV.matchmaker
+							}
+						}
+						NOT = {
+							root = {
+								exists = prev.betrothed.court_owner
+								is_at_war_with = prev.betrothed.court_owner
+							}
+						}
 					}
 					try_create_important_action = {
 						important_action_type = action_betrothed_can_marry
@@ -175,24 +175,24 @@ action_betrothed_can_marry = {
 action_close_family_can_marry = {
 	combine_into_one = yes
 	check_create_action = {
-		every_child = {
-			if = {
-				limit = {
-					is_landed = yes
-					is_married = no
-					is_betrothed = no
-					is_adult = yes
-					can_marry_trigger = yes
-					root = {
-						is_character_interaction_valid = {
-							recipient = prev
-							interaction = marry_off_interaction
-						}
-					}
-				}
+		if = {
+			limit = {
+				is_character = yes
+			}
+			every_child = {
 				if = {
 					limit = {
-						is_character = yes
+						is_landed = yes
+						is_married = no
+						is_betrothed = no
+						is_adult = yes
+						can_marry_trigger = yes
+						root = {
+							is_character_interaction_valid = {
+								recipient = prev
+								interaction = marry_off_interaction
+							}
+						}
 					}
 					try_create_important_action = {
 						important_action_type = action_close_family_can_marry
@@ -201,30 +201,25 @@ action_close_family_can_marry = {
 					}
 				}
 			}
-		}
-		every_courtier = {
-			if = {
-				limit = {
-					NAND = {
-						is_child_of = root
-						is_landed = yes
-					}
-					is_married = no
-					is_betrothed = no
-					is_adult = yes
-					is_close_family_of = root
-					can_marry_trigger = yes
-					root = {
-						is_character_interaction_valid = {
-							recipient = prev
-							interaction = marry_off_interaction
-						}
-					}
-					is_visibly_fertile = yes
-				}
+			every_courtier = {
 				if = {
 					limit = {
-						is_character = yes
+						NAND = {
+							is_child_of = root
+							is_landed = yes
+						}
+						is_married = no
+						is_betrothed = no
+						is_adult = yes
+						is_close_family_of = root
+						can_marry_trigger = yes
+						root = {
+							is_character_interaction_valid = {
+								recipient = prev
+								interaction = marry_off_interaction
+							}
+						}
+						is_visibly_fertile = yes
 					}
 					try_create_important_action = {
 						important_action_type = action_close_family_can_marry
@@ -247,39 +242,39 @@ action_can_take_concubine = {
 	check_create_action = {
 		if = {
 			limit = {
-				is_male = yes
-				allowed_concubines = yes
-				allowed_more_concubines = yes
-				is_adult = yes
-				number_of_concubines < number_of_desired_concubines
-				NOT = {
-					has_pending_interaction_of_type = make_concubine_interaction
-				}
-				OR = {
-					any_prisoner = {
-						sex_opposite_of = root
-						is_adult = yes
-						is_imprisoned_by = root
-						save_temporary_scope_as = concubine
-					}
-					any_courtier = {
-						sex_opposite_of = root
-						is_adult = yes
-						is_married = no
-						is_betrothed = no
-						is_courtier_of = root
-						is_at_home = yes
-						save_temporary_scope_as = concubine
-					}
-				}
-				is_character_interaction_valid = {
-					recipient = scope:concubine
-					interaction = make_concubine_interaction
-				}
+				is_character = yes
 			}
 			if = {
 				limit = {
-					is_character = yes
+					is_male = yes
+					allowed_concubines = yes
+					allowed_more_concubines = yes
+					is_adult = yes
+					number_of_concubines < number_of_desired_concubines
+					NOT = {
+						has_pending_interaction_of_type = make_concubine_interaction
+					}
+					OR = {
+						any_prisoner = {
+							sex_opposite_of = root
+							is_adult = yes
+							is_imprisoned_by = root
+							save_temporary_scope_as = concubine
+						}
+						any_courtier = {
+							sex_opposite_of = root
+							is_adult = yes
+							is_married = no
+							is_betrothed = no
+							is_courtier_of = root
+							is_at_home = yes
+							save_temporary_scope_as = concubine
+						}
+					}
+					is_character_interaction_valid = {
+						recipient = scope:concubine
+						interaction = make_concubine_interaction
+					}
 				}
 				try_create_important_action = {
 					important_action_type = action_can_take_concubine
@@ -301,39 +296,39 @@ action_can_take_consort = {
 	check_create_action = {
 		if = {
 			limit = {
-				is_female = yes
-				allowed_concubines = yes
-				allowed_more_concubines = yes
-				is_adult = yes
-				number_of_concubines < number_of_desired_concubines
-				NOT = {
-					has_pending_interaction_of_type = make_concubine_interaction
-				}
-				OR = {
-					any_prisoner = {
-						sex_opposite_of = root
-						is_adult = yes
-						is_imprisoned_by = root
-						save_temporary_scope_as = consort
-					}
-					any_courtier = {
-						sex_opposite_of = root
-						is_adult = yes
-						is_married = no
-						is_betrothed = no
-						is_courtier_of = root
-						is_at_home = yes
-						save_temporary_scope_as = consort
-					}
-				}
-				is_character_interaction_valid = {
-					recipient = scope:consort
-					interaction = make_concubine_interaction
-				}
+				is_character = yes
 			}
 			if = {
 				limit = {
-					is_character = yes
+					is_female = yes
+					allowed_concubines = yes
+					allowed_more_concubines = yes
+					is_adult = yes
+					number_of_concubines < number_of_desired_concubines
+					NOT = {
+						has_pending_interaction_of_type = make_concubine_interaction
+					}
+					OR = {
+						any_prisoner = {
+							sex_opposite_of = root
+							is_adult = yes
+							is_imprisoned_by = root
+							save_temporary_scope_as = consort
+						}
+						any_courtier = {
+							sex_opposite_of = root
+							is_adult = yes
+							is_married = no
+							is_betrothed = no
+							is_courtier_of = root
+							is_at_home = yes
+							save_temporary_scope_as = consort
+						}
+					}
+					is_character_interaction_valid = {
+						recipient = scope:consort
+						interaction = make_concubine_interaction
+					}
 				}
 				try_create_important_action = {
 					important_action_type = action_can_take_consort
@@ -355,15 +350,15 @@ action_too_few_spouses = {
 	check_create_action = {
 		if = {
 			limit = {
-				faith = {
-					has_doctrine = doctrine_polygamy
-				}
-				allowed_more_spouses = yes
-				is_adult = yes
+				is_character = yes
 			}
 			if = {
 				limit = {
-					is_character = yes
+					faith = {
+						has_doctrine = doctrine_polygamy
+					}
+					allowed_more_spouses = yes
+					is_adult = yes
 				}
 				try_create_important_action = {
 					important_action_type = action_too_few_spouses
