@@ -20,7 +20,13 @@ can_do_normal_interaction = {
 	scope:actor = {
 		is_character = yes
 	}
-	scope:recipient = {
-		is_character = yes
+	
+	trigger_if = {
+		limit = {
+			exists = scope:recipient
+		}
+		scope:recipient = {
+			is_character = yes
+		}
 	}
 }
