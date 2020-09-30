@@ -172,7 +172,7 @@ def reconstruct(file, t=''):
 if __name__ == '__main__':
     import glob
 
-    for path in glob.glob('common\\important_actions\\*.txt'):
+    for path in glob.glob('common\\character_interactions\\*.txt'):
         file = parse_file(path)
 
         for block in file:
@@ -180,11 +180,8 @@ if __name__ == '__main__':
 
             if type(block) == type(list()):
                 for entry in block:
-                    if entry[0] == 'check_create_action':
-                        new_entry = [['if', '=', [['limit', '=', [['is_character', '=', 'yes']]]]]]
-                        new_entry[0][2].extend(entry[2])
-
-                        entry[2] = new_entry
+                    if entry[0] == 'populate_actor_list' or entry[0] == 'populate_recipient_list':
+                        entry[2].append(['every_in_list', '=', [['list', '=', 'characters'], ['limit', '=', ['is_character', '=', 'no']], ['remove_from_list', '=', 'characters']]])
 
                         break
 
