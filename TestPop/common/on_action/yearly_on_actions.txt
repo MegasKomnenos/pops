@@ -256,6 +256,9 @@ yearly_global_pulse = {
 # Called from code once a year for "playable" (count+) characters.
 # Root is the character
 yearly_playable_pulse = {
+	trigger = {
+		is_character = yes
+	}
 	events = {
 		adultery.0001 #Suspected spouse/soulmate of cheating  (increased chance when there is a lover, but can also trigger otherwise)
 		health.3010 #Invalidate court physician
@@ -273,6 +276,9 @@ yearly_playable_pulse = {
 # Called from code once every three years for "playable" (count+) characters.
 # Root is the character
 three_year_playable_pulse = {
+	trigger = {
+		is_character = yes
+	}
 	random_events = {
 		800 = 0
 		200 = global_culture.3011
@@ -283,6 +289,9 @@ three_year_playable_pulse = {
 # Called from code once every five years for "playable" (count+) characters.
 # Root is the character
 five_year_playable_pulse = {
+	trigger = {
+		is_character = yes
+	}
 	events = {
 		courtier_guest_management.3001 	# Courtiers and guests getting relationships & secrets
 		game_rule.1 					# De Jure Requirement Game Rule
@@ -293,6 +302,9 @@ five_year_playable_pulse = {
 # Root is the character
 # scope:quarter is which quarter it's for, from 1 to 4. Note that scope:quarter = 1 isn't necessarily in Q1 by calendar time
 quarterly_playable_pulse = {
+	trigger = {
+		is_character = yes
+	}
 	on_actions = {
 		realm_maintenance_quarterly_pulse
 		#Event pools
@@ -313,6 +325,7 @@ quarterly_playable_pulse = {
 # Root is the character
 random_yearly_playable_pulse = {
 	trigger = {
+		is_character = yes
 		basic_is_valid_for_yearly_events_trigger = yes
 	}
 	random_on_action = {
@@ -343,6 +356,9 @@ random_yearly_playable_pulse = {
 # Called from code once a year for all characters, at a random point that year (individually for each character)
 # Root is the character
 random_yearly_everyone_pulse = {
+	trigger = {
+		is_character = yes
+	}
 	on_actions = {
 		yearly_health_pulse
 		stress_pulse
@@ -367,6 +383,9 @@ random_yearly_everyone_pulse = {
 # Called from code once every five years for all characters.
 # Root is the character
 five_year_everyone_pulse = {
+	trigger = {
+		is_character = yes
+	}
 	on_actions = {
 		disease_outbreak_pulse # moved from health_on_actions.txt
 	}
@@ -379,6 +398,7 @@ five_year_everyone_pulse = {
 # root = the character
 three_year_pool_pulse = {
 	trigger = {
+		is_character = yes
 		is_pool_character = yes # Can cease to be in the pool between it queuing and executing
 	}
 	events = {
@@ -408,6 +428,7 @@ prison_maintenance_pulse = {
 #Pulse for various AI stuff
 ai_character_pulse = {
 	trigger = {
+		is_character = yes
 		is_ai = yes
 	}
 	random_events = {
@@ -420,6 +441,9 @@ ai_character_pulse = {
 
 
 on_yearly_events = {
+	trigger = {
+		is_character = yes
+	}
 	random_events = {
 		chance_to_happen = 25
 		200 = 0

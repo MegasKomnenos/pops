@@ -5,7 +5,13 @@ on_game_start = {
 		init_main = yes
 		
 		character:999999 = {
-			every_courtier = {
+			every_courtier_or_guest = {
+				limit = {
+					is_character = yes
+				}
+				death = natural
+			}
+			every_councillor = {
 				limit = {
 					is_character = yes
 				}
