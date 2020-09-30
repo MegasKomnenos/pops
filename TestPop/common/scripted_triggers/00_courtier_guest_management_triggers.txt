@@ -220,6 +220,10 @@ guest_allowed_to_leave_trigger = {
 }
 
 guest_allowed_to_arrive_trigger = {
+	$HOST$ = {
+		is_character = yes
+	}
+	
 	trigger_if = {
 		limit = { exists = var:last_visited_ruler }
 		NOT = { var:last_visited_ruler = $HOST$ }
