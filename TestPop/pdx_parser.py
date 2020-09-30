@@ -172,7 +172,7 @@ def reconstruct(file, t=''):
 if __name__ == '__main__':
     import glob
 
-    for path in glob.glob('common\\character_interactions\\*.txt'):
+    for path in glob.glob('common\\schemes\\*.txt'):
         file = parse_file(path)
 
         for block in file:
@@ -180,9 +180,12 @@ if __name__ == '__main__':
 
             if type(block) == type(list()):
                 for entry in block:
-                    if entry[0] == 'populate_actor_list' or entry[0] == 'populate_recipient_list':
-                        entry[2].append(['every_in_list', '=', [['list', '=', 'characters'], ['limit', '=', ['is_character', '=', 'no']], ['remove_from_list', '=', 'characters']]])
-
+                    if entry[0] == 'allow':
+                        new_entry = [['is_character', '=', 'yes']]
+                        new_entry.extend(entry[2])
+                        
+                        entry[2] = new_entry
+                        
                         break
 
         with open('foo\\%s' % path.split('\\')[-1], 'w', encoding='utf-8-sig') as f:
