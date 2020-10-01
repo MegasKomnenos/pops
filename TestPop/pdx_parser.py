@@ -95,23 +95,21 @@ def parse_file(path):
 
         return file
 
-def apply_script(file, scripts, check=[False]):
+def apply_script(file, scripts):
     out = list()
 
     for f in file:
         if f[0] in scripts:
-            check[0] = True
-            
-            if f[1] == 'yes':
+            if f[2] == 'yes':
                 out.extend(apply_paras(scripts[f[0]], []))
-            elif f[1] == 'no':
+            elif f[2] == 'no':
                 out.append(['NOT', apply_paras(scripts[f[0]], [])])
             else:
-                out.extend(apply_paras(scripts[f[0]], f[1]))
-        elif type(f[1]) != type(list()) or not f[1] or type(f[1][0]) != type(list()):
+                out.extend(apply_paras(scripts[f[0]], f[2]))
+        elif type(f[2]) != type(list()) or not f[2] or type(f[2][0]) != type(list()):
             out.append(f)
         else:
-            out.append([f[0], apply_script(f[1], scripts, check)])
+            out.append([f[0], f[1], apply_script(f[2], scripts)])
             
     return out
 
@@ -126,23 +124,33 @@ def apply_paras(script, paras):
 
                     break
         else:
-            foo = str(section[0])
-
-            if '$' in foo:
-                for para in paras:
-                    foo = foo.replace(f'${para[0]}$', para[1])
+            outout = list()
+            
+            for part in section[:2]:
+                if '$' in part:
+                    foo = str(part)
                     
-            if type(section[1]) == type(list()):
-                out.append([foo, apply_paras(section[1], paras)])
-            elif '$' in section[1]:
-                bar = str(section[1])
+                    for para in paras:
+                        foo = foo.replace(f'${para[0]}$', para[2])
 
-                for para in paras:
-                    bar = bar.replace(f'${para[0]}$', para[1])
+                    outout.append(foo)
+                else:
+                    outout.append(part)
 
-                out.append([foo, bar])
+            if type(section[2]) != type(list()):
+                if '$' in section[2]:
+                    foo = str(section[2])
+                    
+                    for para in paras:
+                        foo = foo.replace(f'${para[0]}$', para[2])
+
+                    outout.append(foo)
+                else:
+                    outout.append(section[2])
             else:
-                out.append([foo, str(section[1])])
+                outout.append(apply_paras(section[2], paras))
+
+            out.append(outout)
                 
     return out
 
@@ -165,28 +173,15 @@ def reconstruct(file, t=''):
                         txt += '\n%s%s}\n' % (reconstruct(f[2], t + '\t'), t)
                 else:
                     txt += '%s%s %s %s\n' % (t, f[0], f[1], f[2])
+            elif len(f) == 2 and type(f[0]) != type(list()):
+                txt += '%s[%s\n%s%s]\n' % (t, f[0], reconstruct(f[1], t + '\t'), t)
 
     return txt
             
             
 if __name__ == '__main__':
-    import glob
+    file = parse_file('common\\scripted_effects\\01_prod.txt')
+    scripts = {block[0]:block[2] for block in file}
 
-    for path in glob.glob('common\\schemes\\*.txt'):
-        file = parse_file(path)
-
-        for block in file:
-            block = block[2]
-
-            if type(block) == type(list()):
-                for entry in block:
-                    if entry[0] == 'allow':
-                        new_entry = [['is_character', '=', 'yes']]
-                        new_entry.extend(entry[2])
-                        
-                        entry[2] = new_entry
-                        
-                        break
-
-        with open('foo\\%s' % path.split('\\')[-1], 'w', encoding='utf-8-sig') as f:
-            f.write(reconstruct(file))
+    with open('foofoo.txt', 'w') as f:
+        f.write(reconstruct(apply_script(parse_file('foo.txt'), scripts)))
