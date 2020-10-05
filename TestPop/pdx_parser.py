@@ -79,7 +79,11 @@ def parse_file(path):
                     rhs = False
                     
                     stack[-1].append(list())
-                    stack.append(stack.pop()[-1])
+
+                    if type(stack[-1][0]) == type(str()):
+                        stack.append(stack.pop()[-1])
+                    else:
+                        stack.append(stack[-1][-1])
                 elif token == '}' or token == ']':
                     stack.pop()
                 elif '[[' in token:
