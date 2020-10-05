@@ -1,5 +1,11 @@
 ﻿init_main = {
 	init_prov_size = yes
+	init_prov_coord = yes
+	
+	every_province = {
+		get_land_cost = { return = prov_cost }
+	}
+	
 	init_pop_weight = yes
 	init_pop_total = yes
 	init_farm_score = yes
