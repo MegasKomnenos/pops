@@ -184,8 +184,100 @@ def reconstruct(file, t=''):
             
             
 if __name__ == '__main__':
-    file = parse_file('common\\scripted_effects\\01_prod.txt')
-    scripts = {block[0]:block[2] for block in file}
+    import glob
 
-    with open('foofoo.txt', 'w') as f:
-        f.write(reconstruct(apply_script(parse_file('foo.txt'), scripts)))
+    for path in glob.glob('bar\\schemes\\*.txt'):
+        file = parse_file(path)
+
+        for block in file:
+            block = block[2]
+
+            if type(block) == type(list()):
+                for entry in block:
+                    if entry[0] == 'allow':
+                        new_entry = [['is_character', '=', 'yes']]
+                        new_entry.extend(entry[2])
+                        
+                        entry[2] = new_entry
+                        
+                        break
+
+        with open('foo\\schemes\\%s' % path.split('\\')[-1], 'w', encoding='utf-8-sig') as f:
+            f.write(reconstruct(file))
+
+    for path in glob.glob('bar\\character_interactions\\*.txt'):
+        file = parse_file(path)
+
+        for block in file:
+            block = block[2]
+
+            if type(block) == type(list()):
+                for entry in block:
+                    if entry[0] == 'populate_actor_list' or entry[0] == 'populate_recipient_list':
+                        entry[2].append(['every_in_list', '=', [['list', '=', 'characters'], ['limit', '=', ['is_character', '=', 'no']], ['remove_from_list', '=', 'characters']]])
+
+                        break
+                    
+                has_entry = False
+                
+                for entry in block:
+                    if entry[0] == 'is_shown':
+                        has_entry = True
+
+                        new_entry = [['can_do_normal_interaction', '=', 'yes']]
+                        new_entry.extend(entry[2])
+
+                        entry[2] = new_entry
+
+                        break
+
+                if not has_entry:
+                    block.append(['is_shown', '=', [['can_do_normal_interaction', '=', 'yes']]])
+
+        with open('foo\\character_interactions\\%s' % path.split('\\')[-1], 'w', encoding='utf-8-sig') as f:
+            f.write(reconstruct(file))
+
+    for path in glob.glob('bar\\important_actions\\*.txt'):
+        file = parse_file(path)
+
+        for block in file:
+            block = block[2]
+
+            if type(block) == type(list()):
+                for entry in block:
+                    if entry[0] == 'check_create_action':
+                        new_entry = [['if', '=', [['limit', '=', [['is_character', '=', 'yes']]]]]]
+                        new_entry[0][2].extend(entry[2])
+
+                        entry[2] = new_entry
+
+                        break
+
+        with open('foo\\important_actions\\%s' % path.split('\\')[-1], 'w', encoding='utf-8-sig') as f:
+            f.write(reconstruct(file))
+
+    for path in glob.glob('bar\\decisions\\*.txt'):
+        file = parse_file(path)
+
+        for block in file:
+            block = block[2]
+
+            if type(block) == type(list()):
+                has_entry = False
+                
+                for entry in block:
+                    if entry[0] == 'is_shown':
+                        has_entry = True
+
+                        new_entry = [['is_character', '=', 'yes']]
+                        new_entry.extend(entry[2])
+
+                        entry[2] = new_entry
+
+                        break
+
+                if not has_entry:
+                    block.append(['is_shown', '=', [['is_character', '=', 'yes']]])
+
+        with open('foo\\decisions\\%s' % path.split('\\')[-1], 'w', encoding='utf-8-sig') as f:
+            f.write(reconstruct(file))
