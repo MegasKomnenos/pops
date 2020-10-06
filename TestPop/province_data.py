@@ -207,6 +207,7 @@ if __name__ == '__main__':
         out = ''
 
         for prov in rgb:
+            loc_id = ' set_variable = { name = prov_id value = %s }' % prov
             loc_coord = ''
             loc_sea = ''
             loc_neighb = ''
@@ -227,7 +228,7 @@ if __name__ == '__main__':
                 for p in port[prov]:
                     loc_port += ' add_to_variable_list = { name = prov_port target = province:%s }' % p
 
-            out += 'province:%s = {%s%s%s%s }\n' % (prov, loc_coord, loc_sea, loc_neighb, loc_port)
+            out += 'province:%s = {%s%s%s%s%s }\n' % (prov, loc_id, loc_coord, loc_sea, loc_neighb, loc_port)
 
         with open('out.txt', 'w', encoding='utf-8-sig') as f:
             f.write(out)
