@@ -202,7 +202,7 @@ if __name__ == '__main__':
         loc_port = ''
 
         if prov in water:
-            loc_sea = ' set_variable = { name = prov_sea value = yes }'
+            loc_sea = ' set_variable = { name = prov_sea value = yes } add_to_global_variable_list = { name = every_water target = this }'
         else:
             loc_sea = ' set_variable = { name = prov_sea value = no }'
 
