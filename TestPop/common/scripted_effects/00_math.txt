@@ -249,16 +249,22 @@ pow_effect = {
 		change_variable = { name = math_pow_exp subtract = 1 }
 		change_variable = { name = $return$ multiply = var:math_pow_base }
 	}
+	
+	if = {
+		limit = {
+			var:math_pow_exp != 0
+		}
+		ln_effect = { inp = var:math_pow_base return = math_pow_ln }
+		change_variable = { name = math_pow_exp multiply = var:math_pow_ln }
 
-	ln_effect = { inp = var:math_pow_base return = math_pow_ln }
-	change_variable = { name = math_pow_exp multiply = var:math_pow_ln }
+		e_effect = { exp = var:math_pow_exp prec = 3 return = math_pow_e }
 
-	e_effect = { exp = var:math_pow_exp prec = 3 return = math_pow_e }
-
-	change_variable = { name = $return$ multiply = var:math_pow_e }
+		change_variable = { name = $return$ multiply = var:math_pow_e }
+		
+		remove_variable = math_pow_ln
+		remove_variable = math_pow_e
+	}
 	
 	remove_variable = math_pow_base
 	remove_variable = math_pow_exp
-	remove_variable = math_pow_ln
-	remove_variable = math_pow_e
 }
