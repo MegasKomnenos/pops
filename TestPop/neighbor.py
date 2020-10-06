@@ -166,54 +166,68 @@ if __name__ == '__main__':
     neighb = dict()
     port = dict()
 
-    prov = Image.open('map_data\\provinces.png')
-    pool = Pool(initializer=init, initargs=(rgb_rev,))
-    pixel = pool.starmap(worker, array(prov))
-    pool.close()
+    with Image.open('map_data\\provinces.png') as prov:
+        pool = Pool(initializer=init, initargs=(rgb_rev,))
+        pixel = pool.starmap(worker, array(prov))
+        pool.close()
+
+        coord = dict()
+                
+        for y in range(prov.height):
+            for x in range(prov.width):
+                p = pixel[y][x]
+
+                if not p in neighb:
+                    neighb[p] = set()
+                    port[p] = set()
+                    coord[p] = [0, [0, 0]]
+
+                coord[p][0] += 1
+                coord[p][1][0] += x
+                coord[p][1][1] += y
+
+                for entry in get_neighb(prov.width, prov.height, x, y):
+                    pp = pixel[entry[1]][entry[0]]
+
+                    if p != pp and not pp in wasteland:
+                        if pp in water:
+                            if p in water:
+                                neighb[p].add(pp)
+                            else:
+                                port[p].add(pp)
+                        else:
+                            if p in water:
+                                port[p].add(pp)
+                            else:
+                                neighb[p].add(pp)
+
+        for p, s in coord.items():
+            coord[p] = (round(s[1][0] / s[0], 3), round(s[1][1] / s[0], 3))
             
-    for y in range(prov.height):
-        for x in range(prov.width):
-            p = pixel[y][x]
+        out = ''
 
-            if not p in neighb:
-                neighb[p] = set()
-                port[p] = set()
+        for prov in rgb:
+            loc_coord = ''
+            loc_sea = ''
+            loc_neighb = ''
+            loc_port = ''
 
-            for entry in get_neighb(prov.width, prov.height, x, y):
-                pp = pixel[entry[1]][entry[0]]
+            if prov in coord:
+                 loc_coord = ' set_variable = { name = prov_x value = %s } set_variable = { name = prov_y value = %s }' % coord[prov]
 
-                if p != pp and not pp in wasteland:
-                    if pp in water:
-                        if p in water:
-                            neighb[p].add(pp)
-                        else:
-                            port[p].add(pp)
-                    else:
-                        if p in water:
-                            port[p].add(pp)
-                        else:
-                            neighb[p].add(pp)
+            if prov in water:
+                loc_sea = ' set_variable = { name = prov_sea value = yes } add_to_global_variable_list = { name = every_water target = this }'
+            else:
+                loc_sea = ' set_variable = { name = prov_sea value = no }'
 
-    out = ''
+            if prov in neighb:
+                for n in neighb[prov]:
+                    loc_neighb += ' add_to_variable_list = { name = prov_neighb target = province:%s }' % n
+            if prov in port:
+                for p in port[prov]:
+                    loc_port += ' add_to_variable_list = { name = prov_port target = province:%s }' % p
 
-    for prov in rgb:
-        loc_sea = ''
-        loc_neighb = ''
-        loc_port = ''
+            out += 'province:%s = {%s%s%s%s }\n' % (prov, loc_coord, loc_sea, loc_neighb, loc_port)
 
-        if prov in water:
-            loc_sea = ' set_variable = { name = prov_sea value = yes } add_to_global_variable_list = { name = every_water target = this }'
-        else:
-            loc_sea = ' set_variable = { name = prov_sea value = no }'
-
-        if prov in neighb:
-            for n in neighb[prov]:
-                loc_neighb += ' add_to_variable_list = { name = prov_neighb target = province:%s }' % n
-        if prov in port:
-            for p in port[prov]:
-                loc_port += ' add_to_variable_list = { name = prov_port target = province:%s }' % p
-
-        out += 'province:%s = {%s%s%s }\n' % (prov, loc_sea, loc_neighb, loc_port)
-
-    with open('out.txt', 'w', encoding='utf-8-sig') as f:
-        f.write(out)
+        with open('out.txt', 'w', encoding='utf-8-sig') as f:
+            f.write(out)
