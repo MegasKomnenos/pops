@@ -238,31 +238,45 @@ ln_effect = {
 pow_effect = {
 	set_variable = { name = math_pow_base value = $inp$ }
 	set_variable = { name = math_pow_exp value = $exp$ }
-	set_variable = { name = $return$ value = $inp$ }
-	
-	change_variable = { name = math_pow_exp subtract = 1 }
-
-	while = {
-		limit = {
-			var:math_pow_exp >= 1
-		}
-		change_variable = { name = math_pow_exp subtract = 1 }
-		change_variable = { name = $return$ multiply = var:math_pow_base }
-	}
 	
 	if = {
 		limit = {
-			var:math_pow_exp != 0
+			var:math_pow_base != 0
 		}
-		ln_effect = { inp = var:math_pow_base return = math_pow_ln }
-		change_variable = { name = math_pow_exp multiply = var:math_pow_ln }
+		set_variable = { name = $return$ value = 1 }
 
-		e_effect = { exp = var:math_pow_exp prec = 3 return = math_pow_e }
-
-		change_variable = { name = $return$ multiply = var:math_pow_e }
+		while = {
+			limit = {
+				var:math_pow_exp >= 1
+			}
+			change_variable = { name = math_pow_exp subtract = 1 }
+			change_variable = { name = $return$ multiply = var:math_pow_base }
+		}
+		while = {
+			limit = {
+				var:math_pow_exp < 0
+			}
+			change_variable = { name = math_pow_exp add = 1 }
+			change_variable = { name = $return$ divide = var:math_pow_base }
+		}
 		
-		remove_variable = math_pow_ln
-		remove_variable = math_pow_e
+		if = {
+			limit = {
+				var:math_pow_exp != 0
+			}
+			ln_effect = { inp = var:math_pow_base return = math_pow_ln }
+			change_variable = { name = math_pow_exp multiply = var:math_pow_ln }
+
+			e_effect = { exp = var:math_pow_exp prec = 3 return = math_pow_e }
+
+			change_variable = { name = $return$ multiply = var:math_pow_e }
+			
+			remove_variable = math_pow_ln
+			remove_variable = math_pow_e
+		}
+	}
+	else = {
+		set_variable = { name = $return$ value = 0 }
 	}
 	
 	remove_variable = math_pow_base
