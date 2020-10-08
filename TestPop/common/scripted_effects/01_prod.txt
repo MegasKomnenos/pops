@@ -54,7 +54,7 @@ prod_new_instance = {
 		set_variable = { name = prod_template value = $template$ }
 		set_variable = { name = prod_location value = $location$ }
 		
-		set_variable = { name = prod_size value = 0 }
+		set_variable = { name = prod_size value = $size$ }
 		set_variable = { name = prod_labor value = 0 }
 		set_variable = { name = prod_land value = 0 }
 		
@@ -90,6 +90,12 @@ prod_pop_instance = {
 	}
 	
 	death = natural
+}
+
+prod_change_instance_size = {
+	$instance$ = {
+		set_variable = { name = prod_size value = $new$ }
+	}
 }
 
 prod_update_instances = {
@@ -186,6 +192,9 @@ prod_update_instances = {
 		}
 		
 		pow_effect = { inp = var:prod_size_actual exp = 0.5 return = prod_size_actual }
+		change_variable = { name = prod_size_actual multiply = var:prod_size }
+		change_variable = { name = prod_size_actual divide = 1000 }
+		change_variable = { name = prod_size_actual multiply = 1000 }
 		
 		prod_update_instances_helper = { name = prod_input_food }
 		prod_update_instances_helper = { name = prod_input_fuel }
