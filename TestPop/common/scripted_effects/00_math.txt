@@ -282,3 +282,17 @@ pow_effect = {
 	remove_variable = math_pow_base
 	remove_variable = math_pow_exp
 }
+
+# Parameter: inp, root, return
+root_effect = {
+	set_variable = { name = math_root_exp value = 1 }
+	change_variable = { name = math_root_exp divide = $root$ }
+	
+	pow_effect = {
+		inp = $inp$
+		exp = var:math_root_exp
+		return = $return$
+	}
+	
+	remove_variable = math_root_exp
+}

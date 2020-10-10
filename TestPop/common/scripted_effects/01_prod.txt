@@ -63,19 +63,19 @@ prod_new_instance = {
 		set_variable = { name = prod_land_actual value = 0 }
 		
 		if = { limit = { $template$ = { has_variable = prod_input_food } } set_variable = { name = prod_input_food value = 0 } set_variable = { name = prod_input_actual_food value = 0 } }
-		if = { limit = { $template$ = { has_variable = prod_output_food } } set_variable = { name = prod_output_food value = 0 } set_variable = { name = prod_output_actual_food value = 0 } }
+		if = { limit = { $template$ = { has_variable = prod_output_food } } set_variable = { name = prod_output_food value = 0 } }
 		
 		if = { limit = { $template$ = { has_variable = prod_input_fuel } } set_variable = { name = prod_input_fuel value = 0 } set_variable = { name = prod_input_actual_fuel value = 0 } }
-		if = { limit = { $template$ = { has_variable = prod_output_fuel } } set_variable = { name = prod_output_fuel value = 0 } set_variable = { name = prod_output_actual_fuel value = 0 } }
+		if = { limit = { $template$ = { has_variable = prod_output_fuel } } set_variable = { name = prod_output_fuel value = 0 } }
 		
 		if = { limit = { $template$ = { has_variable = prod_input_fiber } } set_variable = { name = prod_input_fiber value = 0 } set_variable = { name = prod_input_actual_fiber value = 0 } }
-		if = { limit = { $template$ = { has_variable = prod_output_fiber } } set_variable = { name = prod_output_fiber value = 0 } set_variable = { name = prod_output_actual_fiber value = 0 } }
+		if = { limit = { $template$ = { has_variable = prod_output_fiber } } set_variable = { name = prod_output_fiber value = 0 } }
 		
 		if = { limit = { $template$ = { has_variable = prod_input_pottery } } set_variable = { name = prod_input_pottery value = 0 } set_variable = { name = prod_input_actual_pottery value = 0 } }
-		if = { limit = { $template$ = { has_variable = prod_output_pottery } } set_variable = { name = prod_output_pottery value = 0 } set_variable = { name = prod_output_actual_pottery value = 0 } }
+		if = { limit = { $template$ = { has_variable = prod_output_pottery } } set_variable = { name = prod_output_pottery value = 0 } }
 		
 		if = { limit = { $template$ = { has_variable = prod_input_textile } } set_variable = { name = prod_input_textile value = 0 } set_variable = { name = prod_input_actual_textile value = 0 } }
-		if = { limit = { $template$ = { has_variable = prod_output_textile } } set_variable = { name = prod_output_textile value = 0 } set_variable = { name = prod_output_actual_textile value = 0 } }
+		if = { limit = { $template$ = { has_variable = prod_output_textile } } set_variable = { name = prod_output_textile value = 0 } }
 	}
 }
 
@@ -99,6 +99,39 @@ prod_change_instance_size = {
 }
 
 prod_update_instances = {
+	every_in_list = {
+		variable = prod_instances
+		
+		set_variable = { name = prod_update_instances_t value = 1 }
+		set_variable = { name = prod_update_instances_tt value = 0 }
+		
+		prod_update_instances_helper_0 = { name = food }
+		prod_update_instances_helper_0 = { name = fiber }
+		prod_update_instances_helper_0 = { name = fuel }
+		prod_update_instances_helper_0 = { name = pottery }
+		prod_update_instances_helper_0 = { name = textile }
+		
+		if = {
+			limit = {
+				var:prod_update_instances_tt > 0
+			}
+			root_effect = {
+				inp = var:prod_update_instances_t
+				root = var:prod_update_instances_tt
+				return = prod_update_instances_t
+			}
+		}
+		
+		prod_update_instances_helper_1 = { name = food }
+		prod_update_instances_helper_1 = { name = fiber }
+		prod_update_instances_helper_1 = { name = fuel }
+		prod_update_instances_helper_1 = { name = pottery }
+		prod_update_instances_helper_1 = { name = textile }
+		
+		remove_variable = prod_update_instances_t
+		remove_variable = prod_update_instances_tt
+	}
+	
 	set_global_variable = { name = prod_update_instances_labor value = 0 }
 	set_global_variable = { name = prod_update_instances_farm value = 0 }
 	set_global_variable = { name = prod_update_instances_pasture value = 0 }
@@ -193,24 +226,55 @@ prod_update_instances = {
 		
 		pow_effect = { inp = var:prod_size_actual exp = 0.5 return = prod_size_actual }
 		change_variable = { name = prod_size_actual multiply = var:prod_size }
-		change_variable = { name = prod_size_actual divide = 1000 }
-		change_variable = { name = prod_size_actual multiply = 1000 }
 		
-		prod_update_instances_helper = { name = prod_input_food }
-		prod_update_instances_helper = { name = prod_input_fuel }
-		prod_update_instances_helper = { name = prod_input_fiber }
-		prod_update_instances_helper = { name = prod_input_pottery }
-		prod_update_instances_helper = { name = prod_input_textile }
+		prod_update_instances_helper_2 = { name = prod_input_food }
+		prod_update_instances_helper_2 = { name = prod_input_fuel }
+		prod_update_instances_helper_2 = { name = prod_input_fiber }
+		prod_update_instances_helper_2 = { name = prod_input_pottery }
+		prod_update_instances_helper_2 = { name = prod_input_textile }
 		
-		prod_update_instances_helper = { name = prod_output_food }
-		prod_update_instances_helper = { name = prod_output_fuel }
-		prod_update_instances_helper = { name = prod_output_fiber }
-		prod_update_instances_helper = { name = prod_output_pottery }
-		prod_update_instances_helper = { name = prod_output_textile }
+		prod_update_instances_helper_2 = { name = prod_output_food }
+		prod_update_instances_helper_2 = { name = prod_output_fuel }
+		prod_update_instances_helper_2 = { name = prod_output_fiber }
+		prod_update_instances_helper_2 = { name = prod_output_pottery }
+		prod_update_instances_helper_2 = { name = prod_output_textile }
 	}
 }
 
-prod_update_instances_helper = {
+prod_update_instances_helper_0 = {
+	if = {
+		limit = {
+			has_variable = prod_input_$name$
+		}
+		if = {
+			limit = {
+				var:prod_input_$name$ = {
+					compare_value != prev.var:prod_input_actual_$name$
+				}
+			}
+			change_variable = { name = prod_update_instances_t multiply = var:prod_input_actual_$name$ }
+			change_variable = { name = prod_update_instances_t divide = var:prod_input_$name$ }
+		}
+		
+		change_variable = { name = prod_update_instances_tt add = 1 }
+		
+		set_variable = { name = prod_input_old_$name$ value = var:prod_input_$name$ }
+		set_variable = { name = prod_input_actual_old_$name$ value = var:prod_input_actual_$name$ }
+	}
+}
+
+prod_update_instances_helper_1 = {
+	if = {
+		limit = {
+			has_variable = prod_output_$name$
+		}
+		set_variable = { name = prod_output_old_$name$ value = var:prod_output_$name$ }
+		set_variable = { name = prod_output_actual_old_$name$ value = var:prod_output_$name$ }
+		change_variable = { name = prod_output_actual_old_$name$ multiply = var:prod_update_instances_t }
+	}
+}
+
+prod_update_instances_helper_2 = {
 	if = {
 		limit = {
 			has_variable = $name$
@@ -262,8 +326,6 @@ prod_distribute_resource = {
 		set_variable = { name = prod_update_instances_fill value = $resource$ }
 		change_variable = { name = prod_update_instances_fill divide = $sum$ }
 		
-		set_global_variable = { name = prod_update_instances_diff value = $resource$ }
-		
 		every_in_list = {
 			[[trigger_scope]
 				limit = {
@@ -276,44 +338,8 @@ prod_distribute_resource = {
 			
 			set_variable = { name = $set$ value = $base$ }
 			change_variable = { name = $set$ multiply = prev.var:prod_update_instances_fill }
-			set_variable = { name = prod_update_instances_diff value = var:$set$ }
-			change_variable = { name = $set$ divide = 1000 }
-			change_variable = { name = $set$ multiply = 1000 }
-			change_variable = { name = prod_update_instances_diff subtract = var:$set$ }
-			change_global_variable = { name = prod_update_instances_diff subtract = var:$set$ }
-		}
-		
-		while = {
-			limit = {
-				global_var:prod_update_instances_diff > 0
-			}
-			count = 100000
-			
-			ordered_in_list = {
-				variable = prod_instances
-				order_by = prod_update_instances_order_value
-				position = 0
-				
-				set_variable = { name = prod_update_instances_diff value = 0 }
-				change_variable = { name = $set$ add = 1 }
-				change_global_variable = { name = prod_update_instances_diff subtract = 1 }
-			}
 		}
 		
 		remove_variable = prod_update_instances_fill
-		remove_global_variable = prod_update_instances_diff
-		
-		every_in_list = {
-			[[trigger_scope]
-				limit = {
-					$trigger_scope$ = {
-						$trigger_lhs$ = $trigger_rhs$
-					}
-				}
-			]
-			variable = prod_instances
-			
-			remove_variable = prod_update_instances_diff
-		}
 	}
 }
