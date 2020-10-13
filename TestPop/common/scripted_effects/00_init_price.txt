@@ -1,0 +1,20 @@
+﻿init_price = {
+	every_county = {
+		set_variable = { name = trade_price_food value = 1 }
+		set_variable = { name = trade_price_fuel value = 1 }
+		set_variable = { name = trade_price_fiber value = 1 }
+		set_variable = { name = trade_price_pottery value = 5 }
+		set_variable = { name = trade_price_textile value = 5 }
+		
+		every_county_province = {
+			limit = {
+				is_city = yes
+			}
+			set_variable = { name = trade_price_food value = 1 }
+			set_variable = { name = trade_price_fuel value = 1 }
+			set_variable = { name = trade_price_fiber value = 1 }
+			set_variable = { name = trade_price_pottery value = 5 }
+			set_variable = { name = trade_price_textile value = 5 }
+		}
+	}
+}

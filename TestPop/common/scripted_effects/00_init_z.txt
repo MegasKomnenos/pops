@@ -17,6 +17,8 @@
 	init_pasture_score = yes
 	init_forest_score = yes
 	init_land = yes
+	init_price = yes
+	init_pay = yes
 	
 	modi_refresh = yes
 	
@@ -79,5 +81,8 @@
 			remove_variable = forest_total_send
 			remove_variable = forest_score
 		}
+		
+		set_variable = { name = pop_wealth value = var:pop_total }
+		change_variable = { name = pop_wealth multiply = 4 }
 	}
 }

@@ -1,12 +1,14 @@
 ﻿modi_refresh = {
 	every_county = {
 		modi_prod = yes
+		modi_pop = yes
 		
 		every_county_province = {
 			limit = {
 				is_city = yes
 			}
 			modi_prod = yes
+			modi_pop = yes
 		}
 	}
 }
@@ -23,4 +25,35 @@ modi_prod = {
 	set_variable = { name = modi_prod_output_fiber value = 1 }
 	set_variable = { name = modi_prod_output_pottery value = 1 }
 	set_variable = { name = modi_prod_output_textile value = 1 }
+}
+
+modi_pop = {
+	set_variable = { name = modi_pop_calorie value = 1 }
+	set_variable = { name = modi_pop_nutrient value = 1 }
+	set_variable = { name = modi_pop_comfort value = 1 }
+	set_variable = { name = modi_pop_luxury value = 1 }
+	
+	set_variable = { name = modi_pop_calorie_food value = 1 }
+	set_variable = { name = modi_pop_calorie_fuel value = 1 }
+	set_variable = { name = modi_pop_calorie_fiber value = 1 }
+	set_variable = { name = modi_pop_calorie_pottery value = 1 }
+	set_variable = { name = modi_pop_calorie_textile value = 1 }
+	
+	set_variable = { name = modi_pop_nutrient_food value = 1 }
+	set_variable = { name = modi_pop_nutrient_fuel value = 1 }
+	set_variable = { name = modi_pop_nutrient_fiber value = 1 }
+	set_variable = { name = modi_pop_nutrient_pottery value = 1 }
+	set_variable = { name = modi_pop_nutrient_textile value = 1 }
+	
+	set_variable = { name = modi_pop_comfort_food value = 1 }
+	set_variable = { name = modi_pop_comfort_fuel value = 1 }
+	set_variable = { name = modi_pop_comfort_fiber value = 1 }
+	set_variable = { name = modi_pop_comfort_pottery value = 1 }
+	set_variable = { name = modi_pop_comfort_textile value = 1 }
+	
+	set_variable = { name = modi_pop_luxury_food value = 1 }
+	set_variable = { name = modi_pop_luxury_fuel value = 1 }
+	set_variable = { name = modi_pop_luxury_fiber value = 1 }
+	set_variable = { name = modi_pop_luxury_pottery value = 1 }
+	set_variable = { name = modi_pop_luxury_textile value = 1 }
 }
