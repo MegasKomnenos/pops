@@ -204,7 +204,7 @@ trade_do_trade = {
 			travel_distance_dijkstra_every = {
 				start = var:trade_location.title_province
 				start_list = trade_do_trade_t
-				max = 475
+				max = 285
 				return_dist = trade_do_trade_dist
 				return_prev = trade_do_trade_prev
 			}
@@ -298,7 +298,7 @@ trade_do_trade = {
 				variable = trade_do_trade_list
 				
 				set_variable = { name = trade_cost value = var:trade_do_trade_dist }
-				change_variable = { name = trade_cost divide = 25 }
+				change_variable = { name = trade_cost divide = 15 }
 				change_variable = { name = trade_cost add = 1 }
 				
 				set_variable = { name = trade_point_food value = var:trade_price_food }
