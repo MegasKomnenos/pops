@@ -8,6 +8,8 @@
 	
 	travel_distance_dijkstra = {
 		start = $start$
+		[[start_list] start_list = $start_list$ ]
+		[[start_list_global] start_list_global = $start_list_global$ ]
 		max = $max$
 		return_dist = $return_dist$
 		return_prev = $return_prev$
@@ -40,6 +42,8 @@ travel_distance_dijkstra_black = {
 		white_type = variable
 		white_name = travel_distance_dijkstra_black_white
 		start = $start$
+		[[start_list] start_list = $start_list$ ]
+		[[start_list_global] start_list_global = $start_list_global$ ]
 		max = $max$
 		return_dist = $return_dist$
 		return_prev = $return_prev$
@@ -61,6 +65,8 @@ travel_distance_dijkstra_every = {
 		white_type = variable
 		white_name = travel_distance_dijkstra_every_white
 		start = $start$
+		[[start_list] start_list = $start_list$ ]
+		[[start_list_global] start_list_global = $start_list_global$ ]
 		max = $max$
 		return_dist = $return_dist$
 		return_prev = $return_prev$
@@ -72,15 +78,51 @@ travel_distance_dijkstra_every = {
 # start should always be a land province
 travel_distance_dijkstra = {	
 	$start$ = {
-		set_variable = { name = travel_distance_distance value = 0 }
+		set_variable = { name = travel_distance_distance value = 0.001 }
 		set_variable = { name = travel_distance_prev value = this }
 		
 		add_to_global_variable_list = { name = travel_distance_fray target = this }
 		add_to_global_variable_list = { name = travel_distance_visited target = this }
 	}
 	
+	[[start_list]
+		if = {
+			limit = {
+				or = {
+					always = no
+					
+					[[start_list_global]
+						always = $start_list_global$
+					]
+				}
+			}
+			every_in_global_list = {
+				variable = $start_list$
+				
+				set_variable = { name = travel_distance_distance value = 0.001 }
+				set_variable = { name = travel_distance_prev value = this }
+				
+				add_to_global_variable_list = { name = travel_distance_fray target = this }
+				add_to_global_variable_list = { name = travel_distance_visited target = this }
+			}
+		}
+		else = {
+			every_in_list = {
+				variable = $start_list$
+				
+				set_variable = { name = travel_distance_distance value = 0.001 }
+				set_variable = { name = travel_distance_prev value = this }
+				
+				add_to_global_variable_list = { name = travel_distance_fray target = this }
+				add_to_global_variable_list = { name = travel_distance_visited target = this }
+			}
+		}
+	]
+	
 	while = {
 		limit = {
+			has_global_variable_list = travel_distance_fray
+			
 			global_variable_list_size = { name = travel_distance_fray value >= 1 }
 		}
 		count = 100000
@@ -166,11 +208,11 @@ travel_distance_dijkstra = {
 	every_in_global_list = {
 		variable = travel_distance_visited
 		limit = {
-			var:prov_sea == yes
+			var:prov_sea = 2
 		}
 		while = {
 			limit = {
-				var:travel_distance_prev.var:prov_sea == yes
+				var:travel_distance_prev.var:prov_sea = 2
 			}
 			set_variable = { name = travel_distance_prev value = var:travel_distance_prev.var:travel_distance_prev }
 		}
@@ -178,11 +220,11 @@ travel_distance_dijkstra = {
 	every_in_global_list = {
 		variable = travel_distance_visited
 		limit = {
-			var:prov_sea == no
+			var:prov_sea = 1
 		}
 		while = {
 			limit = {
-				var:travel_distance_prev.var:prov_sea == yes
+				var:travel_distance_prev.var:prov_sea = 2
 			}
 			set_variable = { name = travel_distance_prev value = var:travel_distance_prev.var:travel_distance_prev }
 		}
@@ -385,11 +427,11 @@ find_path_dijkstra = {
 	every_in_global_list = {
 		variable = find_path_visited
 		limit = {
-			var:prov_sea == yes
+			var:prov_sea = 2
 		}
 		while = {
 			limit = {
-				var:find_path_prev.var:prov_sea == yes
+				var:find_path_prev.var:prov_sea = 2
 			}
 			set_variable = { name = find_path_prev value = var:find_path_prev.var:find_path_prev }
 		}
@@ -397,11 +439,11 @@ find_path_dijkstra = {
 	every_in_global_list = {
 		variable = find_path_visited
 		limit = {
-			var:prov_sea == no
+			var:prov_sea = 1
 		}
 		while = {
 			limit = {
-				var:find_path_prev.var:prov_sea == yes
+				var:find_path_prev.var:prov_sea = 2
 			}
 			set_variable = { name = find_path_prev value = var:find_path_prev.var:find_path_prev }
 		}

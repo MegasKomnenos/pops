@@ -217,9 +217,9 @@ if __name__ == '__main__':
                  loc_coord = ' set_variable = { name = prov_x value = %s } set_variable = { name = prov_y value = %s }' % coord[prov]
 
             if prov in water:
-                loc_sea = ' set_variable = { name = prov_sea value = yes } add_to_global_variable_list = { name = every_water target = this }'
+                loc_sea = ' set_variable = { name = prov_sea value = 2 } add_to_global_variable_list = { name = every_water target = this }'
             else:
-                loc_sea = ' set_variable = { name = prov_sea value = no }'
+                loc_sea = ' set_variable = { name = prov_sea value = 1 }'
 
             if prov in neighb:
                 for n in neighb[prov]:

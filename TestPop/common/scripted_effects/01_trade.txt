@@ -1,0 +1,944 @@
+﻿trade_new_merchant = {
+	create_character = {
+		save_temporary_scope_as = trade_new_merchant_t
+		gender = male
+		trait = character_not_1
+		employer = global_var:arhat
+		faith = global_var:arhat.faith
+		culture = global_var:arhat.culture
+	}
+	
+	add_to_global_variable_list = { name = trade_merchants target = scope:trade_new_merchant_t }
+	
+	$location$ = {
+		add_to_variable_list = { name = trade_merchants target = scope:trade_new_merchant_t }
+	}
+	
+	scope:trade_new_merchant_t = {
+		set_variable = { name = trade_location value = $location$ }
+		set_variable = { name = trade_tax value = $tax$ }
+		set_variable = { name = trade_wealth value = $wealth$ }
+		
+		set_variable = { name = trade_profit value = 0 }
+		set_variable = { name = trade_income value = 0 }
+		set_variable = { name = trade_spend value = 0 }
+		set_variable = { name = trade_spend_tax value = 0 }
+		set_variable = { name = trade_spend_buy value = 0 }
+		set_variable = { name = trade_spend_maint value = 0 }
+		
+		set_variable = { name = trade_has_food value = 0 }
+		set_variable = { name = trade_has_fuel value = 0 }
+		set_variable = { name = trade_has_fiber value = 0 }
+		set_variable = { name = trade_has_pottery value = 0 }
+		set_variable = { name = trade_has_textile value = 0 }
+		
+		set_variable = { name = trade_want_food value = 0 }
+		set_variable = { name = trade_want_fuel value = 0 }
+		set_variable = { name = trade_want_fiber value = 0 }
+		set_variable = { name = trade_want_pottery value = 0 }
+		set_variable = { name = trade_want_textile value = 0 }
+		
+		set_variable = { name = trade_rank value = $rank$ }
+		set_variable = { name = trade_skill value = $skill$ }
+		set_variable = { name = trade_outposts_max value = $outpost$ }
+		
+		add_to_variable_list = { name = trade_outposts target = $location$ }
+		
+		set_variable = { name = trade_price_food value = $location$.var:trade_price_food }
+		set_variable = { name = trade_price_fuel value = $location$.var:trade_price_fuel }
+		set_variable = { name = trade_price_fiber value = $location$.var:trade_price_fiber }
+		set_variable = { name = trade_price_pottery value = $location$.var:trade_price_pottery }
+		set_variable = { name = trade_price_textile value = $location$.var:trade_price_textile }
+	}
+}
+
+trade_do_trade = {
+	every_province = {
+		limit = {
+			is_valid_prov = yes
+			
+			is_city = yes
+		}
+		trade_do_trade_helper_0 = yes
+	}
+	
+	every_county = {
+		limit = {
+			is_valid_prov = yes
+		}
+		trade_do_trade_helper_0 = yes
+		
+		set_variable = { name = trade_sum_sply_food value = var:trade_sply_food }
+		set_variable = { name = trade_sum_sply_fuel value = var:trade_sply_fuel }
+		set_variable = { name = trade_sum_sply_fiber value = var:trade_sply_fiber }
+		set_variable = { name = trade_sum_sply_pottery value = var:trade_sply_pottery }
+		set_variable = { name = trade_sum_sply_textile value = var:trade_sply_textile }
+		
+		set_variable = { name = trade_sum_dmnd_food value = var:trade_dmnd_food }
+		set_variable = { name = trade_sum_dmnd_fuel value = var:trade_dmnd_fuel }
+		set_variable = { name = trade_sum_dmnd_fiber value = var:trade_dmnd_fiber }
+		set_variable = { name = trade_sum_dmnd_pottery value = var:trade_dmnd_pottery }
+		set_variable = { name = trade_sum_dmnd_textile value = var:trade_dmnd_textile }
+		
+		every_county_province = {
+			limit = {
+				is_valid_prov = yes
+				
+				is_city = yes
+			}
+			prev = {
+				change_variable = { name = trade_sum_sply_food add = prev.var:trade_sply_food }
+				change_variable = { name = trade_sum_sply_fuel add = prev.var:trade_sply_fuel }
+				change_variable = { name = trade_sum_sply_fiber add = prev.var:trade_sply_fiber }
+				change_variable = { name = trade_sum_sply_pottery add = prev.var:trade_sply_pottery }
+				change_variable = { name = trade_sum_sply_textile add = prev.var:trade_sply_textile }
+				
+				change_variable = { name = trade_sum_dmnd_food add = prev.var:trade_dmnd_food }
+				change_variable = { name = trade_sum_dmnd_fuel add = prev.var:trade_dmnd_fuel }
+				change_variable = { name = trade_sum_dmnd_fiber add = prev.var:trade_dmnd_fiber }
+				change_variable = { name = trade_sum_dmnd_pottery add = prev.var:trade_dmnd_pottery }
+				change_variable = { name = trade_sum_dmnd_textile add = prev.var:trade_dmnd_textile }
+			}
+		}
+		
+		trade_do_trade_helper_1 = { good = food }
+		trade_do_trade_helper_1 = { good = fuel }
+		trade_do_trade_helper_1 = { good = fiber }
+		trade_do_trade_helper_1 = { good = pottery }
+		trade_do_trade_helper_1 = { good = textile }
+	}
+	
+	every_in_global_list = {
+		variable = trade_merchants
+		
+		set_variable = { name = trade_sum_in_food value = 0 }
+		set_variable = { name = trade_sum_in_fuel value = 0 }
+		set_variable = { name = trade_sum_in_fiber value = 0 }
+		set_variable = { name = trade_sum_in_pottery value = 0 }
+		set_variable = { name = trade_sum_in_textile value = 0 }
+		
+		set_variable = { name = trade_sum_out_food value = 0 }
+		set_variable = { name = trade_sum_out_fuel value = 0 }
+		set_variable = { name = trade_sum_out_fiber value = 0 }
+		set_variable = { name = trade_sum_out_pottery value = 0 }
+		set_variable = { name = trade_sum_out_textile value = 0 }
+		
+		set_variable = { name = trade_sum_dmnd_food value = var:trade_want_food }
+		set_variable = { name = trade_sum_dmnd_fuel value = var:trade_want_fuel }
+		set_variable = { name = trade_sum_dmnd_fiber value = var:trade_want_fiber }
+		set_variable = { name = trade_sum_dmnd_pottery value = var:trade_want_pottery }
+		set_variable = { name = trade_sum_dmnd_textile value = var:trade_want_textile }
+		
+		change_variable = { name = trade_sum_dmnd_food subtract = var:trade_has_food }
+		change_variable = { name = trade_sum_dmnd_fuel subtract = var:trade_has_fuel }
+		change_variable = { name = trade_sum_dmnd_fiber subtract = var:trade_has_fiber }
+		change_variable = { name = trade_sum_dmnd_pottery subtract = var:trade_has_pottery }
+		change_variable = { name = trade_sum_dmnd_textile subtract = var:trade_has_textile }
+		
+		change_variable = { name = trade_sum_dmnd_food divide = 2 }
+		change_variable = { name = trade_sum_dmnd_fuel divide = 2 }
+		change_variable = { name = trade_sum_dmnd_fiber divide = 2 }
+		change_variable = { name = trade_sum_dmnd_pottery divide = 2 }
+		change_variable = { name = trade_sum_dmnd_textile divide = 2 }
+		
+		set_variable = { name = trade_sum_sply_food value = var:trade_has_food }
+		set_variable = { name = trade_sum_sply_fuel value = var:trade_has_fuel }
+		set_variable = { name = trade_sum_sply_fiber value = var:trade_has_fiber }
+		set_variable = { name = trade_sum_sply_pottery value = var:trade_has_pottery }
+		set_variable = { name = trade_sum_sply_textile value = var:trade_has_textile }
+		
+		change_variable = { name = trade_sum_sply_food divide = 2 }
+		change_variable = { name = trade_sum_sply_fuel divide = 2 }
+		change_variable = { name = trade_sum_sply_fiber divide = 2 }
+		change_variable = { name = trade_sum_sply_pottery divide = 2 }
+		change_variable = { name = trade_sum_sply_textile divide = 2 }
+		
+		set_variable = { name = trade_sum_earn_food value = 0 }
+		set_variable = { name = trade_sum_earn_fuel value = 0 }
+		set_variable = { name = trade_sum_earn_fiber value = 0 }
+		set_variable = { name = trade_sum_earn_pottery value = 0 }
+		set_variable = { name = trade_sum_earn_textile value = 0 }
+		
+		set_variable = { name = trade_sum_pay_food value = 0 }
+		set_variable = { name = trade_sum_pay_fuel value = 0 }
+		set_variable = { name = trade_sum_pay_fiber value = 0 }
+		set_variable = { name = trade_sum_pay_pottery value = 0 }
+		set_variable = { name = trade_sum_pay_textile value = 0 }
+		
+		set_variable = { name = trade_power value = var:trade_rank }
+		change_variable = { name = trade_power multiply = var:trade_skill }
+	}
+	
+	set_global_variable = { name = trade_do_trade_loop }
+	
+	while = {
+		limit = {
+			has_global_variable = trade_do_trade_loop
+		}
+		remove_global_variable = trade_do_trade_loop
+		
+		count = 100000
+		
+		ordered_in_global_list = {
+			limit = {
+				has_variable = trade_power
+				
+				var:trade_power > 0
+			}
+			variable = trade_merchants
+			order_by = trade_do_trade_order_value_0
+			position = 0
+			
+			set_global_variable = { name = trade_do_trade_loop }
+			
+			set_global_variable = { name = trade_do_trade_select value = this }
+		
+			every_in_list = {
+				variable = trade_outposts
+				
+				prev = {
+					add_to_variable_list = { name = trade_do_trade_t target = prev.title_province }
+				}
+			}
+			
+			travel_distance_dijkstra_every = {
+				start = var:trade_location.title_province
+				start_list = trade_do_trade_t
+				max = 475
+				return_dist = trade_do_trade_dist
+				return_prev = trade_do_trade_prev
+			}
+			
+			clear_variable_list = trade_do_trade_t
+			
+			every_county = {
+				limit = {
+					any_county_province = {
+						is_city = yes
+						
+						has_variable = trade_do_trade_dist
+					}
+				}
+				add_to_global_variable_list = { name = trade_do_trade_list target = this }
+				
+				ordered_county_province = {
+					limit = {
+						is_city = yes
+						
+						has_variable = trade_do_trade_dist
+					}
+					order_by = trade_do_trade_order_value_1
+					position = 0
+					
+					prev = {
+						set_variable = { name = trade_do_trade_dist value = prev.var:trade_do_trade_dist }
+						set_variable = { name = trade_do_trade_prev value = prev }
+					}
+				}
+			}
+			
+			set_variable = { name = trade_do_trade_select }
+			
+			every_in_global_list = {
+				variable = trade_merchants
+				limit = {
+					NOT = {
+						has_variable = trade_do_trade_select
+					}
+					
+					var:trade_location = {
+						has_variable = trade_do_trade_dist
+					}
+				}
+				add_to_global_variable_list = { name = trade_do_trade_list target = this }
+				
+				set_variable = { name = trade_do_trade_dist value = var:trade_location.var:trade_do_trade_dist }
+				set_variable = { name = trade_do_trade_prev value = var:trade_location }
+			}
+			
+			remove_variable = trade_do_trade_select
+			
+			set_variable = { name = trade_sum_buy_food value = 0 }
+			set_variable = { name = trade_sum_buy_fuel value = 0 }
+			set_variable = { name = trade_sum_buy_fiber value = 0 }
+			set_variable = { name = trade_sum_buy_pottery value = 0 }
+			set_variable = { name = trade_sum_buy_textile value = 0 }
+			
+			set_variable = { name = trade_sum_sell_food value = 0 }
+			set_variable = { name = trade_sum_sell_fuel value = 0 }
+			set_variable = { name = trade_sum_sell_fiber value = 0 }
+			set_variable = { name = trade_sum_sell_pottery value = 0 }
+			set_variable = { name = trade_sum_sell_textile value = 0 }
+			
+			set_variable = { name = trade_buy_food value = var:trade_sum_dmnd_food }
+			set_variable = { name = trade_buy_fiber value = var:trade_sum_dmnd_fiber }
+			set_variable = { name = trade_buy_fuel value = var:trade_sum_dmnd_fuel }
+			set_variable = { name = trade_buy_pottery value = var:trade_sum_dmnd_pottery }
+			set_variable = { name = trade_buy_textile value = var:trade_sum_dmnd_textile }
+			
+			change_variable = { name = trade_buy_food subtract = var:trade_sum_in_food }
+			change_variable = { name = trade_buy_fiber subtract = var:trade_sum_in_fiber }
+			change_variable = { name = trade_buy_fuel subtract = var:trade_sum_in_fuel }
+			change_variable = { name = trade_buy_pottery subtract = var:trade_sum_in_pottery }
+			change_variable = { name = trade_buy_textile subtract = var:trade_sum_in_textile }
+			
+			set_variable = { name = trade_sell_food value = var:trade_sum_sply_food }
+			set_variable = { name = trade_sell_fiber value = var:trade_sum_sply_fiber }
+			set_variable = { name = trade_sell_fuel value = var:trade_sum_sply_fuel }
+			set_variable = { name = trade_sell_pottery value = var:trade_sum_sply_pottery }
+			set_variable = { name = trade_sell_textile value = var:trade_sum_sply_textile }
+			
+			change_variable = { name = trade_sell_food subtract = var:trade_sum_out_food }
+			change_variable = { name = trade_sell_fiber subtract = var:trade_sum_out_fiber }
+			change_variable = { name = trade_sell_fuel subtract = var:trade_sum_out_fuel }
+			change_variable = { name = trade_sell_pottery subtract = var:trade_sum_out_pottery }
+			change_variable = { name = trade_sell_textile subtract = var:trade_sum_out_textile }
+			
+			every_in_global_list = {
+				variable = trade_do_trade_list
+				
+				set_variable = { name = trade_cost value = var:trade_do_trade_dist }
+				change_variable = { name = trade_cost divide = 25 }
+				change_variable = { name = trade_cost add = 1 }
+				
+				set_variable = { name = trade_point_food value = var:trade_price_food }
+				set_variable = { name = trade_point_fuel value = var:trade_price_fuel }
+				set_variable = { name = trade_point_fiber value = var:trade_price_fiber }
+				set_variable = { name = trade_point_pottery value = var:trade_price_pottery }
+				set_variable = { name = trade_point_textile value = var:trade_price_textile }
+				
+				change_variable = { name = trade_point_food subtract = prev.var:trade_price_food }
+				change_variable = { name = trade_point_fuel subtract = prev.var:trade_price_fuel }
+				change_variable = { name = trade_point_fiber subtract = prev.var:trade_price_fiber }
+				change_variable = { name = trade_point_pottery subtract = prev.var:trade_price_pottery }
+				change_variable = { name = trade_point_textile subtract = prev.var:trade_price_textile }
+				
+				change_variable = { name = trade_point_food divide = var:trade_cost }
+				change_variable = { name = trade_point_fuel divide = var:trade_cost }
+				change_variable = { name = trade_point_fiber divide = var:trade_cost }
+				change_variable = { name = trade_point_pottery divide = var:trade_cost }
+				change_variable = { name = trade_point_textile divide = var:trade_cost }
+				
+				change_variable = { name = trade_point_food multiply = var:trade_point_food }
+				change_variable = { name = trade_point_fuel multiply = var:trade_point_fuel }
+				change_variable = { name = trade_point_fiber multiply = var:trade_point_fiber }
+				change_variable = { name = trade_point_pottery multiply = var:trade_point_pottery }
+				change_variable = { name = trade_point_textile multiply = var:trade_point_textile }
+				
+				change_variable = { name = trade_point_food add = 0.01 }
+				change_variable = { name = trade_point_fuel add = 0.01 }
+				change_variable = { name = trade_point_fiber add = 0.01 }
+				change_variable = { name = trade_point_pottery add = 0.01 }
+				change_variable = { name = trade_point_textile add = 0.01 }
+				
+				set_variable = { name = trade_point_min value = var:trade_point_food }
+				
+				if = { limit = { OR = { NOT = { has_variable = trade_point_min } var:trade_point_min = { compare_value > prev.var:trade_point_fuel } } } set_variable = { name = trade_point_min value = var:trade_point_fuel } }
+				if = { limit = { OR = { NOT = { has_variable = trade_point_min } var:trade_point_min = { compare_value > prev.var:trade_point_fiber } } } set_variable = { name = trade_point_min value = var:trade_point_fiber } }
+				if = { limit = { OR = { NOT = { has_variable = trade_point_min } var:trade_point_min = { compare_value > prev.var:trade_point_pottery } } } set_variable = { name = trade_point_min value = var:trade_point_pottery } }
+				if = { limit = { OR = { NOT = { has_variable = trade_point_min } var:trade_point_min = { compare_value > prev.var:trade_point_textile } } } set_variable = { name = trade_point_min value = var:trade_point_textile } }
+				
+				set_variable = { name = trade_buy_food value = var:trade_sum_dmnd_food }
+				set_variable = { name = trade_buy_fiber value = var:trade_sum_dmnd_fiber }
+				set_variable = { name = trade_buy_fuel value = var:trade_sum_dmnd_fuel }
+				set_variable = { name = trade_buy_pottery value = var:trade_sum_dmnd_pottery }
+				set_variable = { name = trade_buy_textile value = var:trade_sum_dmnd_textile }
+				
+				change_variable = { name = trade_buy_food subtract = var:trade_sum_in_food }
+				change_variable = { name = trade_buy_fiber subtract = var:trade_sum_in_fiber }
+				change_variable = { name = trade_buy_fuel subtract = var:trade_sum_in_fuel }
+				change_variable = { name = trade_buy_pottery subtract = var:trade_sum_in_pottery }
+				change_variable = { name = trade_buy_textile subtract = var:trade_sum_in_textile }
+				
+				set_variable = { name = trade_sell_food value = var:trade_sum_sply_food }
+				set_variable = { name = trade_sell_fiber value = var:trade_sum_sply_fiber }
+				set_variable = { name = trade_sell_fuel value = var:trade_sum_sply_fuel }
+				set_variable = { name = trade_sell_pottery value = var:trade_sum_sply_pottery }
+				set_variable = { name = trade_sell_textile value = var:trade_sum_sply_textile }
+				
+				change_variable = { name = trade_sell_food subtract = var:trade_sum_out_food }
+				change_variable = { name = trade_sell_fiber subtract = var:trade_sum_out_fiber }
+				change_variable = { name = trade_sell_fuel subtract = var:trade_sum_out_fuel }
+				change_variable = { name = trade_sell_pottery subtract = var:trade_sum_out_pottery }
+				change_variable = { name = trade_sell_textile subtract = var:trade_sum_out_textile }
+				
+				if = { limit = { var:trade_price_food = { compare_value >= global_var:trade_do_trade_select.var:trade_price_food } } set_variable = { name = trade_sell_food value = 0 } }
+				if = { limit = { var:trade_price_fuel = { compare_value >= global_var:trade_do_trade_select.var:trade_price_fuel } } set_variable = { name = trade_sell_fuel value = 0 } }
+				if = { limit = { var:trade_price_fiber = { compare_value >= global_var:trade_do_trade_select.var:trade_price_fiber } } set_variable = { name = trade_sell_fiber value = 0 } }
+				if = { limit = { var:trade_price_pottery = { compare_value >= global_var:trade_do_trade_select.var:trade_price_pottery } } set_variable = { name = trade_sell_pottery value = 0 } }
+				if = { limit = { var:trade_price_textile = { compare_value >= global_var:trade_do_trade_select.var:trade_price_textile } } set_variable = { name = trade_sell_textile value = 0 } }
+				
+				if = { limit = { var:trade_price_food = { compare_value <= global_var:trade_do_trade_select.var:trade_price_food } } set_variable = { name = trade_buy_food value = 0 } }
+				if = { limit = { var:trade_price_fuel = { compare_value <= global_var:trade_do_trade_select.var:trade_price_fuel } } set_variable = { name = trade_buy_fuel value = 0 } }
+				if = { limit = { var:trade_price_fiber = { compare_value <= global_var:trade_do_trade_select.var:trade_price_fiber } } set_variable = { name = trade_buy_fiber value = 0 } }
+				if = { limit = { var:trade_price_pottery = { compare_value <= global_var:trade_do_trade_select.var:trade_price_pottery } } set_variable = { name = trade_buy_pottery value = 0 } }
+				if = { limit = { var:trade_price_textile = { compare_value <= global_var:trade_do_trade_select.var:trade_price_textile } } set_variable = { name = trade_buy_textile value = 0 } }
+				
+				prev = {
+					change_variable = { name = trade_sum_buy_food add = prev.var:trade_buy_food }
+					change_variable = { name = trade_sum_buy_fuel add = prev.var:trade_buy_fuel }
+					change_variable = { name = trade_sum_buy_fiber add = prev.var:trade_buy_fiber }
+					change_variable = { name = trade_sum_buy_pottery add = prev.var:trade_buy_pottery }
+					change_variable = { name = trade_sum_buy_textile add = prev.var:trade_buy_textile }
+					
+					change_variable = { name = trade_sum_sell_food add = prev.var:trade_sell_food }
+					change_variable = { name = trade_sum_sell_fuel add = prev.var:trade_sell_fuel }
+					change_variable = { name = trade_sum_sell_fiber add = prev.var:trade_sell_fiber }
+					change_variable = { name = trade_sum_sell_pottery add = prev.var:trade_sell_pottery }
+					change_variable = { name = trade_sum_sell_textile add = prev.var:trade_sell_textile }
+				}
+			}
+			
+			set_variable = { name = trade_cost value = 0 }
+			
+			trade_do_trade_helper_2 = { good = food type0 = buy type1 = sell }
+			trade_do_trade_helper_2 = { good = fiber type0 = buy type1 = sell }
+			trade_do_trade_helper_2 = { good = fuel type0 = buy type1 = sell }
+			trade_do_trade_helper_2 = { good = pottery type0 = buy type1 = sell }
+			trade_do_trade_helper_2 = { good = textile type0 = buy type1 = sell }
+			
+			trade_do_trade_helper_2 = { good = food type0 = sell type1 = buy }
+			trade_do_trade_helper_2 = { good = fiber type0 = sell type1 = buy }
+			trade_do_trade_helper_2 = { good = fuel type0 = sell type1 = buy }
+			trade_do_trade_helper_2 = { good = pottery type0 = sell type1 = buy }
+			trade_do_trade_helper_2 = { good = textile type0 = sell type1 = buy }
+			
+			set_variable = { name = trade_cost value = 0 }
+			
+			every_in_global_list = {
+				variable = trade_do_trade_list
+				
+				set_variable = { name = trade_cost_food value = var:trade_buy_food }
+				set_variable = { name = trade_cost_fiber value = var:trade_buy_fiber }
+				set_variable = { name = trade_cost_fuel value = var:trade_buy_fuel }
+				set_variable = { name = trade_cost_pottery value = var:trade_buy_pottery }
+				set_variable = { name = trade_cost_textile value = var:trade_buy_textile }
+				
+				change_variable = { name = trade_cost_food add = var:trade_sell_food }
+				change_variable = { name = trade_cost_fiber add = var:trade_sell_fiber }
+				change_variable = { name = trade_cost_fuel add = var:trade_sell_fuel }
+				change_variable = { name = trade_cost_pottery add = var:trade_sell_pottery }
+				change_variable = { name = trade_cost_textile add = var:trade_sell_textile }
+				
+				change_variable = { name = trade_cost_food multiply = var:trade_cost }
+				change_variable = { name = trade_cost_fiber multiply = var:trade_cost }
+				change_variable = { name = trade_cost_fuel multiply = var:trade_cost }
+				change_variable = { name = trade_cost_pottery multiply = var:trade_cost }
+				change_variable = { name = trade_cost_textile multiply = var:trade_cost }
+				
+				prev = {
+					change_variable = { name = trade_cost add = prev.var:trade_cost_food }
+					change_variable = { name = trade_cost add = prev.var:trade_cost_fuel }
+					change_variable = { name = trade_cost add = prev.var:trade_cost_fiber }
+					change_variable = { name = trade_cost add = prev.var:trade_cost_pottery }
+					change_variable = { name = trade_cost add = prev.var:trade_cost_textile }
+				}
+			}
+			
+			if = {
+				limit = {
+					has_variable = trade_cost
+					
+					var:trade_cost = {
+						compare_value > prev.var:trade_power
+					}
+				}
+				set_variable = { name = trade_point_min value = 0.01 }
+				
+				ordered_in_global_list = {
+					limit = {
+						trade_has_trade = yes
+					}
+					variable = trade_do_trade_list
+					order_by = trade_do_trade_order_value_2
+					position = 0
+					
+					prev = {
+						set_variable = { name = trade_point_min value = prev.var:trade_point_min }
+					}
+				}
+				
+				set_variable = { name = trade_do_trade_t value = var:trade_power }
+				change_variable = { name = trade_do_trade_t multiply = 100 }
+				change_variable = { name = trade_do_trade_t divide = var:trade_cost }
+				
+				set_variable = { name = trade_cost value = 0 }
+				
+				every_in_global_list = {
+					limit = {
+						trade_has_trade = yes
+					}
+					variable = trade_do_trade_list
+					
+					trade_do_trade_helper_3 = { good = food }
+					trade_do_trade_helper_3 = { good = fuel }
+					trade_do_trade_helper_3 = { good = fiber }
+					trade_do_trade_helper_3 = { good = pottery }
+					trade_do_trade_helper_3 = { good = textile }
+					
+					prev = {
+						change_variable = { name = trade_cost add = prev.var:trade_cost_food }
+						change_variable = { name = trade_cost add = prev.var:trade_cost_fiber }
+						change_variable = { name = trade_cost add = prev.var:trade_cost_fuel }
+						change_variable = { name = trade_cost add = prev.var:trade_cost_pottery }
+						change_variable = { name = trade_cost add = prev.var:trade_cost_textile }
+					}
+				}
+				
+				if = {
+					limit = {
+						has_variable = trade_cost
+						
+						var:trade_cost = {
+							compare_value > prev.var:trade_power
+						}
+					}
+					set_variable = { name = trade_do_trade_t value = var:trade_power }
+					change_variable = { name = trade_do_trade_t multiply = 100 }
+					change_variable = { name = trade_do_trade_t divide = var:trade_cost }
+					
+					every_in_global_list = {
+						limit = {
+							trade_has_trade = yes
+						}
+						variable = trade_do_trade_list
+						
+						change_variable = { name = trade_buy_food multiply = prev.var:trade_do_trade_t }
+						change_variable = { name = trade_buy_fuel multiply = prev.var:trade_do_trade_t }
+						change_variable = { name = trade_buy_fiber multiply = prev.var:trade_do_trade_t }
+						change_variable = { name = trade_buy_pottery multiply = prev.var:trade_do_trade_t }
+						change_variable = { name = trade_buy_textile multiply = prev.var:trade_do_trade_t }
+						
+						change_variable = { name = trade_buy_food divide = 100 }
+						change_variable = { name = trade_buy_fuel divide = 100 }
+						change_variable = { name = trade_buy_fiber divide = 100 }
+						change_variable = { name = trade_buy_pottery divide = 100 }
+						change_variable = { name = trade_buy_textile divide = 100 }
+						
+						change_variable = { name = trade_sell_food multiply = prev.var:trade_do_trade_t }
+						change_variable = { name = trade_sell_fuel multiply = prev.var:trade_do_trade_t }
+						change_variable = { name = trade_sell_fiber multiply = prev.var:trade_do_trade_t }
+						change_variable = { name = trade_sell_pottery multiply = prev.var:trade_do_trade_t }
+						change_variable = { name = trade_sell_textile multiply = prev.var:trade_do_trade_t }
+						
+						change_variable = { name = trade_sell_food divide = 100 }
+						change_variable = { name = trade_sell_fuel divide = 100 }
+						change_variable = { name = trade_sell_fiber divide = 100 }
+						change_variable = { name = trade_sell_pottery divide = 100 }
+						change_variable = { name = trade_sell_textile divide = 100 }
+					}
+				}
+				
+				set_variable = { name = trade_sum_buy_food value = 0 }
+				set_variable = { name = trade_sum_buy_fuel value = 0 }
+				set_variable = { name = trade_sum_buy_fiber value = 0 }
+				set_variable = { name = trade_sum_buy_pottery value = 0 }
+				set_variable = { name = trade_sum_buy_textile value = 0 }
+				
+				set_variable = { name = trade_sum_sell_food value = 0 }
+				set_variable = { name = trade_sum_sell_fuel value = 0 }
+				set_variable = { name = trade_sum_sell_fiber value = 0 }
+				set_variable = { name = trade_sum_sell_pottery value = 0 }
+				set_variable = { name = trade_sum_sell_textile value = 0 }
+				
+				every_in_global_list = {
+					limit = {
+						trade_has_trade = yes
+					}
+					variable = trade_do_trade_list
+					
+					prev = {
+						change_variable = { name = trade_sum_buy_food add = prev.var:trade_buy_food }
+						change_variable = { name = trade_sum_buy_fuel add = prev.var:trade_buy_fuel }
+						change_variable = { name = trade_sum_buy_fiber add = prev.var:trade_buy_fiber }
+						change_variable = { name = trade_sum_buy_pottery add = prev.var:trade_buy_pottery }
+						change_variable = { name = trade_sum_buy_textile add = prev.var:trade_buy_textile }
+						
+						change_variable = { name = trade_sum_sell_food add = prev.var:trade_sell_food }
+						change_variable = { name = trade_sum_sell_fuel add = prev.var:trade_sell_fuel }
+						change_variable = { name = trade_sum_sell_fiber add = prev.var:trade_sell_fiber }
+						change_variable = { name = trade_sum_sell_pottery add = prev.var:trade_sell_pottery }
+						change_variable = { name = trade_sum_sell_textile add = prev.var:trade_sell_textile }
+					}
+				}
+				
+				every_in_global_list = {
+					limit = {
+						trade_has_trade = yes
+					}
+					variable = trade_do_trade_list
+					
+					remove_variable = trade_do_trade_t
+				}
+				
+				remove_variable = trade_do_trade_t
+				remove_variable = trade_point_min
+			}
+			
+			change_variable = { name = trade_sum_in_food add = var:trade_sum_sell_food }
+			change_variable = { name = trade_sum_in_fiber add = var:trade_sum_sell_fiber }
+			change_variable = { name = trade_sum_in_fuel add = var:trade_sum_sell_fuel }
+			change_variable = { name = trade_sum_in_pottery add = var:trade_sum_sell_pottery }
+			change_variable = { name = trade_sum_in_textile add = var:trade_sum_sell_textile }
+			
+			change_variable = { name = trade_sum_out_food add = var:trade_sum_buy_food }
+			change_variable = { name = trade_sum_out_fiber add = var:trade_sum_buy_fiber }
+			change_variable = { name = trade_sum_out_fuel add = var:trade_sum_buy_fuel }
+			change_variable = { name = trade_sum_out_pottery add = var:trade_sum_buy_pottery }
+			change_variable = { name = trade_sum_out_textile add = var:trade_sum_buy_textile }
+			
+			every_in_global_list = {
+				variable = trade_do_trade_list
+				
+				trade_do_trade_helper_4 = { good = food }
+				trade_do_trade_helper_4 = { good = fuel }
+				trade_do_trade_helper_4 = { good = fiber }
+				trade_do_trade_helper_4 = { good = pottery }
+				trade_do_trade_helper_4 = { good = textile }
+			}
+			
+			every_in_global_list = {
+				variable = trade_do_trade_list
+				
+				remove_variable = trade_do_trade_dist
+				remove_variable = trade_do_trade_prev
+				
+				remove_variable = trade_buy_food
+				remove_variable = trade_buy_fuel
+				remove_variable = trade_buy_fiber
+				remove_variable = trade_buy_pottery
+				remove_variable = trade_buy_textile
+				
+				remove_variable = trade_sell_food
+				remove_variable = trade_sell_fuel
+				remove_variable = trade_sell_fiber
+				remove_variable = trade_sell_pottery
+				remove_variable = trade_sell_textile
+				
+				remove_variable = trade_point_min
+				remove_variable = trade_point_food
+				remove_variable = trade_point_fuel
+				remove_variable = trade_point_fiber
+				remove_variable = trade_point_pottery
+				remove_variable = trade_point_textile
+				
+				remove_variable = trade_cost
+				remove_variable = trade_cost_food
+				remove_variable = trade_cost_fuel
+				remove_variable = trade_cost_fiber
+				remove_variable = trade_cost_pottery
+				remove_variable = trade_cost_textile
+			}
+			
+			every_province = {
+				limit = {
+					has_variable = trade_do_trade_dist
+				}
+				remove_variable = trade_do_trade_dist
+				remove_variable = trade_do_trade_prev
+			}
+			
+			remove_global_variable = trade_do_trade_select
+			clear_global_variable_list = trade_do_trade_list
+			
+			remove_variable = trade_sum_buy_food
+			remove_variable = trade_sum_buy_fuel
+			remove_variable = trade_sum_buy_fiber
+			remove_variable = trade_sum_buy_pottery
+			remove_variable = trade_sum_buy_textile
+			
+			remove_variable = trade_sum_sell_food
+			remove_variable = trade_sum_sell_fuel
+			remove_variable = trade_sum_sell_fiber
+			remove_variable = trade_sum_sell_pottery
+			remove_variable = trade_sum_sell_textile
+			
+			remove_variable = trade_buy_food
+			remove_variable = trade_buy_fuel
+			remove_variable = trade_buy_fiber
+			remove_variable = trade_buy_pottery
+			remove_variable = trade_buy_textile
+			
+			remove_variable = trade_sell_food
+			remove_variable = trade_sell_fuel
+			remove_variable = trade_sell_fiber
+			remove_variable = trade_sell_pottery
+			remove_variable = trade_sell_textile
+			
+			remove_variable = trade_cost
+			
+			set_variable = { name = trade_power value = 0 }
+		}
+	}
+}
+
+trade_do_trade_helper_0 = {
+	set_variable = { name = trade_out_food value = 0 }
+	set_variable = { name = trade_out_fuel value = 0 }
+	set_variable = { name = trade_out_fiber value = 0 }
+	set_variable = { name = trade_out_pottery value = 0 }
+	set_variable = { name = trade_out_textile value = 0 }
+	
+	set_variable = { name = trade_in_food value = 0 }
+	set_variable = { name = trade_in_fuel value = 0 }
+	set_variable = { name = trade_in_fiber value = 0 }
+	set_variable = { name = trade_in_pottery value = 0 }
+	set_variable = { name = trade_in_textile value = 0 }
+	
+	set_variable = { name = trade_earn_food value = 0 }
+	set_variable = { name = trade_earn_fuel value = 0 }
+	set_variable = { name = trade_earn_fiber value = 0 }
+	set_variable = { name = trade_earn_pottery value = 0 }
+	set_variable = { name = trade_earn_textile value = 0 }
+	
+	set_variable = { name = trade_pay_food value = 0 }
+	set_variable = { name = trade_pay_fuel value = 0 }
+	set_variable = { name = trade_pay_fiber value = 0 }
+	set_variable = { name = trade_pay_pottery value = 0 }
+	set_variable = { name = trade_pay_textile value = 0 }
+	
+	set_variable = { name = trade_sply_food value = 0 }
+	set_variable = { name = trade_sply_fuel value = 0 }
+	set_variable = { name = trade_sply_fiber value = 0 }
+	set_variable = { name = trade_sply_pottery value = 0 }
+	set_variable = { name = trade_sply_textile value = 0 }
+	
+	set_variable = { name = trade_dmnd_food value = 0 }
+	set_variable = { name = trade_dmnd_fuel value = 0 }
+	set_variable = { name = trade_dmnd_fiber value = 0 }
+	set_variable = { name = trade_dmnd_pottery value = 0 }
+	set_variable = { name = trade_dmnd_textile value = 0 }
+	
+	every_in_list = {
+		variable = prod_instances
+		
+		if = { limit = { has_variable = prod_input_food } prev = { change_variable = { name = trade_dmnd_food add = prev.var:prod_input_food } } }
+		if = { limit = { has_variable = prod_input_fuel } prev = { change_variable = { name = trade_dmnd_fuel add = prev.var:prod_input_fuel } } }
+		if = { limit = { has_variable = prod_input_fiber } prev = { change_variable = { name = trade_dmnd_fiber add = prev.var:prod_input_fiber } } }
+		if = { limit = { has_variable = prod_input_pottery } prev = { change_variable = { name = trade_dmnd_pottery add = prev.var:prod_input_pottery } } }
+		if = { limit = { has_variable = prod_input_textile } prev = { change_variable = { name = trade_dmnd_textile add = prev.var:prod_input_textile } } }
+		
+		if = { limit = { has_variable = prod_output_actual_old_food } prev = { change_variable = { name = trade_sply_food add = prev.var:prod_output_actual_old_food } } }
+		if = { limit = { has_variable = prod_output_actual_old_fuel } prev = { change_variable = { name = trade_sply_fuel add = prev.var:prod_output_actual_old_fuel } } }
+		if = { limit = { has_variable = prod_output_actual_old_fiber } prev = { change_variable = { name = trade_sply_fiber add = prev.var:prod_output_actual_old_fiber } } }
+		if = { limit = { has_variable = prod_output_actual_old_pottery } prev = { change_variable = { name = trade_sply_pottery add = prev.var:prod_output_actual_old_pottery } } }
+		if = { limit = { has_variable = prod_output_actual_old_textile } prev = { change_variable = { name = trade_sply_textile add = prev.var:prod_output_actual_old_textile } } }
+	}
+	
+	change_variable = { name = trade_dmnd_food add = var:pop_calorie_food }
+	change_variable = { name = trade_dmnd_food add = var:pop_nutrient_food }
+	change_variable = { name = trade_dmnd_food add = var:pop_comfort_food }
+	change_variable = { name = trade_dmnd_food add = var:pop_luxury_food }
+	
+	change_variable = { name = trade_dmnd_fuel add = var:pop_calorie_fuel }
+	change_variable = { name = trade_dmnd_fuel add = var:pop_nutrient_fuel }
+	change_variable = { name = trade_dmnd_fuel add = var:pop_comfort_fuel }
+	change_variable = { name = trade_dmnd_fuel add = var:pop_luxury_fuel }
+	
+	change_variable = { name = trade_dmnd_fiber add = var:pop_calorie_fiber }
+	change_variable = { name = trade_dmnd_fiber add = var:pop_nutrient_fiber }
+	change_variable = { name = trade_dmnd_fiber add = var:pop_comfort_fiber }
+	change_variable = { name = trade_dmnd_fiber add = var:pop_luxury_fiber }
+	
+	change_variable = { name = trade_dmnd_pottery add = var:pop_calorie_pottery }
+	change_variable = { name = trade_dmnd_pottery add = var:pop_nutrient_pottery }
+	change_variable = { name = trade_dmnd_pottery add = var:pop_comfort_pottery }
+	change_variable = { name = trade_dmnd_pottery add = var:pop_luxury_pottery }
+	
+	change_variable = { name = trade_dmnd_textile add = var:pop_calorie_textile }
+	change_variable = { name = trade_dmnd_textile add = var:pop_nutrient_textile }
+	change_variable = { name = trade_dmnd_textile add = var:pop_comfort_textile }
+	change_variable = { name = trade_dmnd_textile add = var:pop_luxury_textile }
+}
+
+trade_do_trade_helper_1 = {
+	if = {
+		limit = {
+			has_variable = trade_sum_sply_$good$
+			has_variable = trade_sum_dmnd_$good$
+		}
+		if = {
+			limit = {
+				var:trade_sum_sply_$good$ = {
+					compare_value >= prev.var:trade_sum_dmnd_$good$
+				}
+			}
+			set_variable = { name = trade_sum_in_$good$ value = var:trade_sum_dmnd_$good$ }
+			set_variable = { name = trade_sum_out_$good$ value = var:trade_sum_dmnd_$good$ }
+		}
+		else = {
+			set_variable = { name = trade_sum_in_$good$ value = var:trade_sum_sply_$good$ }
+			set_variable = { name = trade_sum_out_$good$ value = var:trade_sum_sply_$good$ }
+		}
+		
+		set_variable = { name = trade_sum_earn_$good$ value = var:trade_sum_out_$good$ }
+		set_variable = { name = trade_sum_pay_$good$ value = var:trade_sum_in_$good$ }
+		
+		change_variable = { name = trade_sum_earn_$good$ multiply = var:trade_price_$good$ }
+		change_variable = { name = trade_sum_pay_$good$ multiply = var:trade_price_$good$ }
+	}
+	else = {
+		set_variable = { name = trade_sum_in_$good$ value = 0 }
+		set_variable = { name = trade_sum_out_$good$ value = 0 }
+		set_variable = { name = trade_sum_earn_$good$ value = 0 }
+		set_variable = { name = trade_sum_pay_$good$ value = 0 }
+	}
+}
+
+trade_do_trade_helper_2 = {
+	if = {
+		limit = {
+			OR = {
+				AND = {
+					var:trade_$type1$_$good$ = 0
+					
+					NOT = {
+						var:trade_sum_$type0$_$good$ = 0
+					}
+				}
+				
+				var:trade_$type1$_$good$ = {
+					compare_value < prev.var:trade_sum_$type0$_$good$
+				}
+			}
+		}
+		set_variable = { name = trade_point_min value = 0.01 }
+		
+		ordered_in_global_list = {
+			limit = {
+				var:trade_$type0$_$good$ > 0
+			}
+			variable = trade_do_trade_list
+			order_by = trade_do_trade_order_value_$good$
+			position = 0
+			
+			prev = {
+				set_variable = { name = trade_point_min value = prev.var:trade_point_$good$ }
+			}
+		}
+		
+		set_variable = { name = trade_do_trade_helper_2_t value = var:trade_$type1$_$good$ }
+		change_variable = { name = trade_do_trade_helper_2_t multiply = 100 }
+		change_variable = { name = trade_do_trade_helper_2_t divide = var:trade_sum_$type0$_$good$ }
+		
+		set_variable = { name = trade_sum_$type0$_$good$ value = 0 }
+		
+		every_in_global_list = {
+			limit = {
+				var:trade_$type0$_$good$ > 0
+			}
+			variable = trade_do_trade_list
+			
+			set_variable = { name = trade_do_trade_helper_2_t value = 100 }
+			change_variable = { name = trade_do_trade_helper_2_t subtract = prev.var:trade_do_trade_helper_2_t }
+			change_variable = { name = trade_do_trade_helper_2_t multiply = prev.var:trade_point_min }
+			change_variable = { name = trade_do_trade_helper_2_t divide = var:trade_point_$good$ }
+			change_variable = { name = trade_do_trade_helper_2_t multiply = -1 }
+			change_variable = { name = trade_do_trade_helper_2_t add = 100 }
+			
+			change_variable = { name = trade_$type0$_$good$ multiply = var:trade_do_trade_helper_2_t }
+			change_variable = { name = trade_$type0$_$good$ divide = 100 }
+			
+			prev = {
+				change_variable = { name = trade_sum_$type0$_$good$ add = prev.var:trade_$type0$_$good$ }
+			}
+		}
+		
+		if = {
+			limit = {
+				var:trade_$type1$_$good$ = {
+					compare_value < prev.var:trade_sum_$type0$_$good$
+				}
+			}
+			set_variable = { name = trade_do_trade_helper_2_t value = var:trade_$type1$_$good$ }
+			change_variable = { name = trade_do_trade_helper_2_t multiply = 100 }
+			change_variable = { name = trade_do_trade_helper_2_t divide = var:trade_sum_$type0$_$good$ }
+			
+			every_in_global_list = {
+				limit = {
+					var:trade_$type0$_$good$ > 0
+				}
+				variable = trade_do_trade_list
+				
+				change_variable = { name = trade_$type0$_$good$ multiply = prev.var:trade_do_trade_helper_2_t }
+				change_variable = { name = trade_$type0$_$good$ divide = 100 }
+			}
+		}
+		
+		set_variable = { name = trade_sum_$type0$_$good$ value = 0 }
+		
+		every_in_global_list = {
+			limit = {
+				var:trade_$type0$_$good$ > 0
+			}
+			variable = trade_do_trade_list
+			
+			prev = {
+				change_variable = { name = trade_sum_$type0$_$good$ add = prev.var:trade_$type0$_$good$ }
+			}
+		}
+		
+		every_in_global_list = {
+			limit = {
+				var:trade_$type0$_$good$ > 0
+			}
+			variable = trade_do_trade_list
+			remove_variable = trade_do_trade_helper_2_t
+		}
+		
+		remove_variable = trade_do_trade_helper_2_t
+		remove_variable = trade_point_min
+	}
+}
+
+trade_do_trade_helper_3 = {
+	set_variable = { name = trade_do_trade_t value = 100 }
+	change_variable = { name = trade_do_trade_t subtract = prev.var:trade_do_trade_t }
+	change_variable = { name = trade_do_trade_t multiply = prev.var:trade_point_min }
+	change_variable = { name = trade_do_trade_t divide = var:trade_point_$good$ }
+	change_variable = { name = trade_do_trade_t multiply = -1 }
+	change_variable = { name = trade_do_trade_t add = 100 }
+	
+	change_variable = { name = trade_buy_$good$ multiply = var:trade_do_trade_t }
+	change_variable = { name = trade_sell_$good$ multiply = var:trade_do_trade_t }
+	
+	change_variable = { name = trade_buy_$good$ divide = 100 }
+	change_variable = { name = trade_sell_$good$ divide = 100 }
+	
+	set_variable = { name = trade_cost_$good$ value = var:trade_buy_$good$ }
+	change_variable = { name = trade_cost_$good$ add = var:trade_sell_$good$ }
+	change_variable = { name = trade_cost_$good$ multiply = var:trade_cost }
+	
+	remove_variable = trade_do_trade_t
+}
+
+trade_do_trade_helper_4 = {
+	if = {
+		limit = {
+			has_variable = trade_buy_$good$ 
+			
+			var:trade_buy_$good$ > 0
+		}
+		change_variable = { name = trade_sum_in_$good$ add = var:trade_buy_$good$ }
+		change_variable = { name = trade_buy_$good$ multiply = prev.var:trade_price_$good$ }
+		change_variable = { name = trade_sum_pay_$good$ add = var:trade_buy_$good$ }
+		
+		prev = {
+			change_variable = { name = trade_sum_earn_$good$ add = prev.var:trade_buy_$good$ }
+		}
+	}
+	if = {
+		limit = {
+			has_variable = trade_sell_$good$
+			
+			var:trade_sell_$good$ > 0
+		}
+		change_variable = { name = trade_sum_out_$good$ add = var:trade_sell_$good$ }
+		change_variable = { name = trade_sell_$good$ multiply = var:trade_price_$good$ }
+		change_variable = { name = trade_sum_earn_$good$ add = var:trade_sell_$good$ }
+		
+		prev = {
+			change_variable = { name = trade_sum_pay_$good$ add = prev.var:trade_sell_$good$ }
+		}
+	}
+}

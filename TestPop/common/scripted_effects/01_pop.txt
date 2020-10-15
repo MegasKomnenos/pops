@@ -34,6 +34,8 @@
 pop_update_demand_helper = {
 	if = {
 		limit = {
+			has_variable = pop_$type$_$good$
+			
 			var:pop_$type$_$good$ > 0
 		}
 		change_variable = { name = pop_$type$_$good$ multiply = var:pop_$type$ }
@@ -94,6 +96,8 @@ pop_set_demand = {
 pop_set_demand_helper = {
 	if = {
 		limit = {
+			has_variable = pop_$type$_$good$
+			
 			var:pop_$type$_$good$ > 0
 		}
 		set_variable = { name = pop_set_demand_t value = var:pop_$type$_$good$ }
@@ -106,7 +110,13 @@ pop_set_demand_helper = {
 pop_set_need_by_pay = {
 	if = {
 		limit = {
-			var:pop_pay = 0
+			OR = {
+				NOT = {
+					has_variable = pop_pay
+				}
+				
+				var:pop_pay = 0
+			}
 		}
 		set_variable = { name = pop_calorie value = 0.5 }
 		set_variable = { name = pop_nutrient value = 0.1 }
@@ -202,6 +212,8 @@ pop_set_need_county = {
 		
 		if = {
 			limit = {
+				has_variable = pop_set_need_county_wealth
+				
 				var:pop_set_need_county_wealth = {
 					compare_value >= prev.var:pop_set_need_county_cost
 				}

@@ -1,5 +1,8 @@
 ﻿init_land = {
 	every_province = {
+		limit = {
+			is_valid_prov = yes
+		}
 		set_variable = { name = forest_total value = var:forest_score }
 		change_variable = { name = forest_total multiply = var:prov_size }
 		change_variable = { name = forest_total divide = 100 }

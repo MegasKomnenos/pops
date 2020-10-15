@@ -1,16 +1,6 @@
 ﻿init_main = {
 	init_prov_size = yes
 	init_prov_data = yes
-	
-	every_province = {
-		get_land_cost = { return = prov_cost }
-	}
-	every_in_global_list = {
-		variable = every_water
-		
-		get_land_cost = { return = prov_cost }
-	}
-	
 	init_pop_weight = yes
 	init_pop_total = yes
 	init_farm_score = yes
@@ -22,13 +12,36 @@
 	
 	modi_refresh = yes
 	
+	every_province = {
+		limit = {
+			is_valid_prov = yes
+		}
+		get_land_cost = { return = prov_cost }
+	}
+	every_in_global_list = {
+		variable = every_water
+		
+		get_land_cost = { return = prov_cost }
+	}
+	
 	every_county = {
+		limit = {
+			any_county_province = {
+				is_valid_prov = yes
+			}
+		}
 		set_variable = { name = pop_total value = 1 }
 		set_variable = { name = farm_total value = 1 }
 		set_variable = { name = pasture_total value = 1 }
 		set_variable = { name = forest_total value = 1 }
+		set_variable = { name = workshop_total value = 1 }
 		
 		every_county_province = {
+			limit = {
+				is_valid_prov = yes
+			}
+			set_variable = { name = workshop_total value = 1 }
+			
 			if = {
 				limit = {
 					is_city = yes
