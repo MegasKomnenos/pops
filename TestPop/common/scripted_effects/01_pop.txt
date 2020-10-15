@@ -112,10 +112,10 @@ pop_set_need_by_pay = {
 		limit = {
 			OR = {
 				NOT = {
-					has_variable = pop_pay
+					has_variable = pop_pay_level
 				}
 				
-				var:pop_pay = 0
+				var:pop_pay_level = 0
 			}
 		}
 		set_variable = { name = pop_calorie value = 0.5 }
@@ -125,7 +125,7 @@ pop_set_need_by_pay = {
 	}
 	else_if = {
 		limit = {
-			var:pop_pay = 1
+			var:pop_pay_level = 1
 		}
 		set_variable = { name = pop_calorie value = 1 }
 		set_variable = { name = pop_nutrient value = 0.5 }
@@ -134,7 +134,7 @@ pop_set_need_by_pay = {
 	}
 	else_if = {
 		limit = {
-			var:pop_pay = 2
+			var:pop_pay_level = 2
 		}
 		set_variable = { name = pop_calorie value = 1 }
 		set_variable = { name = pop_nutrient value = 1 }
@@ -143,7 +143,7 @@ pop_set_need_by_pay = {
 	}
 	else_if = {
 		limit = {
-			var:pop_pay = 3
+			var:pop_pay_level = 3
 		}
 		set_variable = { name = pop_calorie value = 1 }
 		set_variable = { name = pop_nutrient value = 1 }
@@ -173,7 +173,7 @@ pop_set_need_holding = {
 }
 
 pop_set_need_county = {
-	set_variable = { name = pop_pay value = 0 }
+	set_variable = { name = pop_pay_level value = 0 }
 	
 	set_variable = { name = pop_set_need_county_calorie value = 0 }
 	set_variable = { name = pop_set_need_county_nutrient value = 0 }
@@ -218,7 +218,7 @@ pop_set_need_county = {
 					compare_value >= prev.var:pop_set_need_county_cost
 				}
 			}
-			change_variable = { name = pop_pay add = 1 }
+			change_variable = { name = pop_pay_level add = 1 }
 			
 			set_variable = { name = pop_set_need_county_calorie value = var:pop_calorie }
 			set_variable = { name = pop_set_need_county_nutrient value = var:pop_nutrient }
@@ -230,7 +230,7 @@ pop_set_need_county = {
 			
 			if = {
 				limit = {
-					var:pop_pay = 4
+					var:pop_pay_level = 4
 				}
 				remove_variable = pop_set_need_county_loop
 			}

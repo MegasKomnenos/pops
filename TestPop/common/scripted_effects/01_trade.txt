@@ -20,11 +20,8 @@
 		set_variable = { name = trade_wealth value = $wealth$ }
 		
 		set_variable = { name = trade_profit value = 0 }
-		set_variable = { name = trade_income value = 0 }
-		set_variable = { name = trade_spend value = 0 }
-		set_variable = { name = trade_spend_tax value = 0 }
-		set_variable = { name = trade_spend_buy value = 0 }
-		set_variable = { name = trade_spend_maint value = 0 }
+		set_variable = { name = trade_earn value = 0 }
+		set_variable = { name = trade_pay value = 0 }
 		
 		set_variable = { name = trade_has_food value = 0 }
 		set_variable = { name = trade_has_fuel value = 0 }
@@ -712,17 +709,17 @@ trade_do_trade_helper_0 = {
 	every_in_list = {
 		variable = prod_instances
 		
-		if = { limit = { has_variable = prod_input_food } prev = { change_variable = { name = trade_dmnd_food add = prev.var:prod_input_food } } }
-		if = { limit = { has_variable = prod_input_fuel } prev = { change_variable = { name = trade_dmnd_fuel add = prev.var:prod_input_fuel } } }
-		if = { limit = { has_variable = prod_input_fiber } prev = { change_variable = { name = trade_dmnd_fiber add = prev.var:prod_input_fiber } } }
-		if = { limit = { has_variable = prod_input_pottery } prev = { change_variable = { name = trade_dmnd_pottery add = prev.var:prod_input_pottery } } }
-		if = { limit = { has_variable = prod_input_textile } prev = { change_variable = { name = trade_dmnd_textile add = prev.var:prod_input_textile } } }
+		if = { limit = { has_variable = prod_dmnd_food } prev = { change_variable = { name = trade_dmnd_food add = prev.var:prod_dmnd_food } } }
+		if = { limit = { has_variable = prod_dmnd_fuel } prev = { change_variable = { name = trade_dmnd_fuel add = prev.var:prod_dmnd_fuel } } }
+		if = { limit = { has_variable = prod_dmnd_fiber } prev = { change_variable = { name = trade_dmnd_fiber add = prev.var:prod_dmnd_fiber } } }
+		if = { limit = { has_variable = prod_dmnd_pottery } prev = { change_variable = { name = trade_dmnd_pottery add = prev.var:prod_dmnd_pottery } } }
+		if = { limit = { has_variable = prod_dmnd_textile } prev = { change_variable = { name = trade_dmnd_textile add = prev.var:prod_dmnd_textile } } }
 		
-		if = { limit = { has_variable = prod_output_actual_old_food } prev = { change_variable = { name = trade_sply_food add = prev.var:prod_output_actual_old_food } } }
-		if = { limit = { has_variable = prod_output_actual_old_fuel } prev = { change_variable = { name = trade_sply_fuel add = prev.var:prod_output_actual_old_fuel } } }
-		if = { limit = { has_variable = prod_output_actual_old_fiber } prev = { change_variable = { name = trade_sply_fiber add = prev.var:prod_output_actual_old_fiber } } }
-		if = { limit = { has_variable = prod_output_actual_old_pottery } prev = { change_variable = { name = trade_sply_pottery add = prev.var:prod_output_actual_old_pottery } } }
-		if = { limit = { has_variable = prod_output_actual_old_textile } prev = { change_variable = { name = trade_sply_textile add = prev.var:prod_output_actual_old_textile } } }
+		if = { limit = { has_variable = prod_sply_old_food } prev = { change_variable = { name = trade_sply_food add = prev.var:prod_sply_old_food } } }
+		if = { limit = { has_variable = prod_sply_old_fuel } prev = { change_variable = { name = trade_sply_fuel add = prev.var:prod_sply_old_fuel } } }
+		if = { limit = { has_variable = prod_sply_old_fiber } prev = { change_variable = { name = trade_sply_fiber add = prev.var:prod_sply_old_fiber } } }
+		if = { limit = { has_variable = prod_sply_old_pottery } prev = { change_variable = { name = trade_sply_pottery add = prev.var:prod_sply_old_pottery } } }
+		if = { limit = { has_variable = prod_sply_old_textile } prev = { change_variable = { name = trade_sply_textile add = prev.var:prod_sply_old_textile } } }
 	}
 	
 	change_variable = { name = trade_dmnd_food add = var:pop_calorie_food }
@@ -939,6 +936,414 @@ trade_do_trade_helper_4 = {
 		
 		prev = {
 			change_variable = { name = trade_sum_pay_$good$ add = prev.var:trade_sell_$good$ }
+		}
+	}
+}
+
+trade_resolve_trade = {
+	every_province = {
+		limit = {
+			is_valid_prov = yes
+			
+			is_city = yes
+		}
+		set_variable = { name = pop_pay_food value = 0 }
+		set_variable = { name = pop_pay_fuel value = 0 }
+		set_variable = { name = pop_pay_fiber value = 0 }
+		set_variable = { name = pop_pay_pottery value = 0 }
+		set_variable = { name = pop_pay_textile value = 0 }
+		
+		set_variable = { name = pop_calorie value = 0 }
+		set_variable = { name = pop_nutrient value = 0 }
+		set_variable = { name = pop_comfort value = 0 }
+		set_variable = { name = pop_luxury value = 0 }
+	}
+	every_county = {
+		limit = {
+			is_valid_prov = yes
+		}
+		set_variable = { name = pop_pay_food value = 0 }
+		set_variable = { name = pop_pay_fuel value = 0 }
+		set_variable = { name = pop_pay_fiber value = 0 }
+		set_variable = { name = pop_pay_pottery value = 0 }
+		set_variable = { name = pop_pay_textile value = 0 }
+		
+		set_variable = { name = pop_calorie value = 0 }
+		set_variable = { name = pop_nutrient value = 0 }
+		set_variable = { name = pop_comfort value = 0 }
+		set_variable = { name = pop_luxury value = 0 }
+	}
+	every_in_global_list = {
+		variable = prod_instances
+		
+		set_variable = { name = prod_earn_food value = 0 }
+		set_variable = { name = prod_earn_fuel value = 0 }
+		set_variable = { name = prod_earn_fiber value = 0 }
+		set_variable = { name = prod_earn_pottery value = 0 }
+		set_variable = { name = prod_earn_textile value = 0 }
+		
+		set_variable = { name = prod_pay_food value = 0 }
+		set_variable = { name = prod_pay_fuel value = 0 }
+		set_variable = { name = prod_pay_fiber value = 0 }
+		set_variable = { name = prod_pay_pottery value = 0 }
+		set_variable = { name = prod_pay_textile value = 0 }
+	}
+	
+	every_county = {
+		limit = {
+			is_valid_prov = yes
+		}
+		trade_resolve_trade_helper_0 = { type0 = dmnd type1 = in type2 = pay type3 = dmnd pop = yes good = food }
+		trade_resolve_trade_helper_0 = { type0 = dmnd type1 = in type2 = pay type3 = dmnd pop = yes good = fiber }
+		trade_resolve_trade_helper_0 = { type0 = dmnd type1 = in type2 = pay type3 = dmnd pop = yes good = fuel }
+		trade_resolve_trade_helper_0 = { type0 = dmnd type1 = in type2 = pay type3 = dmnd pop = yes good = pottery }
+		trade_resolve_trade_helper_0 = { type0 = dmnd type1 = in type2 = pay type3 = dmnd pop = yes good = textile }
+		
+		trade_resolve_trade_helper_0 = { type0 = sply type1 = out type2 = earn type3 = sply_old good = food }
+		trade_resolve_trade_helper_0 = { type0 = sply type1 = out type2 = earn type3 = sply_old good = fiber }
+		trade_resolve_trade_helper_0 = { type0 = sply type1 = out type2 = earn type3 = sply_old good = fuel }
+		trade_resolve_trade_helper_0 = { type0 = sply type1 = out type2 = earn type3 = sply_old good = pottery }
+		trade_resolve_trade_helper_0 = { type0 = sply type1 = out type2 = earn type3 = sply_old good = textile }
+		
+		change_variable = { name = pop_calorie divide = var:pop_total }
+		change_variable = { name = pop_calorie divide = var:modi_pop_calorie }
+		
+		change_variable = { name = pop_nutrient divide = var:pop_total }
+		change_variable = { name = pop_nutrient divide = var:modi_pop_nutrient }
+		
+		change_variable = { name = pop_comfort divide = var:pop_total }
+		change_variable = { name = pop_comfort divide = var:modi_pop_comfort }
+		
+		change_variable = { name = pop_luxury divide = var:pop_total }
+		change_variable = { name = pop_luxury divide = var:modi_pop_luxury }
+		
+		set_variable = { name = pop_pay value = var:pop_pay_food }
+		change_variable = { name = pop_pay add = var:pop_pay_fuel }
+		change_variable = { name = pop_pay add = var:pop_pay_fiber }
+		change_variable = { name = pop_pay add = var:pop_pay_pottery }
+		change_variable = { name = pop_pay add = var:pop_pay_textile }
+		
+		remove_variable = trade_resolve_trade_t
+		remove_variable = trade_resolve_trade_tt
+		remove_variable = trade_resolve_trade_ttt
+		remove_variable = trade_resolve_trade_tttt
+	}
+	
+	every_province = {
+		limit = {
+			is_valid_prov = yes
+			
+			is_city = yes
+		}
+		change_variable = { name = pop_calorie divide = var:pop_total }
+		change_variable = { name = pop_calorie divide = var:modi_pop_calorie }
+		
+		change_variable = { name = pop_nutrient divide = var:pop_total }
+		change_variable = { name = pop_nutrient divide = var:modi_pop_nutrient }
+		
+		change_variable = { name = pop_comfort divide = var:pop_total }
+		change_variable = { name = pop_comfort divide = var:modi_pop_comfort }
+		
+		change_variable = { name = pop_luxury divide = var:pop_total }
+		change_variable = { name = pop_luxury divide = var:modi_pop_luxury }
+		
+		set_variable = { name = pop_pay value = var:pop_pay_food }
+		change_variable = { name = pop_pay add = var:pop_pay_fuel }
+		change_variable = { name = pop_pay add = var:pop_pay_fiber }
+		change_variable = { name = pop_pay add = var:pop_pay_pottery }
+		change_variable = { name = pop_pay add = var:pop_pay_textile }
+		
+		remove_variable = trade_resolve_trade_t
+		remove_variable = trade_resolve_trade_tt
+		remove_variable = trade_resolve_trade_ttt
+		remove_variable = trade_resolve_trade_tttt
+	}
+	
+	every_in_global_list = {
+		variable = prod_instances
+		
+		set_variable = { name = prod_earn value = var:prod_earn_food }
+		change_variable = { name = prod_earn add = var:prod_earn_fiber }
+		change_variable = { name = prod_earn add = var:prod_earn_fuel }
+		change_variable = { name = prod_earn add = var:prod_earn_pottery }
+		change_variable = { name = prod_earn add = var:prod_earn_textile }
+		
+		set_variable = { name = prod_pay value = var:prod_pay_food }
+		change_variable = { name = prod_pay add = var:prod_pay_fiber }
+		change_variable = { name = prod_pay add = var:prod_pay_fuel }
+		change_variable = { name = prod_pay add = var:prod_pay_pottery }
+		change_variable = { name = prod_pay add = var:prod_pay_textile }
+		
+		remove_variable = trade_resolve_trade_t
+	}
+}
+
+trade_resolve_trade_helper_0 = {
+	if = {
+		limit = {
+			has_variable = trade_sum_$type0$_$good$
+			
+			var:trade_sum_$type0$_$good$ > 0
+		}
+		set_variable = { name = trade_resolve_trade_t value = var:trade_$type0$_$good$ }
+		change_variable = { name = trade_resolve_trade_t multiply = 100 }
+		change_variable = { name = trade_resolve_trade_t divide = var:trade_sum_$type0$_$good$ }
+		
+		if = {
+			limit = {
+				has_variable = trade_sum_$type1$_$good$
+				
+				var:trade_sum_$type1$_$good$ > 0
+			}
+			set_variable = { name = trade_resolve_trade_tt value = var:trade_sum_$type1$_$good$ }
+			change_variable = { name = trade_resolve_trade_tt multiply = 100 }
+			change_variable = { name = trade_resolve_trade_tt divide = var:trade_sum_$type0$_$good$ }
+		}
+		else = {
+			set_variable = { name = trade_resolve_trade_tt value = 0 }
+		}
+		if = {
+			limit = {
+				has_variable = trade_sum_$type2$_$good$
+				
+				var:trade_sum_$type2$_$good$ > 0
+			}
+			set_variable = { name = trade_resolve_trade_ttt value = var:trade_sum_$type2$_$good$ }
+		}
+		else = {
+			set_variable = { name = trade_resolve_trade_ttt value = 0 }
+		}
+		
+		[[pop]
+			if = {
+				limit = {
+					always = $pop$
+				}
+				if = {
+					limit = {
+						has_variable = pop_calorie_$good$
+						
+						var:pop_calorie_$good$ > 0
+					}
+					set_variable = { name = trade_resolve_trade_tttt value = var:pop_calorie_$good$ }
+					change_variable = { name = trade_resolve_trade_tttt multiply = var:trade_resolve_trade_tt }
+					change_variable = { name = trade_resolve_trade_tttt divide = 100 }
+					change_variable = { name = trade_resolve_trade_tttt multiply = pop_calorie_$good$ }
+					change_variable = { name = pop_calorie add = var:trade_resolve_trade_tttt }
+					
+					set_variable = { name = trade_resolve_trade_tttt value = var:pop_calorie_$good$ }
+					change_variable = { name = trade_resolve_trade_tttt multiply = 100 }
+					change_variable = { name = trade_resolve_trade_tttt divide = var:trade_sum_$type0$_$good$ }
+					change_variable = { name = trade_resolve_trade_tttt multiply = var:trade_resolve_trade_ttt }
+					change_variable = { name = trade_resolve_trade_tttt divide = 100 }
+					change_variable = { name = pop_$type2$_$good$ add = var:trade_resolve_trade_tttt }
+				}
+				if = {
+					limit = {
+						has_variable = pop_nutrient_$good$
+						
+						var:pop_nutrient_$good$ > 0
+					}
+					set_variable = { name = trade_resolve_trade_tttt value = var:pop_nutrient_$good$ }
+					change_variable = { name = trade_resolve_trade_tttt multiply = var:trade_resolve_trade_tt }
+					change_variable = { name = trade_resolve_trade_tttt divide = 100 }
+					change_variable = { name = trade_resolve_trade_tttt multiply = pop_nutrient_$good$ }
+					change_variable = { name = pop_nutrient add = var:trade_resolve_trade_tttt }
+					
+					set_variable = { name = trade_resolve_trade_tttt value = var:pop_nutrient_$good$ }
+					change_variable = { name = trade_resolve_trade_tttt multiply = 100 }
+					change_variable = { name = trade_resolve_trade_tttt divide = var:trade_sum_$type0$_$good$ }
+					change_variable = { name = trade_resolve_trade_tttt multiply = var:trade_resolve_trade_ttt }
+					change_variable = { name = trade_resolve_trade_tttt divide = 100 }
+					change_variable = { name = pop_$type2$_$good$ add = var:trade_resolve_trade_tttt }
+				}
+				if = {
+					limit = {
+						has_variable = pop_comfort_$good$
+						
+						var:pop_comfort_$good$ > 0
+					}
+					set_variable = { name = trade_resolve_trade_tttt value = var:pop_comfort_$good$ }
+					change_variable = { name = trade_resolve_trade_tttt multiply = var:trade_resolve_trade_tt }
+					change_variable = { name = trade_resolve_trade_tttt divide = 100 }
+					change_variable = { name = trade_resolve_trade_tttt multiply = pop_comfort_$good$ }
+					change_variable = { name = pop_comfort add = var:trade_resolve_trade_tttt }
+					
+					set_variable = { name = trade_resolve_trade_tttt value = var:pop_comfort_$good$ }
+					change_variable = { name = trade_resolve_trade_tttt multiply = 100 }
+					change_variable = { name = trade_resolve_trade_tttt divide = var:trade_sum_$type0$_$good$ }
+					change_variable = { name = trade_resolve_trade_tttt multiply = var:trade_resolve_trade_ttt }
+					change_variable = { name = trade_resolve_trade_tttt divide = 100 }
+					change_variable = { name = pop_$type2$_$good$ add = var:trade_resolve_trade_tttt }
+				}
+				if = {
+					limit = {
+						has_variable = pop_luxury_$good$
+						
+						var:pop_luxury_$good$ > 0
+					}
+					set_variable = { name = trade_resolve_trade_tttt value = var:pop_luxury_$good$ }
+					change_variable = { name = trade_resolve_trade_tttt multiply = var:trade_resolve_trade_tt }
+					change_variable = { name = trade_resolve_trade_tttt divide = 100 }
+					change_variable = { name = trade_resolve_trade_tttt multiply = pop_luxury_$good$ }
+					change_variable = { name = pop_luxury add = var:trade_resolve_trade_tttt }
+					
+					set_variable = { name = trade_resolve_trade_tttt value = var:pop_luxury_$good$ }
+					change_variable = { name = trade_resolve_trade_tttt multiply = 100 }
+					change_variable = { name = trade_resolve_trade_tttt divide = var:trade_sum_$type0$_$good$ }
+					change_variable = { name = trade_resolve_trade_tttt multiply = var:trade_resolve_trade_ttt }
+					change_variable = { name = trade_resolve_trade_tttt divide = 100 }
+					change_variable = { name = pop_$type2$_$good$ add = var:trade_resolve_trade_tttt }
+				}
+			}
+		]
+		
+		every_in_list = {
+			limit = {
+				has_variable = prod_$type3$_$good$
+				
+				var:prod_$type3$_$good$ > 0
+			}
+			variable = prod_instances
+			
+			set_variable = { name = trade_resolve_trade_t value = var:prod_$type3$_$good$ }
+			change_variable = { name = trade_resolve_trade_t multiply = 100 }
+			change_variable = { name = trade_resolve_trade_t divide = prev.var:trade_$type0$_$good$ }
+			change_variable = { name = trade_resolve_trade_t multiply = prev.var:trade_resolve_trade_t }
+			change_variable = { name = trade_resolve_trade_t divide = 100 }
+			
+			set_variable = { name = prod_$type1$_$good$ value = var:prod_$type3$_$good$ }
+			change_variable = { name = prod_$type1$_$good$ multiply = prev.var:trade_resolve_trade_tt }
+			change_variable = { name = prod_$type1$_$good$ divide = 100 }
+			
+			set_variable = { name = prod_$type2$_$good$ value = prev.var:trade_resolve_trade_ttt }
+			change_variable = { name = prod_$type2$_$good$ multiply = var:trade_resolve_trade_t }
+			change_variable = { name = prod_$type2$_$good$ divide = 100 }
+		}
+		
+		every_county_province = {
+			limit = {
+				has_variable = trade_$type0$_$good$
+				
+				var:trade_$type0$_$good$ > 0
+				
+				is_valid_prov = yes
+				
+				is_city = yes
+			}
+			set_variable = { name = trade_resolve_trade_t value = var:trade_$type0$_$good$ }
+			change_variable = { name = trade_resolve_trade_t multiply = 100 }
+			change_variable = { name = trade_resolve_trade_t divide = prev.var:trade_sum_$type0$_$good$ }
+			
+			set_variable = { name = trade_resolve_trade_tt value = prev.var:trade_resolve_trade_tt }
+			set_variable = { name = trade_resolve_trade_ttt value = prev.var:trade_resolve_trade_ttt }
+			
+			[[pop]
+				if = {
+					limit = {
+						always = $pop$
+					}
+					if = {
+						limit = {
+							has_variable = pop_calorie_$good$
+							
+							var:pop_calorie_$good$ > 0
+						}
+						set_variable = { name = trade_resolve_trade_tttt value = var:pop_calorie_$good$ }
+						change_variable = { name = trade_resolve_trade_tttt multiply = var:trade_resolve_trade_tt }
+						change_variable = { name = trade_resolve_trade_tttt divide = 100 }
+						change_variable = { name = trade_resolve_trade_tttt multiply = pop_calorie_$good$ }
+						change_variable = { name = pop_calorie add = var:trade_resolve_trade_tttt }
+						
+						set_variable = { name = trade_resolve_trade_tttt value = var:pop_calorie_$good$ }
+						change_variable = { name = trade_resolve_trade_tttt multiply = 100 }
+						change_variable = { name = trade_resolve_trade_tttt divide = prev.var:trade_sum_$type0$_$good$ }
+						change_variable = { name = trade_resolve_trade_tttt multiply = var:trade_resolve_trade_ttt }
+						change_variable = { name = trade_resolve_trade_tttt divide = 100 }
+						change_variable = { name = pop_$type2$_$good$ add = var:trade_resolve_trade_tttt }
+					}
+					if = {
+						limit = {
+							has_variable = pop_nutrient_$good$
+							
+							var:pop_nutrient_$good$ > 0
+						}
+						set_variable = { name = trade_resolve_trade_tttt value = var:pop_nutrient_$good$ }
+						change_variable = { name = trade_resolve_trade_tttt multiply = var:trade_resolve_trade_tt }
+						change_variable = { name = trade_resolve_trade_tttt divide = 100 }
+						change_variable = { name = trade_resolve_trade_tttt multiply = pop_nutrient_$good$ }
+						change_variable = { name = pop_nutrient add = var:trade_resolve_trade_tttt }
+						
+						set_variable = { name = trade_resolve_trade_tttt value = var:pop_nutrient_$good$ }
+						change_variable = { name = trade_resolve_trade_tttt multiply = 100 }
+						change_variable = { name = trade_resolve_trade_tttt divide = prev.var:trade_sum_$type0$_$good$ }
+						change_variable = { name = trade_resolve_trade_tttt multiply = var:trade_resolve_trade_ttt }
+						change_variable = { name = trade_resolve_trade_tttt divide = 100 }
+						change_variable = { name = pop_$type2$_$good$ add = var:trade_resolve_trade_tttt }
+					}
+					if = {
+						limit = {
+							has_variable = pop_comfort_$good$
+							
+							var:pop_comfort_$good$ > 0
+						}
+						set_variable = { name = trade_resolve_trade_tttt value = var:pop_comfort_$good$ }
+						change_variable = { name = trade_resolve_trade_tttt multiply = var:trade_resolve_trade_tt }
+						change_variable = { name = trade_resolve_trade_tttt divide = 100 }
+						change_variable = { name = trade_resolve_trade_tttt multiply = pop_comfort_$good$ }
+						change_variable = { name = pop_comfort add = var:trade_resolve_trade_tttt }
+						
+						set_variable = { name = trade_resolve_trade_tttt value = var:pop_comfort_$good$ }
+						change_variable = { name = trade_resolve_trade_tttt multiply = 100 }
+						change_variable = { name = trade_resolve_trade_tttt divide = prev.var:trade_sum_$type0$_$good$ }
+						change_variable = { name = trade_resolve_trade_tttt multiply = var:trade_resolve_trade_ttt }
+						change_variable = { name = trade_resolve_trade_tttt divide = 100 }
+						change_variable = { name = pop_$type2$_$good$ add = var:trade_resolve_trade_tttt }
+					}
+					if = {
+						limit = {
+							has_variable = pop_luxury_$good$
+							
+							var:pop_luxury_$good$ > 0
+						}
+						set_variable = { name = trade_resolve_trade_tttt value = var:pop_luxury_$good$ }
+						change_variable = { name = trade_resolve_trade_tttt multiply = var:trade_resolve_trade_tt }
+						change_variable = { name = trade_resolve_trade_tttt divide = 100 }
+						change_variable = { name = trade_resolve_trade_tttt multiply = pop_luxury_$good$ }
+						change_variable = { name = pop_luxury add = var:trade_resolve_trade_tttt }
+						
+						set_variable = { name = trade_resolve_trade_tttt value = var:pop_luxury_$good$ }
+						change_variable = { name = trade_resolve_trade_tttt multiply = 100 }
+						change_variable = { name = trade_resolve_trade_tttt divide = prev.var:trade_sum_$type0$_$good$ }
+						change_variable = { name = trade_resolve_trade_tttt multiply = var:trade_resolve_trade_ttt }
+						change_variable = { name = trade_resolve_trade_tttt divide = 100 }
+						change_variable = { name = pop_$type2$_$good$ add = var:trade_resolve_trade_tttt }
+					}
+				}
+			]
+			
+			every_in_list = {
+				limit = {
+					has_variable = prod_$type3$_$good$
+					
+					var:prod_$type3$_$good$ > 0
+				}
+				variable = prod_instances
+				
+				set_variable = { name = trade_resolve_trade_t value = var:prod_$type3$_$good$ }
+				change_variable = { name = trade_resolve_trade_t multiply = 100 }
+				change_variable = { name = trade_resolve_trade_t divide = prev.var:trade_$type0$_$good$ }
+				change_variable = { name = trade_resolve_trade_t multiply = prev.var:trade_resolve_trade_t }
+				change_variable = { name = trade_resolve_trade_t divide = 100 }
+				
+				set_variable = { name = prod_$type1$_$good$ value = var:prod_$type3$_$good$ }
+				change_variable = { name = prod_$type1$_$good$ multiply = prev.var:trade_resolve_trade_tt }
+				change_variable = { name = prod_$type1$_$good$ divide = 100 }
+				
+				set_variable = { name = prod_$type2$_$good$ value = prev.var:trade_resolve_trade_ttt }
+				change_variable = { name = prod_$type2$_$good$ multiply = var:trade_resolve_trade_t }
+				change_variable = { name = prod_$type2$_$good$ divide = 100 }
+			}
 		}
 	}
 }

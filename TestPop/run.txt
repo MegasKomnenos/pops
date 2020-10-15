@@ -3,15 +3,15 @@ prod_new_template = {
 	land_type = pasture
 	land = 2
 	labor = 1
-	output_fiber = 2
+	sply_fiber = 2
 }
 prod_new_template = {
 	name = cloth
 	land_type = workshop
 	land = 1
 	labor = 1
-	input_fiber = 2
-	output_textile = 2
+	dmnd_fiber = 2
+	sply_textile = 2
 }
 
 province:2543 = {
@@ -129,7 +129,7 @@ province:1555 = {
 }
 
 global_var:foo = {
-	set_variable = { name = prod_input_actual_fiber value = 20 }
+	set_variable = { name = prod_in_fiber value = 20 }
 }
 
 province:2543 = {
@@ -165,3 +165,4 @@ every_county = {
 }
 
 trade_do_trade = yes
+trade_resolve_trade = yes

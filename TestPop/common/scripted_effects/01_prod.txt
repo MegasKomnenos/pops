@@ -17,17 +17,17 @@
 		set_variable = { name = prod_labor value = $labor$ }
 		set_variable = { name = prod_land value = $land$ }
 		
-		[[input_food] set_variable = { name = prod_input_food value = $input_food$ } ]
-		[[input_fuel] set_variable = { name = prod_input_fuel value = $input_fuel$ } ]
-		[[input_fiber] set_variable = { name = prod_input_fiber value = $input_fiber$ } ]
-		[[input_pottery] set_variable = { name = prod_input_pottery value = $input_pottery$ } ]
-		[[input_textile] set_variable = { name = prod_input_textile value = $input_textile$ } ]
+		[[dmnd_food] set_variable = { name = prod_dmnd_food value = $dmnd_food$ } ]
+		[[dmnd_fuel] set_variable = { name = prod_dmnd_fuel value = $dmnd_fuel$ } ]
+		[[dmnd_fiber] set_variable = { name = prod_dmnd_fiber value = $dmnd_fiber$ } ]
+		[[dmnd_pottery] set_variable = { name = prod_dmnd_pottery value = $dmnd_pottery$ } ]
+		[[dmnd_textile] set_variable = { name = prod_dmnd_textile value = $dmnd_textile$ } ]
 		
-		[[output_food] set_variable = { name = prod_output_food value = $output_food$ } ]
-		[[output_fuel] set_variable = { name = prod_output_fuel value = $output_fuel$ } ]
-		[[output_fiber] set_variable = { name = prod_output_fiber value = $output_fiber$ } ]
-		[[output_pottery] set_variable = { name = prod_output_pottery value = $output_pottery$ } ]
-		[[output_textile] set_variable = { name = prod_output_textile value = $output_textile$ } ]
+		[[sply_food] set_variable = { name = prod_sply_food value = $sply_food$ } ]
+		[[sply_fuel] set_variable = { name = prod_sply_fuel value = $sply_fuel$ } ]
+		[[sply_fiber] set_variable = { name = prod_sply_fiber value = $sply_fiber$ } ]
+		[[sply_pottery] set_variable = { name = prod_sply_pottery value = $sply_pottery$ } ]
+		[[sply_textile] set_variable = { name = prod_sply_textile value = $sply_textile$ } ]
 	}
 }
 
@@ -66,21 +66,35 @@ prod_new_instance = {
 			set_variable = { name = prod_labor_actual value = 0 }
 			set_variable = { name = prod_land_actual value = 0 }
 			
-			if = { limit = { global_var:$template$ = { has_variable = prod_input_food } } set_variable = { name = prod_input_food value = 0 } set_variable = { name = prod_input_actual_food value = 0 } }
-			if = { limit = { global_var:$template$ = { has_variable = prod_output_food } } set_variable = { name = prod_output_food value = 0 } }
-			
-			if = { limit = { global_var:$template$ = { has_variable = prod_input_fuel } } set_variable = { name = prod_input_fuel value = 0 } set_variable = { name = prod_input_actual_fuel value = 0 } }
-			if = { limit = { global_var:$template$ = { has_variable = prod_output_fuel } } set_variable = { name = prod_output_fuel value = 0 } }
-			
-			if = { limit = { global_var:$template$ = { has_variable = prod_input_fiber } } set_variable = { name = prod_input_fiber value = 0 } set_variable = { name = prod_input_actual_fiber value = 0 } }
-			if = { limit = { global_var:$template$ = { has_variable = prod_output_fiber } } set_variable = { name = prod_output_fiber value = 0 } }
-			
-			if = { limit = { global_var:$template$ = { has_variable = prod_input_pottery } } set_variable = { name = prod_input_pottery value = 0 } set_variable = { name = prod_input_actual_pottery value = 0 } }
-			if = { limit = { global_var:$template$ = { has_variable = prod_output_pottery } } set_variable = { name = prod_output_pottery value = 0 } }
-			
-			if = { limit = { global_var:$template$ = { has_variable = prod_input_textile } } set_variable = { name = prod_input_textile value = 0 } set_variable = { name = prod_input_actual_textile value = 0 } }
-			if = { limit = { global_var:$template$ = { has_variable = prod_output_textile } } set_variable = { name = prod_output_textile value = 0 } }
+			prod_new_instance_helper = { template = $template$ good = food }
+			prod_new_instance_helper = { template = $template$ good = fuel }
+			prod_new_instance_helper = { template = $template$ good = fiber }
+			prod_new_instance_helper = { template = $template$ good = pottery }
+			prod_new_instance_helper = { template = $template$ good = textile }
 		}
+	}
+}
+
+prod_new_instance_helper = {
+	if = { 
+		limit = { 
+			global_var:$template$ = { 
+				has_variable = prod_dmnd_$good$ 
+			} 
+		} 
+		set_variable = { name = prod_dmnd_$good$ value = 0 } 
+		set_variable = { name = prod_in_$good$ value = 0 } 
+		set_variable = { name = prod_pay_$good$ value = 0 } 
+	}
+	if = { 
+		limit = { 
+			global_var:$template$ = { 
+				has_variable = prod_sply_$good$ 
+			} 
+		} 
+		set_variable = { name = prod_sply_$good$ value = 0 }
+		set_variable = { name = prod_out_$good$ value = 0 }
+		set_variable = { name = prod_earn_$good$ value = 0 } 
 	}
 }
 
@@ -240,17 +254,17 @@ prod_update_instances = {
 			pow_effect = { inp = var:prod_size_actual exp = 0.5 return = prod_size_actual }
 			change_variable = { name = prod_size_actual multiply = var:prod_size }
 			
-			prod_update_instances_helper_2 = { name = prod_input_food }
-			prod_update_instances_helper_2 = { name = prod_input_fuel }
-			prod_update_instances_helper_2 = { name = prod_input_fiber }
-			prod_update_instances_helper_2 = { name = prod_input_pottery }
-			prod_update_instances_helper_2 = { name = prod_input_textile }
+			prod_update_instances_helper_2 = { name = prod_dmnd_food }
+			prod_update_instances_helper_2 = { name = prod_dmnd_fuel }
+			prod_update_instances_helper_2 = { name = prod_dmnd_fiber }
+			prod_update_instances_helper_2 = { name = prod_dmnd_pottery }
+			prod_update_instances_helper_2 = { name = prod_dmnd_textile }
 			
-			prod_update_instances_helper_2 = { name = prod_output_food }
-			prod_update_instances_helper_2 = { name = prod_output_fuel }
-			prod_update_instances_helper_2 = { name = prod_output_fiber }
-			prod_update_instances_helper_2 = { name = prod_output_pottery }
-			prod_update_instances_helper_2 = { name = prod_output_textile }
+			prod_update_instances_helper_2 = { name = prod_sply_food }
+			prod_update_instances_helper_2 = { name = prod_sply_fuel }
+			prod_update_instances_helper_2 = { name = prod_sply_fiber }
+			prod_update_instances_helper_2 = { name = prod_sply_pottery }
+			prod_update_instances_helper_2 = { name = prod_sply_textile }
 		}
 	}
 }
@@ -258,33 +272,32 @@ prod_update_instances = {
 prod_update_instances_helper_0 = {
 	if = {
 		limit = {
-			has_variable = prod_input_$name$
+			has_variable = prod_dmnd_$name$
 		}
 		if = {
 			limit = {
-				var:prod_input_$name$ = {
-					compare_value != prev.var:prod_input_actual_$name$
+				var:prod_dmnd_$name$ = {
+					compare_value != prev.var:prod_in_$name$
 				}
 			}
-			change_variable = { name = prod_update_instances_t multiply = var:prod_input_actual_$name$ }
-			change_variable = { name = prod_update_instances_t divide = var:prod_input_$name$ }
+			change_variable = { name = prod_update_instances_t multiply = var:prod_in_$name$ }
+			change_variable = { name = prod_update_instances_t divide = var:prod_dmnd_$name$ }
 		}
 		
 		change_variable = { name = prod_update_instances_tt add = 1 }
 		
-		set_variable = { name = prod_input_old_$name$ value = var:prod_input_$name$ }
-		set_variable = { name = prod_input_actual_old_$name$ value = var:prod_input_actual_$name$ }
+		set_variable = { name = prod_dmnd_old_$name$ value = var:prod_dmnd_$name$ }
+		set_variable = { name = prod_in_old_$name$ value = var:prod_in_$name$ }
 	}
 }
 
 prod_update_instances_helper_1 = {
 	if = {
 		limit = {
-			has_variable = prod_output_$name$
+			has_variable = prod_sply_$name$
 		}
-		set_variable = { name = prod_output_old_$name$ value = var:prod_output_$name$ }
-		set_variable = { name = prod_output_actual_old_$name$ value = var:prod_output_$name$ }
-		change_variable = { name = prod_output_actual_old_$name$ multiply = var:prod_update_instances_t }
+		set_variable = { name = prod_sply_old_$name$ value = var:prod_sply_$name$ }
+		change_variable = { name = prod_sply_old_$name$ multiply = var:prod_update_instances_t }
 	}
 }
 
