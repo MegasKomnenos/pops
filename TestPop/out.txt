@@ -20012,7 +20012,7 @@ every_county = {
 	}
 	remove_variable = pop_set_demand_t
 	set_variable = {
-		name = pop_pay
+		name = pop_pay_level
 		value = 0
 	}
 	set_variable = {
@@ -20039,9 +20039,9 @@ every_county = {
 		limit = {
 			OR = {
 				NOT = {
-					has_variable = pop_pay
+					has_variable = pop_pay_level
 				}
-				var:pop_pay = 0
+				var:pop_pay_level = 0
 			}
 		}
 		set_variable = {
@@ -20063,7 +20063,7 @@ every_county = {
 	}
 	else_if = {
 		limit = {
-			var:pop_pay = 1
+			var:pop_pay_level = 1
 		}
 		set_variable = {
 			name = pop_calorie
@@ -20084,7 +20084,7 @@ every_county = {
 	}
 	else_if = {
 		limit = {
-			var:pop_pay = 2
+			var:pop_pay_level = 2
 		}
 		set_variable = {
 			name = pop_calorie
@@ -20105,7 +20105,7 @@ every_county = {
 	}
 	else_if = {
 		limit = {
-			var:pop_pay = 3
+			var:pop_pay_level = 3
 		}
 		set_variable = {
 			name = pop_calorie
@@ -20249,7 +20249,7 @@ every_county = {
 				}
 			}
 			change_variable = {
-				name = pop_pay
+				name = pop_pay_level
 				add = 1
 			}
 			set_variable = {
@@ -20276,9 +20276,9 @@ every_county = {
 				limit = {
 					OR = {
 						NOT = {
-							has_variable = pop_pay
+							has_variable = pop_pay_level
 						}
-						var:pop_pay = 0
+						var:pop_pay_level = 0
 					}
 				}
 				set_variable = {
@@ -20300,7 +20300,7 @@ every_county = {
 			}
 			else_if = {
 				limit = {
-					var:pop_pay = 1
+					var:pop_pay_level = 1
 				}
 				set_variable = {
 					name = pop_calorie
@@ -20321,7 +20321,7 @@ every_county = {
 			}
 			else_if = {
 				limit = {
-					var:pop_pay = 2
+					var:pop_pay_level = 2
 				}
 				set_variable = {
 					name = pop_calorie
@@ -20342,7 +20342,7 @@ every_county = {
 			}
 			else_if = {
 				limit = {
-					var:pop_pay = 3
+					var:pop_pay_level = 3
 				}
 				set_variable = {
 					name = pop_calorie
@@ -20413,7 +20413,7 @@ every_county = {
 			}
 			if = {
 				limit = {
-					var:pop_pay = 4
+					var:pop_pay_level = 4
 				}
 				remove_variable = pop_set_need_county_loop
 			}
@@ -21739,9 +21739,9 @@ every_county = {
 			limit = {
 				OR = {
 					NOT = {
-						has_variable = pop_pay
+						has_variable = pop_pay_level
 					}
-					var:pop_pay = 0
+					var:pop_pay_level = 0
 				}
 			}
 			set_variable = {
@@ -21763,7 +21763,7 @@ every_county = {
 		}
 		else_if = {
 			limit = {
-				var:pop_pay = 1
+				var:pop_pay_level = 1
 			}
 			set_variable = {
 				name = pop_calorie
@@ -21784,7 +21784,7 @@ every_county = {
 		}
 		else_if = {
 			limit = {
-				var:pop_pay = 2
+				var:pop_pay_level = 2
 			}
 			set_variable = {
 				name = pop_calorie
@@ -21805,7 +21805,7 @@ every_county = {
 		}
 		else_if = {
 			limit = {
-				var:pop_pay = 3
+				var:pop_pay_level = 3
 			}
 			set_variable = {
 				name = pop_calorie
@@ -33730,4 +33730,1113 @@ every_in_global_list = {
 		add = var:prod_pay_textile
 	}
 	remove_variable = trade_resolve_trade_t
+}
+every_in_global_list = {
+	variable = trade_merchants
+	change_variable = {
+		name = trade_want_food
+		multiply = 0.8
+	}
+	change_variable = {
+		name = trade_want_food
+		add = trade_sum_out_food
+	}
+	change_variable = {
+		name = trade_want_food
+		add = 0.2
+	}
+	change_variable = {
+		name = trade_has_food
+		add = trade_sum_in_food
+	}
+	change_variable = {
+		name = trade_has_food
+		subtract = trade_sum_out_food
+	}
+	if = {
+		limit = {
+			has_variable = trade_has_food
+			var:trade_has_food > 0
+			var:trade_has_food = {
+				compare_value > prev.var:trade_want_food
+			}
+		}
+		set_variable = {
+			name = trade_want_food
+			value = var:trade_has_food
+		}
+	}
+	change_variable = {
+		name = trade_want_fuel
+		multiply = 0.8
+	}
+	change_variable = {
+		name = trade_want_fuel
+		add = trade_sum_out_fuel
+	}
+	change_variable = {
+		name = trade_want_fuel
+		add = 0.2
+	}
+	change_variable = {
+		name = trade_has_fuel
+		add = trade_sum_in_fuel
+	}
+	change_variable = {
+		name = trade_has_fuel
+		subtract = trade_sum_out_fuel
+	}
+	if = {
+		limit = {
+			has_variable = trade_has_fuel
+			var:trade_has_fuel > 0
+			var:trade_has_fuel = {
+				compare_value > prev.var:trade_want_fuel
+			}
+		}
+		set_variable = {
+			name = trade_want_fuel
+			value = var:trade_has_fuel
+		}
+	}
+	change_variable = {
+		name = trade_want_fiber
+		multiply = 0.8
+	}
+	change_variable = {
+		name = trade_want_fiber
+		add = trade_sum_out_fiber
+	}
+	change_variable = {
+		name = trade_want_fiber
+		add = 0.2
+	}
+	change_variable = {
+		name = trade_has_fiber
+		add = trade_sum_in_fiber
+	}
+	change_variable = {
+		name = trade_has_fiber
+		subtract = trade_sum_out_fiber
+	}
+	if = {
+		limit = {
+			has_variable = trade_has_fiber
+			var:trade_has_fiber > 0
+			var:trade_has_fiber = {
+				compare_value > prev.var:trade_want_fiber
+			}
+		}
+		set_variable = {
+			name = trade_want_fiber
+			value = var:trade_has_fiber
+		}
+	}
+	change_variable = {
+		name = trade_want_pottery
+		multiply = 0.8
+	}
+	change_variable = {
+		name = trade_want_pottery
+		add = trade_sum_out_pottery
+	}
+	change_variable = {
+		name = trade_want_pottery
+		add = 0.2
+	}
+	change_variable = {
+		name = trade_has_pottery
+		add = trade_sum_in_pottery
+	}
+	change_variable = {
+		name = trade_has_pottery
+		subtract = trade_sum_out_pottery
+	}
+	if = {
+		limit = {
+			has_variable = trade_has_pottery
+			var:trade_has_pottery > 0
+			var:trade_has_pottery = {
+				compare_value > prev.var:trade_want_pottery
+			}
+		}
+		set_variable = {
+			name = trade_want_pottery
+			value = var:trade_has_pottery
+		}
+	}
+	change_variable = {
+		name = trade_want_textile
+		multiply = 0.8
+	}
+	change_variable = {
+		name = trade_want_textile
+		add = trade_sum_out_textile
+	}
+	change_variable = {
+		name = trade_want_textile
+		add = 0.2
+	}
+	change_variable = {
+		name = trade_has_textile
+		add = trade_sum_in_textile
+	}
+	change_variable = {
+		name = trade_has_textile
+		subtract = trade_sum_out_textile
+	}
+	if = {
+		limit = {
+			has_variable = trade_has_textile
+			var:trade_has_textile > 0
+			var:trade_has_textile = {
+				compare_value > prev.var:trade_want_textile
+			}
+		}
+		set_variable = {
+			name = trade_want_textile
+			value = var:trade_has_textile
+		}
+	}
+}
+every_county = {
+	limit = {
+		is_valid_prov = yes
+	}
+	if = {
+		limit = {
+			has_variable = trade_sum_dmnd_food
+			var:trade_dmnd_food > 0
+		}
+		if = {
+			limit = {
+				has_variable = trade_sum_in_food
+			}
+			set_variable = {
+				name = trade_update_price_t
+				value = var:trade_sum_in_food
+			}
+		}
+		else = {
+			set_variable = {
+				name = trade_update_price_t
+				value = 0
+			}
+		}
+		change_variable = {
+			name = trade_update_price_t
+			multiply = 100
+		}
+		change_variable = {
+			name = trade_update_price_t
+			divide = var:trade_sum_dmnd_food
+		}
+		change_variable = {
+			name = trade_update_price_t
+			subtract = 90
+		}
+		if = {
+			limit = {
+				var:trade_update_price_t >= 0
+			}
+			change_variable = {
+				name = trade_update_price_t
+				divide = 100
+			}
+			change_variable = {
+				name = trade_update_price_t
+				add = 1
+			}
+			change_variable = {
+				name = trade_price_food
+				divide = var:trade_update_price_t
+			}
+		}
+		else = {
+			change_variable = {
+				name = trade_update_price_t
+				divide = -450
+			}
+			change_variable = {
+				name = trade_update_price_t
+				add = 1
+			}
+			change_variable = {
+				name = trade_price_food
+				multiply = var:trade_update_price_t
+			}
+		}
+	}
+	if = {
+		limit = {
+			has_variable = trade_sum_dmnd_fuel
+			var:trade_dmnd_fuel > 0
+		}
+		if = {
+			limit = {
+				has_variable = trade_sum_in_fuel
+			}
+			set_variable = {
+				name = trade_update_price_t
+				value = var:trade_sum_in_fuel
+			}
+		}
+		else = {
+			set_variable = {
+				name = trade_update_price_t
+				value = 0
+			}
+		}
+		change_variable = {
+			name = trade_update_price_t
+			multiply = 100
+		}
+		change_variable = {
+			name = trade_update_price_t
+			divide = var:trade_sum_dmnd_fuel
+		}
+		change_variable = {
+			name = trade_update_price_t
+			subtract = 90
+		}
+		if = {
+			limit = {
+				var:trade_update_price_t >= 0
+			}
+			change_variable = {
+				name = trade_update_price_t
+				divide = 100
+			}
+			change_variable = {
+				name = trade_update_price_t
+				add = 1
+			}
+			change_variable = {
+				name = trade_price_fuel
+				divide = var:trade_update_price_t
+			}
+		}
+		else = {
+			change_variable = {
+				name = trade_update_price_t
+				divide = -450
+			}
+			change_variable = {
+				name = trade_update_price_t
+				add = 1
+			}
+			change_variable = {
+				name = trade_price_fuel
+				multiply = var:trade_update_price_t
+			}
+		}
+	}
+	if = {
+		limit = {
+			has_variable = trade_sum_dmnd_fiber
+			var:trade_dmnd_fiber > 0
+		}
+		if = {
+			limit = {
+				has_variable = trade_sum_in_fiber
+			}
+			set_variable = {
+				name = trade_update_price_t
+				value = var:trade_sum_in_fiber
+			}
+		}
+		else = {
+			set_variable = {
+				name = trade_update_price_t
+				value = 0
+			}
+		}
+		change_variable = {
+			name = trade_update_price_t
+			multiply = 100
+		}
+		change_variable = {
+			name = trade_update_price_t
+			divide = var:trade_sum_dmnd_fiber
+		}
+		change_variable = {
+			name = trade_update_price_t
+			subtract = 90
+		}
+		if = {
+			limit = {
+				var:trade_update_price_t >= 0
+			}
+			change_variable = {
+				name = trade_update_price_t
+				divide = 100
+			}
+			change_variable = {
+				name = trade_update_price_t
+				add = 1
+			}
+			change_variable = {
+				name = trade_price_fiber
+				divide = var:trade_update_price_t
+			}
+		}
+		else = {
+			change_variable = {
+				name = trade_update_price_t
+				divide = -450
+			}
+			change_variable = {
+				name = trade_update_price_t
+				add = 1
+			}
+			change_variable = {
+				name = trade_price_fiber
+				multiply = var:trade_update_price_t
+			}
+		}
+	}
+	if = {
+		limit = {
+			has_variable = trade_sum_dmnd_pottery
+			var:trade_dmnd_pottery > 0
+		}
+		if = {
+			limit = {
+				has_variable = trade_sum_in_pottery
+			}
+			set_variable = {
+				name = trade_update_price_t
+				value = var:trade_sum_in_pottery
+			}
+		}
+		else = {
+			set_variable = {
+				name = trade_update_price_t
+				value = 0
+			}
+		}
+		change_variable = {
+			name = trade_update_price_t
+			multiply = 100
+		}
+		change_variable = {
+			name = trade_update_price_t
+			divide = var:trade_sum_dmnd_pottery
+		}
+		change_variable = {
+			name = trade_update_price_t
+			subtract = 90
+		}
+		if = {
+			limit = {
+				var:trade_update_price_t >= 0
+			}
+			change_variable = {
+				name = trade_update_price_t
+				divide = 100
+			}
+			change_variable = {
+				name = trade_update_price_t
+				add = 1
+			}
+			change_variable = {
+				name = trade_price_pottery
+				divide = var:trade_update_price_t
+			}
+		}
+		else = {
+			change_variable = {
+				name = trade_update_price_t
+				divide = -450
+			}
+			change_variable = {
+				name = trade_update_price_t
+				add = 1
+			}
+			change_variable = {
+				name = trade_price_pottery
+				multiply = var:trade_update_price_t
+			}
+		}
+	}
+	if = {
+		limit = {
+			has_variable = trade_sum_dmnd_textile
+			var:trade_dmnd_textile > 0
+		}
+		if = {
+			limit = {
+				has_variable = trade_sum_in_textile
+			}
+			set_variable = {
+				name = trade_update_price_t
+				value = var:trade_sum_in_textile
+			}
+		}
+		else = {
+			set_variable = {
+				name = trade_update_price_t
+				value = 0
+			}
+		}
+		change_variable = {
+			name = trade_update_price_t
+			multiply = 100
+		}
+		change_variable = {
+			name = trade_update_price_t
+			divide = var:trade_sum_dmnd_textile
+		}
+		change_variable = {
+			name = trade_update_price_t
+			subtract = 90
+		}
+		if = {
+			limit = {
+				var:trade_update_price_t >= 0
+			}
+			change_variable = {
+				name = trade_update_price_t
+				divide = 100
+			}
+			change_variable = {
+				name = trade_update_price_t
+				add = 1
+			}
+			change_variable = {
+				name = trade_price_textile
+				divide = var:trade_update_price_t
+			}
+		}
+		else = {
+			change_variable = {
+				name = trade_update_price_t
+				divide = -450
+			}
+			change_variable = {
+				name = trade_update_price_t
+				add = 1
+			}
+			change_variable = {
+				name = trade_price_textile
+				multiply = var:trade_update_price_t
+			}
+		}
+	}
+	if = {
+		limit = {
+			has_variable = trade_sum_$type0$_food
+			var:trade_$type0$_food > 0
+		}
+		if = {
+			limit = {
+				has_variable = trade_sum_sply_food
+			}
+			set_variable = {
+				name = trade_update_price_t
+				value = var:trade_sum_sply_food
+			}
+		}
+		else = {
+			set_variable = {
+				name = trade_update_price_t
+				value = 0
+			}
+		}
+		change_variable = {
+			name = trade_update_price_t
+			multiply = 100
+		}
+		change_variable = {
+			name = trade_update_price_t
+			divide = var:trade_sum_$type0$_food
+		}
+		change_variable = {
+			name = trade_update_price_t
+			subtract = 90
+		}
+		if = {
+			limit = {
+				var:trade_update_price_t >= 0
+			}
+			change_variable = {
+				name = trade_update_price_t
+				divide = 100
+			}
+			change_variable = {
+				name = trade_update_price_t
+				add = 1
+			}
+			change_variable = {
+				name = trade_price_food
+				multiply = var:trade_update_price_t
+			}
+		}
+		else = {
+			change_variable = {
+				name = trade_update_price_t
+				divide = -450
+			}
+			change_variable = {
+				name = trade_update_price_t
+				add = 1
+			}
+			change_variable = {
+				name = trade_price_food
+				divide = var:trade_update_price_t
+			}
+		}
+	}
+	if = {
+		limit = {
+			has_variable = trade_sum_$type0$_fuel
+			var:trade_$type0$_fuel > 0
+		}
+		if = {
+			limit = {
+				has_variable = trade_sum_sply_fuel
+			}
+			set_variable = {
+				name = trade_update_price_t
+				value = var:trade_sum_sply_fuel
+			}
+		}
+		else = {
+			set_variable = {
+				name = trade_update_price_t
+				value = 0
+			}
+		}
+		change_variable = {
+			name = trade_update_price_t
+			multiply = 100
+		}
+		change_variable = {
+			name = trade_update_price_t
+			divide = var:trade_sum_$type0$_fuel
+		}
+		change_variable = {
+			name = trade_update_price_t
+			subtract = 90
+		}
+		if = {
+			limit = {
+				var:trade_update_price_t >= 0
+			}
+			change_variable = {
+				name = trade_update_price_t
+				divide = 100
+			}
+			change_variable = {
+				name = trade_update_price_t
+				add = 1
+			}
+			change_variable = {
+				name = trade_price_fuel
+				multiply = var:trade_update_price_t
+			}
+		}
+		else = {
+			change_variable = {
+				name = trade_update_price_t
+				divide = -450
+			}
+			change_variable = {
+				name = trade_update_price_t
+				add = 1
+			}
+			change_variable = {
+				name = trade_price_fuel
+				divide = var:trade_update_price_t
+			}
+		}
+	}
+	if = {
+		limit = {
+			has_variable = trade_sum_$type0$_fiber
+			var:trade_$type0$_fiber > 0
+		}
+		if = {
+			limit = {
+				has_variable = trade_sum_sply_fiber
+			}
+			set_variable = {
+				name = trade_update_price_t
+				value = var:trade_sum_sply_fiber
+			}
+		}
+		else = {
+			set_variable = {
+				name = trade_update_price_t
+				value = 0
+			}
+		}
+		change_variable = {
+			name = trade_update_price_t
+			multiply = 100
+		}
+		change_variable = {
+			name = trade_update_price_t
+			divide = var:trade_sum_$type0$_fiber
+		}
+		change_variable = {
+			name = trade_update_price_t
+			subtract = 90
+		}
+		if = {
+			limit = {
+				var:trade_update_price_t >= 0
+			}
+			change_variable = {
+				name = trade_update_price_t
+				divide = 100
+			}
+			change_variable = {
+				name = trade_update_price_t
+				add = 1
+			}
+			change_variable = {
+				name = trade_price_fiber
+				multiply = var:trade_update_price_t
+			}
+		}
+		else = {
+			change_variable = {
+				name = trade_update_price_t
+				divide = -450
+			}
+			change_variable = {
+				name = trade_update_price_t
+				add = 1
+			}
+			change_variable = {
+				name = trade_price_fiber
+				divide = var:trade_update_price_t
+			}
+		}
+	}
+	if = {
+		limit = {
+			has_variable = trade_sum_$type0$_pottery
+			var:trade_$type0$_pottery > 0
+		}
+		if = {
+			limit = {
+				has_variable = trade_sum_sply_pottery
+			}
+			set_variable = {
+				name = trade_update_price_t
+				value = var:trade_sum_sply_pottery
+			}
+		}
+		else = {
+			set_variable = {
+				name = trade_update_price_t
+				value = 0
+			}
+		}
+		change_variable = {
+			name = trade_update_price_t
+			multiply = 100
+		}
+		change_variable = {
+			name = trade_update_price_t
+			divide = var:trade_sum_$type0$_pottery
+		}
+		change_variable = {
+			name = trade_update_price_t
+			subtract = 90
+		}
+		if = {
+			limit = {
+				var:trade_update_price_t >= 0
+			}
+			change_variable = {
+				name = trade_update_price_t
+				divide = 100
+			}
+			change_variable = {
+				name = trade_update_price_t
+				add = 1
+			}
+			change_variable = {
+				name = trade_price_pottery
+				multiply = var:trade_update_price_t
+			}
+		}
+		else = {
+			change_variable = {
+				name = trade_update_price_t
+				divide = -450
+			}
+			change_variable = {
+				name = trade_update_price_t
+				add = 1
+			}
+			change_variable = {
+				name = trade_price_pottery
+				divide = var:trade_update_price_t
+			}
+		}
+	}
+	if = {
+		limit = {
+			has_variable = trade_sum_$type0$_textile
+			var:trade_$type0$_textile > 0
+		}
+		if = {
+			limit = {
+				has_variable = trade_sum_sply_textile
+			}
+			set_variable = {
+				name = trade_update_price_t
+				value = var:trade_sum_sply_textile
+			}
+		}
+		else = {
+			set_variable = {
+				name = trade_update_price_t
+				value = 0
+			}
+		}
+		change_variable = {
+			name = trade_update_price_t
+			multiply = 100
+		}
+		change_variable = {
+			name = trade_update_price_t
+			divide = var:trade_sum_$type0$_textile
+		}
+		change_variable = {
+			name = trade_update_price_t
+			subtract = 90
+		}
+		if = {
+			limit = {
+				var:trade_update_price_t >= 0
+			}
+			change_variable = {
+				name = trade_update_price_t
+				divide = 100
+			}
+			change_variable = {
+				name = trade_update_price_t
+				add = 1
+			}
+			change_variable = {
+				name = trade_price_textile
+				multiply = var:trade_update_price_t
+			}
+		}
+		else = {
+			change_variable = {
+				name = trade_update_price_t
+				divide = -450
+			}
+			change_variable = {
+				name = trade_update_price_t
+				add = 1
+			}
+			change_variable = {
+				name = trade_price_textile
+				divide = var:trade_update_price_t
+			}
+		}
+	}
+	every_county_province = {
+		limit = {
+			is_valid_prov = yes
+			is_city = yes
+		}
+		set_variable = {
+			name = trade_price_food
+			value = prev.var:trade_price_food
+		}
+		set_variable = {
+			name = trade_price_fuel
+			value = prev.var:trade_price_fuel
+		}
+		set_variable = {
+			name = trade_price_fiber
+			value = prev.var:trade_price_fiber
+		}
+		set_variable = {
+			name = trade_price_pottery
+			value = prev.var:trade_price_pottery
+		}
+		set_variable = {
+			name = trade_price_textile
+			value = prev.var:trade_price_textile
+		}
+	}
+	remove_variable = trade_update_price_t
+}
+every_in_global_list = {
+	variable = trade_merchants
+	if = {
+		limit = {
+			has_variable = trade_want_food
+			var:trade_want_food > 0
+		}
+		set_variable = {
+			name = trade_update_price_t
+			value = var:trade_has_food
+		}
+		change_variable = {
+			name = trade_update_price_t
+			multiply = 2
+		}
+		change_variable = {
+			name = trade_update_price_t
+			subtract = var:trade_want_food
+		}
+		change_variable = {
+			name = trade_update_price_t
+			divide = var:trade_want_food
+		}
+		change_variable = {
+			name = trade_update_price_t
+			divide = 10
+		}
+		if = {
+			limit = {
+				var:trade_update_price_t >= 0
+			}
+			change_variable = {
+				name = trade_update_price_t
+				add = 1
+			}
+			change_variable = {
+				name = trade_price_food
+				divide = var:trade_update_price_t
+			}
+		}
+		else = {
+			change_variable = {
+				name = trade_update_price_t
+				multiply = -1
+			}
+			change_variable = {
+				name = trade_update_price_t
+				add = 1
+			}
+			change_variable = {
+				name = trade_price_food
+				multiply = var:trade_update_price_t
+			}
+		}
+	}
+	if = {
+		limit = {
+			has_variable = trade_want_fiber
+			var:trade_want_fiber > 0
+		}
+		set_variable = {
+			name = trade_update_price_t
+			value = var:trade_has_fiber
+		}
+		change_variable = {
+			name = trade_update_price_t
+			multiply = 2
+		}
+		change_variable = {
+			name = trade_update_price_t
+			subtract = var:trade_want_fiber
+		}
+		change_variable = {
+			name = trade_update_price_t
+			divide = var:trade_want_fiber
+		}
+		change_variable = {
+			name = trade_update_price_t
+			divide = 10
+		}
+		if = {
+			limit = {
+				var:trade_update_price_t >= 0
+			}
+			change_variable = {
+				name = trade_update_price_t
+				add = 1
+			}
+			change_variable = {
+				name = trade_price_fiber
+				divide = var:trade_update_price_t
+			}
+		}
+		else = {
+			change_variable = {
+				name = trade_update_price_t
+				multiply = -1
+			}
+			change_variable = {
+				name = trade_update_price_t
+				add = 1
+			}
+			change_variable = {
+				name = trade_price_fiber
+				multiply = var:trade_update_price_t
+			}
+		}
+	}
+	if = {
+		limit = {
+			has_variable = trade_want_fuel
+			var:trade_want_fuel > 0
+		}
+		set_variable = {
+			name = trade_update_price_t
+			value = var:trade_has_fuel
+		}
+		change_variable = {
+			name = trade_update_price_t
+			multiply = 2
+		}
+		change_variable = {
+			name = trade_update_price_t
+			subtract = var:trade_want_fuel
+		}
+		change_variable = {
+			name = trade_update_price_t
+			divide = var:trade_want_fuel
+		}
+		change_variable = {
+			name = trade_update_price_t
+			divide = 10
+		}
+		if = {
+			limit = {
+				var:trade_update_price_t >= 0
+			}
+			change_variable = {
+				name = trade_update_price_t
+				add = 1
+			}
+			change_variable = {
+				name = trade_price_fuel
+				divide = var:trade_update_price_t
+			}
+		}
+		else = {
+			change_variable = {
+				name = trade_update_price_t
+				multiply = -1
+			}
+			change_variable = {
+				name = trade_update_price_t
+				add = 1
+			}
+			change_variable = {
+				name = trade_price_fuel
+				multiply = var:trade_update_price_t
+			}
+		}
+	}
+	if = {
+		limit = {
+			has_variable = trade_want_pottery
+			var:trade_want_pottery > 0
+		}
+		set_variable = {
+			name = trade_update_price_t
+			value = var:trade_has_pottery
+		}
+		change_variable = {
+			name = trade_update_price_t
+			multiply = 2
+		}
+		change_variable = {
+			name = trade_update_price_t
+			subtract = var:trade_want_pottery
+		}
+		change_variable = {
+			name = trade_update_price_t
+			divide = var:trade_want_pottery
+		}
+		change_variable = {
+			name = trade_update_price_t
+			divide = 10
+		}
+		if = {
+			limit = {
+				var:trade_update_price_t >= 0
+			}
+			change_variable = {
+				name = trade_update_price_t
+				add = 1
+			}
+			change_variable = {
+				name = trade_price_pottery
+				divide = var:trade_update_price_t
+			}
+		}
+		else = {
+			change_variable = {
+				name = trade_update_price_t
+				multiply = -1
+			}
+			change_variable = {
+				name = trade_update_price_t
+				add = 1
+			}
+			change_variable = {
+				name = trade_price_pottery
+				multiply = var:trade_update_price_t
+			}
+		}
+	}
+	if = {
+		limit = {
+			has_variable = trade_want_textile
+			var:trade_want_textile > 0
+		}
+		set_variable = {
+			name = trade_update_price_t
+			value = var:trade_has_textile
+		}
+		change_variable = {
+			name = trade_update_price_t
+			multiply = 2
+		}
+		change_variable = {
+			name = trade_update_price_t
+			subtract = var:trade_want_textile
+		}
+		change_variable = {
+			name = trade_update_price_t
+			divide = var:trade_want_textile
+		}
+		change_variable = {
+			name = trade_update_price_t
+			divide = 10
+		}
+		if = {
+			limit = {
+				var:trade_update_price_t >= 0
+			}
+			change_variable = {
+				name = trade_update_price_t
+				add = 1
+			}
+			change_variable = {
+				name = trade_price_textile
+				divide = var:trade_update_price_t
+			}
+		}
+		else = {
+			change_variable = {
+				name = trade_update_price_t
+				multiply = -1
+			}
+			change_variable = {
+				name = trade_update_price_t
+				add = 1
+			}
+			change_variable = {
+				name = trade_price_textile
+				multiply = var:trade_update_price_t
+			}
+		}
+	}
+	remove_variable = trade_update_price_t
 }

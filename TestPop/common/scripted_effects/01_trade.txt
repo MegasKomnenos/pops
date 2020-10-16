@@ -1347,3 +1347,148 @@ trade_resolve_trade_helper_0 = {
 		}
 	}
 }
+
+trade_update_price = {
+	every_county = {
+		limit = {
+			is_valid_prov = yes
+		}
+		trade_update_price_helper_0 = { type0 = dmnd type1 = in opr0 = divide opr1 = multiply good = food }
+		trade_update_price_helper_0 = { type0 = dmnd type1 = in opr0 = divide opr1 = multiply good = fuel }
+		trade_update_price_helper_0 = { type0 = dmnd type1 = in opr0 = divide opr1 = multiply good = fiber }
+		trade_update_price_helper_0 = { type0 = dmnd type1 = in opr0 = divide opr1 = multiply good = pottery }
+		trade_update_price_helper_0 = { type0 = dmnd type1 = in opr0 = divide opr1 = multiply good = textile }
+		
+		trade_update_price_helper_0 = { type1 = sply type1 = out opr0 = multiply opr1 = divide good = food }
+		trade_update_price_helper_0 = { type1 = sply type1 = out opr0 = multiply opr1 = divide good = fuel }
+		trade_update_price_helper_0 = { type1 = sply type1 = out opr0 = multiply opr1 = divide good = fiber }
+		trade_update_price_helper_0 = { type1 = sply type1 = out opr0 = multiply opr1 = divide good = pottery }
+		trade_update_price_helper_0 = { type1 = sply type1 = out opr0 = multiply opr1 = divide good = textile }
+		
+		every_county_province = {
+			limit = {
+				is_valid_prov = yes
+				
+				is_city = yes
+			}
+			set_variable = { name = trade_price_food value = prev.var:trade_price_food }
+			set_variable = { name = trade_price_fuel value = prev.var:trade_price_fuel }
+			set_variable = { name = trade_price_fiber value = prev.var:trade_price_fiber }
+			set_variable = { name = trade_price_pottery value = prev.var:trade_price_pottery }
+			set_variable = { name = trade_price_textile value = prev.var:trade_price_textile }
+		}
+		
+		remove_variable = trade_update_price_t
+	}
+	
+	every_in_global_list = {
+		variable = trade_merchants
+		
+		trade_update_price_helper_1 = { good = food }
+		trade_update_price_helper_1 = { good = fiber }
+		trade_update_price_helper_1 = { good = fuel }
+		trade_update_price_helper_1 = { good = pottery }
+		trade_update_price_helper_1 = { good = textile }
+		
+		remove_variable = trade_update_price_t
+	}
+}
+
+trade_update_price_helper_0 = {
+	if = {
+		limit = {
+			has_variable = trade_sum_$type0$_$good$
+			
+			var:trade_$type0$_$good$ > 0
+		}
+		if = {
+			limit = {
+				has_variable = trade_sum_$type1$_$good$
+			}
+			set_variable = { name = trade_update_price_t value = var:trade_sum_$type1$_$good$ }
+		}
+		else = {
+			set_variable = { name = trade_update_price_t value = 0 }
+		}
+		
+		change_variable = { name = trade_update_price_t multiply = 100 }
+		change_variable = { name = trade_update_price_t divide = var:trade_sum_$type0$_$good$ }
+		change_variable = { name = trade_update_price_t subtract = 90 }
+		
+		if = {
+			limit = {
+				var:trade_update_price_t >= 0
+			}
+			change_variable = { name = trade_update_price_t divide = 200 }
+			change_variable = { name = trade_update_price_t add = 1 }
+			change_variable = { name = trade_price_$good$ $opr0$ = var:trade_update_price_t }
+		}
+		else = {
+			change_variable = { name = trade_update_price_t divide = -900 }
+			change_variable = { name = trade_update_price_t add = 1 }
+			change_variable = { name = trade_price_$good$ $opr1$ = var:trade_update_price_t }
+		}
+	}
+}
+
+trade_update_price_helper_1 = {
+	if = {
+		limit = {
+			has_variable = trade_want_$good$
+			
+			var:trade_want_$good$ > 0
+		}
+		set_variable = { name = trade_update_price_t value = var:trade_has_$good$ }
+		change_variable = { name = trade_update_price_t multiply = 2 }
+		change_variable = { name = trade_update_price_t subtract = var:trade_want_$good$ }
+		change_variable = { name = trade_update_price_t divide = var:trade_want_$good$ }
+		change_variable = { name = trade_update_price_t divide = 10 }
+		
+		if = {
+			limit = {
+				var:trade_update_price_t >= 0
+			}
+			change_variable = { name = trade_update_price_t add = 1 }
+			change_variable = { name = trade_price_$good$ divide = var:trade_update_price_t }
+		}
+		else = {
+			change_variable = { name = trade_update_price_t multiply = -1 }
+			change_variable = { name = trade_update_price_t add = 1 }
+			change_variable = { name = trade_price_$good$ multiply = var:trade_update_price_t }
+		}
+	}
+}
+
+trade_update_merchant = {
+	every_in_global_list = {
+		variable = trade_merchants
+		
+		trade_update_merchant_helper = { good = food }
+		trade_update_merchant_helper = { good = fuel }
+		trade_update_merchant_helper = { good = fiber }
+		trade_update_merchant_helper = { good = pottery }
+		trade_update_merchant_helper = { good = textile }
+	}
+}
+
+trade_update_merchant_helper = {
+	change_variable = { name = trade_want_$good$ multiply = 0.8 }
+	change_variable = { name = trade_want_$good$ add = var:trade_sum_out_$good$ }
+	change_variable = { name = trade_want_$good$ add = 0.2 }
+	
+	change_variable = { name = trade_has_$good$ add = var:trade_sum_in_$good$ }
+	change_variable = { name = trade_has_$good$ subtract = var:trade_sum_out_$good$ }
+	
+	if = {
+		limit = {
+			has_variable = trade_has_$good$
+			
+			var:trade_has_$good$ > 0
+			
+			var:trade_has_$good$ = {
+				compare_value > prev.var:trade_want_$good$
+			}
+		}
+		set_variable = { name = trade_want_$good$ value = var:trade_has_$good$ }
+	}
+}
