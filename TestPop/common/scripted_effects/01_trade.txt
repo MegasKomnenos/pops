@@ -11,7 +11,7 @@
 	add_to_global_variable_list = { name = trade_merchants target = scope:trade_new_merchant_t }
 	
 	$location$ = {
-		add_to_variable_list = { name = trade_merchants target = scope:trade_new_merchant_t }
+		set_variable = { name = trade_merchant value = scope:trade_new_merchant_t }
 	}
 	
 	scope:trade_new_merchant_t = {
@@ -47,6 +47,16 @@
 		set_variable = { name = trade_price_pottery value = $location$.var:trade_price_pottery }
 		set_variable = { name = trade_price_textile value = $location$.var:trade_price_textile }
 	}
+}
+
+trade_pop_merchant = {
+	remove_list_global_variable = { name = trade_merchants target = this }
+	
+	var:trade_location = {
+		remove_variable = trade_merchant
+	}
+	
+	death = natural
 }
 
 trade_do_trade = {

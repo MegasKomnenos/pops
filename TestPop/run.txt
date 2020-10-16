@@ -70,9 +70,7 @@ province:2543.county = {
 	change_variable = { name = trade_price_fiber multiply = 2 }
 	change_variable = { name = trade_price_textile divide = 2 }
 	
-	every_in_list = {
-		variable = trade_merchants
-		
+	var:trade_merchant = {
 		add_to_variable_list = { name = trade_outposts target = province:2115.county }
 		
 		set_variable = { name = trade_has_fiber value = 20 }
@@ -86,9 +84,7 @@ province:2543.county = {
 	}
 }
 province:1527.county = {
-	every_in_list = {
-		variable = trade_merchants
-		
+	var:trade_merchant = {
 		set_variable = { name = trade_has_fiber value = 40 }
 		set_variable = { name = trade_want_fiber value = 80 }
 		
