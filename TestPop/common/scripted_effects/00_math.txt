@@ -277,6 +277,18 @@ pow_effect = {
 			remove_variable = math_pow_e
 		}
 	}
+	else_if = {
+		limit = {
+			OR = {
+				NOT = {
+					has_variable = math_pow_exp
+				}
+				
+				var:math_pow_exp = 0
+			}
+		}
+		set_variable = { name = $return$ value = 1 }
+	}
 	else = {
 		set_variable = { name = $return$ value = 0 }
 	}
