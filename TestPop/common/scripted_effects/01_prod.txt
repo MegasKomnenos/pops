@@ -58,13 +58,12 @@ prod_new_instance = {
 			set_variable = { name = prod_template value = global_var:$template$ }
 			set_variable = { name = prod_location value = $location$ }
 			
-			set_variable = { name = prod_size value = $size$ }
+			set_variable = { name = prod_size value = 0 }
 			set_variable = { name = prod_labor value = 0 }
 			set_variable = { name = prod_land value = 0 }
-			
-			set_variable = { name = prod_size_actual value = 0 }
-			set_variable = { name = prod_labor_actual value = 0 }
-			set_variable = { name = prod_land_actual value = 0 }
+			set_variable = { name = prod_profit value = 0 }
+			set_variable = { name = prod_pay value = 0 }
+			set_variable = { name = prod_pay_old value = 0 }
 			
 			prod_new_instance_helper = { template = $template$ good = food }
 			prod_new_instance_helper = { template = $template$ good = fuel }
@@ -83,7 +82,10 @@ prod_new_instance_helper = {
 			} 
 		} 
 		set_variable = { name = prod_dmnd_$good$ value = 0 } 
+		set_variable = { name = prod_dmnd_old_$good$ value = 0 } 
 		set_variable = { name = prod_in_$good$ value = 0 } 
+		set_variable = { name = prod_in_old_$good$ value = 0 } 
+		set_variable = { name = prod_pay_$good$ value = 0 } 
 		set_variable = { name = prod_pay_$good$ value = 0 } 
 	}
 	if = { 
@@ -93,8 +95,7 @@ prod_new_instance_helper = {
 			} 
 		} 
 		set_variable = { name = prod_sply_$good$ value = 0 }
-		set_variable = { name = prod_out_$good$ value = 0 }
-		set_variable = { name = prod_earn_$good$ value = 0 } 
+		set_variable = { name = prod_sply_old_$good$ value = 0 }
 	}
 }
 
@@ -111,262 +112,339 @@ prod_pop_instance = {
 	death = natural
 }
 
-prod_change_instance_size = {
-	$instance$ = {
-		set_variable = { name = prod_size value = $new$ }
-	}
-}
-
 prod_update_instances = {
-	if = {
+	every_in_global_list = {
+		variable = prod_instances
+		
+		set_variable = { name = prod_update_instances_t value = 1 }
+		set_variable = { name = prod_update_instances_tt value = 0 }
+		
+		prod_update_instances_helper_4 = { good = food }
+		prod_update_instances_helper_4 = { good = fiber }
+		prod_update_instances_helper_4 = { good = fuel }
+		prod_update_instances_helper_4 = { good = pottery }
+		prod_update_instances_helper_4 = { good = textile }
+		
+		if = {
+			limit = {
+				has_variable = prod_update_instances_tt
+				
+				var:prod_update_instances_tt > 0
+			}
+			root_effect = {
+				inp = var:prod_update_instances_t
+				root = var:prod_update_instances_tt
+				return = prod_update_instances_t
+			}
+		}
+		
+		prod_update_instances_helper_5 = { good = food }
+		prod_update_instances_helper_5 = { good = fiber }
+		prod_update_instances_helper_5 = { good = fuel }
+		prod_update_instances_helper_5 = { good = pottery }
+		prod_update_instances_helper_5 = { good = textile }
+	}
+	
+	every_county = {
 		limit = {
-			has_variable_list = prod_instances
-			
-			variable_list_size = { name = prod_instances value >= 1 }
+			is_valid_prov = yes
 		}
-		every_in_list = {
-			variable = prod_instances
-			
-			set_variable = { name = prod_update_instances_t value = 1 }
-			set_variable = { name = prod_update_instances_tt value = 0 }
-			
-			prod_update_instances_helper_0 = { name = food }
-			prod_update_instances_helper_0 = { name = fiber }
-			prod_update_instances_helper_0 = { name = fuel }
-			prod_update_instances_helper_0 = { name = pottery }
-			prod_update_instances_helper_0 = { name = textile }
-			
-			if = {
-				limit = {
-					has_variable = prod_update_instances_tt
-					
-					var:prod_update_instances_tt > 0
-				}
-				root_effect = {
-					inp = var:prod_update_instances_t
-					root = var:prod_update_instances_tt
-					return = prod_update_instances_t
-				}
+		prod_update_instances_helper_0 = { good = food }
+		prod_update_instances_helper_0 = { good = fiber }
+		prod_update_instances_helper_0 = { good = fuel }
+		prod_update_instances_helper_0 = { good = pottery }
+		prod_update_instances_helper_0 = { good = textile }
+	}
+	
+	every_in_global_list = {
+		variable = prod_instances
+		
+		set_variable = { name = prod_labor value = 0 }
+		set_variable = { name = prod_land value = 0 }
+		
+		set_variable = { name = prod_update_instances_t value = 0 }
+		
+		prod_update_instances_helper_1 = { type = dmnd opr = subtract good = food }
+		prod_update_instances_helper_1 = { type = dmnd opr = subtract good = fuel }
+		prod_update_instances_helper_1 = { type = dmnd opr = subtract good = fiber }
+		prod_update_instances_helper_1 = { type = dmnd opr = subtract good = pottery }
+		prod_update_instances_helper_1 = { type = dmnd opr = subtract good = textile }
+		
+		prod_update_instances_helper_1 = { type = sply opr = add good = food }
+		prod_update_instances_helper_1 = { type = sply opr = add good = fuel }
+		prod_update_instances_helper_1 = { type = sply opr = add good = fiber }
+		prod_update_instances_helper_1 = { type = sply opr = add good = pottery }
+		prod_update_instances_helper_1 = { type = sply opr = add good = textile }
+		
+		if = {
+			limit = {
+				has_variable = prod_update_instances_t
+				
+				var:prod_update_instances_t < 0
 			}
-			
-			prod_update_instances_helper_1 = { name = food }
-			prod_update_instances_helper_1 = { name = fiber }
-			prod_update_instances_helper_1 = { name = fuel }
-			prod_update_instances_helper_1 = { name = pottery }
-			prod_update_instances_helper_1 = { name = textile }
-			
-			remove_variable = prod_update_instances_t
-			remove_variable = prod_update_instances_tt
+			set_variable = { name = prod_update_instances_t value = 0 }
 		}
 		
-		set_global_variable = { name = prod_update_instances_labor value = 0 }
-		set_global_variable = { name = prod_update_instances_farm value = 0 }
-		set_global_variable = { name = prod_update_instances_pasture value = 0 }
-		set_global_variable = { name = prod_update_instances_forest value = 0 }
-		set_global_variable = { name = prod_update_instances_workshop value = 0 }
+		change_variable = { name = prod_profit multiply = 0.9 }
+		change_variable = { name = prod_profit add = var:prod_update_instances_t }
+	}
+	
+	every_county = {
+		limit = {
+			is_valid_prov = yes
+		}
+		prod_update_instances_helper_2 = { land = farm }
+		prod_update_instances_helper_2 = { land = pasture }
+		prod_update_instances_helper_2 = { land = forest }
+		prod_update_instances_helper_2 = { land = workshop }
 		
-		every_in_list = {
-			variable = prod_instances
-			
-			set_variable = { name = prod_labor value = var:prod_template.var:prod_labor }
-			set_variable = { name = prod_land value = var:prod_template.var:prod_land }
-			
-			change_variable = { name = prod_labor multiply = var:prod_size }
-			change_variable = { name = prod_land multiply = var:prod_size }
-			
-			change_global_variable = { name = prod_update_instances_labor add = var:prod_labor }
-			
-			var:prod_template = {
-				if = { limit = { has_character_flag = prod_land_farm } change_global_variable = { name = prod_update_instances_farm add = prev.var:prod_land } }
-				else_if = { limit = { has_character_flag = prod_land_pasture } change_global_variable = { name = prod_update_instances_pasture add = prev.var:prod_land } }
-				else_if = { limit = { has_character_flag = prod_land_forest } change_global_variable = { name = prod_update_instances_forest add = prev.var:prod_land } }
-				else_if = { limit = { has_character_flag = prod_land_workshop } change_global_variable = { name = prod_update_instances_workshop add = prev.var:prod_land } }
-			}
-		}
+		prod_update_instances_helper_3 = yes
 		
-		prod_distribute_resource = { 
-			resource = var:pop_total 
-			sum = global_var:prod_update_instances_labor 
-			set = prod_labor_actual 
-			base = var:prod_labor 
+		remove_variable = prod_update_instances_t
+		remove_variable = prod_update_instances_food
+		remove_variable = prod_update_instances_fiber
+		remove_variable = prod_update_instances_fuel
+		remove_variable = prod_update_instances_pottery
+		remove_variable = prod_update_instances_textile
+	}
+	
+	every_province = {
+		limit = {
+			is_city = yes
+			
+			is_valid_prov = yes
 		}
-		prod_distribute_resource = { 
-			resource = var:farm_total 
-			sum = global_var:prod_update_instances_farm 
-			set = prod_land_actual 
-			base = var:prod_land 
-			trigger_scope = var:prod_template 
-			trigger_lhs = has_character_flag 
-			trigger_rhs = prod_land_farm
-		}
-		prod_distribute_resource = { 
-			resource = var:pasture_total 
-			sum = global_var:prod_update_instances_pasture 
-			set = prod_land_actual 
-			base = var:prod_land 
-			trigger_scope = var:prod_template 
-			trigger_lhs = has_character_flag 
-			trigger_rhs = prod_land_pasture
-		}
-		prod_distribute_resource = { 
-			resource = var:forest_total 
-			sum = global_var:prod_update_instances_forest 
-			set = prod_land_actual 
-			base = var:prod_land 
-			trigger_scope = var:prod_template 
-			trigger_lhs = has_character_flag 
-			trigger_rhs = prod_land_forest
-		}
-		prod_distribute_resource = { 
-			resource = var:workshop_total 
-			sum = global_var:prod_update_instances_workshop 
-			set = prod_land_actual 
-			base = var:prod_land 
-			trigger_scope = var:prod_template 
-			trigger_lhs = has_character_flag 
-			trigger_rhs = prod_land_workshop
+		prod_update_instances_helper_2 = { land = farm }
+		prod_update_instances_helper_2 = { land = pasture }
+		prod_update_instances_helper_2 = { land = forest }
+		prod_update_instances_helper_2 = { land = workshop }
+		
+		prod_update_instances_helper_3 = yes
+		
+		remove_variable = prod_update_instances_t
+	}
+	
+	every_in_global_list = {
+		variable = prod_instances
+		
+		pow_effect = {
+			inp = var:prod_labor
+			exp = var:prod_template.var:prod_labor
+			return = prod_size
 		}
 		
-		every_in_list = {
-			variable = prod_instances
-			
-			set_variable = { name = prod_size_actual value = 1 }
-			
-			if = {
-				limit = {
-					var:prod_labor = {
-						compare_value != prev.var:prod_labor_actual
-					}
-				}
-				change_variable = { name = prod_size_actual multiply = var:prod_labor_actual }
-				change_variable = { name = prod_size_actual divide = var:prod_labor }
-			}
-			if = {
-				limit = {
-					var:prod_land = {
-						compare_value != prev.var:prod_land_actual
-					}
-				}
-				change_variable = { name = prod_size_actual multiply = var:prod_land_actual }
-				change_variable = { name = prod_size_actual divide = var:prod_land }
-			}
-			
-			pow_effect = { inp = var:prod_size_actual exp = 0.5 return = prod_size_actual }
-			change_variable = { name = prod_size_actual multiply = var:prod_size }
-			
-			prod_update_instances_helper_2 = { name = prod_dmnd_food }
-			prod_update_instances_helper_2 = { name = prod_dmnd_fuel }
-			prod_update_instances_helper_2 = { name = prod_dmnd_fiber }
-			prod_update_instances_helper_2 = { name = prod_dmnd_pottery }
-			prod_update_instances_helper_2 = { name = prod_dmnd_textile }
-			
-			prod_update_instances_helper_2 = { name = prod_sply_food }
-			prod_update_instances_helper_2 = { name = prod_sply_fuel }
-			prod_update_instances_helper_2 = { name = prod_sply_fiber }
-			prod_update_instances_helper_2 = { name = prod_sply_pottery }
-			prod_update_instances_helper_2 = { name = prod_sply_textile }
-		}
+		change_variable = { name = prod_size multiply = var:prod_update_instances_t }
+		
+		prod_update_instances_helper_6 = { name = prod_dmnd_food }
+		prod_update_instances_helper_6 = { name = prod_dmnd_fuel }
+		prod_update_instances_helper_6 = { name = prod_dmnd_fiber }
+		prod_update_instances_helper_6 = { name = prod_dmnd_pottery }
+		prod_update_instances_helper_6 = { name = prod_dmnd_textile }
+		
+		prod_update_instances_helper_6 = { name = prod_sply_food }
+		prod_update_instances_helper_6 = { name = prod_sply_fuel }
+		prod_update_instances_helper_6 = { name = prod_sply_fiber }
+		prod_update_instances_helper_6 = { name = prod_sply_pottery }
+		prod_update_instances_helper_6 = { name = prod_sply_textile }
+		
+		remove_variable = prod_update_instances_t
+		remove_variable = prod_update_instances_tt
 	}
 }
 
 prod_update_instances_helper_0 = {
 	if = {
 		limit = {
-			has_variable = prod_dmnd_$name$
+			has_variable = trade_save_sply_$good$ 
+			has_variable = trade_has_$good$
+			
+			var:trade_save_sply_$good$ > 0
+			var:trade_has_$good$ > 0
 		}
+		set_variable = { name = prod_update_instances_$good$ value = var:trade_save_sply_$good$ }
+		change_variable = { name = prod_update_instances_$good$ divide = 2 }
+		change_variable = { name = prod_update_instances_$good$ divide = var:trade_has_$good$ }
+		
 		if = {
 			limit = {
-				var:prod_dmnd_$name$ = {
-					compare_value != prev.var:prod_in_$name$
-				}
+				var:prod_update_instances_$good$ > 1
 			}
-			change_variable = { name = prod_update_instances_t multiply = var:prod_in_$name$ }
-			change_variable = { name = prod_update_instances_t divide = var:prod_dmnd_$name$ }
+			set_variable = { name = prod_update_instances_$good$ value = 1 }
 		}
-		
-		change_variable = { name = prod_update_instances_tt add = 1 }
-		
-		set_variable = { name = prod_dmnd_old_$name$ value = var:prod_dmnd_$name$ }
-		set_variable = { name = prod_in_old_$name$ value = var:prod_in_$name$ }
+		else = {
+			change_variable = { name = prod_update_instances_$good$ add = 0.25 }
+			change_variable = { name = prod_update_instances_$good$ divide = 1.25 }
+		}
 	}
+	else = {
+		set_variable = { name = prod_update_instances_$good$ value = 1 }
+	}
+	
+	change_variable = { name = prod_update_instances_$good$ multiply = var:trade_price_$good$ }
 }
 
 prod_update_instances_helper_1 = {
 	if = {
 		limit = {
-			has_variable = prod_sply_$name$
+			var:prod_template = {
+				has_variable = prod_$type$_$good$
+				
+				var:prod_$type$_$good$ > 0
+			}
 		}
-		set_variable = { name = prod_sply_old_$name$ value = var:prod_sply_$name$ }
-		change_variable = { name = prod_sply_old_$name$ multiply = var:prod_update_instances_t }
+		set_variable = { name = prod_update_instances_tt value = var:prod_template.var:prod_$type$_$good$ }
+		change_variable = { name = prod_update_instances_tt multiply = var:prod_location.county.var:prod_update_instances_$good$ }
+		change_variable = { name = prod_update_instances_tt multiply = var:prod_location.var:modi_prod_$type$_$good$ }
+		change_variable = { name = prod_update_instances_t $opr$ = var:prod_update_instances_tt }
 	}
 }
 
 prod_update_instances_helper_2 = {
 	if = {
 		limit = {
-			has_variable = $name$
+			has_variable = $land$_total
+			
+			var:$land$_total > 0
 		}
-		set_variable = { name = $name$ value = var:prod_template.var:$name$ }
-		change_variable = { name = $name$ multiply = var:prod_size_actual }
-		change_variable = { name = $name$ multiply = var:prod_location.var:modi_$name$ }
+		set_variable = { name = prod_update_instances_t value = 0 }
+		
+		every_in_list = {
+			limit = {
+				var:prod_template = {
+					has_character_flag = prod_land_$land$
+				}
+			}
+			variable = prod_instances
+			
+			set_variable = { name = prod_land value = var:prod_profit }
+			change_variable = { name = prod_land multiply = var:prod_template.var:prod_land }
+			change_variable = { name = prod_land multiply = var:prod_land }
+			
+			prev = {
+				change_variable = { name = prod_update_instances_t add = prev.var:prod_land }
+			}
+		}
+		
+		if = {
+			limit = {
+				has_variable = prod_update_instances_t
+				
+				var:prod_update_instances_t > 0
+			}
+			every_in_list = {
+				limit = {
+					var:prod_template = {
+						has_character_flag = prod_land_$land$
+					}
+				}
+				variable = prod_instances
+				
+				change_variable = { name = prod_land multiply = 100 }
+				change_variable = { name = prod_land divide = prev.var:prod_update_instances_t }
+				change_variable = { name = prod_land multiply = prev.var:$land$_total }
+				change_variable = { name = prod_land divide = 100 }
+			}
+		}
+		else = {
+			every_in_list = {
+				limit = {
+					var:prod_template = {
+						has_character_flag = prod_land_$land$
+					}
+				}
+				variable = prod_instances
+				
+				set_variable = { name = prod_land value = 0 }
+			}
+		}
 	}
 }
 
-prod_distribute_resource = {
-	if = {
-		limit = {
-			$resource$ = {
-				compare_value >= $sum$
-			}
+prod_update_instances_helper_3 = {
+	set_variable = { name = prod_update_instances_t value = 0 }
+		
+	every_in_list = {
+		variable = prod_instances
+		
+		pow_effect = {
+			inp = var:prod_land
+			exp = var:prod_template.var:prod_land
+			return = prod_update_instances_t
 		}
-		every_in_list = {
-			[[trigger_scope]
-				limit = {
-					$trigger_scope$ = {
-						$trigger_lhs$ = $trigger_rhs$
-					}
-				}
-			]
-			variable = prod_instances
-			
-			set_variable = { name = $set$ value = $base$ }
+		
+		set_variable = { name = prod_labor value = var:prod_profit }
+		change_variable = { name = prod_labor multiply = var:prod_template.var:prod_labor }
+		change_variable = { name = prod_labor multiply = var:prod_labor }
+		change_variable = { name = prod_labor multiply = var:prod_update_instances_t }
+		
+		prev = {
+			change_variable = { name = prod_update_instances_t add = prev.var:prod_labor }
 		}
 	}
-	else_if = {
+	
+	if = {
 		limit = {
-			$resource$ = 0
+			has_variable = prod_update_instances_t
+			
+			var:prod_update_instances_t > 0
 		}
 		every_in_list = {
-			[[trigger_scope]
-				limit = {
-					$trigger_scope$ = {
-						$trigger_lhs$ = $trigger_rhs$
-					}
-				}
-			]
 			variable = prod_instances
 			
-			set_variable = { name = $set$ value = 0 }
+			change_variable = { name = prod_labor multiply = 100 }
+			change_variable = { name = prod_labor divide = prev.var:prod_update_instances_t }
+			change_variable = { name = prod_labor multiply = prev.var:pop_total }
+			change_variable = { name = prod_labor divide = 100 }
 		}
 	}
 	else = {
-		set_variable = { name = prod_update_instances_fill value = $resource$ }
-		change_variable = { name = prod_update_instances_fill divide = $sum$ }
-		
 		every_in_list = {
-			[[trigger_scope]
-				limit = {
-					$trigger_scope$ = {
-						$trigger_lhs$ = $trigger_rhs$
-					}
-				}
-			]
 			variable = prod_instances
 			
-			set_variable = { name = $set$ value = $base$ }
-			change_variable = { name = $set$ multiply = prev.var:prod_update_instances_fill }
+			set_variable = { name = prod_labor value = 0 }
+		}
+	}
+}
+
+prod_update_instances_helper_4 = {
+	if = {
+		limit = {
+			has_variable = prod_dmnd_$good$
+		}
+		if = {
+			limit = {
+				var:prod_dmnd_$good$ = {
+					compare_value != prev.var:prod_in_$good$
+				}
+			}
+			change_variable = { name = prod_update_instances_t multiply = var:prod_in_$good$ }
+			change_variable = { name = prod_update_instances_t divide = var:prod_dmnd_$good$ }
 		}
 		
-		remove_variable = prod_update_instances_fill
+		change_variable = { name = prod_update_instances_tt add = 1 }
+		
+		set_variable = { name = prod_dmnd_old_$good$ value = var:prod_dmnd_$good$ }
+		set_variable = { name = prod_in_old_$good$ value = var:prod_in_$good$ }
+	}
+}
+
+prod_update_instances_helper_5 = {
+	if = {
+		limit = {
+			has_variable = prod_sply_$good$
+		}
+		set_variable = { name = prod_sply_old_$good$ value = var:prod_sply_$good$ }
+		change_variable = { name = prod_sply_old_$good$ multiply = var:prod_update_instances_t }
+	}
+}
+
+prod_update_instances_helper_6 = {
+	if = {
+		limit = {
+			has_variable = $name$
+		}
+		set_variable = { name = $name$ value = var:prod_template.var:$name$ }
+		change_variable = { name = $name$ multiply = var:prod_size }
+		change_variable = { name = $name$ multiply = var:prod_location.var:modi_$name$ }
 	}
 }

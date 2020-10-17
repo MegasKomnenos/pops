@@ -1,4 +1,60 @@
-﻿pop_update_demand = {
+﻿pop_update_fill = {
+	set_variable = { name = pop_calorie value = 0 }
+	set_variable = { name = pop_nutrient value = 0 }
+	set_variable = { name = pop_comfort value = 0 }
+	set_variable = { name = pop_luxury value = 0 }
+	
+	pop_update_fill_helper = { type = calorie good = food }
+	pop_update_fill_helper = { type = calorie good = fuel }
+	pop_update_fill_helper = { type = calorie good = fiber }
+	pop_update_fill_helper = { type = calorie good = pottery }
+	pop_update_fill_helper = { type = calorie good = textile }
+	
+	pop_update_fill_helper = { type = nutrient good = food }
+	pop_update_fill_helper = { type = nutrient good = fuel }
+	pop_update_fill_helper = { type = nutrient good = fiber }
+	pop_update_fill_helper = { type = nutrient good = pottery }
+	pop_update_fill_helper = { type = nutrient good = textile }
+	
+	pop_update_fill_helper = { type = comfort good = food }
+	pop_update_fill_helper = { type = comfort good = fuel }
+	pop_update_fill_helper = { type = comfort good = fiber }
+	pop_update_fill_helper = { type = comfort good = pottery }
+	pop_update_fill_helper = { type = comfort good = textile }
+	
+	pop_update_fill_helper = { type = luxury good = food }
+	pop_update_fill_helper = { type = luxury good = fuel }
+	pop_update_fill_helper = { type = luxury good = fiber }
+	pop_update_fill_helper = { type = luxury good = pottery }
+	pop_update_fill_helper = { type = luxury good = textile }
+	
+	change_variable = { name = pop_calorie divide = var:pop_total }
+	change_variable = { name = pop_nutrient divide = var:pop_total }
+	change_variable = { name = pop_comfort divide = var:pop_total }
+	change_variable = { name = pop_luxury divide = var:pop_total }
+	
+	change_variable = { name = pop_calorie divide = var:modi_pop_calorie }
+	change_variable = { name = pop_nutrient divide = var:modi_pop_nutrient }
+	change_variable = { name = pop_comfort divide = var:modi_pop_comfort }
+	change_variable = { name = pop_luxury divide = var:modi_pop_luxury }
+	
+	remove_variable = pop_update_fill_t
+}
+
+pop_update_fill_helper = {
+	if = {
+		limit = {
+			has_variable = pop_$type$_actual_$good$
+			
+			var:pop_$type$_actual_$good$
+		}
+		set_variable = { name = pop_update_fill_t value = var:pop_$type$_actual_$good$ }
+		change_variable = { name = pop_update_fill_t multiply = pop_$type$_$good$ }
+		change_variable = { name = pop_$type$ add = var:pop_update_fill_t }
+	}
+}
+
+pop_update_demand = {
 	pop_set_demand = { type = calorie }
 	pop_set_demand = { type = nutrient }
 	pop_set_demand = { type = comfort }

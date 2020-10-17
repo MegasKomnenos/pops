@@ -1,15 +1,15 @@
 prod_new_template = {
 	name = sheep
 	land_type = pasture
-	land = 2
-	labor = 1
+	land = 0.7
+	labor = 0.3
 	sply_fiber = 2
 }
 prod_new_template = {
 	name = cloth
 	land_type = workshop
-	land = 1
-	labor = 1
+	land = 0.5
+	labor = 0.5
 	dmnd_fiber = 2
 	sply_textile = 2
 }
@@ -21,12 +21,14 @@ province:2543 = {
 prod_new_instance = {
 	template = sheep
 	location = province:2563
-	size = 2
 }
 prod_new_instance = {
 	template = cloth
 	location = province:2543
-	size = 10
+}
+prod_new_instance = {
+	template = sheep
+	location = province:2543
 }
 
 scope:prod_new_instance_temp = {
@@ -36,17 +38,14 @@ scope:prod_new_instance_temp = {
 prod_new_instance = {
 	template = sheep
 	location = province:1582
-	size = 10
 }
 prod_new_instance = {
 	template = sheep
 	location = province:1561
-	size = 10
 }
 prod_new_instance = {
 	template = sheep
 	location = province:1555
-	size = 10
 }
 
 trade_new_merchant = {
@@ -125,7 +124,7 @@ province:1555 = {
 }
 
 global_var:foo = {
-	set_variable = { name = prod_in_fiber value = 20 }
+	set_variable = { name = prod_in_fiber which = prod_dmnd_fiber }
 }
 
 province:2543 = {
