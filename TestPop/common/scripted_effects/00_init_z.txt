@@ -72,7 +72,14 @@
 				change_variable = { name = trade_has_textile add = 1 }
 			}
 			
-			set_variable = { name = workshop_total value = 1 }
+			if = {
+				limit = {
+					NOT = {
+						has_variable = workshop_total
+					}
+				}
+				set_variable = { name = workshop_total value = 0 }
+			}
 			
 			if = {
 				limit = {
@@ -82,40 +89,47 @@
 				set_variable = { name = farm_total_send value = 0.5 }
 				set_variable = { name = pasture_total_send value = 0.5 }
 				set_variable = { name = forest_total_send value = 0.5 }
+				set_variable = { name = workshop_total_send value = 0.5 }
 			}
 			else = {
 				set_variable = { name = pop_total_send value = 1 }
 				set_variable = { name = farm_total_send value = 1 }
 				set_variable = { name = pasture_total_send value = 1 }
 				set_variable = { name = forest_total_send value = 1 }
+				set_variable = { name = workshop_total_send value = 1 }
 			}
 			
 			change_variable = { name = pop_total_send multiply = var:pop_total }
 			change_variable = { name = farm_total_send multiply = var:farm_total }
 			change_variable = { name = pasture_total_send multiply = var:pasture_total }
 			change_variable = { name = forest_total_send multiply = var:forest_total }
+			change_variable = { name = workshop_total_send multiply = var:workshop_total }
 			
 			change_variable = { name = pop_total_send divide = 1000 }
 			change_variable = { name = farm_total_send divide = 1000 }
 			change_variable = { name = pasture_total_send divide = 1000 }
 			change_variable = { name = forest_total_send divide = 1000 }
+			change_variable = { name = workshop_total_send divide = 1000 }
 			
 			change_variable = { name = pop_total_send multiply = 1000 }
 			change_variable = { name = farm_total_send multiply = 1000 }
 			change_variable = { name = pasture_total_send multiply = 1000 }
 			change_variable = { name = forest_total_send multiply = 1000 }
+			change_variable = { name = workshop_total_send multiply = 1000 }
 			
 			prev = {
 				change_variable = { name = pop_total add = prev.var:pop_total_send }
 				change_variable = { name = farm_total add = prev.var:farm_total_send }
 				change_variable = { name = pasture_total add = prev.var:pasture_total_send }
 				change_variable = { name = forest_total add = prev.var:forest_total_send }
+				change_variable = { name = workshop_total add = prev.var:workshop_total_send }
 			}
 			
 			change_variable = { name = pop_total subtract = var:pop_total_send }
 			change_variable = { name = farm_total subtract = var:farm_total_send }
 			change_variable = { name = pasture_total subtract = var:pasture_total_send }
 			change_variable = { name = forest_total subtract = var:forest_total_send }
+			change_variable = { name = workshop_total subtract = var:workshop_total_send }
 			
 			remove_variable = pop_total_send
 			remove_variable = pop_weight
@@ -125,6 +139,7 @@
 			remove_variable = pasture_score
 			remove_variable = forest_total_send
 			remove_variable = forest_score
+			remove_variable = workshop_total_send
 		}
 		
 		set_variable = { name = pop_wealth value = var:pop_total }
