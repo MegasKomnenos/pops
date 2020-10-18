@@ -1,105 +1,248 @@
-﻿pop_update_fill = {
+﻿pop_update_demand = {
+	pop_update_demand_helper_0 = { type = calorie }
+	pop_update_demand_helper_0 = { type = nutrient }
+	pop_update_demand_helper_0 = { type = comfort }
+	pop_update_demand_helper_0 = { type = luxury }
+	
+	pop_update_demand_helper_1 = { type = calorie }
+	pop_update_demand_helper_1 = { type = nutrient }
+	pop_update_demand_helper_1 = { type = comfort }
+	pop_update_demand_helper_1 = { type = luxury }
+	
+	set_variable = { name = pop_update_demand_t value = 0 }
+	
+	set_variable = { name = pop_update_demand_calorie value = 0 }
+	set_variable = { name = pop_update_demand_nutrient value = 0 }
+	set_variable = { name = pop_update_demand_comfort value = 0 }
+	set_variable = { name = pop_update_demand_luxury value = 0 }
+	
+	while = {
+		limit = {
+			var:pop_update_demand_t <= 4
+		}
+		pop_get_need = {
+			pay = pop_update_demand_t
+			calorie = pop_free_calorie
+			nutrient = pop_free_nutrient
+			comfort = pop_free_comfort
+			luxury = pop_free_luxury
+		}
+		
+		set_variable = { name = pop_update_demand_tt value = 0 }
+		
+		set_variable = { name = pop_update_demand_ttt value = var:pop_free_calorie }
+		change_variable = { name = pop_update_demand_ttt multiply = var:pop_calorie_cost }
+		change_variable = { name = pop_update_demand_tt add = var:pop_update_demand_ttt }
+		
+		set_variable = { name = pop_update_demand_ttt value = var:pop_free_nutrient }
+		change_variable = { name = pop_update_demand_ttt multiply = var:pop_nutrient_cost }
+		change_variable = { name = pop_update_demand_tt add = var:pop_update_demand_ttt }
+		
+		set_variable = { name = pop_update_demand_ttt value = var:pop_free_comfort }
+		change_variable = { name = pop_update_demand_ttt multiply = var:pop_comfort_cost }
+		change_variable = { name = pop_update_demand_tt add = var:pop_update_demand_ttt }
+		
+		set_variable = { name = pop_update_demand_ttt value = var:pop_free_luxury }
+		change_variable = { name = pop_update_demand_ttt multiply = var:pop_luxury_cost }
+		change_variable = { name = pop_update_demand_tt add = var:pop_update_demand_ttt }
+		
+		change_variable = { name = pop_update_demand_tt multiply = var:pop_total }
+		change_variable = { name = pop_update_demand_tt multiply = var:pop_freedom }
+		
+		set_variable = { name = pop_update_demand_ttt value = var:pop_wealth }
+		change_variable = { name = pop_update_demand_ttt divide = 4 }
+		
+		if = {
+			limit = {
+				has_variable = pop_update_demand_tt
+				
+				var:pop_update_demand_tt = {
+					compare_value <= prev.var:pop_update_demand_ttt
+				}
+			}
+			change_variable = { name = pop_update_demand_t add = 1 }
+			
+			set_variable = { name = pop_update_demand_calorie value = var:pop_free_calorie }
+			set_variable = { name = pop_update_demand_nutrient value = var:pop_free_nutrient }
+			set_variable = { name = pop_update_demand_comfort value = var:pop_free_comfort }
+			set_variable = { name = pop_update_demand_luxury value = var:pop_free_luxury }
+		}
+		else = {
+			set_variable = { name = pop_update_demand_t value = 5 }
+			
+			change_variable = { name = pop_free_calorie add = var:pop_update_demand_calorie }
+			change_variable = { name = pop_free_nutrient add = var:pop_update_demand_nutrient }
+			change_variable = { name = pop_free_comfort add = var:pop_update_demand_comfort }
+			change_variable = { name = pop_free_luxury add = var:pop_update_demand_luxury }
+			
+			change_variable = { name = pop_free_calorie divide = 2 }
+			change_variable = { name = pop_free_nutrient divide = 2 }
+			change_variable = { name = pop_free_comfort divide = 2 }
+			change_variable = { name = pop_free_luxury divide = 2 }
+		}
+	}
+	
+	pop_get_need = {
+		pay = pop_pay_level
+		calorie = pop_serf_calorie
+		nutrient = pop_serf_nutrient
+		comfort = pop_serf_comfort
+		luxury = pop_serf_luxury
+	}
+	
 	set_variable = { name = pop_calorie value = 0 }
 	set_variable = { name = pop_nutrient value = 0 }
 	set_variable = { name = pop_comfort value = 0 }
 	set_variable = { name = pop_luxury value = 0 }
 	
-	pop_update_fill_helper = { type = calorie good = food }
-	pop_update_fill_helper = { type = calorie good = fuel }
-	pop_update_fill_helper = { type = calorie good = fiber }
-	pop_update_fill_helper = { type = calorie good = pottery }
-	pop_update_fill_helper = { type = calorie good = textile }
+	set_variable = { name = pop_update_demand_t value = 1 }
+	change_variable = { name = pop_update_demand_t subtract = var:pop_freedom }
 	
-	pop_update_fill_helper = { type = nutrient good = food }
-	pop_update_fill_helper = { type = nutrient good = fuel }
-	pop_update_fill_helper = { type = nutrient good = fiber }
-	pop_update_fill_helper = { type = nutrient good = pottery }
-	pop_update_fill_helper = { type = nutrient good = textile }
+	set_variable = { name = pop_update_demand_tt value = var:pop_serf_calorie }
+	change_variable = { name = pop_update_demand_tt multiply = var:pop_update_demand_t }
+	change_variable = { name = pop_calorie add = var:pop_update_demand_tt }
 	
-	pop_update_fill_helper = { type = comfort good = food }
-	pop_update_fill_helper = { type = comfort good = fuel }
-	pop_update_fill_helper = { type = comfort good = fiber }
-	pop_update_fill_helper = { type = comfort good = pottery }
-	pop_update_fill_helper = { type = comfort good = textile }
+	set_variable = { name = pop_update_demand_tt value = var:pop_serf_nutrient }
+	change_variable = { name = pop_update_demand_tt multiply = var:pop_update_demand_t }
+	change_variable = { name = pop_nutrient add = var:pop_update_demand_tt }
 	
-	pop_update_fill_helper = { type = luxury good = food }
-	pop_update_fill_helper = { type = luxury good = fuel }
-	pop_update_fill_helper = { type = luxury good = fiber }
-	pop_update_fill_helper = { type = luxury good = pottery }
-	pop_update_fill_helper = { type = luxury good = textile }
+	set_variable = { name = pop_update_demand_tt value = var:pop_serf_comfort }
+	change_variable = { name = pop_update_demand_tt multiply = var:pop_update_demand_t }
+	change_variable = { name = pop_comfort add = var:pop_update_demand_tt }
 	
-	change_variable = { name = pop_calorie divide = var:pop_total }
-	change_variable = { name = pop_nutrient divide = var:pop_total }
-	change_variable = { name = pop_comfort divide = var:pop_total }
-	change_variable = { name = pop_luxury divide = var:pop_total }
+	set_variable = { name = pop_update_demand_tt value = var:pop_serf_luxury }
+	change_variable = { name = pop_update_demand_tt multiply = var:pop_update_demand_t }
+	change_variable = { name = pop_luxury add = var:pop_update_demand_tt }
 	
-	change_variable = { name = pop_calorie divide = var:modi_pop_calorie }
-	change_variable = { name = pop_nutrient divide = var:modi_pop_nutrient }
-	change_variable = { name = pop_comfort divide = var:modi_pop_comfort }
-	change_variable = { name = pop_luxury divide = var:modi_pop_luxury }
+	set_variable = { name = pop_update_demand_tt value = var:pop_free_calorie }
+	change_variable = { name = pop_update_demand_tt multiply = var:pop_freedom }
+	change_variable = { name = pop_calorie add = var:pop_update_demand_tt }
 	
-	remove_variable = pop_update_fill_t
+	set_variable = { name = pop_update_demand_tt value = var:pop_free_nutrient }
+	change_variable = { name = pop_update_demand_tt multiply = var:pop_freedom }
+	change_variable = { name = pop_nutrient add = var:pop_update_demand_tt }
+	
+	set_variable = { name = pop_update_demand_tt value = var:pop_free_comfort }
+	change_variable = { name = pop_update_demand_tt multiply = var:pop_freedom }
+	change_variable = { name = pop_comfort add = var:pop_update_demand_tt }
+	
+	set_variable = { name = pop_update_demand_tt value = var:pop_free_luxury }
+	change_variable = { name = pop_update_demand_tt multiply = var:pop_freedom }
+	change_variable = { name = pop_luxury add = var:pop_update_demand_tt }
+	
+	change_variable = { name = pop_free_calorie multiply = var:pop_freedom }
+	change_variable = { name = pop_free_nutrient multiply = var:pop_freedom }
+	change_variable = { name = pop_free_comfort multiply = var:pop_freedom }
+	change_variable = { name = pop_free_luxury multiply = var:pop_freedom }
+	
+	if = { limit = { has_variable = pop_calorie var:pop_calorie > 0 } change_variable = { name = pop_free_calorie divide = var:pop_calorie } }
+	if = { limit = { has_variable = pop_nutrient var:pop_nutrient > 0 } change_variable = { name = pop_free_nutrient divide = var:pop_nutrient } }
+	if = { limit = { has_variable = pop_comfort var:pop_comfort > 0 } change_variable = { name = pop_free_comfort divide = var:pop_comfort } }
+	if = { limit = { has_variable = pop_luxury var:pop_luxury > 0 } change_variable = { name = pop_free_luxury divide = var:pop_luxury } }
+	
+	change_variable = { name = pop_calorie multiply = var:pop_total }
+	change_variable = { name = pop_calorie multiply = this.county.var:modi_pop_calorie }
+	
+	change_variable = { name = pop_nutrient multiply = var:pop_total }
+	change_variable = { name = pop_nutrient multiply = this.county.var:modi_pop_nutrient }
+	
+	change_variable = { name = pop_comfort multiply = var:pop_total }
+	change_variable = { name = pop_comfort multiply = this.county.var:modi_pop_comfort }
+	
+	change_variable = { name = pop_luxury multiply = var:pop_total }
+	change_variable = { name = pop_luxury multiply = this.county.var:modi_pop_luxury }
+	
+	pop_update_demand_helper_2 = { type = calorie good = food }
+	pop_update_demand_helper_2 = { type = calorie good = fuel }
+	pop_update_demand_helper_2 = { type = calorie good = fiber }
+	pop_update_demand_helper_2 = { type = calorie good = pottery }
+	pop_update_demand_helper_2 = { type = calorie good = textile }
+	
+	pop_update_demand_helper_2 = { type = nutrient good = food }
+	pop_update_demand_helper_2 = { type = nutrient good = fuel }
+	pop_update_demand_helper_2 = { type = nutrient good = fiber }
+	pop_update_demand_helper_2 = { type = nutrient good = pottery }
+	pop_update_demand_helper_2 = { type = nutrient good = textile }
+	
+	pop_update_demand_helper_2 = { type = comfort good = food }
+	pop_update_demand_helper_2 = { type = comfort good = fuel }
+	pop_update_demand_helper_2 = { type = comfort good = fiber }
+	pop_update_demand_helper_2 = { type = comfort good = pottery }
+	pop_update_demand_helper_2 = { type = comfort good = textile }
+	
+	pop_update_demand_helper_2 = { type = luxury good = food }
+	pop_update_demand_helper_2 = { type = luxury good = fuel }
+	pop_update_demand_helper_2 = { type = luxury good = fiber }
+	pop_update_demand_helper_2 = { type = luxury good = pottery }
+	pop_update_demand_helper_2 = { type = luxury good = textile }
+	
+	remove_variable = pop_update_demand_t
+	remove_variable = pop_update_demand_tt
+	remove_variable = pop_update_demand_ttt
+	
+	remove_variable = pop_update_demand_calorie
+	remove_variable = pop_update_demand_nutrient
+	remove_variable = pop_update_demand_comfort
+	remove_variable = pop_update_demand_luxury
+	
+	remove_variable = pop_serf_calorie
+	remove_variable = pop_serf_nutrient
+	remove_variable = pop_serf_comfort
+	remove_variable = pop_serf_luxury
 }
 
-pop_update_fill_helper = {
+pop_get_need = {
 	if = {
 		limit = {
-			has_variable = pop_$type$_actual_$good$
-			
-			var:pop_$type$_actual_$good$
+			OR = {
+				NOT = {
+					has_variable = $pay$
+				}
+				
+				var:$pay$ = 0
+			}
 		}
-		set_variable = { name = pop_update_fill_t value = var:pop_$type$_actual_$good$ }
-		change_variable = { name = pop_update_fill_t multiply = pop_$type$_$good$ }
-		change_variable = { name = pop_$type$ add = var:pop_update_fill_t }
+		set_variable = { name = $calorie$ value = 0.5 }
+		set_variable = { name = $nutrient$ value = 0.1 }
+		set_variable = { name = $comfort$ value = 0.02 }
+		set_variable = { name = $luxury$ value = 0 }
+	}
+	else_if = {
+		limit = {
+			var:$pay$ = 1
+		}
+		set_variable = { name = $calorie$ value = 1 }
+		set_variable = { name = $nutrient$ value = 0.5 }
+		set_variable = { name = $comfort$ value = 0.1 }
+		set_variable = { name = $luxury$ value = 0.02 }
+	}
+	else_if = {
+		limit = {
+			var:$pay$ = 2
+		}
+		set_variable = { name = $calorie$ value = 1 }
+		set_variable = { name = $nutrient$ value = 1 }
+		set_variable = { name = $comfort$ value = 0.5 }
+		set_variable = { name = $luxury$ value = 0.1 }
+	}
+	else_if = {
+		limit = {
+			var:$pay$ = 3
+		}
+		set_variable = { name = $calorie$ value = 1 }
+		set_variable = { name = $nutrient$ value = 1 }
+		set_variable = { name = $comfort$ value = 1 }
+		set_variable = { name = $luxury$ value = 0.5 }
+	}
+	else = {
+		set_variable = { name = $calorie$ value = 1 }
+		set_variable = { name = $nutrient$ value = 1 }
+		set_variable = { name = $comfort$ value = 1 }
+		set_variable = { name = $luxury$ value = 1 }
 	}
 }
 
-pop_update_demand = {
-	pop_set_demand = { type = calorie }
-	pop_set_demand = { type = nutrient }
-	pop_set_demand = { type = comfort }
-	pop_set_demand = { type = luxury }
-	
-	pop_set_need_$type$ = yes
-	
-	pop_update_demand_helper = { type = calorie good = food }
-	pop_update_demand_helper = { type = calorie good = fuel }
-	pop_update_demand_helper = { type = calorie good = fiber }
-	pop_update_demand_helper = { type = calorie good = pottery }
-	pop_update_demand_helper = { type = calorie good = textile }
-	
-	pop_update_demand_helper = { type = nutrient good = food }
-	pop_update_demand_helper = { type = nutrient good = fuel }
-	pop_update_demand_helper = { type = nutrient good = fiber }
-	pop_update_demand_helper = { type = nutrient good = pottery }
-	pop_update_demand_helper = { type = nutrient good = textile }
-	
-	pop_update_demand_helper = { type = comfort good = food }
-	pop_update_demand_helper = { type = comfort good = fuel }
-	pop_update_demand_helper = { type = comfort good = fiber }
-	pop_update_demand_helper = { type = comfort good = pottery }
-	pop_update_demand_helper = { type = comfort good = textile }
-	
-	pop_update_demand_helper = { type = luxury good = food }
-	pop_update_demand_helper = { type = luxury good = fuel }
-	pop_update_demand_helper = { type = luxury good = fiber }
-	pop_update_demand_helper = { type = luxury good = pottery }
-	pop_update_demand_helper = { type = luxury good = textile }
-}
-
-pop_update_demand_helper = {
-	if = {
-		limit = {
-			has_variable = pop_$type$_$good$
-			
-			var:pop_$type$_$good$ > 0
-		}
-		change_variable = { name = pop_$type$_$good$ multiply = var:pop_$type$ }
-		change_variable = { name = pop_$type$_$good$ divide = pop_$type$_$good$ }
-	}
-}
-
-pop_set_demand = {
+pop_update_demand_helper_0 = {
 	set_variable = { name = pop_$type$_food value = pop_$type$_food }
 	set_variable = { name = pop_$type$_fuel value = pop_$type$_fuel }
 	set_variable = { name = pop_$type$_fiber value = pop_$type$_fiber }
@@ -112,11 +255,11 @@ pop_set_demand = {
 	change_variable = { name = pop_$type$_pottery multiply = 10 }
 	change_variable = { name = pop_$type$_textile multiply = 10 }
 	
-	change_variable = { name = pop_$type$_food divide = var:trade_price_food }
-	change_variable = { name = pop_$type$_fuel divide = var:trade_price_fuel }
-	change_variable = { name = pop_$type$_fiber divide = var:trade_price_fiber }
-	change_variable = { name = pop_$type$_pottery divide = var:trade_price_pottery }
-	change_variable = { name = pop_$type$_textile divide = var:trade_price_textile }
+	change_variable = { name = pop_$type$_food divide = this.county.var:trade_price_food }
+	change_variable = { name = pop_$type$_fuel divide = this.county.var:trade_price_fuel }
+	change_variable = { name = pop_$type$_fiber divide = this.county.var:trade_price_fiber }
+	change_variable = { name = pop_$type$_pottery divide = this.county.var:trade_price_pottery }
+	change_variable = { name = pop_$type$_textile divide = this.county.var:trade_price_textile }
 	
 	change_variable = { name = pop_$type$_food multiply = var:pop_$type$_food }
 	change_variable = { name = pop_$type$_fuel multiply = var:pop_$type$_fuel }
@@ -124,204 +267,55 @@ pop_set_demand = {
 	change_variable = { name = pop_$type$_pottery multiply = var:pop_$type$_pottery }
 	change_variable = { name = pop_$type$_textile multiply = var:pop_$type$_textile }
 	
-	set_variable = { name = pop_set_demand_t value = 0 }
+	set_variable = { name = pop_update_demand_t value = 0 }
 	
-	change_variable = { name = pop_set_demand_t add = var:pop_$type$_food }
-	change_variable = { name = pop_set_demand_t add = var:pop_$type$_fuel }
-	change_variable = { name = pop_set_demand_t add = var:pop_$type$_fiber }
-	change_variable = { name = pop_set_demand_t add = var:pop_$type$_pottery }
-	change_variable = { name = pop_set_demand_t add = var:pop_$type$_textile }
+	change_variable = { name = pop_update_demand_t add = var:pop_$type$_food }
+	change_variable = { name = pop_update_demand_t add = var:pop_$type$_fuel }
+	change_variable = { name = pop_update_demand_t add = var:pop_$type$_fiber }
+	change_variable = { name = pop_update_demand_t add = var:pop_$type$_pottery }
+	change_variable = { name = pop_update_demand_t add = var:pop_$type$_textile }
 	
-	change_variable = { name = pop_$type$_food divide = var:pop_set_demand_t }
-	change_variable = { name = pop_$type$_fuel divide = var:pop_set_demand_t }
-	change_variable = { name = pop_$type$_fiber divide = var:pop_set_demand_t }
-	change_variable = { name = pop_$type$_pottery divide = var:pop_set_demand_t }
-	change_variable = { name = pop_$type$_textile divide = var:pop_set_demand_t }
-	
-	set_variable = { name = pop_$type$_cost value = 0 }
-	
-	pop_set_demand_helper = { type = $type$ good = food }
-	pop_set_demand_helper = { type = $type$ good = fuel }
-	pop_set_demand_helper = { type = $type$ good = fiber }
-	pop_set_demand_helper = { type = $type$ good = pottery }
-	pop_set_demand_helper = { type = $type$ good = textile }
-	
-	remove_variable = pop_set_demand_t
+	change_variable = { name = pop_$type$_food divide = var:pop_update_demand_t }
+	change_variable = { name = pop_$type$_fuel divide = var:pop_update_demand_t }
+	change_variable = { name = pop_$type$_fiber divide = var:pop_update_demand_t }
+	change_variable = { name = pop_$type$_pottery divide = var:pop_update_demand_t }
+	change_variable = { name = pop_$type$_textile divide = var:pop_update_demand_t }
 }
 
-pop_set_demand_helper = {
+pop_update_demand_helper_1 = {
+	set_variable = { name = pop_$type$_cost value = 0 }
+	
+	pop_update_demand_helper_1_helper = { type = $type$ good = food }
+	pop_update_demand_helper_1_helper = { type = $type$ good = fuel }
+	pop_update_demand_helper_1_helper = { type = $type$ good = fiber }
+	pop_update_demand_helper_1_helper = { type = $type$ good = pottery }
+	pop_update_demand_helper_1_helper = { type = $type$ good = textile }
+	
+	change_variable = { name = pop_$type$_cost multiply = this.county.var:modi_pop_$type$ }
+}
+
+pop_update_demand_helper_1_helper = {
 	if = {
 		limit = {
 			has_variable = pop_$type$_$good$
 			
 			var:pop_$type$_$good$ > 0
 		}
-		set_variable = { name = pop_set_demand_t value = var:pop_$type$_$good$ }
-		change_variable = { name = pop_set_demand_t divide = pop_$type$_$good$ }
-		change_variable = { name = pop_set_demand_t add = var:trade_price_$good$ }
-		change_variable = { name = pop_$type$_cost add = var:pop_set_demand_t }
+		set_variable = { name = pop_update_demand_t value = var:pop_$type$_$good$ }
+		change_variable = { name = pop_update_demand_t divide = pop_$type$_$good$ }
+		change_variable = { name = pop_update_demand_t multiply = this.county.var:trade_price_$good$ }
+		change_variable = { name = pop_$type$_cost add = var:pop_update_demand_t }
 	}
 }
 
-pop_set_need_by_pay = {
+pop_update_demand_helper_2 = {
 	if = {
 		limit = {
-			OR = {
-				NOT = {
-					has_variable = pop_pay_level
-				}
-				
-				var:pop_pay_level = 0
-			}
+			has_variable = pop_$type$_$good$
+			
+			var:pop_$type$_$good$ > 0
 		}
-		set_variable = { name = pop_calorie value = 0.5 }
-		set_variable = { name = pop_nutrient value = 0.1 }
-		set_variable = { name = pop_comfort value = 0.02 }
-		set_variable = { name = pop_luxury value = 0 }
+		change_variable = { name = pop_$type$_$good$ multiply = var:pop_$type$ }
+		change_variable = { name = pop_$type$_$good$ divide = pop_$type$_$good$ }
 	}
-	else_if = {
-		limit = {
-			var:pop_pay_level = 1
-		}
-		set_variable = { name = pop_calorie value = 1 }
-		set_variable = { name = pop_nutrient value = 0.5 }
-		set_variable = { name = pop_comfort value = 0.1 }
-		set_variable = { name = pop_luxury value = 0.02 }
-	}
-	else_if = {
-		limit = {
-			var:pop_pay_level = 2
-		}
-		set_variable = { name = pop_calorie value = 1 }
-		set_variable = { name = pop_nutrient value = 1 }
-		set_variable = { name = pop_comfort value = 0.5 }
-		set_variable = { name = pop_luxury value = 0.1 }
-	}
-	else_if = {
-		limit = {
-			var:pop_pay_level = 3
-		}
-		set_variable = { name = pop_calorie value = 1 }
-		set_variable = { name = pop_nutrient value = 1 }
-		set_variable = { name = pop_comfort value = 1 }
-		set_variable = { name = pop_luxury value = 0.5 }
-	}
-	else = {
-		set_variable = { name = pop_calorie value = 1 }
-		set_variable = { name = pop_nutrient value = 1 }
-		set_variable = { name = pop_comfort value = 1 }
-		set_variable = { name = pop_luxury value = 1 }
-	}
-}
-
-pop_set_need_holding = {
-	pop_set_need_by_pay = yes
-	
-	change_variable = { name = pop_calorie multiply = var:pop_total }
-	change_variable = { name = pop_nutrient multiply = var:pop_total }
-	change_variable = { name = pop_comfort multiply = var:pop_total }
-	change_variable = { name = pop_luxury multiply = var:pop_total }
-	
-	change_variable = { name = pop_calorie multiply = var:modi_pop_calorie }
-	change_variable = { name = pop_nutrient multiply = var:modi_pop_nutrient }
-	change_variable = { name = pop_comfort multiply = var:modi_pop_comfort }
-	change_variable = { name = pop_luxury multiply = var:modi_pop_luxury }
-}
-
-pop_set_need_county = {
-	set_variable = { name = pop_pay_level value = 0 }
-	
-	set_variable = { name = pop_set_need_county_calorie value = 0 }
-	set_variable = { name = pop_set_need_county_nutrient value = 0 }
-	set_variable = { name = pop_set_need_county_comfort value = 0 }
-	set_variable = { name = pop_set_need_county_luxury value = 0 }
-	set_variable = { name = pop_set_need_county_cost_prev value = 0 }
-	
-	pop_set_need_holding = yes
-	
-	set_variable = { name = pop_set_need_county_loop }
-	
-	while = {
-		limit = {
-			has_variable = pop_set_need_county_loop
-		}
-		set_variable = { name = pop_set_need_county_cost value = 0 }
-		
-		set_variable = { name = pop_set_need_county_t value = var:pop_calorie }
-		change_variable = { name = pop_set_need_county_t multiply = var:pop_calorie_cost }
-		change_variable = { name = pop_set_need_county_cost add = var:pop_set_need_county_t }
-		
-		set_variable = { name = pop_set_need_county_t value = var:pop_nutrient }
-		change_variable = { name = pop_set_need_county_t multiply = var:pop_nutrient_cost }
-		change_variable = { name = pop_set_need_county_cost add = var:pop_set_need_county_t }
-		
-		set_variable = { name = pop_set_need_county_t value = var:pop_comfort }
-		change_variable = { name = pop_set_need_county_t multiply = var:pop_comfort_cost }
-		change_variable = { name = pop_set_need_county_cost add = var:pop_set_need_county_t }
-		
-		set_variable = { name = pop_set_need_county_t value = var:pop_luxury }
-		change_variable = { name = pop_set_need_county_t multiply = var:pop_luxury_cost }
-		change_variable = { name = pop_set_need_county_cost add = var:pop_set_need_county_t }
-		
-		set_variable = { name = pop_set_need_county_wealth value = var:pop_wealth }
-		change_variable = { name = pop_set_need_county_wealth divide = 2 }
-		
-		if = {
-			limit = {
-				has_variable = pop_set_need_county_wealth
-				
-				var:pop_set_need_county_wealth = {
-					compare_value >= prev.var:pop_set_need_county_cost
-				}
-			}
-			change_variable = { name = pop_pay_level add = 1 }
-			
-			set_variable = { name = pop_set_need_county_calorie value = var:pop_calorie }
-			set_variable = { name = pop_set_need_county_nutrient value = var:pop_nutrient }
-			set_variable = { name = pop_set_need_county_comfort value = var:pop_comfort }
-			set_variable = { name = pop_set_need_county_luxury value = var:pop_luxury }
-			set_variable = { name = pop_set_need_county_cost_prev value = var:pop_set_need_county_cost }
-			
-			pop_set_need_holding = yes
-			
-			if = {
-				limit = {
-					var:pop_pay_level = 4
-				}
-				remove_variable = pop_set_need_county_loop
-			}
-		}
-		else = {
-			remove_variable = pop_set_need_county_loop
-			
-			set_variable = { name = pop_set_need_county_t value = var:pop_set_need_county_cost }
-			change_variable = { name = pop_set_need_county_t subtract = var:pop_set_need_county_cost_prev }
-			change_variable = { name = pop_set_need_county_wealth subtract = var:pop_set_need_county_cost_prev }
-			change_variable = { name = pop_set_need_county_wealth divide = var:pop_set_need_county_t }
-			
-			change_variable = { name = pop_calorie subtract = var:pop_set_need_county_calorie }
-			change_variable = { name = pop_nutrient subtract = var:pop_set_need_county_nutrient }
-			change_variable = { name = pop_comfort subtract = var:pop_set_need_county_comfort }
-			change_variable = { name = pop_luxury subtract = var:pop_set_need_county_luxury }
-			
-			change_variable = { name = pop_calorie multiply = var:pop_set_need_county_wealth }
-			change_variable = { name = pop_nutrient multiply = var:pop_set_need_county_wealth }
-			change_variable = { name = pop_comfort multiply = var:pop_set_need_county_wealth }
-			change_variable = { name = pop_luxury multiply = var:pop_set_need_county_wealth }
-			
-			change_variable = { name = pop_calorie add = var:pop_set_need_county_calorie }
-			change_variable = { name = pop_nutrient add = var:pop_set_need_county_nutrient }
-			change_variable = { name = pop_comfort add = var:pop_set_need_county_comfort }
-			change_variable = { name = pop_luxury add = var:pop_set_need_county_luxury }
-		}
-	}
-	
-	remove_variable = pop_set_need_county_calorie
-	remove_variable = pop_set_need_county_nutrient
-	remove_variable = pop_set_need_county_comfort
-	remove_variable = pop_set_need_county_luxury
-	remove_variable = pop_set_need_county_cost_prev
-	remove_variable = pop_set_need_county_cost
-	remove_variable = pop_set_need_county_t
-	remove_variable = pop_set_need_county_wealth
 }

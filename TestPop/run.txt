@@ -23,11 +23,11 @@ prod_new_instance = {
 	location = province:2563
 }
 prod_new_instance = {
-	template = cloth
+	template = sheep
 	location = province:2543
 }
 prod_new_instance = {
-	template = sheep
+	template = cloth
 	location = province:2543
 }
 
@@ -49,7 +49,7 @@ prod_new_instance = {
 }
 
 trade_new_merchant = {
-	location = province:2543.county
+	location = province:2543
 	tax = 0
 	wealth = 0
 	rank = 10
@@ -57,7 +57,7 @@ trade_new_merchant = {
 	outpost = 2
 }
 trade_new_merchant = {
-	location = province:1527.county
+	location = province:1527
 	tax = 0
 	wealth = 0
 	rank = 5
@@ -66,11 +66,12 @@ trade_new_merchant = {
 }
 
 province:2543.county = {
-	change_variable = { name = trade_price_fiber multiply = 2 }
-	change_variable = { name = trade_price_textile divide = 2 }
-	
+	change_variable = { name = trade_price_fiber multiply = 1.5 }
+	change_variable = { name = trade_price_textile divide = 1.5 }
+}
+province:2543 = {
 	var:trade_merchant = {
-		add_to_variable_list = { name = trade_outposts target = province:2115.county }
+		add_to_variable_list = { name = trade_outposts target = province:2115 }
 		
 		set_variable = { name = trade_has_fiber value = 20 }
 		set_variable = { name = trade_want_fiber value = 40 }
@@ -78,11 +79,11 @@ province:2543.county = {
 		set_variable = { name = trade_has_textile value = 20 }
 		set_variable = { name = trade_want_textile value = 40 }
 		
-		change_variable = { name = trade_price_fiber multiply = 1.5 }
-		change_variable = { name = trade_price_textile divide = 1.5 }
+		change_variable = { name = trade_price_fiber multiply = 1.25 }
+		change_variable = { name = trade_price_textile divide = 1.25 }
 	}
 }
-province:1527.county = {
+province:1527 = {
 	var:trade_merchant = {
 		set_variable = { name = trade_has_fiber value = 40 }
 		set_variable = { name = trade_want_fiber value = 80 }
@@ -90,21 +91,21 @@ province:1527.county = {
 		set_variable = { name = trade_has_textile value = 20 }
 		set_variable = { name = trade_want_textile value = 40 }
 		
-		change_variable = { name = trade_price_fiber divide = 1.5 }
-		change_variable = { name = trade_price_textile multiply = 1.5 }
+		change_variable = { name = trade_price_fiber divide = 1.25 }
+		change_variable = { name = trade_price_textile multiply = 1.25 }
 	}
 }
 province:1582.county = {
-	change_variable = { name = trade_price_fiber divide = 2 }
-	change_variable = { name = trade_price_textile multiply = 2 }
+	change_variable = { name = trade_price_fiber divide = 1.5 }
+	change_variable = { name = trade_price_textile multiply = 1.5 }
 }
 province:1561.county = {
-	change_variable = { name = trade_price_fiber divide = 2 }
-	change_variable = { name = trade_price_textile multiply = 2 }
+	change_variable = { name = trade_price_fiber divide = 1.5 }
+	change_variable = { name = trade_price_textile multiply = 1.5 }
 }
 province:1555.county = {
-	change_variable = { name = trade_price_fiber divide = 2 }
-	change_variable = { name = trade_price_textile multiply = 2 }
+	change_variable = { name = trade_price_fiber divide = 1.5 }
+	change_variable = { name = trade_price_textile multiply = 1.5 }
 }
 
 province:2543 = {
@@ -124,7 +125,7 @@ province:1555 = {
 }
 
 global_var:foo = {
-	set_variable = { name = prod_in_fiber which = prod_dmnd_fiber }
+	set_variable = { name = prod_in_fiber value = var:prod_dmnd_fiber }
 }
 
 province:2543 = {
@@ -143,20 +144,11 @@ province:1555 = {
 	prod_update_instances = yes
 }
 
-every_county = {
+every_province = {
 	limit = {
 		is_valid_prov = yes
 	}
-	pop_update_demand = { type = county }
-	
-	every_county_province = {
-		limit = {
-			is_valid_prov = yes
-			
-			is_city = yes
-		}
-		pop_update_demand = { type = holding }
-	}
+	pop_update_demand = yes
 }
 
 trade_do_trade = yes

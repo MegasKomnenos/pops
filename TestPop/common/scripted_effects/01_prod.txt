@@ -210,8 +210,6 @@ prod_update_instances = {
 	
 	every_province = {
 		limit = {
-			is_city = yes
-			
 			is_valid_prov = yes
 		}
 		prod_update_instances_helper_2 = { land = farm }
@@ -255,13 +253,13 @@ prod_update_instances = {
 prod_update_instances_helper_0 = {
 	if = {
 		limit = {
-			has_variable = trade_save_sply_$good$ 
+			has_variable = trade_sum_sply_$good$ 
 			has_variable = trade_has_$good$
 			
-			var:trade_save_sply_$good$ > 0
+			var:trade_sum_sply_$good$ > 0
 			var:trade_has_$good$ > 0
 		}
-		set_variable = { name = prod_update_instances_$good$ value = var:trade_save_sply_$good$ }
+		set_variable = { name = prod_update_instances_$good$ value = var:trade_sum_sply_$good$ }
 		change_variable = { name = prod_update_instances_$good$ divide = 2 }
 		change_variable = { name = prod_update_instances_$good$ divide = var:trade_has_$good$ }
 		

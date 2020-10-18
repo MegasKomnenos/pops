@@ -1,0 +1,16 @@
+﻿init_freedom = {
+	every_province = {
+		limit = {
+			is_valid_prov = yes
+		}
+		if = {
+			limit = {
+				is_city = yes
+			}
+			set_variable = { name = pop_freedom value = 0.5 }
+		}
+		else = {
+			set_variable = { name = pop_freedom value = 1 }
+		}
+	}
+}
