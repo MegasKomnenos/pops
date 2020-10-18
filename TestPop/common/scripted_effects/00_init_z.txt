@@ -25,6 +25,8 @@
 		get_land_cost = { return = prov_cost }
 	}
 	
+	set_global_variable = { name = trade_route_max value = 0 }
+	
 	every_county = {
 		limit = {
 			any_county_province = {
@@ -75,6 +77,8 @@
 			set_variable = { name = pop_wealth value = var:pop_total }
 			change_variable = { name = pop_wealth multiply = var:pop_freedom }
 			change_variable = { name = pop_wealth multiply = 8 }
+			
+			set_variable = { name = trade_route value = 0 }
 			
 			remove_variable = pop_weight
 			remove_variable = farm_score
