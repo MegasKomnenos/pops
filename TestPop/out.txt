@@ -46757,10 +46757,14 @@ while = {
 					has_variable = trade_route_t
 					var:trade_route_t > 0
 				}
-				save_temporary_scope_as = trade_route_t
+				var:trade_do_trade_prev = {
+					save_temporary_scope_as = trade_route_t
+				}
 				while = {
 					limit = {
-						scope:trade_route_t.var:trade_do_trade_prev != scope:trade_route_t
+						NOT = {
+							scope:trade_route_t.var:trade_do_trade_prev = scope:trade_route_t
+						}
 					}
 					scope:trade_route_t = {
 						if = {
@@ -46884,7 +46888,7 @@ every_province = {
 if = {
 	limit = {
 		has_global_variable = trade_route_max
-		var:trade_route_max > 0
+		global_var:trade_route_max > 0
 	}
 	every_province = {
 		limit = {
