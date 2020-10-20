@@ -1116,6 +1116,18 @@ trade_resolve_trade = {
 		change_variable = { name = pop_pay_serf subtract = var:trade_resolve_trade_t }
 		change_variable = { name = pop_pay_free add = var:trade_resolve_trade_t }
 		
+		set_variable = { name = trade_resolve_trade_t value = var:prod_earn_food }
+		change_variable = { name = trade_resolve_trade_t add = var:prod_earn_fiber }
+		change_variable = { name = trade_resolve_trade_t add = var:prod_earn_fuel }
+		change_variable = { name = trade_resolve_trade_t add = var:prod_earn_pottery }
+		change_variable = { name = trade_resolve_trade_t add = var:prod_earn_textile }
+		
+		set_variable = { name = pop_earn_free value = var:pop_freedom }
+		change_variable = { name = pop_earn_free multiply = var:trade_resolve_trade_t }
+		
+		set_variable = { name = pop_earn_serf value = var:trade_resolve_trade_t }
+		change_variable = { name = pop_earn_serf subtract = var:pop_earn_free }
+		
 		remove_variable = trade_resolve_trade_t
 		remove_variable = trade_resolve_trade_tt
 	}
