@@ -59,6 +59,39 @@ trade_pop_merchant = {
 	death = natural
 }
 
+trade_copy_merchant_data_to_holding = {
+	set_variable = { name = trade_price_food value = var:trade_merchant.var:trade_price_food }
+	set_variable = { name = trade_price_fuel value = var:trade_merchant.var:trade_price_fuel }
+	set_variable = { name = trade_price_fiber value = var:trade_merchant.var:trade_price_fiber }
+	set_variable = { name = trade_price_pottery value = var:trade_merchant.var:trade_price_pottery }
+	set_variable = { name = trade_price_textile value = var:trade_merchant.var:trade_price_textile }
+	
+	set_variable = { name = trade_has_food value = var:trade_merchant.var:trade_has_food }
+	set_variable = { name = trade_has_fuel value = var:trade_merchant.var:trade_has_fuel }
+	set_variable = { name = trade_has_fiber value = var:trade_merchant.var:trade_has_fiber }
+	set_variable = { name = trade_has_pottery value = var:trade_merchant.var:trade_has_pottery }
+	set_variable = { name = trade_has_textile value = var:trade_merchant.var:trade_has_textile }
+	
+	set_variable = { name = trade_earn_food value = var:trade_merchant.var:trade_earn_food }
+	set_variable = { name = trade_earn_fuel value = var:trade_merchant.var:trade_earn_fuel }
+	set_variable = { name = trade_earn_fiber value = var:trade_merchant.var:trade_earn_fiber }
+	set_variable = { name = trade_earn_pottery value = var:trade_merchant.var:trade_earn_pottery }
+	set_variable = { name = trade_earn_textile value = var:trade_merchant.var:trade_earn_textile }
+	
+	set_variable = { name = trade_pay_food value = var:trade_merchant.var:trade_pay_food }
+	set_variable = { name = trade_pay_fuel value = var:trade_merchant.var:trade_pay_fuel }
+	set_variable = { name = trade_pay_fiber value = var:trade_merchant.var:trade_pay_fiber }
+	set_variable = { name = trade_pay_pottery value = var:trade_merchant.var:trade_pay_pottery }
+	set_variable = { name = trade_pay_textile value = var:trade_merchant.var:trade_pay_textile }
+	
+	set_variable = { name = trade_rank value = var:trade_merchant.var:trade_rank }
+	set_variable = { name = trade_skill value = var:trade_merchant.var:trade_skill }
+	set_variable = { name = trade_outposts_max value = var:trade_merchant.var:trade_outposts_max }
+	set_variable = { name = trade_wealth value = var:trade_merchant.var:trade_wealth }
+	set_variable = { name = trade_earn value = var:trade_merchant.var:trade_earn }
+	set_variable = { name = trade_pay value = var:trade_merchant.var:trade_pay }
+}
+
 trade_do_trade = {
 	every_county = {
 		limit = {
