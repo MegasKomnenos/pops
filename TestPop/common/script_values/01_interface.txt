@@ -1,0 +1,106 @@
+﻿county_pop_total = {
+	value = 0
+	every_in_de_facto_hierarchy = {
+		limit = { tier = tier_barony }
+		title_province = {
+			add = var:pop_total
+		}
+	}
+}
+
+county_land_total = {
+	value = 0
+	every_in_de_facto_hierarchy = {
+		limit = { tier = tier_barony }
+		title_province = {
+			add = var:farm_total
+			add = var:forest_total
+			add = var:pasture_total
+		}
+	}
+}
+
+province_land_total = {
+	value = 0
+	add = var:farm_total
+	add = var:forest_total
+	add = var:pasture_total
+}
+
+county_trade_route = {
+	value = 0
+	every_in_de_facto_hierarchy = {
+		limit = { tier = tier_barony }
+		title_province = {
+			add = var:trade_route
+		}
+	}
+}
+
+province_trade_route = {
+	value = var:trade_route
+}
+
+province_pop_total = {
+	value = var:pop_total
+}
+
+county_farm_total = {
+	value = 0
+	every_in_de_facto_hierarchy = {
+		limit = { tier = tier_barony }
+		title_province = {
+			add = var:farm_total
+		}
+	}
+}
+
+province_farm_total = {
+	value = var:farm_total
+}
+
+county_forest_total = {
+	value = 0
+	every_in_de_facto_hierarchy = {
+		limit = { tier = tier_barony }
+		title_province = {
+			add = var:forest_total
+		}
+	}
+}
+
+province_forest_total = {
+	value = var:forest_total
+}
+
+county_pasture_total = {
+	value = 0
+	every_in_de_facto_hierarchy = {
+		limit = { tier = tier_barony }
+		title_province = {
+			add = var:pasture_total
+		}
+	}
+}
+
+province_pasture_total = {
+	value = var:pasture_total
+}
+
+county_workshop_total = {
+	value = 0
+	every_in_de_facto_hierarchy = {
+		limit = { tier = tier_barony }
+		title_province = {
+			add = var:workshop_total
+		}
+	}
+}
+
+province_workshop_total = {
+	value = var:workshop_total
+}
+
+province_pop_freedom = {
+	value = var:pop_freedom
+}
