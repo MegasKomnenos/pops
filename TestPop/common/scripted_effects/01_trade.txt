@@ -177,6 +177,7 @@ trade_do_trade = {
 		
 		set_variable = { name = trade_power value = var:trade_rank }
 		change_variable = { name = trade_power multiply = var:trade_skill }
+		change_variable = { name = trade_power divide = 100 }
 	}
 	
 	every_province = {
@@ -391,6 +392,8 @@ trade_do_trade = {
 					change_variable = { name = trade_sum_sell_pottery add = prev.var:trade_sell_pottery }
 					change_variable = { name = trade_sum_sell_textile add = prev.var:trade_sell_textile }
 				}
+				
+				change_variable = { name = trade_cost divide = 100 }
 			}
 			
 			set_variable = { name = trade_cost value = 0 }
