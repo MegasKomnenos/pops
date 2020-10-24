@@ -1,0 +1,529 @@
+﻿init_industry_templates = {
+	prod_new_template = {
+		name = crop
+		land_type = farm
+		labor = 0.4
+		land = 0.6
+		sply_food = 2
+	}
+	prod_new_template = {
+		name = fiber
+		land_type = farm
+		labor = 0.6
+		land = 0.4
+		sply_fiber = 1.5
+	}
+	prod_new_template = {
+		name = livestock
+		land_type = pasture
+		labor = 0.3
+		land = 0.7
+		sply_food = 1
+		sply_fiber = 0.5
+	}
+	prod_new_template = {
+		name = wool
+		land_type = pasture
+		labor = 0.3
+		land = 0.7
+		sply_food = 0.5
+		sply_fiber = 1
+	}
+	prod_new_template = {
+		name = nomadic
+		land_type = pasture
+		labor = 0.3
+		land = 0.7
+		sply_food = 0.8
+		sply_salt = 0.4
+		sply_fiber = 0.1
+		sply_fuel = 0.1
+		sply_timber = 0.1
+		sply_metal = 0.1
+	}
+	prod_new_template = {
+		name = seasalt
+		land_type = extraction
+		labor = 0.3
+		land = 0.7
+		sply_salt = 1
+	}
+	prod_new_template = {
+		name = rocksalt
+		land_type = extraction
+		labor = 0.2
+		land = 0.8
+		sply_salt = 1.5
+	}
+	prod_new_template = {
+		name = timber
+		land_type = forest
+		labor = 0.3
+		land = 0.7
+		sply_timber = 1.5
+	}
+	prod_new_template = {
+		name = charcoal
+		land_type = forest
+		labor = 0.3
+		land = 0.7
+		sply_fuel = 1.5
+	}
+	prod_new_template = {
+		name = bog
+		land_type = forest
+		labor = 0.6
+		land = 0.4
+		sply_metal = 0.5
+	}
+	prod_new_template = {
+		name = hunting
+		land_type = forest
+		labor = 0.2
+		land = 0.8
+		sply_food = 0.6
+		sply_salt = 0.2
+		sply_fiber = 0.4
+		sply_exotics_g = 0.3
+	}
+	prod_new_template = {
+		name = metal
+		land_type = extraction
+		labor = 0.2
+		land = 0.8
+		sply_metal = 1.5
+	}
+	prod_new_template = {
+		name = gold
+		land_type = extraction
+		labor = 0.2
+		land = 0.8
+		sply_exotics_g = 1
+	}
+	prod_new_template = {
+		name = silver
+		land_type = extraction
+		labor = 0.2
+		land = 0.8
+		sply_exotics_g = 0.8
+	}
+	prod_new_template = {
+		name = gems
+		land_type = extraction
+		labor = 0.2
+		land = 0.8
+		sply_exotics_g = 0.6
+	}
+	prod_new_template = {
+		name = ivory
+		land_type = extraction
+		labor = 0.2
+		land = 0.8
+		sply_exotics_g = 1
+	}
+	prod_new_template = {
+		name = pearls
+		land_type = extraction
+		labor = 0.2
+		land = 0.8
+		sply_exotics_g = 1
+	}
+	prod_new_template = {
+		name = dye
+		land_type = extraction
+		labor = 0.2
+		land = 0.8
+		sply_exotics_g = 1
+	}
+	prod_new_template = {
+		name = spices
+		land_type = farm
+		labor = 0.2
+		land = 0.8
+		sply_exotics_e = 2
+	}
+	prod_new_template = {
+		name = sugar
+		land_type = farm
+		labor = 0.2
+		land = 0.8
+		sply_exotics_e = 1
+	}
+	prod_new_template = {
+		name = wine
+		land_type = farm
+		labor = 0.2
+		land = 0.8
+		sply_exotics_w = 1
+	}
+	prod_new_template = {
+		name = textile
+		land_type = workshop
+		labor = 0.5
+		land = 0.5
+		sply_textile = 2
+		dmnd_fiber = 2
+	}
+	prod_new_template = {
+		name = pottery
+		land_type = workshop
+		labor = 0.5
+		land = 0.5
+		sply_pottery = 2
+		dmnd_fuel = 2
+	}
+	prod_new_template = {
+		name = furniture
+		land_type = workshop
+		labor = 0.5
+		land = 0.5
+		sply_furniture = 2
+		dmnd_timber = 1.5
+		dmnd_metal = 0.5
+	}
+}
+
+init_industry = {
+	province:2517 = {
+		set_variable = { name = has_Seasalt value = 1 }
+	}
+	
+	every_province = {
+		limit = {
+			is_valid_prov = yes
+		}
+		save_temporary_scope_as = init_industry_select
+		
+		if = {
+			limit = {
+				has_variable = has_Food
+			}
+			remove_variable = has_Food
+			
+			prod_new_instance = {
+				template = crop
+				location = scope:init_industry_select
+			}
+		}
+		if = {
+			limit = {
+				has_variable = has_Fiber
+			}
+			remove_variable = has_Fiber
+			
+			prod_new_instance = {
+				template = fiber
+				location = scope:init_industry_select
+			}
+		}
+		if = {
+			limit = {
+				has_variable = has_Pasture
+			}
+			remove_variable = has_Pasture
+			
+			prod_new_instance = {
+				template = livestock
+				location = scope:init_industry_select
+			}
+			prod_new_instance = {
+				template = wool
+				location = scope:init_industry_select
+			}
+		}
+		if = {
+			limit = {
+				has_variable = has_Nomad
+			}
+			remove_variable = has_Nomad
+			
+			prod_new_instance = {
+				template = nomadic
+				location = scope:init_industry_select
+			}
+		}
+		if = {
+			limit = {
+				has_variable = has_Salt
+			}
+			remove_variable = has_Salt
+			
+			if = {
+				limit = {
+					has_variable = extraction_total
+					
+					var:extraction_total > 0
+				}
+				prod_new_instance = {
+					template = rocksalt
+					location = scope:init_industry_select
+				}
+			}
+		}
+		if = {
+			limit = {
+				has_variable = has_Metal
+			}
+			remove_variable = has_Metal
+			
+			if = {
+				limit = {
+					has_variable = extraction_total
+					
+					var:extraction_total > 0
+				}
+				prod_new_instance = {
+					template = metal
+					location = scope:init_industry_select
+				}
+			}
+		}
+		if = {
+			limit = {
+				has_variable = has_Gold
+			}
+			remove_variable = has_Gold
+			
+			if = {
+				limit = {
+					has_variable = extraction_total
+					
+					var:extraction_total > 0
+				}
+				prod_new_instance = {
+					template = gold
+					location = scope:init_industry_select
+				}
+			}
+		}
+		if = {
+			limit = {
+				has_variable = has_Silver
+			}
+			remove_variable = has_Silver
+			
+			if = {
+				limit = {
+					has_variable = extraction_total
+					
+					var:extraction_total > 0
+				}
+				prod_new_instance = {
+					template = silver
+					location = scope:init_industry_select
+				}
+			}
+		}
+		if = {
+			limit = {
+				has_variable = has_Gems
+			}
+			remove_variable = has_Gems
+			
+			if = {
+				limit = {
+					has_variable = extraction_total
+					
+					var:extraction_total > 0
+				}
+				prod_new_instance = {
+					template = gems
+					location = scope:init_industry_select
+				}
+			}
+		}
+		if = {
+			limit = {
+				has_variable = has_Ivory
+			}
+			remove_variable = has_Ivory
+			
+			if = {
+				limit = {
+					has_variable = extraction_total
+					
+					var:extraction_total > 0
+				}
+				prod_new_instance = {
+					template = ivory
+					location = scope:init_industry_select
+				}
+			}
+		}
+		if = {
+			limit = {
+				has_variable = has_Pearls
+			}
+			remove_variable = has_Pearls
+			
+			if = {
+				limit = {
+					has_variable = extraction_total
+					
+					var:extraction_total > 0
+				}
+				prod_new_instance = {
+					template = pearls
+					location = scope:init_industry_select
+				}
+			}
+		}
+		if = {
+			limit = {
+				OR = {
+					has_variable = has_Seasalt
+					
+					var:prov_sea = 2
+				}
+			}
+			pow_effect = {
+				inp = var:prov_size
+				exp = 0.5
+				return = init_industry_t
+			}
+			
+			if = {
+				limit = {
+					has_variable = has_Seasalt
+				}
+				remove_variable = has_Seasalt
+				
+				change_variable = { name = init_industry_t multiply = 5 }
+			}
+			if = {
+				limit = {
+					var:prov_sea = 2
+				}
+				if = {
+					limit = {
+						NOT = {
+							has_variable = extraction_total
+						}
+					}
+					set_variable = { name = extraction_total value = 0 }
+				}
+				
+				change_variable = { name = extraction_total add = var:init_industry_t }
+				
+				prod_new_instance = {
+					template = seasalt
+					location = scope:init_industry_select
+				}
+			}
+			
+			remove_variable = init_industry_t
+		}
+		if = {
+			limit = {
+				has_variable = has_Dye
+			}
+			remove_variable = has_Dye
+			
+			if = {
+				limit = {
+					NOT = {
+						has_variable = extraction_total
+					}
+				}
+				set_variable = { name = extraction_total value = 0 }
+			}
+			
+			change_variable = { name = extraction_total add = 40 }
+			
+			prod_new_instance = {
+				template = dye
+				location = scope:init_industry_select
+			}
+		}
+		if = {
+			limit = {
+				has_variable = has_Game
+			}
+			remove_variable = has_Game
+			
+			if = {
+				limit = {
+					has_variable = forest_total
+					
+					var:forest_total > 0
+				}
+				prod_new_instance = {
+					template = hunting
+					location = scope:init_industry_select
+				}
+			}
+		}
+		if = {
+			limit = {
+				has_variable = forest_total
+				
+				var:forest_total > 0
+			}
+			prod_new_instance = {
+				template = timber
+				location = scope:init_industry_select
+			}
+			prod_new_instance = {
+				template = charcoal
+				location = scope:init_industry_select
+			}
+			prod_new_instance = {
+				template = bog
+				location = scope:init_industry_select
+			}
+		}
+		if = {
+			limit = {
+				has_variable = has_CashcropWest
+			}
+			remove_variable = has_CashcropWest
+			
+			prod_new_instance = {
+				template = wine
+				location = scope:init_industry_select
+			}
+		}
+		if = {
+			limit = {
+				has_variable = has_CashcropEast
+			}
+			remove_variable = has_CashcropEast
+			
+			prod_new_instance = {
+				template = sugar
+				location = scope:init_industry_select
+			}
+		}
+		if = {
+			limit = {
+				has_variable = has_Spices
+			}
+			remove_variable = has_Spices
+			
+			prod_new_instance = {
+				template = spices
+				location = scope:init_industry_select
+			}
+		}
+		
+		if = {
+			limit = {
+				has_variable = workshop_total
+				
+				var:workshop_total > 0
+			}
+			prod_new_instance = {
+				template = textile
+				location = scope:init_industry_select
+			}
+			prod_new_instance = {
+				template = pottery
+				location = scope:init_industry_select
+			}
+			prod_new_instance = {
+				template = furniture
+				location = scope:init_industry_select
+			}
+		}
+	}
+}
