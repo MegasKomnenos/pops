@@ -9,7 +9,7 @@ window = {
 	allow_outside = yes
 	movable = no
 	layer = windows_layer
-	size = { 625 666 }
+	size = { 625 694 }
 	datacontext = "[HoldingView.GetHolding]"
 	datacontext = "[HoldingView.GetProvince]"
 	datacontext = "[Province.GetCounty]"
@@ -405,6 +405,22 @@ window = {
 
 						text_single = {
 							layoutpolicy_horizontal = expanding
+							text = "CAPITAL_CONCEPT_ALT"
+						}
+
+						text_single = {
+							text = "[HoldingView.GetProvince.GetCountyCapitalProvince.GetNameNoTooltip]"
+							datacontext = "[HoldingView.GetProvince.GetCountyCapitalProvince.GetHolding]"
+							default_format = "#high"
+							tooltipwidget = { holding_tooltip_click = {} }
+						}
+					}
+
+					hbox = {
+						layoutpolicy_horizontal = expanding
+
+						text_single = {
+							layoutpolicy_horizontal = expanding
 							text = "[control|E]:"
 						}
 
@@ -452,42 +468,6 @@ window = {
 							tooltip = "COUNTY_OPINION_TOOLTIP"
 						}
 					}
-
-					hbox = {
-						layoutpolicy_horizontal = expanding
-
-						text_single = {
-							layoutpolicy_horizontal = expanding
-							text = "[modifiers|E]:"
-						}
-
-						hbox = {
-							datamodel = "[HoldingView.GetCountyModifiers]"
-							margin_bottom = -10
-							margin_right = -2
-
-							hbox = {
-								margin_top = -10
-								text_single = {
-									layoutpolicy_horizontal = expanding
-									text = "NO_MODIFIERS_TEXT"
-									default_format = "#high"
-									datamodel = "[HoldingView.GetCountyModifiers]"
-									visible = "[IsDataModelEmpty( HoldingView.GetCountyModifiers )]"
-								}
-							}
-
-							item = {
-								size = { 18 18 }
-								icon = {
-									size = { 18 18 }
-									texture = "[ModifierItem.GetIcon]"
-									using = tooltip_ne
-									tooltip = "[ModifierItem.GetTooltip]"
-								}
-							}
-						}
-					}
 				}
 
 				expand = { }
@@ -525,6 +505,7 @@ window = {
 						text_single = {
 							text = "[HoldingView.GetCountyTitle.Custom('CountyPopTotal')|v]"
 							default_format = "#high"
+							tooltip = "POPULATION_VALUE_TOOLTIP"
 						}
 					}
 					
@@ -539,24 +520,7 @@ window = {
 						text_single = {
 							text = "[HoldingView.GetCountyTitle.Custom('CountyLandTotal')|v]"
 							default_format = "#high"
-							tooltip = "TOTAL_LAND_LABEL_TOOLTIP"
-						}
-					}
-
-					hbox = {
-						layoutpolicy_horizontal = expanding
-						spacing = 3
-						allow_outside = yes
-
-						text_single = {
-							layoutpolicy_horizontal = expanding
-							text = "WORKSHOP_LABEL"
-						}
-
-						text_single = {
-							text = "[HoldingView.GetCountyTitle.Custom('CountyWorkshopTotal')|v]"
-							default_format = "#high"
-							tooltip = "WORKSHOP_LABEL_TOOLTIP"
+							tooltip = "TOTAL_LAND_VALUE_TOOLTIP"
 						}
 					}
 					
@@ -572,6 +536,42 @@ window = {
 							text = "[HoldingView.GetCountyTitle.Custom('CountyTradeRoute')|v]"
 							default_format = "#high"
 							tooltip = "TRADE_ROUTE_LABEL_TOOLTIP"
+						}
+					}
+
+					hbox = {
+						layoutpolicy_horizontal = expanding
+
+						text_single = {
+							layoutpolicy_horizontal = expanding
+							text = "[modifiers|E]:"
+						}
+
+						hbox = {
+							datamodel = "[HoldingView.GetCountyModifiers]"
+							margin_bottom = -10
+							margin_right = -2
+
+							hbox = {
+								margin_top = -10
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									text = "NO_MODIFIERS_TEXT"
+									default_format = "#high"
+									datamodel = "[HoldingView.GetCountyModifiers]"
+									visible = "[IsDataModelEmpty( HoldingView.GetCountyModifiers )]"
+								}
+							}
+
+							item = {
+								size = { 18 18 }
+								icon = {
+									size = { 18 18 }
+									texture = "[ModifierItem.GetIcon]"
+									using = tooltip_ne
+									tooltip = "[ModifierItem.GetTooltip]"
+								}
+							}
 						}
 					}
 				}
@@ -882,7 +882,7 @@ window = {
 			### TOP LEFT
 			hbox = {
 				parentanchor = top|left
-				position = { 8 -110 }
+				position = { 8 -122 }
 				visible = "[HoldingView.GetTitle.HasHolder]"
 				max_width = 430
 				layoutpolicy_horizontal = expanding
@@ -898,7 +898,7 @@ window = {
 				}
 
 				hbox = {
-					margin_left = -78
+					margin_left = -79
 					margin_right = -6
 					margin_top = -78
 					allow_outside = yes
@@ -1299,11 +1299,14 @@ window = {
 						text_single = {
 							text = "[HoldingView.GetProvince.Custom('ProvincePopTotal')|v]"
 							default_format = "#high"
+							tooltip = "POPULATION_VALUE_TOOLTIP"
 						}
 					}
 				
 					hbox = {
 						layoutpolicy_horizontal = expanding
+						margin = { 2 0 }
+						spacing = 3
 
 						text_single = {
 							layoutpolicy_horizontal = expanding
@@ -1313,30 +1316,80 @@ window = {
 						text_single = {
 							text = "[HoldingView.GetProvince.Custom('ProvinceLandTotal')|v]"
 							default_format = "#high"
-							tooltip = "TOTAL_LAND_LABEL_PROVINCE_TOOLTIP"
+							tooltip = "TOTAL_LAND_VALUE_PROVINCE_TOOLTIP"
+						}
+					}
+				
+					hbox = {
+						visible = "[HoldingView.HasHolding]"
+						layoutpolicy_horizontal = expanding
+						margin = { 2 0 }
+						spacing = 3
+
+						text_single = {
+							layoutpolicy_horizontal = expanding
+							text = "GOODS_LABEL"
+						}
+
+						flowcontainer = {
+							righttoleft = yes
+							ignoreinvisible = yes
+							margin_bottom = -8
+							margin_right = -4
+
+							icon = {
+								datacontext = "[GetScriptedGui( 'province_has_food' )]"
+								visible = "[ScriptedGui.IsValid( GuiScope.SetRoot( GetPlayer.MakeScope ).AddScope( 'province', HoldingView.GetProvince.MakeScope ).End ) ]"
+					
+								size = { 20 20 }
+								texture = "gfx/interface/icons/icon_supply.dds"
+								tooltip = "GOOD_FOOD_TOOLTIP"
+							}
+
+							icon = {
+								datacontext = "[GetScriptedGui( 'province_has_fiber' )]"
+								visible = "[ScriptedGui.IsValid( GuiScope.SetRoot( GetPlayer.MakeScope ).AddScope( 'province', HoldingView.GetProvince.MakeScope ).End ) ]"
+					
+								size = { 20 20 }
+								texture = "gfx/interface/icons/icon_supply.dds"
+								tooltip = "GOOD_FIBER_TOOLTIP"
+							}
+
+							icon = {
+								datacontext = "[GetScriptedGui( 'province_has_salt' )]"
+								visible = "[ScriptedGui.IsValid( GuiScope.SetRoot( GetPlayer.MakeScope ).AddScope( 'province', HoldingView.GetProvince.MakeScope ).End ) ]"
+					
+								size = { 20 20 }
+								texture = "gfx/interface/icons/icon_supply.dds"
+								tooltip = "GOOD_SALT_TOOLTIP"
+							}
 						}
 					}
 
 					hbox = {
 						visible = "[HoldingView.HasHolding]"
 						layoutpolicy_horizontal = expanding
+						margin = { 2 0 }
 						spacing = 3
 						allow_outside = yes
 
 						text_single = {
 							layoutpolicy_horizontal = expanding
-							text = "WORKSHOP_LABEL"
+							text = "EXTRACTION_LABEL"
+							margin_right = -2
 						}
 
 						text_single = {
-							text = "[HoldingView.GetProvince.Custom('ProvinceWorkshopTotal')|v]"
+							text = "[HoldingView.GetProvince.Custom('ProvinceExtraction')|v]"
 							default_format = "#high"
-							tooltip = "WORKSHOP_LABEL_TOOLTIP"
+							tooltip = "EXTRACTION_LABEL_TOOLTIP"
 						}
 					}
 					
 					hbox = {
 						layoutpolicy_horizontal = expanding
+						margin = { 2 0 }
+						spacing = 3
 
 						text_single = {
 							layoutpolicy_horizontal = expanding
