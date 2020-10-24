@@ -1018,611 +1018,6 @@
 		}
 	}
 }
-every_county = { 
-	limit = { 
-		is_valid_prov = yes
-	}
-	if = { 
-		limit = { 
-			has_variable = trade_sum_sply_food
-			has_variable = trade_has_food
-			var:trade_sum_sply_food > 0
-			var:trade_has_food > 0
-		}
-		set_variable = { 
-			name = prod_update_instances_food
-			value = var:trade_sum_sply_food
-		}
-		change_variable = { 
-			name = prod_update_instances_food
-			divide = 2
-		}
-		change_variable = { 
-			name = prod_update_instances_food
-			divide = var:trade_has_food
-		}
-		if = { 
-			limit = { 
-				has_variable = prod_update_instances_food
-				var:prod_update_instances_food > 1
-			}
-			set_variable = { 
-				name = prod_update_instances_food
-				value = 1
-			}
-		}
-		else = { 
-			change_variable = { 
-				name = prod_update_instances_food
-				add = 0.25
-			}
-			change_variable = { 
-				name = prod_update_instances_food
-				divide = 1.25
-			}
-		}
-	}
-	else = { 
-		set_variable = { 
-			name = prod_update_instances_food
-			value = 1
-		}
-	}
-	change_variable = { 
-		name = prod_update_instances_food
-		multiply = var:trade_price_food
-	}
-	if = { 
-		limit = { 
-			has_variable = trade_sum_sply_salt
-			has_variable = trade_has_salt
-			var:trade_sum_sply_salt > 0
-			var:trade_has_salt > 0
-		}
-		set_variable = { 
-			name = prod_update_instances_salt
-			value = var:trade_sum_sply_salt
-		}
-		change_variable = { 
-			name = prod_update_instances_salt
-			divide = 2
-		}
-		change_variable = { 
-			name = prod_update_instances_salt
-			divide = var:trade_has_salt
-		}
-		if = { 
-			limit = { 
-				has_variable = prod_update_instances_salt
-				var:prod_update_instances_salt > 1
-			}
-			set_variable = { 
-				name = prod_update_instances_salt
-				value = 1
-			}
-		}
-		else = { 
-			change_variable = { 
-				name = prod_update_instances_salt
-				add = 0.25
-			}
-			change_variable = { 
-				name = prod_update_instances_salt
-				divide = 1.25
-			}
-		}
-	}
-	else = { 
-		set_variable = { 
-			name = prod_update_instances_salt
-			value = 1
-		}
-	}
-	change_variable = { 
-		name = prod_update_instances_salt
-		multiply = var:trade_price_salt
-	}
-	if = { 
-		limit = { 
-			has_variable = trade_sum_sply_fuel
-			has_variable = trade_has_fuel
-			var:trade_sum_sply_fuel > 0
-			var:trade_has_fuel > 0
-		}
-		set_variable = { 
-			name = prod_update_instances_fuel
-			value = var:trade_sum_sply_fuel
-		}
-		change_variable = { 
-			name = prod_update_instances_fuel
-			divide = 2
-		}
-		change_variable = { 
-			name = prod_update_instances_fuel
-			divide = var:trade_has_fuel
-		}
-		if = { 
-			limit = { 
-				has_variable = prod_update_instances_fuel
-				var:prod_update_instances_fuel > 1
-			}
-			set_variable = { 
-				name = prod_update_instances_fuel
-				value = 1
-			}
-		}
-		else = { 
-			change_variable = { 
-				name = prod_update_instances_fuel
-				add = 0.25
-			}
-			change_variable = { 
-				name = prod_update_instances_fuel
-				divide = 1.25
-			}
-		}
-	}
-	else = { 
-		set_variable = { 
-			name = prod_update_instances_fuel
-			value = 1
-		}
-	}
-	change_variable = { 
-		name = prod_update_instances_fuel
-		multiply = var:trade_price_fuel
-	}
-	if = { 
-		limit = { 
-			has_variable = trade_sum_sply_fiber
-			has_variable = trade_has_fiber
-			var:trade_sum_sply_fiber > 0
-			var:trade_has_fiber > 0
-		}
-		set_variable = { 
-			name = prod_update_instances_fiber
-			value = var:trade_sum_sply_fiber
-		}
-		change_variable = { 
-			name = prod_update_instances_fiber
-			divide = 2
-		}
-		change_variable = { 
-			name = prod_update_instances_fiber
-			divide = var:trade_has_fiber
-		}
-		if = { 
-			limit = { 
-				has_variable = prod_update_instances_fiber
-				var:prod_update_instances_fiber > 1
-			}
-			set_variable = { 
-				name = prod_update_instances_fiber
-				value = 1
-			}
-		}
-		else = { 
-			change_variable = { 
-				name = prod_update_instances_fiber
-				add = 0.25
-			}
-			change_variable = { 
-				name = prod_update_instances_fiber
-				divide = 1.25
-			}
-		}
-	}
-	else = { 
-		set_variable = { 
-			name = prod_update_instances_fiber
-			value = 1
-		}
-	}
-	change_variable = { 
-		name = prod_update_instances_fiber
-		multiply = var:trade_price_fiber
-	}
-	if = { 
-		limit = { 
-			has_variable = trade_sum_sply_timber
-			has_variable = trade_has_timber
-			var:trade_sum_sply_timber > 0
-			var:trade_has_timber > 0
-		}
-		set_variable = { 
-			name = prod_update_instances_timber
-			value = var:trade_sum_sply_timber
-		}
-		change_variable = { 
-			name = prod_update_instances_timber
-			divide = 2
-		}
-		change_variable = { 
-			name = prod_update_instances_timber
-			divide = var:trade_has_timber
-		}
-		if = { 
-			limit = { 
-				has_variable = prod_update_instances_timber
-				var:prod_update_instances_timber > 1
-			}
-			set_variable = { 
-				name = prod_update_instances_timber
-				value = 1
-			}
-		}
-		else = { 
-			change_variable = { 
-				name = prod_update_instances_timber
-				add = 0.25
-			}
-			change_variable = { 
-				name = prod_update_instances_timber
-				divide = 1.25
-			}
-		}
-	}
-	else = { 
-		set_variable = { 
-			name = prod_update_instances_timber
-			value = 1
-		}
-	}
-	change_variable = { 
-		name = prod_update_instances_timber
-		multiply = var:trade_price_timber
-	}
-	if = { 
-		limit = { 
-			has_variable = trade_sum_sply_metal
-			has_variable = trade_has_metal
-			var:trade_sum_sply_metal > 0
-			var:trade_has_metal > 0
-		}
-		set_variable = { 
-			name = prod_update_instances_metal
-			value = var:trade_sum_sply_metal
-		}
-		change_variable = { 
-			name = prod_update_instances_metal
-			divide = 2
-		}
-		change_variable = { 
-			name = prod_update_instances_metal
-			divide = var:trade_has_metal
-		}
-		if = { 
-			limit = { 
-				has_variable = prod_update_instances_metal
-				var:prod_update_instances_metal > 1
-			}
-			set_variable = { 
-				name = prod_update_instances_metal
-				value = 1
-			}
-		}
-		else = { 
-			change_variable = { 
-				name = prod_update_instances_metal
-				add = 0.25
-			}
-			change_variable = { 
-				name = prod_update_instances_metal
-				divide = 1.25
-			}
-		}
-	}
-	else = { 
-		set_variable = { 
-			name = prod_update_instances_metal
-			value = 1
-		}
-	}
-	change_variable = { 
-		name = prod_update_instances_metal
-		multiply = var:trade_price_metal
-	}
-	if = { 
-		limit = { 
-			has_variable = trade_sum_sply_exotics_w
-			has_variable = trade_has_exotics_w
-			var:trade_sum_sply_exotics_w > 0
-			var:trade_has_exotics_w > 0
-		}
-		set_variable = { 
-			name = prod_update_instances_exotics_w
-			value = var:trade_sum_sply_exotics_w
-		}
-		change_variable = { 
-			name = prod_update_instances_exotics_w
-			divide = 2
-		}
-		change_variable = { 
-			name = prod_update_instances_exotics_w
-			divide = var:trade_has_exotics_w
-		}
-		if = { 
-			limit = { 
-				has_variable = prod_update_instances_exotics_w
-				var:prod_update_instances_exotics_w > 1
-			}
-			set_variable = { 
-				name = prod_update_instances_exotics_w
-				value = 1
-			}
-		}
-		else = { 
-			change_variable = { 
-				name = prod_update_instances_exotics_w
-				add = 0.25
-			}
-			change_variable = { 
-				name = prod_update_instances_exotics_w
-				divide = 1.25
-			}
-		}
-	}
-	else = { 
-		set_variable = { 
-			name = prod_update_instances_exotics_w
-			value = 1
-		}
-	}
-	change_variable = { 
-		name = prod_update_instances_exotics_w
-		multiply = var:trade_price_exotics_w
-	}
-	if = { 
-		limit = { 
-			has_variable = trade_sum_sply_exotics_e
-			has_variable = trade_has_exotics_e
-			var:trade_sum_sply_exotics_e > 0
-			var:trade_has_exotics_e > 0
-		}
-		set_variable = { 
-			name = prod_update_instances_exotics_e
-			value = var:trade_sum_sply_exotics_e
-		}
-		change_variable = { 
-			name = prod_update_instances_exotics_e
-			divide = 2
-		}
-		change_variable = { 
-			name = prod_update_instances_exotics_e
-			divide = var:trade_has_exotics_e
-		}
-		if = { 
-			limit = { 
-				has_variable = prod_update_instances_exotics_e
-				var:prod_update_instances_exotics_e > 1
-			}
-			set_variable = { 
-				name = prod_update_instances_exotics_e
-				value = 1
-			}
-		}
-		else = { 
-			change_variable = { 
-				name = prod_update_instances_exotics_e
-				add = 0.25
-			}
-			change_variable = { 
-				name = prod_update_instances_exotics_e
-				divide = 1.25
-			}
-		}
-	}
-	else = { 
-		set_variable = { 
-			name = prod_update_instances_exotics_e
-			value = 1
-		}
-	}
-	change_variable = { 
-		name = prod_update_instances_exotics_e
-		multiply = var:trade_price_exotics_e
-	}
-	if = { 
-		limit = { 
-			has_variable = trade_sum_sply_exotics_g
-			has_variable = trade_has_exotics_g
-			var:trade_sum_sply_exotics_g > 0
-			var:trade_has_exotics_g > 0
-		}
-		set_variable = { 
-			name = prod_update_instances_exotics_g
-			value = var:trade_sum_sply_exotics_g
-		}
-		change_variable = { 
-			name = prod_update_instances_exotics_g
-			divide = 2
-		}
-		change_variable = { 
-			name = prod_update_instances_exotics_g
-			divide = var:trade_has_exotics_g
-		}
-		if = { 
-			limit = { 
-				has_variable = prod_update_instances_exotics_g
-				var:prod_update_instances_exotics_g > 1
-			}
-			set_variable = { 
-				name = prod_update_instances_exotics_g
-				value = 1
-			}
-		}
-		else = { 
-			change_variable = { 
-				name = prod_update_instances_exotics_g
-				add = 0.25
-			}
-			change_variable = { 
-				name = prod_update_instances_exotics_g
-				divide = 1.25
-			}
-		}
-	}
-	else = { 
-		set_variable = { 
-			name = prod_update_instances_exotics_g
-			value = 1
-		}
-	}
-	change_variable = { 
-		name = prod_update_instances_exotics_g
-		multiply = var:trade_price_exotics_g
-	}
-	if = { 
-		limit = { 
-			has_variable = trade_sum_sply_textile
-			has_variable = trade_has_textile
-			var:trade_sum_sply_textile > 0
-			var:trade_has_textile > 0
-		}
-		set_variable = { 
-			name = prod_update_instances_textile
-			value = var:trade_sum_sply_textile
-		}
-		change_variable = { 
-			name = prod_update_instances_textile
-			divide = 2
-		}
-		change_variable = { 
-			name = prod_update_instances_textile
-			divide = var:trade_has_textile
-		}
-		if = { 
-			limit = { 
-				has_variable = prod_update_instances_textile
-				var:prod_update_instances_textile > 1
-			}
-			set_variable = { 
-				name = prod_update_instances_textile
-				value = 1
-			}
-		}
-		else = { 
-			change_variable = { 
-				name = prod_update_instances_textile
-				add = 0.25
-			}
-			change_variable = { 
-				name = prod_update_instances_textile
-				divide = 1.25
-			}
-		}
-	}
-	else = { 
-		set_variable = { 
-			name = prod_update_instances_textile
-			value = 1
-		}
-	}
-	change_variable = { 
-		name = prod_update_instances_textile
-		multiply = var:trade_price_textile
-	}
-	if = { 
-		limit = { 
-			has_variable = trade_sum_sply_pottery
-			has_variable = trade_has_pottery
-			var:trade_sum_sply_pottery > 0
-			var:trade_has_pottery > 0
-		}
-		set_variable = { 
-			name = prod_update_instances_pottery
-			value = var:trade_sum_sply_pottery
-		}
-		change_variable = { 
-			name = prod_update_instances_pottery
-			divide = 2
-		}
-		change_variable = { 
-			name = prod_update_instances_pottery
-			divide = var:trade_has_pottery
-		}
-		if = { 
-			limit = { 
-				has_variable = prod_update_instances_pottery
-				var:prod_update_instances_pottery > 1
-			}
-			set_variable = { 
-				name = prod_update_instances_pottery
-				value = 1
-			}
-		}
-		else = { 
-			change_variable = { 
-				name = prod_update_instances_pottery
-				add = 0.25
-			}
-			change_variable = { 
-				name = prod_update_instances_pottery
-				divide = 1.25
-			}
-		}
-	}
-	else = { 
-		set_variable = { 
-			name = prod_update_instances_pottery
-			value = 1
-		}
-	}
-	change_variable = { 
-		name = prod_update_instances_pottery
-		multiply = var:trade_price_pottery
-	}
-	if = { 
-		limit = { 
-			has_variable = trade_sum_sply_furniture
-			has_variable = trade_has_furniture
-			var:trade_sum_sply_furniture > 0
-			var:trade_has_furniture > 0
-		}
-		set_variable = { 
-			name = prod_update_instances_furniture
-			value = var:trade_sum_sply_furniture
-		}
-		change_variable = { 
-			name = prod_update_instances_furniture
-			divide = 2
-		}
-		change_variable = { 
-			name = prod_update_instances_furniture
-			divide = var:trade_has_furniture
-		}
-		if = { 
-			limit = { 
-				has_variable = prod_update_instances_furniture
-				var:prod_update_instances_furniture > 1
-			}
-			set_variable = { 
-				name = prod_update_instances_furniture
-				value = 1
-			}
-		}
-		else = { 
-			change_variable = { 
-				name = prod_update_instances_furniture
-				add = 0.25
-			}
-			change_variable = { 
-				name = prod_update_instances_furniture
-				divide = 1.25
-			}
-		}
-	}
-	else = { 
-		set_variable = { 
-			name = prod_update_instances_furniture
-			value = 1
-		}
-	}
-	change_variable = { 
-		name = prod_update_instances_furniture
-		multiply = var:trade_price_furniture
-	}
-}
 every_in_global_list = { 
 	variable = prod_instances
 	set_variable = { 
@@ -1635,583 +1030,15 @@ every_in_global_list = {
 	}
 	set_variable = { 
 		name = prod_update_instances_t
-		value = 0
+		value = var:prod_earn
 	}
-	if = { 
-		limit = { 
-			var:prod_template = { 
-				has_variable = prod_dmnd_food
-				var:prod_dmnd_food > 0
-			}
-		}
-		set_variable = { 
-			name = prod_update_instances_tt
-			value = var:prod_template.var:prod_dmnd_food
-		}
-		change_variable = { 
-			name = prod_update_instances_tt
-			multiply = var:prod_location.county.var:prod_update_instances_food
-		}
-		change_variable = { 
-			name = prod_update_instances_tt
-			multiply = var:prod_location.var:modi_prod_dmnd_food
-		}
-		change_variable = { 
-			name = prod_update_instances_t
-			subtract = var:prod_update_instances_tt
-		}
+	change_variable = { 
+		name = prod_update_instances_t
+		subtract = var:prod_pay
 	}
-	if = { 
-		limit = { 
-			var:prod_template = { 
-				has_variable = prod_dmnd_salt
-				var:prod_dmnd_salt > 0
-			}
-		}
-		set_variable = { 
-			name = prod_update_instances_tt
-			value = var:prod_template.var:prod_dmnd_salt
-		}
-		change_variable = { 
-			name = prod_update_instances_tt
-			multiply = var:prod_location.county.var:prod_update_instances_salt
-		}
-		change_variable = { 
-			name = prod_update_instances_tt
-			multiply = var:prod_location.var:modi_prod_dmnd_salt
-		}
-		change_variable = { 
-			name = prod_update_instances_t
-			subtract = var:prod_update_instances_tt
-		}
-	}
-	if = { 
-		limit = { 
-			var:prod_template = { 
-				has_variable = prod_dmnd_fuel
-				var:prod_dmnd_fuel > 0
-			}
-		}
-		set_variable = { 
-			name = prod_update_instances_tt
-			value = var:prod_template.var:prod_dmnd_fuel
-		}
-		change_variable = { 
-			name = prod_update_instances_tt
-			multiply = var:prod_location.county.var:prod_update_instances_fuel
-		}
-		change_variable = { 
-			name = prod_update_instances_tt
-			multiply = var:prod_location.var:modi_prod_dmnd_fuel
-		}
-		change_variable = { 
-			name = prod_update_instances_t
-			subtract = var:prod_update_instances_tt
-		}
-	}
-	if = { 
-		limit = { 
-			var:prod_template = { 
-				has_variable = prod_dmnd_fiber
-				var:prod_dmnd_fiber > 0
-			}
-		}
-		set_variable = { 
-			name = prod_update_instances_tt
-			value = var:prod_template.var:prod_dmnd_fiber
-		}
-		change_variable = { 
-			name = prod_update_instances_tt
-			multiply = var:prod_location.county.var:prod_update_instances_fiber
-		}
-		change_variable = { 
-			name = prod_update_instances_tt
-			multiply = var:prod_location.var:modi_prod_dmnd_fiber
-		}
-		change_variable = { 
-			name = prod_update_instances_t
-			subtract = var:prod_update_instances_tt
-		}
-	}
-	if = { 
-		limit = { 
-			var:prod_template = { 
-				has_variable = prod_dmnd_timber
-				var:prod_dmnd_timber > 0
-			}
-		}
-		set_variable = { 
-			name = prod_update_instances_tt
-			value = var:prod_template.var:prod_dmnd_timber
-		}
-		change_variable = { 
-			name = prod_update_instances_tt
-			multiply = var:prod_location.county.var:prod_update_instances_timber
-		}
-		change_variable = { 
-			name = prod_update_instances_tt
-			multiply = var:prod_location.var:modi_prod_dmnd_timber
-		}
-		change_variable = { 
-			name = prod_update_instances_t
-			subtract = var:prod_update_instances_tt
-		}
-	}
-	if = { 
-		limit = { 
-			var:prod_template = { 
-				has_variable = prod_dmnd_metal
-				var:prod_dmnd_metal > 0
-			}
-		}
-		set_variable = { 
-			name = prod_update_instances_tt
-			value = var:prod_template.var:prod_dmnd_metal
-		}
-		change_variable = { 
-			name = prod_update_instances_tt
-			multiply = var:prod_location.county.var:prod_update_instances_metal
-		}
-		change_variable = { 
-			name = prod_update_instances_tt
-			multiply = var:prod_location.var:modi_prod_dmnd_metal
-		}
-		change_variable = { 
-			name = prod_update_instances_t
-			subtract = var:prod_update_instances_tt
-		}
-	}
-	if = { 
-		limit = { 
-			var:prod_template = { 
-				has_variable = prod_dmnd_exotics_w
-				var:prod_dmnd_exotics_w > 0
-			}
-		}
-		set_variable = { 
-			name = prod_update_instances_tt
-			value = var:prod_template.var:prod_dmnd_exotics_w
-		}
-		change_variable = { 
-			name = prod_update_instances_tt
-			multiply = var:prod_location.county.var:prod_update_instances_exotics_w
-		}
-		change_variable = { 
-			name = prod_update_instances_tt
-			multiply = var:prod_location.var:modi_prod_dmnd_exotics_w
-		}
-		change_variable = { 
-			name = prod_update_instances_t
-			subtract = var:prod_update_instances_tt
-		}
-	}
-	if = { 
-		limit = { 
-			var:prod_template = { 
-				has_variable = prod_dmnd_exotics_e
-				var:prod_dmnd_exotics_e > 0
-			}
-		}
-		set_variable = { 
-			name = prod_update_instances_tt
-			value = var:prod_template.var:prod_dmnd_exotics_e
-		}
-		change_variable = { 
-			name = prod_update_instances_tt
-			multiply = var:prod_location.county.var:prod_update_instances_exotics_e
-		}
-		change_variable = { 
-			name = prod_update_instances_tt
-			multiply = var:prod_location.var:modi_prod_dmnd_exotics_e
-		}
-		change_variable = { 
-			name = prod_update_instances_t
-			subtract = var:prod_update_instances_tt
-		}
-	}
-	if = { 
-		limit = { 
-			var:prod_template = { 
-				has_variable = prod_dmnd_exotics_g
-				var:prod_dmnd_exotics_g > 0
-			}
-		}
-		set_variable = { 
-			name = prod_update_instances_tt
-			value = var:prod_template.var:prod_dmnd_exotics_g
-		}
-		change_variable = { 
-			name = prod_update_instances_tt
-			multiply = var:prod_location.county.var:prod_update_instances_exotics_g
-		}
-		change_variable = { 
-			name = prod_update_instances_tt
-			multiply = var:prod_location.var:modi_prod_dmnd_exotics_g
-		}
-		change_variable = { 
-			name = prod_update_instances_t
-			subtract = var:prod_update_instances_tt
-		}
-	}
-	if = { 
-		limit = { 
-			var:prod_template = { 
-				has_variable = prod_dmnd_textile
-				var:prod_dmnd_textile > 0
-			}
-		}
-		set_variable = { 
-			name = prod_update_instances_tt
-			value = var:prod_template.var:prod_dmnd_textile
-		}
-		change_variable = { 
-			name = prod_update_instances_tt
-			multiply = var:prod_location.county.var:prod_update_instances_textile
-		}
-		change_variable = { 
-			name = prod_update_instances_tt
-			multiply = var:prod_location.var:modi_prod_dmnd_textile
-		}
-		change_variable = { 
-			name = prod_update_instances_t
-			subtract = var:prod_update_instances_tt
-		}
-	}
-	if = { 
-		limit = { 
-			var:prod_template = { 
-				has_variable = prod_dmnd_pottery
-				var:prod_dmnd_pottery > 0
-			}
-		}
-		set_variable = { 
-			name = prod_update_instances_tt
-			value = var:prod_template.var:prod_dmnd_pottery
-		}
-		change_variable = { 
-			name = prod_update_instances_tt
-			multiply = var:prod_location.county.var:prod_update_instances_pottery
-		}
-		change_variable = { 
-			name = prod_update_instances_tt
-			multiply = var:prod_location.var:modi_prod_dmnd_pottery
-		}
-		change_variable = { 
-			name = prod_update_instances_t
-			subtract = var:prod_update_instances_tt
-		}
-	}
-	if = { 
-		limit = { 
-			var:prod_template = { 
-				has_variable = prod_dmnd_furniture
-				var:prod_dmnd_furniture > 0
-			}
-		}
-		set_variable = { 
-			name = prod_update_instances_tt
-			value = var:prod_template.var:prod_dmnd_furniture
-		}
-		change_variable = { 
-			name = prod_update_instances_tt
-			multiply = var:prod_location.county.var:prod_update_instances_furniture
-		}
-		change_variable = { 
-			name = prod_update_instances_tt
-			multiply = var:prod_location.var:modi_prod_dmnd_furniture
-		}
-		change_variable = { 
-			name = prod_update_instances_t
-			subtract = var:prod_update_instances_tt
-		}
-	}
-	if = { 
-		limit = { 
-			var:prod_template = { 
-				has_variable = prod_sply_food
-				var:prod_sply_food > 0
-			}
-		}
-		set_variable = { 
-			name = prod_update_instances_tt
-			value = var:prod_template.var:prod_sply_food
-		}
-		change_variable = { 
-			name = prod_update_instances_tt
-			multiply = var:prod_location.county.var:prod_update_instances_food
-		}
-		change_variable = { 
-			name = prod_update_instances_tt
-			multiply = var:prod_location.var:modi_prod_sply_food
-		}
-		change_variable = { 
-			name = prod_update_instances_t
-			add = var:prod_update_instances_tt
-		}
-	}
-	if = { 
-		limit = { 
-			var:prod_template = { 
-				has_variable = prod_sply_salt
-				var:prod_sply_salt > 0
-			}
-		}
-		set_variable = { 
-			name = prod_update_instances_tt
-			value = var:prod_template.var:prod_sply_salt
-		}
-		change_variable = { 
-			name = prod_update_instances_tt
-			multiply = var:prod_location.county.var:prod_update_instances_salt
-		}
-		change_variable = { 
-			name = prod_update_instances_tt
-			multiply = var:prod_location.var:modi_prod_sply_salt
-		}
-		change_variable = { 
-			name = prod_update_instances_t
-			add = var:prod_update_instances_tt
-		}
-	}
-	if = { 
-		limit = { 
-			var:prod_template = { 
-				has_variable = prod_sply_fuel
-				var:prod_sply_fuel > 0
-			}
-		}
-		set_variable = { 
-			name = prod_update_instances_tt
-			value = var:prod_template.var:prod_sply_fuel
-		}
-		change_variable = { 
-			name = prod_update_instances_tt
-			multiply = var:prod_location.county.var:prod_update_instances_fuel
-		}
-		change_variable = { 
-			name = prod_update_instances_tt
-			multiply = var:prod_location.var:modi_prod_sply_fuel
-		}
-		change_variable = { 
-			name = prod_update_instances_t
-			add = var:prod_update_instances_tt
-		}
-	}
-	if = { 
-		limit = { 
-			var:prod_template = { 
-				has_variable = prod_sply_fiber
-				var:prod_sply_fiber > 0
-			}
-		}
-		set_variable = { 
-			name = prod_update_instances_tt
-			value = var:prod_template.var:prod_sply_fiber
-		}
-		change_variable = { 
-			name = prod_update_instances_tt
-			multiply = var:prod_location.county.var:prod_update_instances_fiber
-		}
-		change_variable = { 
-			name = prod_update_instances_tt
-			multiply = var:prod_location.var:modi_prod_sply_fiber
-		}
-		change_variable = { 
-			name = prod_update_instances_t
-			add = var:prod_update_instances_tt
-		}
-	}
-	if = { 
-		limit = { 
-			var:prod_template = { 
-				has_variable = prod_sply_timber
-				var:prod_sply_timber > 0
-			}
-		}
-		set_variable = { 
-			name = prod_update_instances_tt
-			value = var:prod_template.var:prod_sply_timber
-		}
-		change_variable = { 
-			name = prod_update_instances_tt
-			multiply = var:prod_location.county.var:prod_update_instances_timber
-		}
-		change_variable = { 
-			name = prod_update_instances_tt
-			multiply = var:prod_location.var:modi_prod_sply_timber
-		}
-		change_variable = { 
-			name = prod_update_instances_t
-			add = var:prod_update_instances_tt
-		}
-	}
-	if = { 
-		limit = { 
-			var:prod_template = { 
-				has_variable = prod_sply_metal
-				var:prod_sply_metal > 0
-			}
-		}
-		set_variable = { 
-			name = prod_update_instances_tt
-			value = var:prod_template.var:prod_sply_metal
-		}
-		change_variable = { 
-			name = prod_update_instances_tt
-			multiply = var:prod_location.county.var:prod_update_instances_metal
-		}
-		change_variable = { 
-			name = prod_update_instances_tt
-			multiply = var:prod_location.var:modi_prod_sply_metal
-		}
-		change_variable = { 
-			name = prod_update_instances_t
-			add = var:prod_update_instances_tt
-		}
-	}
-	if = { 
-		limit = { 
-			var:prod_template = { 
-				has_variable = prod_sply_exotics_w
-				var:prod_sply_exotics_w > 0
-			}
-		}
-		set_variable = { 
-			name = prod_update_instances_tt
-			value = var:prod_template.var:prod_sply_exotics_w
-		}
-		change_variable = { 
-			name = prod_update_instances_tt
-			multiply = var:prod_location.county.var:prod_update_instances_exotics_w
-		}
-		change_variable = { 
-			name = prod_update_instances_tt
-			multiply = var:prod_location.var:modi_prod_sply_exotics_w
-		}
-		change_variable = { 
-			name = prod_update_instances_t
-			add = var:prod_update_instances_tt
-		}
-	}
-	if = { 
-		limit = { 
-			var:prod_template = { 
-				has_variable = prod_sply_exotics_e
-				var:prod_sply_exotics_e > 0
-			}
-		}
-		set_variable = { 
-			name = prod_update_instances_tt
-			value = var:prod_template.var:prod_sply_exotics_e
-		}
-		change_variable = { 
-			name = prod_update_instances_tt
-			multiply = var:prod_location.county.var:prod_update_instances_exotics_e
-		}
-		change_variable = { 
-			name = prod_update_instances_tt
-			multiply = var:prod_location.var:modi_prod_sply_exotics_e
-		}
-		change_variable = { 
-			name = prod_update_instances_t
-			add = var:prod_update_instances_tt
-		}
-	}
-	if = { 
-		limit = { 
-			var:prod_template = { 
-				has_variable = prod_sply_exotics_g
-				var:prod_sply_exotics_g > 0
-			}
-		}
-		set_variable = { 
-			name = prod_update_instances_tt
-			value = var:prod_template.var:prod_sply_exotics_g
-		}
-		change_variable = { 
-			name = prod_update_instances_tt
-			multiply = var:prod_location.county.var:prod_update_instances_exotics_g
-		}
-		change_variable = { 
-			name = prod_update_instances_tt
-			multiply = var:prod_location.var:modi_prod_sply_exotics_g
-		}
-		change_variable = { 
-			name = prod_update_instances_t
-			add = var:prod_update_instances_tt
-		}
-	}
-	if = { 
-		limit = { 
-			var:prod_template = { 
-				has_variable = prod_sply_textile
-				var:prod_sply_textile > 0
-			}
-		}
-		set_variable = { 
-			name = prod_update_instances_tt
-			value = var:prod_template.var:prod_sply_textile
-		}
-		change_variable = { 
-			name = prod_update_instances_tt
-			multiply = var:prod_location.county.var:prod_update_instances_textile
-		}
-		change_variable = { 
-			name = prod_update_instances_tt
-			multiply = var:prod_location.var:modi_prod_sply_textile
-		}
-		change_variable = { 
-			name = prod_update_instances_t
-			add = var:prod_update_instances_tt
-		}
-	}
-	if = { 
-		limit = { 
-			var:prod_template = { 
-				has_variable = prod_sply_pottery
-				var:prod_sply_pottery > 0
-			}
-		}
-		set_variable = { 
-			name = prod_update_instances_tt
-			value = var:prod_template.var:prod_sply_pottery
-		}
-		change_variable = { 
-			name = prod_update_instances_tt
-			multiply = var:prod_location.county.var:prod_update_instances_pottery
-		}
-		change_variable = { 
-			name = prod_update_instances_tt
-			multiply = var:prod_location.var:modi_prod_sply_pottery
-		}
-		change_variable = { 
-			name = prod_update_instances_t
-			add = var:prod_update_instances_tt
-		}
-	}
-	if = { 
-		limit = { 
-			var:prod_template = { 
-				has_variable = prod_sply_furniture
-				var:prod_sply_furniture > 0
-			}
-		}
-		set_variable = { 
-			name = prod_update_instances_tt
-			value = var:prod_template.var:prod_sply_furniture
-		}
-		change_variable = { 
-			name = prod_update_instances_tt
-			multiply = var:prod_location.county.var:prod_update_instances_furniture
-		}
-		change_variable = { 
-			name = prod_update_instances_tt
-			multiply = var:prod_location.var:modi_prod_sply_furniture
-		}
-		change_variable = { 
-			name = prod_update_instances_t
-			add = var:prod_update_instances_tt
-		}
+	change_variable = { 
+		name = prod_update_instances_t
+		divide = 10
 	}
 	if = { 
 		limit = { 
@@ -3154,18 +1981,6 @@ every_county = {
 		}
 	}
 	remove_variable = prod_update_instances_t
-	remove_variable = prod_update_instances_food
-	remove_variable = prod_update_instances_salt
-	remove_variable = prod_update_instances_fuel
-	remove_variable = prod_update_instances_fiber
-	remove_variable = prod_update_instances_timber
-	remove_variable = prod_update_instances_metal
-	remove_variable = prod_update_instances_exotics_w
-	remove_variable = prod_update_instances_exotics_e
-	remove_variable = prod_update_instances_exotics_g
-	remove_variable = prod_update_instances_textile
-	remove_variable = prod_update_instances_pottery
-	remove_variable = prod_update_instances_furniture
 }
 every_province = { 
 	limit = { 
@@ -21357,7 +20172,15 @@ every_province = {
 every_in_global_list = { 
 	variable = prod_instances
 	set_variable = { 
+		name = prod_earn_food
+		value = 0
+	}
+	set_variable = { 
 		name = prod_pay_food
+		value = 0
+	}
+	set_variable = { 
+		name = prod_earn_salt
 		value = 0
 	}
 	set_variable = { 
@@ -21365,7 +20188,15 @@ every_in_global_list = {
 		value = 0
 	}
 	set_variable = { 
+		name = prod_earn_fuel
+		value = 0
+	}
+	set_variable = { 
 		name = prod_pay_fuel
+		value = 0
+	}
+	set_variable = { 
+		name = prod_earn_fiber
 		value = 0
 	}
 	set_variable = { 
@@ -21373,7 +20204,15 @@ every_in_global_list = {
 		value = 0
 	}
 	set_variable = { 
+		name = prod_earn_timber
+		value = 0
+	}
+	set_variable = { 
 		name = prod_pay_timber
+		value = 0
+	}
+	set_variable = { 
+		name = prod_earn_metal
 		value = 0
 	}
 	set_variable = { 
@@ -21381,7 +20220,15 @@ every_in_global_list = {
 		value = 0
 	}
 	set_variable = { 
+		name = prod_earn_exotics_w
+		value = 0
+	}
+	set_variable = { 
 		name = prod_pay_exotics_w
+		value = 0
+	}
+	set_variable = { 
+		name = prod_earn_exotics_e
 		value = 0
 	}
 	set_variable = { 
@@ -21389,7 +20236,15 @@ every_in_global_list = {
 		value = 0
 	}
 	set_variable = { 
+		name = prod_earn_exotics_g
+		value = 0
+	}
+	set_variable = { 
 		name = prod_pay_exotics_g
+		value = 0
+	}
+	set_variable = { 
+		name = prod_earn_textile
 		value = 0
 	}
 	set_variable = { 
@@ -21397,7 +20252,15 @@ every_in_global_list = {
 		value = 0
 	}
 	set_variable = { 
+		name = prod_earn_pottery
+		value = 0
+	}
+	set_variable = { 
 		name = prod_pay_pottery
+		value = 0
+	}
+	set_variable = { 
+		name = prod_earn_furniture
 		value = 0
 	}
 	set_variable = { 
@@ -21421,15 +20284,23 @@ every_county = {
 		limit = { 
 			is_valid_prov = yes
 		}
+		set_variable = { 
+			name = prod_has_food
+			value = 0
+		}
 		every_in_list = { 
 			limit = { 
 				has_variable = prod_sply_old_food
 			}
 			variable = prod_instances
+			change_variable = { 
+				name = prod_has_food
+				add = var:prod_sply_old_food
+			}
 			prev = { 
 				change_variable = { 
 					name = prod_has_food
-					add = prev.var:prod_sply_old_food
+					add = prev.var:prod_has_food
 				}
 			}
 		}
@@ -21447,7 +20318,23 @@ every_county = {
 		}
 		every_county_province = { 
 			limit = { 
-				is_valid_prov = yes
+				has_variable = prod_has_food
+				var:prod_has_food > 0
+			}
+			every_in_list = { 
+				limit = { 
+					has_variable = prod_has_food
+					var:prod_has_food > 0
+				}
+				variable = prod_instances
+				change_variable = { 
+					name = prod_has_food
+					multiply = 100
+				}
+				change_variable = { 
+					name = prod_has_food
+					divide = prev.var:prod_has_food
+				}
 			}
 			change_variable = { 
 				name = prod_has_food
@@ -21465,6 +20352,21 @@ every_county = {
 				name = prod_has_food
 				divide = 100
 			}
+			every_in_list = { 
+				limit = { 
+					has_variable = prod_has_food
+					var:prod_has_food > 0
+				}
+				variable = prod_instances
+				change_variable = { 
+					name = prod_has_food
+					multiply = prev.var:prod_has_food
+				}
+				change_variable = { 
+					name = prod_has_food
+					divide = 100
+				}
+			}
 		}
 	}
 	if = { 
@@ -21474,7 +20376,8 @@ every_county = {
 		}
 		every_county_province = { 
 			limit = { 
-				is_valid_prov = yes
+				has_variable = prod_has_food
+				var:prod_has_food > 0
 			}
 			set_variable = { 
 				name = prod_earn_food
@@ -21496,6 +20399,33 @@ every_county = {
 				name = prod_earn_food
 				divide = 100
 			}
+			every_in_list = { 
+				limit = { 
+					has_variable = prod_has_food
+					var:prod_has_food > 0
+				}
+				variable = prod_instances
+				set_variable = { 
+					name = prod_earn_food
+					value = var:prod_has_food
+				}
+				change_variable = { 
+					name = prod_earn_food
+					multiply = 100
+				}
+				change_variable = { 
+					name = prod_earn_food
+					divide = prev.var:prod_has_food
+				}
+				change_variable = { 
+					name = prod_earn_food
+					multiply = prev.var:prod_earn_food
+				}
+				change_variable = { 
+					name = prod_earn_food
+					divide = 100
+				}
+			}
 		}
 	}
 	change_variable = { 
@@ -21510,15 +20440,23 @@ every_county = {
 		limit = { 
 			is_valid_prov = yes
 		}
+		set_variable = { 
+			name = prod_has_salt
+			value = 0
+		}
 		every_in_list = { 
 			limit = { 
 				has_variable = prod_sply_old_salt
 			}
 			variable = prod_instances
+			change_variable = { 
+				name = prod_has_salt
+				add = var:prod_sply_old_salt
+			}
 			prev = { 
 				change_variable = { 
 					name = prod_has_salt
-					add = prev.var:prod_sply_old_salt
+					add = prev.var:prod_has_salt
 				}
 			}
 		}
@@ -21536,7 +20474,23 @@ every_county = {
 		}
 		every_county_province = { 
 			limit = { 
-				is_valid_prov = yes
+				has_variable = prod_has_salt
+				var:prod_has_salt > 0
+			}
+			every_in_list = { 
+				limit = { 
+					has_variable = prod_has_salt
+					var:prod_has_salt > 0
+				}
+				variable = prod_instances
+				change_variable = { 
+					name = prod_has_salt
+					multiply = 100
+				}
+				change_variable = { 
+					name = prod_has_salt
+					divide = prev.var:prod_has_salt
+				}
 			}
 			change_variable = { 
 				name = prod_has_salt
@@ -21554,6 +20508,21 @@ every_county = {
 				name = prod_has_salt
 				divide = 100
 			}
+			every_in_list = { 
+				limit = { 
+					has_variable = prod_has_salt
+					var:prod_has_salt > 0
+				}
+				variable = prod_instances
+				change_variable = { 
+					name = prod_has_salt
+					multiply = prev.var:prod_has_salt
+				}
+				change_variable = { 
+					name = prod_has_salt
+					divide = 100
+				}
+			}
 		}
 	}
 	if = { 
@@ -21563,7 +20532,8 @@ every_county = {
 		}
 		every_county_province = { 
 			limit = { 
-				is_valid_prov = yes
+				has_variable = prod_has_salt
+				var:prod_has_salt > 0
 			}
 			set_variable = { 
 				name = prod_earn_salt
@@ -21585,6 +20555,33 @@ every_county = {
 				name = prod_earn_salt
 				divide = 100
 			}
+			every_in_list = { 
+				limit = { 
+					has_variable = prod_has_salt
+					var:prod_has_salt > 0
+				}
+				variable = prod_instances
+				set_variable = { 
+					name = prod_earn_salt
+					value = var:prod_has_salt
+				}
+				change_variable = { 
+					name = prod_earn_salt
+					multiply = 100
+				}
+				change_variable = { 
+					name = prod_earn_salt
+					divide = prev.var:prod_has_salt
+				}
+				change_variable = { 
+					name = prod_earn_salt
+					multiply = prev.var:prod_earn_salt
+				}
+				change_variable = { 
+					name = prod_earn_salt
+					divide = 100
+				}
+			}
 		}
 	}
 	change_variable = { 
@@ -21599,15 +20596,23 @@ every_county = {
 		limit = { 
 			is_valid_prov = yes
 		}
+		set_variable = { 
+			name = prod_has_fuel
+			value = 0
+		}
 		every_in_list = { 
 			limit = { 
 				has_variable = prod_sply_old_fuel
 			}
 			variable = prod_instances
+			change_variable = { 
+				name = prod_has_fuel
+				add = var:prod_sply_old_fuel
+			}
 			prev = { 
 				change_variable = { 
 					name = prod_has_fuel
-					add = prev.var:prod_sply_old_fuel
+					add = prev.var:prod_has_fuel
 				}
 			}
 		}
@@ -21625,7 +20630,23 @@ every_county = {
 		}
 		every_county_province = { 
 			limit = { 
-				is_valid_prov = yes
+				has_variable = prod_has_fuel
+				var:prod_has_fuel > 0
+			}
+			every_in_list = { 
+				limit = { 
+					has_variable = prod_has_fuel
+					var:prod_has_fuel > 0
+				}
+				variable = prod_instances
+				change_variable = { 
+					name = prod_has_fuel
+					multiply = 100
+				}
+				change_variable = { 
+					name = prod_has_fuel
+					divide = prev.var:prod_has_fuel
+				}
 			}
 			change_variable = { 
 				name = prod_has_fuel
@@ -21643,6 +20664,21 @@ every_county = {
 				name = prod_has_fuel
 				divide = 100
 			}
+			every_in_list = { 
+				limit = { 
+					has_variable = prod_has_fuel
+					var:prod_has_fuel > 0
+				}
+				variable = prod_instances
+				change_variable = { 
+					name = prod_has_fuel
+					multiply = prev.var:prod_has_fuel
+				}
+				change_variable = { 
+					name = prod_has_fuel
+					divide = 100
+				}
+			}
 		}
 	}
 	if = { 
@@ -21652,7 +20688,8 @@ every_county = {
 		}
 		every_county_province = { 
 			limit = { 
-				is_valid_prov = yes
+				has_variable = prod_has_fuel
+				var:prod_has_fuel > 0
 			}
 			set_variable = { 
 				name = prod_earn_fuel
@@ -21674,6 +20711,33 @@ every_county = {
 				name = prod_earn_fuel
 				divide = 100
 			}
+			every_in_list = { 
+				limit = { 
+					has_variable = prod_has_fuel
+					var:prod_has_fuel > 0
+				}
+				variable = prod_instances
+				set_variable = { 
+					name = prod_earn_fuel
+					value = var:prod_has_fuel
+				}
+				change_variable = { 
+					name = prod_earn_fuel
+					multiply = 100
+				}
+				change_variable = { 
+					name = prod_earn_fuel
+					divide = prev.var:prod_has_fuel
+				}
+				change_variable = { 
+					name = prod_earn_fuel
+					multiply = prev.var:prod_earn_fuel
+				}
+				change_variable = { 
+					name = prod_earn_fuel
+					divide = 100
+				}
+			}
 		}
 	}
 	change_variable = { 
@@ -21688,15 +20752,23 @@ every_county = {
 		limit = { 
 			is_valid_prov = yes
 		}
+		set_variable = { 
+			name = prod_has_fiber
+			value = 0
+		}
 		every_in_list = { 
 			limit = { 
 				has_variable = prod_sply_old_fiber
 			}
 			variable = prod_instances
+			change_variable = { 
+				name = prod_has_fiber
+				add = var:prod_sply_old_fiber
+			}
 			prev = { 
 				change_variable = { 
 					name = prod_has_fiber
-					add = prev.var:prod_sply_old_fiber
+					add = prev.var:prod_has_fiber
 				}
 			}
 		}
@@ -21714,7 +20786,23 @@ every_county = {
 		}
 		every_county_province = { 
 			limit = { 
-				is_valid_prov = yes
+				has_variable = prod_has_fiber
+				var:prod_has_fiber > 0
+			}
+			every_in_list = { 
+				limit = { 
+					has_variable = prod_has_fiber
+					var:prod_has_fiber > 0
+				}
+				variable = prod_instances
+				change_variable = { 
+					name = prod_has_fiber
+					multiply = 100
+				}
+				change_variable = { 
+					name = prod_has_fiber
+					divide = prev.var:prod_has_fiber
+				}
 			}
 			change_variable = { 
 				name = prod_has_fiber
@@ -21732,6 +20820,21 @@ every_county = {
 				name = prod_has_fiber
 				divide = 100
 			}
+			every_in_list = { 
+				limit = { 
+					has_variable = prod_has_fiber
+					var:prod_has_fiber > 0
+				}
+				variable = prod_instances
+				change_variable = { 
+					name = prod_has_fiber
+					multiply = prev.var:prod_has_fiber
+				}
+				change_variable = { 
+					name = prod_has_fiber
+					divide = 100
+				}
+			}
 		}
 	}
 	if = { 
@@ -21741,7 +20844,8 @@ every_county = {
 		}
 		every_county_province = { 
 			limit = { 
-				is_valid_prov = yes
+				has_variable = prod_has_fiber
+				var:prod_has_fiber > 0
 			}
 			set_variable = { 
 				name = prod_earn_fiber
@@ -21763,6 +20867,33 @@ every_county = {
 				name = prod_earn_fiber
 				divide = 100
 			}
+			every_in_list = { 
+				limit = { 
+					has_variable = prod_has_fiber
+					var:prod_has_fiber > 0
+				}
+				variable = prod_instances
+				set_variable = { 
+					name = prod_earn_fiber
+					value = var:prod_has_fiber
+				}
+				change_variable = { 
+					name = prod_earn_fiber
+					multiply = 100
+				}
+				change_variable = { 
+					name = prod_earn_fiber
+					divide = prev.var:prod_has_fiber
+				}
+				change_variable = { 
+					name = prod_earn_fiber
+					multiply = prev.var:prod_earn_fiber
+				}
+				change_variable = { 
+					name = prod_earn_fiber
+					divide = 100
+				}
+			}
 		}
 	}
 	change_variable = { 
@@ -21777,15 +20908,23 @@ every_county = {
 		limit = { 
 			is_valid_prov = yes
 		}
+		set_variable = { 
+			name = prod_has_timber
+			value = 0
+		}
 		every_in_list = { 
 			limit = { 
 				has_variable = prod_sply_old_timber
 			}
 			variable = prod_instances
+			change_variable = { 
+				name = prod_has_timber
+				add = var:prod_sply_old_timber
+			}
 			prev = { 
 				change_variable = { 
 					name = prod_has_timber
-					add = prev.var:prod_sply_old_timber
+					add = prev.var:prod_has_timber
 				}
 			}
 		}
@@ -21803,7 +20942,23 @@ every_county = {
 		}
 		every_county_province = { 
 			limit = { 
-				is_valid_prov = yes
+				has_variable = prod_has_timber
+				var:prod_has_timber > 0
+			}
+			every_in_list = { 
+				limit = { 
+					has_variable = prod_has_timber
+					var:prod_has_timber > 0
+				}
+				variable = prod_instances
+				change_variable = { 
+					name = prod_has_timber
+					multiply = 100
+				}
+				change_variable = { 
+					name = prod_has_timber
+					divide = prev.var:prod_has_timber
+				}
 			}
 			change_variable = { 
 				name = prod_has_timber
@@ -21821,6 +20976,21 @@ every_county = {
 				name = prod_has_timber
 				divide = 100
 			}
+			every_in_list = { 
+				limit = { 
+					has_variable = prod_has_timber
+					var:prod_has_timber > 0
+				}
+				variable = prod_instances
+				change_variable = { 
+					name = prod_has_timber
+					multiply = prev.var:prod_has_timber
+				}
+				change_variable = { 
+					name = prod_has_timber
+					divide = 100
+				}
+			}
 		}
 	}
 	if = { 
@@ -21830,7 +21000,8 @@ every_county = {
 		}
 		every_county_province = { 
 			limit = { 
-				is_valid_prov = yes
+				has_variable = prod_has_timber
+				var:prod_has_timber > 0
 			}
 			set_variable = { 
 				name = prod_earn_timber
@@ -21852,6 +21023,33 @@ every_county = {
 				name = prod_earn_timber
 				divide = 100
 			}
+			every_in_list = { 
+				limit = { 
+					has_variable = prod_has_timber
+					var:prod_has_timber > 0
+				}
+				variable = prod_instances
+				set_variable = { 
+					name = prod_earn_timber
+					value = var:prod_has_timber
+				}
+				change_variable = { 
+					name = prod_earn_timber
+					multiply = 100
+				}
+				change_variable = { 
+					name = prod_earn_timber
+					divide = prev.var:prod_has_timber
+				}
+				change_variable = { 
+					name = prod_earn_timber
+					multiply = prev.var:prod_earn_timber
+				}
+				change_variable = { 
+					name = prod_earn_timber
+					divide = 100
+				}
+			}
 		}
 	}
 	change_variable = { 
@@ -21866,15 +21064,23 @@ every_county = {
 		limit = { 
 			is_valid_prov = yes
 		}
+		set_variable = { 
+			name = prod_has_metal
+			value = 0
+		}
 		every_in_list = { 
 			limit = { 
 				has_variable = prod_sply_old_metal
 			}
 			variable = prod_instances
+			change_variable = { 
+				name = prod_has_metal
+				add = var:prod_sply_old_metal
+			}
 			prev = { 
 				change_variable = { 
 					name = prod_has_metal
-					add = prev.var:prod_sply_old_metal
+					add = prev.var:prod_has_metal
 				}
 			}
 		}
@@ -21892,7 +21098,23 @@ every_county = {
 		}
 		every_county_province = { 
 			limit = { 
-				is_valid_prov = yes
+				has_variable = prod_has_metal
+				var:prod_has_metal > 0
+			}
+			every_in_list = { 
+				limit = { 
+					has_variable = prod_has_metal
+					var:prod_has_metal > 0
+				}
+				variable = prod_instances
+				change_variable = { 
+					name = prod_has_metal
+					multiply = 100
+				}
+				change_variable = { 
+					name = prod_has_metal
+					divide = prev.var:prod_has_metal
+				}
 			}
 			change_variable = { 
 				name = prod_has_metal
@@ -21910,6 +21132,21 @@ every_county = {
 				name = prod_has_metal
 				divide = 100
 			}
+			every_in_list = { 
+				limit = { 
+					has_variable = prod_has_metal
+					var:prod_has_metal > 0
+				}
+				variable = prod_instances
+				change_variable = { 
+					name = prod_has_metal
+					multiply = prev.var:prod_has_metal
+				}
+				change_variable = { 
+					name = prod_has_metal
+					divide = 100
+				}
+			}
 		}
 	}
 	if = { 
@@ -21919,7 +21156,8 @@ every_county = {
 		}
 		every_county_province = { 
 			limit = { 
-				is_valid_prov = yes
+				has_variable = prod_has_metal
+				var:prod_has_metal > 0
 			}
 			set_variable = { 
 				name = prod_earn_metal
@@ -21941,6 +21179,33 @@ every_county = {
 				name = prod_earn_metal
 				divide = 100
 			}
+			every_in_list = { 
+				limit = { 
+					has_variable = prod_has_metal
+					var:prod_has_metal > 0
+				}
+				variable = prod_instances
+				set_variable = { 
+					name = prod_earn_metal
+					value = var:prod_has_metal
+				}
+				change_variable = { 
+					name = prod_earn_metal
+					multiply = 100
+				}
+				change_variable = { 
+					name = prod_earn_metal
+					divide = prev.var:prod_has_metal
+				}
+				change_variable = { 
+					name = prod_earn_metal
+					multiply = prev.var:prod_earn_metal
+				}
+				change_variable = { 
+					name = prod_earn_metal
+					divide = 100
+				}
+			}
 		}
 	}
 	change_variable = { 
@@ -21955,15 +21220,23 @@ every_county = {
 		limit = { 
 			is_valid_prov = yes
 		}
+		set_variable = { 
+			name = prod_has_exotics_w
+			value = 0
+		}
 		every_in_list = { 
 			limit = { 
 				has_variable = prod_sply_old_exotics_w
 			}
 			variable = prod_instances
+			change_variable = { 
+				name = prod_has_exotics_w
+				add = var:prod_sply_old_exotics_w
+			}
 			prev = { 
 				change_variable = { 
 					name = prod_has_exotics_w
-					add = prev.var:prod_sply_old_exotics_w
+					add = prev.var:prod_has_exotics_w
 				}
 			}
 		}
@@ -21981,7 +21254,23 @@ every_county = {
 		}
 		every_county_province = { 
 			limit = { 
-				is_valid_prov = yes
+				has_variable = prod_has_exotics_w
+				var:prod_has_exotics_w > 0
+			}
+			every_in_list = { 
+				limit = { 
+					has_variable = prod_has_exotics_w
+					var:prod_has_exotics_w > 0
+				}
+				variable = prod_instances
+				change_variable = { 
+					name = prod_has_exotics_w
+					multiply = 100
+				}
+				change_variable = { 
+					name = prod_has_exotics_w
+					divide = prev.var:prod_has_exotics_w
+				}
 			}
 			change_variable = { 
 				name = prod_has_exotics_w
@@ -21999,6 +21288,21 @@ every_county = {
 				name = prod_has_exotics_w
 				divide = 100
 			}
+			every_in_list = { 
+				limit = { 
+					has_variable = prod_has_exotics_w
+					var:prod_has_exotics_w > 0
+				}
+				variable = prod_instances
+				change_variable = { 
+					name = prod_has_exotics_w
+					multiply = prev.var:prod_has_exotics_w
+				}
+				change_variable = { 
+					name = prod_has_exotics_w
+					divide = 100
+				}
+			}
 		}
 	}
 	if = { 
@@ -22008,7 +21312,8 @@ every_county = {
 		}
 		every_county_province = { 
 			limit = { 
-				is_valid_prov = yes
+				has_variable = prod_has_exotics_w
+				var:prod_has_exotics_w > 0
 			}
 			set_variable = { 
 				name = prod_earn_exotics_w
@@ -22030,6 +21335,33 @@ every_county = {
 				name = prod_earn_exotics_w
 				divide = 100
 			}
+			every_in_list = { 
+				limit = { 
+					has_variable = prod_has_exotics_w
+					var:prod_has_exotics_w > 0
+				}
+				variable = prod_instances
+				set_variable = { 
+					name = prod_earn_exotics_w
+					value = var:prod_has_exotics_w
+				}
+				change_variable = { 
+					name = prod_earn_exotics_w
+					multiply = 100
+				}
+				change_variable = { 
+					name = prod_earn_exotics_w
+					divide = prev.var:prod_has_exotics_w
+				}
+				change_variable = { 
+					name = prod_earn_exotics_w
+					multiply = prev.var:prod_earn_exotics_w
+				}
+				change_variable = { 
+					name = prod_earn_exotics_w
+					divide = 100
+				}
+			}
 		}
 	}
 	change_variable = { 
@@ -22044,15 +21376,23 @@ every_county = {
 		limit = { 
 			is_valid_prov = yes
 		}
+		set_variable = { 
+			name = prod_has_exotics_e
+			value = 0
+		}
 		every_in_list = { 
 			limit = { 
 				has_variable = prod_sply_old_exotics_e
 			}
 			variable = prod_instances
+			change_variable = { 
+				name = prod_has_exotics_e
+				add = var:prod_sply_old_exotics_e
+			}
 			prev = { 
 				change_variable = { 
 					name = prod_has_exotics_e
-					add = prev.var:prod_sply_old_exotics_e
+					add = prev.var:prod_has_exotics_e
 				}
 			}
 		}
@@ -22070,7 +21410,23 @@ every_county = {
 		}
 		every_county_province = { 
 			limit = { 
-				is_valid_prov = yes
+				has_variable = prod_has_exotics_e
+				var:prod_has_exotics_e > 0
+			}
+			every_in_list = { 
+				limit = { 
+					has_variable = prod_has_exotics_e
+					var:prod_has_exotics_e > 0
+				}
+				variable = prod_instances
+				change_variable = { 
+					name = prod_has_exotics_e
+					multiply = 100
+				}
+				change_variable = { 
+					name = prod_has_exotics_e
+					divide = prev.var:prod_has_exotics_e
+				}
 			}
 			change_variable = { 
 				name = prod_has_exotics_e
@@ -22088,6 +21444,21 @@ every_county = {
 				name = prod_has_exotics_e
 				divide = 100
 			}
+			every_in_list = { 
+				limit = { 
+					has_variable = prod_has_exotics_e
+					var:prod_has_exotics_e > 0
+				}
+				variable = prod_instances
+				change_variable = { 
+					name = prod_has_exotics_e
+					multiply = prev.var:prod_has_exotics_e
+				}
+				change_variable = { 
+					name = prod_has_exotics_e
+					divide = 100
+				}
+			}
 		}
 	}
 	if = { 
@@ -22097,7 +21468,8 @@ every_county = {
 		}
 		every_county_province = { 
 			limit = { 
-				is_valid_prov = yes
+				has_variable = prod_has_exotics_e
+				var:prod_has_exotics_e > 0
 			}
 			set_variable = { 
 				name = prod_earn_exotics_e
@@ -22119,6 +21491,33 @@ every_county = {
 				name = prod_earn_exotics_e
 				divide = 100
 			}
+			every_in_list = { 
+				limit = { 
+					has_variable = prod_has_exotics_e
+					var:prod_has_exotics_e > 0
+				}
+				variable = prod_instances
+				set_variable = { 
+					name = prod_earn_exotics_e
+					value = var:prod_has_exotics_e
+				}
+				change_variable = { 
+					name = prod_earn_exotics_e
+					multiply = 100
+				}
+				change_variable = { 
+					name = prod_earn_exotics_e
+					divide = prev.var:prod_has_exotics_e
+				}
+				change_variable = { 
+					name = prod_earn_exotics_e
+					multiply = prev.var:prod_earn_exotics_e
+				}
+				change_variable = { 
+					name = prod_earn_exotics_e
+					divide = 100
+				}
+			}
 		}
 	}
 	change_variable = { 
@@ -22133,15 +21532,23 @@ every_county = {
 		limit = { 
 			is_valid_prov = yes
 		}
+		set_variable = { 
+			name = prod_has_exotics_g
+			value = 0
+		}
 		every_in_list = { 
 			limit = { 
 				has_variable = prod_sply_old_exotics_g
 			}
 			variable = prod_instances
+			change_variable = { 
+				name = prod_has_exotics_g
+				add = var:prod_sply_old_exotics_g
+			}
 			prev = { 
 				change_variable = { 
 					name = prod_has_exotics_g
-					add = prev.var:prod_sply_old_exotics_g
+					add = prev.var:prod_has_exotics_g
 				}
 			}
 		}
@@ -22159,7 +21566,23 @@ every_county = {
 		}
 		every_county_province = { 
 			limit = { 
-				is_valid_prov = yes
+				has_variable = prod_has_exotics_g
+				var:prod_has_exotics_g > 0
+			}
+			every_in_list = { 
+				limit = { 
+					has_variable = prod_has_exotics_g
+					var:prod_has_exotics_g > 0
+				}
+				variable = prod_instances
+				change_variable = { 
+					name = prod_has_exotics_g
+					multiply = 100
+				}
+				change_variable = { 
+					name = prod_has_exotics_g
+					divide = prev.var:prod_has_exotics_g
+				}
 			}
 			change_variable = { 
 				name = prod_has_exotics_g
@@ -22177,6 +21600,21 @@ every_county = {
 				name = prod_has_exotics_g
 				divide = 100
 			}
+			every_in_list = { 
+				limit = { 
+					has_variable = prod_has_exotics_g
+					var:prod_has_exotics_g > 0
+				}
+				variable = prod_instances
+				change_variable = { 
+					name = prod_has_exotics_g
+					multiply = prev.var:prod_has_exotics_g
+				}
+				change_variable = { 
+					name = prod_has_exotics_g
+					divide = 100
+				}
+			}
 		}
 	}
 	if = { 
@@ -22186,7 +21624,8 @@ every_county = {
 		}
 		every_county_province = { 
 			limit = { 
-				is_valid_prov = yes
+				has_variable = prod_has_exotics_g
+				var:prod_has_exotics_g > 0
 			}
 			set_variable = { 
 				name = prod_earn_exotics_g
@@ -22208,6 +21647,33 @@ every_county = {
 				name = prod_earn_exotics_g
 				divide = 100
 			}
+			every_in_list = { 
+				limit = { 
+					has_variable = prod_has_exotics_g
+					var:prod_has_exotics_g > 0
+				}
+				variable = prod_instances
+				set_variable = { 
+					name = prod_earn_exotics_g
+					value = var:prod_has_exotics_g
+				}
+				change_variable = { 
+					name = prod_earn_exotics_g
+					multiply = 100
+				}
+				change_variable = { 
+					name = prod_earn_exotics_g
+					divide = prev.var:prod_has_exotics_g
+				}
+				change_variable = { 
+					name = prod_earn_exotics_g
+					multiply = prev.var:prod_earn_exotics_g
+				}
+				change_variable = { 
+					name = prod_earn_exotics_g
+					divide = 100
+				}
+			}
 		}
 	}
 	change_variable = { 
@@ -22222,15 +21688,23 @@ every_county = {
 		limit = { 
 			is_valid_prov = yes
 		}
+		set_variable = { 
+			name = prod_has_textile
+			value = 0
+		}
 		every_in_list = { 
 			limit = { 
 				has_variable = prod_sply_old_textile
 			}
 			variable = prod_instances
+			change_variable = { 
+				name = prod_has_textile
+				add = var:prod_sply_old_textile
+			}
 			prev = { 
 				change_variable = { 
 					name = prod_has_textile
-					add = prev.var:prod_sply_old_textile
+					add = prev.var:prod_has_textile
 				}
 			}
 		}
@@ -22248,7 +21722,23 @@ every_county = {
 		}
 		every_county_province = { 
 			limit = { 
-				is_valid_prov = yes
+				has_variable = prod_has_textile
+				var:prod_has_textile > 0
+			}
+			every_in_list = { 
+				limit = { 
+					has_variable = prod_has_textile
+					var:prod_has_textile > 0
+				}
+				variable = prod_instances
+				change_variable = { 
+					name = prod_has_textile
+					multiply = 100
+				}
+				change_variable = { 
+					name = prod_has_textile
+					divide = prev.var:prod_has_textile
+				}
 			}
 			change_variable = { 
 				name = prod_has_textile
@@ -22266,6 +21756,21 @@ every_county = {
 				name = prod_has_textile
 				divide = 100
 			}
+			every_in_list = { 
+				limit = { 
+					has_variable = prod_has_textile
+					var:prod_has_textile > 0
+				}
+				variable = prod_instances
+				change_variable = { 
+					name = prod_has_textile
+					multiply = prev.var:prod_has_textile
+				}
+				change_variable = { 
+					name = prod_has_textile
+					divide = 100
+				}
+			}
 		}
 	}
 	if = { 
@@ -22275,7 +21780,8 @@ every_county = {
 		}
 		every_county_province = { 
 			limit = { 
-				is_valid_prov = yes
+				has_variable = prod_has_textile
+				var:prod_has_textile > 0
 			}
 			set_variable = { 
 				name = prod_earn_textile
@@ -22297,6 +21803,33 @@ every_county = {
 				name = prod_earn_textile
 				divide = 100
 			}
+			every_in_list = { 
+				limit = { 
+					has_variable = prod_has_textile
+					var:prod_has_textile > 0
+				}
+				variable = prod_instances
+				set_variable = { 
+					name = prod_earn_textile
+					value = var:prod_has_textile
+				}
+				change_variable = { 
+					name = prod_earn_textile
+					multiply = 100
+				}
+				change_variable = { 
+					name = prod_earn_textile
+					divide = prev.var:prod_has_textile
+				}
+				change_variable = { 
+					name = prod_earn_textile
+					multiply = prev.var:prod_earn_textile
+				}
+				change_variable = { 
+					name = prod_earn_textile
+					divide = 100
+				}
+			}
 		}
 	}
 	change_variable = { 
@@ -22311,15 +21844,23 @@ every_county = {
 		limit = { 
 			is_valid_prov = yes
 		}
+		set_variable = { 
+			name = prod_has_pottery
+			value = 0
+		}
 		every_in_list = { 
 			limit = { 
 				has_variable = prod_sply_old_pottery
 			}
 			variable = prod_instances
+			change_variable = { 
+				name = prod_has_pottery
+				add = var:prod_sply_old_pottery
+			}
 			prev = { 
 				change_variable = { 
 					name = prod_has_pottery
-					add = prev.var:prod_sply_old_pottery
+					add = prev.var:prod_has_pottery
 				}
 			}
 		}
@@ -22337,7 +21878,23 @@ every_county = {
 		}
 		every_county_province = { 
 			limit = { 
-				is_valid_prov = yes
+				has_variable = prod_has_pottery
+				var:prod_has_pottery > 0
+			}
+			every_in_list = { 
+				limit = { 
+					has_variable = prod_has_pottery
+					var:prod_has_pottery > 0
+				}
+				variable = prod_instances
+				change_variable = { 
+					name = prod_has_pottery
+					multiply = 100
+				}
+				change_variable = { 
+					name = prod_has_pottery
+					divide = prev.var:prod_has_pottery
+				}
 			}
 			change_variable = { 
 				name = prod_has_pottery
@@ -22355,6 +21912,21 @@ every_county = {
 				name = prod_has_pottery
 				divide = 100
 			}
+			every_in_list = { 
+				limit = { 
+					has_variable = prod_has_pottery
+					var:prod_has_pottery > 0
+				}
+				variable = prod_instances
+				change_variable = { 
+					name = prod_has_pottery
+					multiply = prev.var:prod_has_pottery
+				}
+				change_variable = { 
+					name = prod_has_pottery
+					divide = 100
+				}
+			}
 		}
 	}
 	if = { 
@@ -22364,7 +21936,8 @@ every_county = {
 		}
 		every_county_province = { 
 			limit = { 
-				is_valid_prov = yes
+				has_variable = prod_has_pottery
+				var:prod_has_pottery > 0
 			}
 			set_variable = { 
 				name = prod_earn_pottery
@@ -22386,6 +21959,33 @@ every_county = {
 				name = prod_earn_pottery
 				divide = 100
 			}
+			every_in_list = { 
+				limit = { 
+					has_variable = prod_has_pottery
+					var:prod_has_pottery > 0
+				}
+				variable = prod_instances
+				set_variable = { 
+					name = prod_earn_pottery
+					value = var:prod_has_pottery
+				}
+				change_variable = { 
+					name = prod_earn_pottery
+					multiply = 100
+				}
+				change_variable = { 
+					name = prod_earn_pottery
+					divide = prev.var:prod_has_pottery
+				}
+				change_variable = { 
+					name = prod_earn_pottery
+					multiply = prev.var:prod_earn_pottery
+				}
+				change_variable = { 
+					name = prod_earn_pottery
+					divide = 100
+				}
+			}
 		}
 	}
 	change_variable = { 
@@ -22400,15 +22000,23 @@ every_county = {
 		limit = { 
 			is_valid_prov = yes
 		}
+		set_variable = { 
+			name = prod_has_furniture
+			value = 0
+		}
 		every_in_list = { 
 			limit = { 
 				has_variable = prod_sply_old_furniture
 			}
 			variable = prod_instances
+			change_variable = { 
+				name = prod_has_furniture
+				add = var:prod_sply_old_furniture
+			}
 			prev = { 
 				change_variable = { 
 					name = prod_has_furniture
-					add = prev.var:prod_sply_old_furniture
+					add = prev.var:prod_has_furniture
 				}
 			}
 		}
@@ -22426,7 +22034,23 @@ every_county = {
 		}
 		every_county_province = { 
 			limit = { 
-				is_valid_prov = yes
+				has_variable = prod_has_furniture
+				var:prod_has_furniture > 0
+			}
+			every_in_list = { 
+				limit = { 
+					has_variable = prod_has_furniture
+					var:prod_has_furniture > 0
+				}
+				variable = prod_instances
+				change_variable = { 
+					name = prod_has_furniture
+					multiply = 100
+				}
+				change_variable = { 
+					name = prod_has_furniture
+					divide = prev.var:prod_has_furniture
+				}
 			}
 			change_variable = { 
 				name = prod_has_furniture
@@ -22444,6 +22068,21 @@ every_county = {
 				name = prod_has_furniture
 				divide = 100
 			}
+			every_in_list = { 
+				limit = { 
+					has_variable = prod_has_furniture
+					var:prod_has_furniture > 0
+				}
+				variable = prod_instances
+				change_variable = { 
+					name = prod_has_furniture
+					multiply = prev.var:prod_has_furniture
+				}
+				change_variable = { 
+					name = prod_has_furniture
+					divide = 100
+				}
+			}
 		}
 	}
 	if = { 
@@ -22453,7 +22092,8 @@ every_county = {
 		}
 		every_county_province = { 
 			limit = { 
-				is_valid_prov = yes
+				has_variable = prod_has_furniture
+				var:prod_has_furniture > 0
 			}
 			set_variable = { 
 				name = prod_earn_furniture
@@ -22474,6 +22114,33 @@ every_county = {
 			change_variable = { 
 				name = prod_earn_furniture
 				divide = 100
+			}
+			every_in_list = { 
+				limit = { 
+					has_variable = prod_has_furniture
+					var:prod_has_furniture > 0
+				}
+				variable = prod_instances
+				set_variable = { 
+					name = prod_earn_furniture
+					value = var:prod_has_furniture
+				}
+				change_variable = { 
+					name = prod_earn_furniture
+					multiply = 100
+				}
+				change_variable = { 
+					name = prod_earn_furniture
+					divide = prev.var:prod_has_furniture
+				}
+				change_variable = { 
+					name = prod_earn_furniture
+					multiply = prev.var:prod_earn_furniture
+				}
+				change_variable = { 
+					name = prod_earn_furniture
+					divide = 100
+				}
 			}
 		}
 	}
@@ -25746,56 +25413,328 @@ every_in_global_list = {
 		value = var:prod_pay
 	}
 	set_variable = { 
+		name = prod_earn_old
+		value = var:prod_earn
+	}
+	set_variable = { 
 		name = prod_pay
 		value = 0
 	}
-	change_variable = { 
-		name = prod_pay
-		add = var:prod_pay_food
+	set_variable = { 
+		name = prod_earn
+		value = 0
 	}
-	change_variable = { 
-		name = prod_pay
-		add = var:prod_pay_salt
+	if = { 
+		limit = { 
+			has_variable = prod_pay_food
+			var:prod_pay_food > 0
+		}
+		change_variable = { 
+			name = prod_pay
+			add = var:prod_pay_food
+		}
 	}
-	change_variable = { 
-		name = prod_pay
-		add = var:prod_pay_fuel
+	else = { 
+		remove_variable = prod_pay_food
 	}
-	change_variable = { 
-		name = prod_pay
-		add = var:prod_pay_fiber
+	if = { 
+		limit = { 
+			has_variable = prod_earn_food
+			var:prod_earn_food > 0
+		}
+		change_variable = { 
+			name = prod_earn
+			add = var:prod_earn_food
+		}
 	}
-	change_variable = { 
-		name = prod_pay
-		add = var:prod_pay_timber
+	else = { 
+		remove_variable = prod_earn_food
 	}
-	change_variable = { 
-		name = prod_pay
-		add = var:prod_pay_metal
+	if = { 
+		limit = { 
+			has_variable = prod_pay_salt
+			var:prod_pay_salt > 0
+		}
+		change_variable = { 
+			name = prod_pay
+			add = var:prod_pay_salt
+		}
 	}
-	change_variable = { 
-		name = prod_pay
-		add = var:prod_pay_exotics_w
+	else = { 
+		remove_variable = prod_pay_salt
 	}
-	change_variable = { 
-		name = prod_pay
-		add = var:prod_pay_exotics_e
+	if = { 
+		limit = { 
+			has_variable = prod_earn_salt
+			var:prod_earn_salt > 0
+		}
+		change_variable = { 
+			name = prod_earn
+			add = var:prod_earn_salt
+		}
 	}
-	change_variable = { 
-		name = prod_pay
-		add = var:prod_pay_exotics_g
+	else = { 
+		remove_variable = prod_earn_salt
 	}
-	change_variable = { 
-		name = prod_pay
-		add = var:prod_pay_textile
+	if = { 
+		limit = { 
+			has_variable = prod_pay_fuel
+			var:prod_pay_fuel > 0
+		}
+		change_variable = { 
+			name = prod_pay
+			add = var:prod_pay_fuel
+		}
 	}
-	change_variable = { 
-		name = prod_pay
-		add = var:prod_pay_pottery
+	else = { 
+		remove_variable = prod_pay_fuel
 	}
-	change_variable = { 
-		name = prod_pay
-		add = var:prod_pay_furniture
+	if = { 
+		limit = { 
+			has_variable = prod_earn_fuel
+			var:prod_earn_fuel > 0
+		}
+		change_variable = { 
+			name = prod_earn
+			add = var:prod_earn_fuel
+		}
+	}
+	else = { 
+		remove_variable = prod_earn_fuel
+	}
+	if = { 
+		limit = { 
+			has_variable = prod_pay_fiber
+			var:prod_pay_fiber > 0
+		}
+		change_variable = { 
+			name = prod_pay
+			add = var:prod_pay_fiber
+		}
+	}
+	else = { 
+		remove_variable = prod_pay_fiber
+	}
+	if = { 
+		limit = { 
+			has_variable = prod_earn_fiber
+			var:prod_earn_fiber > 0
+		}
+		change_variable = { 
+			name = prod_earn
+			add = var:prod_earn_fiber
+		}
+	}
+	else = { 
+		remove_variable = prod_earn_fiber
+	}
+	if = { 
+		limit = { 
+			has_variable = prod_pay_timber
+			var:prod_pay_timber > 0
+		}
+		change_variable = { 
+			name = prod_pay
+			add = var:prod_pay_timber
+		}
+	}
+	else = { 
+		remove_variable = prod_pay_timber
+	}
+	if = { 
+		limit = { 
+			has_variable = prod_earn_timber
+			var:prod_earn_timber > 0
+		}
+		change_variable = { 
+			name = prod_earn
+			add = var:prod_earn_timber
+		}
+	}
+	else = { 
+		remove_variable = prod_earn_timber
+	}
+	if = { 
+		limit = { 
+			has_variable = prod_pay_metal
+			var:prod_pay_metal > 0
+		}
+		change_variable = { 
+			name = prod_pay
+			add = var:prod_pay_metal
+		}
+	}
+	else = { 
+		remove_variable = prod_pay_metal
+	}
+	if = { 
+		limit = { 
+			has_variable = prod_earn_metal
+			var:prod_earn_metal > 0
+		}
+		change_variable = { 
+			name = prod_earn
+			add = var:prod_earn_metal
+		}
+	}
+	else = { 
+		remove_variable = prod_earn_metal
+	}
+	if = { 
+		limit = { 
+			has_variable = prod_pay_exotics_w
+			var:prod_pay_exotics_w > 0
+		}
+		change_variable = { 
+			name = prod_pay
+			add = var:prod_pay_exotics_w
+		}
+	}
+	else = { 
+		remove_variable = prod_pay_exotics_w
+	}
+	if = { 
+		limit = { 
+			has_variable = prod_earn_exotics_w
+			var:prod_earn_exotics_w > 0
+		}
+		change_variable = { 
+			name = prod_earn
+			add = var:prod_earn_exotics_w
+		}
+	}
+	else = { 
+		remove_variable = prod_earn_exotics_w
+	}
+	if = { 
+		limit = { 
+			has_variable = prod_pay_exotics_e
+			var:prod_pay_exotics_e > 0
+		}
+		change_variable = { 
+			name = prod_pay
+			add = var:prod_pay_exotics_e
+		}
+	}
+	else = { 
+		remove_variable = prod_pay_exotics_e
+	}
+	if = { 
+		limit = { 
+			has_variable = prod_earn_exotics_e
+			var:prod_earn_exotics_e > 0
+		}
+		change_variable = { 
+			name = prod_earn
+			add = var:prod_earn_exotics_e
+		}
+	}
+	else = { 
+		remove_variable = prod_earn_exotics_e
+	}
+	if = { 
+		limit = { 
+			has_variable = prod_pay_exotics_g
+			var:prod_pay_exotics_g > 0
+		}
+		change_variable = { 
+			name = prod_pay
+			add = var:prod_pay_exotics_g
+		}
+	}
+	else = { 
+		remove_variable = prod_pay_exotics_g
+	}
+	if = { 
+		limit = { 
+			has_variable = prod_earn_exotics_g
+			var:prod_earn_exotics_g > 0
+		}
+		change_variable = { 
+			name = prod_earn
+			add = var:prod_earn_exotics_g
+		}
+	}
+	else = { 
+		remove_variable = prod_earn_exotics_g
+	}
+	if = { 
+		limit = { 
+			has_variable = prod_pay_textile
+			var:prod_pay_textile > 0
+		}
+		change_variable = { 
+			name = prod_pay
+			add = var:prod_pay_textile
+		}
+	}
+	else = { 
+		remove_variable = prod_pay_textile
+	}
+	if = { 
+		limit = { 
+			has_variable = prod_earn_textile
+			var:prod_earn_textile > 0
+		}
+		change_variable = { 
+			name = prod_earn
+			add = var:prod_earn_textile
+		}
+	}
+	else = { 
+		remove_variable = prod_earn_textile
+	}
+	if = { 
+		limit = { 
+			has_variable = prod_pay_pottery
+			var:prod_pay_pottery > 0
+		}
+		change_variable = { 
+			name = prod_pay
+			add = var:prod_pay_pottery
+		}
+	}
+	else = { 
+		remove_variable = prod_pay_pottery
+	}
+	if = { 
+		limit = { 
+			has_variable = prod_earn_pottery
+			var:prod_earn_pottery > 0
+		}
+		change_variable = { 
+			name = prod_earn
+			add = var:prod_earn_pottery
+		}
+	}
+	else = { 
+		remove_variable = prod_earn_pottery
+	}
+	if = { 
+		limit = { 
+			has_variable = prod_pay_furniture
+			var:prod_pay_furniture > 0
+		}
+		change_variable = { 
+			name = prod_pay
+			add = var:prod_pay_furniture
+		}
+	}
+	else = { 
+		remove_variable = prod_pay_furniture
+	}
+	if = { 
+		limit = { 
+			has_variable = prod_earn_furniture
+			var:prod_earn_furniture > 0
+		}
+		change_variable = { 
+			name = prod_earn
+			add = var:prod_earn_furniture
+		}
+	}
+	else = { 
+		remove_variable = prod_earn_furniture
 	}
 }
 every_in_global_list = { 
