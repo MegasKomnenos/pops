@@ -207,10 +207,6 @@ if __name__ == '__main__':
         while check[0]:
             check[0] = False
 
-            try:
-                file = apply_script(file, scripts, check)
-            except:
-                print(reconstruct(file))
-                raise Exception
+            file = apply_script(file, scripts, check)
             
         ff.write(reconstruct(file))
