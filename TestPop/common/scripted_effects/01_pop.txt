@@ -275,7 +275,7 @@ pop_update_demand_helper_0 = {
 	set_variable = { name = pop_update_demand_t value = 0 }
 	
 	^^goods^change_variable = { name = pop_update_demand_t add = var:pop_$type$_&goods& }^
-	^^goods^change_variable = { name = pop_$type$_&goods& add = var:pop_update_demand_t }^
+	^^goods^change_variable = { name = pop_$type$_&goods& divide = var:pop_update_demand_t }^
 }
 
 pop_update_demand_helper_1 = {
