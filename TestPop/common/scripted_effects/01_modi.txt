@@ -10,17 +10,8 @@
 }
 
 modi_prod = {
-	set_variable = { name = modi_prod_dmnd_food value = 1 }
-	set_variable = { name = modi_prod_dmnd_fuel value = 1 }
-	set_variable = { name = modi_prod_dmnd_fiber value = 1 }
-	set_variable = { name = modi_prod_dmnd_pottery value = 1 }
-	set_variable = { name = modi_prod_dmnd_textile value = 1 }
-	
-	set_variable = { name = modi_prod_sply_food value = 1 }
-	set_variable = { name = modi_prod_sply_fuel value = 1 }
-	set_variable = { name = modi_prod_sply_fiber value = 1 }
-	set_variable = { name = modi_prod_sply_pottery value = 1 }
-	set_variable = { name = modi_prod_sply_textile value = 1 }
+	^^goods^set_variable = { name = modi_prod_dmnd_&goods& value = 1 }^
+	^^goods^set_variable = { name = modi_prod_sply_&goods& value = 1 }^
 }
 
 modi_pop = {
@@ -29,27 +20,8 @@ modi_pop = {
 	set_variable = { name = modi_pop_comfort value = 1 }
 	set_variable = { name = modi_pop_luxury value = 1 }
 	
-	set_variable = { name = modi_pop_calorie_food value = 1 }
-	set_variable = { name = modi_pop_calorie_fuel value = 1 }
-	set_variable = { name = modi_pop_calorie_fiber value = 1 }
-	set_variable = { name = modi_pop_calorie_pottery value = 1 }
-	set_variable = { name = modi_pop_calorie_textile value = 1 }
-	
-	set_variable = { name = modi_pop_nutrient_food value = 1 }
-	set_variable = { name = modi_pop_nutrient_fuel value = 1 }
-	set_variable = { name = modi_pop_nutrient_fiber value = 1 }
-	set_variable = { name = modi_pop_nutrient_pottery value = 1 }
-	set_variable = { name = modi_pop_nutrient_textile value = 1 }
-	
-	set_variable = { name = modi_pop_comfort_food value = 1 }
-	set_variable = { name = modi_pop_comfort_fuel value = 1 }
-	set_variable = { name = modi_pop_comfort_fiber value = 1 }
-	set_variable = { name = modi_pop_comfort_pottery value = 1 }
-	set_variable = { name = modi_pop_comfort_textile value = 1 }
-	
-	set_variable = { name = modi_pop_luxury_food value = 1 }
-	set_variable = { name = modi_pop_luxury_fuel value = 1 }
-	set_variable = { name = modi_pop_luxury_fiber value = 1 }
-	set_variable = { name = modi_pop_luxury_pottery value = 1 }
-	set_variable = { name = modi_pop_luxury_textile value = 1 }
+	^^goods^set_variable = { name = modi_pop_calorie_&goods& value = 1 }^
+	^^goods^set_variable = { name = modi_pop_nutrient_&goods& value = 1 }^
+	^^goods^set_variable = { name = modi_pop_comfort_&goods& value = 1 }^
+	^^goods^set_variable = { name = modi_pop_luxury_&goods& value = 1 }^
 }

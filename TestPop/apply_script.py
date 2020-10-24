@@ -9,7 +9,7 @@ def parse_block(block):
         block = block.replace(string, ' %s ', 1)
         
     block = re.sub('#.*', '\n', block)
-    block = re.sub('(\[\[\w*\]|[\>\<\!\=]+|[\{\}\]])', r' \1 ', block)
+    block = re.sub('(\[\[[\w&$]*\]|\^\^[\w&$]*\^|[\>\<\!\=]+|[\{\}\]^])', r' \1 ', block)
     block = block.strip()
 
     if block:
@@ -29,7 +29,7 @@ def parse_block(block):
         return []
 
 def parse_file(path):
-    with open(path, encoding='ISO-8859-1') as f:
+    with open(path, encoding='utf-8-sig') as f:
         file = list()
         stack = [file]
         rhs = False
@@ -49,9 +49,9 @@ def parse_file(path):
                     stack.append(stack.pop()[-1])
                 else:
                     stack.append(stack[-1][-1])
-            elif token == '}' or token == ']':
+            elif token == '}' or token == ']' or token == '^':
                 stack.pop()
-            elif '[[' in token:
+            elif '[[' in token or '^^' in token:
                 stack[-1].append([token[1:], list()])
                 stack.append(stack[-1][-1][1])
             else:
@@ -64,6 +64,36 @@ def parse_file(path):
 
         return file
 
+def apply_macro(file, macros, check=[False]):
+    out = list()
+    
+    for f in file:
+        if f and type(f) == type(list()):
+            if f[0].count('^') == 2:
+                check[0] = True
+                
+                name = f[0][1:-1]
+
+                for foo in [expand_macro(f[1], f'&{name}&', item) for item in macros[name]]:
+                    out.extend(foo)
+            else:
+                out.append(apply_macro(f, macros, check))
+        else:
+            out.append(f)
+
+    return out
+
+def expand_macro(content, name, item):
+    out = list()
+
+    for c in content:
+        if type(c) == type(list()):
+            out.append(expand_macro(c, name, item))
+        else:
+            out.append(c.replace(name, item))
+
+    return out
+                        
 def apply_script(file, scripts, check=[False]):
     out = list()
 
@@ -107,7 +137,7 @@ def apply_paras(script, paras):
                     outout.append(foo)
                 else:
                     outout.append(part)
-
+                    
             if type(section[2]) != type(list()):
                 if '$' in section[2]:
                     foo = str(section[2])
@@ -152,12 +182,22 @@ if __name__ == '__main__':
     import glob
 
     scripts = dict()
+    macros = dict()
 
     for path in glob.glob('common\\scripted_effects\\*.txt'):
+        if not '00_init' in path:
+            file = parse_file(path)
+
+            for script in file:
+                scripts[script[0]] = script[2]
+    for path in glob.glob('macro\\*.txt'):
         file = parse_file(path)
 
-        for script in file:
-            scripts[script[0]] = script[2]
+        for macro in file:
+            macros[macro[0]] = macro[2]
+
+    for name, script in scripts.items():
+        scripts[name] = apply_macro(script, macros)
 
     with open('out.txt', 'w', encoding='utf-8-sig') as ff:
         file = parse_file('run.txt')
@@ -167,6 +207,10 @@ if __name__ == '__main__':
         while check[0]:
             check[0] = False
 
-            file = apply_script(file, scripts, check)
+            try:
+                file = apply_script(file, scripts, check)
+            except:
+                print(reconstruct(file))
+                raise Exception
             
         ff.write(reconstruct(file))

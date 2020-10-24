@@ -4,29 +4,12 @@
 	set_variable = { name = pop_comfort value = 0 }
 	set_variable = { name = pop_luxury value = 0 }
 	
-	pop_resolve_demand_helper = { type = calorie good = food }
-	pop_resolve_demand_helper = { type = calorie good = fuel }
-	pop_resolve_demand_helper = { type = calorie good = fiber }
-	pop_resolve_demand_helper = { type = calorie good = pottery }
-	pop_resolve_demand_helper = { type = calorie good = textile }
-	
-	pop_resolve_demand_helper = { type = nutrient good = food }
-	pop_resolve_demand_helper = { type = nutrient good = fuel }
-	pop_resolve_demand_helper = { type = nutrient good = fiber }
-	pop_resolve_demand_helper = { type = nutrient good = pottery }
-	pop_resolve_demand_helper = { type = nutrient good = textile }
-	
-	pop_resolve_demand_helper = { type = comfort good = food }
-	pop_resolve_demand_helper = { type = comfort good = fuel }
-	pop_resolve_demand_helper = { type = comfort good = fiber }
-	pop_resolve_demand_helper = { type = comfort good = pottery }
-	pop_resolve_demand_helper = { type = comfort good = textile }
-	
-	pop_resolve_demand_helper = { type = luxury good = food }
-	pop_resolve_demand_helper = { type = luxury good = fuel }
-	pop_resolve_demand_helper = { type = luxury good = fiber }
-	pop_resolve_demand_helper = { type = luxury good = pottery }
-	pop_resolve_demand_helper = { type = luxury good = textile }
+	^^goods^
+		pop_resolve_demand_helper = { type = calorie good = &goods& }
+		pop_resolve_demand_helper = { type = nutrient good = &goods& }
+		pop_resolve_demand_helper = { type = comfort good = &goods& }
+		pop_resolve_demand_helper = { type = luxury good = &goods& }
+	^
 	
 	change_variable = { name = pop_calorie divide = var:pop_total }
 	change_variable = { name = pop_nutrient divide = var:pop_total }
@@ -208,29 +191,12 @@ pop_update_demand = {
 	change_variable = { name = pop_luxury multiply = var:pop_total }
 	change_variable = { name = pop_luxury multiply = this.county.var:modi_pop_luxury }
 	
-	pop_update_demand_helper_2 = { type = calorie good = food }
-	pop_update_demand_helper_2 = { type = calorie good = fuel }
-	pop_update_demand_helper_2 = { type = calorie good = fiber }
-	pop_update_demand_helper_2 = { type = calorie good = pottery }
-	pop_update_demand_helper_2 = { type = calorie good = textile }
-	
-	pop_update_demand_helper_2 = { type = nutrient good = food }
-	pop_update_demand_helper_2 = { type = nutrient good = fuel }
-	pop_update_demand_helper_2 = { type = nutrient good = fiber }
-	pop_update_demand_helper_2 = { type = nutrient good = pottery }
-	pop_update_demand_helper_2 = { type = nutrient good = textile }
-	
-	pop_update_demand_helper_2 = { type = comfort good = food }
-	pop_update_demand_helper_2 = { type = comfort good = fuel }
-	pop_update_demand_helper_2 = { type = comfort good = fiber }
-	pop_update_demand_helper_2 = { type = comfort good = pottery }
-	pop_update_demand_helper_2 = { type = comfort good = textile }
-	
-	pop_update_demand_helper_2 = { type = luxury good = food }
-	pop_update_demand_helper_2 = { type = luxury good = fuel }
-	pop_update_demand_helper_2 = { type = luxury good = fiber }
-	pop_update_demand_helper_2 = { type = luxury good = pottery }
-	pop_update_demand_helper_2 = { type = luxury good = textile }
+	^^goods^
+		pop_update_demand_helper_2 = { type = calorie good = &goods& }
+		pop_update_demand_helper_2 = { type = nutrient good = &goods& }
+		pop_update_demand_helper_2 = { type = comfort good = &goods& }
+		pop_update_demand_helper_2 = { type = luxury good = &goods& }
+	^
 	
 	remove_variable = pop_update_demand_t
 	remove_variable = pop_update_demand_tt
@@ -299,53 +265,23 @@ pop_get_need = {
 }
 
 pop_update_demand_helper_0 = {
-	set_variable = { name = pop_$type$_food value = pop_$type$_food }
-	set_variable = { name = pop_$type$_fuel value = pop_$type$_fuel }
-	set_variable = { name = pop_$type$_fiber value = pop_$type$_fiber }
-	set_variable = { name = pop_$type$_pottery value = pop_$type$_pottery }
-	set_variable = { name = pop_$type$_textile value = pop_$type$_textile }
-	
-	change_variable = { name = pop_$type$_food multiply = 10 }
-	change_variable = { name = pop_$type$_fuel multiply = 10 }
-	change_variable = { name = pop_$type$_fiber multiply = 10 }
-	change_variable = { name = pop_$type$_pottery multiply = 10 }
-	change_variable = { name = pop_$type$_textile multiply = 10 }
-	
-	change_variable = { name = pop_$type$_food divide = this.county.var:trade_price_food }
-	change_variable = { name = pop_$type$_fuel divide = this.county.var:trade_price_fuel }
-	change_variable = { name = pop_$type$_fiber divide = this.county.var:trade_price_fiber }
-	change_variable = { name = pop_$type$_pottery divide = this.county.var:trade_price_pottery }
-	change_variable = { name = pop_$type$_textile divide = this.county.var:trade_price_textile }
-	
-	change_variable = { name = pop_$type$_food multiply = var:pop_$type$_food }
-	change_variable = { name = pop_$type$_fuel multiply = var:pop_$type$_fuel }
-	change_variable = { name = pop_$type$_fiber multiply = var:pop_$type$_fiber }
-	change_variable = { name = pop_$type$_pottery multiply = var:pop_$type$_pottery }
-	change_variable = { name = pop_$type$_textile multiply = var:pop_$type$_textile }
+	^^goods^
+		set_variable = { name = pop_$type$_&goods& value = pop_$type$_&goods& }
+		change_variable = { name = pop_$type$_&goods& multiply = 10 }
+		change_variable = { name = pop_$type$_&goods& divide = this.county.var:trade_price_&goods& }
+		change_variable = { name = pop_$type$_&goods& multiply = var:pop_$type$_&goods& }
+	^
 	
 	set_variable = { name = pop_update_demand_t value = 0 }
 	
-	change_variable = { name = pop_update_demand_t add = var:pop_$type$_food }
-	change_variable = { name = pop_update_demand_t add = var:pop_$type$_fuel }
-	change_variable = { name = pop_update_demand_t add = var:pop_$type$_fiber }
-	change_variable = { name = pop_update_demand_t add = var:pop_$type$_pottery }
-	change_variable = { name = pop_update_demand_t add = var:pop_$type$_textile }
-	
-	change_variable = { name = pop_$type$_food divide = var:pop_update_demand_t }
-	change_variable = { name = pop_$type$_fuel divide = var:pop_update_demand_t }
-	change_variable = { name = pop_$type$_fiber divide = var:pop_update_demand_t }
-	change_variable = { name = pop_$type$_pottery divide = var:pop_update_demand_t }
-	change_variable = { name = pop_$type$_textile divide = var:pop_update_demand_t }
+	^^goods^change_variable = { name = pop_update_demand_t add = var:pop_$type$_&goods& }^
+	^^goods^change_variable = { name = pop_$type$_&goods& add = var:pop_update_demand_t }^
 }
 
 pop_update_demand_helper_1 = {
 	set_variable = { name = pop_$type$_cost value = 0 }
 	
-	pop_update_demand_helper_1_helper = { type = $type$ good = food }
-	pop_update_demand_helper_1_helper = { type = $type$ good = fuel }
-	pop_update_demand_helper_1_helper = { type = $type$ good = fiber }
-	pop_update_demand_helper_1_helper = { type = $type$ good = pottery }
-	pop_update_demand_helper_1_helper = { type = $type$ good = textile }
+	^^goods^pop_update_demand_helper_1_helper = { type = $type$ good = &goods& }^
 	
 	change_variable = { name = pop_$type$_cost multiply = this.county.var:modi_pop_$type$ }
 }

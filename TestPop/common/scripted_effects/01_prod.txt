@@ -17,17 +17,10 @@
 		set_variable = { name = prod_labor value = $labor$ }
 		set_variable = { name = prod_land value = $land$ }
 		
-		[[dmnd_food] set_variable = { name = prod_dmnd_food value = $dmnd_food$ } ]
-		[[dmnd_fuel] set_variable = { name = prod_dmnd_fuel value = $dmnd_fuel$ } ]
-		[[dmnd_fiber] set_variable = { name = prod_dmnd_fiber value = $dmnd_fiber$ } ]
-		[[dmnd_pottery] set_variable = { name = prod_dmnd_pottery value = $dmnd_pottery$ } ]
-		[[dmnd_textile] set_variable = { name = prod_dmnd_textile value = $dmnd_textile$ } ]
-		
-		[[sply_food] set_variable = { name = prod_sply_food value = $sply_food$ } ]
-		[[sply_fuel] set_variable = { name = prod_sply_fuel value = $sply_fuel$ } ]
-		[[sply_fiber] set_variable = { name = prod_sply_fiber value = $sply_fiber$ } ]
-		[[sply_pottery] set_variable = { name = prod_sply_pottery value = $sply_pottery$ } ]
-		[[sply_textile] set_variable = { name = prod_sply_textile value = $sply_textile$ } ]
+		^^goods^
+			[[dmnd_&goods&] set_variable = { name = prod_dmnd_&goods& value = $dmnd_&goods&$ } ]
+			[[sply_&goods&] set_variable = { name = prod_sply_&goods& value = $sply_&goods&$ } ]
+		^
 	}
 }
 
@@ -65,11 +58,7 @@ prod_new_instance = {
 			set_variable = { name = prod_pay value = 0 }
 			set_variable = { name = prod_pay_old value = 0 }
 			
-			prod_new_instance_helper = { template = $template$ good = food }
-			prod_new_instance_helper = { template = $template$ good = fuel }
-			prod_new_instance_helper = { template = $template$ good = fiber }
-			prod_new_instance_helper = { template = $template$ good = pottery }
-			prod_new_instance_helper = { template = $template$ good = textile }
+			^^goods^prod_new_instance_helper = { template = $template$ good = &goods& }^
 		}
 	}
 }
@@ -119,11 +108,7 @@ prod_update_instances = {
 		set_variable = { name = prod_update_instances_t value = 1 }
 		set_variable = { name = prod_update_instances_tt value = 0 }
 		
-		prod_update_instances_helper_4 = { good = food }
-		prod_update_instances_helper_4 = { good = fiber }
-		prod_update_instances_helper_4 = { good = fuel }
-		prod_update_instances_helper_4 = { good = pottery }
-		prod_update_instances_helper_4 = { good = textile }
+		^^goods^prod_update_instances_helper_4 = { good = &goods& }^
 		
 		if = {
 			limit = {
@@ -138,22 +123,14 @@ prod_update_instances = {
 			}
 		}
 		
-		prod_update_instances_helper_5 = { good = food }
-		prod_update_instances_helper_5 = { good = fiber }
-		prod_update_instances_helper_5 = { good = fuel }
-		prod_update_instances_helper_5 = { good = pottery }
-		prod_update_instances_helper_5 = { good = textile }
+		^^goods^prod_update_instances_helper_5 = { good = &goods& }^
 	}
 	
 	every_county = {
 		limit = {
 			is_valid_prov = yes
 		}
-		prod_update_instances_helper_0 = { good = food }
-		prod_update_instances_helper_0 = { good = fiber }
-		prod_update_instances_helper_0 = { good = fuel }
-		prod_update_instances_helper_0 = { good = pottery }
-		prod_update_instances_helper_0 = { good = textile }
+		^^goods^prod_update_instances_helper_0 = { good = &goods& }^
 	}
 	
 	every_in_global_list = {
@@ -164,17 +141,8 @@ prod_update_instances = {
 		
 		set_variable = { name = prod_update_instances_t value = 0 }
 		
-		prod_update_instances_helper_1 = { type = dmnd opr = subtract good = food }
-		prod_update_instances_helper_1 = { type = dmnd opr = subtract good = fuel }
-		prod_update_instances_helper_1 = { type = dmnd opr = subtract good = fiber }
-		prod_update_instances_helper_1 = { type = dmnd opr = subtract good = pottery }
-		prod_update_instances_helper_1 = { type = dmnd opr = subtract good = textile }
-		
-		prod_update_instances_helper_1 = { type = sply opr = add good = food }
-		prod_update_instances_helper_1 = { type = sply opr = add good = fuel }
-		prod_update_instances_helper_1 = { type = sply opr = add good = fiber }
-		prod_update_instances_helper_1 = { type = sply opr = add good = pottery }
-		prod_update_instances_helper_1 = { type = sply opr = add good = textile }
+		^^goods^prod_update_instances_helper_1 = { type = dmnd opr = subtract good = &goods& }^
+		^^goods^prod_update_instances_helper_1 = { type = sply opr = add good = &goods& }^
 		
 		if = {
 			limit = {
@@ -201,11 +169,8 @@ prod_update_instances = {
 		prod_update_instances_helper_3 = yes
 		
 		remove_variable = prod_update_instances_t
-		remove_variable = prod_update_instances_food
-		remove_variable = prod_update_instances_fiber
-		remove_variable = prod_update_instances_fuel
-		remove_variable = prod_update_instances_pottery
-		remove_variable = prod_update_instances_textile
+		
+		^^goods^remove_variable = prod_update_instances_&goods&^
 	}
 	
 	every_province = {
@@ -233,17 +198,8 @@ prod_update_instances = {
 		
 		change_variable = { name = prod_size multiply = var:prod_update_instances_t }
 		
-		prod_update_instances_helper_6 = { name = prod_dmnd_food }
-		prod_update_instances_helper_6 = { name = prod_dmnd_fuel }
-		prod_update_instances_helper_6 = { name = prod_dmnd_fiber }
-		prod_update_instances_helper_6 = { name = prod_dmnd_pottery }
-		prod_update_instances_helper_6 = { name = prod_dmnd_textile }
-		
-		prod_update_instances_helper_6 = { name = prod_sply_food }
-		prod_update_instances_helper_6 = { name = prod_sply_fuel }
-		prod_update_instances_helper_6 = { name = prod_sply_fiber }
-		prod_update_instances_helper_6 = { name = prod_sply_pottery }
-		prod_update_instances_helper_6 = { name = prod_sply_textile }
+		^^goods^prod_update_instances_helper_6 = { name = prod_dmnd_&goods& }^
+		^^goods^prod_update_instances_helper_6 = { name = prod_sply_&goods& }^
 		
 		remove_variable = prod_update_instances_t
 		remove_variable = prod_update_instances_tt

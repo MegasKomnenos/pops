@@ -36,34 +36,19 @@
 		}
 		set_variable = { name = pop_total value = 1 }
 		
-		set_variable = { name = trade_has_food value = 0 }
-		set_variable = { name = trade_has_fuel value = 0 }
-		set_variable = { name = trade_has_fiber value = 0 }
-		set_variable = { name = trade_has_pottery value = 0 }
-		set_variable = { name = trade_has_textile value = 0 }
-		
-		set_variable = { name = trade_sum_sply_food value = 0 }
-		set_variable = { name = trade_sum_sply_fuel value = 0 }
-		set_variable = { name = trade_sum_sply_fiber value = 0 }
-		set_variable = { name = trade_sum_sply_pottery value = 0 }
-		set_variable = { name = trade_sum_sply_textile value = 0 }
+		^^goods^
+			set_variable = { name = trade_has_&goods& value = 0 }
+			set_variable = { name = trade_sum_sply_&goods& value = 0 }
+		^
 		
 		every_county_province = {
 			limit = {
 				is_valid_prov = yes
 			}
-			set_variable = { name = prod_has_food value = 1 }
-			set_variable = { name = prod_has_fuel value = 1 }
-			set_variable = { name = prod_has_fiber value = 1 }
-			set_variable = { name = prod_has_pottery value = 1 }
-			set_variable = { name = prod_has_textile value = 1 }
+			^^goods^set_variable = { name = prod_has_&goods& value = 1 }^
 			
 			prev = {
-				change_variable = { name = trade_has_food add = 1 }
-				change_variable = { name = trade_has_fuel add = 1 }
-				change_variable = { name = trade_has_fiber add = 1 }
-				change_variable = { name = trade_has_pottery add = 1 }
-				change_variable = { name = trade_has_textile add = 1 }
+				^^goods^change_variable = { name = trade_has_&goods& add = 1 }^
 			}
 			
 			if = {
