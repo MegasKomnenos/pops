@@ -200,7 +200,7 @@ if __name__ == '__main__':
 
     file = parse_file('common\\on_action\\game_start.txt')
 
-    with open('common\\on_action\\game_start.txt', 'w') as ff:
+    with open('common\\on_action\\game_start.txt', 'w', encoding='utf-8-sig') as ff:
         check = [True]
 
         while check[0]:
