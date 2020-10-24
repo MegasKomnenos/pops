@@ -152,21 +152,6 @@ prod_update_instances = {
 		change_variable = { name = prod_profit add = var:prod_update_instances_t }
 	}
 	
-	every_county = {
-		limit = {
-			is_valid_prov = yes
-		}
-		prod_update_instances_helper_2 = { land = farm }
-		prod_update_instances_helper_2 = { land = pasture }
-		prod_update_instances_helper_2 = { land = forest }
-		prod_update_instances_helper_2 = { land = workshop }
-		prod_update_instances_helper_2 = { land = extraction }
-		
-		prod_update_instances_helper_3 = yes
-		
-		remove_variable = prod_update_instances_t
-	}
-	
 	every_province = {
 		limit = {
 			is_valid_prov = yes
@@ -219,8 +204,8 @@ prod_update_instances_helper_2 = {
 			variable = prod_instances
 			
 			set_variable = { name = prod_land value = var:prod_profit }
+			change_variable = { name = prod_land add = 0.1 }
 			change_variable = { name = prod_land multiply = var:prod_template.var:prod_land }
-			change_variable = { name = prod_land multiply = var:prod_land }
 			
 			prev = {
 				change_variable = { name = prod_update_instances_t add = prev.var:prod_land }
@@ -275,8 +260,8 @@ prod_update_instances_helper_3 = {
 		}
 		
 		set_variable = { name = prod_labor value = var:prod_profit }
+		change_variable = { name = prod_labor add = 0.1 }
 		change_variable = { name = prod_labor multiply = var:prod_template.var:prod_labor }
-		change_variable = { name = prod_labor multiply = var:prod_labor }
 		change_variable = { name = prod_labor multiply = var:prod_update_instances_t }
 		
 		prev = {
