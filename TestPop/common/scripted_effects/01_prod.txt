@@ -56,7 +56,9 @@ prod_new_instance = {
 			set_variable = { name = prod_land value = 0 }
 			set_variable = { name = prod_profit value = 0 }
 			set_variable = { name = prod_pay value = 0 }
+			set_variable = { name = prod_earn value = 0 }
 			set_variable = { name = prod_pay_old value = 0 }
+			set_variable = { name = prod_earn_old value = 0 }
 			
 			^^goods^prod_new_instance_helper = { template = $template$ good = &goods& }^
 		}
@@ -75,7 +77,6 @@ prod_new_instance_helper = {
 		set_variable = { name = prod_in_$good$ value = 0 } 
 		set_variable = { name = prod_in_old_$good$ value = 0 } 
 		set_variable = { name = prod_pay_$good$ value = 0 } 
-		set_variable = { name = prod_pay_$good$ value = 0 } 
 	}
 	if = { 
 		limit = { 
@@ -85,6 +86,8 @@ prod_new_instance_helper = {
 		} 
 		set_variable = { name = prod_sply_$good$ value = 0 }
 		set_variable = { name = prod_sply_old_$good$ value = 0 }
+		set_variable = { name = prod_has_$good$ value = 0 }
+		set_variable = { name = prod_earn_$good$ value = 0 }
 	}
 }
 
@@ -126,23 +129,15 @@ prod_update_instances = {
 		^^goods^prod_update_instances_helper_5 = { good = &goods& }^
 	}
 	
-	every_county = {
-		limit = {
-			is_valid_prov = yes
-		}
-		^^goods^prod_update_instances_helper_0 = { good = &goods& }^
-	}
-	
 	every_in_global_list = {
 		variable = prod_instances
 		
 		set_variable = { name = prod_labor value = 0 }
 		set_variable = { name = prod_land value = 0 }
 		
-		set_variable = { name = prod_update_instances_t value = 0 }
-		
-		^^goods^prod_update_instances_helper_1 = { type = dmnd opr = subtract good = &goods& }^
-		^^goods^prod_update_instances_helper_1 = { type = sply opr = add good = &goods& }^
+		set_variable = { name = prod_update_instances_t value = var:prod_earn }
+		change_variable = { name = prod_update_instances_t subtract = var:prod_pay }
+		change_variable = { name = prod_update_instances_t divide = 10 }
 		
 		if = {
 			limit = {
@@ -170,8 +165,6 @@ prod_update_instances = {
 		prod_update_instances_helper_3 = yes
 		
 		remove_variable = prod_update_instances_t
-		
-		^^goods^remove_variable = prod_update_instances_&goods&^
 	}
 	
 	every_province = {
@@ -205,55 +198,6 @@ prod_update_instances = {
 		
 		remove_variable = prod_update_instances_t
 		remove_variable = prod_update_instances_tt
-	}
-}
-
-prod_update_instances_helper_0 = {
-	if = {
-		limit = {
-			has_variable = trade_sum_sply_$good$ 
-			has_variable = trade_has_$good$
-			
-			var:trade_sum_sply_$good$ > 0
-			var:trade_has_$good$ > 0
-		}
-		set_variable = { name = prod_update_instances_$good$ value = var:trade_sum_sply_$good$ }
-		change_variable = { name = prod_update_instances_$good$ divide = 2 }
-		change_variable = { name = prod_update_instances_$good$ divide = var:trade_has_$good$ }
-		
-		if = {
-			limit = {
-				has_variable = prod_update_instances_$good$
-				
-				var:prod_update_instances_$good$ > 1
-			}
-			set_variable = { name = prod_update_instances_$good$ value = 1 }
-		}
-		else = {
-			change_variable = { name = prod_update_instances_$good$ add = 0.25 }
-			change_variable = { name = prod_update_instances_$good$ divide = 1.25 }
-		}
-	}
-	else = {
-		set_variable = { name = prod_update_instances_$good$ value = 1 }
-	}
-	
-	change_variable = { name = prod_update_instances_$good$ multiply = var:trade_price_$good$ }
-}
-
-prod_update_instances_helper_1 = {
-	if = {
-		limit = {
-			var:prod_template = {
-				has_variable = prod_$type$_$good$
-				
-				var:prod_$type$_$good$ > 0
-			}
-		}
-		set_variable = { name = prod_update_instances_tt value = var:prod_template.var:prod_$type$_$good$ }
-		change_variable = { name = prod_update_instances_tt multiply = var:prod_location.county.var:prod_update_instances_$good$ }
-		change_variable = { name = prod_update_instances_tt multiply = var:prod_location.var:modi_prod_$type$_$good$ }
-		change_variable = { name = prod_update_instances_t $opr$ = var:prod_update_instances_tt }
 	}
 }
 

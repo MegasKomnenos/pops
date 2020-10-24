@@ -812,7 +812,10 @@ trade_resolve_trade = {
 	every_in_global_list = {
 		variable = prod_instances
 		
-		^^goods^set_variable = { name = prod_pay_&goods& value = 0 }^
+		^^goods^
+			set_variable = { name = prod_earn_&goods& value = 0 }
+			set_variable = { name = prod_pay_&goods& value = 0 }
+		^
 	}
 	
 	every_county = {
@@ -875,10 +878,35 @@ trade_resolve_trade = {
 		variable = prod_instances
 		
 		set_variable = { name = prod_pay_old value = var:prod_pay }
+		set_variable = { name = prod_earn_old value = var:prod_earn }
 		
 		set_variable = { name = prod_pay value = 0 } 
+		set_variable = { name = prod_earn value = 0 } 
 		
-		^^goods^change_variable = { name = prod_pay add = var:prod_pay_&goods& }^
+		^^goods^
+			if = {
+				limit = {
+					has_variable = prod_pay_&goods&
+					
+					var:prod_pay_&goods& > 0
+				}
+				change_variable = { name = prod_pay add = var:prod_pay_&goods& }
+			}
+			else = {
+				remove_variable = prod_pay_&goods&
+			}
+			if = {
+				limit = {
+					has_variable = prod_earn_&goods&
+					
+					var:prod_earn_&goods& > 0
+				}
+				change_variable = { name = prod_earn add = var:prod_earn_&goods& }
+			}
+			else = {
+				remove_variable = prod_earn_&goods&
+			}
+		^
 	}
 }
 
@@ -891,14 +919,18 @@ trade_resolve_trade_helper_0 = {
 		limit = {
 			is_valid_prov = yes
 		}
+		set_variable = { name = prod_has_$good$ value = 0 }
+		
 		every_in_list = {
 			limit = {
 				has_variable = prod_sply_old_$good$
 			}
 			variable = prod_instances
 			
+			change_variable = { name = prod_has_$good$ add = prev.var:prod_sply_old_$good$ }
+			
 			prev = {
-				change_variable = { name = prod_has_$good$ add = prev.var:prod_sply_old_$good$ }
+				change_variable = { name = prod_has_$good$ add = prev.var:prod_has_$good$ }
 			}
 		}
 		
@@ -915,12 +947,38 @@ trade_resolve_trade_helper_0 = {
 		}
 		every_county_province = {
 			limit = {
-				is_valid_prov = yes
+				has_variable = prod_has_$good$
+					
+				var:prod_has_$good$ > 0
 			}
+			every_in_list = {
+				limit = {
+					has_variable = prod_has_$good$
+					
+					var:prod_has_$good$ > 0
+				}
+				variable = prod_instances
+				
+				change_variable = { name = prod_has_$good$ multiply = 100 }
+				change_variable = { name = prod_has_$good$ divide = prev.var:prod_has_$good$ }
+			}
+			
 			change_variable = { name = prod_has_$good$ multiply = 100 }
 			change_variable = { name = prod_has_$good$ divide = prev.var:trade_resolve_trade_t }
 			change_variable = { name = prod_has_$good$ multiply = prev.var:trade_has_$good$ }
 			change_variable = { name = prod_has_$good$ divide = 100 }
+			
+			every_in_list = {
+				limit = {
+					has_variable = prod_has_$good$
+					
+					var:prod_has_$good$ > 0
+				}
+				variable = prod_instances
+				
+				change_variable = { name = prod_has_$good$ multiply = prev.var:prod_has_$good$ }
+				change_variable = { name = prod_has_$good$ divide = 100 }
+			}
 		}
 	}
 	
@@ -932,13 +990,30 @@ trade_resolve_trade_helper_0 = {
 		}
 		every_county_province = {
 			limit = {
-				is_valid_prov = yes
+				has_variable = prod_has_$good$
+					
+				var:prod_has_$good$ > 0
 			}
 			set_variable = { name = prod_earn_$good$ value = var:prod_has_$good$ }
 			change_variable = { name = prod_earn_$good$ multiply = 100 }
 			change_variable = { name = prod_earn_$good$ divide = prev.var:trade_has_$good$ }
 			change_variable = { name = prod_earn_$good$ multiply = prev.var:trade_earn_$good$ }
 			change_variable = { name = prod_earn_$good$ divide = 100 }
+			
+			every_in_list = {
+				limit = {
+					has_variable = prod_has_$good$
+					
+					var:prod_has_$good$ > 0
+				}
+				variable = prod_instances
+				
+				set_variable = { name = prod_earn_$good$ value = var:prod_has_$good$ }
+				change_variable = { name = prod_earn_$good$ multiply = 100 }
+				change_variable = { name = prod_earn_$good$ divide = prev.var:prod_has_$good$ }
+				change_variable = { name = prod_earn_$good$ multiply = prev.var:prod_earn_$good$ }
+				change_variable = { name = prod_earn_$good$ divide = 100 }
+			}
 		}
 	}
 }
