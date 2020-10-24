@@ -223,6 +223,8 @@ prod_update_instances_helper_0 = {
 		
 		if = {
 			limit = {
+				has_variable = prod_update_instances_$good$
+				
 				var:prod_update_instances_$good$ > 1
 			}
 			set_variable = { name = prod_update_instances_$good$ value = 1 }
