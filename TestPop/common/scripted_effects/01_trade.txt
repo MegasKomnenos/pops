@@ -1074,16 +1074,23 @@ trade_update_price_helper_0 = {
 		
 		if = {
 			limit = {
-				var:trade_update_price_t >= 0
+				has_variable = trade_update_price_t
+				
+				var:trade_update_price_t != 0
 			}
-			change_variable = { name = trade_update_price_t divide = 200 }
-			change_variable = { name = trade_update_price_t add = 1 }
-			change_variable = { name = trade_price_$good$ $opr0$ = var:trade_update_price_t }
-		}
-		else = {
-			change_variable = { name = trade_update_price_t divide = -900 }
-			change_variable = { name = trade_update_price_t add = 1 }
-			change_variable = { name = trade_price_$good$ $opr1$ = var:trade_update_price_t }
+			if = {
+				limit = {
+					var:trade_update_price_t > 0
+				}
+				change_variable = { name = trade_update_price_t divide = 200 }
+				change_variable = { name = trade_update_price_t add = 1 }
+				change_variable = { name = trade_price_$good$ $opr0$ = var:trade_update_price_t }
+			}
+			else = {
+				change_variable = { name = trade_update_price_t divide = -900 }
+				change_variable = { name = trade_update_price_t add = 1 }
+				change_variable = { name = trade_price_$good$ $opr1$ = var:trade_update_price_t }
+			}
 		}
 	}
 }
@@ -1103,15 +1110,22 @@ trade_update_price_helper_1 = {
 		
 		if = {
 			limit = {
-				var:trade_update_price_t >= 0
+				has_variable = trade_update_price_t
+				
+				var:trade_update_price_t != 0
 			}
-			change_variable = { name = trade_update_price_t add = 1 }
-			change_variable = { name = trade_price_$good$ divide = var:trade_update_price_t }
-		}
-		else = {
-			change_variable = { name = trade_update_price_t multiply = -1 }
-			change_variable = { name = trade_update_price_t add = 1 }
-			change_variable = { name = trade_price_$good$ multiply = var:trade_update_price_t }
+			if = {
+				limit = {
+					var:trade_update_price_t > 0
+				}
+				change_variable = { name = trade_update_price_t add = 1 }
+				change_variable = { name = trade_price_$good$ divide = var:trade_update_price_t }
+			}
+			else = {
+				change_variable = { name = trade_update_price_t multiply = -1 }
+				change_variable = { name = trade_update_price_t add = 1 }
+				change_variable = { name = trade_price_$good$ multiply = var:trade_update_price_t }
+			}
 		}
 	}
 }
