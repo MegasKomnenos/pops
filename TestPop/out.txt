@@ -1087,7 +1087,7 @@
 				}
 				change_variable = { 
 					name = prod_land
-					add = 0.1
+					add = 0.01
 				}
 				change_variable = { 
 					name = prod_land
@@ -1167,7 +1167,7 @@
 				}
 				change_variable = { 
 					name = prod_land
-					add = 0.1
+					add = 0.01
 				}
 				change_variable = { 
 					name = prod_land
@@ -1247,7 +1247,7 @@
 				}
 				change_variable = { 
 					name = prod_land
-					add = 0.1
+					add = 0.01
 				}
 				change_variable = { 
 					name = prod_land
@@ -1327,7 +1327,7 @@
 				}
 				change_variable = { 
 					name = prod_land
-					add = 0.1
+					add = 0.01
 				}
 				change_variable = { 
 					name = prod_land
@@ -1407,7 +1407,7 @@
 				}
 				change_variable = { 
 					name = prod_land
-					add = 0.1
+					add = 0.01
 				}
 				change_variable = { 
 					name = prod_land
@@ -1472,474 +1472,16 @@
 		every_in_list = { 
 			variable = prod_instances
 			set_variable = { 
-				name = math_pow_base
-				value = var:prod_land
-			}
-			set_variable = { 
-				name = math_pow_exp
-				value = var:prod_template.var:prod_land
-			}
-			if = { 
-				limit = { 
-					has_variable = math_pow_base
-					var:math_pow_base != 0
-				}
-				set_variable = { 
-					name = prod_update_instances_t
-					value = 1
-				}
-				while = { 
-					limit = { 
-						var:math_pow_exp >= 1
-					}
-					change_variable = { 
-						name = math_pow_exp
-						subtract = 1
-					}
-					change_variable = { 
-						name = prod_update_instances_t
-						multiply = var:math_pow_base
-					}
-				}
-				while = { 
-					limit = { 
-						var:math_pow_exp < 0
-					}
-					change_variable = { 
-						name = math_pow_exp
-						add = 1
-					}
-					change_variable = { 
-						name = prod_update_instances_t
-						divide = var:math_pow_base
-					}
-				}
-				if = { 
-					limit = { 
-						var:math_pow_exp != 0
-					}
-					set_variable = { 
-						name = math_ln_inp
-						value = var:math_pow_base
-					}
-					set_variable = { 
-						name = math_pow_ln
-						value = 0
-					}
-					set_variable = { 
-						name = math_ln_k
-						value = 0
-					}
-					set_variable = { 
-						name = math_ln_div
-						value = 10000
-					}
-					while = { 
-						limit = { 
-							var:math_ln_inp >= 2
-						}
-						change_variable = { 
-							name = math_ln_inp
-							divide = 2
-						}
-						change_variable = { 
-							name = math_pow_ln
-							add = 6931.472
-						}
-					}
-					while = { 
-						limit = { 
-							var:math_ln_inp < 1
-						}
-						change_variable = { 
-							name = math_ln_inp
-							multiply = 2
-						}
-						change_variable = { 
-							name = math_pow_ln
-							subtract = 6931.472
-						}
-					}
-					change_variable = { 
-						name = math_ln_inp
-						multiply = 10000
-					}
-					while = { 
-						limit = { 
-							var:math_ln_k < 10
-						}
-						change_variable = { 
-							name = math_ln_k
-							add = 1
-						}
-						change_variable = { 
-							name = math_ln_div
-							divide = 2
-						}
-						set_variable = { 
-							name = math_ln_t
-							value = 10000
-						}
-						change_variable = { 
-							name = math_ln_t
-							add = var:math_ln_div
-						}
-						if = { 
-							limit = { 
-								var:math_ln_inp = { 
-									compare_value >= prev.var:math_ln_t
-								}
-							}
-							change_variable = { 
-								name = math_ln_inp
-								divide = var:math_ln_t
-							}
-							change_variable = { 
-								name = math_ln_inp
-								multiply = 10000
-							}
-							set_variable = { 
-								name = math_lt_ind
-								value = var:math_ln_k
-							}
-							if = { 
-								limit = { 
-									var:math_lt_ind >= 6
-								}
-								if = { 
-									limit = { 
-										var:math_lt_ind >= 8
-									}
-									if = { 
-										limit = { 
-											var:math_lt_ind >= 9
-										}
-										if = { 
-											limit = { 
-												var:math_lt_ind >= 10
-											}
-											set_variable = { 
-												name = math_ln_lt
-												value = 9.761
-											}
-										}
-										else = { 
-											set_variable = { 
-												name = math_ln_lt
-												value = 19.512
-											}
-										}
-									}
-									else = { 
-										set_variable = { 
-											name = math_ln_lt
-											value = 38.986
-										}
-									}
-								}
-								else = { 
-									if = { 
-										limit = { 
-											var:math_lt_ind >= 7
-										}
-										set_variable = { 
-											name = math_ln_lt
-											value = 77.821
-										}
-									}
-									else = { 
-										set_variable = { 
-											name = math_ln_lt
-											value = 155.042
-										}
-									}
-								}
-							}
-							else = { 
-								if = { 
-									limit = { 
-										var:math_lt_ind >= 3
-									}
-									if = { 
-										limit = { 
-											var:math_lt_ind >= 4
-										}
-										if = { 
-											limit = { 
-												var:math_lt_ind >= 5
-											}
-											set_variable = { 
-												name = math_ln_lt
-												value = 307.717
-											}
-										}
-										else = { 
-											set_variable = { 
-												name = math_ln_lt
-												value = 606.246
-											}
-										}
-									}
-									else = { 
-										set_variable = { 
-											name = math_ln_lt
-											value = 1177.83
-										}
-									}
-								}
-								else = { 
-									if = { 
-										limit = { 
-											var:math_lt_ind >= 2
-										}
-										set_variable = { 
-											name = math_ln_lt
-											value = 2231.436
-										}
-									}
-									else = { 
-										set_variable = { 
-											name = math_ln_lt
-											value = 4054.651
-										}
-									}
-								}
-							}
-							remove_variable = math_lt_ind
-							change_variable = { 
-								name = math_pow_ln
-								add = var:math_ln_lt
-							}
-						}
-					}
-					change_variable = { 
-						name = math_pow_ln
-						divide = 10000
-					}
-					remove_variable = math_ln_k
-					remove_variable = math_ln_div
-					remove_variable = math_ln_t
-					remove_variable = math_ln_lt
-					remove_variable = math_ln_inp
-					change_variable = { 
-						name = math_pow_exp
-						multiply = var:math_pow_ln
-					}
-					set_variable = { 
-						name = math_e_exp
-						value = var:math_pow_exp
-					}
-					set_variable = { 
-						name = math_pow_e
-						value = 1
-					}
-					while = { 
-						limit = { 
-							var:math_e_exp >= 1
-						}
-						change_variable = { 
-							name = math_e_exp
-							subtract = 1
-						}
-						change_variable = { 
-							name = math_pow_e
-							multiply = 2.718
-						}
-					}
-					while = { 
-						limit = { 
-							var:math_e_exp < 0
-						}
-						change_variable = { 
-							name = math_e_exp
-							add = 1
-						}
-						change_variable = { 
-							name = math_pow_e
-							divide = 2.718
-						}
-					}
-					set_variable = { 
-						name = math_e_sm
-						value = 1
-					}
-					if = { 
-						limit = { 
-							var:math_e_exp != 0
-						}
-						set_variable = { 
-							name = math_e_sq
-							value = var:math_e_exp
-						}
-						change_variable = { 
-							name = math_e_sq
-							multiply = var:math_e_exp
-						}
-						set_variable = { 
-							name = math_e_fct
-							value = 2
-						}
-						set_variable = { 
-							name = math_e_fctl
-							value = 2
-						}
-						set_variable = { 
-							name = math_e_a1
-							value = var:math_e_sq
-						}
-						set_variable = { 
-							name = math_e_a2
-							value = var:math_e_exp
-						}
-						set_variable = { 
-							name = math_e_a3
-							value = 2
-						}
-						set_variable = { 
-							name = math_e_tmp
-							value = var:math_e_a2
-						}
-						change_variable = { 
-							name = math_e_tmp
-							multiply = var:math_e_a3
-						}
-						change_variable = { 
-							name = math_e_tmp
-							add = var:math_e_a1
-						}
-						change_variable = { 
-							name = math_e_tmp
-							divide = var:math_e_fct
-						}
-						change_variable = { 
-							name = math_e_sm
-							add = var:math_e_tmp
-						}
-						set_variable = { 
-							name = math_e_prec
-							value = 3
-						}
-						change_variable = { 
-							name = math_e_prec
-							subtract = 1
-						}
-						while = { 
-							limit = { 
-								var:math_e_prec >= 1
-							}
-							change_variable = { 
-								name = math_e_prec
-								subtract = 1
-							}
-							change_variable = { 
-								name = math_e_fctl
-								add = 1
-							}
-							change_variable = { 
-								name = math_e_fct
-								multiply = var:math_e_fctl
-							}
-							change_variable = { 
-								name = math_e_fctl
-								add = 1
-							}
-							change_variable = { 
-								name = math_e_fct
-								multiply = var:math_e_fctl
-							}
-							change_variable = { 
-								name = math_e_a1
-								multiply = var:math_e_sq
-							}
-							change_variable = { 
-								name = math_e_a2
-								multiply = var:math_e_sq
-							}
-							change_variable = { 
-								name = math_e_a3
-								add = 2
-							}
-							set_variable = { 
-								name = math_e_tmp
-								value = var:math_e_a2
-							}
-							change_variable = { 
-								name = math_e_tmp
-								multiply = var:math_e_a3
-							}
-							change_variable = { 
-								name = math_e_tmp
-								add = var:math_e_a1
-							}
-							change_variable = { 
-								name = math_e_tmp
-								divide = var:math_e_fct
-							}
-							change_variable = { 
-								name = math_e_sm
-								add = var:math_e_tmp
-							}
-						}
-					}
-					change_variable = { 
-						name = math_pow_e
-						multiply = var:math_e_sm
-					}
-					remove_variable = math_e_sm
-					remove_variable = math_e_tmp
-					remove_variable = math_e_a1
-					remove_variable = math_e_a2
-					remove_variable = math_e_a3
-					remove_variable = math_e_fctl
-					remove_variable = math_e_fct
-					remove_variable = math_e_prec
-					remove_variable = math_e_sq
-					remove_variable = math_e_exp
-					change_variable = { 
-						name = prod_update_instances_t
-						multiply = var:math_pow_e
-					}
-					remove_variable = math_pow_ln
-					remove_variable = math_pow_e
-				}
-			}
-			else_if = { 
-				limit = { 
-					OR = { 
-						NOT = { 
-							has_variable = math_pow_exp
-						}
-						var:math_pow_exp = 0
-					}
-				}
-				set_variable = { 
-					name = prod_update_instances_t
-					value = 1
-				}
-			}
-			else = { 
-				set_variable = { 
-					name = prod_update_instances_t
-					value = 0
-				}
-			}
-			remove_variable = math_pow_base
-			remove_variable = math_pow_exp
-			set_variable = { 
 				name = prod_labor
 				value = var:prod_profit
 			}
 			change_variable = { 
 				name = prod_labor
-				add = 0.1
+				add = 0.01
 			}
 			change_variable = { 
 				name = prod_labor
 				multiply = var:prod_template.var:prod_labor
-			}
-			change_variable = { 
-				name = prod_labor
-				multiply = var:prod_update_instances_t
 			}
 			prev = { 
 				change_variable = { 
@@ -2435,6 +1977,460 @@
 		else = { 
 			set_variable = { 
 				name = prod_size
+				value = 0
+			}
+		}
+		remove_variable = math_pow_base
+		remove_variable = math_pow_exp
+		set_variable = { 
+			name = math_pow_base
+			value = var:prod_land
+		}
+		set_variable = { 
+			name = math_pow_exp
+			value = var:prod_template.var:prod_land
+		}
+		if = { 
+			limit = { 
+				has_variable = math_pow_base
+				var:math_pow_base != 0
+			}
+			set_variable = { 
+				name = prod_update_instances_t
+				value = 1
+			}
+			while = { 
+				limit = { 
+					var:math_pow_exp >= 1
+				}
+				change_variable = { 
+					name = math_pow_exp
+					subtract = 1
+				}
+				change_variable = { 
+					name = prod_update_instances_t
+					multiply = var:math_pow_base
+				}
+			}
+			while = { 
+				limit = { 
+					var:math_pow_exp < 0
+				}
+				change_variable = { 
+					name = math_pow_exp
+					add = 1
+				}
+				change_variable = { 
+					name = prod_update_instances_t
+					divide = var:math_pow_base
+				}
+			}
+			if = { 
+				limit = { 
+					var:math_pow_exp != 0
+				}
+				set_variable = { 
+					name = math_ln_inp
+					value = var:math_pow_base
+				}
+				set_variable = { 
+					name = math_pow_ln
+					value = 0
+				}
+				set_variable = { 
+					name = math_ln_k
+					value = 0
+				}
+				set_variable = { 
+					name = math_ln_div
+					value = 10000
+				}
+				while = { 
+					limit = { 
+						var:math_ln_inp >= 2
+					}
+					change_variable = { 
+						name = math_ln_inp
+						divide = 2
+					}
+					change_variable = { 
+						name = math_pow_ln
+						add = 6931.472
+					}
+				}
+				while = { 
+					limit = { 
+						var:math_ln_inp < 1
+					}
+					change_variable = { 
+						name = math_ln_inp
+						multiply = 2
+					}
+					change_variable = { 
+						name = math_pow_ln
+						subtract = 6931.472
+					}
+				}
+				change_variable = { 
+					name = math_ln_inp
+					multiply = 10000
+				}
+				while = { 
+					limit = { 
+						var:math_ln_k < 10
+					}
+					change_variable = { 
+						name = math_ln_k
+						add = 1
+					}
+					change_variable = { 
+						name = math_ln_div
+						divide = 2
+					}
+					set_variable = { 
+						name = math_ln_t
+						value = 10000
+					}
+					change_variable = { 
+						name = math_ln_t
+						add = var:math_ln_div
+					}
+					if = { 
+						limit = { 
+							var:math_ln_inp = { 
+								compare_value >= prev.var:math_ln_t
+							}
+						}
+						change_variable = { 
+							name = math_ln_inp
+							divide = var:math_ln_t
+						}
+						change_variable = { 
+							name = math_ln_inp
+							multiply = 10000
+						}
+						set_variable = { 
+							name = math_lt_ind
+							value = var:math_ln_k
+						}
+						if = { 
+							limit = { 
+								var:math_lt_ind >= 6
+							}
+							if = { 
+								limit = { 
+									var:math_lt_ind >= 8
+								}
+								if = { 
+									limit = { 
+										var:math_lt_ind >= 9
+									}
+									if = { 
+										limit = { 
+											var:math_lt_ind >= 10
+										}
+										set_variable = { 
+											name = math_ln_lt
+											value = 9.761
+										}
+									}
+									else = { 
+										set_variable = { 
+											name = math_ln_lt
+											value = 19.512
+										}
+									}
+								}
+								else = { 
+									set_variable = { 
+										name = math_ln_lt
+										value = 38.986
+									}
+								}
+							}
+							else = { 
+								if = { 
+									limit = { 
+										var:math_lt_ind >= 7
+									}
+									set_variable = { 
+										name = math_ln_lt
+										value = 77.821
+									}
+								}
+								else = { 
+									set_variable = { 
+										name = math_ln_lt
+										value = 155.042
+									}
+								}
+							}
+						}
+						else = { 
+							if = { 
+								limit = { 
+									var:math_lt_ind >= 3
+								}
+								if = { 
+									limit = { 
+										var:math_lt_ind >= 4
+									}
+									if = { 
+										limit = { 
+											var:math_lt_ind >= 5
+										}
+										set_variable = { 
+											name = math_ln_lt
+											value = 307.717
+										}
+									}
+									else = { 
+										set_variable = { 
+											name = math_ln_lt
+											value = 606.246
+										}
+									}
+								}
+								else = { 
+									set_variable = { 
+										name = math_ln_lt
+										value = 1177.83
+									}
+								}
+							}
+							else = { 
+								if = { 
+									limit = { 
+										var:math_lt_ind >= 2
+									}
+									set_variable = { 
+										name = math_ln_lt
+										value = 2231.436
+									}
+								}
+								else = { 
+									set_variable = { 
+										name = math_ln_lt
+										value = 4054.651
+									}
+								}
+							}
+						}
+						remove_variable = math_lt_ind
+						change_variable = { 
+							name = math_pow_ln
+							add = var:math_ln_lt
+						}
+					}
+				}
+				change_variable = { 
+					name = math_pow_ln
+					divide = 10000
+				}
+				remove_variable = math_ln_k
+				remove_variable = math_ln_div
+				remove_variable = math_ln_t
+				remove_variable = math_ln_lt
+				remove_variable = math_ln_inp
+				change_variable = { 
+					name = math_pow_exp
+					multiply = var:math_pow_ln
+				}
+				set_variable = { 
+					name = math_e_exp
+					value = var:math_pow_exp
+				}
+				set_variable = { 
+					name = math_pow_e
+					value = 1
+				}
+				while = { 
+					limit = { 
+						var:math_e_exp >= 1
+					}
+					change_variable = { 
+						name = math_e_exp
+						subtract = 1
+					}
+					change_variable = { 
+						name = math_pow_e
+						multiply = 2.718
+					}
+				}
+				while = { 
+					limit = { 
+						var:math_e_exp < 0
+					}
+					change_variable = { 
+						name = math_e_exp
+						add = 1
+					}
+					change_variable = { 
+						name = math_pow_e
+						divide = 2.718
+					}
+				}
+				set_variable = { 
+					name = math_e_sm
+					value = 1
+				}
+				if = { 
+					limit = { 
+						var:math_e_exp != 0
+					}
+					set_variable = { 
+						name = math_e_sq
+						value = var:math_e_exp
+					}
+					change_variable = { 
+						name = math_e_sq
+						multiply = var:math_e_exp
+					}
+					set_variable = { 
+						name = math_e_fct
+						value = 2
+					}
+					set_variable = { 
+						name = math_e_fctl
+						value = 2
+					}
+					set_variable = { 
+						name = math_e_a1
+						value = var:math_e_sq
+					}
+					set_variable = { 
+						name = math_e_a2
+						value = var:math_e_exp
+					}
+					set_variable = { 
+						name = math_e_a3
+						value = 2
+					}
+					set_variable = { 
+						name = math_e_tmp
+						value = var:math_e_a2
+					}
+					change_variable = { 
+						name = math_e_tmp
+						multiply = var:math_e_a3
+					}
+					change_variable = { 
+						name = math_e_tmp
+						add = var:math_e_a1
+					}
+					change_variable = { 
+						name = math_e_tmp
+						divide = var:math_e_fct
+					}
+					change_variable = { 
+						name = math_e_sm
+						add = var:math_e_tmp
+					}
+					set_variable = { 
+						name = math_e_prec
+						value = 3
+					}
+					change_variable = { 
+						name = math_e_prec
+						subtract = 1
+					}
+					while = { 
+						limit = { 
+							var:math_e_prec >= 1
+						}
+						change_variable = { 
+							name = math_e_prec
+							subtract = 1
+						}
+						change_variable = { 
+							name = math_e_fctl
+							add = 1
+						}
+						change_variable = { 
+							name = math_e_fct
+							multiply = var:math_e_fctl
+						}
+						change_variable = { 
+							name = math_e_fctl
+							add = 1
+						}
+						change_variable = { 
+							name = math_e_fct
+							multiply = var:math_e_fctl
+						}
+						change_variable = { 
+							name = math_e_a1
+							multiply = var:math_e_sq
+						}
+						change_variable = { 
+							name = math_e_a2
+							multiply = var:math_e_sq
+						}
+						change_variable = { 
+							name = math_e_a3
+							add = 2
+						}
+						set_variable = { 
+							name = math_e_tmp
+							value = var:math_e_a2
+						}
+						change_variable = { 
+							name = math_e_tmp
+							multiply = var:math_e_a3
+						}
+						change_variable = { 
+							name = math_e_tmp
+							add = var:math_e_a1
+						}
+						change_variable = { 
+							name = math_e_tmp
+							divide = var:math_e_fct
+						}
+						change_variable = { 
+							name = math_e_sm
+							add = var:math_e_tmp
+						}
+					}
+				}
+				change_variable = { 
+					name = math_pow_e
+					multiply = var:math_e_sm
+				}
+				remove_variable = math_e_sm
+				remove_variable = math_e_tmp
+				remove_variable = math_e_a1
+				remove_variable = math_e_a2
+				remove_variable = math_e_a3
+				remove_variable = math_e_fctl
+				remove_variable = math_e_fct
+				remove_variable = math_e_prec
+				remove_variable = math_e_sq
+				remove_variable = math_e_exp
+				change_variable = { 
+					name = prod_update_instances_t
+					multiply = var:math_pow_e
+				}
+				remove_variable = math_pow_ln
+				remove_variable = math_pow_e
+			}
+		}
+		else_if = { 
+			limit = { 
+				OR = { 
+					NOT = { 
+						has_variable = math_pow_exp
+					}
+					var:math_pow_exp = 0
+				}
+			}
+			set_variable = { 
+				name = prod_update_instances_t
+				value = 1
+			}
+		}
+		else = { 
+			set_variable = { 
+				name = prod_update_instances_t
 				value = 0
 			}
 		}

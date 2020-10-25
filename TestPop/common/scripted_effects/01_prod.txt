@@ -175,6 +175,11 @@ prod_update_instances = {
 			exp = var:prod_template.var:prod_labor
 			return = prod_size
 		}
+		pow_effect = {
+			inp = var:prod_land
+			exp = var:prod_template.var:prod_land
+			return = prod_update_instances_t
+		}
 		
 		change_variable = { name = prod_size multiply = var:prod_update_instances_t }
 		
@@ -204,7 +209,7 @@ prod_update_instances_helper_2 = {
 			variable = prod_instances
 			
 			set_variable = { name = prod_land value = var:prod_profit }
-			change_variable = { name = prod_land add = 0.1 }
+			change_variable = { name = prod_land add = 0.01 }
 			change_variable = { name = prod_land multiply = var:prod_template.var:prod_land }
 			
 			prev = {
@@ -253,16 +258,9 @@ prod_update_instances_helper_3 = {
 	every_in_list = {
 		variable = prod_instances
 		
-		pow_effect = {
-			inp = var:prod_land
-			exp = var:prod_template.var:prod_land
-			return = prod_update_instances_t
-		}
-		
 		set_variable = { name = prod_labor value = var:prod_profit }
-		change_variable = { name = prod_labor add = 0.1 }
+		change_variable = { name = prod_labor add = 0.01 }
 		change_variable = { name = prod_labor multiply = var:prod_template.var:prod_labor }
-		change_variable = { name = prod_labor multiply = var:prod_update_instances_t }
 		
 		prev = {
 			change_variable = { name = prod_update_instances_t add = prev.var:prod_labor }
