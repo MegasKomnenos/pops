@@ -8646,6 +8646,10 @@
 			name = trade_power
 			multiply = var:trade_skill
 		}
+		change_variable = { 
+			name = trade_power
+			multiply = 10
+		}
 	}
 	every_province = { 
 		limit = { 
@@ -26415,7 +26419,32 @@
 			}
 		}
 	}
-	debug_log = "Total food Production: [THIS.Var('t_disp').GetValue]"
+	debug_log = "Total food Supply: [THIS.Var('t_disp').GetValue]"
+	set_variable = { 
+		name = t_disp
+		value = 0
+	}
+	every_county = { 
+		limit = { 
+			is_valid_prov = yes
+			has_variable = trade_sum_sply_food
+		}
+		prev = { 
+			set_variable = { 
+				name = t_disp_t
+				value = prev.var:trade_dmnd_food
+			}
+			change_variable = { 
+				name = t_disp_t
+				divide = 100
+			}
+			change_variable = { 
+				name = t_disp
+				add = var:t_disp_t
+			}
+		}
+	}
+	debug_log = "Total food Demand: [THIS.Var('t_disp').GetValue]"
 	set_variable = { 
 		name = t_disp
 		value = 0
@@ -26510,7 +26539,32 @@
 			}
 		}
 	}
-	debug_log = "Total salt Production: [THIS.Var('t_disp').GetValue]"
+	debug_log = "Total salt Supply: [THIS.Var('t_disp').GetValue]"
+	set_variable = { 
+		name = t_disp
+		value = 0
+	}
+	every_county = { 
+		limit = { 
+			is_valid_prov = yes
+			has_variable = trade_sum_sply_salt
+		}
+		prev = { 
+			set_variable = { 
+				name = t_disp_t
+				value = prev.var:trade_dmnd_salt
+			}
+			change_variable = { 
+				name = t_disp_t
+				divide = 100
+			}
+			change_variable = { 
+				name = t_disp
+				add = var:t_disp_t
+			}
+		}
+	}
+	debug_log = "Total salt Demand: [THIS.Var('t_disp').GetValue]"
 	set_variable = { 
 		name = t_disp
 		value = 0
@@ -26605,7 +26659,32 @@
 			}
 		}
 	}
-	debug_log = "Total fuel Production: [THIS.Var('t_disp').GetValue]"
+	debug_log = "Total fuel Supply: [THIS.Var('t_disp').GetValue]"
+	set_variable = { 
+		name = t_disp
+		value = 0
+	}
+	every_county = { 
+		limit = { 
+			is_valid_prov = yes
+			has_variable = trade_sum_sply_fuel
+		}
+		prev = { 
+			set_variable = { 
+				name = t_disp_t
+				value = prev.var:trade_dmnd_fuel
+			}
+			change_variable = { 
+				name = t_disp_t
+				divide = 100
+			}
+			change_variable = { 
+				name = t_disp
+				add = var:t_disp_t
+			}
+		}
+	}
+	debug_log = "Total fuel Demand: [THIS.Var('t_disp').GetValue]"
 	set_variable = { 
 		name = t_disp
 		value = 0
@@ -26700,7 +26779,32 @@
 			}
 		}
 	}
-	debug_log = "Total fiber Production: [THIS.Var('t_disp').GetValue]"
+	debug_log = "Total fiber Supply: [THIS.Var('t_disp').GetValue]"
+	set_variable = { 
+		name = t_disp
+		value = 0
+	}
+	every_county = { 
+		limit = { 
+			is_valid_prov = yes
+			has_variable = trade_sum_sply_fiber
+		}
+		prev = { 
+			set_variable = { 
+				name = t_disp_t
+				value = prev.var:trade_dmnd_fiber
+			}
+			change_variable = { 
+				name = t_disp_t
+				divide = 100
+			}
+			change_variable = { 
+				name = t_disp
+				add = var:t_disp_t
+			}
+		}
+	}
+	debug_log = "Total fiber Demand: [THIS.Var('t_disp').GetValue]"
 	set_variable = { 
 		name = t_disp
 		value = 0
@@ -26795,7 +26899,32 @@
 			}
 		}
 	}
-	debug_log = "Total timber Production: [THIS.Var('t_disp').GetValue]"
+	debug_log = "Total timber Supply: [THIS.Var('t_disp').GetValue]"
+	set_variable = { 
+		name = t_disp
+		value = 0
+	}
+	every_county = { 
+		limit = { 
+			is_valid_prov = yes
+			has_variable = trade_sum_sply_timber
+		}
+		prev = { 
+			set_variable = { 
+				name = t_disp_t
+				value = prev.var:trade_dmnd_timber
+			}
+			change_variable = { 
+				name = t_disp_t
+				divide = 100
+			}
+			change_variable = { 
+				name = t_disp
+				add = var:t_disp_t
+			}
+		}
+	}
+	debug_log = "Total timber Demand: [THIS.Var('t_disp').GetValue]"
 	set_variable = { 
 		name = t_disp
 		value = 0
@@ -26890,7 +27019,32 @@
 			}
 		}
 	}
-	debug_log = "Total metal Production: [THIS.Var('t_disp').GetValue]"
+	debug_log = "Total metal Supply: [THIS.Var('t_disp').GetValue]"
+	set_variable = { 
+		name = t_disp
+		value = 0
+	}
+	every_county = { 
+		limit = { 
+			is_valid_prov = yes
+			has_variable = trade_sum_sply_metal
+		}
+		prev = { 
+			set_variable = { 
+				name = t_disp_t
+				value = prev.var:trade_dmnd_metal
+			}
+			change_variable = { 
+				name = t_disp_t
+				divide = 100
+			}
+			change_variable = { 
+				name = t_disp
+				add = var:t_disp_t
+			}
+		}
+	}
+	debug_log = "Total metal Demand: [THIS.Var('t_disp').GetValue]"
 	set_variable = { 
 		name = t_disp
 		value = 0
@@ -26985,7 +27139,32 @@
 			}
 		}
 	}
-	debug_log = "Total exotics_w Production: [THIS.Var('t_disp').GetValue]"
+	debug_log = "Total exotics_w Supply: [THIS.Var('t_disp').GetValue]"
+	set_variable = { 
+		name = t_disp
+		value = 0
+	}
+	every_county = { 
+		limit = { 
+			is_valid_prov = yes
+			has_variable = trade_sum_sply_exotics_w
+		}
+		prev = { 
+			set_variable = { 
+				name = t_disp_t
+				value = prev.var:trade_dmnd_exotics_w
+			}
+			change_variable = { 
+				name = t_disp_t
+				divide = 100
+			}
+			change_variable = { 
+				name = t_disp
+				add = var:t_disp_t
+			}
+		}
+	}
+	debug_log = "Total exotics_w Demand: [THIS.Var('t_disp').GetValue]"
 	set_variable = { 
 		name = t_disp
 		value = 0
@@ -27080,7 +27259,32 @@
 			}
 		}
 	}
-	debug_log = "Total exotics_e Production: [THIS.Var('t_disp').GetValue]"
+	debug_log = "Total exotics_e Supply: [THIS.Var('t_disp').GetValue]"
+	set_variable = { 
+		name = t_disp
+		value = 0
+	}
+	every_county = { 
+		limit = { 
+			is_valid_prov = yes
+			has_variable = trade_sum_sply_exotics_e
+		}
+		prev = { 
+			set_variable = { 
+				name = t_disp_t
+				value = prev.var:trade_dmnd_exotics_e
+			}
+			change_variable = { 
+				name = t_disp_t
+				divide = 100
+			}
+			change_variable = { 
+				name = t_disp
+				add = var:t_disp_t
+			}
+		}
+	}
+	debug_log = "Total exotics_e Demand: [THIS.Var('t_disp').GetValue]"
 	set_variable = { 
 		name = t_disp
 		value = 0
@@ -27175,7 +27379,32 @@
 			}
 		}
 	}
-	debug_log = "Total exotics_g Production: [THIS.Var('t_disp').GetValue]"
+	debug_log = "Total exotics_g Supply: [THIS.Var('t_disp').GetValue]"
+	set_variable = { 
+		name = t_disp
+		value = 0
+	}
+	every_county = { 
+		limit = { 
+			is_valid_prov = yes
+			has_variable = trade_sum_sply_exotics_g
+		}
+		prev = { 
+			set_variable = { 
+				name = t_disp_t
+				value = prev.var:trade_dmnd_exotics_g
+			}
+			change_variable = { 
+				name = t_disp_t
+				divide = 100
+			}
+			change_variable = { 
+				name = t_disp
+				add = var:t_disp_t
+			}
+		}
+	}
+	debug_log = "Total exotics_g Demand: [THIS.Var('t_disp').GetValue]"
 	set_variable = { 
 		name = t_disp
 		value = 0
@@ -27270,7 +27499,32 @@
 			}
 		}
 	}
-	debug_log = "Total textile Production: [THIS.Var('t_disp').GetValue]"
+	debug_log = "Total textile Supply: [THIS.Var('t_disp').GetValue]"
+	set_variable = { 
+		name = t_disp
+		value = 0
+	}
+	every_county = { 
+		limit = { 
+			is_valid_prov = yes
+			has_variable = trade_sum_sply_textile
+		}
+		prev = { 
+			set_variable = { 
+				name = t_disp_t
+				value = prev.var:trade_dmnd_textile
+			}
+			change_variable = { 
+				name = t_disp_t
+				divide = 100
+			}
+			change_variable = { 
+				name = t_disp
+				add = var:t_disp_t
+			}
+		}
+	}
+	debug_log = "Total textile Demand: [THIS.Var('t_disp').GetValue]"
 	set_variable = { 
 		name = t_disp
 		value = 0
@@ -27365,7 +27619,32 @@
 			}
 		}
 	}
-	debug_log = "Total pottery Production: [THIS.Var('t_disp').GetValue]"
+	debug_log = "Total pottery Supply: [THIS.Var('t_disp').GetValue]"
+	set_variable = { 
+		name = t_disp
+		value = 0
+	}
+	every_county = { 
+		limit = { 
+			is_valid_prov = yes
+			has_variable = trade_sum_sply_pottery
+		}
+		prev = { 
+			set_variable = { 
+				name = t_disp_t
+				value = prev.var:trade_dmnd_pottery
+			}
+			change_variable = { 
+				name = t_disp_t
+				divide = 100
+			}
+			change_variable = { 
+				name = t_disp
+				add = var:t_disp_t
+			}
+		}
+	}
+	debug_log = "Total pottery Demand: [THIS.Var('t_disp').GetValue]"
 	set_variable = { 
 		name = t_disp
 		value = 0
@@ -27460,7 +27739,32 @@
 			}
 		}
 	}
-	debug_log = "Total furniture Production: [THIS.Var('t_disp').GetValue]"
+	debug_log = "Total furniture Supply: [THIS.Var('t_disp').GetValue]"
+	set_variable = { 
+		name = t_disp
+		value = 0
+	}
+	every_county = { 
+		limit = { 
+			is_valid_prov = yes
+			has_variable = trade_sum_sply_furniture
+		}
+		prev = { 
+			set_variable = { 
+				name = t_disp_t
+				value = prev.var:trade_dmnd_furniture
+			}
+			change_variable = { 
+				name = t_disp_t
+				divide = 100
+			}
+			change_variable = { 
+				name = t_disp
+				add = var:t_disp_t
+			}
+		}
+	}
+	debug_log = "Total furniture Demand: [THIS.Var('t_disp').GetValue]"
 	set_variable = { 
 		name = t_disp
 		value = 0

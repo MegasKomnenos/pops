@@ -181,7 +181,24 @@ while = {
 			}
 		}
 		
-		debug_log = "Total &goods& Production: [THIS.Var('t_disp').GetValue]"
+		debug_log = "Total &goods& Supply: [THIS.Var('t_disp').GetValue]"
+		
+		set_variable = { name = t_disp value = 0 }
+
+		every_county = {
+			limit = {
+				is_valid_prov = yes
+				
+				has_variable = trade_sum_sply_&goods&
+			}
+			prev = {
+				set_variable = { name = t_disp_t value = prev.var:trade_dmnd_&goods& }
+				change_variable = { name = t_disp_t divide = 100 }
+				change_variable = { name = t_disp add = var:t_disp_t }
+			}
+		}
+		
+		debug_log = "Total &goods& Demand: [THIS.Var('t_disp').GetValue]"
 		
 		set_variable = { name = t_disp value = 0 }
 
