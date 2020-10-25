@@ -79,7 +79,7 @@ while = {
 		}
 	}
 	
-	change_variable = { name = t_disp divide = t_disp_s }
+	change_variable = { name = t_disp divide = var:t_disp_s }
 	
 	debug_log = "Average Calorie: [GetVariableSystem.Get('t_disp')]"
 	
@@ -97,7 +97,7 @@ while = {
 		}
 	}
 	
-	change_variable = { name = t_disp divide = t_disp_s }
+	change_variable = { name = t_disp divide = var:t_disp_s }
 	
 	debug_log = "Average Nutrient: [GetVariableSystem.Get('t_disp')]"
 	
@@ -115,7 +115,7 @@ while = {
 		}
 	}
 	
-	change_variable = { name = t_disp divide = t_disp_s }
+	change_variable = { name = t_disp divide = var:t_disp_s }
 	
 	debug_log = "Average Comfort: [GetVariableSystem.Get('t_disp')]"
 	
@@ -133,7 +133,7 @@ while = {
 		}
 	}
 	
-	change_variable = { name = t_disp divide = t_disp_s }
+	change_variable = { name = t_disp divide = var:t_disp_s }
 	
 	debug_log = "Average Luxury: [GetVariableSystem.Get('t_disp')]"
 	
@@ -172,7 +172,7 @@ while = {
 			limit = {
 				is_valid_prov = yes
 				
-				earn_variable = trade_sum_sply_&goods&
+				has_variable = trade_sum_sply_&goods&
 			}
 			prev = {
 				set_variable = { name = t_disp_t value = prev.var:trade_sum_sply_&goods& }
@@ -189,7 +189,7 @@ while = {
 			limit = {
 				is_valid_prov = yes
 				
-				earn_variable = prod_earn_&goods&
+				has_variable = prod_earn_&goods&
 			}
 			prev = {
 				set_variable = { name = t_disp_t value = prev.var:prod_earn_&goods& }
