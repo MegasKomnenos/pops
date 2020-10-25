@@ -142,7 +142,7 @@ if __name__ == '__main__':
             elif entry[2] == 'LIST':
                 for prov in entry[3]:
                     water.add(int(prov))
-        elif entry[0] == 'impassable_mountains':
+        elif entry[0] == 'impassable_mountains' or entry[0] == 'impassable_seas' or entry[0] == 'lakes':
             if entry[2] == 'RANGE':
                 for prov in range(int(entry[3][0]), int(entry[3][1]) + 1):
                     wasteland.add(prov)
