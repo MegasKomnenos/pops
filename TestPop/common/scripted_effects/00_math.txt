@@ -313,60 +313,40 @@ root_effect = {
 
 # Parameter: inp, return
 sqrt_effect = {
-	set_variable = { name = math_sqrt_m value = $inp$ }
+	set_variable = { name = math_sqrt_i value = $inp$ }
 
 	if = {
 		limit = {
-			has_variable = math_sqrt_m
+			has_variable = math_sqrt_i
 			
-			var:math_sqrt_m > 0
+			var:math_sqrt_i > 0
 		}
-		set_variable = { name = math_sqrt_i value = 0 }
-		set_variable = { name = math_sqrt_x1 value = 0 }
-		
-		^^math_sqrt_steps^
-			change_variable = { name = math_sqrt_i add = &math_sqrt_steps& }
-			
-			if = {
-				limit = {
-					var:math_sqrt_m >= math_sqrt_i_squared
-				}
-				set_variable = { name = math_sqrt_x1 value = var:math_sqrt_i }
-			}
-			else = {
-				set_variable = { name = math_sqrt_i value = var:math_sqrt_x1 }
-			}
-		^
-		
-		change_variable = { name = math_sqrt_x1 add = 0.001 }
-		
-		set_variable = { name = math_sqrt_j value = 5 }
+		set_variable = { name = math_sqrt_x value = var:math_sqrt_i }
+		set_variable = { name = math_sqrt_n value = var:math_sqrt_i }
+		change_variable = { name = math_sqrt_n divide = 2 }
 		
 		while = {
 			limit = {
-				has_variable = math_sqrt_j
-				
-				var:math_sqrt_j > 0
+				var:math_sqrt_n = {
+					compare_value != prev.var:math_sqrt_x
+				}
 			}
-			change_variable = { name = math_sqrt_j subtract = 1 }
-			
-			set_variable = { name = math_sqrt_x2 value = var:math_sqrt_m }
-			change_variable = { name = math_sqrt_x2 divide = var:math_sqrt_x1 }
-			change_variable = { name = math_sqrt_x2 add = var:math_sqrt_x1 }
-			change_variable = { name = math_sqrt_x2 divide = 2 }
-			set_variable = { name = math_sqrt_x1 value = var:math_sqrt_x2 }
+			set_variable = { name = math_sqrt_x value = var:math_sqrt_n }
+			set_variable = { name = math_sqrt_t value = var:math_sqrt_i }
+			change_variable = { name = math_sqrt_t divide = var:math_sqrt_n }
+			change_variable = { name = math_sqrt_n add = var:math_sqrt_t }
+			change_variable = { name = math_sqrt_n divide = 2 }
 		}
 		
-		set_variable = { name = $return$ value = var:math_sqrt_x1 }
+		set_variable = { name = $return$ value = var:math_sqrt_n }
 		
-		remove_variable = math_sqrt_i
-		remove_variable = math_sqrt_j
-		remove_variable = math_sqrt_x1
-		remove_variable = math_sqrt_x2
+		remove_variable = math_sqrt_x
+		remove_variable = math_sqrt_t
+		remove_variable = math_sqrt_n
 	}
 	else = {
 		set_variable = { name = $return$ value = 0 }
 	}
 
-	remove_variable = math_sqrt_m
+	remove_variable = math_sqrt_i
 }
