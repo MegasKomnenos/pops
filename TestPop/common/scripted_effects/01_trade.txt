@@ -484,7 +484,14 @@ trade_do_trade = {
 		limit = {
 			is_valid_prov = yes
 		}
-		
+		^^goods^
+			remove_variable = trade_buy_&goods&
+			remove_variable = trade_sell_&goods&
+			remove_variable = trade_point_&goods&
+			remove_variable = trade_cost_&goods&
+			remove_variable = trade_sum_buy_&goods&
+			remove_variable = trade_sum_sell_&goods&
+		^
 	}
 	
 	every_in_global_list = {
