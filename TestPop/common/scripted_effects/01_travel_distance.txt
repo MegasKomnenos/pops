@@ -146,6 +146,10 @@ travel_distance_dijkstra = {
 					variable = prov_neighb
 					limit = {
 						has_variable = travel_distance_distance
+						
+						var:travel_distance_distance = {
+							compare_value > global_var:travel_distance_select.var:travel_distance_distance
+						}
 					}
 					get_distance_neighb = { 
 						one = global_var:travel_distance_select
@@ -178,6 +182,10 @@ travel_distance_dijkstra = {
 					variable = prov_port
 					limit = {
 						has_variable = travel_distance_distance
+						
+						var:travel_distance_distance = {
+							compare_value > global_var:travel_distance_select.var:travel_distance_distance
+						}
 					}
 					get_distance_port = { 
 						one = global_var:travel_distance_select
@@ -504,11 +512,11 @@ get_distance_neighb = {
 	change_variable = { name = get_distance_neighb_x_diff subtract = $other$.var:prov_x }
 	change_variable = { name = get_distance_neighb_y_diff subtract = $other$.var:prov_y }
 	
+	change_variable = { name = get_distance_neighb_x_diff multiply = var:get_distance_neighb_x_diff }
+	change_variable = { name = get_distance_neighb_y_diff multiply = var:get_distance_neighb_y_diff }
+	
 	change_variable = { name = get_distance_neighb_x_diff divide = 10 }
 	change_variable = { name = get_distance_neighb_y_diff divide = 10 }
-	
-	pow_effect = { inp = var:get_distance_neighb_x_diff exp = 2 return = get_distance_neighb_x_diff }
-	pow_effect = { inp = var:get_distance_neighb_y_diff exp = 2 return = get_distance_neighb_y_diff }
 	
 	set_variable = { name = get_distance_neighb_diff value = var:get_distance_neighb_x_diff }
 	change_variable = { name = get_distance_neighb_diff add = var:get_distance_neighb_y_diff }
@@ -529,7 +537,7 @@ get_distance_neighb = {
 }
 
 get_distance_port = {
-	set_variable = { name = get_distance_port_cost value = 20 }
+	set_variable = { name = get_distance_port_cost value = 50 }
 	
 	get_distance_neighb = {
 		one = $one$
