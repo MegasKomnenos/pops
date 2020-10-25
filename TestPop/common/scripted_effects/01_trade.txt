@@ -149,7 +149,7 @@ trade_do_trade = {
 			travel_distance_dijkstra_every = {
 				start = var:trade_location
 				start_list = trade_outposts
-				max = 760
+				max = 720
 				return_dist = trade_do_trade_dist
 				return_prev = trade_do_trade_prev
 			}
@@ -213,7 +213,7 @@ trade_do_trade = {
 				variable = trade_do_trade_list
 				
 				set_variable = { name = trade_cost value = var:trade_do_trade_dist }
-				change_variable = { name = trade_cost divide = 40 }
+				change_variable = { name = trade_cost divide = 80 }
 				change_variable = { name = trade_cost add = 1 }
 				
 				^^goods^
