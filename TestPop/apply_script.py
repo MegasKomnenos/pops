@@ -200,7 +200,7 @@ if __name__ == '__main__':
         scripts[name] = apply_macro(script, macros)
 
     with open('out.txt', 'w', encoding='utf-8-sig') as ff:
-        file = parse_file('run.txt')
+        file = apply_macro(parse_file('run.txt'), macros)
         
         check = [True]
 

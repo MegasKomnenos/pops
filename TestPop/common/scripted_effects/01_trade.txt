@@ -918,6 +918,18 @@ trade_resolve_trade = {
 			}
 		^
 	}
+	
+	every_in_global_list = {
+		variable = trade_merchants
+		
+		set_variable = { name = trade_earn value = 0 }
+		set_variable = { name = trade_pay value = 0 }
+		
+		^^goods^
+			change_variable = { name = trade_earn add = var:trade_earn_&goods& }
+			change_variable = { name = trade_pay add = var:trade_pay_&goods& }
+		^
+	}
 }
 
 trade_resolve_trade_helper_0 = {
