@@ -1,5 +1,5 @@
 while = {
-	count = 100
+	count = 10
 	
 	prod_update_instances = yes
 
@@ -45,7 +45,7 @@ while = {
 		}
 		prev = {
 			set_variable = { name = t_disp_t value = prev.var:pop_wealth }
-			change_variable = { name = t_disp_t divide = 1000 }
+			change_variable = { name = t_disp_t divide = 100 }
 			change_variable = { name = t_disp add = var:t_disp_t }
 		}
 	}
@@ -60,7 +60,7 @@ while = {
 		}
 		prev = {
 			set_variable = { name = t_disp_t value = prev.var:pop_total }
-			change_variable = { name = t_disp_t divide = 1000 }
+			change_variable = { name = t_disp_t divide = 100 }
 			change_variable = { name = t_disp_s add = var:t_disp_t }
 		}
 	}
@@ -74,7 +74,7 @@ while = {
 		prev = {
 			set_variable = { name = t_disp_t value = prev.var:pop_calorie }
 			change_variable = { name = t_disp_t multiply = prev.var:pop_total }
-			change_variable = { name = t_disp_t divide = 1000 }
+			change_variable = { name = t_disp_t divide = 100 }
 			change_variable = { name = t_disp add = var:t_disp_t }
 		}
 	}
@@ -92,7 +92,7 @@ while = {
 		prev = {
 			set_variable = { name = t_disp_t value = prev.var:pop_nutrient }
 			change_variable = { name = t_disp_t multiply = prev.var:pop_total }
-			change_variable = { name = t_disp_t divide = 1000 }
+			change_variable = { name = t_disp_t divide = 100 }
 			change_variable = { name = t_disp add = var:t_disp_t }
 		}
 	}
@@ -110,7 +110,7 @@ while = {
 		prev = {
 			set_variable = { name = t_disp_t value = prev.var:pop_comfort }
 			change_variable = { name = t_disp_t multiply = prev.var:pop_total }
-			change_variable = { name = t_disp_t divide = 1000 }
+			change_variable = { name = t_disp_t divide = 100 }
 			change_variable = { name = t_disp add = var:t_disp_t }
 		}
 	}
@@ -128,7 +128,7 @@ while = {
 		prev = {
 			set_variable = { name = t_disp_t value = prev.var:pop_luxury }
 			change_variable = { name = t_disp_t multiply = prev.var:pop_total }
-			change_variable = { name = t_disp_t divide = 1000 }
+			change_variable = { name = t_disp_t divide = 100 }
 			change_variable = { name = t_disp add = var:t_disp_t }
 		}
 	}
@@ -148,7 +148,7 @@ while = {
 			}
 			prev = {
 				set_variable = { name = t_disp_t value = prev.var:prod_has_&goods& }
-				change_variable = { name = t_disp_t divide = 1000 }
+				change_variable = { name = t_disp_t divide = 100 }
 				change_variable = { name = t_disp add = var:t_disp_t }
 			}
 		}
@@ -159,7 +159,7 @@ while = {
 			variable = trade_merchants
 			prev = {
 				set_variable = { name = t_disp_t value = prev.var:trade_has_&goods& }
-				change_variable = { name = t_disp_t divide = 1000 }
+				change_variable = { name = t_disp_t divide = 100 }
 				change_variable = { name = t_disp add = var:t_disp_t }
 			}
 		}
@@ -193,7 +193,7 @@ while = {
 			}
 			prev = {
 				set_variable = { name = t_disp_t value = prev.var:prod_earn_&goods& }
-				change_variable = { name = t_disp_t divide = 1000 }
+				change_variable = { name = t_disp_t divide = 100 }
 				change_variable = { name = t_disp add = var:t_disp_t }
 			}
 		}
