@@ -325,10 +325,13 @@ sqrt_effect = {
 		set_variable = { name = math_sqrt_n value = var:math_sqrt_i }
 		change_variable = { name = math_sqrt_n divide = 2 }
 		
+		set_variable = { name = math_sqrt_tt value = 0.5 }
+		
 		while = {
 			limit = {
-				var:math_sqrt_n = {
-					compare_value != prev.var:math_sqrt_x
+				OR = {
+					var:math_sqrt_tt < 0.995
+					var:math_sqrt_tt > 1.005
 				}
 			}
 			set_variable = { name = math_sqrt_x value = var:math_sqrt_n }
@@ -336,6 +339,9 @@ sqrt_effect = {
 			change_variable = { name = math_sqrt_t divide = var:math_sqrt_n }
 			change_variable = { name = math_sqrt_n add = var:math_sqrt_t }
 			change_variable = { name = math_sqrt_n divide = 2 }
+			
+			set_variable = { name = math_sqrt_tt value = var:math_sqrt_x }
+			change_variable = { name = math_sqrt_tt divide = var:math_sqrt_n }
 		}
 		
 		set_variable = { name = $return$ value = var:math_sqrt_n }
@@ -343,6 +349,7 @@ sqrt_effect = {
 		remove_variable = math_sqrt_x
 		remove_variable = math_sqrt_t
 		remove_variable = math_sqrt_n
+		remove_variable = math_sqrt_tt
 	}
 	else = {
 		set_variable = { name = $return$ value = 0 }
