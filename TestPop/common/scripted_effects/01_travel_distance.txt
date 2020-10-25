@@ -521,7 +521,7 @@ get_distance_neighb = {
 	set_variable = { name = get_distance_neighb_diff value = var:get_distance_neighb_x_diff }
 	change_variable = { name = get_distance_neighb_diff add = var:get_distance_neighb_y_diff }
 	
-	pow_effect = { inp = var:get_distance_neighb_diff exp = 0.5 return = get_distance_neighb_diff }
+	sqrt_effect = { inp = var:get_distance_neighb_diff return = get_distance_neighb_diff }
 	
 	set_variable = { name = get_distance_neighb_cost value = $one$.var:prov_cost }
 	change_variable = { name = get_distance_neighb_cost add = $other$.var:prov_cost }

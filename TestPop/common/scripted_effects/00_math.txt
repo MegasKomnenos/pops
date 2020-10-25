@@ -310,3 +310,55 @@ root_effect = {
 	
 	remove_variable = math_root_exp
 }
+
+# Parameter: inp, return
+sqrt_effect = {
+	set_variable = { name = math_sqrt_m value = $inp$ }
+
+	if = {
+		limit = {
+			has_variable = math_sqrt_m
+			
+			var:math_sqrt_m > 0
+		}
+		set_variable = { name = math_sqrt_i value = 0 }
+		
+		while = {
+			limit = {
+				var:math_sqrt_m >= math_sqrt_i_squared
+			}
+			change_variable = { name = math_sqrt_i add = 0.1 }
+		}
+		
+		set_variable = { name = math_sqrt_x1 value = var:math_sqrt_i }
+		
+		set_variable = { name = math_sqrt_j value = 10 }
+		
+		while = {
+			limit = {
+				has_variable = math_sqrt_j
+				
+				var:math_sqrt_j > 0
+			}
+			change_variable = { name = math_sqrt_j subtract = 1 }
+			
+			set_variable = { name = math_sqrt_x2 value = var:math_sqrt_m }
+			change_variable = { name = math_sqrt_x2 divide = var:math_sqrt_x1 }
+			change_variable = { name = math_sqrt_x2 add = var:math_sqrt_x1 }
+			change_variable = { name = math_sqrt_x2 divide = 2 }
+			set_variable = { name = math_sqrt_x1 value = var:math_sqrt_x2 }
+		}
+		
+		set_variable = { name = $return$ value = var:math_sqrt_x1 }
+		
+		remove_variable = math_sqrt_i
+		remove_variable = math_sqrt_j
+		remove_variable = math_sqrt_x1
+		remove_variable = math_sqrt_x2
+	}
+	else = {
+		set_variable = { name = $return$ value = 0 }
+	}
+
+	remove_variable = math_sqrt_m
+}
