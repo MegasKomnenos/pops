@@ -322,17 +322,25 @@ sqrt_effect = {
 			var:math_sqrt_m > 0
 		}
 		set_variable = { name = math_sqrt_i value = 0 }
+		set_variable = { name = math_sqrt_x1 value = 0 }
 		
-		while = {
-			limit = {
-				var:math_sqrt_m >= math_sqrt_i_squared
+		^^math_sqrt_steps^
+			change_variable = { name = math_sqrt_i add = &math_sqrt_steps& }
+			
+			if = {
+				limit = {
+					var:math_sqrt_m >= math_sqrt_i_squared
+				}
+				set_variable = { name = math_sqrt_x1 value = var:math_sqrt_i }
 			}
-			change_variable = { name = math_sqrt_i add = 0.1 }
-		}
+			else = {
+				set_variable = { name = math_sqrt_i value = var:math_sqrt_x1 }
+			}
+		^
 		
-		set_variable = { name = math_sqrt_x1 value = var:math_sqrt_i }
+		change_variable = { name = math_sqrt_x1 add = 0.001 }
 		
-		set_variable = { name = math_sqrt_j value = 10 }
+		set_variable = { name = math_sqrt_j value = 5 }
 		
 		while = {
 			limit = {

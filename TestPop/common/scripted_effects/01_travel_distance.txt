@@ -515,9 +515,6 @@ get_distance_neighb = {
 	change_variable = { name = get_distance_neighb_x_diff multiply = var:get_distance_neighb_x_diff }
 	change_variable = { name = get_distance_neighb_y_diff multiply = var:get_distance_neighb_y_diff }
 	
-	change_variable = { name = get_distance_neighb_x_diff divide = 10 }
-	change_variable = { name = get_distance_neighb_y_diff divide = 10 }
-	
 	set_variable = { name = get_distance_neighb_diff value = var:get_distance_neighb_x_diff }
 	change_variable = { name = get_distance_neighb_diff add = var:get_distance_neighb_y_diff }
 	
@@ -537,7 +534,7 @@ get_distance_neighb = {
 }
 
 get_distance_port = {
-	set_variable = { name = get_distance_port_cost value = 50 }
+	set_variable = { name = get_distance_port_cost value = 100 }
 	
 	get_distance_neighb = {
 		one = $one$
