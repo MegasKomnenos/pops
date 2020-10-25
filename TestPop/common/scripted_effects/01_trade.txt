@@ -1057,13 +1057,13 @@ trade_resolve_trade_helper_1 = {
 			limit = {
 				is_valid_prov = yes
 			}
-			set_variable = { name = trade_resolve_trade_t value = prev.var:trade_resolve_trade_t }
-			set_variable = { name = trade_resolve_trade_tt value = prev.var:trade_resolve_trade_t }
-			
 			trade_resolve_trade_helper_1_helper = { type = calorie good = $good$ }
 			trade_resolve_trade_helper_1_helper = { type = nutrient good = $good$ }
 			trade_resolve_trade_helper_1_helper = { type = comfort good = $good$ }
 			trade_resolve_trade_helper_1_helper = { type = luxury good = $good$ }
+			
+			set_variable = { name = trade_resolve_trade_t value = prev.var:trade_resolve_trade_t }
+			set_variable = { name = trade_resolve_trade_tt value = prev.var:trade_resolve_trade_tt }
 			
 			every_in_list = {
 				limit = {
