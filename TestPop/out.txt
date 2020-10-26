@@ -8646,10 +8646,6 @@
 			name = trade_power
 			multiply = var:trade_skill
 		}
-		change_variable = { 
-			name = trade_power
-			multiply = 10
-		}
 	}
 	every_province = { 
 		limit = { 
@@ -31382,7 +31378,7 @@
 		variable = trade_merchants
 		change_variable = { 
 			name = trade_want_food
-			multiply = 0.8
+			multiply = 0.6
 		}
 		change_variable = { 
 			name = trade_want_food
@@ -31390,7 +31386,11 @@
 		}
 		change_variable = { 
 			name = trade_want_food
-			add = 0.2
+			add = var:trade_out_food
+		}
+		change_variable = { 
+			name = trade_want_food
+			add = 0.4
 		}
 		change_variable = { 
 			name = trade_has_food
@@ -31415,7 +31415,7 @@
 		}
 		change_variable = { 
 			name = trade_want_salt
-			multiply = 0.8
+			multiply = 0.6
 		}
 		change_variable = { 
 			name = trade_want_salt
@@ -31423,7 +31423,11 @@
 		}
 		change_variable = { 
 			name = trade_want_salt
-			add = 0.2
+			add = var:trade_out_salt
+		}
+		change_variable = { 
+			name = trade_want_salt
+			add = 0.4
 		}
 		change_variable = { 
 			name = trade_has_salt
@@ -31448,7 +31452,7 @@
 		}
 		change_variable = { 
 			name = trade_want_fuel
-			multiply = 0.8
+			multiply = 0.6
 		}
 		change_variable = { 
 			name = trade_want_fuel
@@ -31456,7 +31460,11 @@
 		}
 		change_variable = { 
 			name = trade_want_fuel
-			add = 0.2
+			add = var:trade_out_fuel
+		}
+		change_variable = { 
+			name = trade_want_fuel
+			add = 0.4
 		}
 		change_variable = { 
 			name = trade_has_fuel
@@ -31481,7 +31489,7 @@
 		}
 		change_variable = { 
 			name = trade_want_fiber
-			multiply = 0.8
+			multiply = 0.6
 		}
 		change_variable = { 
 			name = trade_want_fiber
@@ -31489,7 +31497,11 @@
 		}
 		change_variable = { 
 			name = trade_want_fiber
-			add = 0.2
+			add = var:trade_out_fiber
+		}
+		change_variable = { 
+			name = trade_want_fiber
+			add = 0.4
 		}
 		change_variable = { 
 			name = trade_has_fiber
@@ -31514,7 +31526,7 @@
 		}
 		change_variable = { 
 			name = trade_want_timber
-			multiply = 0.8
+			multiply = 0.6
 		}
 		change_variable = { 
 			name = trade_want_timber
@@ -31522,7 +31534,11 @@
 		}
 		change_variable = { 
 			name = trade_want_timber
-			add = 0.2
+			add = var:trade_out_timber
+		}
+		change_variable = { 
+			name = trade_want_timber
+			add = 0.4
 		}
 		change_variable = { 
 			name = trade_has_timber
@@ -31547,7 +31563,7 @@
 		}
 		change_variable = { 
 			name = trade_want_metal
-			multiply = 0.8
+			multiply = 0.6
 		}
 		change_variable = { 
 			name = trade_want_metal
@@ -31555,7 +31571,11 @@
 		}
 		change_variable = { 
 			name = trade_want_metal
-			add = 0.2
+			add = var:trade_out_metal
+		}
+		change_variable = { 
+			name = trade_want_metal
+			add = 0.4
 		}
 		change_variable = { 
 			name = trade_has_metal
@@ -31580,7 +31600,7 @@
 		}
 		change_variable = { 
 			name = trade_want_exotics_w
-			multiply = 0.8
+			multiply = 0.6
 		}
 		change_variable = { 
 			name = trade_want_exotics_w
@@ -31588,7 +31608,11 @@
 		}
 		change_variable = { 
 			name = trade_want_exotics_w
-			add = 0.2
+			add = var:trade_out_exotics_w
+		}
+		change_variable = { 
+			name = trade_want_exotics_w
+			add = 0.4
 		}
 		change_variable = { 
 			name = trade_has_exotics_w
@@ -31613,7 +31637,7 @@
 		}
 		change_variable = { 
 			name = trade_want_exotics_e
-			multiply = 0.8
+			multiply = 0.6
 		}
 		change_variable = { 
 			name = trade_want_exotics_e
@@ -31621,7 +31645,11 @@
 		}
 		change_variable = { 
 			name = trade_want_exotics_e
-			add = 0.2
+			add = var:trade_out_exotics_e
+		}
+		change_variable = { 
+			name = trade_want_exotics_e
+			add = 0.4
 		}
 		change_variable = { 
 			name = trade_has_exotics_e
@@ -31646,7 +31674,7 @@
 		}
 		change_variable = { 
 			name = trade_want_exotics_g
-			multiply = 0.8
+			multiply = 0.6
 		}
 		change_variable = { 
 			name = trade_want_exotics_g
@@ -31654,7 +31682,11 @@
 		}
 		change_variable = { 
 			name = trade_want_exotics_g
-			add = 0.2
+			add = var:trade_out_exotics_g
+		}
+		change_variable = { 
+			name = trade_want_exotics_g
+			add = 0.4
 		}
 		change_variable = { 
 			name = trade_has_exotics_g
@@ -31679,7 +31711,7 @@
 		}
 		change_variable = { 
 			name = trade_want_textile
-			multiply = 0.8
+			multiply = 0.6
 		}
 		change_variable = { 
 			name = trade_want_textile
@@ -31687,7 +31719,11 @@
 		}
 		change_variable = { 
 			name = trade_want_textile
-			add = 0.2
+			add = var:trade_out_textile
+		}
+		change_variable = { 
+			name = trade_want_textile
+			add = 0.4
 		}
 		change_variable = { 
 			name = trade_has_textile
@@ -31712,7 +31748,7 @@
 		}
 		change_variable = { 
 			name = trade_want_pottery
-			multiply = 0.8
+			multiply = 0.6
 		}
 		change_variable = { 
 			name = trade_want_pottery
@@ -31720,7 +31756,11 @@
 		}
 		change_variable = { 
 			name = trade_want_pottery
-			add = 0.2
+			add = var:trade_out_pottery
+		}
+		change_variable = { 
+			name = trade_want_pottery
+			add = 0.4
 		}
 		change_variable = { 
 			name = trade_has_pottery
@@ -31745,7 +31785,7 @@
 		}
 		change_variable = { 
 			name = trade_want_furniture
-			multiply = 0.8
+			multiply = 0.6
 		}
 		change_variable = { 
 			name = trade_want_furniture
@@ -31753,7 +31793,11 @@
 		}
 		change_variable = { 
 			name = trade_want_furniture
-			add = 0.2
+			add = var:trade_out_furniture
+		}
+		change_variable = { 
+			name = trade_want_furniture
+			add = 0.4
 		}
 		change_variable = { 
 			name = trade_has_furniture
@@ -31824,7 +31868,7 @@
 					}
 					change_variable = { 
 						name = trade_update_price_t
-						divide = 200
+						divide = 500
 					}
 					change_variable = { 
 						name = trade_update_price_t
@@ -31838,7 +31882,7 @@
 				else = { 
 					change_variable = { 
 						name = trade_update_price_t
-						divide = -900
+						divide = -2250
 					}
 					change_variable = { 
 						name = trade_update_price_t
@@ -31894,7 +31938,7 @@
 					}
 					change_variable = { 
 						name = trade_update_price_t
-						divide = 200
+						divide = 500
 					}
 					change_variable = { 
 						name = trade_update_price_t
@@ -31908,7 +31952,7 @@
 				else = { 
 					change_variable = { 
 						name = trade_update_price_t
-						divide = -900
+						divide = -2250
 					}
 					change_variable = { 
 						name = trade_update_price_t
@@ -31964,7 +32008,7 @@
 					}
 					change_variable = { 
 						name = trade_update_price_t
-						divide = 200
+						divide = 500
 					}
 					change_variable = { 
 						name = trade_update_price_t
@@ -31978,7 +32022,7 @@
 				else = { 
 					change_variable = { 
 						name = trade_update_price_t
-						divide = -900
+						divide = -2250
 					}
 					change_variable = { 
 						name = trade_update_price_t
@@ -32034,7 +32078,7 @@
 					}
 					change_variable = { 
 						name = trade_update_price_t
-						divide = 200
+						divide = 500
 					}
 					change_variable = { 
 						name = trade_update_price_t
@@ -32048,7 +32092,7 @@
 				else = { 
 					change_variable = { 
 						name = trade_update_price_t
-						divide = -900
+						divide = -2250
 					}
 					change_variable = { 
 						name = trade_update_price_t
@@ -32104,7 +32148,7 @@
 					}
 					change_variable = { 
 						name = trade_update_price_t
-						divide = 200
+						divide = 500
 					}
 					change_variable = { 
 						name = trade_update_price_t
@@ -32118,7 +32162,7 @@
 				else = { 
 					change_variable = { 
 						name = trade_update_price_t
-						divide = -900
+						divide = -2250
 					}
 					change_variable = { 
 						name = trade_update_price_t
@@ -32174,7 +32218,7 @@
 					}
 					change_variable = { 
 						name = trade_update_price_t
-						divide = 200
+						divide = 500
 					}
 					change_variable = { 
 						name = trade_update_price_t
@@ -32188,7 +32232,7 @@
 				else = { 
 					change_variable = { 
 						name = trade_update_price_t
-						divide = -900
+						divide = -2250
 					}
 					change_variable = { 
 						name = trade_update_price_t
@@ -32244,7 +32288,7 @@
 					}
 					change_variable = { 
 						name = trade_update_price_t
-						divide = 200
+						divide = 500
 					}
 					change_variable = { 
 						name = trade_update_price_t
@@ -32258,7 +32302,7 @@
 				else = { 
 					change_variable = { 
 						name = trade_update_price_t
-						divide = -900
+						divide = -2250
 					}
 					change_variable = { 
 						name = trade_update_price_t
@@ -32314,7 +32358,7 @@
 					}
 					change_variable = { 
 						name = trade_update_price_t
-						divide = 200
+						divide = 500
 					}
 					change_variable = { 
 						name = trade_update_price_t
@@ -32328,7 +32372,7 @@
 				else = { 
 					change_variable = { 
 						name = trade_update_price_t
-						divide = -900
+						divide = -2250
 					}
 					change_variable = { 
 						name = trade_update_price_t
@@ -32384,7 +32428,7 @@
 					}
 					change_variable = { 
 						name = trade_update_price_t
-						divide = 200
+						divide = 500
 					}
 					change_variable = { 
 						name = trade_update_price_t
@@ -32398,7 +32442,7 @@
 				else = { 
 					change_variable = { 
 						name = trade_update_price_t
-						divide = -900
+						divide = -2250
 					}
 					change_variable = { 
 						name = trade_update_price_t
@@ -32454,7 +32498,7 @@
 					}
 					change_variable = { 
 						name = trade_update_price_t
-						divide = 200
+						divide = 500
 					}
 					change_variable = { 
 						name = trade_update_price_t
@@ -32468,7 +32512,7 @@
 				else = { 
 					change_variable = { 
 						name = trade_update_price_t
-						divide = -900
+						divide = -2250
 					}
 					change_variable = { 
 						name = trade_update_price_t
@@ -32524,7 +32568,7 @@
 					}
 					change_variable = { 
 						name = trade_update_price_t
-						divide = 200
+						divide = 500
 					}
 					change_variable = { 
 						name = trade_update_price_t
@@ -32538,7 +32582,7 @@
 				else = { 
 					change_variable = { 
 						name = trade_update_price_t
-						divide = -900
+						divide = -2250
 					}
 					change_variable = { 
 						name = trade_update_price_t
@@ -32594,7 +32638,7 @@
 					}
 					change_variable = { 
 						name = trade_update_price_t
-						divide = 200
+						divide = 500
 					}
 					change_variable = { 
 						name = trade_update_price_t
@@ -32608,7 +32652,7 @@
 				else = { 
 					change_variable = { 
 						name = trade_update_price_t
-						divide = -900
+						divide = -2250
 					}
 					change_variable = { 
 						name = trade_update_price_t
@@ -32664,7 +32708,7 @@
 					}
 					change_variable = { 
 						name = trade_update_price_t
-						divide = 200
+						divide = 500
 					}
 					change_variable = { 
 						name = trade_update_price_t
@@ -32678,7 +32722,7 @@
 				else = { 
 					change_variable = { 
 						name = trade_update_price_t
-						divide = -900
+						divide = -2250
 					}
 					change_variable = { 
 						name = trade_update_price_t
@@ -32734,7 +32778,7 @@
 					}
 					change_variable = { 
 						name = trade_update_price_t
-						divide = 200
+						divide = 500
 					}
 					change_variable = { 
 						name = trade_update_price_t
@@ -32748,7 +32792,7 @@
 				else = { 
 					change_variable = { 
 						name = trade_update_price_t
-						divide = -900
+						divide = -2250
 					}
 					change_variable = { 
 						name = trade_update_price_t
@@ -32804,7 +32848,7 @@
 					}
 					change_variable = { 
 						name = trade_update_price_t
-						divide = 200
+						divide = 500
 					}
 					change_variable = { 
 						name = trade_update_price_t
@@ -32818,7 +32862,7 @@
 				else = { 
 					change_variable = { 
 						name = trade_update_price_t
-						divide = -900
+						divide = -2250
 					}
 					change_variable = { 
 						name = trade_update_price_t
@@ -32874,7 +32918,7 @@
 					}
 					change_variable = { 
 						name = trade_update_price_t
-						divide = 200
+						divide = 500
 					}
 					change_variable = { 
 						name = trade_update_price_t
@@ -32888,7 +32932,7 @@
 				else = { 
 					change_variable = { 
 						name = trade_update_price_t
-						divide = -900
+						divide = -2250
 					}
 					change_variable = { 
 						name = trade_update_price_t
@@ -32944,7 +32988,7 @@
 					}
 					change_variable = { 
 						name = trade_update_price_t
-						divide = 200
+						divide = 500
 					}
 					change_variable = { 
 						name = trade_update_price_t
@@ -32958,7 +33002,7 @@
 				else = { 
 					change_variable = { 
 						name = trade_update_price_t
-						divide = -900
+						divide = -2250
 					}
 					change_variable = { 
 						name = trade_update_price_t
@@ -33014,7 +33058,7 @@
 					}
 					change_variable = { 
 						name = trade_update_price_t
-						divide = 200
+						divide = 500
 					}
 					change_variable = { 
 						name = trade_update_price_t
@@ -33028,7 +33072,7 @@
 				else = { 
 					change_variable = { 
 						name = trade_update_price_t
-						divide = -900
+						divide = -2250
 					}
 					change_variable = { 
 						name = trade_update_price_t
@@ -33084,7 +33128,7 @@
 					}
 					change_variable = { 
 						name = trade_update_price_t
-						divide = 200
+						divide = 500
 					}
 					change_variable = { 
 						name = trade_update_price_t
@@ -33098,7 +33142,7 @@
 				else = { 
 					change_variable = { 
 						name = trade_update_price_t
-						divide = -900
+						divide = -2250
 					}
 					change_variable = { 
 						name = trade_update_price_t
@@ -33154,7 +33198,7 @@
 					}
 					change_variable = { 
 						name = trade_update_price_t
-						divide = 200
+						divide = 500
 					}
 					change_variable = { 
 						name = trade_update_price_t
@@ -33168,7 +33212,7 @@
 				else = { 
 					change_variable = { 
 						name = trade_update_price_t
-						divide = -900
+						divide = -2250
 					}
 					change_variable = { 
 						name = trade_update_price_t
@@ -33224,7 +33268,7 @@
 					}
 					change_variable = { 
 						name = trade_update_price_t
-						divide = 200
+						divide = 500
 					}
 					change_variable = { 
 						name = trade_update_price_t
@@ -33238,7 +33282,7 @@
 				else = { 
 					change_variable = { 
 						name = trade_update_price_t
-						divide = -900
+						divide = -2250
 					}
 					change_variable = { 
 						name = trade_update_price_t
@@ -33294,7 +33338,7 @@
 					}
 					change_variable = { 
 						name = trade_update_price_t
-						divide = 200
+						divide = 500
 					}
 					change_variable = { 
 						name = trade_update_price_t
@@ -33308,7 +33352,7 @@
 				else = { 
 					change_variable = { 
 						name = trade_update_price_t
-						divide = -900
+						divide = -2250
 					}
 					change_variable = { 
 						name = trade_update_price_t
@@ -33364,7 +33408,7 @@
 					}
 					change_variable = { 
 						name = trade_update_price_t
-						divide = 200
+						divide = 500
 					}
 					change_variable = { 
 						name = trade_update_price_t
@@ -33378,7 +33422,7 @@
 				else = { 
 					change_variable = { 
 						name = trade_update_price_t
-						divide = -900
+						divide = -2250
 					}
 					change_variable = { 
 						name = trade_update_price_t
@@ -33434,7 +33478,7 @@
 					}
 					change_variable = { 
 						name = trade_update_price_t
-						divide = 200
+						divide = 500
 					}
 					change_variable = { 
 						name = trade_update_price_t
@@ -33448,7 +33492,7 @@
 				else = { 
 					change_variable = { 
 						name = trade_update_price_t
-						divide = -900
+						divide = -2250
 					}
 					change_variable = { 
 						name = trade_update_price_t
@@ -33488,7 +33532,7 @@
 			}
 			change_variable = { 
 				name = trade_update_price_t
-				divide = 10
+				divide = 25
 			}
 			if = { 
 				limit = { 
@@ -33547,7 +33591,7 @@
 			}
 			change_variable = { 
 				name = trade_update_price_t
-				divide = 10
+				divide = 25
 			}
 			if = { 
 				limit = { 
@@ -33606,7 +33650,7 @@
 			}
 			change_variable = { 
 				name = trade_update_price_t
-				divide = 10
+				divide = 25
 			}
 			if = { 
 				limit = { 
@@ -33665,7 +33709,7 @@
 			}
 			change_variable = { 
 				name = trade_update_price_t
-				divide = 10
+				divide = 25
 			}
 			if = { 
 				limit = { 
@@ -33724,7 +33768,7 @@
 			}
 			change_variable = { 
 				name = trade_update_price_t
-				divide = 10
+				divide = 25
 			}
 			if = { 
 				limit = { 
@@ -33783,7 +33827,7 @@
 			}
 			change_variable = { 
 				name = trade_update_price_t
-				divide = 10
+				divide = 25
 			}
 			if = { 
 				limit = { 
@@ -33842,7 +33886,7 @@
 			}
 			change_variable = { 
 				name = trade_update_price_t
-				divide = 10
+				divide = 25
 			}
 			if = { 
 				limit = { 
@@ -33901,7 +33945,7 @@
 			}
 			change_variable = { 
 				name = trade_update_price_t
-				divide = 10
+				divide = 25
 			}
 			if = { 
 				limit = { 
@@ -33960,7 +34004,7 @@
 			}
 			change_variable = { 
 				name = trade_update_price_t
-				divide = 10
+				divide = 25
 			}
 			if = { 
 				limit = { 
@@ -34019,7 +34063,7 @@
 			}
 			change_variable = { 
 				name = trade_update_price_t
-				divide = 10
+				divide = 25
 			}
 			if = { 
 				limit = { 
@@ -34078,7 +34122,7 @@
 			}
 			change_variable = { 
 				name = trade_update_price_t
-				divide = 10
+				divide = 25
 			}
 			if = { 
 				limit = { 
@@ -34137,7 +34181,7 @@
 			}
 			change_variable = { 
 				name = trade_update_price_t
-				divide = 10
+				divide = 25
 			}
 			if = { 
 				limit = { 

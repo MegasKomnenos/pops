@@ -112,7 +112,6 @@ trade_do_trade = {
 		
 		set_variable = { name = trade_power value = var:trade_rank }
 		change_variable = { name = trade_power multiply = var:trade_skill }
-		change_variable = { name = trade_power multiply = 10 }
 	}
 	
 	every_province = {
@@ -1466,12 +1465,12 @@ trade_update_price_helper_0 = {
 				limit = {
 					var:trade_update_price_t > 0
 				}
-				change_variable = { name = trade_update_price_t divide = 200 }
+				change_variable = { name = trade_update_price_t divide = 500 }
 				change_variable = { name = trade_update_price_t add = 1 }
 				change_variable = { name = trade_price_$good$ $opr0$ = var:trade_update_price_t }
 			}
 			else = {
-				change_variable = { name = trade_update_price_t divide = -900 }
+				change_variable = { name = trade_update_price_t divide = -2250 }
 				change_variable = { name = trade_update_price_t add = 1 }
 				change_variable = { name = trade_price_$good$ $opr1$ = var:trade_update_price_t }
 			}
@@ -1490,7 +1489,7 @@ trade_update_price_helper_1 = {
 		change_variable = { name = trade_update_price_t multiply = 2 }
 		change_variable = { name = trade_update_price_t subtract = var:trade_want_$good$ }
 		change_variable = { name = trade_update_price_t divide = var:trade_want_$good$ }
-		change_variable = { name = trade_update_price_t divide = 10 }
+		change_variable = { name = trade_update_price_t divide = 25 }
 		
 		if = {
 			limit = {
@@ -1523,9 +1522,10 @@ trade_update_merchant = {
 }
 
 trade_update_merchant_helper = {
-	change_variable = { name = trade_want_$good$ multiply = 0.8 }
+	change_variable = { name = trade_want_$good$ multiply = 0.6 }
 	change_variable = { name = trade_want_$good$ add = var:trade_out_$good$ }
-	change_variable = { name = trade_want_$good$ add = 0.2 }
+	change_variable = { name = trade_want_$good$ add = var:trade_out_$good$ }
+	change_variable = { name = trade_want_$good$ add = 0.4 }
 	
 	change_variable = { name = trade_has_$good$ add = var:trade_in_$good$ }
 	change_variable = { name = trade_has_$good$ subtract = var:trade_out_$good$ }
