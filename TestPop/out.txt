@@ -9279,6 +9279,24 @@
 					name = trade_sell_food
 					subtract = var:trade_out_food
 				}
+				if = { 
+					limit = { 
+						var:trade_buy_food < 0
+					}
+					set_variable = { 
+						name = trade_buy_food
+						value = 0
+					}
+				}
+				if = { 
+					limit = { 
+						var:trade_sell_food < 0
+					}
+					set_variable = { 
+						name = trade_sell_food
+						value = 0
+					}
+				}
 				set_variable = { 
 					name = trade_sum_buy_salt
 					value = 0
@@ -9302,6 +9320,24 @@
 				change_variable = { 
 					name = trade_sell_salt
 					subtract = var:trade_out_salt
+				}
+				if = { 
+					limit = { 
+						var:trade_buy_salt < 0
+					}
+					set_variable = { 
+						name = trade_buy_salt
+						value = 0
+					}
+				}
+				if = { 
+					limit = { 
+						var:trade_sell_salt < 0
+					}
+					set_variable = { 
+						name = trade_sell_salt
+						value = 0
+					}
 				}
 				set_variable = { 
 					name = trade_sum_buy_fuel
@@ -9327,6 +9363,24 @@
 					name = trade_sell_fuel
 					subtract = var:trade_out_fuel
 				}
+				if = { 
+					limit = { 
+						var:trade_buy_fuel < 0
+					}
+					set_variable = { 
+						name = trade_buy_fuel
+						value = 0
+					}
+				}
+				if = { 
+					limit = { 
+						var:trade_sell_fuel < 0
+					}
+					set_variable = { 
+						name = trade_sell_fuel
+						value = 0
+					}
+				}
 				set_variable = { 
 					name = trade_sum_buy_fiber
 					value = 0
@@ -9350,6 +9404,24 @@
 				change_variable = { 
 					name = trade_sell_fiber
 					subtract = var:trade_out_fiber
+				}
+				if = { 
+					limit = { 
+						var:trade_buy_fiber < 0
+					}
+					set_variable = { 
+						name = trade_buy_fiber
+						value = 0
+					}
+				}
+				if = { 
+					limit = { 
+						var:trade_sell_fiber < 0
+					}
+					set_variable = { 
+						name = trade_sell_fiber
+						value = 0
+					}
 				}
 				set_variable = { 
 					name = trade_sum_buy_timber
@@ -9375,6 +9447,24 @@
 					name = trade_sell_timber
 					subtract = var:trade_out_timber
 				}
+				if = { 
+					limit = { 
+						var:trade_buy_timber < 0
+					}
+					set_variable = { 
+						name = trade_buy_timber
+						value = 0
+					}
+				}
+				if = { 
+					limit = { 
+						var:trade_sell_timber < 0
+					}
+					set_variable = { 
+						name = trade_sell_timber
+						value = 0
+					}
+				}
 				set_variable = { 
 					name = trade_sum_buy_metal
 					value = 0
@@ -9398,6 +9488,24 @@
 				change_variable = { 
 					name = trade_sell_metal
 					subtract = var:trade_out_metal
+				}
+				if = { 
+					limit = { 
+						var:trade_buy_metal < 0
+					}
+					set_variable = { 
+						name = trade_buy_metal
+						value = 0
+					}
+				}
+				if = { 
+					limit = { 
+						var:trade_sell_metal < 0
+					}
+					set_variable = { 
+						name = trade_sell_metal
+						value = 0
+					}
 				}
 				set_variable = { 
 					name = trade_sum_buy_exotics_w
@@ -9423,6 +9531,24 @@
 					name = trade_sell_exotics_w
 					subtract = var:trade_out_exotics_w
 				}
+				if = { 
+					limit = { 
+						var:trade_buy_exotics_w < 0
+					}
+					set_variable = { 
+						name = trade_buy_exotics_w
+						value = 0
+					}
+				}
+				if = { 
+					limit = { 
+						var:trade_sell_exotics_w < 0
+					}
+					set_variable = { 
+						name = trade_sell_exotics_w
+						value = 0
+					}
+				}
 				set_variable = { 
 					name = trade_sum_buy_exotics_e
 					value = 0
@@ -9446,6 +9572,24 @@
 				change_variable = { 
 					name = trade_sell_exotics_e
 					subtract = var:trade_out_exotics_e
+				}
+				if = { 
+					limit = { 
+						var:trade_buy_exotics_e < 0
+					}
+					set_variable = { 
+						name = trade_buy_exotics_e
+						value = 0
+					}
+				}
+				if = { 
+					limit = { 
+						var:trade_sell_exotics_e < 0
+					}
+					set_variable = { 
+						name = trade_sell_exotics_e
+						value = 0
+					}
 				}
 				set_variable = { 
 					name = trade_sum_buy_exotics_g
@@ -9471,6 +9615,24 @@
 					name = trade_sell_exotics_g
 					subtract = var:trade_out_exotics_g
 				}
+				if = { 
+					limit = { 
+						var:trade_buy_exotics_g < 0
+					}
+					set_variable = { 
+						name = trade_buy_exotics_g
+						value = 0
+					}
+				}
+				if = { 
+					limit = { 
+						var:trade_sell_exotics_g < 0
+					}
+					set_variable = { 
+						name = trade_sell_exotics_g
+						value = 0
+					}
+				}
 				set_variable = { 
 					name = trade_sum_buy_textile
 					value = 0
@@ -9494,6 +9656,24 @@
 				change_variable = { 
 					name = trade_sell_textile
 					subtract = var:trade_out_textile
+				}
+				if = { 
+					limit = { 
+						var:trade_buy_textile < 0
+					}
+					set_variable = { 
+						name = trade_buy_textile
+						value = 0
+					}
+				}
+				if = { 
+					limit = { 
+						var:trade_sell_textile < 0
+					}
+					set_variable = { 
+						name = trade_sell_textile
+						value = 0
+					}
 				}
 				set_variable = { 
 					name = trade_sum_buy_pottery
@@ -9519,6 +9699,24 @@
 					name = trade_sell_pottery
 					subtract = var:trade_out_pottery
 				}
+				if = { 
+					limit = { 
+						var:trade_buy_pottery < 0
+					}
+					set_variable = { 
+						name = trade_buy_pottery
+						value = 0
+					}
+				}
+				if = { 
+					limit = { 
+						var:trade_sell_pottery < 0
+					}
+					set_variable = { 
+						name = trade_sell_pottery
+						value = 0
+					}
+				}
 				set_variable = { 
 					name = trade_sum_buy_furniture
 					value = 0
@@ -9542,6 +9740,24 @@
 				change_variable = { 
 					name = trade_sell_furniture
 					subtract = var:trade_out_furniture
+				}
+				if = { 
+					limit = { 
+						var:trade_buy_furniture < 0
+					}
+					set_variable = { 
+						name = trade_buy_furniture
+						value = 0
+					}
+				}
+				if = { 
+					limit = { 
+						var:trade_sell_furniture < 0
+					}
+					set_variable = { 
+						name = trade_sell_furniture
+						value = 0
+					}
 				}
 				set_variable = { 
 					name = trade_point_avg
@@ -9587,6 +9803,15 @@
 								name = trade_buy_food
 								subtract = var:trade_in_food
 							}
+							if = { 
+								limit = { 
+									var:trade_buy_food < 0
+								}
+								set_variable = { 
+									name = trade_buy_food
+									value = 0
+								}
+							}
 						}
 						else = { 
 							set_variable = { 
@@ -9600,6 +9825,15 @@
 							change_variable = { 
 								name = trade_sell_food
 								subtract = var:trade_out_food
+							}
+							if = { 
+								limit = { 
+									var:trade_sell_food < 0
+								}
+								set_variable = { 
+									name = trade_sell_food
+									value = 0
+								}
 							}
 						}
 					}
@@ -9678,6 +9912,15 @@
 								name = trade_buy_salt
 								subtract = var:trade_in_salt
 							}
+							if = { 
+								limit = { 
+									var:trade_buy_salt < 0
+								}
+								set_variable = { 
+									name = trade_buy_salt
+									value = 0
+								}
+							}
 						}
 						else = { 
 							set_variable = { 
@@ -9691,6 +9934,15 @@
 							change_variable = { 
 								name = trade_sell_salt
 								subtract = var:trade_out_salt
+							}
+							if = { 
+								limit = { 
+									var:trade_sell_salt < 0
+								}
+								set_variable = { 
+									name = trade_sell_salt
+									value = 0
+								}
 							}
 						}
 					}
@@ -9769,6 +10021,15 @@
 								name = trade_buy_fuel
 								subtract = var:trade_in_fuel
 							}
+							if = { 
+								limit = { 
+									var:trade_buy_fuel < 0
+								}
+								set_variable = { 
+									name = trade_buy_fuel
+									value = 0
+								}
+							}
 						}
 						else = { 
 							set_variable = { 
@@ -9782,6 +10043,15 @@
 							change_variable = { 
 								name = trade_sell_fuel
 								subtract = var:trade_out_fuel
+							}
+							if = { 
+								limit = { 
+									var:trade_sell_fuel < 0
+								}
+								set_variable = { 
+									name = trade_sell_fuel
+									value = 0
+								}
 							}
 						}
 					}
@@ -9860,6 +10130,15 @@
 								name = trade_buy_fiber
 								subtract = var:trade_in_fiber
 							}
+							if = { 
+								limit = { 
+									var:trade_buy_fiber < 0
+								}
+								set_variable = { 
+									name = trade_buy_fiber
+									value = 0
+								}
+							}
 						}
 						else = { 
 							set_variable = { 
@@ -9873,6 +10152,15 @@
 							change_variable = { 
 								name = trade_sell_fiber
 								subtract = var:trade_out_fiber
+							}
+							if = { 
+								limit = { 
+									var:trade_sell_fiber < 0
+								}
+								set_variable = { 
+									name = trade_sell_fiber
+									value = 0
+								}
 							}
 						}
 					}
@@ -9951,6 +10239,15 @@
 								name = trade_buy_timber
 								subtract = var:trade_in_timber
 							}
+							if = { 
+								limit = { 
+									var:trade_buy_timber < 0
+								}
+								set_variable = { 
+									name = trade_buy_timber
+									value = 0
+								}
+							}
 						}
 						else = { 
 							set_variable = { 
@@ -9964,6 +10261,15 @@
 							change_variable = { 
 								name = trade_sell_timber
 								subtract = var:trade_out_timber
+							}
+							if = { 
+								limit = { 
+									var:trade_sell_timber < 0
+								}
+								set_variable = { 
+									name = trade_sell_timber
+									value = 0
+								}
 							}
 						}
 					}
@@ -10042,6 +10348,15 @@
 								name = trade_buy_metal
 								subtract = var:trade_in_metal
 							}
+							if = { 
+								limit = { 
+									var:trade_buy_metal < 0
+								}
+								set_variable = { 
+									name = trade_buy_metal
+									value = 0
+								}
+							}
 						}
 						else = { 
 							set_variable = { 
@@ -10055,6 +10370,15 @@
 							change_variable = { 
 								name = trade_sell_metal
 								subtract = var:trade_out_metal
+							}
+							if = { 
+								limit = { 
+									var:trade_sell_metal < 0
+								}
+								set_variable = { 
+									name = trade_sell_metal
+									value = 0
+								}
 							}
 						}
 					}
@@ -10133,6 +10457,15 @@
 								name = trade_buy_exotics_w
 								subtract = var:trade_in_exotics_w
 							}
+							if = { 
+								limit = { 
+									var:trade_buy_exotics_w < 0
+								}
+								set_variable = { 
+									name = trade_buy_exotics_w
+									value = 0
+								}
+							}
 						}
 						else = { 
 							set_variable = { 
@@ -10146,6 +10479,15 @@
 							change_variable = { 
 								name = trade_sell_exotics_w
 								subtract = var:trade_out_exotics_w
+							}
+							if = { 
+								limit = { 
+									var:trade_sell_exotics_w < 0
+								}
+								set_variable = { 
+									name = trade_sell_exotics_w
+									value = 0
+								}
 							}
 						}
 					}
@@ -10224,6 +10566,15 @@
 								name = trade_buy_exotics_e
 								subtract = var:trade_in_exotics_e
 							}
+							if = { 
+								limit = { 
+									var:trade_buy_exotics_e < 0
+								}
+								set_variable = { 
+									name = trade_buy_exotics_e
+									value = 0
+								}
+							}
 						}
 						else = { 
 							set_variable = { 
@@ -10237,6 +10588,15 @@
 							change_variable = { 
 								name = trade_sell_exotics_e
 								subtract = var:trade_out_exotics_e
+							}
+							if = { 
+								limit = { 
+									var:trade_sell_exotics_e < 0
+								}
+								set_variable = { 
+									name = trade_sell_exotics_e
+									value = 0
+								}
 							}
 						}
 					}
@@ -10315,6 +10675,15 @@
 								name = trade_buy_exotics_g
 								subtract = var:trade_in_exotics_g
 							}
+							if = { 
+								limit = { 
+									var:trade_buy_exotics_g < 0
+								}
+								set_variable = { 
+									name = trade_buy_exotics_g
+									value = 0
+								}
+							}
 						}
 						else = { 
 							set_variable = { 
@@ -10328,6 +10697,15 @@
 							change_variable = { 
 								name = trade_sell_exotics_g
 								subtract = var:trade_out_exotics_g
+							}
+							if = { 
+								limit = { 
+									var:trade_sell_exotics_g < 0
+								}
+								set_variable = { 
+									name = trade_sell_exotics_g
+									value = 0
+								}
 							}
 						}
 					}
@@ -10406,6 +10784,15 @@
 								name = trade_buy_textile
 								subtract = var:trade_in_textile
 							}
+							if = { 
+								limit = { 
+									var:trade_buy_textile < 0
+								}
+								set_variable = { 
+									name = trade_buy_textile
+									value = 0
+								}
+							}
 						}
 						else = { 
 							set_variable = { 
@@ -10419,6 +10806,15 @@
 							change_variable = { 
 								name = trade_sell_textile
 								subtract = var:trade_out_textile
+							}
+							if = { 
+								limit = { 
+									var:trade_sell_textile < 0
+								}
+								set_variable = { 
+									name = trade_sell_textile
+									value = 0
+								}
 							}
 						}
 					}
@@ -10497,6 +10893,15 @@
 								name = trade_buy_pottery
 								subtract = var:trade_in_pottery
 							}
+							if = { 
+								limit = { 
+									var:trade_buy_pottery < 0
+								}
+								set_variable = { 
+									name = trade_buy_pottery
+									value = 0
+								}
+							}
 						}
 						else = { 
 							set_variable = { 
@@ -10510,6 +10915,15 @@
 							change_variable = { 
 								name = trade_sell_pottery
 								subtract = var:trade_out_pottery
+							}
+							if = { 
+								limit = { 
+									var:trade_sell_pottery < 0
+								}
+								set_variable = { 
+									name = trade_sell_pottery
+									value = 0
+								}
 							}
 						}
 					}
@@ -10588,6 +11002,15 @@
 								name = trade_buy_furniture
 								subtract = var:trade_in_furniture
 							}
+							if = { 
+								limit = { 
+									var:trade_buy_furniture < 0
+								}
+								set_variable = { 
+									name = trade_buy_furniture
+									value = 0
+								}
+							}
 						}
 						else = { 
 							set_variable = { 
@@ -10601,6 +11024,15 @@
 							change_variable = { 
 								name = trade_sell_furniture
 								subtract = var:trade_out_furniture
+							}
+							if = { 
+								limit = { 
+									var:trade_sell_furniture < 0
+								}
+								set_variable = { 
+									name = trade_sell_furniture
+									value = 0
+								}
 							}
 						}
 					}
@@ -23742,14 +24174,6 @@
 								divide = 100
 							}
 							set_variable = { 
-								name = trade_do_trade_t
-								value = var:trade_dmnd_food
-							}
-							change_variable = { 
-								name = trade_do_trade_t
-								subtract = var:trade_in_food
-							}
-							set_variable = { 
 								name = trade_cost_food
 								value = var:trade_buy_food
 							}
@@ -23776,14 +24200,6 @@
 							change_variable = { 
 								name = trade_sell_salt
 								divide = 100
-							}
-							set_variable = { 
-								name = trade_do_trade_t
-								value = var:trade_dmnd_salt
-							}
-							change_variable = { 
-								name = trade_do_trade_t
-								subtract = var:trade_in_salt
 							}
 							set_variable = { 
 								name = trade_cost_salt
@@ -23814,14 +24230,6 @@
 								divide = 100
 							}
 							set_variable = { 
-								name = trade_do_trade_t
-								value = var:trade_dmnd_fuel
-							}
-							change_variable = { 
-								name = trade_do_trade_t
-								subtract = var:trade_in_fuel
-							}
-							set_variable = { 
 								name = trade_cost_fuel
 								value = var:trade_buy_fuel
 							}
@@ -23848,14 +24256,6 @@
 							change_variable = { 
 								name = trade_sell_fiber
 								divide = 100
-							}
-							set_variable = { 
-								name = trade_do_trade_t
-								value = var:trade_dmnd_fiber
-							}
-							change_variable = { 
-								name = trade_do_trade_t
-								subtract = var:trade_in_fiber
 							}
 							set_variable = { 
 								name = trade_cost_fiber
@@ -23886,14 +24286,6 @@
 								divide = 100
 							}
 							set_variable = { 
-								name = trade_do_trade_t
-								value = var:trade_dmnd_timber
-							}
-							change_variable = { 
-								name = trade_do_trade_t
-								subtract = var:trade_in_timber
-							}
-							set_variable = { 
 								name = trade_cost_timber
 								value = var:trade_buy_timber
 							}
@@ -23920,14 +24312,6 @@
 							change_variable = { 
 								name = trade_sell_metal
 								divide = 100
-							}
-							set_variable = { 
-								name = trade_do_trade_t
-								value = var:trade_dmnd_metal
-							}
-							change_variable = { 
-								name = trade_do_trade_t
-								subtract = var:trade_in_metal
 							}
 							set_variable = { 
 								name = trade_cost_metal
@@ -23958,14 +24342,6 @@
 								divide = 100
 							}
 							set_variable = { 
-								name = trade_do_trade_t
-								value = var:trade_dmnd_exotics_w
-							}
-							change_variable = { 
-								name = trade_do_trade_t
-								subtract = var:trade_in_exotics_w
-							}
-							set_variable = { 
 								name = trade_cost_exotics_w
 								value = var:trade_buy_exotics_w
 							}
@@ -23992,14 +24368,6 @@
 							change_variable = { 
 								name = trade_sell_exotics_e
 								divide = 100
-							}
-							set_variable = { 
-								name = trade_do_trade_t
-								value = var:trade_dmnd_exotics_e
-							}
-							change_variable = { 
-								name = trade_do_trade_t
-								subtract = var:trade_in_exotics_e
 							}
 							set_variable = { 
 								name = trade_cost_exotics_e
@@ -24030,14 +24398,6 @@
 								divide = 100
 							}
 							set_variable = { 
-								name = trade_do_trade_t
-								value = var:trade_dmnd_exotics_g
-							}
-							change_variable = { 
-								name = trade_do_trade_t
-								subtract = var:trade_in_exotics_g
-							}
-							set_variable = { 
 								name = trade_cost_exotics_g
 								value = var:trade_buy_exotics_g
 							}
@@ -24064,14 +24424,6 @@
 							change_variable = { 
 								name = trade_sell_textile
 								divide = 100
-							}
-							set_variable = { 
-								name = trade_do_trade_t
-								value = var:trade_dmnd_textile
-							}
-							change_variable = { 
-								name = trade_do_trade_t
-								subtract = var:trade_in_textile
 							}
 							set_variable = { 
 								name = trade_cost_textile
@@ -24102,14 +24454,6 @@
 								divide = 100
 							}
 							set_variable = { 
-								name = trade_do_trade_t
-								value = var:trade_dmnd_pottery
-							}
-							change_variable = { 
-								name = trade_do_trade_t
-								subtract = var:trade_in_pottery
-							}
-							set_variable = { 
 								name = trade_cost_pottery
 								value = var:trade_buy_pottery
 							}
@@ -24136,14 +24480,6 @@
 							change_variable = { 
 								name = trade_sell_furniture
 								divide = 100
-							}
-							set_variable = { 
-								name = trade_do_trade_t
-								value = var:trade_dmnd_furniture
-							}
-							change_variable = { 
-								name = trade_do_trade_t
-								subtract = var:trade_in_furniture
 							}
 							set_variable = { 
 								name = trade_cost_furniture

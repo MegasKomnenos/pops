@@ -227,6 +227,19 @@ trade_do_trade = {
 					
 					set_variable = { name = trade_sell_&goods& value = var:trade_sply_&goods& }
 					change_variable = { name = trade_sell_&goods& subtract = var:trade_out_&goods& }
+					
+					if = {
+						limit = {
+							var:trade_buy_&goods& < 0
+						}
+						set_variable = { name = trade_buy_&goods& value = 0 }
+					}
+					if = {
+						limit = {
+							var:trade_sell_&goods& < 0
+						}
+						set_variable = { name = trade_sell_&goods& value = 0 }
+					}
 				^
 				
 				set_variable = { name = trade_point_avg value = 0.001 }
@@ -256,12 +269,26 @@ trade_do_trade = {
 								
 								set_variable = { name = trade_buy_&goods& value = var:trade_dmnd_&goods& }
 								change_variable = { name = trade_buy_&goods& subtract = var:trade_in_&goods& }
+								
+								if = {
+									limit = {
+										var:trade_buy_&goods& < 0
+									}
+									set_variable = { name = trade_buy_&goods& value = 0 }
+								}
 							}
 							else = {
 								set_variable = { name = trade_buy_&goods& value = 0 } 
 								
 								set_variable = { name = trade_sell_&goods& value = var:trade_sply_&goods& }
 								change_variable = { name = trade_sell_&goods& subtract = var:trade_out_&goods& }
+								
+								if = {
+									limit = {
+										var:trade_sell_&goods& < 0
+									}
+									set_variable = { name = trade_sell_&goods& value = 0 }
+								}
 							}
 						}
 						
@@ -554,11 +581,9 @@ trade_do_trade = {
 							^^goods^
 								change_variable = { name = trade_buy_&goods& multiply = prev.var:trade_do_trade_t }
 								change_variable = { name = trade_sell_&goods& multiply = prev.var:trade_do_trade_t }
+								
 								change_variable = { name = trade_buy_&goods& divide = 100 }
 								change_variable = { name = trade_sell_&goods& divide = 100 }
-								
-								set_variable = { name = trade_do_trade_t value = var:trade_dmnd_&goods& }
-								change_variable = { name = trade_do_trade_t subtract = var:trade_in_&goods& }
 								
 								set_variable = { name = trade_cost_&goods& value = var:trade_buy_&goods& }
 								change_variable = { name = trade_cost_&goods& add = var:trade_sell_&goods& }
