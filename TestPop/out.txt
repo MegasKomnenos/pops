@@ -8925,7 +8925,7 @@
 							remove_variable = get_distance_neighb_cost
 							if = { 
 								limit = { 
-									var:travel_distance_distance_new <= 720
+									var:travel_distance_distance_new <= 760
 									var:travel_distance_distance_new = { 
 										compare_value < prev.var:travel_distance_distance
 									}
@@ -9091,7 +9091,7 @@
 							remove_variable = get_distance_port_cost
 							if = { 
 								limit = { 
-									var:travel_distance_distance_new <= 720
+									var:travel_distance_distance_new <= 760
 									var:travel_distance_distance_new = { 
 										compare_value < prev.var:travel_distance_distance
 									}
@@ -9234,7 +9234,7 @@
 				}
 				change_variable = { 
 					name = trade_cost
-					divide = 80
+					divide = 40
 				}
 				change_variable = { 
 					name = trade_cost
@@ -9247,13 +9247,13 @@
 			}
 			set_variable = { 
 				name = trade_cost
-				value = 1
+				value = 0.01
 			}
 			while = { 
 				limit = { 
-					var:trade_power >= 1
+					var:trade_power >= 0.1
 					has_variable = trade_cost
-					var:trade_cost >= 1
+					var:trade_cost >= 0.01
 				}
 				set_variable = { 
 					name = trade_sum_buy_food
@@ -31350,7 +31350,7 @@
 		variable = trade_merchants
 		change_variable = { 
 			name = trade_want_food
-			multiply = 0.6
+			multiply = 0.7
 		}
 		change_variable = { 
 			name = trade_want_food
@@ -31362,7 +31362,7 @@
 		}
 		change_variable = { 
 			name = trade_want_food
-			add = 0.4
+			add = 0.3
 		}
 		change_variable = { 
 			name = trade_has_food
@@ -31387,7 +31387,7 @@
 		}
 		change_variable = { 
 			name = trade_want_salt
-			multiply = 0.6
+			multiply = 0.7
 		}
 		change_variable = { 
 			name = trade_want_salt
@@ -31399,7 +31399,7 @@
 		}
 		change_variable = { 
 			name = trade_want_salt
-			add = 0.4
+			add = 0.3
 		}
 		change_variable = { 
 			name = trade_has_salt
@@ -31424,7 +31424,7 @@
 		}
 		change_variable = { 
 			name = trade_want_fuel
-			multiply = 0.6
+			multiply = 0.7
 		}
 		change_variable = { 
 			name = trade_want_fuel
@@ -31436,7 +31436,7 @@
 		}
 		change_variable = { 
 			name = trade_want_fuel
-			add = 0.4
+			add = 0.3
 		}
 		change_variable = { 
 			name = trade_has_fuel
@@ -31461,7 +31461,7 @@
 		}
 		change_variable = { 
 			name = trade_want_fiber
-			multiply = 0.6
+			multiply = 0.7
 		}
 		change_variable = { 
 			name = trade_want_fiber
@@ -31473,7 +31473,7 @@
 		}
 		change_variable = { 
 			name = trade_want_fiber
-			add = 0.4
+			add = 0.3
 		}
 		change_variable = { 
 			name = trade_has_fiber
@@ -31498,7 +31498,7 @@
 		}
 		change_variable = { 
 			name = trade_want_timber
-			multiply = 0.6
+			multiply = 0.7
 		}
 		change_variable = { 
 			name = trade_want_timber
@@ -31510,7 +31510,7 @@
 		}
 		change_variable = { 
 			name = trade_want_timber
-			add = 0.4
+			add = 0.3
 		}
 		change_variable = { 
 			name = trade_has_timber
@@ -31535,7 +31535,7 @@
 		}
 		change_variable = { 
 			name = trade_want_metal
-			multiply = 0.6
+			multiply = 0.7
 		}
 		change_variable = { 
 			name = trade_want_metal
@@ -31547,7 +31547,7 @@
 		}
 		change_variable = { 
 			name = trade_want_metal
-			add = 0.4
+			add = 0.3
 		}
 		change_variable = { 
 			name = trade_has_metal
@@ -31572,7 +31572,7 @@
 		}
 		change_variable = { 
 			name = trade_want_exotics_w
-			multiply = 0.6
+			multiply = 0.7
 		}
 		change_variable = { 
 			name = trade_want_exotics_w
@@ -31584,7 +31584,7 @@
 		}
 		change_variable = { 
 			name = trade_want_exotics_w
-			add = 0.4
+			add = 0.3
 		}
 		change_variable = { 
 			name = trade_has_exotics_w
@@ -31609,7 +31609,7 @@
 		}
 		change_variable = { 
 			name = trade_want_exotics_e
-			multiply = 0.6
+			multiply = 0.7
 		}
 		change_variable = { 
 			name = trade_want_exotics_e
@@ -31621,7 +31621,7 @@
 		}
 		change_variable = { 
 			name = trade_want_exotics_e
-			add = 0.4
+			add = 0.3
 		}
 		change_variable = { 
 			name = trade_has_exotics_e
@@ -31646,7 +31646,7 @@
 		}
 		change_variable = { 
 			name = trade_want_exotics_g
-			multiply = 0.6
+			multiply = 0.7
 		}
 		change_variable = { 
 			name = trade_want_exotics_g
@@ -31658,7 +31658,7 @@
 		}
 		change_variable = { 
 			name = trade_want_exotics_g
-			add = 0.4
+			add = 0.3
 		}
 		change_variable = { 
 			name = trade_has_exotics_g
@@ -31683,7 +31683,7 @@
 		}
 		change_variable = { 
 			name = trade_want_textile
-			multiply = 0.6
+			multiply = 0.7
 		}
 		change_variable = { 
 			name = trade_want_textile
@@ -31695,7 +31695,7 @@
 		}
 		change_variable = { 
 			name = trade_want_textile
-			add = 0.4
+			add = 0.3
 		}
 		change_variable = { 
 			name = trade_has_textile
@@ -31720,7 +31720,7 @@
 		}
 		change_variable = { 
 			name = trade_want_pottery
-			multiply = 0.6
+			multiply = 0.7
 		}
 		change_variable = { 
 			name = trade_want_pottery
@@ -31732,7 +31732,7 @@
 		}
 		change_variable = { 
 			name = trade_want_pottery
-			add = 0.4
+			add = 0.3
 		}
 		change_variable = { 
 			name = trade_has_pottery
@@ -31757,7 +31757,7 @@
 		}
 		change_variable = { 
 			name = trade_want_furniture
-			multiply = 0.6
+			multiply = 0.7
 		}
 		change_variable = { 
 			name = trade_want_furniture
@@ -31769,7 +31769,7 @@
 		}
 		change_variable = { 
 			name = trade_want_furniture
-			add = 0.4
+			add = 0.3
 		}
 		change_variable = { 
 			name = trade_has_furniture
