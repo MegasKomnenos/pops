@@ -1419,8 +1419,23 @@ trade_update_price = {
 		limit = {
 			is_valid_prov = yes
 		}
-		^^goods^trade_update_price_helper_0 = { type0 = dmnd type1 = in opr0 = divide opr1 = multiply good = &goods& }^
-		^^goods^trade_update_price_helper_0 = { type0 = sply type1 = out opr0 = multiply opr1 = divide good = &goods& }^
+		^^goods^
+			trade_update_price_helper_0 = { type0 = dmnd type1 = in opr0 = divide opr1 = multiply good = &goods& }
+			trade_update_price_helper_0 = { type0 = sply type1 = out opr0 = multiply opr1 = divide good = &goods& }
+			
+			if = {
+				limit = {
+					var:trade_price_&goods& > 100
+				}
+				set_variable = { name = trade_price_&goods& value = 100 }
+			}
+			else_if = {
+				limit = {
+					var:trade_price_&goods& < 0.5
+				}
+				set_variable = { name = trade_price_&goods& value = 0.5 }
+			}
+		^
 		
 		remove_variable = trade_update_price_t
 	}
@@ -1428,7 +1443,22 @@ trade_update_price = {
 	every_in_global_list = {
 		variable = trade_merchants
 		
-		^^goods^trade_update_price_helper_1 = { good = &goods& }^
+		^^goods^
+			trade_update_price_helper_1 = { good = &goods& }
+			
+			if = {
+				limit = {
+					var:trade_price_&goods& > 100
+				}
+				set_variable = { name = trade_price_&goods& value = 100 }
+			}
+			else_if = {
+				limit = {
+					var:trade_price_&goods& < 0.5
+				}
+				set_variable = { name = trade_price_&goods& value = 0.5 }
+			}
+		^
 		
 		remove_variable = trade_update_price_t
 	}
