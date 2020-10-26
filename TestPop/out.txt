@@ -1,5 +1,5 @@
 ﻿while = { 
-	count = 10
+	count = 1
 	every_in_global_list = { 
 		variable = prod_instances
 		set_variable = { 
@@ -8820,99 +8820,90 @@
 								name = get_distance_neighb_y_diff
 								subtract = this.var:prov_y
 							}
-							change_variable = { 
-								name = get_distance_neighb_x_diff
-								multiply = var:get_distance_neighb_x_diff
-							}
-							change_variable = { 
-								name = get_distance_neighb_y_diff
-								multiply = var:get_distance_neighb_y_diff
-							}
 							set_variable = { 
-								name = get_distance_neighb_diff
+								name = math_dist_x
 								value = var:get_distance_neighb_x_diff
 							}
-							change_variable = { 
-								name = get_distance_neighb_diff
-								add = var:get_distance_neighb_y_diff
-							}
 							set_variable = { 
-								name = math_sqrt_i
-								value = var:get_distance_neighb_diff
+								name = math_dist_y
+								value = var:get_distance_neighb_y_diff
 							}
 							if = { 
 								limit = { 
-									has_variable = math_sqrt_i
-									var:math_sqrt_i > 0
+									var:math_dist_x < 0
 								}
 								set_variable = { 
-									name = math_sqrt_x
-									value = var:math_sqrt_i
+									name = math_dist_t
+									value = var:math_dist_x
 								}
 								set_variable = { 
-									name = math_sqrt_n
-									value = var:math_sqrt_i
-								}
-								change_variable = { 
-									name = math_sqrt_n
-									divide = 2
-								}
-								set_variable = { 
-									name = math_sqrt_tt
-									value = 0.5
-								}
-								while = { 
-									limit = { 
-										OR = { 
-											var:math_sqrt_tt < 0.995
-											var:math_sqrt_tt > 1.005
-										}
-									}
-									set_variable = { 
-										name = math_sqrt_x
-										value = var:math_sqrt_n
-									}
-									set_variable = { 
-										name = math_sqrt_t
-										value = var:math_sqrt_i
-									}
-									change_variable = { 
-										name = math_sqrt_t
-										divide = var:math_sqrt_n
-									}
-									change_variable = { 
-										name = math_sqrt_n
-										add = var:math_sqrt_t
-									}
-									change_variable = { 
-										name = math_sqrt_n
-										divide = 2
-									}
-									set_variable = { 
-										name = math_sqrt_tt
-										value = var:math_sqrt_x
-									}
-									change_variable = { 
-										name = math_sqrt_tt
-										divide = var:math_sqrt_n
-									}
-								}
-								set_variable = { 
-									name = get_distance_neighb_diff
-									value = var:math_sqrt_n
-								}
-								remove_variable = math_sqrt_x
-								remove_variable = math_sqrt_t
-								remove_variable = math_sqrt_n
-								remove_variable = math_sqrt_tt
-							}
-							else = { 
-								set_variable = { 
-									name = get_distance_neighb_diff
+									name = math_dist_x
 									value = 0
 								}
+								change_variable = { 
+									name = math_dist_x
+									subtract = var:math_dist_t
+								}
 							}
-							remove_variable = math_sqrt_i
+							if = { 
+								limit = { 
+									var:math_dist_y < 0
+								}
+								set_variable = { 
+									name = math_dist_t
+									value = var:math_dist_y
+								}
+								set_variable = { 
+									name = math_dist_y
+									value = 0
+								}
+								change_variable = { 
+									name = math_dist_y
+									subtract = var:math_dist_t
+								}
+							}
+							if = { 
+								limit = { 
+									var:math_dist_x = { 
+										compare_value < prev.var:math_dist_y
+									}
+								}
+								set_variable = { 
+									name = math_dist_t
+									value = var:math_dist_x
+								}
+								set_variable = { 
+									name = math_dist_x
+									value = var:math_dist_y
+								}
+								set_variable = { 
+									name = math_dist_y
+									value = var:math_dist_t
+								}
+							}
+							change_variable = { 
+								name = math_dist_x
+								multiply = 100.7
+							}
+							change_variable = { 
+								name = math_dist_y
+								multiply = 44.1
+							}
+							set_variable = { 
+								name = travel_distance_distance_new
+								value = var:math_dist_x
+							}
+							change_variable = { 
+								name = travel_distance_distance_new
+								add = var:math_dist_y
+							}
+							change_variable = { 
+								name = travel_distance_distance_new
+								divide = 102.4
+							}
+							remove_variable = math_dist_x
+							remove_variable = math_dist_y
+							remove_variable = math_dist_t
 							set_variable = { 
 								name = get_distance_neighb_cost
 								value = global_var:travel_distance_select.var:prov_cost
@@ -8920,10 +8911,6 @@
 							change_variable = { 
 								name = get_distance_neighb_cost
 								add = this.var:prov_cost
-							}
-							set_variable = { 
-								name = travel_distance_distance_new
-								value = var:get_distance_neighb_diff
 							}
 							change_variable = { 
 								name = travel_distance_distance_new
@@ -8935,7 +8922,6 @@
 							}
 							remove_variable = get_distance_neighb_x_diff
 							remove_variable = get_distance_neighb_y_diff
-							remove_variable = get_distance_neighb_diff
 							remove_variable = get_distance_neighb_cost
 							if = { 
 								limit = { 
@@ -8995,99 +8981,90 @@
 								name = get_distance_neighb_y_diff
 								subtract = this.var:prov_y
 							}
-							change_variable = { 
-								name = get_distance_neighb_x_diff
-								multiply = var:get_distance_neighb_x_diff
-							}
-							change_variable = { 
-								name = get_distance_neighb_y_diff
-								multiply = var:get_distance_neighb_y_diff
-							}
 							set_variable = { 
-								name = get_distance_neighb_diff
+								name = math_dist_x
 								value = var:get_distance_neighb_x_diff
 							}
-							change_variable = { 
-								name = get_distance_neighb_diff
-								add = var:get_distance_neighb_y_diff
-							}
 							set_variable = { 
-								name = math_sqrt_i
-								value = var:get_distance_neighb_diff
+								name = math_dist_y
+								value = var:get_distance_neighb_y_diff
 							}
 							if = { 
 								limit = { 
-									has_variable = math_sqrt_i
-									var:math_sqrt_i > 0
+									var:math_dist_x < 0
 								}
 								set_variable = { 
-									name = math_sqrt_x
-									value = var:math_sqrt_i
+									name = math_dist_t
+									value = var:math_dist_x
 								}
 								set_variable = { 
-									name = math_sqrt_n
-									value = var:math_sqrt_i
-								}
-								change_variable = { 
-									name = math_sqrt_n
-									divide = 2
-								}
-								set_variable = { 
-									name = math_sqrt_tt
-									value = 0.5
-								}
-								while = { 
-									limit = { 
-										OR = { 
-											var:math_sqrt_tt < 0.995
-											var:math_sqrt_tt > 1.005
-										}
-									}
-									set_variable = { 
-										name = math_sqrt_x
-										value = var:math_sqrt_n
-									}
-									set_variable = { 
-										name = math_sqrt_t
-										value = var:math_sqrt_i
-									}
-									change_variable = { 
-										name = math_sqrt_t
-										divide = var:math_sqrt_n
-									}
-									change_variable = { 
-										name = math_sqrt_n
-										add = var:math_sqrt_t
-									}
-									change_variable = { 
-										name = math_sqrt_n
-										divide = 2
-									}
-									set_variable = { 
-										name = math_sqrt_tt
-										value = var:math_sqrt_x
-									}
-									change_variable = { 
-										name = math_sqrt_tt
-										divide = var:math_sqrt_n
-									}
-								}
-								set_variable = { 
-									name = get_distance_neighb_diff
-									value = var:math_sqrt_n
-								}
-								remove_variable = math_sqrt_x
-								remove_variable = math_sqrt_t
-								remove_variable = math_sqrt_n
-								remove_variable = math_sqrt_tt
-							}
-							else = { 
-								set_variable = { 
-									name = get_distance_neighb_diff
+									name = math_dist_x
 									value = 0
 								}
+								change_variable = { 
+									name = math_dist_x
+									subtract = var:math_dist_t
+								}
 							}
-							remove_variable = math_sqrt_i
+							if = { 
+								limit = { 
+									var:math_dist_y < 0
+								}
+								set_variable = { 
+									name = math_dist_t
+									value = var:math_dist_y
+								}
+								set_variable = { 
+									name = math_dist_y
+									value = 0
+								}
+								change_variable = { 
+									name = math_dist_y
+									subtract = var:math_dist_t
+								}
+							}
+							if = { 
+								limit = { 
+									var:math_dist_x = { 
+										compare_value < prev.var:math_dist_y
+									}
+								}
+								set_variable = { 
+									name = math_dist_t
+									value = var:math_dist_x
+								}
+								set_variable = { 
+									name = math_dist_x
+									value = var:math_dist_y
+								}
+								set_variable = { 
+									name = math_dist_y
+									value = var:math_dist_t
+								}
+							}
+							change_variable = { 
+								name = math_dist_x
+								multiply = 100.7
+							}
+							change_variable = { 
+								name = math_dist_y
+								multiply = 44.1
+							}
+							set_variable = { 
+								name = travel_distance_distance_new
+								value = var:math_dist_x
+							}
+							change_variable = { 
+								name = travel_distance_distance_new
+								add = var:math_dist_y
+							}
+							change_variable = { 
+								name = travel_distance_distance_new
+								divide = 102.4
+							}
+							remove_variable = math_dist_x
+							remove_variable = math_dist_y
+							remove_variable = math_dist_t
 							set_variable = { 
 								name = get_distance_neighb_cost
 								value = global_var:travel_distance_select.var:prov_cost
@@ -9095,10 +9072,6 @@
 							change_variable = { 
 								name = get_distance_neighb_cost
 								add = this.var:prov_cost
-							}
-							set_variable = { 
-								name = travel_distance_distance_new
-								value = var:get_distance_neighb_diff
 							}
 							change_variable = { 
 								name = travel_distance_distance_new
@@ -9110,7 +9083,6 @@
 							}
 							remove_variable = get_distance_neighb_x_diff
 							remove_variable = get_distance_neighb_y_diff
-							remove_variable = get_distance_neighb_diff
 							remove_variable = get_distance_neighb_cost
 							change_variable = { 
 								name = travel_distance_distance_new

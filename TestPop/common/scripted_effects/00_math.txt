@@ -357,3 +357,48 @@ sqrt_effect = {
 
 	remove_variable = math_sqrt_i
 }
+
+# Parameter: diff_x, diff_y, return
+dist_effect = {
+	set_variable = { name = math_dist_x value = $diff_x$ }
+	set_variable = { name = math_dist_y value = $diff_y$ }
+	
+	if = {
+		limit = {
+			var:math_dist_x < 0
+		}
+		set_variable = { name = math_dist_t value = var:math_dist_x }
+		set_variable = { name = math_dist_x value = 0 }
+		change_variable = { name = math_dist_x subtract = var:math_dist_t }
+	}
+	if = {
+		limit = {
+			var:math_dist_y < 0
+		}
+		set_variable = { name = math_dist_t value = var:math_dist_y }
+		set_variable = { name = math_dist_y value = 0 }
+		change_variable = { name = math_dist_y subtract = var:math_dist_t }
+	}
+	
+	if = {
+		limit = {
+			var:math_dist_x = {
+				compare_value < prev.var:math_dist_y
+			}
+		}
+		set_variable = { name = math_dist_t value = var:math_dist_x }
+		set_variable = { name = math_dist_x value = var:math_dist_y }
+		set_variable = { name = math_dist_y value = var:math_dist_t }
+	}
+	
+	change_variable = { name = math_dist_x multiply = 100.7 }
+	change_variable = { name = math_dist_y multiply = 44.1 }
+	
+	set_variable = { name = $return$ value = var:math_dist_x }
+	change_variable = { name = $return$ add = var:math_dist_y }
+	change_variable = { name = $return$ divide = 102.4 }
+	
+	remove_variable = math_dist_x
+	remove_variable = math_dist_y
+	remove_variable = math_dist_t
+}

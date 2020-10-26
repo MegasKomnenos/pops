@@ -512,24 +512,16 @@ get_distance_neighb = {
 	change_variable = { name = get_distance_neighb_x_diff subtract = $other$.var:prov_x }
 	change_variable = { name = get_distance_neighb_y_diff subtract = $other$.var:prov_y }
 	
-	change_variable = { name = get_distance_neighb_x_diff multiply = var:get_distance_neighb_x_diff }
-	change_variable = { name = get_distance_neighb_y_diff multiply = var:get_distance_neighb_y_diff }
-	
-	set_variable = { name = get_distance_neighb_diff value = var:get_distance_neighb_x_diff }
-	change_variable = { name = get_distance_neighb_diff add = var:get_distance_neighb_y_diff }
-	
-	sqrt_effect = { inp = var:get_distance_neighb_diff return = get_distance_neighb_diff }
+	dist_effect = { diff_x = var:get_distance_neighb_x_diff diff_y = var:get_distance_neighb_y_diff return = $return$ }
 	
 	set_variable = { name = get_distance_neighb_cost value = $one$.var:prov_cost }
 	change_variable = { name = get_distance_neighb_cost add = $other$.var:prov_cost }
 	
-	set_variable = { name = $return$ value = var:get_distance_neighb_diff }
 	change_variable = { name = $return$ multiply = var:get_distance_neighb_cost }
 	change_variable = { name = $return$ add = $base$ }
 	
 	remove_variable = get_distance_neighb_x_diff
 	remove_variable = get_distance_neighb_y_diff
-	remove_variable = get_distance_neighb_diff
 	remove_variable = get_distance_neighb_cost
 }
 
