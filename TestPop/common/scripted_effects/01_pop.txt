@@ -267,9 +267,12 @@ pop_get_need = {
 pop_update_demand_helper_0 = {
 	^^goods^
 		set_variable = { name = pop_$type$_&goods& value = pop_$type$_&goods& }
-		change_variable = { name = pop_$type$_&goods& multiply = 10 }
+		change_variable = { name = pop_$type$_&goods& multiply = 100 }
 		change_variable = { name = pop_$type$_&goods& divide = this.county.var:trade_price_&goods& }
 		change_variable = { name = pop_$type$_&goods& multiply = var:pop_$type$_&goods& }
+		change_variable = { name = pop_$type$_&goods& divide = 100 }
+		change_variable = { name = pop_$type$_&goods& multiply = var:pop_$type$_&goods& }
+		change_variable = { name = pop_$type$_&goods& divide = 10 }
 	^
 	
 	set_variable = { name = pop_update_demand_t value = 0 }
