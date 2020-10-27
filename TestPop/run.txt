@@ -1,5 +1,5 @@
 while = {
-	count = 100
+	count = 200
 	
 	prod_update_instances = yes
 
@@ -138,6 +138,24 @@ while = {
 	debug_log = "Average Luxury: [THIS.Var('t_disp').GetValue]"
 
 	^^goods^
+		set_variable = { name = t_disp value = 0 }
+
+		every_province = {
+			limit = {
+				is_valid_prov = yes
+			}
+			prev = {
+				set_variable = { name = t_disp_t value = prev.county.var:trade_price_&goods& }
+				change_variable = { name = t_disp_t multiply = prev.var:pop_total }
+				change_variable = { name = t_disp_t divide = 100 }
+				change_variable = { name = t_disp add = var:t_disp_t }
+			}
+		}
+		
+		change_variable = { name = t_disp divide = var:t_disp_s }
+		
+		debug_log = "Average &goods& Price: [THIS.Var('t_disp').GetValue]"
+		
 		set_variable = { name = t_disp value = 0 }
 
 		every_province = {

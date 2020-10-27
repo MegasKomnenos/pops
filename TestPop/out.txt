@@ -1,5 +1,5 @@
 ﻿while = { 
-	count = 100
+	count = 200
 	every_in_global_list = { 
 		variable = prod_instances
 		set_variable = { 
@@ -26930,6 +26930,10 @@
 			name = trade_has_food
 			subtract = var:trade_out_food
 		}
+		change_variable = { 
+			name = trade_has_food
+			multiply = 0.99
+		}
 		set_variable = { 
 			name = trade_resolve_trade_t
 			value = 0
@@ -27085,6 +27089,10 @@
 		change_variable = { 
 			name = trade_has_salt
 			subtract = var:trade_out_salt
+		}
+		change_variable = { 
+			name = trade_has_salt
+			multiply = 0.99
 		}
 		set_variable = { 
 			name = trade_resolve_trade_t
@@ -27242,6 +27250,10 @@
 			name = trade_has_fuel
 			subtract = var:trade_out_fuel
 		}
+		change_variable = { 
+			name = trade_has_fuel
+			multiply = 0.99
+		}
 		set_variable = { 
 			name = trade_resolve_trade_t
 			value = 0
@@ -27397,6 +27409,10 @@
 		change_variable = { 
 			name = trade_has_fiber
 			subtract = var:trade_out_fiber
+		}
+		change_variable = { 
+			name = trade_has_fiber
+			multiply = 0.99
 		}
 		set_variable = { 
 			name = trade_resolve_trade_t
@@ -27554,6 +27570,10 @@
 			name = trade_has_timber
 			subtract = var:trade_out_timber
 		}
+		change_variable = { 
+			name = trade_has_timber
+			multiply = 0.99
+		}
 		set_variable = { 
 			name = trade_resolve_trade_t
 			value = 0
@@ -27709,6 +27729,10 @@
 		change_variable = { 
 			name = trade_has_metal
 			subtract = var:trade_out_metal
+		}
+		change_variable = { 
+			name = trade_has_metal
+			multiply = 0.99
 		}
 		set_variable = { 
 			name = trade_resolve_trade_t
@@ -27866,6 +27890,10 @@
 			name = trade_has_exotics_w
 			subtract = var:trade_out_exotics_w
 		}
+		change_variable = { 
+			name = trade_has_exotics_w
+			multiply = 0.99
+		}
 		set_variable = { 
 			name = trade_resolve_trade_t
 			value = 0
@@ -28021,6 +28049,10 @@
 		change_variable = { 
 			name = trade_has_exotics_e
 			subtract = var:trade_out_exotics_e
+		}
+		change_variable = { 
+			name = trade_has_exotics_e
+			multiply = 0.99
 		}
 		set_variable = { 
 			name = trade_resolve_trade_t
@@ -28178,6 +28210,10 @@
 			name = trade_has_exotics_g
 			subtract = var:trade_out_exotics_g
 		}
+		change_variable = { 
+			name = trade_has_exotics_g
+			multiply = 0.99
+		}
 		set_variable = { 
 			name = trade_resolve_trade_t
 			value = 0
@@ -28333,6 +28369,10 @@
 		change_variable = { 
 			name = trade_has_textile
 			subtract = var:trade_out_textile
+		}
+		change_variable = { 
+			name = trade_has_textile
+			multiply = 0.99
 		}
 		set_variable = { 
 			name = trade_resolve_trade_t
@@ -28490,6 +28530,10 @@
 			name = trade_has_pottery
 			subtract = var:trade_out_pottery
 		}
+		change_variable = { 
+			name = trade_has_pottery
+			multiply = 0.99
+		}
 		set_variable = { 
 			name = trade_resolve_trade_t
 			value = 0
@@ -28645,6 +28689,10 @@
 		change_variable = { 
 			name = trade_has_furniture
 			subtract = var:trade_out_furniture
+		}
+		change_variable = { 
+			name = trade_has_furniture
+			multiply = 0.99
 		}
 		set_variable = { 
 			name = trade_resolve_trade_t
@@ -36759,6 +36807,38 @@
 	every_province = { 
 		limit = { 
 			is_valid_prov = yes
+		}
+		prev = { 
+			set_variable = { 
+				name = t_disp_t
+				value = prev.county.var:trade_price_food
+			}
+			change_variable = { 
+				name = t_disp_t
+				multiply = prev.var:pop_total
+			}
+			change_variable = { 
+				name = t_disp_t
+				divide = 100
+			}
+			change_variable = { 
+				name = t_disp
+				add = var:t_disp_t
+			}
+		}
+	}
+	change_variable = { 
+		name = t_disp
+		divide = var:t_disp_s
+	}
+	debug_log = "Average food Price: [THIS.Var('t_disp').GetValue]"
+	set_variable = { 
+		name = t_disp
+		value = 0
+	}
+	every_province = { 
+		limit = { 
+			is_valid_prov = yes
 			has_variable = prod_has_food
 		}
 		prev = { 
@@ -36872,6 +36952,38 @@
 		}
 	}
 	debug_log = "Total food Revenue: [THIS.Var('t_disp').GetValue]"
+	set_variable = { 
+		name = t_disp
+		value = 0
+	}
+	every_province = { 
+		limit = { 
+			is_valid_prov = yes
+		}
+		prev = { 
+			set_variable = { 
+				name = t_disp_t
+				value = prev.county.var:trade_price_salt
+			}
+			change_variable = { 
+				name = t_disp_t
+				multiply = prev.var:pop_total
+			}
+			change_variable = { 
+				name = t_disp_t
+				divide = 100
+			}
+			change_variable = { 
+				name = t_disp
+				add = var:t_disp_t
+			}
+		}
+	}
+	change_variable = { 
+		name = t_disp
+		divide = var:t_disp_s
+	}
+	debug_log = "Average salt Price: [THIS.Var('t_disp').GetValue]"
 	set_variable = { 
 		name = t_disp
 		value = 0
@@ -36999,6 +37111,38 @@
 	every_province = { 
 		limit = { 
 			is_valid_prov = yes
+		}
+		prev = { 
+			set_variable = { 
+				name = t_disp_t
+				value = prev.county.var:trade_price_fuel
+			}
+			change_variable = { 
+				name = t_disp_t
+				multiply = prev.var:pop_total
+			}
+			change_variable = { 
+				name = t_disp_t
+				divide = 100
+			}
+			change_variable = { 
+				name = t_disp
+				add = var:t_disp_t
+			}
+		}
+	}
+	change_variable = { 
+		name = t_disp
+		divide = var:t_disp_s
+	}
+	debug_log = "Average fuel Price: [THIS.Var('t_disp').GetValue]"
+	set_variable = { 
+		name = t_disp
+		value = 0
+	}
+	every_province = { 
+		limit = { 
+			is_valid_prov = yes
 			has_variable = prod_has_fuel
 		}
 		prev = { 
@@ -37112,6 +37256,38 @@
 		}
 	}
 	debug_log = "Total fuel Revenue: [THIS.Var('t_disp').GetValue]"
+	set_variable = { 
+		name = t_disp
+		value = 0
+	}
+	every_province = { 
+		limit = { 
+			is_valid_prov = yes
+		}
+		prev = { 
+			set_variable = { 
+				name = t_disp_t
+				value = prev.county.var:trade_price_fiber
+			}
+			change_variable = { 
+				name = t_disp_t
+				multiply = prev.var:pop_total
+			}
+			change_variable = { 
+				name = t_disp_t
+				divide = 100
+			}
+			change_variable = { 
+				name = t_disp
+				add = var:t_disp_t
+			}
+		}
+	}
+	change_variable = { 
+		name = t_disp
+		divide = var:t_disp_s
+	}
+	debug_log = "Average fiber Price: [THIS.Var('t_disp').GetValue]"
 	set_variable = { 
 		name = t_disp
 		value = 0
@@ -37239,6 +37415,38 @@
 	every_province = { 
 		limit = { 
 			is_valid_prov = yes
+		}
+		prev = { 
+			set_variable = { 
+				name = t_disp_t
+				value = prev.county.var:trade_price_timber
+			}
+			change_variable = { 
+				name = t_disp_t
+				multiply = prev.var:pop_total
+			}
+			change_variable = { 
+				name = t_disp_t
+				divide = 100
+			}
+			change_variable = { 
+				name = t_disp
+				add = var:t_disp_t
+			}
+		}
+	}
+	change_variable = { 
+		name = t_disp
+		divide = var:t_disp_s
+	}
+	debug_log = "Average timber Price: [THIS.Var('t_disp').GetValue]"
+	set_variable = { 
+		name = t_disp
+		value = 0
+	}
+	every_province = { 
+		limit = { 
+			is_valid_prov = yes
 			has_variable = prod_has_timber
 		}
 		prev = { 
@@ -37352,6 +37560,38 @@
 		}
 	}
 	debug_log = "Total timber Revenue: [THIS.Var('t_disp').GetValue]"
+	set_variable = { 
+		name = t_disp
+		value = 0
+	}
+	every_province = { 
+		limit = { 
+			is_valid_prov = yes
+		}
+		prev = { 
+			set_variable = { 
+				name = t_disp_t
+				value = prev.county.var:trade_price_metal
+			}
+			change_variable = { 
+				name = t_disp_t
+				multiply = prev.var:pop_total
+			}
+			change_variable = { 
+				name = t_disp_t
+				divide = 100
+			}
+			change_variable = { 
+				name = t_disp
+				add = var:t_disp_t
+			}
+		}
+	}
+	change_variable = { 
+		name = t_disp
+		divide = var:t_disp_s
+	}
+	debug_log = "Average metal Price: [THIS.Var('t_disp').GetValue]"
 	set_variable = { 
 		name = t_disp
 		value = 0
@@ -37479,6 +37719,38 @@
 	every_province = { 
 		limit = { 
 			is_valid_prov = yes
+		}
+		prev = { 
+			set_variable = { 
+				name = t_disp_t
+				value = prev.county.var:trade_price_exotics_w
+			}
+			change_variable = { 
+				name = t_disp_t
+				multiply = prev.var:pop_total
+			}
+			change_variable = { 
+				name = t_disp_t
+				divide = 100
+			}
+			change_variable = { 
+				name = t_disp
+				add = var:t_disp_t
+			}
+		}
+	}
+	change_variable = { 
+		name = t_disp
+		divide = var:t_disp_s
+	}
+	debug_log = "Average exotics_w Price: [THIS.Var('t_disp').GetValue]"
+	set_variable = { 
+		name = t_disp
+		value = 0
+	}
+	every_province = { 
+		limit = { 
+			is_valid_prov = yes
 			has_variable = prod_has_exotics_w
 		}
 		prev = { 
@@ -37592,6 +37864,38 @@
 		}
 	}
 	debug_log = "Total exotics_w Revenue: [THIS.Var('t_disp').GetValue]"
+	set_variable = { 
+		name = t_disp
+		value = 0
+	}
+	every_province = { 
+		limit = { 
+			is_valid_prov = yes
+		}
+		prev = { 
+			set_variable = { 
+				name = t_disp_t
+				value = prev.county.var:trade_price_exotics_e
+			}
+			change_variable = { 
+				name = t_disp_t
+				multiply = prev.var:pop_total
+			}
+			change_variable = { 
+				name = t_disp_t
+				divide = 100
+			}
+			change_variable = { 
+				name = t_disp
+				add = var:t_disp_t
+			}
+		}
+	}
+	change_variable = { 
+		name = t_disp
+		divide = var:t_disp_s
+	}
+	debug_log = "Average exotics_e Price: [THIS.Var('t_disp').GetValue]"
 	set_variable = { 
 		name = t_disp
 		value = 0
@@ -37719,6 +38023,38 @@
 	every_province = { 
 		limit = { 
 			is_valid_prov = yes
+		}
+		prev = { 
+			set_variable = { 
+				name = t_disp_t
+				value = prev.county.var:trade_price_exotics_g
+			}
+			change_variable = { 
+				name = t_disp_t
+				multiply = prev.var:pop_total
+			}
+			change_variable = { 
+				name = t_disp_t
+				divide = 100
+			}
+			change_variable = { 
+				name = t_disp
+				add = var:t_disp_t
+			}
+		}
+	}
+	change_variable = { 
+		name = t_disp
+		divide = var:t_disp_s
+	}
+	debug_log = "Average exotics_g Price: [THIS.Var('t_disp').GetValue]"
+	set_variable = { 
+		name = t_disp
+		value = 0
+	}
+	every_province = { 
+		limit = { 
+			is_valid_prov = yes
 			has_variable = prod_has_exotics_g
 		}
 		prev = { 
@@ -37832,6 +38168,38 @@
 		}
 	}
 	debug_log = "Total exotics_g Revenue: [THIS.Var('t_disp').GetValue]"
+	set_variable = { 
+		name = t_disp
+		value = 0
+	}
+	every_province = { 
+		limit = { 
+			is_valid_prov = yes
+		}
+		prev = { 
+			set_variable = { 
+				name = t_disp_t
+				value = prev.county.var:trade_price_textile
+			}
+			change_variable = { 
+				name = t_disp_t
+				multiply = prev.var:pop_total
+			}
+			change_variable = { 
+				name = t_disp_t
+				divide = 100
+			}
+			change_variable = { 
+				name = t_disp
+				add = var:t_disp_t
+			}
+		}
+	}
+	change_variable = { 
+		name = t_disp
+		divide = var:t_disp_s
+	}
+	debug_log = "Average textile Price: [THIS.Var('t_disp').GetValue]"
 	set_variable = { 
 		name = t_disp
 		value = 0
@@ -37959,6 +38327,38 @@
 	every_province = { 
 		limit = { 
 			is_valid_prov = yes
+		}
+		prev = { 
+			set_variable = { 
+				name = t_disp_t
+				value = prev.county.var:trade_price_pottery
+			}
+			change_variable = { 
+				name = t_disp_t
+				multiply = prev.var:pop_total
+			}
+			change_variable = { 
+				name = t_disp_t
+				divide = 100
+			}
+			change_variable = { 
+				name = t_disp
+				add = var:t_disp_t
+			}
+		}
+	}
+	change_variable = { 
+		name = t_disp
+		divide = var:t_disp_s
+	}
+	debug_log = "Average pottery Price: [THIS.Var('t_disp').GetValue]"
+	set_variable = { 
+		name = t_disp
+		value = 0
+	}
+	every_province = { 
+		limit = { 
+			is_valid_prov = yes
 			has_variable = prod_has_pottery
 		}
 		prev = { 
@@ -38072,6 +38472,38 @@
 		}
 	}
 	debug_log = "Total pottery Revenue: [THIS.Var('t_disp').GetValue]"
+	set_variable = { 
+		name = t_disp
+		value = 0
+	}
+	every_province = { 
+		limit = { 
+			is_valid_prov = yes
+		}
+		prev = { 
+			set_variable = { 
+				name = t_disp_t
+				value = prev.county.var:trade_price_furniture
+			}
+			change_variable = { 
+				name = t_disp_t
+				multiply = prev.var:pop_total
+			}
+			change_variable = { 
+				name = t_disp_t
+				divide = 100
+			}
+			change_variable = { 
+				name = t_disp
+				add = var:t_disp_t
+			}
+		}
+	}
+	change_variable = { 
+		name = t_disp
+		divide = var:t_disp_s
+	}
+	debug_log = "Average furniture Price: [THIS.Var('t_disp').GetValue]"
 	set_variable = { 
 		name = t_disp
 		value = 0
