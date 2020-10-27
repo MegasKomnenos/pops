@@ -1150,6 +1150,41 @@ trade_resolve_trade = {
 		remove_variable = trade_resolve_trade_tt
 	}
 	
+	every_in_global_list = {
+		variable = prod_instances
+		
+		set_variable = { name = prod_pay_old value = var:prod_pay }
+		set_variable = { name = prod_earn_old value = var:prod_earn }
+		
+		set_variable = { name = prod_pay value = 0 } 
+		set_variable = { name = prod_earn value = 0 } 
+		
+		^^goods^
+			if = {
+				limit = {
+					has_variable = prod_pay_&goods&
+					
+					var:prod_pay_&goods& > 0
+				}
+				change_variable = { name = prod_pay add = var:prod_pay_&goods& }
+			}
+			else = {
+				remove_variable = prod_pay_&goods&
+			}
+			if = {
+				limit = {
+					has_variable = prod_earn_&goods&
+					
+					var:prod_earn_&goods& > 0
+				}
+				change_variable = { name = prod_earn add = var:prod_earn_&goods& }
+			}
+			else = {
+				remove_variable = prod_earn_&goods&
+			}
+		^
+	}
+	
 	every_province = {
 		limit = {
 			is_valid_prov = yes
@@ -1185,6 +1220,14 @@ trade_resolve_trade = {
 		
 		^^goods^change_variable = { name = trade_resolve_trade_t add = var:prod_earn_&goods& }^
 		
+		every_in_list = {
+			variable = prod_instances
+			
+			prev = {
+				change_variable = { name = trade_resolve_trade_t subtract = prev.var:prod_pay }
+			}
+		}
+		
 		set_variable = { name = pop_earn_free value = var:pop_freedom }
 		change_variable = { name = pop_earn_free multiply = var:trade_resolve_trade_t }
 		
@@ -1193,41 +1236,6 @@ trade_resolve_trade = {
 		
 		remove_variable = trade_resolve_trade_t
 		remove_variable = trade_resolve_trade_tt
-	}
-	
-	every_in_global_list = {
-		variable = prod_instances
-		
-		set_variable = { name = prod_pay_old value = var:prod_pay }
-		set_variable = { name = prod_earn_old value = var:prod_earn }
-		
-		set_variable = { name = prod_pay value = 0 } 
-		set_variable = { name = prod_earn value = 0 } 
-		
-		^^goods^
-			if = {
-				limit = {
-					has_variable = prod_pay_&goods&
-					
-					var:prod_pay_&goods& > 0
-				}
-				change_variable = { name = prod_pay add = var:prod_pay_&goods& }
-			}
-			else = {
-				remove_variable = prod_pay_&goods&
-			}
-			if = {
-				limit = {
-					has_variable = prod_earn_&goods&
-					
-					var:prod_earn_&goods& > 0
-				}
-				change_variable = { name = prod_earn add = var:prod_earn_&goods& }
-			}
-			else = {
-				remove_variable = prod_earn_&goods&
-			}
-		^
 	}
 	
 	every_in_global_list = {

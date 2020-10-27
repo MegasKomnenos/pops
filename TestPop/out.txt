@@ -31897,169 +31897,6 @@
 		remove_variable = trade_resolve_trade_t
 		remove_variable = trade_resolve_trade_tt
 	}
-	every_province = { 
-		limit = { 
-			is_valid_prov = yes
-		}
-		set_variable = { 
-			name = pop_pay_serf
-			value = 0
-		}
-		set_variable = { 
-			name = pop_pay_free
-			value = 0
-		}
-		set_variable = { 
-			name = trade_resolve_trade_t
-			value = var:pop_pay_calorie
-		}
-		change_variable = { 
-			name = trade_resolve_trade_t
-			multiply = var:pop_free_calorie
-		}
-		change_variable = { 
-			name = pop_pay_serf
-			add = var:pop_pay_calorie
-		}
-		change_variable = { 
-			name = pop_pay_serf
-			subtract = var:trade_resolve_trade_t
-		}
-		change_variable = { 
-			name = pop_pay_free
-			add = var:trade_resolve_trade_t
-		}
-		set_variable = { 
-			name = trade_resolve_trade_t
-			value = var:pop_pay_nutrient
-		}
-		change_variable = { 
-			name = trade_resolve_trade_t
-			multiply = var:pop_free_nutrient
-		}
-		change_variable = { 
-			name = pop_pay_serf
-			add = var:pop_pay_nutrient
-		}
-		change_variable = { 
-			name = pop_pay_serf
-			subtract = var:trade_resolve_trade_t
-		}
-		change_variable = { 
-			name = pop_pay_free
-			add = var:trade_resolve_trade_t
-		}
-		set_variable = { 
-			name = trade_resolve_trade_t
-			value = var:pop_pay_comfort
-		}
-		change_variable = { 
-			name = trade_resolve_trade_t
-			multiply = var:pop_free_comfort
-		}
-		change_variable = { 
-			name = pop_pay_serf
-			add = var:pop_pay_comfort
-		}
-		change_variable = { 
-			name = pop_pay_serf
-			subtract = var:trade_resolve_trade_t
-		}
-		change_variable = { 
-			name = pop_pay_free
-			add = var:trade_resolve_trade_t
-		}
-		set_variable = { 
-			name = trade_resolve_trade_t
-			value = var:pop_pay_luxury
-		}
-		change_variable = { 
-			name = trade_resolve_trade_t
-			multiply = var:pop_free_luxury
-		}
-		change_variable = { 
-			name = pop_pay_serf
-			add = var:pop_pay_luxury
-		}
-		change_variable = { 
-			name = pop_pay_serf
-			subtract = var:trade_resolve_trade_t
-		}
-		change_variable = { 
-			name = pop_pay_free
-			add = var:trade_resolve_trade_t
-		}
-		set_variable = { 
-			name = trade_resolve_trade_t
-			value = 0
-		}
-		change_variable = { 
-			name = trade_resolve_trade_t
-			add = var:prod_earn_food
-		}
-		change_variable = { 
-			name = trade_resolve_trade_t
-			add = var:prod_earn_salt
-		}
-		change_variable = { 
-			name = trade_resolve_trade_t
-			add = var:prod_earn_fuel
-		}
-		change_variable = { 
-			name = trade_resolve_trade_t
-			add = var:prod_earn_fiber
-		}
-		change_variable = { 
-			name = trade_resolve_trade_t
-			add = var:prod_earn_timber
-		}
-		change_variable = { 
-			name = trade_resolve_trade_t
-			add = var:prod_earn_metal
-		}
-		change_variable = { 
-			name = trade_resolve_trade_t
-			add = var:prod_earn_exotics_w
-		}
-		change_variable = { 
-			name = trade_resolve_trade_t
-			add = var:prod_earn_exotics_e
-		}
-		change_variable = { 
-			name = trade_resolve_trade_t
-			add = var:prod_earn_exotics_g
-		}
-		change_variable = { 
-			name = trade_resolve_trade_t
-			add = var:prod_earn_textile
-		}
-		change_variable = { 
-			name = trade_resolve_trade_t
-			add = var:prod_earn_pottery
-		}
-		change_variable = { 
-			name = trade_resolve_trade_t
-			add = var:prod_earn_furniture
-		}
-		set_variable = { 
-			name = pop_earn_free
-			value = var:pop_freedom
-		}
-		change_variable = { 
-			name = pop_earn_free
-			multiply = var:trade_resolve_trade_t
-		}
-		set_variable = { 
-			name = pop_earn_serf
-			value = var:trade_resolve_trade_t
-		}
-		change_variable = { 
-			name = pop_earn_serf
-			subtract = var:pop_earn_free
-		}
-		remove_variable = trade_resolve_trade_t
-		remove_variable = trade_resolve_trade_tt
-	}
 	every_in_global_list = { 
 		variable = prod_instances
 		set_variable = { 
@@ -32390,6 +32227,178 @@
 		else = { 
 			remove_variable = prod_earn_furniture
 		}
+	}
+	every_province = { 
+		limit = { 
+			is_valid_prov = yes
+		}
+		set_variable = { 
+			name = pop_pay_serf
+			value = 0
+		}
+		set_variable = { 
+			name = pop_pay_free
+			value = 0
+		}
+		set_variable = { 
+			name = trade_resolve_trade_t
+			value = var:pop_pay_calorie
+		}
+		change_variable = { 
+			name = trade_resolve_trade_t
+			multiply = var:pop_free_calorie
+		}
+		change_variable = { 
+			name = pop_pay_serf
+			add = var:pop_pay_calorie
+		}
+		change_variable = { 
+			name = pop_pay_serf
+			subtract = var:trade_resolve_trade_t
+		}
+		change_variable = { 
+			name = pop_pay_free
+			add = var:trade_resolve_trade_t
+		}
+		set_variable = { 
+			name = trade_resolve_trade_t
+			value = var:pop_pay_nutrient
+		}
+		change_variable = { 
+			name = trade_resolve_trade_t
+			multiply = var:pop_free_nutrient
+		}
+		change_variable = { 
+			name = pop_pay_serf
+			add = var:pop_pay_nutrient
+		}
+		change_variable = { 
+			name = pop_pay_serf
+			subtract = var:trade_resolve_trade_t
+		}
+		change_variable = { 
+			name = pop_pay_free
+			add = var:trade_resolve_trade_t
+		}
+		set_variable = { 
+			name = trade_resolve_trade_t
+			value = var:pop_pay_comfort
+		}
+		change_variable = { 
+			name = trade_resolve_trade_t
+			multiply = var:pop_free_comfort
+		}
+		change_variable = { 
+			name = pop_pay_serf
+			add = var:pop_pay_comfort
+		}
+		change_variable = { 
+			name = pop_pay_serf
+			subtract = var:trade_resolve_trade_t
+		}
+		change_variable = { 
+			name = pop_pay_free
+			add = var:trade_resolve_trade_t
+		}
+		set_variable = { 
+			name = trade_resolve_trade_t
+			value = var:pop_pay_luxury
+		}
+		change_variable = { 
+			name = trade_resolve_trade_t
+			multiply = var:pop_free_luxury
+		}
+		change_variable = { 
+			name = pop_pay_serf
+			add = var:pop_pay_luxury
+		}
+		change_variable = { 
+			name = pop_pay_serf
+			subtract = var:trade_resolve_trade_t
+		}
+		change_variable = { 
+			name = pop_pay_free
+			add = var:trade_resolve_trade_t
+		}
+		set_variable = { 
+			name = trade_resolve_trade_t
+			value = 0
+		}
+		change_variable = { 
+			name = trade_resolve_trade_t
+			add = var:prod_earn_food
+		}
+		change_variable = { 
+			name = trade_resolve_trade_t
+			add = var:prod_earn_salt
+		}
+		change_variable = { 
+			name = trade_resolve_trade_t
+			add = var:prod_earn_fuel
+		}
+		change_variable = { 
+			name = trade_resolve_trade_t
+			add = var:prod_earn_fiber
+		}
+		change_variable = { 
+			name = trade_resolve_trade_t
+			add = var:prod_earn_timber
+		}
+		change_variable = { 
+			name = trade_resolve_trade_t
+			add = var:prod_earn_metal
+		}
+		change_variable = { 
+			name = trade_resolve_trade_t
+			add = var:prod_earn_exotics_w
+		}
+		change_variable = { 
+			name = trade_resolve_trade_t
+			add = var:prod_earn_exotics_e
+		}
+		change_variable = { 
+			name = trade_resolve_trade_t
+			add = var:prod_earn_exotics_g
+		}
+		change_variable = { 
+			name = trade_resolve_trade_t
+			add = var:prod_earn_textile
+		}
+		change_variable = { 
+			name = trade_resolve_trade_t
+			add = var:prod_earn_pottery
+		}
+		change_variable = { 
+			name = trade_resolve_trade_t
+			add = var:prod_earn_furniture
+		}
+		every_in_list = { 
+			variable = prod_instances
+			prev = { 
+				change_variable = { 
+					name = trade_resolve_trade_t
+					subtract = prev.var:prod_pay
+				}
+			}
+		}
+		set_variable = { 
+			name = pop_earn_free
+			value = var:pop_freedom
+		}
+		change_variable = { 
+			name = pop_earn_free
+			multiply = var:trade_resolve_trade_t
+		}
+		set_variable = { 
+			name = pop_earn_serf
+			value = var:trade_resolve_trade_t
+		}
+		change_variable = { 
+			name = pop_earn_serf
+			subtract = var:pop_earn_free
+		}
+		remove_variable = trade_resolve_trade_t
+		remove_variable = trade_resolve_trade_tt
 	}
 	every_in_global_list = { 
 		variable = trade_merchants
