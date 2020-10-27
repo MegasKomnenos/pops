@@ -1445,8 +1445,72 @@ trade_update_price = {
 			is_valid_prov = yes
 		}
 		^^goods^
-			trade_update_price_helper_0 = { type0 = dmnd type1 = in opr0 = divide opr1 = multiply good = &goods& }
-			trade_update_price_helper_0 = { type0 = sply type1 = out opr0 = multiply opr1 = divide good = &goods& }
+			set_variable = { name = trade_update_price_tt value = var:trade_sply_&goods& }
+			change_variable = { name = trade_update_price_tt subtract = var:trade_dmnd_&goods& }
+			
+			if = {
+				limit = {
+					has_variable = trade_update_price_tt
+					
+					var:trade_update_price_tt != 0
+				}
+				set_variable = { name = trade_update_price_t value = var:trade_out_&goods& }
+				change_variable = { name = trade_update_price_t subtract = var:trade_in_&goods& }
+				change_variable = { name = trade_update_price_t multiply = 100 }
+				change_variable = { name = trade_update_price_t divide = var:trade_update_price_tt }
+				change_variable = { name = trade_update_price_t subtract = 80 }
+				
+				if = {
+					limit = {
+						has_variable = trade_update_price_t
+						
+						var:trade_update_price_t != 0
+					}
+					if = {
+						limit = {
+							var:trade_update_price_tt > 0
+						}
+						if = {
+							limit = {
+								var:trade_update_price_t > 0
+							}
+							change_variable = { name = trade_update_price_t divide = 10 }
+							change_variable = { name = trade_update_price_t add = 100 }
+							change_variable = { name = trade_price_&goods& multiply = var:trade_update_price_t }
+							change_variable = { name = trade_price_&goods& divide = 100 }
+						}
+						else = {
+							limit = {
+								var:trade_update_price_t < 0
+							}
+							change_variable = { name = trade_update_price_t divide = -20 }
+							change_variable = { name = trade_update_price_t add = 100 }
+							change_variable = { name = trade_price_&goods& divide = var:trade_update_price_t }
+							change_variable = { name = trade_price_&goods& multiply = 100 }
+						}
+					}
+					else = {
+						if = {
+							limit = {
+								var:trade_update_price_t > 0
+							}
+							change_variable = { name = trade_update_price_t divide = 10 }
+							change_variable = { name = trade_update_price_t add = 100 }
+							change_variable = { name = trade_price_&goods& divide = var:trade_update_price_t }
+							change_variable = { name = trade_price_&goods& multiply = 100 }
+						}
+						else = {
+							limit = {
+								var:trade_update_price_t < 0
+							}
+							change_variable = { name = trade_update_price_t divide = -20 }
+							change_variable = { name = trade_update_price_t add = 100 }
+							change_variable = { name = trade_price_&goods& multiply = var:trade_update_price_t }
+							change_variable = { name = trade_price_&goods& divide = 100 }
+						}
+					}
+				}
+			}
 			
 			if = {
 				limit = {
@@ -1463,6 +1527,7 @@ trade_update_price = {
 		^
 		
 		remove_variable = trade_update_price_t
+		remove_variable = trade_update_price_tt
 	}
 	
 	every_in_global_list = {
@@ -1473,63 +1538,19 @@ trade_update_price = {
 			
 			if = {
 				limit = {
-					var:trade_price_&goods& > 100
+					var:trade_price_&goods& > 50
 				}
 				set_variable = { name = trade_price_&goods& value = 100 }
 			}
 			else_if = {
 				limit = {
-					var:trade_price_&goods& < 0.5
+					var:trade_price_&goods& < 1
 				}
 				set_variable = { name = trade_price_&goods& value = 0.5 }
 			}
 		^
 		
 		remove_variable = trade_update_price_t
-	}
-}
-
-trade_update_price_helper_0 = {
-	if = {
-		limit = {
-			has_variable = trade_$type0$_$good$
-			
-			var:trade_$type0$_$good$ > 0
-		}
-		if = {
-			limit = {
-				has_variable = trade_$type1$_$good$
-			}
-			set_variable = { name = trade_update_price_t value = var:trade_$type1$_$good$ }
-		}
-		else = {
-			set_variable = { name = trade_update_price_t value = 0 }
-		}
-		
-		change_variable = { name = trade_update_price_t multiply = 100 }
-		change_variable = { name = trade_update_price_t divide = var:trade_$type0$_$good$ }
-		change_variable = { name = trade_update_price_t subtract = 90 }
-		
-		if = {
-			limit = {
-				has_variable = trade_update_price_t
-				
-				var:trade_update_price_t != 0
-			}
-			if = {
-				limit = {
-					var:trade_update_price_t > 0
-				}
-				change_variable = { name = trade_update_price_t divide = 500 }
-				change_variable = { name = trade_update_price_t add = 1 }
-				change_variable = { name = trade_price_$good$ $opr0$ = var:trade_update_price_t }
-			}
-			else = {
-				change_variable = { name = trade_update_price_t divide = -2250 }
-				change_variable = { name = trade_update_price_t add = 1 }
-				change_variable = { name = trade_price_$good$ $opr1$ = var:trade_update_price_t }
-			}
-		}
 	}
 }
 
