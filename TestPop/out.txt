@@ -2859,337 +2859,457 @@
 			name = pop_calorie_food
 			value = pop_calorie_food
 		}
-		change_variable = { 
-			name = pop_calorie_food
-			multiply = 10
-		}
-		change_variable = { 
-			name = pop_calorie_food
-			divide = this.county.var:trade_price_food
-		}
-		set_variable = { 
-			name = pop_update_demand_t
-			value = var:pop_calorie_food
-		}
-		change_variable = { 
-			name = pop_calorie_food
-			multiply = var:pop_update_demand_t
-		}
-		change_variable = { 
-			name = pop_calorie_food
-			divide = 10
-		}
-		change_variable = { 
-			name = pop_calorie_food
-			multiply = var:pop_update_demand_t
+		if = { 
+			limit = { 
+				has_variable = pop_calorie_food
+				var:pop_calorie_food > 0
+			}
+			change_variable = { 
+				name = pop_calorie_food
+				multiply = 10
+			}
+			change_variable = { 
+				name = pop_calorie_food
+				divide = this.county.var:trade_price_food
+			}
+			set_variable = { 
+				name = pop_update_demand_t
+				value = var:pop_calorie_food
+			}
+			change_variable = { 
+				name = pop_calorie_food
+				multiply = var:pop_update_demand_t
+			}
+			change_variable = { 
+				name = pop_calorie_food
+				divide = 10
+			}
+			change_variable = { 
+				name = pop_calorie_food
+				multiply = var:pop_update_demand_t
+			}
+			change_variable = { 
+				name = pop_calorie_food
+				add = 0.001
+			}
 		}
 		set_variable = { 
 			name = pop_calorie_salt
 			value = pop_calorie_salt
 		}
-		change_variable = { 
-			name = pop_calorie_salt
-			multiply = 10
-		}
-		change_variable = { 
-			name = pop_calorie_salt
-			divide = this.county.var:trade_price_salt
-		}
-		set_variable = { 
-			name = pop_update_demand_t
-			value = var:pop_calorie_salt
-		}
-		change_variable = { 
-			name = pop_calorie_salt
-			multiply = var:pop_update_demand_t
-		}
-		change_variable = { 
-			name = pop_calorie_salt
-			divide = 10
-		}
-		change_variable = { 
-			name = pop_calorie_salt
-			multiply = var:pop_update_demand_t
+		if = { 
+			limit = { 
+				has_variable = pop_calorie_salt
+				var:pop_calorie_salt > 0
+			}
+			change_variable = { 
+				name = pop_calorie_salt
+				multiply = 10
+			}
+			change_variable = { 
+				name = pop_calorie_salt
+				divide = this.county.var:trade_price_salt
+			}
+			set_variable = { 
+				name = pop_update_demand_t
+				value = var:pop_calorie_salt
+			}
+			change_variable = { 
+				name = pop_calorie_salt
+				multiply = var:pop_update_demand_t
+			}
+			change_variable = { 
+				name = pop_calorie_salt
+				divide = 10
+			}
+			change_variable = { 
+				name = pop_calorie_salt
+				multiply = var:pop_update_demand_t
+			}
+			change_variable = { 
+				name = pop_calorie_salt
+				add = 0.001
+			}
 		}
 		set_variable = { 
 			name = pop_calorie_fuel
 			value = pop_calorie_fuel
 		}
-		change_variable = { 
-			name = pop_calorie_fuel
-			multiply = 10
-		}
-		change_variable = { 
-			name = pop_calorie_fuel
-			divide = this.county.var:trade_price_fuel
-		}
-		set_variable = { 
-			name = pop_update_demand_t
-			value = var:pop_calorie_fuel
-		}
-		change_variable = { 
-			name = pop_calorie_fuel
-			multiply = var:pop_update_demand_t
-		}
-		change_variable = { 
-			name = pop_calorie_fuel
-			divide = 10
-		}
-		change_variable = { 
-			name = pop_calorie_fuel
-			multiply = var:pop_update_demand_t
+		if = { 
+			limit = { 
+				has_variable = pop_calorie_fuel
+				var:pop_calorie_fuel > 0
+			}
+			change_variable = { 
+				name = pop_calorie_fuel
+				multiply = 10
+			}
+			change_variable = { 
+				name = pop_calorie_fuel
+				divide = this.county.var:trade_price_fuel
+			}
+			set_variable = { 
+				name = pop_update_demand_t
+				value = var:pop_calorie_fuel
+			}
+			change_variable = { 
+				name = pop_calorie_fuel
+				multiply = var:pop_update_demand_t
+			}
+			change_variable = { 
+				name = pop_calorie_fuel
+				divide = 10
+			}
+			change_variable = { 
+				name = pop_calorie_fuel
+				multiply = var:pop_update_demand_t
+			}
+			change_variable = { 
+				name = pop_calorie_fuel
+				add = 0.001
+			}
 		}
 		set_variable = { 
 			name = pop_calorie_fiber
 			value = pop_calorie_fiber
 		}
-		change_variable = { 
-			name = pop_calorie_fiber
-			multiply = 10
-		}
-		change_variable = { 
-			name = pop_calorie_fiber
-			divide = this.county.var:trade_price_fiber
-		}
-		set_variable = { 
-			name = pop_update_demand_t
-			value = var:pop_calorie_fiber
-		}
-		change_variable = { 
-			name = pop_calorie_fiber
-			multiply = var:pop_update_demand_t
-		}
-		change_variable = { 
-			name = pop_calorie_fiber
-			divide = 10
-		}
-		change_variable = { 
-			name = pop_calorie_fiber
-			multiply = var:pop_update_demand_t
+		if = { 
+			limit = { 
+				has_variable = pop_calorie_fiber
+				var:pop_calorie_fiber > 0
+			}
+			change_variable = { 
+				name = pop_calorie_fiber
+				multiply = 10
+			}
+			change_variable = { 
+				name = pop_calorie_fiber
+				divide = this.county.var:trade_price_fiber
+			}
+			set_variable = { 
+				name = pop_update_demand_t
+				value = var:pop_calorie_fiber
+			}
+			change_variable = { 
+				name = pop_calorie_fiber
+				multiply = var:pop_update_demand_t
+			}
+			change_variable = { 
+				name = pop_calorie_fiber
+				divide = 10
+			}
+			change_variable = { 
+				name = pop_calorie_fiber
+				multiply = var:pop_update_demand_t
+			}
+			change_variable = { 
+				name = pop_calorie_fiber
+				add = 0.001
+			}
 		}
 		set_variable = { 
 			name = pop_calorie_timber
 			value = pop_calorie_timber
 		}
-		change_variable = { 
-			name = pop_calorie_timber
-			multiply = 10
-		}
-		change_variable = { 
-			name = pop_calorie_timber
-			divide = this.county.var:trade_price_timber
-		}
-		set_variable = { 
-			name = pop_update_demand_t
-			value = var:pop_calorie_timber
-		}
-		change_variable = { 
-			name = pop_calorie_timber
-			multiply = var:pop_update_demand_t
-		}
-		change_variable = { 
-			name = pop_calorie_timber
-			divide = 10
-		}
-		change_variable = { 
-			name = pop_calorie_timber
-			multiply = var:pop_update_demand_t
+		if = { 
+			limit = { 
+				has_variable = pop_calorie_timber
+				var:pop_calorie_timber > 0
+			}
+			change_variable = { 
+				name = pop_calorie_timber
+				multiply = 10
+			}
+			change_variable = { 
+				name = pop_calorie_timber
+				divide = this.county.var:trade_price_timber
+			}
+			set_variable = { 
+				name = pop_update_demand_t
+				value = var:pop_calorie_timber
+			}
+			change_variable = { 
+				name = pop_calorie_timber
+				multiply = var:pop_update_demand_t
+			}
+			change_variable = { 
+				name = pop_calorie_timber
+				divide = 10
+			}
+			change_variable = { 
+				name = pop_calorie_timber
+				multiply = var:pop_update_demand_t
+			}
+			change_variable = { 
+				name = pop_calorie_timber
+				add = 0.001
+			}
 		}
 		set_variable = { 
 			name = pop_calorie_metal
 			value = pop_calorie_metal
 		}
-		change_variable = { 
-			name = pop_calorie_metal
-			multiply = 10
-		}
-		change_variable = { 
-			name = pop_calorie_metal
-			divide = this.county.var:trade_price_metal
-		}
-		set_variable = { 
-			name = pop_update_demand_t
-			value = var:pop_calorie_metal
-		}
-		change_variable = { 
-			name = pop_calorie_metal
-			multiply = var:pop_update_demand_t
-		}
-		change_variable = { 
-			name = pop_calorie_metal
-			divide = 10
-		}
-		change_variable = { 
-			name = pop_calorie_metal
-			multiply = var:pop_update_demand_t
+		if = { 
+			limit = { 
+				has_variable = pop_calorie_metal
+				var:pop_calorie_metal > 0
+			}
+			change_variable = { 
+				name = pop_calorie_metal
+				multiply = 10
+			}
+			change_variable = { 
+				name = pop_calorie_metal
+				divide = this.county.var:trade_price_metal
+			}
+			set_variable = { 
+				name = pop_update_demand_t
+				value = var:pop_calorie_metal
+			}
+			change_variable = { 
+				name = pop_calorie_metal
+				multiply = var:pop_update_demand_t
+			}
+			change_variable = { 
+				name = pop_calorie_metal
+				divide = 10
+			}
+			change_variable = { 
+				name = pop_calorie_metal
+				multiply = var:pop_update_demand_t
+			}
+			change_variable = { 
+				name = pop_calorie_metal
+				add = 0.001
+			}
 		}
 		set_variable = { 
 			name = pop_calorie_exotics_w
 			value = pop_calorie_exotics_w
 		}
-		change_variable = { 
-			name = pop_calorie_exotics_w
-			multiply = 10
-		}
-		change_variable = { 
-			name = pop_calorie_exotics_w
-			divide = this.county.var:trade_price_exotics_w
-		}
-		set_variable = { 
-			name = pop_update_demand_t
-			value = var:pop_calorie_exotics_w
-		}
-		change_variable = { 
-			name = pop_calorie_exotics_w
-			multiply = var:pop_update_demand_t
-		}
-		change_variable = { 
-			name = pop_calorie_exotics_w
-			divide = 10
-		}
-		change_variable = { 
-			name = pop_calorie_exotics_w
-			multiply = var:pop_update_demand_t
+		if = { 
+			limit = { 
+				has_variable = pop_calorie_exotics_w
+				var:pop_calorie_exotics_w > 0
+			}
+			change_variable = { 
+				name = pop_calorie_exotics_w
+				multiply = 10
+			}
+			change_variable = { 
+				name = pop_calorie_exotics_w
+				divide = this.county.var:trade_price_exotics_w
+			}
+			set_variable = { 
+				name = pop_update_demand_t
+				value = var:pop_calorie_exotics_w
+			}
+			change_variable = { 
+				name = pop_calorie_exotics_w
+				multiply = var:pop_update_demand_t
+			}
+			change_variable = { 
+				name = pop_calorie_exotics_w
+				divide = 10
+			}
+			change_variable = { 
+				name = pop_calorie_exotics_w
+				multiply = var:pop_update_demand_t
+			}
+			change_variable = { 
+				name = pop_calorie_exotics_w
+				add = 0.001
+			}
 		}
 		set_variable = { 
 			name = pop_calorie_exotics_e
 			value = pop_calorie_exotics_e
 		}
-		change_variable = { 
-			name = pop_calorie_exotics_e
-			multiply = 10
-		}
-		change_variable = { 
-			name = pop_calorie_exotics_e
-			divide = this.county.var:trade_price_exotics_e
-		}
-		set_variable = { 
-			name = pop_update_demand_t
-			value = var:pop_calorie_exotics_e
-		}
-		change_variable = { 
-			name = pop_calorie_exotics_e
-			multiply = var:pop_update_demand_t
-		}
-		change_variable = { 
-			name = pop_calorie_exotics_e
-			divide = 10
-		}
-		change_variable = { 
-			name = pop_calorie_exotics_e
-			multiply = var:pop_update_demand_t
+		if = { 
+			limit = { 
+				has_variable = pop_calorie_exotics_e
+				var:pop_calorie_exotics_e > 0
+			}
+			change_variable = { 
+				name = pop_calorie_exotics_e
+				multiply = 10
+			}
+			change_variable = { 
+				name = pop_calorie_exotics_e
+				divide = this.county.var:trade_price_exotics_e
+			}
+			set_variable = { 
+				name = pop_update_demand_t
+				value = var:pop_calorie_exotics_e
+			}
+			change_variable = { 
+				name = pop_calorie_exotics_e
+				multiply = var:pop_update_demand_t
+			}
+			change_variable = { 
+				name = pop_calorie_exotics_e
+				divide = 10
+			}
+			change_variable = { 
+				name = pop_calorie_exotics_e
+				multiply = var:pop_update_demand_t
+			}
+			change_variable = { 
+				name = pop_calorie_exotics_e
+				add = 0.001
+			}
 		}
 		set_variable = { 
 			name = pop_calorie_exotics_g
 			value = pop_calorie_exotics_g
 		}
-		change_variable = { 
-			name = pop_calorie_exotics_g
-			multiply = 10
-		}
-		change_variable = { 
-			name = pop_calorie_exotics_g
-			divide = this.county.var:trade_price_exotics_g
-		}
-		set_variable = { 
-			name = pop_update_demand_t
-			value = var:pop_calorie_exotics_g
-		}
-		change_variable = { 
-			name = pop_calorie_exotics_g
-			multiply = var:pop_update_demand_t
-		}
-		change_variable = { 
-			name = pop_calorie_exotics_g
-			divide = 10
-		}
-		change_variable = { 
-			name = pop_calorie_exotics_g
-			multiply = var:pop_update_demand_t
+		if = { 
+			limit = { 
+				has_variable = pop_calorie_exotics_g
+				var:pop_calorie_exotics_g > 0
+			}
+			change_variable = { 
+				name = pop_calorie_exotics_g
+				multiply = 10
+			}
+			change_variable = { 
+				name = pop_calorie_exotics_g
+				divide = this.county.var:trade_price_exotics_g
+			}
+			set_variable = { 
+				name = pop_update_demand_t
+				value = var:pop_calorie_exotics_g
+			}
+			change_variable = { 
+				name = pop_calorie_exotics_g
+				multiply = var:pop_update_demand_t
+			}
+			change_variable = { 
+				name = pop_calorie_exotics_g
+				divide = 10
+			}
+			change_variable = { 
+				name = pop_calorie_exotics_g
+				multiply = var:pop_update_demand_t
+			}
+			change_variable = { 
+				name = pop_calorie_exotics_g
+				add = 0.001
+			}
 		}
 		set_variable = { 
 			name = pop_calorie_textile
 			value = pop_calorie_textile
 		}
-		change_variable = { 
-			name = pop_calorie_textile
-			multiply = 10
-		}
-		change_variable = { 
-			name = pop_calorie_textile
-			divide = this.county.var:trade_price_textile
-		}
-		set_variable = { 
-			name = pop_update_demand_t
-			value = var:pop_calorie_textile
-		}
-		change_variable = { 
-			name = pop_calorie_textile
-			multiply = var:pop_update_demand_t
-		}
-		change_variable = { 
-			name = pop_calorie_textile
-			divide = 10
-		}
-		change_variable = { 
-			name = pop_calorie_textile
-			multiply = var:pop_update_demand_t
+		if = { 
+			limit = { 
+				has_variable = pop_calorie_textile
+				var:pop_calorie_textile > 0
+			}
+			change_variable = { 
+				name = pop_calorie_textile
+				multiply = 10
+			}
+			change_variable = { 
+				name = pop_calorie_textile
+				divide = this.county.var:trade_price_textile
+			}
+			set_variable = { 
+				name = pop_update_demand_t
+				value = var:pop_calorie_textile
+			}
+			change_variable = { 
+				name = pop_calorie_textile
+				multiply = var:pop_update_demand_t
+			}
+			change_variable = { 
+				name = pop_calorie_textile
+				divide = 10
+			}
+			change_variable = { 
+				name = pop_calorie_textile
+				multiply = var:pop_update_demand_t
+			}
+			change_variable = { 
+				name = pop_calorie_textile
+				add = 0.001
+			}
 		}
 		set_variable = { 
 			name = pop_calorie_pottery
 			value = pop_calorie_pottery
 		}
-		change_variable = { 
-			name = pop_calorie_pottery
-			multiply = 10
-		}
-		change_variable = { 
-			name = pop_calorie_pottery
-			divide = this.county.var:trade_price_pottery
-		}
-		set_variable = { 
-			name = pop_update_demand_t
-			value = var:pop_calorie_pottery
-		}
-		change_variable = { 
-			name = pop_calorie_pottery
-			multiply = var:pop_update_demand_t
-		}
-		change_variable = { 
-			name = pop_calorie_pottery
-			divide = 10
-		}
-		change_variable = { 
-			name = pop_calorie_pottery
-			multiply = var:pop_update_demand_t
+		if = { 
+			limit = { 
+				has_variable = pop_calorie_pottery
+				var:pop_calorie_pottery > 0
+			}
+			change_variable = { 
+				name = pop_calorie_pottery
+				multiply = 10
+			}
+			change_variable = { 
+				name = pop_calorie_pottery
+				divide = this.county.var:trade_price_pottery
+			}
+			set_variable = { 
+				name = pop_update_demand_t
+				value = var:pop_calorie_pottery
+			}
+			change_variable = { 
+				name = pop_calorie_pottery
+				multiply = var:pop_update_demand_t
+			}
+			change_variable = { 
+				name = pop_calorie_pottery
+				divide = 10
+			}
+			change_variable = { 
+				name = pop_calorie_pottery
+				multiply = var:pop_update_demand_t
+			}
+			change_variable = { 
+				name = pop_calorie_pottery
+				add = 0.001
+			}
 		}
 		set_variable = { 
 			name = pop_calorie_furniture
 			value = pop_calorie_furniture
 		}
-		change_variable = { 
-			name = pop_calorie_furniture
-			multiply = 10
-		}
-		change_variable = { 
-			name = pop_calorie_furniture
-			divide = this.county.var:trade_price_furniture
-		}
-		set_variable = { 
-			name = pop_update_demand_t
-			value = var:pop_calorie_furniture
-		}
-		change_variable = { 
-			name = pop_calorie_furniture
-			multiply = var:pop_update_demand_t
-		}
-		change_variable = { 
-			name = pop_calorie_furniture
-			divide = 10
-		}
-		change_variable = { 
-			name = pop_calorie_furniture
-			multiply = var:pop_update_demand_t
+		if = { 
+			limit = { 
+				has_variable = pop_calorie_furniture
+				var:pop_calorie_furniture > 0
+			}
+			change_variable = { 
+				name = pop_calorie_furniture
+				multiply = 10
+			}
+			change_variable = { 
+				name = pop_calorie_furniture
+				divide = this.county.var:trade_price_furniture
+			}
+			set_variable = { 
+				name = pop_update_demand_t
+				value = var:pop_calorie_furniture
+			}
+			change_variable = { 
+				name = pop_calorie_furniture
+				multiply = var:pop_update_demand_t
+			}
+			change_variable = { 
+				name = pop_calorie_furniture
+				divide = 10
+			}
+			change_variable = { 
+				name = pop_calorie_furniture
+				multiply = var:pop_update_demand_t
+			}
+			change_variable = { 
+				name = pop_calorie_furniture
+				add = 0.001
+			}
 		}
 		set_variable = { 
 			name = pop_update_demand_t
@@ -3295,337 +3415,457 @@
 			name = pop_nutrient_food
 			value = pop_nutrient_food
 		}
-		change_variable = { 
-			name = pop_nutrient_food
-			multiply = 10
-		}
-		change_variable = { 
-			name = pop_nutrient_food
-			divide = this.county.var:trade_price_food
-		}
-		set_variable = { 
-			name = pop_update_demand_t
-			value = var:pop_nutrient_food
-		}
-		change_variable = { 
-			name = pop_nutrient_food
-			multiply = var:pop_update_demand_t
-		}
-		change_variable = { 
-			name = pop_nutrient_food
-			divide = 10
-		}
-		change_variable = { 
-			name = pop_nutrient_food
-			multiply = var:pop_update_demand_t
+		if = { 
+			limit = { 
+				has_variable = pop_nutrient_food
+				var:pop_nutrient_food > 0
+			}
+			change_variable = { 
+				name = pop_nutrient_food
+				multiply = 10
+			}
+			change_variable = { 
+				name = pop_nutrient_food
+				divide = this.county.var:trade_price_food
+			}
+			set_variable = { 
+				name = pop_update_demand_t
+				value = var:pop_nutrient_food
+			}
+			change_variable = { 
+				name = pop_nutrient_food
+				multiply = var:pop_update_demand_t
+			}
+			change_variable = { 
+				name = pop_nutrient_food
+				divide = 10
+			}
+			change_variable = { 
+				name = pop_nutrient_food
+				multiply = var:pop_update_demand_t
+			}
+			change_variable = { 
+				name = pop_nutrient_food
+				add = 0.001
+			}
 		}
 		set_variable = { 
 			name = pop_nutrient_salt
 			value = pop_nutrient_salt
 		}
-		change_variable = { 
-			name = pop_nutrient_salt
-			multiply = 10
-		}
-		change_variable = { 
-			name = pop_nutrient_salt
-			divide = this.county.var:trade_price_salt
-		}
-		set_variable = { 
-			name = pop_update_demand_t
-			value = var:pop_nutrient_salt
-		}
-		change_variable = { 
-			name = pop_nutrient_salt
-			multiply = var:pop_update_demand_t
-		}
-		change_variable = { 
-			name = pop_nutrient_salt
-			divide = 10
-		}
-		change_variable = { 
-			name = pop_nutrient_salt
-			multiply = var:pop_update_demand_t
+		if = { 
+			limit = { 
+				has_variable = pop_nutrient_salt
+				var:pop_nutrient_salt > 0
+			}
+			change_variable = { 
+				name = pop_nutrient_salt
+				multiply = 10
+			}
+			change_variable = { 
+				name = pop_nutrient_salt
+				divide = this.county.var:trade_price_salt
+			}
+			set_variable = { 
+				name = pop_update_demand_t
+				value = var:pop_nutrient_salt
+			}
+			change_variable = { 
+				name = pop_nutrient_salt
+				multiply = var:pop_update_demand_t
+			}
+			change_variable = { 
+				name = pop_nutrient_salt
+				divide = 10
+			}
+			change_variable = { 
+				name = pop_nutrient_salt
+				multiply = var:pop_update_demand_t
+			}
+			change_variable = { 
+				name = pop_nutrient_salt
+				add = 0.001
+			}
 		}
 		set_variable = { 
 			name = pop_nutrient_fuel
 			value = pop_nutrient_fuel
 		}
-		change_variable = { 
-			name = pop_nutrient_fuel
-			multiply = 10
-		}
-		change_variable = { 
-			name = pop_nutrient_fuel
-			divide = this.county.var:trade_price_fuel
-		}
-		set_variable = { 
-			name = pop_update_demand_t
-			value = var:pop_nutrient_fuel
-		}
-		change_variable = { 
-			name = pop_nutrient_fuel
-			multiply = var:pop_update_demand_t
-		}
-		change_variable = { 
-			name = pop_nutrient_fuel
-			divide = 10
-		}
-		change_variable = { 
-			name = pop_nutrient_fuel
-			multiply = var:pop_update_demand_t
+		if = { 
+			limit = { 
+				has_variable = pop_nutrient_fuel
+				var:pop_nutrient_fuel > 0
+			}
+			change_variable = { 
+				name = pop_nutrient_fuel
+				multiply = 10
+			}
+			change_variable = { 
+				name = pop_nutrient_fuel
+				divide = this.county.var:trade_price_fuel
+			}
+			set_variable = { 
+				name = pop_update_demand_t
+				value = var:pop_nutrient_fuel
+			}
+			change_variable = { 
+				name = pop_nutrient_fuel
+				multiply = var:pop_update_demand_t
+			}
+			change_variable = { 
+				name = pop_nutrient_fuel
+				divide = 10
+			}
+			change_variable = { 
+				name = pop_nutrient_fuel
+				multiply = var:pop_update_demand_t
+			}
+			change_variable = { 
+				name = pop_nutrient_fuel
+				add = 0.001
+			}
 		}
 		set_variable = { 
 			name = pop_nutrient_fiber
 			value = pop_nutrient_fiber
 		}
-		change_variable = { 
-			name = pop_nutrient_fiber
-			multiply = 10
-		}
-		change_variable = { 
-			name = pop_nutrient_fiber
-			divide = this.county.var:trade_price_fiber
-		}
-		set_variable = { 
-			name = pop_update_demand_t
-			value = var:pop_nutrient_fiber
-		}
-		change_variable = { 
-			name = pop_nutrient_fiber
-			multiply = var:pop_update_demand_t
-		}
-		change_variable = { 
-			name = pop_nutrient_fiber
-			divide = 10
-		}
-		change_variable = { 
-			name = pop_nutrient_fiber
-			multiply = var:pop_update_demand_t
+		if = { 
+			limit = { 
+				has_variable = pop_nutrient_fiber
+				var:pop_nutrient_fiber > 0
+			}
+			change_variable = { 
+				name = pop_nutrient_fiber
+				multiply = 10
+			}
+			change_variable = { 
+				name = pop_nutrient_fiber
+				divide = this.county.var:trade_price_fiber
+			}
+			set_variable = { 
+				name = pop_update_demand_t
+				value = var:pop_nutrient_fiber
+			}
+			change_variable = { 
+				name = pop_nutrient_fiber
+				multiply = var:pop_update_demand_t
+			}
+			change_variable = { 
+				name = pop_nutrient_fiber
+				divide = 10
+			}
+			change_variable = { 
+				name = pop_nutrient_fiber
+				multiply = var:pop_update_demand_t
+			}
+			change_variable = { 
+				name = pop_nutrient_fiber
+				add = 0.001
+			}
 		}
 		set_variable = { 
 			name = pop_nutrient_timber
 			value = pop_nutrient_timber
 		}
-		change_variable = { 
-			name = pop_nutrient_timber
-			multiply = 10
-		}
-		change_variable = { 
-			name = pop_nutrient_timber
-			divide = this.county.var:trade_price_timber
-		}
-		set_variable = { 
-			name = pop_update_demand_t
-			value = var:pop_nutrient_timber
-		}
-		change_variable = { 
-			name = pop_nutrient_timber
-			multiply = var:pop_update_demand_t
-		}
-		change_variable = { 
-			name = pop_nutrient_timber
-			divide = 10
-		}
-		change_variable = { 
-			name = pop_nutrient_timber
-			multiply = var:pop_update_demand_t
+		if = { 
+			limit = { 
+				has_variable = pop_nutrient_timber
+				var:pop_nutrient_timber > 0
+			}
+			change_variable = { 
+				name = pop_nutrient_timber
+				multiply = 10
+			}
+			change_variable = { 
+				name = pop_nutrient_timber
+				divide = this.county.var:trade_price_timber
+			}
+			set_variable = { 
+				name = pop_update_demand_t
+				value = var:pop_nutrient_timber
+			}
+			change_variable = { 
+				name = pop_nutrient_timber
+				multiply = var:pop_update_demand_t
+			}
+			change_variable = { 
+				name = pop_nutrient_timber
+				divide = 10
+			}
+			change_variable = { 
+				name = pop_nutrient_timber
+				multiply = var:pop_update_demand_t
+			}
+			change_variable = { 
+				name = pop_nutrient_timber
+				add = 0.001
+			}
 		}
 		set_variable = { 
 			name = pop_nutrient_metal
 			value = pop_nutrient_metal
 		}
-		change_variable = { 
-			name = pop_nutrient_metal
-			multiply = 10
-		}
-		change_variable = { 
-			name = pop_nutrient_metal
-			divide = this.county.var:trade_price_metal
-		}
-		set_variable = { 
-			name = pop_update_demand_t
-			value = var:pop_nutrient_metal
-		}
-		change_variable = { 
-			name = pop_nutrient_metal
-			multiply = var:pop_update_demand_t
-		}
-		change_variable = { 
-			name = pop_nutrient_metal
-			divide = 10
-		}
-		change_variable = { 
-			name = pop_nutrient_metal
-			multiply = var:pop_update_demand_t
+		if = { 
+			limit = { 
+				has_variable = pop_nutrient_metal
+				var:pop_nutrient_metal > 0
+			}
+			change_variable = { 
+				name = pop_nutrient_metal
+				multiply = 10
+			}
+			change_variable = { 
+				name = pop_nutrient_metal
+				divide = this.county.var:trade_price_metal
+			}
+			set_variable = { 
+				name = pop_update_demand_t
+				value = var:pop_nutrient_metal
+			}
+			change_variable = { 
+				name = pop_nutrient_metal
+				multiply = var:pop_update_demand_t
+			}
+			change_variable = { 
+				name = pop_nutrient_metal
+				divide = 10
+			}
+			change_variable = { 
+				name = pop_nutrient_metal
+				multiply = var:pop_update_demand_t
+			}
+			change_variable = { 
+				name = pop_nutrient_metal
+				add = 0.001
+			}
 		}
 		set_variable = { 
 			name = pop_nutrient_exotics_w
 			value = pop_nutrient_exotics_w
 		}
-		change_variable = { 
-			name = pop_nutrient_exotics_w
-			multiply = 10
-		}
-		change_variable = { 
-			name = pop_nutrient_exotics_w
-			divide = this.county.var:trade_price_exotics_w
-		}
-		set_variable = { 
-			name = pop_update_demand_t
-			value = var:pop_nutrient_exotics_w
-		}
-		change_variable = { 
-			name = pop_nutrient_exotics_w
-			multiply = var:pop_update_demand_t
-		}
-		change_variable = { 
-			name = pop_nutrient_exotics_w
-			divide = 10
-		}
-		change_variable = { 
-			name = pop_nutrient_exotics_w
-			multiply = var:pop_update_demand_t
+		if = { 
+			limit = { 
+				has_variable = pop_nutrient_exotics_w
+				var:pop_nutrient_exotics_w > 0
+			}
+			change_variable = { 
+				name = pop_nutrient_exotics_w
+				multiply = 10
+			}
+			change_variable = { 
+				name = pop_nutrient_exotics_w
+				divide = this.county.var:trade_price_exotics_w
+			}
+			set_variable = { 
+				name = pop_update_demand_t
+				value = var:pop_nutrient_exotics_w
+			}
+			change_variable = { 
+				name = pop_nutrient_exotics_w
+				multiply = var:pop_update_demand_t
+			}
+			change_variable = { 
+				name = pop_nutrient_exotics_w
+				divide = 10
+			}
+			change_variable = { 
+				name = pop_nutrient_exotics_w
+				multiply = var:pop_update_demand_t
+			}
+			change_variable = { 
+				name = pop_nutrient_exotics_w
+				add = 0.001
+			}
 		}
 		set_variable = { 
 			name = pop_nutrient_exotics_e
 			value = pop_nutrient_exotics_e
 		}
-		change_variable = { 
-			name = pop_nutrient_exotics_e
-			multiply = 10
-		}
-		change_variable = { 
-			name = pop_nutrient_exotics_e
-			divide = this.county.var:trade_price_exotics_e
-		}
-		set_variable = { 
-			name = pop_update_demand_t
-			value = var:pop_nutrient_exotics_e
-		}
-		change_variable = { 
-			name = pop_nutrient_exotics_e
-			multiply = var:pop_update_demand_t
-		}
-		change_variable = { 
-			name = pop_nutrient_exotics_e
-			divide = 10
-		}
-		change_variable = { 
-			name = pop_nutrient_exotics_e
-			multiply = var:pop_update_demand_t
+		if = { 
+			limit = { 
+				has_variable = pop_nutrient_exotics_e
+				var:pop_nutrient_exotics_e > 0
+			}
+			change_variable = { 
+				name = pop_nutrient_exotics_e
+				multiply = 10
+			}
+			change_variable = { 
+				name = pop_nutrient_exotics_e
+				divide = this.county.var:trade_price_exotics_e
+			}
+			set_variable = { 
+				name = pop_update_demand_t
+				value = var:pop_nutrient_exotics_e
+			}
+			change_variable = { 
+				name = pop_nutrient_exotics_e
+				multiply = var:pop_update_demand_t
+			}
+			change_variable = { 
+				name = pop_nutrient_exotics_e
+				divide = 10
+			}
+			change_variable = { 
+				name = pop_nutrient_exotics_e
+				multiply = var:pop_update_demand_t
+			}
+			change_variable = { 
+				name = pop_nutrient_exotics_e
+				add = 0.001
+			}
 		}
 		set_variable = { 
 			name = pop_nutrient_exotics_g
 			value = pop_nutrient_exotics_g
 		}
-		change_variable = { 
-			name = pop_nutrient_exotics_g
-			multiply = 10
-		}
-		change_variable = { 
-			name = pop_nutrient_exotics_g
-			divide = this.county.var:trade_price_exotics_g
-		}
-		set_variable = { 
-			name = pop_update_demand_t
-			value = var:pop_nutrient_exotics_g
-		}
-		change_variable = { 
-			name = pop_nutrient_exotics_g
-			multiply = var:pop_update_demand_t
-		}
-		change_variable = { 
-			name = pop_nutrient_exotics_g
-			divide = 10
-		}
-		change_variable = { 
-			name = pop_nutrient_exotics_g
-			multiply = var:pop_update_demand_t
+		if = { 
+			limit = { 
+				has_variable = pop_nutrient_exotics_g
+				var:pop_nutrient_exotics_g > 0
+			}
+			change_variable = { 
+				name = pop_nutrient_exotics_g
+				multiply = 10
+			}
+			change_variable = { 
+				name = pop_nutrient_exotics_g
+				divide = this.county.var:trade_price_exotics_g
+			}
+			set_variable = { 
+				name = pop_update_demand_t
+				value = var:pop_nutrient_exotics_g
+			}
+			change_variable = { 
+				name = pop_nutrient_exotics_g
+				multiply = var:pop_update_demand_t
+			}
+			change_variable = { 
+				name = pop_nutrient_exotics_g
+				divide = 10
+			}
+			change_variable = { 
+				name = pop_nutrient_exotics_g
+				multiply = var:pop_update_demand_t
+			}
+			change_variable = { 
+				name = pop_nutrient_exotics_g
+				add = 0.001
+			}
 		}
 		set_variable = { 
 			name = pop_nutrient_textile
 			value = pop_nutrient_textile
 		}
-		change_variable = { 
-			name = pop_nutrient_textile
-			multiply = 10
-		}
-		change_variable = { 
-			name = pop_nutrient_textile
-			divide = this.county.var:trade_price_textile
-		}
-		set_variable = { 
-			name = pop_update_demand_t
-			value = var:pop_nutrient_textile
-		}
-		change_variable = { 
-			name = pop_nutrient_textile
-			multiply = var:pop_update_demand_t
-		}
-		change_variable = { 
-			name = pop_nutrient_textile
-			divide = 10
-		}
-		change_variable = { 
-			name = pop_nutrient_textile
-			multiply = var:pop_update_demand_t
+		if = { 
+			limit = { 
+				has_variable = pop_nutrient_textile
+				var:pop_nutrient_textile > 0
+			}
+			change_variable = { 
+				name = pop_nutrient_textile
+				multiply = 10
+			}
+			change_variable = { 
+				name = pop_nutrient_textile
+				divide = this.county.var:trade_price_textile
+			}
+			set_variable = { 
+				name = pop_update_demand_t
+				value = var:pop_nutrient_textile
+			}
+			change_variable = { 
+				name = pop_nutrient_textile
+				multiply = var:pop_update_demand_t
+			}
+			change_variable = { 
+				name = pop_nutrient_textile
+				divide = 10
+			}
+			change_variable = { 
+				name = pop_nutrient_textile
+				multiply = var:pop_update_demand_t
+			}
+			change_variable = { 
+				name = pop_nutrient_textile
+				add = 0.001
+			}
 		}
 		set_variable = { 
 			name = pop_nutrient_pottery
 			value = pop_nutrient_pottery
 		}
-		change_variable = { 
-			name = pop_nutrient_pottery
-			multiply = 10
-		}
-		change_variable = { 
-			name = pop_nutrient_pottery
-			divide = this.county.var:trade_price_pottery
-		}
-		set_variable = { 
-			name = pop_update_demand_t
-			value = var:pop_nutrient_pottery
-		}
-		change_variable = { 
-			name = pop_nutrient_pottery
-			multiply = var:pop_update_demand_t
-		}
-		change_variable = { 
-			name = pop_nutrient_pottery
-			divide = 10
-		}
-		change_variable = { 
-			name = pop_nutrient_pottery
-			multiply = var:pop_update_demand_t
+		if = { 
+			limit = { 
+				has_variable = pop_nutrient_pottery
+				var:pop_nutrient_pottery > 0
+			}
+			change_variable = { 
+				name = pop_nutrient_pottery
+				multiply = 10
+			}
+			change_variable = { 
+				name = pop_nutrient_pottery
+				divide = this.county.var:trade_price_pottery
+			}
+			set_variable = { 
+				name = pop_update_demand_t
+				value = var:pop_nutrient_pottery
+			}
+			change_variable = { 
+				name = pop_nutrient_pottery
+				multiply = var:pop_update_demand_t
+			}
+			change_variable = { 
+				name = pop_nutrient_pottery
+				divide = 10
+			}
+			change_variable = { 
+				name = pop_nutrient_pottery
+				multiply = var:pop_update_demand_t
+			}
+			change_variable = { 
+				name = pop_nutrient_pottery
+				add = 0.001
+			}
 		}
 		set_variable = { 
 			name = pop_nutrient_furniture
 			value = pop_nutrient_furniture
 		}
-		change_variable = { 
-			name = pop_nutrient_furniture
-			multiply = 10
-		}
-		change_variable = { 
-			name = pop_nutrient_furniture
-			divide = this.county.var:trade_price_furniture
-		}
-		set_variable = { 
-			name = pop_update_demand_t
-			value = var:pop_nutrient_furniture
-		}
-		change_variable = { 
-			name = pop_nutrient_furniture
-			multiply = var:pop_update_demand_t
-		}
-		change_variable = { 
-			name = pop_nutrient_furniture
-			divide = 10
-		}
-		change_variable = { 
-			name = pop_nutrient_furniture
-			multiply = var:pop_update_demand_t
+		if = { 
+			limit = { 
+				has_variable = pop_nutrient_furniture
+				var:pop_nutrient_furniture > 0
+			}
+			change_variable = { 
+				name = pop_nutrient_furniture
+				multiply = 10
+			}
+			change_variable = { 
+				name = pop_nutrient_furniture
+				divide = this.county.var:trade_price_furniture
+			}
+			set_variable = { 
+				name = pop_update_demand_t
+				value = var:pop_nutrient_furniture
+			}
+			change_variable = { 
+				name = pop_nutrient_furniture
+				multiply = var:pop_update_demand_t
+			}
+			change_variable = { 
+				name = pop_nutrient_furniture
+				divide = 10
+			}
+			change_variable = { 
+				name = pop_nutrient_furniture
+				multiply = var:pop_update_demand_t
+			}
+			change_variable = { 
+				name = pop_nutrient_furniture
+				add = 0.001
+			}
 		}
 		set_variable = { 
 			name = pop_update_demand_t
@@ -3731,337 +3971,457 @@
 			name = pop_comfort_food
 			value = pop_comfort_food
 		}
-		change_variable = { 
-			name = pop_comfort_food
-			multiply = 10
-		}
-		change_variable = { 
-			name = pop_comfort_food
-			divide = this.county.var:trade_price_food
-		}
-		set_variable = { 
-			name = pop_update_demand_t
-			value = var:pop_comfort_food
-		}
-		change_variable = { 
-			name = pop_comfort_food
-			multiply = var:pop_update_demand_t
-		}
-		change_variable = { 
-			name = pop_comfort_food
-			divide = 10
-		}
-		change_variable = { 
-			name = pop_comfort_food
-			multiply = var:pop_update_demand_t
+		if = { 
+			limit = { 
+				has_variable = pop_comfort_food
+				var:pop_comfort_food > 0
+			}
+			change_variable = { 
+				name = pop_comfort_food
+				multiply = 10
+			}
+			change_variable = { 
+				name = pop_comfort_food
+				divide = this.county.var:trade_price_food
+			}
+			set_variable = { 
+				name = pop_update_demand_t
+				value = var:pop_comfort_food
+			}
+			change_variable = { 
+				name = pop_comfort_food
+				multiply = var:pop_update_demand_t
+			}
+			change_variable = { 
+				name = pop_comfort_food
+				divide = 10
+			}
+			change_variable = { 
+				name = pop_comfort_food
+				multiply = var:pop_update_demand_t
+			}
+			change_variable = { 
+				name = pop_comfort_food
+				add = 0.001
+			}
 		}
 		set_variable = { 
 			name = pop_comfort_salt
 			value = pop_comfort_salt
 		}
-		change_variable = { 
-			name = pop_comfort_salt
-			multiply = 10
-		}
-		change_variable = { 
-			name = pop_comfort_salt
-			divide = this.county.var:trade_price_salt
-		}
-		set_variable = { 
-			name = pop_update_demand_t
-			value = var:pop_comfort_salt
-		}
-		change_variable = { 
-			name = pop_comfort_salt
-			multiply = var:pop_update_demand_t
-		}
-		change_variable = { 
-			name = pop_comfort_salt
-			divide = 10
-		}
-		change_variable = { 
-			name = pop_comfort_salt
-			multiply = var:pop_update_demand_t
+		if = { 
+			limit = { 
+				has_variable = pop_comfort_salt
+				var:pop_comfort_salt > 0
+			}
+			change_variable = { 
+				name = pop_comfort_salt
+				multiply = 10
+			}
+			change_variable = { 
+				name = pop_comfort_salt
+				divide = this.county.var:trade_price_salt
+			}
+			set_variable = { 
+				name = pop_update_demand_t
+				value = var:pop_comfort_salt
+			}
+			change_variable = { 
+				name = pop_comfort_salt
+				multiply = var:pop_update_demand_t
+			}
+			change_variable = { 
+				name = pop_comfort_salt
+				divide = 10
+			}
+			change_variable = { 
+				name = pop_comfort_salt
+				multiply = var:pop_update_demand_t
+			}
+			change_variable = { 
+				name = pop_comfort_salt
+				add = 0.001
+			}
 		}
 		set_variable = { 
 			name = pop_comfort_fuel
 			value = pop_comfort_fuel
 		}
-		change_variable = { 
-			name = pop_comfort_fuel
-			multiply = 10
-		}
-		change_variable = { 
-			name = pop_comfort_fuel
-			divide = this.county.var:trade_price_fuel
-		}
-		set_variable = { 
-			name = pop_update_demand_t
-			value = var:pop_comfort_fuel
-		}
-		change_variable = { 
-			name = pop_comfort_fuel
-			multiply = var:pop_update_demand_t
-		}
-		change_variable = { 
-			name = pop_comfort_fuel
-			divide = 10
-		}
-		change_variable = { 
-			name = pop_comfort_fuel
-			multiply = var:pop_update_demand_t
+		if = { 
+			limit = { 
+				has_variable = pop_comfort_fuel
+				var:pop_comfort_fuel > 0
+			}
+			change_variable = { 
+				name = pop_comfort_fuel
+				multiply = 10
+			}
+			change_variable = { 
+				name = pop_comfort_fuel
+				divide = this.county.var:trade_price_fuel
+			}
+			set_variable = { 
+				name = pop_update_demand_t
+				value = var:pop_comfort_fuel
+			}
+			change_variable = { 
+				name = pop_comfort_fuel
+				multiply = var:pop_update_demand_t
+			}
+			change_variable = { 
+				name = pop_comfort_fuel
+				divide = 10
+			}
+			change_variable = { 
+				name = pop_comfort_fuel
+				multiply = var:pop_update_demand_t
+			}
+			change_variable = { 
+				name = pop_comfort_fuel
+				add = 0.001
+			}
 		}
 		set_variable = { 
 			name = pop_comfort_fiber
 			value = pop_comfort_fiber
 		}
-		change_variable = { 
-			name = pop_comfort_fiber
-			multiply = 10
-		}
-		change_variable = { 
-			name = pop_comfort_fiber
-			divide = this.county.var:trade_price_fiber
-		}
-		set_variable = { 
-			name = pop_update_demand_t
-			value = var:pop_comfort_fiber
-		}
-		change_variable = { 
-			name = pop_comfort_fiber
-			multiply = var:pop_update_demand_t
-		}
-		change_variable = { 
-			name = pop_comfort_fiber
-			divide = 10
-		}
-		change_variable = { 
-			name = pop_comfort_fiber
-			multiply = var:pop_update_demand_t
+		if = { 
+			limit = { 
+				has_variable = pop_comfort_fiber
+				var:pop_comfort_fiber > 0
+			}
+			change_variable = { 
+				name = pop_comfort_fiber
+				multiply = 10
+			}
+			change_variable = { 
+				name = pop_comfort_fiber
+				divide = this.county.var:trade_price_fiber
+			}
+			set_variable = { 
+				name = pop_update_demand_t
+				value = var:pop_comfort_fiber
+			}
+			change_variable = { 
+				name = pop_comfort_fiber
+				multiply = var:pop_update_demand_t
+			}
+			change_variable = { 
+				name = pop_comfort_fiber
+				divide = 10
+			}
+			change_variable = { 
+				name = pop_comfort_fiber
+				multiply = var:pop_update_demand_t
+			}
+			change_variable = { 
+				name = pop_comfort_fiber
+				add = 0.001
+			}
 		}
 		set_variable = { 
 			name = pop_comfort_timber
 			value = pop_comfort_timber
 		}
-		change_variable = { 
-			name = pop_comfort_timber
-			multiply = 10
-		}
-		change_variable = { 
-			name = pop_comfort_timber
-			divide = this.county.var:trade_price_timber
-		}
-		set_variable = { 
-			name = pop_update_demand_t
-			value = var:pop_comfort_timber
-		}
-		change_variable = { 
-			name = pop_comfort_timber
-			multiply = var:pop_update_demand_t
-		}
-		change_variable = { 
-			name = pop_comfort_timber
-			divide = 10
-		}
-		change_variable = { 
-			name = pop_comfort_timber
-			multiply = var:pop_update_demand_t
+		if = { 
+			limit = { 
+				has_variable = pop_comfort_timber
+				var:pop_comfort_timber > 0
+			}
+			change_variable = { 
+				name = pop_comfort_timber
+				multiply = 10
+			}
+			change_variable = { 
+				name = pop_comfort_timber
+				divide = this.county.var:trade_price_timber
+			}
+			set_variable = { 
+				name = pop_update_demand_t
+				value = var:pop_comfort_timber
+			}
+			change_variable = { 
+				name = pop_comfort_timber
+				multiply = var:pop_update_demand_t
+			}
+			change_variable = { 
+				name = pop_comfort_timber
+				divide = 10
+			}
+			change_variable = { 
+				name = pop_comfort_timber
+				multiply = var:pop_update_demand_t
+			}
+			change_variable = { 
+				name = pop_comfort_timber
+				add = 0.001
+			}
 		}
 		set_variable = { 
 			name = pop_comfort_metal
 			value = pop_comfort_metal
 		}
-		change_variable = { 
-			name = pop_comfort_metal
-			multiply = 10
-		}
-		change_variable = { 
-			name = pop_comfort_metal
-			divide = this.county.var:trade_price_metal
-		}
-		set_variable = { 
-			name = pop_update_demand_t
-			value = var:pop_comfort_metal
-		}
-		change_variable = { 
-			name = pop_comfort_metal
-			multiply = var:pop_update_demand_t
-		}
-		change_variable = { 
-			name = pop_comfort_metal
-			divide = 10
-		}
-		change_variable = { 
-			name = pop_comfort_metal
-			multiply = var:pop_update_demand_t
+		if = { 
+			limit = { 
+				has_variable = pop_comfort_metal
+				var:pop_comfort_metal > 0
+			}
+			change_variable = { 
+				name = pop_comfort_metal
+				multiply = 10
+			}
+			change_variable = { 
+				name = pop_comfort_metal
+				divide = this.county.var:trade_price_metal
+			}
+			set_variable = { 
+				name = pop_update_demand_t
+				value = var:pop_comfort_metal
+			}
+			change_variable = { 
+				name = pop_comfort_metal
+				multiply = var:pop_update_demand_t
+			}
+			change_variable = { 
+				name = pop_comfort_metal
+				divide = 10
+			}
+			change_variable = { 
+				name = pop_comfort_metal
+				multiply = var:pop_update_demand_t
+			}
+			change_variable = { 
+				name = pop_comfort_metal
+				add = 0.001
+			}
 		}
 		set_variable = { 
 			name = pop_comfort_exotics_w
 			value = pop_comfort_exotics_w
 		}
-		change_variable = { 
-			name = pop_comfort_exotics_w
-			multiply = 10
-		}
-		change_variable = { 
-			name = pop_comfort_exotics_w
-			divide = this.county.var:trade_price_exotics_w
-		}
-		set_variable = { 
-			name = pop_update_demand_t
-			value = var:pop_comfort_exotics_w
-		}
-		change_variable = { 
-			name = pop_comfort_exotics_w
-			multiply = var:pop_update_demand_t
-		}
-		change_variable = { 
-			name = pop_comfort_exotics_w
-			divide = 10
-		}
-		change_variable = { 
-			name = pop_comfort_exotics_w
-			multiply = var:pop_update_demand_t
+		if = { 
+			limit = { 
+				has_variable = pop_comfort_exotics_w
+				var:pop_comfort_exotics_w > 0
+			}
+			change_variable = { 
+				name = pop_comfort_exotics_w
+				multiply = 10
+			}
+			change_variable = { 
+				name = pop_comfort_exotics_w
+				divide = this.county.var:trade_price_exotics_w
+			}
+			set_variable = { 
+				name = pop_update_demand_t
+				value = var:pop_comfort_exotics_w
+			}
+			change_variable = { 
+				name = pop_comfort_exotics_w
+				multiply = var:pop_update_demand_t
+			}
+			change_variable = { 
+				name = pop_comfort_exotics_w
+				divide = 10
+			}
+			change_variable = { 
+				name = pop_comfort_exotics_w
+				multiply = var:pop_update_demand_t
+			}
+			change_variable = { 
+				name = pop_comfort_exotics_w
+				add = 0.001
+			}
 		}
 		set_variable = { 
 			name = pop_comfort_exotics_e
 			value = pop_comfort_exotics_e
 		}
-		change_variable = { 
-			name = pop_comfort_exotics_e
-			multiply = 10
-		}
-		change_variable = { 
-			name = pop_comfort_exotics_e
-			divide = this.county.var:trade_price_exotics_e
-		}
-		set_variable = { 
-			name = pop_update_demand_t
-			value = var:pop_comfort_exotics_e
-		}
-		change_variable = { 
-			name = pop_comfort_exotics_e
-			multiply = var:pop_update_demand_t
-		}
-		change_variable = { 
-			name = pop_comfort_exotics_e
-			divide = 10
-		}
-		change_variable = { 
-			name = pop_comfort_exotics_e
-			multiply = var:pop_update_demand_t
+		if = { 
+			limit = { 
+				has_variable = pop_comfort_exotics_e
+				var:pop_comfort_exotics_e > 0
+			}
+			change_variable = { 
+				name = pop_comfort_exotics_e
+				multiply = 10
+			}
+			change_variable = { 
+				name = pop_comfort_exotics_e
+				divide = this.county.var:trade_price_exotics_e
+			}
+			set_variable = { 
+				name = pop_update_demand_t
+				value = var:pop_comfort_exotics_e
+			}
+			change_variable = { 
+				name = pop_comfort_exotics_e
+				multiply = var:pop_update_demand_t
+			}
+			change_variable = { 
+				name = pop_comfort_exotics_e
+				divide = 10
+			}
+			change_variable = { 
+				name = pop_comfort_exotics_e
+				multiply = var:pop_update_demand_t
+			}
+			change_variable = { 
+				name = pop_comfort_exotics_e
+				add = 0.001
+			}
 		}
 		set_variable = { 
 			name = pop_comfort_exotics_g
 			value = pop_comfort_exotics_g
 		}
-		change_variable = { 
-			name = pop_comfort_exotics_g
-			multiply = 10
-		}
-		change_variable = { 
-			name = pop_comfort_exotics_g
-			divide = this.county.var:trade_price_exotics_g
-		}
-		set_variable = { 
-			name = pop_update_demand_t
-			value = var:pop_comfort_exotics_g
-		}
-		change_variable = { 
-			name = pop_comfort_exotics_g
-			multiply = var:pop_update_demand_t
-		}
-		change_variable = { 
-			name = pop_comfort_exotics_g
-			divide = 10
-		}
-		change_variable = { 
-			name = pop_comfort_exotics_g
-			multiply = var:pop_update_demand_t
+		if = { 
+			limit = { 
+				has_variable = pop_comfort_exotics_g
+				var:pop_comfort_exotics_g > 0
+			}
+			change_variable = { 
+				name = pop_comfort_exotics_g
+				multiply = 10
+			}
+			change_variable = { 
+				name = pop_comfort_exotics_g
+				divide = this.county.var:trade_price_exotics_g
+			}
+			set_variable = { 
+				name = pop_update_demand_t
+				value = var:pop_comfort_exotics_g
+			}
+			change_variable = { 
+				name = pop_comfort_exotics_g
+				multiply = var:pop_update_demand_t
+			}
+			change_variable = { 
+				name = pop_comfort_exotics_g
+				divide = 10
+			}
+			change_variable = { 
+				name = pop_comfort_exotics_g
+				multiply = var:pop_update_demand_t
+			}
+			change_variable = { 
+				name = pop_comfort_exotics_g
+				add = 0.001
+			}
 		}
 		set_variable = { 
 			name = pop_comfort_textile
 			value = pop_comfort_textile
 		}
-		change_variable = { 
-			name = pop_comfort_textile
-			multiply = 10
-		}
-		change_variable = { 
-			name = pop_comfort_textile
-			divide = this.county.var:trade_price_textile
-		}
-		set_variable = { 
-			name = pop_update_demand_t
-			value = var:pop_comfort_textile
-		}
-		change_variable = { 
-			name = pop_comfort_textile
-			multiply = var:pop_update_demand_t
-		}
-		change_variable = { 
-			name = pop_comfort_textile
-			divide = 10
-		}
-		change_variable = { 
-			name = pop_comfort_textile
-			multiply = var:pop_update_demand_t
+		if = { 
+			limit = { 
+				has_variable = pop_comfort_textile
+				var:pop_comfort_textile > 0
+			}
+			change_variable = { 
+				name = pop_comfort_textile
+				multiply = 10
+			}
+			change_variable = { 
+				name = pop_comfort_textile
+				divide = this.county.var:trade_price_textile
+			}
+			set_variable = { 
+				name = pop_update_demand_t
+				value = var:pop_comfort_textile
+			}
+			change_variable = { 
+				name = pop_comfort_textile
+				multiply = var:pop_update_demand_t
+			}
+			change_variable = { 
+				name = pop_comfort_textile
+				divide = 10
+			}
+			change_variable = { 
+				name = pop_comfort_textile
+				multiply = var:pop_update_demand_t
+			}
+			change_variable = { 
+				name = pop_comfort_textile
+				add = 0.001
+			}
 		}
 		set_variable = { 
 			name = pop_comfort_pottery
 			value = pop_comfort_pottery
 		}
-		change_variable = { 
-			name = pop_comfort_pottery
-			multiply = 10
-		}
-		change_variable = { 
-			name = pop_comfort_pottery
-			divide = this.county.var:trade_price_pottery
-		}
-		set_variable = { 
-			name = pop_update_demand_t
-			value = var:pop_comfort_pottery
-		}
-		change_variable = { 
-			name = pop_comfort_pottery
-			multiply = var:pop_update_demand_t
-		}
-		change_variable = { 
-			name = pop_comfort_pottery
-			divide = 10
-		}
-		change_variable = { 
-			name = pop_comfort_pottery
-			multiply = var:pop_update_demand_t
+		if = { 
+			limit = { 
+				has_variable = pop_comfort_pottery
+				var:pop_comfort_pottery > 0
+			}
+			change_variable = { 
+				name = pop_comfort_pottery
+				multiply = 10
+			}
+			change_variable = { 
+				name = pop_comfort_pottery
+				divide = this.county.var:trade_price_pottery
+			}
+			set_variable = { 
+				name = pop_update_demand_t
+				value = var:pop_comfort_pottery
+			}
+			change_variable = { 
+				name = pop_comfort_pottery
+				multiply = var:pop_update_demand_t
+			}
+			change_variable = { 
+				name = pop_comfort_pottery
+				divide = 10
+			}
+			change_variable = { 
+				name = pop_comfort_pottery
+				multiply = var:pop_update_demand_t
+			}
+			change_variable = { 
+				name = pop_comfort_pottery
+				add = 0.001
+			}
 		}
 		set_variable = { 
 			name = pop_comfort_furniture
 			value = pop_comfort_furniture
 		}
-		change_variable = { 
-			name = pop_comfort_furniture
-			multiply = 10
-		}
-		change_variable = { 
-			name = pop_comfort_furniture
-			divide = this.county.var:trade_price_furniture
-		}
-		set_variable = { 
-			name = pop_update_demand_t
-			value = var:pop_comfort_furniture
-		}
-		change_variable = { 
-			name = pop_comfort_furniture
-			multiply = var:pop_update_demand_t
-		}
-		change_variable = { 
-			name = pop_comfort_furniture
-			divide = 10
-		}
-		change_variable = { 
-			name = pop_comfort_furniture
-			multiply = var:pop_update_demand_t
+		if = { 
+			limit = { 
+				has_variable = pop_comfort_furniture
+				var:pop_comfort_furniture > 0
+			}
+			change_variable = { 
+				name = pop_comfort_furniture
+				multiply = 10
+			}
+			change_variable = { 
+				name = pop_comfort_furniture
+				divide = this.county.var:trade_price_furniture
+			}
+			set_variable = { 
+				name = pop_update_demand_t
+				value = var:pop_comfort_furniture
+			}
+			change_variable = { 
+				name = pop_comfort_furniture
+				multiply = var:pop_update_demand_t
+			}
+			change_variable = { 
+				name = pop_comfort_furniture
+				divide = 10
+			}
+			change_variable = { 
+				name = pop_comfort_furniture
+				multiply = var:pop_update_demand_t
+			}
+			change_variable = { 
+				name = pop_comfort_furniture
+				add = 0.001
+			}
 		}
 		set_variable = { 
 			name = pop_update_demand_t
@@ -4167,337 +4527,457 @@
 			name = pop_luxury_food
 			value = pop_luxury_food
 		}
-		change_variable = { 
-			name = pop_luxury_food
-			multiply = 10
-		}
-		change_variable = { 
-			name = pop_luxury_food
-			divide = this.county.var:trade_price_food
-		}
-		set_variable = { 
-			name = pop_update_demand_t
-			value = var:pop_luxury_food
-		}
-		change_variable = { 
-			name = pop_luxury_food
-			multiply = var:pop_update_demand_t
-		}
-		change_variable = { 
-			name = pop_luxury_food
-			divide = 10
-		}
-		change_variable = { 
-			name = pop_luxury_food
-			multiply = var:pop_update_demand_t
+		if = { 
+			limit = { 
+				has_variable = pop_luxury_food
+				var:pop_luxury_food > 0
+			}
+			change_variable = { 
+				name = pop_luxury_food
+				multiply = 10
+			}
+			change_variable = { 
+				name = pop_luxury_food
+				divide = this.county.var:trade_price_food
+			}
+			set_variable = { 
+				name = pop_update_demand_t
+				value = var:pop_luxury_food
+			}
+			change_variable = { 
+				name = pop_luxury_food
+				multiply = var:pop_update_demand_t
+			}
+			change_variable = { 
+				name = pop_luxury_food
+				divide = 10
+			}
+			change_variable = { 
+				name = pop_luxury_food
+				multiply = var:pop_update_demand_t
+			}
+			change_variable = { 
+				name = pop_luxury_food
+				add = 0.001
+			}
 		}
 		set_variable = { 
 			name = pop_luxury_salt
 			value = pop_luxury_salt
 		}
-		change_variable = { 
-			name = pop_luxury_salt
-			multiply = 10
-		}
-		change_variable = { 
-			name = pop_luxury_salt
-			divide = this.county.var:trade_price_salt
-		}
-		set_variable = { 
-			name = pop_update_demand_t
-			value = var:pop_luxury_salt
-		}
-		change_variable = { 
-			name = pop_luxury_salt
-			multiply = var:pop_update_demand_t
-		}
-		change_variable = { 
-			name = pop_luxury_salt
-			divide = 10
-		}
-		change_variable = { 
-			name = pop_luxury_salt
-			multiply = var:pop_update_demand_t
+		if = { 
+			limit = { 
+				has_variable = pop_luxury_salt
+				var:pop_luxury_salt > 0
+			}
+			change_variable = { 
+				name = pop_luxury_salt
+				multiply = 10
+			}
+			change_variable = { 
+				name = pop_luxury_salt
+				divide = this.county.var:trade_price_salt
+			}
+			set_variable = { 
+				name = pop_update_demand_t
+				value = var:pop_luxury_salt
+			}
+			change_variable = { 
+				name = pop_luxury_salt
+				multiply = var:pop_update_demand_t
+			}
+			change_variable = { 
+				name = pop_luxury_salt
+				divide = 10
+			}
+			change_variable = { 
+				name = pop_luxury_salt
+				multiply = var:pop_update_demand_t
+			}
+			change_variable = { 
+				name = pop_luxury_salt
+				add = 0.001
+			}
 		}
 		set_variable = { 
 			name = pop_luxury_fuel
 			value = pop_luxury_fuel
 		}
-		change_variable = { 
-			name = pop_luxury_fuel
-			multiply = 10
-		}
-		change_variable = { 
-			name = pop_luxury_fuel
-			divide = this.county.var:trade_price_fuel
-		}
-		set_variable = { 
-			name = pop_update_demand_t
-			value = var:pop_luxury_fuel
-		}
-		change_variable = { 
-			name = pop_luxury_fuel
-			multiply = var:pop_update_demand_t
-		}
-		change_variable = { 
-			name = pop_luxury_fuel
-			divide = 10
-		}
-		change_variable = { 
-			name = pop_luxury_fuel
-			multiply = var:pop_update_demand_t
+		if = { 
+			limit = { 
+				has_variable = pop_luxury_fuel
+				var:pop_luxury_fuel > 0
+			}
+			change_variable = { 
+				name = pop_luxury_fuel
+				multiply = 10
+			}
+			change_variable = { 
+				name = pop_luxury_fuel
+				divide = this.county.var:trade_price_fuel
+			}
+			set_variable = { 
+				name = pop_update_demand_t
+				value = var:pop_luxury_fuel
+			}
+			change_variable = { 
+				name = pop_luxury_fuel
+				multiply = var:pop_update_demand_t
+			}
+			change_variable = { 
+				name = pop_luxury_fuel
+				divide = 10
+			}
+			change_variable = { 
+				name = pop_luxury_fuel
+				multiply = var:pop_update_demand_t
+			}
+			change_variable = { 
+				name = pop_luxury_fuel
+				add = 0.001
+			}
 		}
 		set_variable = { 
 			name = pop_luxury_fiber
 			value = pop_luxury_fiber
 		}
-		change_variable = { 
-			name = pop_luxury_fiber
-			multiply = 10
-		}
-		change_variable = { 
-			name = pop_luxury_fiber
-			divide = this.county.var:trade_price_fiber
-		}
-		set_variable = { 
-			name = pop_update_demand_t
-			value = var:pop_luxury_fiber
-		}
-		change_variable = { 
-			name = pop_luxury_fiber
-			multiply = var:pop_update_demand_t
-		}
-		change_variable = { 
-			name = pop_luxury_fiber
-			divide = 10
-		}
-		change_variable = { 
-			name = pop_luxury_fiber
-			multiply = var:pop_update_demand_t
+		if = { 
+			limit = { 
+				has_variable = pop_luxury_fiber
+				var:pop_luxury_fiber > 0
+			}
+			change_variable = { 
+				name = pop_luxury_fiber
+				multiply = 10
+			}
+			change_variable = { 
+				name = pop_luxury_fiber
+				divide = this.county.var:trade_price_fiber
+			}
+			set_variable = { 
+				name = pop_update_demand_t
+				value = var:pop_luxury_fiber
+			}
+			change_variable = { 
+				name = pop_luxury_fiber
+				multiply = var:pop_update_demand_t
+			}
+			change_variable = { 
+				name = pop_luxury_fiber
+				divide = 10
+			}
+			change_variable = { 
+				name = pop_luxury_fiber
+				multiply = var:pop_update_demand_t
+			}
+			change_variable = { 
+				name = pop_luxury_fiber
+				add = 0.001
+			}
 		}
 		set_variable = { 
 			name = pop_luxury_timber
 			value = pop_luxury_timber
 		}
-		change_variable = { 
-			name = pop_luxury_timber
-			multiply = 10
-		}
-		change_variable = { 
-			name = pop_luxury_timber
-			divide = this.county.var:trade_price_timber
-		}
-		set_variable = { 
-			name = pop_update_demand_t
-			value = var:pop_luxury_timber
-		}
-		change_variable = { 
-			name = pop_luxury_timber
-			multiply = var:pop_update_demand_t
-		}
-		change_variable = { 
-			name = pop_luxury_timber
-			divide = 10
-		}
-		change_variable = { 
-			name = pop_luxury_timber
-			multiply = var:pop_update_demand_t
+		if = { 
+			limit = { 
+				has_variable = pop_luxury_timber
+				var:pop_luxury_timber > 0
+			}
+			change_variable = { 
+				name = pop_luxury_timber
+				multiply = 10
+			}
+			change_variable = { 
+				name = pop_luxury_timber
+				divide = this.county.var:trade_price_timber
+			}
+			set_variable = { 
+				name = pop_update_demand_t
+				value = var:pop_luxury_timber
+			}
+			change_variable = { 
+				name = pop_luxury_timber
+				multiply = var:pop_update_demand_t
+			}
+			change_variable = { 
+				name = pop_luxury_timber
+				divide = 10
+			}
+			change_variable = { 
+				name = pop_luxury_timber
+				multiply = var:pop_update_demand_t
+			}
+			change_variable = { 
+				name = pop_luxury_timber
+				add = 0.001
+			}
 		}
 		set_variable = { 
 			name = pop_luxury_metal
 			value = pop_luxury_metal
 		}
-		change_variable = { 
-			name = pop_luxury_metal
-			multiply = 10
-		}
-		change_variable = { 
-			name = pop_luxury_metal
-			divide = this.county.var:trade_price_metal
-		}
-		set_variable = { 
-			name = pop_update_demand_t
-			value = var:pop_luxury_metal
-		}
-		change_variable = { 
-			name = pop_luxury_metal
-			multiply = var:pop_update_demand_t
-		}
-		change_variable = { 
-			name = pop_luxury_metal
-			divide = 10
-		}
-		change_variable = { 
-			name = pop_luxury_metal
-			multiply = var:pop_update_demand_t
+		if = { 
+			limit = { 
+				has_variable = pop_luxury_metal
+				var:pop_luxury_metal > 0
+			}
+			change_variable = { 
+				name = pop_luxury_metal
+				multiply = 10
+			}
+			change_variable = { 
+				name = pop_luxury_metal
+				divide = this.county.var:trade_price_metal
+			}
+			set_variable = { 
+				name = pop_update_demand_t
+				value = var:pop_luxury_metal
+			}
+			change_variable = { 
+				name = pop_luxury_metal
+				multiply = var:pop_update_demand_t
+			}
+			change_variable = { 
+				name = pop_luxury_metal
+				divide = 10
+			}
+			change_variable = { 
+				name = pop_luxury_metal
+				multiply = var:pop_update_demand_t
+			}
+			change_variable = { 
+				name = pop_luxury_metal
+				add = 0.001
+			}
 		}
 		set_variable = { 
 			name = pop_luxury_exotics_w
 			value = pop_luxury_exotics_w
 		}
-		change_variable = { 
-			name = pop_luxury_exotics_w
-			multiply = 10
-		}
-		change_variable = { 
-			name = pop_luxury_exotics_w
-			divide = this.county.var:trade_price_exotics_w
-		}
-		set_variable = { 
-			name = pop_update_demand_t
-			value = var:pop_luxury_exotics_w
-		}
-		change_variable = { 
-			name = pop_luxury_exotics_w
-			multiply = var:pop_update_demand_t
-		}
-		change_variable = { 
-			name = pop_luxury_exotics_w
-			divide = 10
-		}
-		change_variable = { 
-			name = pop_luxury_exotics_w
-			multiply = var:pop_update_demand_t
+		if = { 
+			limit = { 
+				has_variable = pop_luxury_exotics_w
+				var:pop_luxury_exotics_w > 0
+			}
+			change_variable = { 
+				name = pop_luxury_exotics_w
+				multiply = 10
+			}
+			change_variable = { 
+				name = pop_luxury_exotics_w
+				divide = this.county.var:trade_price_exotics_w
+			}
+			set_variable = { 
+				name = pop_update_demand_t
+				value = var:pop_luxury_exotics_w
+			}
+			change_variable = { 
+				name = pop_luxury_exotics_w
+				multiply = var:pop_update_demand_t
+			}
+			change_variable = { 
+				name = pop_luxury_exotics_w
+				divide = 10
+			}
+			change_variable = { 
+				name = pop_luxury_exotics_w
+				multiply = var:pop_update_demand_t
+			}
+			change_variable = { 
+				name = pop_luxury_exotics_w
+				add = 0.001
+			}
 		}
 		set_variable = { 
 			name = pop_luxury_exotics_e
 			value = pop_luxury_exotics_e
 		}
-		change_variable = { 
-			name = pop_luxury_exotics_e
-			multiply = 10
-		}
-		change_variable = { 
-			name = pop_luxury_exotics_e
-			divide = this.county.var:trade_price_exotics_e
-		}
-		set_variable = { 
-			name = pop_update_demand_t
-			value = var:pop_luxury_exotics_e
-		}
-		change_variable = { 
-			name = pop_luxury_exotics_e
-			multiply = var:pop_update_demand_t
-		}
-		change_variable = { 
-			name = pop_luxury_exotics_e
-			divide = 10
-		}
-		change_variable = { 
-			name = pop_luxury_exotics_e
-			multiply = var:pop_update_demand_t
+		if = { 
+			limit = { 
+				has_variable = pop_luxury_exotics_e
+				var:pop_luxury_exotics_e > 0
+			}
+			change_variable = { 
+				name = pop_luxury_exotics_e
+				multiply = 10
+			}
+			change_variable = { 
+				name = pop_luxury_exotics_e
+				divide = this.county.var:trade_price_exotics_e
+			}
+			set_variable = { 
+				name = pop_update_demand_t
+				value = var:pop_luxury_exotics_e
+			}
+			change_variable = { 
+				name = pop_luxury_exotics_e
+				multiply = var:pop_update_demand_t
+			}
+			change_variable = { 
+				name = pop_luxury_exotics_e
+				divide = 10
+			}
+			change_variable = { 
+				name = pop_luxury_exotics_e
+				multiply = var:pop_update_demand_t
+			}
+			change_variable = { 
+				name = pop_luxury_exotics_e
+				add = 0.001
+			}
 		}
 		set_variable = { 
 			name = pop_luxury_exotics_g
 			value = pop_luxury_exotics_g
 		}
-		change_variable = { 
-			name = pop_luxury_exotics_g
-			multiply = 10
-		}
-		change_variable = { 
-			name = pop_luxury_exotics_g
-			divide = this.county.var:trade_price_exotics_g
-		}
-		set_variable = { 
-			name = pop_update_demand_t
-			value = var:pop_luxury_exotics_g
-		}
-		change_variable = { 
-			name = pop_luxury_exotics_g
-			multiply = var:pop_update_demand_t
-		}
-		change_variable = { 
-			name = pop_luxury_exotics_g
-			divide = 10
-		}
-		change_variable = { 
-			name = pop_luxury_exotics_g
-			multiply = var:pop_update_demand_t
+		if = { 
+			limit = { 
+				has_variable = pop_luxury_exotics_g
+				var:pop_luxury_exotics_g > 0
+			}
+			change_variable = { 
+				name = pop_luxury_exotics_g
+				multiply = 10
+			}
+			change_variable = { 
+				name = pop_luxury_exotics_g
+				divide = this.county.var:trade_price_exotics_g
+			}
+			set_variable = { 
+				name = pop_update_demand_t
+				value = var:pop_luxury_exotics_g
+			}
+			change_variable = { 
+				name = pop_luxury_exotics_g
+				multiply = var:pop_update_demand_t
+			}
+			change_variable = { 
+				name = pop_luxury_exotics_g
+				divide = 10
+			}
+			change_variable = { 
+				name = pop_luxury_exotics_g
+				multiply = var:pop_update_demand_t
+			}
+			change_variable = { 
+				name = pop_luxury_exotics_g
+				add = 0.001
+			}
 		}
 		set_variable = { 
 			name = pop_luxury_textile
 			value = pop_luxury_textile
 		}
-		change_variable = { 
-			name = pop_luxury_textile
-			multiply = 10
-		}
-		change_variable = { 
-			name = pop_luxury_textile
-			divide = this.county.var:trade_price_textile
-		}
-		set_variable = { 
-			name = pop_update_demand_t
-			value = var:pop_luxury_textile
-		}
-		change_variable = { 
-			name = pop_luxury_textile
-			multiply = var:pop_update_demand_t
-		}
-		change_variable = { 
-			name = pop_luxury_textile
-			divide = 10
-		}
-		change_variable = { 
-			name = pop_luxury_textile
-			multiply = var:pop_update_demand_t
+		if = { 
+			limit = { 
+				has_variable = pop_luxury_textile
+				var:pop_luxury_textile > 0
+			}
+			change_variable = { 
+				name = pop_luxury_textile
+				multiply = 10
+			}
+			change_variable = { 
+				name = pop_luxury_textile
+				divide = this.county.var:trade_price_textile
+			}
+			set_variable = { 
+				name = pop_update_demand_t
+				value = var:pop_luxury_textile
+			}
+			change_variable = { 
+				name = pop_luxury_textile
+				multiply = var:pop_update_demand_t
+			}
+			change_variable = { 
+				name = pop_luxury_textile
+				divide = 10
+			}
+			change_variable = { 
+				name = pop_luxury_textile
+				multiply = var:pop_update_demand_t
+			}
+			change_variable = { 
+				name = pop_luxury_textile
+				add = 0.001
+			}
 		}
 		set_variable = { 
 			name = pop_luxury_pottery
 			value = pop_luxury_pottery
 		}
-		change_variable = { 
-			name = pop_luxury_pottery
-			multiply = 10
-		}
-		change_variable = { 
-			name = pop_luxury_pottery
-			divide = this.county.var:trade_price_pottery
-		}
-		set_variable = { 
-			name = pop_update_demand_t
-			value = var:pop_luxury_pottery
-		}
-		change_variable = { 
-			name = pop_luxury_pottery
-			multiply = var:pop_update_demand_t
-		}
-		change_variable = { 
-			name = pop_luxury_pottery
-			divide = 10
-		}
-		change_variable = { 
-			name = pop_luxury_pottery
-			multiply = var:pop_update_demand_t
+		if = { 
+			limit = { 
+				has_variable = pop_luxury_pottery
+				var:pop_luxury_pottery > 0
+			}
+			change_variable = { 
+				name = pop_luxury_pottery
+				multiply = 10
+			}
+			change_variable = { 
+				name = pop_luxury_pottery
+				divide = this.county.var:trade_price_pottery
+			}
+			set_variable = { 
+				name = pop_update_demand_t
+				value = var:pop_luxury_pottery
+			}
+			change_variable = { 
+				name = pop_luxury_pottery
+				multiply = var:pop_update_demand_t
+			}
+			change_variable = { 
+				name = pop_luxury_pottery
+				divide = 10
+			}
+			change_variable = { 
+				name = pop_luxury_pottery
+				multiply = var:pop_update_demand_t
+			}
+			change_variable = { 
+				name = pop_luxury_pottery
+				add = 0.001
+			}
 		}
 		set_variable = { 
 			name = pop_luxury_furniture
 			value = pop_luxury_furniture
 		}
-		change_variable = { 
-			name = pop_luxury_furniture
-			multiply = 10
-		}
-		change_variable = { 
-			name = pop_luxury_furniture
-			divide = this.county.var:trade_price_furniture
-		}
-		set_variable = { 
-			name = pop_update_demand_t
-			value = var:pop_luxury_furniture
-		}
-		change_variable = { 
-			name = pop_luxury_furniture
-			multiply = var:pop_update_demand_t
-		}
-		change_variable = { 
-			name = pop_luxury_furniture
-			divide = 10
-		}
-		change_variable = { 
-			name = pop_luxury_furniture
-			multiply = var:pop_update_demand_t
+		if = { 
+			limit = { 
+				has_variable = pop_luxury_furniture
+				var:pop_luxury_furniture > 0
+			}
+			change_variable = { 
+				name = pop_luxury_furniture
+				multiply = 10
+			}
+			change_variable = { 
+				name = pop_luxury_furniture
+				divide = this.county.var:trade_price_furniture
+			}
+			set_variable = { 
+				name = pop_update_demand_t
+				value = var:pop_luxury_furniture
+			}
+			change_variable = { 
+				name = pop_luxury_furniture
+				multiply = var:pop_update_demand_t
+			}
+			change_variable = { 
+				name = pop_luxury_furniture
+				divide = 10
+			}
+			change_variable = { 
+				name = pop_luxury_furniture
+				multiply = var:pop_update_demand_t
+			}
+			change_variable = { 
+				name = pop_luxury_furniture
+				add = 0.001
+			}
 		}
 		set_variable = { 
 			name = pop_update_demand_t

@@ -267,12 +267,21 @@ pop_get_need = {
 pop_update_demand_helper_0 = {
 	^^goods^
 		set_variable = { name = pop_$type$_&goods& value = pop_$type$_&goods& }
-		change_variable = { name = pop_$type$_&goods& multiply = 10 }
-		change_variable = { name = pop_$type$_&goods& divide = this.county.var:trade_price_&goods& }
-		set_variable = { name = pop_update_demand_t value = var:pop_$type$_&goods& }
-		change_variable = { name = pop_$type$_&goods& multiply = var:pop_update_demand_t }
-		change_variable = { name = pop_$type$_&goods& divide = 10 }
-		change_variable = { name = pop_$type$_&goods& multiply = var:pop_update_demand_t }
+		
+		if = {
+			limit = {
+				has_variable = pop_$type$_&goods&
+				
+				var:pop_$type$_&goods& > 0
+			}
+			change_variable = { name = pop_$type$_&goods& multiply = 10 }
+			change_variable = { name = pop_$type$_&goods& divide = this.county.var:trade_price_&goods& }
+			set_variable = { name = pop_update_demand_t value = var:pop_$type$_&goods& }
+			change_variable = { name = pop_$type$_&goods& multiply = var:pop_update_demand_t }
+			change_variable = { name = pop_$type$_&goods& divide = 10 }
+			change_variable = { name = pop_$type$_&goods& multiply = var:pop_update_demand_t }
+			change_variable = { name = pop_$type$_&goods& add = 0.001 }
+		}
 	^
 	
 	set_variable = { name = pop_update_demand_t value = 0 }
