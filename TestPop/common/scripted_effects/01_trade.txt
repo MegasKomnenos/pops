@@ -1456,9 +1456,9 @@ trade_update_price = {
 			}
 			else_if = {
 				limit = {
-					var:trade_price_&goods& < 0.5
+					var:trade_price_&goods& < 1
 				}
-				set_variable = { name = trade_price_&goods& value = 0.5 }
+				set_variable = { name = trade_price_&goods& value = 1 }
 			}
 		^
 		
