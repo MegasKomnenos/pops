@@ -1,0 +1,175 @@
+﻿tech_new_tech = {
+	create_character = {
+		save_temporary_scope_as = tech_new_tech_tmp
+		gender = male
+		trait = character_not_1
+		employer = global_var:arhat
+		faith = global_var:arhat.faith
+		culture = global_var:arhat.culture
+	}
+	
+	set_global_variable = { name = $name$ value = scope:tech_new_tech_tmp }
+	add_to_global_variable_list = { name = tech_techs target = scope:tech_new_tech_tmp }
+}
+
+tech_new_era = {
+	create_character = {
+		save_temporary_scope_as = tech_new_era_tmp
+		gender = male
+		trait = character_not_1
+		employer = global_var:arhat
+		faith = global_var:arhat.faith
+		culture = global_var:arhat.culture
+	}
+	
+	set_global_variable = { name = $name$ value = scope:tech_new_era_tmp }
+	add_to_global_variable_list = { name = tech_eras target = scope:tech_new_era_tmp }
+	
+	tech_add_era_tech_$name$ = yes
+}
+
+tech_add_era_tech = {
+	$era$ = {
+		add_to_variable_list = { name = tech_techs target = $tech$ }
+	}
+	
+	$tech$ = {
+		set_variable = { name = tech_era value = $era$ }
+	}
+}
+
+tech_gain = {
+	$tech$ = {
+		add_to_variable_list = { name = tech_has target = prev }
+	}
+	
+	add_to_variable_list = { name = tech_has target = $tech$ }
+}
+
+tech_lose = {
+	if = {
+		limit = {
+			is_target_in_variable_list = { name = tech_has target = $tech$ }
+		}
+		remove_list_variable = { name = tech_has target = $tech$ }
+		
+		$tech$ = {
+			remove_list_variable = { name = tech_has target = prev }
+		}
+	}
+}
+
+tech_pulse = {
+	every_county = {
+		limit = {
+			is_valid_prov = yes
+		}
+		tech_get_exp = { return = tech_exp }
+		
+		set_variable = { name = tech_pulse_t value = 0 }
+		
+		^^techs^
+			if = {
+				limit = {
+					tech_req_&techs& = yes
+				}
+				tech_weight_&techs& = { return = tech_pulse_&techs& }
+			
+				change_variable = { name = tech_pulse_t add = var:tech_pulse_&techs& }
+			}
+		^
+		
+		if = {
+			limit = {
+				has_variable = tech_pulse_t
+				
+				var:tech_pulse_t > 0
+			}
+			^^techs^
+				if = {
+					limit = {
+						has_variable = tech_pulse_&techs&
+						
+						var:tech_pulse_&techs& > 0
+					}
+					change_variable = { name = tech_pulse_&techs& multiply = 100 }
+					change_variable = { name = tech_pulse_&techs& divide = var:tech_pulse_t }
+					change_variable = { name = tech_pulse_&techs& multiply = var:tech_exp }
+					change_variable = { name = tech_pulse_&techs& divide = 100 }
+					
+					if = {
+						limit = {
+							NOT = {
+								has_variable = tech_prog_&techs&
+							}
+						}
+						set_variable = { name = tech_prog_&techs& value = 0 }
+					}
+					
+					tech_prog_&techs& = { exp = var:tech_pulse_&techs& }
+				}
+			^
+		}
+		
+		^^techs^
+			if = {
+				limit = {
+					has_variable = tech_prog_&techs&
+					
+					var:tech_prog_&techs& >= 100
+				}
+				remove_variable = tech_prog_&techs&
+				
+				tech_gain = { tech = global_var:&techs& }
+			}
+		^
+		
+		save_temporary_scope_as = tech_pulse_root
+		
+		^^eras^
+			if = {
+				limit = {
+					NOT = {
+						is_target_in_variable_list = { name = tech_has target = global_var:&eras& }
+					}
+				}
+				set_variable = { name = tech_pulse_t value = 0 }
+			
+				global_var:&eras& = {
+					every_in_list = {
+						variable = tech_techs
+						
+						scope:tech_pulse_root = {
+							if = {
+								limit = {
+									is_target_in_variable_list = { name = tech_has target = prev }
+								}
+								change_variable = { name = tech_pulse_t add = 1 }
+							}
+						}
+					}
+				}
+				
+				tech_get_threshold_&eras& = { return = tech_pulse_tt }
+				
+				if = {
+					limit = {
+						has_variable = tech_pulse_t
+						
+						var:tech_pulse_t > 0
+						
+						var:tech_pulse_t = {
+							compare_value >= prev.var:tech_pulse_tt
+						}
+					}
+					tech_gain = { tech = global_var:&eras& }
+				}
+			}
+		^
+		
+		remove_variable = tech_pulse_t
+		remove_variable = tech_pulse_tt
+		
+		^^techs^remove_variable = tech_pulse_&techs&^
+	}
+}
