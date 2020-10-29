@@ -47,7 +47,7 @@ class World:
                         
 
         for prov in self.provs.values():
-            prov.e /= 500000
+            prov.e /= 100000
             prov.e = int(prov.e)
 
         string = ''
