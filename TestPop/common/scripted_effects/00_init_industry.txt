@@ -14,6 +14,13 @@
 		sply_fiber = 1.5
 	}
 	prod_new_template = {
+		name = mud
+		land_type = farm
+		labor = 0.7
+		land = 0.3
+		sply_mud = 1.5
+	}
+	prod_new_template = {
 		name = livestock
 		land_type = pasture
 		labor = 0.3
@@ -196,8 +203,18 @@
 		labor = 0.5
 		land = 0.5
 		sply_industrial = 1.5
-		dmnd_timber = 1.5
+		dmnd_timber = 0.5
 		dmnd_metal = 1.5
+		dmnd_fuel = 1
+	}
+	prod_new_template = {
+		name = bricks
+		land_type = workshop
+		labor = 0.5
+		land = 0.5
+		sply_industrial = 1
+		dmnd_mud = 2
+		dmnd_fuel = 1
 	}
 }
 
@@ -217,11 +234,6 @@ init_industry = {
 				has_variable = has_Food
 			}
 			remove_variable = has_Food
-			
-			prod_new_instance = {
-				template = crop
-				location = scope:init_industry_select
-			}
 		}
 		if = {
 			limit = {
@@ -240,10 +252,6 @@ init_industry = {
 			}
 			remove_variable = has_Pasture
 			
-			prod_new_instance = {
-				template = livestock
-				location = scope:init_industry_select
-			}
 			prod_new_instance = {
 				template = wool
 				location = scope:init_industry_select
@@ -490,6 +498,35 @@ init_industry = {
 				location = scope:init_industry_select
 			}
 		}
+		
+		if = {
+			limit = {
+				has_variable = farm_total
+				
+				var:farm_total > 0
+			}
+			prod_new_instance = {
+				template = crop
+				location = scope:init_industry_select
+			}
+			prod_new_instance = {
+				template = mud
+				location = scope:init_industry_select
+			}
+		}
+		
+		if = {
+			limit = {
+				has_variable = pasture_total
+				
+				var:pasture_total > 0
+			}
+			prod_new_instance = {
+				template = livestock
+				location = scope:init_industry_select
+			}
+		}
+		
 		if = {
 			limit = {
 				has_variable = has_CashcropWest
@@ -548,6 +585,10 @@ init_industry = {
 			}
 			prod_new_instance = {
 				template = processed
+				location = scope:init_industry_select
+			}
+			prod_new_instance = {
+				template = bricks
 				location = scope:init_industry_select
 			}
 		}
