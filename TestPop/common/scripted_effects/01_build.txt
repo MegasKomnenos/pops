@@ -13,8 +13,6 @@
 	set_global_variable = { name = $name$ value = scope:build_new_template_temp }
 	
 	scope:build_new_template_temp = {
-		set_variable = { name = build_labor value = $labor$ }
-		
 		^^buildings^[[&buildings&] set_variable = { name = build_&buildings& value = $&buildings&$ } ]^
 		^^goods^[[&goods&] set_variable = { name = build_&goods& value = $&goods&$ } ]^
 	}
@@ -51,6 +49,10 @@ build_new_slot = {
 			set_variable = { name = build_id value = prev.var:build_slots_num }
 		}
 	}
+}
+
+build_do_maint = {
+	change_variable = { name = $building$_total multiply = 0.98 }
 }
 
 build_start_project = {
@@ -105,11 +107,6 @@ build_start_project = {
 }
 
 build_set_dmnd = {
-	set_variable = { name = build_labor value = var:build_name.var:build_labor }
-	change_variable = { name = build_labor multiply = var:build_para }
-	change_variable = { name = build_labor multiply = var:build_prog }
-	change_variable = { name = build_labor divide = 100 }
-	
 	var:build_name = {
 		^^goods^
 			if = {
@@ -164,33 +161,7 @@ build_set_dmnd = {
 }
 
 build_update_project = {
-	set_variable = { name = build_update_project_t value = 0 }
-	
-	if = {
-		limit = {
-			has_variable = build_in_labor
-			
-			var:build_in_labor > 0
-		}
-		set_variable = { name = build_update_project_t value = var:build_in_labor }
-		change_variable = { name = build_update_project_t multiply = 100 }
-		change_variable = { name = build_update_project_t divide = var:build_labor }
-	}
-	else_if = {
-		limit = {
-			OR = {
-				NOT = {
-					has_variable = build_labor
-				}
-				
-				var:build_labor = 0
-			}
-		}
-		set_variable = { name = build_update_project_t value = 100 }
-	}
-	else = {
-		set_variable = { name = build_update_project_t value = 0 }
-	}
+	set_variable = { name = build_update_project_t value = 100 }
 	
 	^^goods^
 		if = {
@@ -254,9 +225,6 @@ build_update_project = {
 			remove_variable = build_prog
 			remove_variable = build_pay
 			remove_variable = build_owner
-			
-			remove_variable = build_labor
-			remove_variable = build_in_labor
 			
 			^^goods^
 				remove_variable = build_&goods&
