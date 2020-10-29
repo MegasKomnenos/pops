@@ -74,6 +74,87 @@
 				set_variable = { name = extraction_total value = 0 }
 			}
 			
+			set_variable = { name = workshop_max value = 210000 }
+			
+			set_variable = { name = farm_max value = var:farm_total }
+			set_variable = { name = pasture_max value = var:pasture_total }
+			set_variable = { name = forest_max value = var:forest_total }
+			set_variable = { name = extraction_max value = var:extraction_total }
+			
+			change_variable = { name = farm_max multiply = 2 }
+			change_variable = { name = pasture_max multiply = 2 }
+			change_variable = { name = forest_max multiply = 2 }
+			change_variable = { name = extraction_max multiply = 2 }
+			
+			set_variable = { name = init_main_t value = var:farm_total }
+			change_variable = { name = init_main_t add = var:pasture_total }
+			change_variable = { name = init_main_t add = var:forest_total }
+			change_variable = { name = init_main_t add = var:extraction_total }
+			change_variable = { name = init_main_t add = var:workshop_total }
+			change_variable = { name = init_main_t divide = 1.5 }
+			
+			change_variable = { name = farm_total multiply = var:pop_total }
+			change_variable = { name = pasture_total multiply = var:pop_total }
+			change_variable = { name = forest_total multiply = var:pop_total }
+			change_variable = { name = extraction_total multiply = var:pop_total }
+			
+			change_variable = { name = farm_total divide = var:init_main_t }
+			change_variable = { name = pasture_total divide = var:init_main_t }
+			change_variable = { name = forest_total divide = var:init_main_t }
+			change_variable = { name = extraction_total divide = var:init_main_t }
+			
+			change_variable = { name = farm_total divide = 1000 }
+			change_variable = { name = farm_total multiply = 1000 }
+			change_variable = { name = farm_total add = 1 }
+			
+			change_variable = { name = pasture_total divide = 1000 }
+			change_variable = { name = pasture_total multiply = 1000 }
+			change_variable = { name = pasture_total add = 1 }
+			
+			change_variable = { name = forest_total divide = 1000 }
+			change_variable = { name = forest_total multiply = 1000 }
+			change_variable = { name = forest_total add = 1 }
+			
+			change_variable = { name = extraction_total divide = 1000 }
+			change_variable = { name = extraction_total multiply = 1000 }
+			
+			if = {
+				limit = {
+					var:farm_total = {
+						compare_value > prev.var:farm_max
+					}
+				}
+				set_variable = { name = farm_total value = var:farm_max }
+			}
+			if = {
+				limit = {
+					var:pasture_total = {
+						compare_value > prev.var:pasture_max
+					}
+				}
+				set_variable = { name = pasture_total value = var:pasture_max }
+			}
+			if = {
+				limit = {
+					var:forest_total = {
+						compare_value > prev.var:forest_max
+					}
+				}
+				set_variable = { name = forest_total value = var:forest_max }
+			}
+			if = {
+				limit = {
+					has_variable = extraction_total 
+					
+					var:extraction_total > 0
+					
+					var:extraction_total = {
+						compare_value > prev.var:extraction_max
+					}
+				}
+				set_variable = { name = extraction_total value = var:extraction_max }
+			}
+			
 			set_variable = { name = pop_pay_serf value = 0 }
 			set_variable = { name = pop_pay_free value = 0 }
 			
