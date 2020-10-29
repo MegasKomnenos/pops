@@ -161,25 +161,43 @@
 		land_type = workshop
 		labor = 0.5
 		land = 0.5
-		sply_textile = 1
-		dmnd_fiber = 2
+		sply_textile = 1.5
+		dmnd_fiber = 3
 	}
 	prod_new_template = {
 		name = pottery
 		land_type = workshop
 		labor = 0.5
 		land = 0.5
-		sply_pottery = 1
-		dmnd_fuel = 2
+		sply_pottery = 1.5
+		dmnd_fuel = 3
 	}
 	prod_new_template = {
 		name = furniture
 		land_type = workshop
 		labor = 0.5
 		land = 0.5
-		sply_furniture = 1
+		sply_furniture = 1.5
+		dmnd_timber = 2
+		dmnd_metal = 1
+	}
+	prod_new_template = {
+		name = tools
+		land_type = workshop
+		labor = 0.5
+		land = 0.5
+		sply_tools = 1.5
+		dmnd_timber = 1
+		dmnd_metal = 2
+	}
+	prod_new_template = {
+		name = processed
+		land_type = workshop
+		labor = 0.5
+		land = 0.5
+		sply_industrial = 1.5
 		dmnd_timber = 1.5
-		dmnd_metal = 0.5
+		dmnd_metal = 1.5
 	}
 }
 
@@ -522,6 +540,14 @@ init_industry = {
 			}
 			prod_new_instance = {
 				template = furniture
+				location = scope:init_industry_select
+			}
+			prod_new_instance = {
+				template = tools
+				location = scope:init_industry_select
+			}
+			prod_new_instance = {
+				template = processed
 				location = scope:init_industry_select
 			}
 		}
