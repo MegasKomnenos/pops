@@ -1,0 +1,285 @@
+﻿build_new_template = {
+	create_character = {
+		save_temporary_scope_as = build_new_template_temp
+		gender = male
+		trait = character_not_1
+		employer = global_var:arhat
+		faith = global_var:arhat.faith
+		culture = global_var:arhat.culture
+	}
+	
+	add_to_global_variable_list = { name = build_templates target = scope:build_new_template_temp }
+	
+	set_global_variable = { name = $name$ value = scope:build_new_template_temp }
+	
+	scope:build_new_template_temp = {
+		set_variable = { name = build_labor value = $labor$ }
+		
+		^^buildings^[[&buildings&] set_variable = { name = build_&buildings& value = $&buildings&$ } ]^
+		^^goods^[[&goods&] set_variable = { name = build_&goods& value = $&goods&$ } ]^
+	}
+}
+
+build_new_slot = {
+	create_character = {
+		save_temporary_scope_as = build_new_slot_temp
+		gender = male
+		trait = character_not_1
+		employer = global_var:arhat
+		faith = global_var:arhat.faith
+		culture = global_var:arhat.culture
+	}
+	
+	add_to_global_variable_list = { name = build_slots target = scope:build_new_slot_temp }
+	
+	$location$ = {
+		add_to_variable_list = { name = build_slots target = scope:build_new_slot_temp }
+		
+		if = {
+			limit = {
+				NOT = {
+					has_variable = build_slots_num
+				}
+			}
+			set_variable = { name = build_slots_num value = 0 }
+		}
+		
+		change_variable = { name = build_slots_num add = 1 }
+		
+		scope:build_new_slot_temp = {
+			set_variable = { name = build_location value = prev }
+			set_variable = { name = build_id value = prev.var:build_slots_num }
+		}
+	}
+}
+
+build_start_project = {
+	if = {
+		limit = {
+			OR = {
+				NOT = {
+					has_variable_list = build_slots
+				}
+				
+				variable_list_size = { name = build_slots value = 0 }
+				
+				any_in_list = {
+					variable = build_slots
+					count = all
+					
+					has_variable = build_active
+				}
+			}
+		}
+		build_new_slot = { location = this }
+	}
+	
+	ordered_in_list = {
+		limit = {
+			NOT = {
+				has_variable = build_active
+			}
+		}
+		variable = build_slots
+		order_by = build_start_project_order_value
+		position = 0
+		
+		set_variable = { name = build_active value = $size$ }
+		set_variable = { name = build_para value = $para$ }
+		set_variable = { name = build_name value = global_var:$name$ }
+		set_variable = { name = build_prog value = 100 }
+		
+		if = {
+			limit = {
+				var:build_para = {
+					compare_value > prev.var:build_active
+				}
+			}
+			set_variable = { name = build_para value = var:build_active }
+		}
+		
+		build_set_dmnd = yes
+	}
+}
+
+build_set_dmnd = {
+	set_variable = { name = build_labor value = var:build_name.var:build_labor }
+	change_variable = { name = build_labor multiply = var:build_para }
+	change_variable = { name = build_labor multiply = var:build_prog }
+	change_variable = { name = build_labor divide = 100 }
+	
+	var:build_name = {
+		^^goods^
+			if = {
+				limit = {
+					has_variable = build_&goods&
+				}
+				prev = {
+					set_variable = { name = build_&goods& value = prev.var:build_&goods& }
+				}
+			}
+		^
+	}
+	
+	set_variable = { name = build_set_dmnd_t value = 0 }
+	
+	^^goods^
+		if = {
+			limit = {
+				has_variable = build_&goods&
+			}
+			change_variable = { name = build_&goods& multiply = 10 }
+			change_variable = { name = build_&goods& divide = var:build_location.county.var:trade_price_&goods& }
+			change_variable = { name = build_&goods& multiply = var:build_&goods& }
+			change_variable = { name = build_&goods& add = 0.001 }
+			change_variable = { name = build_set_dmnd_t add = var:build_&goods& }
+		}
+	^
+	
+	if = {
+		limit = {
+			has_variable = build_set_dmnd_t
+			
+			var:build_set_dmnd_t > 0
+		}
+		^^goods^
+			if = {
+				limit = {
+					has_variable = build_&goods&
+				}
+				change_variable = { name = build_&goods& multiply = 10 }
+				change_variable = { name = build_&goods& divide = var:build_set_dmnd_t }
+				change_variable = { name = build_&goods& multiply = var:build_prog }
+				change_variable = { name = build_&goods& divide = 100 }
+				change_variable = { name = build_&goods& multiply = var:build_para }
+				change_variable = { name = build_&goods& divide = var:build_name.var:build_&goods& }
+				change_variable = { name = build_&goods& divide = 10 }
+			}
+		^
+	}
+	
+	remove_variable = build_set_dmnd_t
+}
+
+build_update_project = {
+	set_variable = { name = build_update_project_t value = 0 }
+	
+	if = {
+		limit = {
+			has_variable = build_in_labor
+			
+			var:build_in_labor > 0
+		}
+		set_variable = { name = build_update_project_t value = var:build_in_labor }
+		change_variable = { name = build_update_project_t multiply = 100 }
+		change_variable = { name = build_update_project_t divide = var:build_labor }
+	}
+	else_if = {
+		limit = {
+			OR = {
+				NOT = {
+					has_variable = build_labor
+				}
+				
+				var:build_labor = 0
+			}
+		}
+		set_variable = { name = build_update_project_t value = 100 }
+	}
+	else = {
+		set_variable = { name = build_update_project_t value = 0 }
+	}
+	
+	^^goods^
+		if = {
+			limit = {
+				has_variable = build_in_&goods&
+			}
+			set_variable = { name = build_update_project_tt value = var:build_in_&goods& }
+			change_variable = { name = build_update_project_tt multiply = var:build_update_project_t }
+			change_variable = { name = build_update_project_tt multiply = var:build_name.var:build_&goods& }
+			change_variable = { name = build_update_project_tt divide = var:build_para }
+			
+			change_variable = { name = build_prog subtract = var:build_update_project_tt }
+		}
+	^
+	
+	if = {
+		limit = {
+			OR = {
+				NOT = {
+					has_variable = build_prog
+				}
+				
+				var:build_prog = 0
+				
+				var:build_prog < 1
+			}
+		}
+		^^buildings^
+			if = {
+				limit = {
+					var:build_name = {
+						has_variable = build_&buildings&
+					}
+				}
+				var:build_location = {
+					set_variable = { name = build_update_project_t value = prev.var:build_name.var:build_&buildings& }
+					change_variable = { name = build_update_project_t multiply = prev.var:build_para }
+					
+					change_variable = { name = &buildings&_total add = var:build_update_project_t }
+					
+					remove_variable = build_update_project_t
+				}
+			}
+		^
+		
+		change_variable = { name = build_active subtract = build_para }
+		
+		if = {
+			limit = {
+				OR = {
+					NOT = {
+						has_variable = build_active
+					}
+					
+					var:build_active = 0
+				}
+			}
+			remove_variable = build_active
+			remove_variable = build_para
+			remove_variable = build_name
+			remove_variable = build_prog
+			
+			remove_variable = build_labor
+			remove_variable = build_in_labor
+			
+			^^goods^
+				remove_variable = build_&goods&
+				remove_variable = build_in_&goods&
+			^
+		}
+		else = {
+			set_variable = { name = build_prog value = 100 }
+			
+			if = {
+				limit = {
+					var:build_para = {
+						compare_value > prev.var:build_active
+					}
+				}
+				set_variable = { name = build_para value = var:build_active }
+			}
+		}
+	}
+	
+	if = {
+		limit = {
+			has_variable = build_prog
+		}
+		build_set_dmnd = yes
+	}
+	
+	remove_variable = build_update_project_t
+	remove_variable = build_update_project_tt
+}
