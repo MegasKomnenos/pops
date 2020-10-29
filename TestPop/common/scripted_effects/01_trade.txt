@@ -802,6 +802,24 @@ trade_do_trade_helper_0 = {
 			^
 		}
 		
+		every_in_list = {
+			limit = {
+				has_variable = build_active
+			}
+			variable = build_slots
+			
+			^^goods^
+				if = { 
+					limit = { 
+						has_variable = build_&goods& 
+					} 
+					scope:trade_do_trade_select = { 
+						change_variable = { name = trade_dmnd_&goods& add = prev.var:build_&goods& } 
+					} 
+				}
+			^
+		}
+		
 		scope:trade_do_trade_select = {
 			^^goods^
 				change_variable = { name = trade_dmnd_&goods& add = prev.var:pop_calorie_&goods& }
@@ -1138,6 +1156,17 @@ trade_resolve_trade = {
 			set_variable = { name = prod_pay_&goods& value = 0 }
 		^
 	}
+	every_in_global_list = {
+		limit = {
+			has_variable = build_active
+		}
+		variable = build_slots
+		
+		^^goods^
+			set_variable = { name = build_in_&goods& value = 0 }
+			set_variable = { name = build_pay_&goods& value = 0 }
+		^
+	}
 	
 	every_county = {
 		limit = {
@@ -1184,6 +1213,28 @@ trade_resolve_trade = {
 			}
 		^
 	}
+	every_in_global_list = {
+		limit = {
+			has_variable = build_active
+		}
+		variable = build_slots
+		
+		set_variable = { name = build_pay value = 0 }  
+		
+		^^goods^
+			if = {
+				limit = {
+					has_variable = build_pay_&goods&
+					
+					var:build_pay_&goods& > 0
+				}
+				change_variable = { name = build_pay add = var:build_pay_&goods& }
+			}
+			else = {
+				remove_variable = build_pay_&goods&
+			}
+		^
+	}
 	
 	every_province = {
 		limit = {
@@ -1215,6 +1266,40 @@ trade_resolve_trade = {
 		change_variable = { name = pop_pay_serf add = var:pop_pay_luxury }
 		change_variable = { name = pop_pay_serf subtract = var:trade_resolve_trade_t }
 		change_variable = { name = pop_pay_free add = var:trade_resolve_trade_t }
+		
+		every_in_list = {
+			limit = {
+				has_variable = build_pay
+				
+				var:build_pay > 0
+			}
+			if = {
+				limit = {
+					var:build_owner = 1
+				}
+				prev = {
+					change_variable = { name = pop_pay_serf add = prev.var:build_pay }
+				}
+			}
+			else_if = {
+				limit = {
+					var:build_owner = 2
+				}
+				prev = {
+					change_variable = { name = pop_pay_free add = prev.var:build_pay }
+				}
+			}
+			else = {
+				prev = {
+					set_variable = { name = trade_resolve_trade_t value = prev.var:build_pay }
+					change_variable = { name = trade_resolve_trade_t multiply = var:pop_freedom }
+					
+					change_variable = { name = pop_pay_serf add = prev.var:build_pay }
+					change_variable = { name = pop_pay_serf subtract = var:trade_resolve_trade_t }
+					change_variable = { name = pop_pay_free add = var:trade_resolve_trade_t }
+				}
+			}
+		}
 		
 		set_variable = { name = trade_resolve_trade_t value = 0 }
 		
@@ -1399,6 +1484,19 @@ trade_resolve_trade_helper_1 = {
 				set_variable = { name = prod_pay_$good$ value = var:prod_dmnd_$good$ }
 				change_variable = { name = prod_pay_$good$ multiply = prev.var:trade_resolve_trade_t }
 			}
+			every_in_list = {
+				limit = {
+					has_variable = build_$good$
+				}
+				variable = build_slots
+				
+				set_variable = { name = build_in_$good$ value = var:build_$good$ }
+				change_variable = { name = build_in_$good$ multiply = prev.var:trade_resolve_trade_tt }
+				change_variable = { name = build_in_$good$ divide = 100 }
+				
+				set_variable = { name = build_pay_$good$ value = var:build_$good$ }
+				change_variable = { name = build_pay_$good$ multiply = prev.var:trade_resolve_trade_t }
+			}
 		}
 	}
 	else = {
@@ -1423,6 +1521,16 @@ trade_resolve_trade_helper_1 = {
 				variable = prod_instances
 				
 				set_variable = { name = prod_in_$good$ value = 0 }
+				set_variable = { name = prod_pay_$good$ value = 0 }
+			}
+			every_in_list = {
+				limit = {
+					has_variable = build_$good$
+				}
+				variable = build_slots
+				
+				set_variable = { name = build_in_$good$ value = 0 }
+				set_variable = { name = build_pay_$good$ value = 0 }
 			}
 		}
 	}

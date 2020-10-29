@@ -88,6 +88,8 @@ build_start_project = {
 		set_variable = { name = build_para value = $para$ }
 		set_variable = { name = build_name value = global_var:$name$ }
 		set_variable = { name = build_prog value = 100 }
+		set_variable = { name = build_pay value = 0 }
+		set_variable = { name = build_owner value = $owner$ }
 		
 		if = {
 			limit = {
@@ -250,6 +252,8 @@ build_update_project = {
 			remove_variable = build_para
 			remove_variable = build_name
 			remove_variable = build_prog
+			remove_variable = build_pay
+			remove_variable = build_owner
 			
 			remove_variable = build_labor
 			remove_variable = build_in_labor
@@ -257,6 +261,7 @@ build_update_project = {
 			^^goods^
 				remove_variable = build_&goods&
 				remove_variable = build_in_&goods&
+				remove_variable = build_pay_&goods&
 			^
 		}
 		else = {
