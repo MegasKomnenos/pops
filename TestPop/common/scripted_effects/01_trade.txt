@@ -348,9 +348,9 @@ trade_do_trade = {
 						
 						prev = {
 							set_variable = { name = trade_do_trade_t value = prev.var:trade_point_&goods& }
-							change_variable = { name = trade_do_trade_t multiply = 0.01 }
+							change_variable = { name = trade_do_trade_t multiply = 0.001 }
 							change_variable = { name = trade_point_avg add = var:trade_do_trade_t }
-							change_variable = { name = trade_point_avg_div add = 0.01 }
+							change_variable = { name = trade_point_avg_div add = 0.1 }
 						}
 					}
 				^
@@ -954,7 +954,7 @@ trade_do_trade_helper_2 = {
 		set_variable = { name = trade_point_min value = 210000 }
 		set_variable = { name = trade_point_max value = -1 }
 		set_variable = { name = trade_point_avg_foo value = 0.001 }
-		set_variable = { name = trade_point_avg_foo_div value = 0.01 }
+		set_variable = { name = trade_point_avg_foo_div value = 0.1 }
 		
 		every_in_global_list = {
 			limit = {
