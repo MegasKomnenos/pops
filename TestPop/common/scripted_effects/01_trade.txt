@@ -826,18 +826,20 @@ trade_do_trade_helper_0 = {
 				change_variable = { name = trade_dmnd_&goods& add = prev.var:pop_nutrient_&goods& }
 				change_variable = { name = trade_dmnd_&goods& add = prev.var:pop_comfort_&goods& }
 				change_variable = { name = trade_dmnd_&goods& add = prev.var:pop_luxury_&goods& }
-				
-				if = {
-					limit = {
-						has_variable = prod_tools_dmnd_&goods&
-						
-						var:prod_tools_dmnd_&goods& > 0
-					}
-					change_variable = { name = trade_dmnd_&goods& add = var:prod_tools_dmnd_&goods& }
-				}
 			^
 		}
 	}
+	
+	^^goods^
+		if = {
+			limit = {
+				has_variable = prod_tools_dmnd_&goods&
+				
+				var:prod_tools_dmnd_&goods& > 0
+			}
+			change_variable = { name = trade_dmnd_&goods& add = var:prod_tools_dmnd_&goods& }
+		}
+	^
 }
 
 trade_do_trade_helper_1 = {
