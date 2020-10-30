@@ -1155,12 +1155,12 @@ trade_resolve_trade = {
 		set_variable = { name = pop_pay_comfort value = 0 }
 		set_variable = { name = pop_pay_luxury value = 0 }
 		
-		set_variable = { name = prod_pay_tools value = 0 }
-		
 		^^goods^set_variable = { name = prod_earn_&goods& value = 0 }^
 	}
 	every_in_global_list = {
 		variable = prod_instances
+		
+		set_variable = { name = prod_pay_tools value = 0 }
 		
 		^^goods^
 			set_variable = { name = prod_earn_&goods& value = 0 }
@@ -1197,21 +1197,10 @@ trade_resolve_trade = {
 				change_variable = { name = trade_resolve_trade_t add = prev.var:prod_size }
 			}
 		}
-		
-		every_county_province = {
-			limit = {
-				is_valid_prov = yes
-			}
-			set_variable = { name = prod_pay_tools value = 0 }
-		
-			every_in_list = {
-				variable = prod_instances
-				
-				prev = {
-					change_variable = { name = prod_pay_tools add = prev.var:prod_size }
-				}
-			}
+		every_in_list = {
+			variable = prod_instances
 			
+			set_variable = { name = prod_pay_tools value = var:prod_size }
 			change_variable = { name = prod_pay_tools multiply = 100 }
 			change_variable = { name = prod_pay_tools divide = prev.var:trade_resolve_trade_t }
 			change_variable = { name = prod_pay_tools multiply = prev.var:prod_pay }
@@ -1257,8 +1246,18 @@ trade_resolve_trade = {
 			}
 		^
 		
+		if = {
+			limit = {
+				has_variable = prod_pay_tools
+				
+				var:prod_pay_tools > 0
+			}
+			change_variable = { name = prod_pay add = var:prod_pay_tools }
+		}
+		
 		remove_variable = trade_resolve_trade_t
 	}
+	
 	every_in_global_list = {
 		limit = {
 			has_variable = build_active
@@ -1352,8 +1351,6 @@ trade_resolve_trade = {
 		set_variable = { name = trade_resolve_trade_t value = 0 }
 		
 		^^goods^change_variable = { name = trade_resolve_trade_t add = var:prod_earn_&goods& }^
-		
-		change_variable = { name = trade_resolve_trade_t subtract = var:prod_pay_tools }
 		
 		every_in_list = {
 			variable = prod_instances

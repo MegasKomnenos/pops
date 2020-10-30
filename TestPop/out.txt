@@ -34802,10 +34802,6 @@
 			value = 0
 		}
 		set_variable = { 
-			name = prod_pay_tools
-			value = 0
-		}
-		set_variable = { 
 			name = prod_earn_food
 			value = 0
 		}
@@ -34868,6 +34864,10 @@
 	}
 	every_in_global_list = { 
 		variable = prod_instances
+		set_variable = { 
+			name = prod_pay_tools
+			value = 0
+		}
 		set_variable = { 
 			name = prod_earn_food
 			value = 0
@@ -42531,22 +42531,11 @@
 				}
 			}
 		}
-		every_county_province = { 
-			limit = { 
-				is_valid_prov = yes
-			}
+		every_in_list = { 
+			variable = prod_instances
 			set_variable = { 
 				name = prod_pay_tools
-				value = 0
-			}
-			every_in_list = { 
-				variable = prod_instances
-				prev = { 
-					change_variable = { 
-						name = prod_pay_tools
-						add = prev.var:prod_size
-					}
-				}
+				value = var:prod_size
 			}
 			change_variable = { 
 				name = prod_pay_tools
@@ -42977,6 +42966,16 @@
 		else = { 
 			remove_variable = prod_earn_industrial
 		}
+		if = { 
+			limit = { 
+				has_variable = prod_pay_tools
+				var:prod_pay_tools > 0
+			}
+			change_variable = { 
+				name = prod_pay
+				add = var:prod_pay_tools
+			}
+		}
 		remove_variable = trade_resolve_trade_t
 	}
 	every_in_global_list = { 
@@ -43392,10 +43391,6 @@
 		change_variable = { 
 			name = trade_resolve_trade_t
 			add = var:prod_earn_industrial
-		}
-		change_variable = { 
-			name = trade_resolve_trade_t
-			subtract = var:prod_pay_tools
 		}
 		every_in_list = { 
 			variable = prod_instances
