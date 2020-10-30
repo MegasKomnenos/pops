@@ -299,6 +299,7 @@ trade_do_trade = {
 						}
 						set_variable = { name = trade_point_&goods& value = var:trade_price_&goods& }
 						change_variable = { name = trade_point_&goods& subtract = prev.var:trade_price_&goods& }
+						change_variable = { name = trade_point_&goods& divide = trade_power_cost_&goods& }
 						change_variable = { name = trade_point_&goods& divide = var:trade_cost }
 						change_variable = { name = trade_point_&goods& divide = 100 }
 						change_variable = { name = trade_point_&goods& multiply = var:trade_point_&goods& }
@@ -375,6 +376,7 @@ trade_do_trade = {
 					set_variable = { name = trade_cost_&goods& value = var:trade_buy_&goods& }
 					change_variable = { name = trade_cost_&goods& add = var:trade_sell_&goods& }
 					change_variable = { name = trade_cost_&goods& multiply = var:trade_cost }
+					change_variable = { name = trade_cost_&goods& multiply = trade_power_cost_&goods& }
 				^
 				
 				prev = {
@@ -462,6 +464,7 @@ trade_do_trade = {
 								set_variable = { name = trade_cost_&goods& value = var:trade_buy_&goods& }
 								change_variable = { name = trade_cost_&goods& add = var:trade_sell_&goods& }
 								change_variable = { name = trade_cost_&goods& multiply = var:trade_cost }
+								change_variable = { name = trade_cost_&goods& multiply = trade_power_cost_&goods& }
 							}
 						^
 					}
@@ -555,6 +558,7 @@ trade_do_trade = {
 							set_variable = { name = trade_cost_&goods& value = var:trade_buy_&goods& }
 							change_variable = { name = trade_cost_&goods& add = var:trade_sell_&goods& }
 							change_variable = { name = trade_cost_&goods& multiply = var:trade_cost }
+							change_variable = { name = trade_cost_&goods& multiply = trade_power_cost_&goods& }
 						}
 					^
 					
@@ -591,6 +595,7 @@ trade_do_trade = {
 						set_variable = { name = trade_cost_&goods& value = var:trade_buy_&goods& }
 						change_variable = { name = trade_cost_&goods& add = var:trade_sell_&goods& }
 						change_variable = { name = trade_cost_&goods& multiply = var:trade_cost }
+						change_variable = { name = trade_cost_&goods& multiply = trade_power_cost_&goods& }
 					^
 					
 					prev = {

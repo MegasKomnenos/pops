@@ -1,10 +1,20 @@
 ﻿init_industry_templates = {
 	prod_new_template = {
-		name = crop
+		name = vegetables
 		land_type = farm
 		labor = 0.4
 		land = 0.6
 		sply_food = 2
+	}
+	prod_new_template = {
+		name = crop
+		land_type = farm
+		labor = 0.5
+		land = 0.5
+		sply_cereal = 2
+		dmnd_pottery = 0.05
+		dmnd_mud = 0.1
+		dmnd_fuel = 0.2
 	}
 	prod_new_template = {
 		name = fiber
@@ -37,12 +47,20 @@
 		sply_fiber = 1
 	}
 	prod_new_template = {
+		name = dairy_aged
+		land_type = pasture
+		labor = 0.4
+		land = 0.6
+		sply_salted = 2
+		dmnd_salt = 0.5
+	}
+	prod_new_template = {
 		name = nomadic
 		land_type = pasture
 		labor = 0.3
 		land = 0.7
 		sply_food = 0.8
-		sply_salt = 0.4
+		sply_salted = 0.2
 		sply_fiber = 0.1
 		sply_fuel = 0.1
 		sply_timber = 0.1
@@ -88,10 +106,10 @@
 		land_type = forest
 		labor = 0.2
 		land = 0.8
-		sply_food = 0.6
-		sply_salt = 0.2
+		sply_food = 0.4
+		sply_salted = 0.4
 		sply_fiber = 0.4
-		sply_exotics_g = 0.3
+		sply_exotics_g = 0.2
 	}
 	prod_new_template = {
 		name = metal
@@ -99,6 +117,7 @@
 		labor = 0.2
 		land = 0.8
 		sply_metal = 1.5
+		dmnd_fuel = 0.3
 	}
 	prod_new_template = {
 		name = gold
@@ -106,6 +125,7 @@
 		labor = 0.2
 		land = 0.8
 		sply_exotics_g = 0.8
+		dmnd_fuel = 0.3
 	}
 	prod_new_template = {
 		name = silver
@@ -113,6 +133,7 @@
 		labor = 0.2
 		land = 0.8
 		sply_exotics_g = 0.6
+		dmnd_fuel = 0.3
 	}
 	prod_new_template = {
 		name = gems
@@ -126,14 +147,14 @@
 		land_type = extraction
 		labor = 0.2
 		land = 0.8
-		sply_exotics_g = 0.6
+		sply_exotics_g = 0.4
 	}
 	prod_new_template = {
 		name = pearls
 		land_type = extraction
 		labor = 0.2
 		land = 0.8
-		sply_exotics_g = 0.6
+		sply_exotics_g = 0.4
 	}
 	prod_new_template = {
 		name = dye
@@ -154,14 +175,16 @@
 		land_type = farm
 		labor = 0.2
 		land = 0.8
-		sply_exotics_e = 0.5
+		sply_exotics_e = 0.6
+		dmnd_fuel = 0.2
 	}
 	prod_new_template = {
 		name = wine
 		land_type = farm
 		labor = 0.2
 		land = 0.8
-		sply_exotics_w = 0.5
+		sply_exotics_w = 0.6
+		dmnd_pottery = 0.05
 	}
 	prod_new_template = {
 		name = textile
@@ -181,15 +204,6 @@
 		dmnd_fuel = 2
 	}
 	prod_new_template = {
-		name = furniture
-		land_type = workshop
-		labor = 0.5
-		land = 0.5
-		sply_furniture = 1.5
-		dmnd_timber = 2
-		dmnd_metal = 1
-	}
-	prod_new_template = {
 		name = tools
 		land_type = workshop
 		labor = 0.5
@@ -200,21 +214,11 @@
 		dmnd_fuel = 0.5
 	}
 	prod_new_template = {
-		name = processed
-		land_type = workshop
-		labor = 0.5
-		land = 0.5
-		sply_industrial = 1.5
-		dmnd_timber = 0.5
-		dmnd_metal = 1.5
-		dmnd_fuel = 1
-	}
-	prod_new_template = {
 		name = bricks
 		land_type = workshop
 		labor = 0.5
 		land = 0.5
-		sply_industrial = 1
+		sply_tools = 1
 		dmnd_mud = 2
 		dmnd_fuel = 1
 	}
@@ -512,6 +516,10 @@ init_industry = {
 				var:farm_total > 0
 			}
 			prod_new_instance = {
+				template = vegetables
+				location = scope:init_industry_select
+			}
+			prod_new_instance = {
 				template = crop
 				location = scope:init_industry_select
 			}
@@ -529,6 +537,10 @@ init_industry = {
 			}
 			prod_new_instance = {
 				template = livestock
+				location = scope:init_industry_select
+			}
+			prod_new_instance = {
+				template = dairy_aged
 				location = scope:init_industry_select
 			}
 		}
@@ -582,15 +594,7 @@ init_industry = {
 				location = scope:init_industry_select
 			}
 			prod_new_instance = {
-				template = furniture
-				location = scope:init_industry_select
-			}
-			prod_new_instance = {
 				template = tools
-				location = scope:init_industry_select
-			}
-			prod_new_instance = {
-				template = processed
 				location = scope:init_industry_select
 			}
 			prod_new_instance = {
