@@ -1,17 +1,21 @@
 ﻿modi_refresh = {
 	every_county = {
+		limit = {
+			is_valid_prov = yes
+		}
 		modi_prod = yes
 		modi_pop = yes
-		
-		every_county_province = {
-			modi_prod = yes
-		}
 	}
 }
 
 modi_prod = {
-	^^goods^set_variable = { name = modi_prod_dmnd_&goods& value = 1 }^
-	^^goods^set_variable = { name = modi_prod_sply_&goods& value = 1 }^
+	^^goods^
+		set_variable = { name = modi_prod_dmnd_&goods& value = 1 }
+		set_variable = { name = modi_prod_sply_&goods& value = 1 }
+		
+		change_variable = { name = modi_prod_dmnd_&goods& multiply = var:prod_effic }
+		change_variable = { name = modi_prod_sply_&goods& multiply = var:prod_effic }
+	^
 }
 
 modi_pop = {

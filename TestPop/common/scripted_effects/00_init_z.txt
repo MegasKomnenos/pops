@@ -18,8 +18,6 @@
 	init_tech = yes
 	init_buildings = yes
 	
-	modi_refresh = yes
-	
 	every_province = {
 		limit = {
 			is_valid_prov = yes
@@ -47,10 +45,31 @@
 			set_variable = { name = trade_sum_sply_&goods& value = 0 }
 		^
 		
+		set_variable = { name = prod_tools value = 0 }
+		set_variable = { name = prod_effic value = 1 }
+		
+		set_variable = { name = prod_tools_mud value = 0.25 }
+		set_variable = { name = prod_tools_timber value = 0.5 }
+		set_variable = { name = prod_tools_metal value = 1 }
+		set_variable = { name = prod_tools_tools value = 8 }
+		set_variable = { name = prod_tools_industrial value = 4 }
+		
+		set_variable = { name = prod_tools_dmnd_mud value = 0 }
+		set_variable = { name = prod_tools_dmnd_timber value = 0 }
+		set_variable = { name = prod_tools_dmnd_metal value = 0 }
+		set_variable = { name = prod_tools_dmnd_tools value = 0 }
+		set_variable = { name = prod_tools_dmnd_industrial value = 0 }
+		
+		set_variable = { name = prod_tools_in_mud value = 0 }
+		set_variable = { name = prod_tools_in_timber value = 0 }
+		set_variable = { name = prod_tools_in_metal value = 0 }
+		set_variable = { name = prod_tools_in_tools value = 0 }
+		set_variable = { name = prod_tools_in_industrial value = 0 }
+		
 		every_county_province = {
 			limit = {
 				is_valid_prov = yes
-			}
+			}	
 			^^goods^set_variable = { name = prod_has_&goods& value = 1 }^
 			
 			prev = {
@@ -178,4 +197,6 @@
 			remove_variable = forest_score
 		}
 	}
+	
+	modi_refresh = yes
 }
