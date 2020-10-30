@@ -401,7 +401,7 @@ init_industry = {
 				OR = {
 					has_variable = has_Seasalt
 					
-					var:prov_sea = 2
+					has_variable_list = prov_port
 				}
 			}
 			pow_effect = {
@@ -410,17 +410,21 @@ init_industry = {
 				return = init_industry_t
 			}
 			
+			change_variable = { name = init_industry_t multiply = 2 }
+			change_variable = { name = init_industry_t add = 1 }
+			
 			if = {
 				limit = {
 					has_variable = has_Seasalt
 				}
 				remove_variable = has_Seasalt
 				
-				change_variable = { name = init_industry_t multiply = 5 }
+				change_variable = { name = init_industry_t multiply = 3 }
+				change_variable = { name = init_industry_t add = 5 }
 			}
 			if = {
 				limit = {
-					var:prov_sea = 2
+					has_variable_list = prov_port
 				}
 				if = {
 					limit = {
