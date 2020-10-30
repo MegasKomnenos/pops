@@ -1,5 +1,5 @@
 ﻿while = { 
-	count = 100
+	count = 300
 	every_county = { 
 		limit = { 
 			is_valid_prov = yes
@@ -15979,6 +15979,16 @@
 						name = trade_point_food
 						subtract = prev.var:trade_price_food
 					}
+					if = { 
+						limit = { 
+							has_variable = trade_point_food
+							var:trade_point_food < 0
+						}
+						change_variable = { 
+							name = trade_point_food
+							multiply = -1
+						}
+					}
 					change_variable = { 
 						name = trade_point_food
 						multiply = 10
@@ -16087,6 +16097,16 @@
 					change_variable = { 
 						name = trade_point_cereal
 						subtract = prev.var:trade_price_cereal
+					}
+					if = { 
+						limit = { 
+							has_variable = trade_point_cereal
+							var:trade_point_cereal < 0
+						}
+						change_variable = { 
+							name = trade_point_cereal
+							multiply = -1
+						}
 					}
 					change_variable = { 
 						name = trade_point_cereal
@@ -16197,6 +16217,16 @@
 						name = trade_point_salted
 						subtract = prev.var:trade_price_salted
 					}
+					if = { 
+						limit = { 
+							has_variable = trade_point_salted
+							var:trade_point_salted < 0
+						}
+						change_variable = { 
+							name = trade_point_salted
+							multiply = -1
+						}
+					}
 					change_variable = { 
 						name = trade_point_salted
 						multiply = 10
@@ -16305,6 +16335,16 @@
 					change_variable = { 
 						name = trade_point_salt
 						subtract = prev.var:trade_price_salt
+					}
+					if = { 
+						limit = { 
+							has_variable = trade_point_salt
+							var:trade_point_salt < 0
+						}
+						change_variable = { 
+							name = trade_point_salt
+							multiply = -1
+						}
 					}
 					change_variable = { 
 						name = trade_point_salt
@@ -16415,6 +16455,16 @@
 						name = trade_point_mud
 						subtract = prev.var:trade_price_mud
 					}
+					if = { 
+						limit = { 
+							has_variable = trade_point_mud
+							var:trade_point_mud < 0
+						}
+						change_variable = { 
+							name = trade_point_mud
+							multiply = -1
+						}
+					}
 					change_variable = { 
 						name = trade_point_mud
 						multiply = 10
@@ -16523,6 +16573,16 @@
 					change_variable = { 
 						name = trade_point_fuel
 						subtract = prev.var:trade_price_fuel
+					}
+					if = { 
+						limit = { 
+							has_variable = trade_point_fuel
+							var:trade_point_fuel < 0
+						}
+						change_variable = { 
+							name = trade_point_fuel
+							multiply = -1
+						}
 					}
 					change_variable = { 
 						name = trade_point_fuel
@@ -16633,6 +16693,16 @@
 						name = trade_point_fiber
 						subtract = prev.var:trade_price_fiber
 					}
+					if = { 
+						limit = { 
+							has_variable = trade_point_fiber
+							var:trade_point_fiber < 0
+						}
+						change_variable = { 
+							name = trade_point_fiber
+							multiply = -1
+						}
+					}
 					change_variable = { 
 						name = trade_point_fiber
 						multiply = 10
@@ -16741,6 +16811,16 @@
 					change_variable = { 
 						name = trade_point_timber
 						subtract = prev.var:trade_price_timber
+					}
+					if = { 
+						limit = { 
+							has_variable = trade_point_timber
+							var:trade_point_timber < 0
+						}
+						change_variable = { 
+							name = trade_point_timber
+							multiply = -1
+						}
 					}
 					change_variable = { 
 						name = trade_point_timber
@@ -16851,6 +16931,16 @@
 						name = trade_point_metal
 						subtract = prev.var:trade_price_metal
 					}
+					if = { 
+						limit = { 
+							has_variable = trade_point_metal
+							var:trade_point_metal < 0
+						}
+						change_variable = { 
+							name = trade_point_metal
+							multiply = -1
+						}
+					}
 					change_variable = { 
 						name = trade_point_metal
 						multiply = 10
@@ -16959,6 +17049,16 @@
 					change_variable = { 
 						name = trade_point_exotics_w
 						subtract = prev.var:trade_price_exotics_w
+					}
+					if = { 
+						limit = { 
+							has_variable = trade_point_exotics_w
+							var:trade_point_exotics_w < 0
+						}
+						change_variable = { 
+							name = trade_point_exotics_w
+							multiply = -1
+						}
 					}
 					change_variable = { 
 						name = trade_point_exotics_w
@@ -17069,6 +17169,16 @@
 						name = trade_point_exotics_e
 						subtract = prev.var:trade_price_exotics_e
 					}
+					if = { 
+						limit = { 
+							has_variable = trade_point_exotics_e
+							var:trade_point_exotics_e < 0
+						}
+						change_variable = { 
+							name = trade_point_exotics_e
+							multiply = -1
+						}
+					}
 					change_variable = { 
 						name = trade_point_exotics_e
 						multiply = 10
@@ -17177,6 +17287,16 @@
 					change_variable = { 
 						name = trade_point_exotics_g
 						subtract = prev.var:trade_price_exotics_g
+					}
+					if = { 
+						limit = { 
+							has_variable = trade_point_exotics_g
+							var:trade_point_exotics_g < 0
+						}
+						change_variable = { 
+							name = trade_point_exotics_g
+							multiply = -1
+						}
 					}
 					change_variable = { 
 						name = trade_point_exotics_g
@@ -17287,6 +17407,16 @@
 						name = trade_point_textile
 						subtract = prev.var:trade_price_textile
 					}
+					if = { 
+						limit = { 
+							has_variable = trade_point_textile
+							var:trade_point_textile < 0
+						}
+						change_variable = { 
+							name = trade_point_textile
+							multiply = -1
+						}
+					}
 					change_variable = { 
 						name = trade_point_textile
 						multiply = 10
@@ -17396,6 +17526,16 @@
 						name = trade_point_pottery
 						subtract = prev.var:trade_price_pottery
 					}
+					if = { 
+						limit = { 
+							has_variable = trade_point_pottery
+							var:trade_point_pottery < 0
+						}
+						change_variable = { 
+							name = trade_point_pottery
+							multiply = -1
+						}
+					}
 					change_variable = { 
 						name = trade_point_pottery
 						multiply = 10
@@ -17504,6 +17644,16 @@
 					change_variable = { 
 						name = trade_point_tools
 						subtract = prev.var:trade_price_tools
+					}
+					if = { 
+						limit = { 
+							has_variable = trade_point_tools
+							var:trade_point_tools < 0
+						}
+						change_variable = { 
+							name = trade_point_tools
+							multiply = -1
+						}
 					}
 					change_variable = { 
 						name = trade_point_tools

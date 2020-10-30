@@ -299,6 +299,16 @@ trade_do_trade = {
 						}
 						set_variable = { name = trade_point_&goods& value = var:trade_price_&goods& }
 						change_variable = { name = trade_point_&goods& subtract = prev.var:trade_price_&goods& }
+						
+						if = {
+							limit = {
+								has_variable = trade_point_&goods&
+								
+								var:trade_point_&goods& < 0
+							}
+							change_variable = { name = trade_point_&goods& multiply = -1 }
+						}
+						
 						change_variable = { name = trade_point_&goods& multiply = 10 }
 						change_variable = { name = trade_point_&goods& add = 1 }
 						change_variable = { name = trade_point_&goods& divide = trade_power_cost_&goods& }
