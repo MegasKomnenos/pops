@@ -3710,9 +3710,21 @@
 				name = prod_tools_old_food
 				value = var:prod_tools_food
 			}
-			set_variable = { 
-				name = prod_tools_in_old_food
-				value = var:prod_tools_in_food
+			if = { 
+				limit = { 
+					has_variable = prod_tools_in_food
+					var:prod_tools_in_food > 0
+				}
+				set_variable = { 
+					name = prod_tools_in_old_food
+					value = var:prod_tools_in_food
+				}
+			}
+			else = { 
+				set_variable = { 
+					name = prod_tools_in_old_food
+					value = 0
+				}
 			}
 			set_variable = { 
 				name = prod_tools_food
@@ -3750,9 +3762,21 @@
 				name = prod_tools_old_salt
 				value = var:prod_tools_salt
 			}
-			set_variable = { 
-				name = prod_tools_in_old_salt
-				value = var:prod_tools_in_salt
+			if = { 
+				limit = { 
+					has_variable = prod_tools_in_salt
+					var:prod_tools_in_salt > 0
+				}
+				set_variable = { 
+					name = prod_tools_in_old_salt
+					value = var:prod_tools_in_salt
+				}
+			}
+			else = { 
+				set_variable = { 
+					name = prod_tools_in_old_salt
+					value = 0
+				}
 			}
 			set_variable = { 
 				name = prod_tools_salt
@@ -3790,9 +3814,21 @@
 				name = prod_tools_old_mud
 				value = var:prod_tools_mud
 			}
-			set_variable = { 
-				name = prod_tools_in_old_mud
-				value = var:prod_tools_in_mud
+			if = { 
+				limit = { 
+					has_variable = prod_tools_in_mud
+					var:prod_tools_in_mud > 0
+				}
+				set_variable = { 
+					name = prod_tools_in_old_mud
+					value = var:prod_tools_in_mud
+				}
+			}
+			else = { 
+				set_variable = { 
+					name = prod_tools_in_old_mud
+					value = 0
+				}
 			}
 			set_variable = { 
 				name = prod_tools_mud
@@ -3830,9 +3866,21 @@
 				name = prod_tools_old_fuel
 				value = var:prod_tools_fuel
 			}
-			set_variable = { 
-				name = prod_tools_in_old_fuel
-				value = var:prod_tools_in_fuel
+			if = { 
+				limit = { 
+					has_variable = prod_tools_in_fuel
+					var:prod_tools_in_fuel > 0
+				}
+				set_variable = { 
+					name = prod_tools_in_old_fuel
+					value = var:prod_tools_in_fuel
+				}
+			}
+			else = { 
+				set_variable = { 
+					name = prod_tools_in_old_fuel
+					value = 0
+				}
 			}
 			set_variable = { 
 				name = prod_tools_fuel
@@ -3870,9 +3918,21 @@
 				name = prod_tools_old_fiber
 				value = var:prod_tools_fiber
 			}
-			set_variable = { 
-				name = prod_tools_in_old_fiber
-				value = var:prod_tools_in_fiber
+			if = { 
+				limit = { 
+					has_variable = prod_tools_in_fiber
+					var:prod_tools_in_fiber > 0
+				}
+				set_variable = { 
+					name = prod_tools_in_old_fiber
+					value = var:prod_tools_in_fiber
+				}
+			}
+			else = { 
+				set_variable = { 
+					name = prod_tools_in_old_fiber
+					value = 0
+				}
 			}
 			set_variable = { 
 				name = prod_tools_fiber
@@ -3910,9 +3970,21 @@
 				name = prod_tools_old_timber
 				value = var:prod_tools_timber
 			}
-			set_variable = { 
-				name = prod_tools_in_old_timber
-				value = var:prod_tools_in_timber
+			if = { 
+				limit = { 
+					has_variable = prod_tools_in_timber
+					var:prod_tools_in_timber > 0
+				}
+				set_variable = { 
+					name = prod_tools_in_old_timber
+					value = var:prod_tools_in_timber
+				}
+			}
+			else = { 
+				set_variable = { 
+					name = prod_tools_in_old_timber
+					value = 0
+				}
 			}
 			set_variable = { 
 				name = prod_tools_timber
@@ -3950,9 +4022,21 @@
 				name = prod_tools_old_metal
 				value = var:prod_tools_metal
 			}
-			set_variable = { 
-				name = prod_tools_in_old_metal
-				value = var:prod_tools_in_metal
+			if = { 
+				limit = { 
+					has_variable = prod_tools_in_metal
+					var:prod_tools_in_metal > 0
+				}
+				set_variable = { 
+					name = prod_tools_in_old_metal
+					value = var:prod_tools_in_metal
+				}
+			}
+			else = { 
+				set_variable = { 
+					name = prod_tools_in_old_metal
+					value = 0
+				}
 			}
 			set_variable = { 
 				name = prod_tools_metal
@@ -3990,9 +4074,21 @@
 				name = prod_tools_old_exotics_w
 				value = var:prod_tools_exotics_w
 			}
-			set_variable = { 
-				name = prod_tools_in_old_exotics_w
-				value = var:prod_tools_in_exotics_w
+			if = { 
+				limit = { 
+					has_variable = prod_tools_in_exotics_w
+					var:prod_tools_in_exotics_w > 0
+				}
+				set_variable = { 
+					name = prod_tools_in_old_exotics_w
+					value = var:prod_tools_in_exotics_w
+				}
+			}
+			else = { 
+				set_variable = { 
+					name = prod_tools_in_old_exotics_w
+					value = 0
+				}
 			}
 			set_variable = { 
 				name = prod_tools_exotics_w
@@ -4030,9 +4126,21 @@
 				name = prod_tools_old_exotics_e
 				value = var:prod_tools_exotics_e
 			}
-			set_variable = { 
-				name = prod_tools_in_old_exotics_e
-				value = var:prod_tools_in_exotics_e
+			if = { 
+				limit = { 
+					has_variable = prod_tools_in_exotics_e
+					var:prod_tools_in_exotics_e > 0
+				}
+				set_variable = { 
+					name = prod_tools_in_old_exotics_e
+					value = var:prod_tools_in_exotics_e
+				}
+			}
+			else = { 
+				set_variable = { 
+					name = prod_tools_in_old_exotics_e
+					value = 0
+				}
 			}
 			set_variable = { 
 				name = prod_tools_exotics_e
@@ -4070,9 +4178,21 @@
 				name = prod_tools_old_exotics_g
 				value = var:prod_tools_exotics_g
 			}
-			set_variable = { 
-				name = prod_tools_in_old_exotics_g
-				value = var:prod_tools_in_exotics_g
+			if = { 
+				limit = { 
+					has_variable = prod_tools_in_exotics_g
+					var:prod_tools_in_exotics_g > 0
+				}
+				set_variable = { 
+					name = prod_tools_in_old_exotics_g
+					value = var:prod_tools_in_exotics_g
+				}
+			}
+			else = { 
+				set_variable = { 
+					name = prod_tools_in_old_exotics_g
+					value = 0
+				}
 			}
 			set_variable = { 
 				name = prod_tools_exotics_g
@@ -4110,9 +4230,21 @@
 				name = prod_tools_old_textile
 				value = var:prod_tools_textile
 			}
-			set_variable = { 
-				name = prod_tools_in_old_textile
-				value = var:prod_tools_in_textile
+			if = { 
+				limit = { 
+					has_variable = prod_tools_in_textile
+					var:prod_tools_in_textile > 0
+				}
+				set_variable = { 
+					name = prod_tools_in_old_textile
+					value = var:prod_tools_in_textile
+				}
+			}
+			else = { 
+				set_variable = { 
+					name = prod_tools_in_old_textile
+					value = 0
+				}
 			}
 			set_variable = { 
 				name = prod_tools_textile
@@ -4150,9 +4282,21 @@
 				name = prod_tools_old_pottery
 				value = var:prod_tools_pottery
 			}
-			set_variable = { 
-				name = prod_tools_in_old_pottery
-				value = var:prod_tools_in_pottery
+			if = { 
+				limit = { 
+					has_variable = prod_tools_in_pottery
+					var:prod_tools_in_pottery > 0
+				}
+				set_variable = { 
+					name = prod_tools_in_old_pottery
+					value = var:prod_tools_in_pottery
+				}
+			}
+			else = { 
+				set_variable = { 
+					name = prod_tools_in_old_pottery
+					value = 0
+				}
 			}
 			set_variable = { 
 				name = prod_tools_pottery
@@ -4190,9 +4334,21 @@
 				name = prod_tools_old_furniture
 				value = var:prod_tools_furniture
 			}
-			set_variable = { 
-				name = prod_tools_in_old_furniture
-				value = var:prod_tools_in_furniture
+			if = { 
+				limit = { 
+					has_variable = prod_tools_in_furniture
+					var:prod_tools_in_furniture > 0
+				}
+				set_variable = { 
+					name = prod_tools_in_old_furniture
+					value = var:prod_tools_in_furniture
+				}
+			}
+			else = { 
+				set_variable = { 
+					name = prod_tools_in_old_furniture
+					value = 0
+				}
 			}
 			set_variable = { 
 				name = prod_tools_furniture
@@ -4230,9 +4386,21 @@
 				name = prod_tools_old_tools
 				value = var:prod_tools_tools
 			}
-			set_variable = { 
-				name = prod_tools_in_old_tools
-				value = var:prod_tools_in_tools
+			if = { 
+				limit = { 
+					has_variable = prod_tools_in_tools
+					var:prod_tools_in_tools > 0
+				}
+				set_variable = { 
+					name = prod_tools_in_old_tools
+					value = var:prod_tools_in_tools
+				}
+			}
+			else = { 
+				set_variable = { 
+					name = prod_tools_in_old_tools
+					value = 0
+				}
 			}
 			set_variable = { 
 				name = prod_tools_tools
@@ -4270,9 +4438,21 @@
 				name = prod_tools_old_industrial
 				value = var:prod_tools_industrial
 			}
-			set_variable = { 
-				name = prod_tools_in_old_industrial
-				value = var:prod_tools_in_industrial
+			if = { 
+				limit = { 
+					has_variable = prod_tools_in_industrial
+					var:prod_tools_in_industrial > 0
+				}
+				set_variable = { 
+					name = prod_tools_in_old_industrial
+					value = var:prod_tools_in_industrial
+				}
+			}
+			else = { 
+				set_variable = { 
+					name = prod_tools_in_old_industrial
+					value = 0
+				}
 			}
 			set_variable = { 
 				name = prod_tools_industrial

@@ -271,7 +271,18 @@ prod_update_instances = {
 					}
 				}
 				set_variable = { name = prod_tools_old_&goods& value = var:prod_tools_&goods& }
-				set_variable = { name = prod_tools_in_old_&goods& value = var:prod_tools_in_&goods& }
+				
+				if = {
+					limit = {
+						has_variable = prod_tools_in_&goods&
+						
+						var:prod_tools_in_&goods& > 0
+					}
+					set_variable = { name = prod_tools_in_old_&goods& value = var:prod_tools_in_&goods& }
+				}
+				else = {
+					set_variable = { name = prod_tools_in_old_&goods& value = 0 }
+				}
 				
 				set_variable = { name = prod_tools_&goods& value = var:prod_template.var:prod_tools_&goods& }
 				change_variable = { name = prod_tools_&goods& multiply = 10 }
