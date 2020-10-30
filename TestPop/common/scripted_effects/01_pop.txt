@@ -35,6 +35,9 @@ pop_resolve_demand_helper = {
 		change_variable = { name = pop_resolve_demand_t multiply = pop_$type$_$good$ }
 		change_variable = { name = pop_$type$ add = var:pop_resolve_demand_t }
 	}
+	else = {
+		remove_variable = pop_$type$_actual_$good$
+	}
 }
 
 pop_update_demand = {
@@ -319,5 +322,8 @@ pop_update_demand_helper_2 = {
 		}
 		change_variable = { name = pop_$type$_$good$ multiply = var:pop_$type$ }
 		change_variable = { name = pop_$type$_$good$ divide = pop_$type$_$good$ }
+	}
+	else = {
+		remove_variable = pop_$type$_$good$
 	}
 }

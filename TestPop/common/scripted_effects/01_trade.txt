@@ -205,7 +205,7 @@ trade_do_trade = {
 				set_variable = { name = trade_cost value = var:trade_do_trade_dist }
 				change_variable = { name = trade_cost divide = 40 }
 				change_variable = { name = trade_cost add = 1 }
-				change_variable = { name = trade_cost divide = 100 }
+				change_variable = { name = trade_cost divide = 10 }
 			}
 			
 			^^goods^
@@ -299,11 +299,11 @@ trade_do_trade = {
 						}
 						set_variable = { name = trade_point_&goods& value = var:trade_price_&goods& }
 						change_variable = { name = trade_point_&goods& subtract = prev.var:trade_price_&goods& }
+						change_variable = { name = trade_point_&goods& multiply = 5 }
 						change_variable = { name = trade_point_&goods& divide = trade_power_cost_&goods& }
 						change_variable = { name = trade_point_&goods& divide = var:trade_cost }
-						change_variable = { name = trade_point_&goods& divide = 100 }
 						change_variable = { name = trade_point_&goods& multiply = var:trade_point_&goods& }
-						change_variable = { name = trade_point_&goods& add = 0.1 }
+						change_variable = { name = trade_point_&goods& add = 0.01 }
 					}
 					else = {
 						remove_variable = trade_point_&goods&
@@ -825,14 +825,40 @@ trade_do_trade_helper_0 = {
 			^
 		}
 		
-		scope:trade_do_trade_select = {
-			^^goods^
-				change_variable = { name = trade_dmnd_&goods& add = prev.var:pop_calorie_&goods& }
-				change_variable = { name = trade_dmnd_&goods& add = prev.var:pop_nutrient_&goods& }
-				change_variable = { name = trade_dmnd_&goods& add = prev.var:pop_comfort_&goods& }
-				change_variable = { name = trade_dmnd_&goods& add = prev.var:pop_luxury_&goods& }
-			^
-		}
+		^^goods^
+			if = {
+				limit = {
+					has_variable = pop_calorie_&goods&
+				}
+				scope:trade_do_trade_select = {
+					change_variable = { name = trade_dmnd_&goods& add = prev.var:pop_calorie_&goods& }
+				}
+			}
+			if = {
+				limit = {
+					has_variable = pop_nutrient_&goods&
+				}
+				scope:trade_do_trade_select = {
+					change_variable = { name = trade_dmnd_&goods& add = prev.var:pop_nutrient_&goods& }
+				}
+			}
+			if = {
+				limit = {
+					has_variable = pop_comfort_&goods&
+				}
+				scope:trade_do_trade_select = {
+					change_variable = { name = trade_dmnd_&goods& add = prev.var:pop_comfort_&goods& }
+				}
+			}
+			if = {
+				limit = {
+					has_variable = pop_luxury_&goods&
+				}
+				scope:trade_do_trade_select = {
+					change_variable = { name = trade_dmnd_&goods& add = prev.var:pop_luxury_&goods& }
+				}
+			}
+		^
 	}
 	
 	^^goods^
@@ -928,8 +954,8 @@ trade_do_trade_helper_2 = {
 		}
 		set_variable = { name = trade_point_min value = 210000 }
 		set_variable = { name = trade_point_max value = -1 }
-		set_variable = { name = trade_point_avg_foo value = 0.01 }
-		set_variable = { name = trade_point_avg_foo_div value = 0.1 }
+		set_variable = { name = trade_point_avg_foo value = 0.001 }
+		set_variable = { name = trade_point_avg_foo_div value = 0.01 }
 		
 		every_in_global_list = {
 			limit = {
@@ -1357,7 +1383,19 @@ trade_resolve_trade = {
 		
 		set_variable = { name = trade_resolve_trade_t value = 0 }
 		
-		^^goods^change_variable = { name = trade_resolve_trade_t add = var:prod_earn_&goods& }^
+		^^goods^
+			if = {
+				limit = {
+					has_variable = prod_earn_&goods&
+					
+					var:prod_earn_&goods& > 0
+				}
+				change_variable = { name = trade_resolve_trade_t add = var:prod_earn_&goods& }
+			}
+			else = {
+				remove_variable = prod_earn_&goods&
+			}
+		^
 		
 		every_in_list = {
 			variable = prod_instances
@@ -1618,7 +1656,7 @@ trade_resolve_trade_helper_1_helper = {
 		change_variable = { name = pop_pay_$type$ add = var:trade_resolve_trade_t }
 	}
 	else = {
-		set_variable = { name = pop_$type$_actual_$good$ value = 0 }
+		remove_variable = pop_$type$_actual_$good$
 	}
 }
 
