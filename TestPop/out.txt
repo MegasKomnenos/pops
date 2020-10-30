@@ -3088,6 +3088,1963 @@
 		remove_variable = prod_update_instances_t
 		remove_variable = prod_update_instances_tt
 	}
+	every_in_global_list = { 
+		variable = prod_instances
+		change_variable = { 
+			name = prod_tools
+			multiply = 0.9
+		}
+		if = { 
+			limit = { 
+				has_variable = prod_tools_in_food
+				var:prod_tools_in_food > 0
+			}
+			set_variable = { 
+				name = prod_update_instances_t
+				value = var:prod_tools_in_food
+			}
+			change_variable = { 
+				name = prod_update_instances_t
+				multiply = var:prod_template.var:prod_tools_food
+			}
+			change_variable = { 
+				name = prod_tools
+				add = var:prod_update_instances_t
+			}
+		}
+		if = { 
+			limit = { 
+				has_variable = prod_tools_in_salt
+				var:prod_tools_in_salt > 0
+			}
+			set_variable = { 
+				name = prod_update_instances_t
+				value = var:prod_tools_in_salt
+			}
+			change_variable = { 
+				name = prod_update_instances_t
+				multiply = var:prod_template.var:prod_tools_salt
+			}
+			change_variable = { 
+				name = prod_tools
+				add = var:prod_update_instances_t
+			}
+		}
+		if = { 
+			limit = { 
+				has_variable = prod_tools_in_mud
+				var:prod_tools_in_mud > 0
+			}
+			set_variable = { 
+				name = prod_update_instances_t
+				value = var:prod_tools_in_mud
+			}
+			change_variable = { 
+				name = prod_update_instances_t
+				multiply = var:prod_template.var:prod_tools_mud
+			}
+			change_variable = { 
+				name = prod_tools
+				add = var:prod_update_instances_t
+			}
+		}
+		if = { 
+			limit = { 
+				has_variable = prod_tools_in_fuel
+				var:prod_tools_in_fuel > 0
+			}
+			set_variable = { 
+				name = prod_update_instances_t
+				value = var:prod_tools_in_fuel
+			}
+			change_variable = { 
+				name = prod_update_instances_t
+				multiply = var:prod_template.var:prod_tools_fuel
+			}
+			change_variable = { 
+				name = prod_tools
+				add = var:prod_update_instances_t
+			}
+		}
+		if = { 
+			limit = { 
+				has_variable = prod_tools_in_fiber
+				var:prod_tools_in_fiber > 0
+			}
+			set_variable = { 
+				name = prod_update_instances_t
+				value = var:prod_tools_in_fiber
+			}
+			change_variable = { 
+				name = prod_update_instances_t
+				multiply = var:prod_template.var:prod_tools_fiber
+			}
+			change_variable = { 
+				name = prod_tools
+				add = var:prod_update_instances_t
+			}
+		}
+		if = { 
+			limit = { 
+				has_variable = prod_tools_in_timber
+				var:prod_tools_in_timber > 0
+			}
+			set_variable = { 
+				name = prod_update_instances_t
+				value = var:prod_tools_in_timber
+			}
+			change_variable = { 
+				name = prod_update_instances_t
+				multiply = var:prod_template.var:prod_tools_timber
+			}
+			change_variable = { 
+				name = prod_tools
+				add = var:prod_update_instances_t
+			}
+		}
+		if = { 
+			limit = { 
+				has_variable = prod_tools_in_metal
+				var:prod_tools_in_metal > 0
+			}
+			set_variable = { 
+				name = prod_update_instances_t
+				value = var:prod_tools_in_metal
+			}
+			change_variable = { 
+				name = prod_update_instances_t
+				multiply = var:prod_template.var:prod_tools_metal
+			}
+			change_variable = { 
+				name = prod_tools
+				add = var:prod_update_instances_t
+			}
+		}
+		if = { 
+			limit = { 
+				has_variable = prod_tools_in_exotics_w
+				var:prod_tools_in_exotics_w > 0
+			}
+			set_variable = { 
+				name = prod_update_instances_t
+				value = var:prod_tools_in_exotics_w
+			}
+			change_variable = { 
+				name = prod_update_instances_t
+				multiply = var:prod_template.var:prod_tools_exotics_w
+			}
+			change_variable = { 
+				name = prod_tools
+				add = var:prod_update_instances_t
+			}
+		}
+		if = { 
+			limit = { 
+				has_variable = prod_tools_in_exotics_e
+				var:prod_tools_in_exotics_e > 0
+			}
+			set_variable = { 
+				name = prod_update_instances_t
+				value = var:prod_tools_in_exotics_e
+			}
+			change_variable = { 
+				name = prod_update_instances_t
+				multiply = var:prod_template.var:prod_tools_exotics_e
+			}
+			change_variable = { 
+				name = prod_tools
+				add = var:prod_update_instances_t
+			}
+		}
+		if = { 
+			limit = { 
+				has_variable = prod_tools_in_exotics_g
+				var:prod_tools_in_exotics_g > 0
+			}
+			set_variable = { 
+				name = prod_update_instances_t
+				value = var:prod_tools_in_exotics_g
+			}
+			change_variable = { 
+				name = prod_update_instances_t
+				multiply = var:prod_template.var:prod_tools_exotics_g
+			}
+			change_variable = { 
+				name = prod_tools
+				add = var:prod_update_instances_t
+			}
+		}
+		if = { 
+			limit = { 
+				has_variable = prod_tools_in_textile
+				var:prod_tools_in_textile > 0
+			}
+			set_variable = { 
+				name = prod_update_instances_t
+				value = var:prod_tools_in_textile
+			}
+			change_variable = { 
+				name = prod_update_instances_t
+				multiply = var:prod_template.var:prod_tools_textile
+			}
+			change_variable = { 
+				name = prod_tools
+				add = var:prod_update_instances_t
+			}
+		}
+		if = { 
+			limit = { 
+				has_variable = prod_tools_in_pottery
+				var:prod_tools_in_pottery > 0
+			}
+			set_variable = { 
+				name = prod_update_instances_t
+				value = var:prod_tools_in_pottery
+			}
+			change_variable = { 
+				name = prod_update_instances_t
+				multiply = var:prod_template.var:prod_tools_pottery
+			}
+			change_variable = { 
+				name = prod_tools
+				add = var:prod_update_instances_t
+			}
+		}
+		if = { 
+			limit = { 
+				has_variable = prod_tools_in_furniture
+				var:prod_tools_in_furniture > 0
+			}
+			set_variable = { 
+				name = prod_update_instances_t
+				value = var:prod_tools_in_furniture
+			}
+			change_variable = { 
+				name = prod_update_instances_t
+				multiply = var:prod_template.var:prod_tools_furniture
+			}
+			change_variable = { 
+				name = prod_tools
+				add = var:prod_update_instances_t
+			}
+		}
+		if = { 
+			limit = { 
+				has_variable = prod_tools_in_tools
+				var:prod_tools_in_tools > 0
+			}
+			set_variable = { 
+				name = prod_update_instances_t
+				value = var:prod_tools_in_tools
+			}
+			change_variable = { 
+				name = prod_update_instances_t
+				multiply = var:prod_template.var:prod_tools_tools
+			}
+			change_variable = { 
+				name = prod_tools
+				add = var:prod_update_instances_t
+			}
+		}
+		if = { 
+			limit = { 
+				has_variable = prod_tools_in_industrial
+				var:prod_tools_in_industrial > 0
+			}
+			set_variable = { 
+				name = prod_update_instances_t
+				value = var:prod_tools_in_industrial
+			}
+			change_variable = { 
+				name = prod_update_instances_t
+				multiply = var:prod_template.var:prod_tools_industrial
+			}
+			change_variable = { 
+				name = prod_tools
+				add = var:prod_update_instances_t
+			}
+		}
+		if = { 
+			limit = { 
+				OR = { 
+					NOT = { 
+						has_variable = prod_size
+					}
+					var:prod_size = 0
+				}
+			}
+			set_variable = { 
+				name = prod_effic
+				value = 1
+			}
+		}
+		else = { 
+			set_variable = { 
+				name = prod_effic
+				value = var:prod_tools
+			}
+			change_variable = { 
+				name = prod_effic
+				divide = var:prod_size
+			}
+			change_variable = { 
+				name = prod_effic
+				divide = 10
+			}
+			change_variable = { 
+				name = prod_effic
+				add = 1
+			}
+			if = { 
+				limit = { 
+					has_variable = prod_dmnd_food
+					var:prod_dmnd_food > 0
+				}
+				change_variable = { 
+					name = prod_dmnd_food
+					multiply = var:prod_effic
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = prod_sply_food
+					var:prod_sply_food > 0
+				}
+				change_variable = { 
+					name = prod_sply_food
+					multiply = var:prod_effic
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = prod_dmnd_salt
+					var:prod_dmnd_salt > 0
+				}
+				change_variable = { 
+					name = prod_dmnd_salt
+					multiply = var:prod_effic
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = prod_sply_salt
+					var:prod_sply_salt > 0
+				}
+				change_variable = { 
+					name = prod_sply_salt
+					multiply = var:prod_effic
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = prod_dmnd_mud
+					var:prod_dmnd_mud > 0
+				}
+				change_variable = { 
+					name = prod_dmnd_mud
+					multiply = var:prod_effic
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = prod_sply_mud
+					var:prod_sply_mud > 0
+				}
+				change_variable = { 
+					name = prod_sply_mud
+					multiply = var:prod_effic
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = prod_dmnd_fuel
+					var:prod_dmnd_fuel > 0
+				}
+				change_variable = { 
+					name = prod_dmnd_fuel
+					multiply = var:prod_effic
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = prod_sply_fuel
+					var:prod_sply_fuel > 0
+				}
+				change_variable = { 
+					name = prod_sply_fuel
+					multiply = var:prod_effic
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = prod_dmnd_fiber
+					var:prod_dmnd_fiber > 0
+				}
+				change_variable = { 
+					name = prod_dmnd_fiber
+					multiply = var:prod_effic
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = prod_sply_fiber
+					var:prod_sply_fiber > 0
+				}
+				change_variable = { 
+					name = prod_sply_fiber
+					multiply = var:prod_effic
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = prod_dmnd_timber
+					var:prod_dmnd_timber > 0
+				}
+				change_variable = { 
+					name = prod_dmnd_timber
+					multiply = var:prod_effic
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = prod_sply_timber
+					var:prod_sply_timber > 0
+				}
+				change_variable = { 
+					name = prod_sply_timber
+					multiply = var:prod_effic
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = prod_dmnd_metal
+					var:prod_dmnd_metal > 0
+				}
+				change_variable = { 
+					name = prod_dmnd_metal
+					multiply = var:prod_effic
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = prod_sply_metal
+					var:prod_sply_metal > 0
+				}
+				change_variable = { 
+					name = prod_sply_metal
+					multiply = var:prod_effic
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = prod_dmnd_exotics_w
+					var:prod_dmnd_exotics_w > 0
+				}
+				change_variable = { 
+					name = prod_dmnd_exotics_w
+					multiply = var:prod_effic
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = prod_sply_exotics_w
+					var:prod_sply_exotics_w > 0
+				}
+				change_variable = { 
+					name = prod_sply_exotics_w
+					multiply = var:prod_effic
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = prod_dmnd_exotics_e
+					var:prod_dmnd_exotics_e > 0
+				}
+				change_variable = { 
+					name = prod_dmnd_exotics_e
+					multiply = var:prod_effic
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = prod_sply_exotics_e
+					var:prod_sply_exotics_e > 0
+				}
+				change_variable = { 
+					name = prod_sply_exotics_e
+					multiply = var:prod_effic
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = prod_dmnd_exotics_g
+					var:prod_dmnd_exotics_g > 0
+				}
+				change_variable = { 
+					name = prod_dmnd_exotics_g
+					multiply = var:prod_effic
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = prod_sply_exotics_g
+					var:prod_sply_exotics_g > 0
+				}
+				change_variable = { 
+					name = prod_sply_exotics_g
+					multiply = var:prod_effic
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = prod_dmnd_textile
+					var:prod_dmnd_textile > 0
+				}
+				change_variable = { 
+					name = prod_dmnd_textile
+					multiply = var:prod_effic
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = prod_sply_textile
+					var:prod_sply_textile > 0
+				}
+				change_variable = { 
+					name = prod_sply_textile
+					multiply = var:prod_effic
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = prod_dmnd_pottery
+					var:prod_dmnd_pottery > 0
+				}
+				change_variable = { 
+					name = prod_dmnd_pottery
+					multiply = var:prod_effic
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = prod_sply_pottery
+					var:prod_sply_pottery > 0
+				}
+				change_variable = { 
+					name = prod_sply_pottery
+					multiply = var:prod_effic
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = prod_dmnd_furniture
+					var:prod_dmnd_furniture > 0
+				}
+				change_variable = { 
+					name = prod_dmnd_furniture
+					multiply = var:prod_effic
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = prod_sply_furniture
+					var:prod_sply_furniture > 0
+				}
+				change_variable = { 
+					name = prod_sply_furniture
+					multiply = var:prod_effic
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = prod_dmnd_tools
+					var:prod_dmnd_tools > 0
+				}
+				change_variable = { 
+					name = prod_dmnd_tools
+					multiply = var:prod_effic
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = prod_sply_tools
+					var:prod_sply_tools > 0
+				}
+				change_variable = { 
+					name = prod_sply_tools
+					multiply = var:prod_effic
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = prod_dmnd_industrial
+					var:prod_dmnd_industrial > 0
+				}
+				change_variable = { 
+					name = prod_dmnd_industrial
+					multiply = var:prod_effic
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = prod_sply_industrial
+					var:prod_sply_industrial > 0
+				}
+				change_variable = { 
+					name = prod_sply_industrial
+					multiply = var:prod_effic
+				}
+			}
+		}
+		set_variable = { 
+			name = prod_update_instances_t
+			value = 0
+		}
+		if = { 
+			limit = { 
+				var:prod_template = { 
+					has_variable = prod_tools_food
+				}
+			}
+			set_variable = { 
+				name = prod_tools_old_food
+				value = var:prod_tools_food
+			}
+			set_variable = { 
+				name = prod_tools_in_old_food
+				value = var:prod_tools_in_food
+			}
+			set_variable = { 
+				name = prod_tools_food
+				value = var:prod_template.var:prod_tools_food
+			}
+			change_variable = { 
+				name = prod_tools_food
+				multiply = 10
+			}
+			change_variable = { 
+				name = prod_tools_food
+				divide = var:prod_location.county.var:trade_price_food
+			}
+			change_variable = { 
+				name = prod_tools_food
+				multiply = var:prod_tools_food
+			}
+			change_variable = { 
+				name = prod_tools_food
+				add = 0.001
+			}
+			change_variable = { 
+				name = prod_update_instances_t
+				add = var:prod_tools_food
+			}
+			remove_variable = prod_tools_in_food
+		}
+		if = { 
+			limit = { 
+				var:prod_template = { 
+					has_variable = prod_tools_salt
+				}
+			}
+			set_variable = { 
+				name = prod_tools_old_salt
+				value = var:prod_tools_salt
+			}
+			set_variable = { 
+				name = prod_tools_in_old_salt
+				value = var:prod_tools_in_salt
+			}
+			set_variable = { 
+				name = prod_tools_salt
+				value = var:prod_template.var:prod_tools_salt
+			}
+			change_variable = { 
+				name = prod_tools_salt
+				multiply = 10
+			}
+			change_variable = { 
+				name = prod_tools_salt
+				divide = var:prod_location.county.var:trade_price_salt
+			}
+			change_variable = { 
+				name = prod_tools_salt
+				multiply = var:prod_tools_salt
+			}
+			change_variable = { 
+				name = prod_tools_salt
+				add = 0.001
+			}
+			change_variable = { 
+				name = prod_update_instances_t
+				add = var:prod_tools_salt
+			}
+			remove_variable = prod_tools_in_salt
+		}
+		if = { 
+			limit = { 
+				var:prod_template = { 
+					has_variable = prod_tools_mud
+				}
+			}
+			set_variable = { 
+				name = prod_tools_old_mud
+				value = var:prod_tools_mud
+			}
+			set_variable = { 
+				name = prod_tools_in_old_mud
+				value = var:prod_tools_in_mud
+			}
+			set_variable = { 
+				name = prod_tools_mud
+				value = var:prod_template.var:prod_tools_mud
+			}
+			change_variable = { 
+				name = prod_tools_mud
+				multiply = 10
+			}
+			change_variable = { 
+				name = prod_tools_mud
+				divide = var:prod_location.county.var:trade_price_mud
+			}
+			change_variable = { 
+				name = prod_tools_mud
+				multiply = var:prod_tools_mud
+			}
+			change_variable = { 
+				name = prod_tools_mud
+				add = 0.001
+			}
+			change_variable = { 
+				name = prod_update_instances_t
+				add = var:prod_tools_mud
+			}
+			remove_variable = prod_tools_in_mud
+		}
+		if = { 
+			limit = { 
+				var:prod_template = { 
+					has_variable = prod_tools_fuel
+				}
+			}
+			set_variable = { 
+				name = prod_tools_old_fuel
+				value = var:prod_tools_fuel
+			}
+			set_variable = { 
+				name = prod_tools_in_old_fuel
+				value = var:prod_tools_in_fuel
+			}
+			set_variable = { 
+				name = prod_tools_fuel
+				value = var:prod_template.var:prod_tools_fuel
+			}
+			change_variable = { 
+				name = prod_tools_fuel
+				multiply = 10
+			}
+			change_variable = { 
+				name = prod_tools_fuel
+				divide = var:prod_location.county.var:trade_price_fuel
+			}
+			change_variable = { 
+				name = prod_tools_fuel
+				multiply = var:prod_tools_fuel
+			}
+			change_variable = { 
+				name = prod_tools_fuel
+				add = 0.001
+			}
+			change_variable = { 
+				name = prod_update_instances_t
+				add = var:prod_tools_fuel
+			}
+			remove_variable = prod_tools_in_fuel
+		}
+		if = { 
+			limit = { 
+				var:prod_template = { 
+					has_variable = prod_tools_fiber
+				}
+			}
+			set_variable = { 
+				name = prod_tools_old_fiber
+				value = var:prod_tools_fiber
+			}
+			set_variable = { 
+				name = prod_tools_in_old_fiber
+				value = var:prod_tools_in_fiber
+			}
+			set_variable = { 
+				name = prod_tools_fiber
+				value = var:prod_template.var:prod_tools_fiber
+			}
+			change_variable = { 
+				name = prod_tools_fiber
+				multiply = 10
+			}
+			change_variable = { 
+				name = prod_tools_fiber
+				divide = var:prod_location.county.var:trade_price_fiber
+			}
+			change_variable = { 
+				name = prod_tools_fiber
+				multiply = var:prod_tools_fiber
+			}
+			change_variable = { 
+				name = prod_tools_fiber
+				add = 0.001
+			}
+			change_variable = { 
+				name = prod_update_instances_t
+				add = var:prod_tools_fiber
+			}
+			remove_variable = prod_tools_in_fiber
+		}
+		if = { 
+			limit = { 
+				var:prod_template = { 
+					has_variable = prod_tools_timber
+				}
+			}
+			set_variable = { 
+				name = prod_tools_old_timber
+				value = var:prod_tools_timber
+			}
+			set_variable = { 
+				name = prod_tools_in_old_timber
+				value = var:prod_tools_in_timber
+			}
+			set_variable = { 
+				name = prod_tools_timber
+				value = var:prod_template.var:prod_tools_timber
+			}
+			change_variable = { 
+				name = prod_tools_timber
+				multiply = 10
+			}
+			change_variable = { 
+				name = prod_tools_timber
+				divide = var:prod_location.county.var:trade_price_timber
+			}
+			change_variable = { 
+				name = prod_tools_timber
+				multiply = var:prod_tools_timber
+			}
+			change_variable = { 
+				name = prod_tools_timber
+				add = 0.001
+			}
+			change_variable = { 
+				name = prod_update_instances_t
+				add = var:prod_tools_timber
+			}
+			remove_variable = prod_tools_in_timber
+		}
+		if = { 
+			limit = { 
+				var:prod_template = { 
+					has_variable = prod_tools_metal
+				}
+			}
+			set_variable = { 
+				name = prod_tools_old_metal
+				value = var:prod_tools_metal
+			}
+			set_variable = { 
+				name = prod_tools_in_old_metal
+				value = var:prod_tools_in_metal
+			}
+			set_variable = { 
+				name = prod_tools_metal
+				value = var:prod_template.var:prod_tools_metal
+			}
+			change_variable = { 
+				name = prod_tools_metal
+				multiply = 10
+			}
+			change_variable = { 
+				name = prod_tools_metal
+				divide = var:prod_location.county.var:trade_price_metal
+			}
+			change_variable = { 
+				name = prod_tools_metal
+				multiply = var:prod_tools_metal
+			}
+			change_variable = { 
+				name = prod_tools_metal
+				add = 0.001
+			}
+			change_variable = { 
+				name = prod_update_instances_t
+				add = var:prod_tools_metal
+			}
+			remove_variable = prod_tools_in_metal
+		}
+		if = { 
+			limit = { 
+				var:prod_template = { 
+					has_variable = prod_tools_exotics_w
+				}
+			}
+			set_variable = { 
+				name = prod_tools_old_exotics_w
+				value = var:prod_tools_exotics_w
+			}
+			set_variable = { 
+				name = prod_tools_in_old_exotics_w
+				value = var:prod_tools_in_exotics_w
+			}
+			set_variable = { 
+				name = prod_tools_exotics_w
+				value = var:prod_template.var:prod_tools_exotics_w
+			}
+			change_variable = { 
+				name = prod_tools_exotics_w
+				multiply = 10
+			}
+			change_variable = { 
+				name = prod_tools_exotics_w
+				divide = var:prod_location.county.var:trade_price_exotics_w
+			}
+			change_variable = { 
+				name = prod_tools_exotics_w
+				multiply = var:prod_tools_exotics_w
+			}
+			change_variable = { 
+				name = prod_tools_exotics_w
+				add = 0.001
+			}
+			change_variable = { 
+				name = prod_update_instances_t
+				add = var:prod_tools_exotics_w
+			}
+			remove_variable = prod_tools_in_exotics_w
+		}
+		if = { 
+			limit = { 
+				var:prod_template = { 
+					has_variable = prod_tools_exotics_e
+				}
+			}
+			set_variable = { 
+				name = prod_tools_old_exotics_e
+				value = var:prod_tools_exotics_e
+			}
+			set_variable = { 
+				name = prod_tools_in_old_exotics_e
+				value = var:prod_tools_in_exotics_e
+			}
+			set_variable = { 
+				name = prod_tools_exotics_e
+				value = var:prod_template.var:prod_tools_exotics_e
+			}
+			change_variable = { 
+				name = prod_tools_exotics_e
+				multiply = 10
+			}
+			change_variable = { 
+				name = prod_tools_exotics_e
+				divide = var:prod_location.county.var:trade_price_exotics_e
+			}
+			change_variable = { 
+				name = prod_tools_exotics_e
+				multiply = var:prod_tools_exotics_e
+			}
+			change_variable = { 
+				name = prod_tools_exotics_e
+				add = 0.001
+			}
+			change_variable = { 
+				name = prod_update_instances_t
+				add = var:prod_tools_exotics_e
+			}
+			remove_variable = prod_tools_in_exotics_e
+		}
+		if = { 
+			limit = { 
+				var:prod_template = { 
+					has_variable = prod_tools_exotics_g
+				}
+			}
+			set_variable = { 
+				name = prod_tools_old_exotics_g
+				value = var:prod_tools_exotics_g
+			}
+			set_variable = { 
+				name = prod_tools_in_old_exotics_g
+				value = var:prod_tools_in_exotics_g
+			}
+			set_variable = { 
+				name = prod_tools_exotics_g
+				value = var:prod_template.var:prod_tools_exotics_g
+			}
+			change_variable = { 
+				name = prod_tools_exotics_g
+				multiply = 10
+			}
+			change_variable = { 
+				name = prod_tools_exotics_g
+				divide = var:prod_location.county.var:trade_price_exotics_g
+			}
+			change_variable = { 
+				name = prod_tools_exotics_g
+				multiply = var:prod_tools_exotics_g
+			}
+			change_variable = { 
+				name = prod_tools_exotics_g
+				add = 0.001
+			}
+			change_variable = { 
+				name = prod_update_instances_t
+				add = var:prod_tools_exotics_g
+			}
+			remove_variable = prod_tools_in_exotics_g
+		}
+		if = { 
+			limit = { 
+				var:prod_template = { 
+					has_variable = prod_tools_textile
+				}
+			}
+			set_variable = { 
+				name = prod_tools_old_textile
+				value = var:prod_tools_textile
+			}
+			set_variable = { 
+				name = prod_tools_in_old_textile
+				value = var:prod_tools_in_textile
+			}
+			set_variable = { 
+				name = prod_tools_textile
+				value = var:prod_template.var:prod_tools_textile
+			}
+			change_variable = { 
+				name = prod_tools_textile
+				multiply = 10
+			}
+			change_variable = { 
+				name = prod_tools_textile
+				divide = var:prod_location.county.var:trade_price_textile
+			}
+			change_variable = { 
+				name = prod_tools_textile
+				multiply = var:prod_tools_textile
+			}
+			change_variable = { 
+				name = prod_tools_textile
+				add = 0.001
+			}
+			change_variable = { 
+				name = prod_update_instances_t
+				add = var:prod_tools_textile
+			}
+			remove_variable = prod_tools_in_textile
+		}
+		if = { 
+			limit = { 
+				var:prod_template = { 
+					has_variable = prod_tools_pottery
+				}
+			}
+			set_variable = { 
+				name = prod_tools_old_pottery
+				value = var:prod_tools_pottery
+			}
+			set_variable = { 
+				name = prod_tools_in_old_pottery
+				value = var:prod_tools_in_pottery
+			}
+			set_variable = { 
+				name = prod_tools_pottery
+				value = var:prod_template.var:prod_tools_pottery
+			}
+			change_variable = { 
+				name = prod_tools_pottery
+				multiply = 10
+			}
+			change_variable = { 
+				name = prod_tools_pottery
+				divide = var:prod_location.county.var:trade_price_pottery
+			}
+			change_variable = { 
+				name = prod_tools_pottery
+				multiply = var:prod_tools_pottery
+			}
+			change_variable = { 
+				name = prod_tools_pottery
+				add = 0.001
+			}
+			change_variable = { 
+				name = prod_update_instances_t
+				add = var:prod_tools_pottery
+			}
+			remove_variable = prod_tools_in_pottery
+		}
+		if = { 
+			limit = { 
+				var:prod_template = { 
+					has_variable = prod_tools_furniture
+				}
+			}
+			set_variable = { 
+				name = prod_tools_old_furniture
+				value = var:prod_tools_furniture
+			}
+			set_variable = { 
+				name = prod_tools_in_old_furniture
+				value = var:prod_tools_in_furniture
+			}
+			set_variable = { 
+				name = prod_tools_furniture
+				value = var:prod_template.var:prod_tools_furniture
+			}
+			change_variable = { 
+				name = prod_tools_furniture
+				multiply = 10
+			}
+			change_variable = { 
+				name = prod_tools_furniture
+				divide = var:prod_location.county.var:trade_price_furniture
+			}
+			change_variable = { 
+				name = prod_tools_furniture
+				multiply = var:prod_tools_furniture
+			}
+			change_variable = { 
+				name = prod_tools_furniture
+				add = 0.001
+			}
+			change_variable = { 
+				name = prod_update_instances_t
+				add = var:prod_tools_furniture
+			}
+			remove_variable = prod_tools_in_furniture
+		}
+		if = { 
+			limit = { 
+				var:prod_template = { 
+					has_variable = prod_tools_tools
+				}
+			}
+			set_variable = { 
+				name = prod_tools_old_tools
+				value = var:prod_tools_tools
+			}
+			set_variable = { 
+				name = prod_tools_in_old_tools
+				value = var:prod_tools_in_tools
+			}
+			set_variable = { 
+				name = prod_tools_tools
+				value = var:prod_template.var:prod_tools_tools
+			}
+			change_variable = { 
+				name = prod_tools_tools
+				multiply = 10
+			}
+			change_variable = { 
+				name = prod_tools_tools
+				divide = var:prod_location.county.var:trade_price_tools
+			}
+			change_variable = { 
+				name = prod_tools_tools
+				multiply = var:prod_tools_tools
+			}
+			change_variable = { 
+				name = prod_tools_tools
+				add = 0.001
+			}
+			change_variable = { 
+				name = prod_update_instances_t
+				add = var:prod_tools_tools
+			}
+			remove_variable = prod_tools_in_tools
+		}
+		if = { 
+			limit = { 
+				var:prod_template = { 
+					has_variable = prod_tools_industrial
+				}
+			}
+			set_variable = { 
+				name = prod_tools_old_industrial
+				value = var:prod_tools_industrial
+			}
+			set_variable = { 
+				name = prod_tools_in_old_industrial
+				value = var:prod_tools_in_industrial
+			}
+			set_variable = { 
+				name = prod_tools_industrial
+				value = var:prod_template.var:prod_tools_industrial
+			}
+			change_variable = { 
+				name = prod_tools_industrial
+				multiply = 10
+			}
+			change_variable = { 
+				name = prod_tools_industrial
+				divide = var:prod_location.county.var:trade_price_industrial
+			}
+			change_variable = { 
+				name = prod_tools_industrial
+				multiply = var:prod_tools_industrial
+			}
+			change_variable = { 
+				name = prod_tools_industrial
+				add = 0.001
+			}
+			change_variable = { 
+				name = prod_update_instances_t
+				add = var:prod_tools_industrial
+			}
+			remove_variable = prod_tools_in_industrial
+		}
+		if = { 
+			limit = { 
+				has_variable = prod_update_instances_t
+				var:prod_update_instances_t > 0
+			}
+			set_variable = { 
+				name = prod_update_instances_tt
+				value = 0.001
+			}
+			if = { 
+				limit = { 
+					has_variable = prod_tools_food
+					var:prod_tools_food > 0
+				}
+				change_variable = { 
+					name = prod_tools_food
+					multiply = 10
+				}
+				change_variable = { 
+					name = prod_tools_food
+					divide = var:prod_update_instances_t
+				}
+				change_variable = { 
+					name = prod_tools_food
+					divide = var:prod_template.var:prod_tools_food
+				}
+				set_variable = { 
+					name = prod_update_instances_ttt
+					value = var:prod_tools_food
+				}
+				change_variable = { 
+					name = prod_update_instances_ttt
+					multiply = var:prod_location.county.var:trade_price_food
+				}
+				change_variable = { 
+					name = prod_update_instances_ttt
+					divide = 10
+				}
+				change_variable = { 
+					name = prod_update_instances_tt
+					add = var:prod_update_instances_ttt
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = prod_tools_salt
+					var:prod_tools_salt > 0
+				}
+				change_variable = { 
+					name = prod_tools_salt
+					multiply = 10
+				}
+				change_variable = { 
+					name = prod_tools_salt
+					divide = var:prod_update_instances_t
+				}
+				change_variable = { 
+					name = prod_tools_salt
+					divide = var:prod_template.var:prod_tools_salt
+				}
+				set_variable = { 
+					name = prod_update_instances_ttt
+					value = var:prod_tools_salt
+				}
+				change_variable = { 
+					name = prod_update_instances_ttt
+					multiply = var:prod_location.county.var:trade_price_salt
+				}
+				change_variable = { 
+					name = prod_update_instances_ttt
+					divide = 10
+				}
+				change_variable = { 
+					name = prod_update_instances_tt
+					add = var:prod_update_instances_ttt
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = prod_tools_mud
+					var:prod_tools_mud > 0
+				}
+				change_variable = { 
+					name = prod_tools_mud
+					multiply = 10
+				}
+				change_variable = { 
+					name = prod_tools_mud
+					divide = var:prod_update_instances_t
+				}
+				change_variable = { 
+					name = prod_tools_mud
+					divide = var:prod_template.var:prod_tools_mud
+				}
+				set_variable = { 
+					name = prod_update_instances_ttt
+					value = var:prod_tools_mud
+				}
+				change_variable = { 
+					name = prod_update_instances_ttt
+					multiply = var:prod_location.county.var:trade_price_mud
+				}
+				change_variable = { 
+					name = prod_update_instances_ttt
+					divide = 10
+				}
+				change_variable = { 
+					name = prod_update_instances_tt
+					add = var:prod_update_instances_ttt
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = prod_tools_fuel
+					var:prod_tools_fuel > 0
+				}
+				change_variable = { 
+					name = prod_tools_fuel
+					multiply = 10
+				}
+				change_variable = { 
+					name = prod_tools_fuel
+					divide = var:prod_update_instances_t
+				}
+				change_variable = { 
+					name = prod_tools_fuel
+					divide = var:prod_template.var:prod_tools_fuel
+				}
+				set_variable = { 
+					name = prod_update_instances_ttt
+					value = var:prod_tools_fuel
+				}
+				change_variable = { 
+					name = prod_update_instances_ttt
+					multiply = var:prod_location.county.var:trade_price_fuel
+				}
+				change_variable = { 
+					name = prod_update_instances_ttt
+					divide = 10
+				}
+				change_variable = { 
+					name = prod_update_instances_tt
+					add = var:prod_update_instances_ttt
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = prod_tools_fiber
+					var:prod_tools_fiber > 0
+				}
+				change_variable = { 
+					name = prod_tools_fiber
+					multiply = 10
+				}
+				change_variable = { 
+					name = prod_tools_fiber
+					divide = var:prod_update_instances_t
+				}
+				change_variable = { 
+					name = prod_tools_fiber
+					divide = var:prod_template.var:prod_tools_fiber
+				}
+				set_variable = { 
+					name = prod_update_instances_ttt
+					value = var:prod_tools_fiber
+				}
+				change_variable = { 
+					name = prod_update_instances_ttt
+					multiply = var:prod_location.county.var:trade_price_fiber
+				}
+				change_variable = { 
+					name = prod_update_instances_ttt
+					divide = 10
+				}
+				change_variable = { 
+					name = prod_update_instances_tt
+					add = var:prod_update_instances_ttt
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = prod_tools_timber
+					var:prod_tools_timber > 0
+				}
+				change_variable = { 
+					name = prod_tools_timber
+					multiply = 10
+				}
+				change_variable = { 
+					name = prod_tools_timber
+					divide = var:prod_update_instances_t
+				}
+				change_variable = { 
+					name = prod_tools_timber
+					divide = var:prod_template.var:prod_tools_timber
+				}
+				set_variable = { 
+					name = prod_update_instances_ttt
+					value = var:prod_tools_timber
+				}
+				change_variable = { 
+					name = prod_update_instances_ttt
+					multiply = var:prod_location.county.var:trade_price_timber
+				}
+				change_variable = { 
+					name = prod_update_instances_ttt
+					divide = 10
+				}
+				change_variable = { 
+					name = prod_update_instances_tt
+					add = var:prod_update_instances_ttt
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = prod_tools_metal
+					var:prod_tools_metal > 0
+				}
+				change_variable = { 
+					name = prod_tools_metal
+					multiply = 10
+				}
+				change_variable = { 
+					name = prod_tools_metal
+					divide = var:prod_update_instances_t
+				}
+				change_variable = { 
+					name = prod_tools_metal
+					divide = var:prod_template.var:prod_tools_metal
+				}
+				set_variable = { 
+					name = prod_update_instances_ttt
+					value = var:prod_tools_metal
+				}
+				change_variable = { 
+					name = prod_update_instances_ttt
+					multiply = var:prod_location.county.var:trade_price_metal
+				}
+				change_variable = { 
+					name = prod_update_instances_ttt
+					divide = 10
+				}
+				change_variable = { 
+					name = prod_update_instances_tt
+					add = var:prod_update_instances_ttt
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = prod_tools_exotics_w
+					var:prod_tools_exotics_w > 0
+				}
+				change_variable = { 
+					name = prod_tools_exotics_w
+					multiply = 10
+				}
+				change_variable = { 
+					name = prod_tools_exotics_w
+					divide = var:prod_update_instances_t
+				}
+				change_variable = { 
+					name = prod_tools_exotics_w
+					divide = var:prod_template.var:prod_tools_exotics_w
+				}
+				set_variable = { 
+					name = prod_update_instances_ttt
+					value = var:prod_tools_exotics_w
+				}
+				change_variable = { 
+					name = prod_update_instances_ttt
+					multiply = var:prod_location.county.var:trade_price_exotics_w
+				}
+				change_variable = { 
+					name = prod_update_instances_ttt
+					divide = 10
+				}
+				change_variable = { 
+					name = prod_update_instances_tt
+					add = var:prod_update_instances_ttt
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = prod_tools_exotics_e
+					var:prod_tools_exotics_e > 0
+				}
+				change_variable = { 
+					name = prod_tools_exotics_e
+					multiply = 10
+				}
+				change_variable = { 
+					name = prod_tools_exotics_e
+					divide = var:prod_update_instances_t
+				}
+				change_variable = { 
+					name = prod_tools_exotics_e
+					divide = var:prod_template.var:prod_tools_exotics_e
+				}
+				set_variable = { 
+					name = prod_update_instances_ttt
+					value = var:prod_tools_exotics_e
+				}
+				change_variable = { 
+					name = prod_update_instances_ttt
+					multiply = var:prod_location.county.var:trade_price_exotics_e
+				}
+				change_variable = { 
+					name = prod_update_instances_ttt
+					divide = 10
+				}
+				change_variable = { 
+					name = prod_update_instances_tt
+					add = var:prod_update_instances_ttt
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = prod_tools_exotics_g
+					var:prod_tools_exotics_g > 0
+				}
+				change_variable = { 
+					name = prod_tools_exotics_g
+					multiply = 10
+				}
+				change_variable = { 
+					name = prod_tools_exotics_g
+					divide = var:prod_update_instances_t
+				}
+				change_variable = { 
+					name = prod_tools_exotics_g
+					divide = var:prod_template.var:prod_tools_exotics_g
+				}
+				set_variable = { 
+					name = prod_update_instances_ttt
+					value = var:prod_tools_exotics_g
+				}
+				change_variable = { 
+					name = prod_update_instances_ttt
+					multiply = var:prod_location.county.var:trade_price_exotics_g
+				}
+				change_variable = { 
+					name = prod_update_instances_ttt
+					divide = 10
+				}
+				change_variable = { 
+					name = prod_update_instances_tt
+					add = var:prod_update_instances_ttt
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = prod_tools_textile
+					var:prod_tools_textile > 0
+				}
+				change_variable = { 
+					name = prod_tools_textile
+					multiply = 10
+				}
+				change_variable = { 
+					name = prod_tools_textile
+					divide = var:prod_update_instances_t
+				}
+				change_variable = { 
+					name = prod_tools_textile
+					divide = var:prod_template.var:prod_tools_textile
+				}
+				set_variable = { 
+					name = prod_update_instances_ttt
+					value = var:prod_tools_textile
+				}
+				change_variable = { 
+					name = prod_update_instances_ttt
+					multiply = var:prod_location.county.var:trade_price_textile
+				}
+				change_variable = { 
+					name = prod_update_instances_ttt
+					divide = 10
+				}
+				change_variable = { 
+					name = prod_update_instances_tt
+					add = var:prod_update_instances_ttt
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = prod_tools_pottery
+					var:prod_tools_pottery > 0
+				}
+				change_variable = { 
+					name = prod_tools_pottery
+					multiply = 10
+				}
+				change_variable = { 
+					name = prod_tools_pottery
+					divide = var:prod_update_instances_t
+				}
+				change_variable = { 
+					name = prod_tools_pottery
+					divide = var:prod_template.var:prod_tools_pottery
+				}
+				set_variable = { 
+					name = prod_update_instances_ttt
+					value = var:prod_tools_pottery
+				}
+				change_variable = { 
+					name = prod_update_instances_ttt
+					multiply = var:prod_location.county.var:trade_price_pottery
+				}
+				change_variable = { 
+					name = prod_update_instances_ttt
+					divide = 10
+				}
+				change_variable = { 
+					name = prod_update_instances_tt
+					add = var:prod_update_instances_ttt
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = prod_tools_furniture
+					var:prod_tools_furniture > 0
+				}
+				change_variable = { 
+					name = prod_tools_furniture
+					multiply = 10
+				}
+				change_variable = { 
+					name = prod_tools_furniture
+					divide = var:prod_update_instances_t
+				}
+				change_variable = { 
+					name = prod_tools_furniture
+					divide = var:prod_template.var:prod_tools_furniture
+				}
+				set_variable = { 
+					name = prod_update_instances_ttt
+					value = var:prod_tools_furniture
+				}
+				change_variable = { 
+					name = prod_update_instances_ttt
+					multiply = var:prod_location.county.var:trade_price_furniture
+				}
+				change_variable = { 
+					name = prod_update_instances_ttt
+					divide = 10
+				}
+				change_variable = { 
+					name = prod_update_instances_tt
+					add = var:prod_update_instances_ttt
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = prod_tools_tools
+					var:prod_tools_tools > 0
+				}
+				change_variable = { 
+					name = prod_tools_tools
+					multiply = 10
+				}
+				change_variable = { 
+					name = prod_tools_tools
+					divide = var:prod_update_instances_t
+				}
+				change_variable = { 
+					name = prod_tools_tools
+					divide = var:prod_template.var:prod_tools_tools
+				}
+				set_variable = { 
+					name = prod_update_instances_ttt
+					value = var:prod_tools_tools
+				}
+				change_variable = { 
+					name = prod_update_instances_ttt
+					multiply = var:prod_location.county.var:trade_price_tools
+				}
+				change_variable = { 
+					name = prod_update_instances_ttt
+					divide = 10
+				}
+				change_variable = { 
+					name = prod_update_instances_tt
+					add = var:prod_update_instances_ttt
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = prod_tools_industrial
+					var:prod_tools_industrial > 0
+				}
+				change_variable = { 
+					name = prod_tools_industrial
+					multiply = 10
+				}
+				change_variable = { 
+					name = prod_tools_industrial
+					divide = var:prod_update_instances_t
+				}
+				change_variable = { 
+					name = prod_tools_industrial
+					divide = var:prod_template.var:prod_tools_industrial
+				}
+				set_variable = { 
+					name = prod_update_instances_ttt
+					value = var:prod_tools_industrial
+				}
+				change_variable = { 
+					name = prod_update_instances_ttt
+					multiply = var:prod_location.county.var:trade_price_industrial
+				}
+				change_variable = { 
+					name = prod_update_instances_ttt
+					divide = 10
+				}
+				change_variable = { 
+					name = prod_update_instances_tt
+					add = var:prod_update_instances_ttt
+				}
+			}
+			set_variable = { 
+				name = prod_update_instances_ttt
+				value = var:prod_earn
+			}
+			change_variable = { 
+				name = prod_update_instances_ttt
+				multiply = 0.1
+			}
+			change_variable = { 
+				name = prod_update_instances_ttt
+				divide = var:prod_update_instances_tt
+			}
+			if = { 
+				limit = { 
+					has_variable = prod_tools_food
+					var:prod_tools_food > 0
+				}
+				change_variable = { 
+					name = prod_tools_food
+					multiply = var:prod_update_instances_ttt
+				}
+				change_variable = { 
+					name = prod_tools_food
+					divide = 10
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = prod_tools_salt
+					var:prod_tools_salt > 0
+				}
+				change_variable = { 
+					name = prod_tools_salt
+					multiply = var:prod_update_instances_ttt
+				}
+				change_variable = { 
+					name = prod_tools_salt
+					divide = 10
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = prod_tools_mud
+					var:prod_tools_mud > 0
+				}
+				change_variable = { 
+					name = prod_tools_mud
+					multiply = var:prod_update_instances_ttt
+				}
+				change_variable = { 
+					name = prod_tools_mud
+					divide = 10
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = prod_tools_fuel
+					var:prod_tools_fuel > 0
+				}
+				change_variable = { 
+					name = prod_tools_fuel
+					multiply = var:prod_update_instances_ttt
+				}
+				change_variable = { 
+					name = prod_tools_fuel
+					divide = 10
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = prod_tools_fiber
+					var:prod_tools_fiber > 0
+				}
+				change_variable = { 
+					name = prod_tools_fiber
+					multiply = var:prod_update_instances_ttt
+				}
+				change_variable = { 
+					name = prod_tools_fiber
+					divide = 10
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = prod_tools_timber
+					var:prod_tools_timber > 0
+				}
+				change_variable = { 
+					name = prod_tools_timber
+					multiply = var:prod_update_instances_ttt
+				}
+				change_variable = { 
+					name = prod_tools_timber
+					divide = 10
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = prod_tools_metal
+					var:prod_tools_metal > 0
+				}
+				change_variable = { 
+					name = prod_tools_metal
+					multiply = var:prod_update_instances_ttt
+				}
+				change_variable = { 
+					name = prod_tools_metal
+					divide = 10
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = prod_tools_exotics_w
+					var:prod_tools_exotics_w > 0
+				}
+				change_variable = { 
+					name = prod_tools_exotics_w
+					multiply = var:prod_update_instances_ttt
+				}
+				change_variable = { 
+					name = prod_tools_exotics_w
+					divide = 10
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = prod_tools_exotics_e
+					var:prod_tools_exotics_e > 0
+				}
+				change_variable = { 
+					name = prod_tools_exotics_e
+					multiply = var:prod_update_instances_ttt
+				}
+				change_variable = { 
+					name = prod_tools_exotics_e
+					divide = 10
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = prod_tools_exotics_g
+					var:prod_tools_exotics_g > 0
+				}
+				change_variable = { 
+					name = prod_tools_exotics_g
+					multiply = var:prod_update_instances_ttt
+				}
+				change_variable = { 
+					name = prod_tools_exotics_g
+					divide = 10
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = prod_tools_textile
+					var:prod_tools_textile > 0
+				}
+				change_variable = { 
+					name = prod_tools_textile
+					multiply = var:prod_update_instances_ttt
+				}
+				change_variable = { 
+					name = prod_tools_textile
+					divide = 10
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = prod_tools_pottery
+					var:prod_tools_pottery > 0
+				}
+				change_variable = { 
+					name = prod_tools_pottery
+					multiply = var:prod_update_instances_ttt
+				}
+				change_variable = { 
+					name = prod_tools_pottery
+					divide = 10
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = prod_tools_furniture
+					var:prod_tools_furniture > 0
+				}
+				change_variable = { 
+					name = prod_tools_furniture
+					multiply = var:prod_update_instances_ttt
+				}
+				change_variable = { 
+					name = prod_tools_furniture
+					divide = 10
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = prod_tools_tools
+					var:prod_tools_tools > 0
+				}
+				change_variable = { 
+					name = prod_tools_tools
+					multiply = var:prod_update_instances_ttt
+				}
+				change_variable = { 
+					name = prod_tools_tools
+					divide = 10
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = prod_tools_industrial
+					var:prod_tools_industrial > 0
+				}
+				change_variable = { 
+					name = prod_tools_industrial
+					multiply = var:prod_update_instances_ttt
+				}
+				change_variable = { 
+					name = prod_tools_industrial
+					divide = 10
+				}
+			}
+			remove_variable = prod_update_instances_tt
+			remove_variable = prod_update_instances_ttt
+		}
+	}
 	every_province = { 
 		limit = { 
 			is_valid_prov = yes
@@ -8328,6 +10285,17 @@
 				}
 				if = { 
 					limit = { 
+						has_variable = prod_tools_food
+					}
+					scope:trade_do_trade_select = { 
+						change_variable = { 
+							name = trade_dmnd_food
+							add = prev.var:prod_tools_food
+						}
+					}
+				}
+				if = { 
+					limit = { 
 						has_variable = prod_dmnd_salt
 					}
 					scope:trade_do_trade_select = { 
@@ -8345,6 +10313,17 @@
 						change_variable = { 
 							name = trade_sply_salt
 							add = prev.var:prod_sply_old_salt
+						}
+					}
+				}
+				if = { 
+					limit = { 
+						has_variable = prod_tools_salt
+					}
+					scope:trade_do_trade_select = { 
+						change_variable = { 
+							name = trade_dmnd_salt
+							add = prev.var:prod_tools_salt
 						}
 					}
 				}
@@ -8372,6 +10351,17 @@
 				}
 				if = { 
 					limit = { 
+						has_variable = prod_tools_mud
+					}
+					scope:trade_do_trade_select = { 
+						change_variable = { 
+							name = trade_dmnd_mud
+							add = prev.var:prod_tools_mud
+						}
+					}
+				}
+				if = { 
+					limit = { 
 						has_variable = prod_dmnd_fuel
 					}
 					scope:trade_do_trade_select = { 
@@ -8389,6 +10379,17 @@
 						change_variable = { 
 							name = trade_sply_fuel
 							add = prev.var:prod_sply_old_fuel
+						}
+					}
+				}
+				if = { 
+					limit = { 
+						has_variable = prod_tools_fuel
+					}
+					scope:trade_do_trade_select = { 
+						change_variable = { 
+							name = trade_dmnd_fuel
+							add = prev.var:prod_tools_fuel
 						}
 					}
 				}
@@ -8416,6 +10417,17 @@
 				}
 				if = { 
 					limit = { 
+						has_variable = prod_tools_fiber
+					}
+					scope:trade_do_trade_select = { 
+						change_variable = { 
+							name = trade_dmnd_fiber
+							add = prev.var:prod_tools_fiber
+						}
+					}
+				}
+				if = { 
+					limit = { 
 						has_variable = prod_dmnd_timber
 					}
 					scope:trade_do_trade_select = { 
@@ -8433,6 +10445,17 @@
 						change_variable = { 
 							name = trade_sply_timber
 							add = prev.var:prod_sply_old_timber
+						}
+					}
+				}
+				if = { 
+					limit = { 
+						has_variable = prod_tools_timber
+					}
+					scope:trade_do_trade_select = { 
+						change_variable = { 
+							name = trade_dmnd_timber
+							add = prev.var:prod_tools_timber
 						}
 					}
 				}
@@ -8460,6 +10483,17 @@
 				}
 				if = { 
 					limit = { 
+						has_variable = prod_tools_metal
+					}
+					scope:trade_do_trade_select = { 
+						change_variable = { 
+							name = trade_dmnd_metal
+							add = prev.var:prod_tools_metal
+						}
+					}
+				}
+				if = { 
+					limit = { 
 						has_variable = prod_dmnd_exotics_w
 					}
 					scope:trade_do_trade_select = { 
@@ -8477,6 +10511,17 @@
 						change_variable = { 
 							name = trade_sply_exotics_w
 							add = prev.var:prod_sply_old_exotics_w
+						}
+					}
+				}
+				if = { 
+					limit = { 
+						has_variable = prod_tools_exotics_w
+					}
+					scope:trade_do_trade_select = { 
+						change_variable = { 
+							name = trade_dmnd_exotics_w
+							add = prev.var:prod_tools_exotics_w
 						}
 					}
 				}
@@ -8504,6 +10549,17 @@
 				}
 				if = { 
 					limit = { 
+						has_variable = prod_tools_exotics_e
+					}
+					scope:trade_do_trade_select = { 
+						change_variable = { 
+							name = trade_dmnd_exotics_e
+							add = prev.var:prod_tools_exotics_e
+						}
+					}
+				}
+				if = { 
+					limit = { 
 						has_variable = prod_dmnd_exotics_g
 					}
 					scope:trade_do_trade_select = { 
@@ -8521,6 +10577,17 @@
 						change_variable = { 
 							name = trade_sply_exotics_g
 							add = prev.var:prod_sply_old_exotics_g
+						}
+					}
+				}
+				if = { 
+					limit = { 
+						has_variable = prod_tools_exotics_g
+					}
+					scope:trade_do_trade_select = { 
+						change_variable = { 
+							name = trade_dmnd_exotics_g
+							add = prev.var:prod_tools_exotics_g
 						}
 					}
 				}
@@ -8548,6 +10615,17 @@
 				}
 				if = { 
 					limit = { 
+						has_variable = prod_tools_textile
+					}
+					scope:trade_do_trade_select = { 
+						change_variable = { 
+							name = trade_dmnd_textile
+							add = prev.var:prod_tools_textile
+						}
+					}
+				}
+				if = { 
+					limit = { 
 						has_variable = prod_dmnd_pottery
 					}
 					scope:trade_do_trade_select = { 
@@ -8565,6 +10643,17 @@
 						change_variable = { 
 							name = trade_sply_pottery
 							add = prev.var:prod_sply_old_pottery
+						}
+					}
+				}
+				if = { 
+					limit = { 
+						has_variable = prod_tools_pottery
+					}
+					scope:trade_do_trade_select = { 
+						change_variable = { 
+							name = trade_dmnd_pottery
+							add = prev.var:prod_tools_pottery
 						}
 					}
 				}
@@ -8592,6 +10681,17 @@
 				}
 				if = { 
 					limit = { 
+						has_variable = prod_tools_furniture
+					}
+					scope:trade_do_trade_select = { 
+						change_variable = { 
+							name = trade_dmnd_furniture
+							add = prev.var:prod_tools_furniture
+						}
+					}
+				}
+				if = { 
+					limit = { 
 						has_variable = prod_dmnd_tools
 					}
 					scope:trade_do_trade_select = { 
@@ -8614,6 +10714,17 @@
 				}
 				if = { 
 					limit = { 
+						has_variable = prod_tools_tools
+					}
+					scope:trade_do_trade_select = { 
+						change_variable = { 
+							name = trade_dmnd_tools
+							add = prev.var:prod_tools_tools
+						}
+					}
+				}
+				if = { 
+					limit = { 
 						has_variable = prod_dmnd_industrial
 					}
 					scope:trade_do_trade_select = { 
@@ -8631,6 +10742,17 @@
 						change_variable = { 
 							name = trade_sply_industrial
 							add = prev.var:prod_sply_old_industrial
+						}
+					}
+				}
+				if = { 
+					limit = { 
+						has_variable = prod_tools_industrial
+					}
+					scope:trade_do_trade_select = { 
+						change_variable = { 
+							name = trade_dmnd_industrial
+							add = prev.var:prod_tools_industrial
 						}
 					}
 				}
@@ -35166,29 +37288,60 @@
 					value = prev.var:trade_resolve_trade_tt
 				}
 				every_in_list = { 
-					limit = { 
-						has_variable = prod_dmnd_food
-					}
 					variable = prod_instances
-					set_variable = { 
-						name = prod_in_food
-						value = var:prod_dmnd_food
+					if = { 
+						limit = { 
+							has_variable = prod_dmnd_food
+						}
+						set_variable = { 
+							name = prod_in_food
+							value = var:prod_dmnd_food
+						}
+						change_variable = { 
+							name = prod_in_food
+							multiply = prev.var:trade_resolve_trade_tt
+						}
+						change_variable = { 
+							name = prod_in_food
+							divide = 100
+						}
+						set_variable = { 
+							name = prod_pay_food
+							value = var:prod_dmnd_food
+						}
+						change_variable = { 
+							name = prod_pay_food
+							multiply = prev.var:trade_resolve_trade_t
+						}
 					}
-					change_variable = { 
-						name = prod_in_food
-						multiply = prev.var:trade_resolve_trade_tt
-					}
-					change_variable = { 
-						name = prod_in_food
-						divide = 100
-					}
-					set_variable = { 
-						name = prod_pay_food
-						value = var:prod_dmnd_food
-					}
-					change_variable = { 
-						name = prod_pay_food
-						multiply = prev.var:trade_resolve_trade_t
+					if = { 
+						limit = { 
+							has_variable = prod_tools_food
+						}
+						set_variable = { 
+							name = prod_tools_in_food
+							value = var:prod_tools_food
+						}
+						change_variable = { 
+							name = prod_tools_in_food
+							multiply = prev.var:trade_resolve_trade_tt
+						}
+						change_variable = { 
+							name = prod_tools_in_food
+							divide = 100
+						}
+						set_variable = { 
+							name = trade_resolve_trade_t
+							value = var:prod_tools_food
+						}
+						change_variable = { 
+							name = trade_resolve_trade_t
+							multiply = prev.var:trade_resolve_trade_t
+						}
+						change_variable = { 
+							name = prod_pay_food
+							add = var:trade_resolve_trade_t
+						}
 					}
 				}
 				every_in_list = { 
@@ -35468,29 +37621,60 @@
 					value = prev.var:trade_resolve_trade_tt
 				}
 				every_in_list = { 
-					limit = { 
-						has_variable = prod_dmnd_salt
-					}
 					variable = prod_instances
-					set_variable = { 
-						name = prod_in_salt
-						value = var:prod_dmnd_salt
+					if = { 
+						limit = { 
+							has_variable = prod_dmnd_salt
+						}
+						set_variable = { 
+							name = prod_in_salt
+							value = var:prod_dmnd_salt
+						}
+						change_variable = { 
+							name = prod_in_salt
+							multiply = prev.var:trade_resolve_trade_tt
+						}
+						change_variable = { 
+							name = prod_in_salt
+							divide = 100
+						}
+						set_variable = { 
+							name = prod_pay_salt
+							value = var:prod_dmnd_salt
+						}
+						change_variable = { 
+							name = prod_pay_salt
+							multiply = prev.var:trade_resolve_trade_t
+						}
 					}
-					change_variable = { 
-						name = prod_in_salt
-						multiply = prev.var:trade_resolve_trade_tt
-					}
-					change_variable = { 
-						name = prod_in_salt
-						divide = 100
-					}
-					set_variable = { 
-						name = prod_pay_salt
-						value = var:prod_dmnd_salt
-					}
-					change_variable = { 
-						name = prod_pay_salt
-						multiply = prev.var:trade_resolve_trade_t
+					if = { 
+						limit = { 
+							has_variable = prod_tools_salt
+						}
+						set_variable = { 
+							name = prod_tools_in_salt
+							value = var:prod_tools_salt
+						}
+						change_variable = { 
+							name = prod_tools_in_salt
+							multiply = prev.var:trade_resolve_trade_tt
+						}
+						change_variable = { 
+							name = prod_tools_in_salt
+							divide = 100
+						}
+						set_variable = { 
+							name = trade_resolve_trade_t
+							value = var:prod_tools_salt
+						}
+						change_variable = { 
+							name = trade_resolve_trade_t
+							multiply = prev.var:trade_resolve_trade_t
+						}
+						change_variable = { 
+							name = prod_pay_salt
+							add = var:trade_resolve_trade_t
+						}
 					}
 				}
 				every_in_list = { 
@@ -35770,29 +37954,60 @@
 					value = prev.var:trade_resolve_trade_tt
 				}
 				every_in_list = { 
-					limit = { 
-						has_variable = prod_dmnd_mud
-					}
 					variable = prod_instances
-					set_variable = { 
-						name = prod_in_mud
-						value = var:prod_dmnd_mud
+					if = { 
+						limit = { 
+							has_variable = prod_dmnd_mud
+						}
+						set_variable = { 
+							name = prod_in_mud
+							value = var:prod_dmnd_mud
+						}
+						change_variable = { 
+							name = prod_in_mud
+							multiply = prev.var:trade_resolve_trade_tt
+						}
+						change_variable = { 
+							name = prod_in_mud
+							divide = 100
+						}
+						set_variable = { 
+							name = prod_pay_mud
+							value = var:prod_dmnd_mud
+						}
+						change_variable = { 
+							name = prod_pay_mud
+							multiply = prev.var:trade_resolve_trade_t
+						}
 					}
-					change_variable = { 
-						name = prod_in_mud
-						multiply = prev.var:trade_resolve_trade_tt
-					}
-					change_variable = { 
-						name = prod_in_mud
-						divide = 100
-					}
-					set_variable = { 
-						name = prod_pay_mud
-						value = var:prod_dmnd_mud
-					}
-					change_variable = { 
-						name = prod_pay_mud
-						multiply = prev.var:trade_resolve_trade_t
+					if = { 
+						limit = { 
+							has_variable = prod_tools_mud
+						}
+						set_variable = { 
+							name = prod_tools_in_mud
+							value = var:prod_tools_mud
+						}
+						change_variable = { 
+							name = prod_tools_in_mud
+							multiply = prev.var:trade_resolve_trade_tt
+						}
+						change_variable = { 
+							name = prod_tools_in_mud
+							divide = 100
+						}
+						set_variable = { 
+							name = trade_resolve_trade_t
+							value = var:prod_tools_mud
+						}
+						change_variable = { 
+							name = trade_resolve_trade_t
+							multiply = prev.var:trade_resolve_trade_t
+						}
+						change_variable = { 
+							name = prod_pay_mud
+							add = var:trade_resolve_trade_t
+						}
 					}
 				}
 				every_in_list = { 
@@ -36072,29 +38287,60 @@
 					value = prev.var:trade_resolve_trade_tt
 				}
 				every_in_list = { 
-					limit = { 
-						has_variable = prod_dmnd_fuel
-					}
 					variable = prod_instances
-					set_variable = { 
-						name = prod_in_fuel
-						value = var:prod_dmnd_fuel
+					if = { 
+						limit = { 
+							has_variable = prod_dmnd_fuel
+						}
+						set_variable = { 
+							name = prod_in_fuel
+							value = var:prod_dmnd_fuel
+						}
+						change_variable = { 
+							name = prod_in_fuel
+							multiply = prev.var:trade_resolve_trade_tt
+						}
+						change_variable = { 
+							name = prod_in_fuel
+							divide = 100
+						}
+						set_variable = { 
+							name = prod_pay_fuel
+							value = var:prod_dmnd_fuel
+						}
+						change_variable = { 
+							name = prod_pay_fuel
+							multiply = prev.var:trade_resolve_trade_t
+						}
 					}
-					change_variable = { 
-						name = prod_in_fuel
-						multiply = prev.var:trade_resolve_trade_tt
-					}
-					change_variable = { 
-						name = prod_in_fuel
-						divide = 100
-					}
-					set_variable = { 
-						name = prod_pay_fuel
-						value = var:prod_dmnd_fuel
-					}
-					change_variable = { 
-						name = prod_pay_fuel
-						multiply = prev.var:trade_resolve_trade_t
+					if = { 
+						limit = { 
+							has_variable = prod_tools_fuel
+						}
+						set_variable = { 
+							name = prod_tools_in_fuel
+							value = var:prod_tools_fuel
+						}
+						change_variable = { 
+							name = prod_tools_in_fuel
+							multiply = prev.var:trade_resolve_trade_tt
+						}
+						change_variable = { 
+							name = prod_tools_in_fuel
+							divide = 100
+						}
+						set_variable = { 
+							name = trade_resolve_trade_t
+							value = var:prod_tools_fuel
+						}
+						change_variable = { 
+							name = trade_resolve_trade_t
+							multiply = prev.var:trade_resolve_trade_t
+						}
+						change_variable = { 
+							name = prod_pay_fuel
+							add = var:trade_resolve_trade_t
+						}
 					}
 				}
 				every_in_list = { 
@@ -36374,29 +38620,60 @@
 					value = prev.var:trade_resolve_trade_tt
 				}
 				every_in_list = { 
-					limit = { 
-						has_variable = prod_dmnd_fiber
-					}
 					variable = prod_instances
-					set_variable = { 
-						name = prod_in_fiber
-						value = var:prod_dmnd_fiber
+					if = { 
+						limit = { 
+							has_variable = prod_dmnd_fiber
+						}
+						set_variable = { 
+							name = prod_in_fiber
+							value = var:prod_dmnd_fiber
+						}
+						change_variable = { 
+							name = prod_in_fiber
+							multiply = prev.var:trade_resolve_trade_tt
+						}
+						change_variable = { 
+							name = prod_in_fiber
+							divide = 100
+						}
+						set_variable = { 
+							name = prod_pay_fiber
+							value = var:prod_dmnd_fiber
+						}
+						change_variable = { 
+							name = prod_pay_fiber
+							multiply = prev.var:trade_resolve_trade_t
+						}
 					}
-					change_variable = { 
-						name = prod_in_fiber
-						multiply = prev.var:trade_resolve_trade_tt
-					}
-					change_variable = { 
-						name = prod_in_fiber
-						divide = 100
-					}
-					set_variable = { 
-						name = prod_pay_fiber
-						value = var:prod_dmnd_fiber
-					}
-					change_variable = { 
-						name = prod_pay_fiber
-						multiply = prev.var:trade_resolve_trade_t
+					if = { 
+						limit = { 
+							has_variable = prod_tools_fiber
+						}
+						set_variable = { 
+							name = prod_tools_in_fiber
+							value = var:prod_tools_fiber
+						}
+						change_variable = { 
+							name = prod_tools_in_fiber
+							multiply = prev.var:trade_resolve_trade_tt
+						}
+						change_variable = { 
+							name = prod_tools_in_fiber
+							divide = 100
+						}
+						set_variable = { 
+							name = trade_resolve_trade_t
+							value = var:prod_tools_fiber
+						}
+						change_variable = { 
+							name = trade_resolve_trade_t
+							multiply = prev.var:trade_resolve_trade_t
+						}
+						change_variable = { 
+							name = prod_pay_fiber
+							add = var:trade_resolve_trade_t
+						}
 					}
 				}
 				every_in_list = { 
@@ -36676,29 +38953,60 @@
 					value = prev.var:trade_resolve_trade_tt
 				}
 				every_in_list = { 
-					limit = { 
-						has_variable = prod_dmnd_timber
-					}
 					variable = prod_instances
-					set_variable = { 
-						name = prod_in_timber
-						value = var:prod_dmnd_timber
+					if = { 
+						limit = { 
+							has_variable = prod_dmnd_timber
+						}
+						set_variable = { 
+							name = prod_in_timber
+							value = var:prod_dmnd_timber
+						}
+						change_variable = { 
+							name = prod_in_timber
+							multiply = prev.var:trade_resolve_trade_tt
+						}
+						change_variable = { 
+							name = prod_in_timber
+							divide = 100
+						}
+						set_variable = { 
+							name = prod_pay_timber
+							value = var:prod_dmnd_timber
+						}
+						change_variable = { 
+							name = prod_pay_timber
+							multiply = prev.var:trade_resolve_trade_t
+						}
 					}
-					change_variable = { 
-						name = prod_in_timber
-						multiply = prev.var:trade_resolve_trade_tt
-					}
-					change_variable = { 
-						name = prod_in_timber
-						divide = 100
-					}
-					set_variable = { 
-						name = prod_pay_timber
-						value = var:prod_dmnd_timber
-					}
-					change_variable = { 
-						name = prod_pay_timber
-						multiply = prev.var:trade_resolve_trade_t
+					if = { 
+						limit = { 
+							has_variable = prod_tools_timber
+						}
+						set_variable = { 
+							name = prod_tools_in_timber
+							value = var:prod_tools_timber
+						}
+						change_variable = { 
+							name = prod_tools_in_timber
+							multiply = prev.var:trade_resolve_trade_tt
+						}
+						change_variable = { 
+							name = prod_tools_in_timber
+							divide = 100
+						}
+						set_variable = { 
+							name = trade_resolve_trade_t
+							value = var:prod_tools_timber
+						}
+						change_variable = { 
+							name = trade_resolve_trade_t
+							multiply = prev.var:trade_resolve_trade_t
+						}
+						change_variable = { 
+							name = prod_pay_timber
+							add = var:trade_resolve_trade_t
+						}
 					}
 				}
 				every_in_list = { 
@@ -36978,29 +39286,60 @@
 					value = prev.var:trade_resolve_trade_tt
 				}
 				every_in_list = { 
-					limit = { 
-						has_variable = prod_dmnd_metal
-					}
 					variable = prod_instances
-					set_variable = { 
-						name = prod_in_metal
-						value = var:prod_dmnd_metal
+					if = { 
+						limit = { 
+							has_variable = prod_dmnd_metal
+						}
+						set_variable = { 
+							name = prod_in_metal
+							value = var:prod_dmnd_metal
+						}
+						change_variable = { 
+							name = prod_in_metal
+							multiply = prev.var:trade_resolve_trade_tt
+						}
+						change_variable = { 
+							name = prod_in_metal
+							divide = 100
+						}
+						set_variable = { 
+							name = prod_pay_metal
+							value = var:prod_dmnd_metal
+						}
+						change_variable = { 
+							name = prod_pay_metal
+							multiply = prev.var:trade_resolve_trade_t
+						}
 					}
-					change_variable = { 
-						name = prod_in_metal
-						multiply = prev.var:trade_resolve_trade_tt
-					}
-					change_variable = { 
-						name = prod_in_metal
-						divide = 100
-					}
-					set_variable = { 
-						name = prod_pay_metal
-						value = var:prod_dmnd_metal
-					}
-					change_variable = { 
-						name = prod_pay_metal
-						multiply = prev.var:trade_resolve_trade_t
+					if = { 
+						limit = { 
+							has_variable = prod_tools_metal
+						}
+						set_variable = { 
+							name = prod_tools_in_metal
+							value = var:prod_tools_metal
+						}
+						change_variable = { 
+							name = prod_tools_in_metal
+							multiply = prev.var:trade_resolve_trade_tt
+						}
+						change_variable = { 
+							name = prod_tools_in_metal
+							divide = 100
+						}
+						set_variable = { 
+							name = trade_resolve_trade_t
+							value = var:prod_tools_metal
+						}
+						change_variable = { 
+							name = trade_resolve_trade_t
+							multiply = prev.var:trade_resolve_trade_t
+						}
+						change_variable = { 
+							name = prod_pay_metal
+							add = var:trade_resolve_trade_t
+						}
 					}
 				}
 				every_in_list = { 
@@ -37280,29 +39619,60 @@
 					value = prev.var:trade_resolve_trade_tt
 				}
 				every_in_list = { 
-					limit = { 
-						has_variable = prod_dmnd_exotics_w
-					}
 					variable = prod_instances
-					set_variable = { 
-						name = prod_in_exotics_w
-						value = var:prod_dmnd_exotics_w
+					if = { 
+						limit = { 
+							has_variable = prod_dmnd_exotics_w
+						}
+						set_variable = { 
+							name = prod_in_exotics_w
+							value = var:prod_dmnd_exotics_w
+						}
+						change_variable = { 
+							name = prod_in_exotics_w
+							multiply = prev.var:trade_resolve_trade_tt
+						}
+						change_variable = { 
+							name = prod_in_exotics_w
+							divide = 100
+						}
+						set_variable = { 
+							name = prod_pay_exotics_w
+							value = var:prod_dmnd_exotics_w
+						}
+						change_variable = { 
+							name = prod_pay_exotics_w
+							multiply = prev.var:trade_resolve_trade_t
+						}
 					}
-					change_variable = { 
-						name = prod_in_exotics_w
-						multiply = prev.var:trade_resolve_trade_tt
-					}
-					change_variable = { 
-						name = prod_in_exotics_w
-						divide = 100
-					}
-					set_variable = { 
-						name = prod_pay_exotics_w
-						value = var:prod_dmnd_exotics_w
-					}
-					change_variable = { 
-						name = prod_pay_exotics_w
-						multiply = prev.var:trade_resolve_trade_t
+					if = { 
+						limit = { 
+							has_variable = prod_tools_exotics_w
+						}
+						set_variable = { 
+							name = prod_tools_in_exotics_w
+							value = var:prod_tools_exotics_w
+						}
+						change_variable = { 
+							name = prod_tools_in_exotics_w
+							multiply = prev.var:trade_resolve_trade_tt
+						}
+						change_variable = { 
+							name = prod_tools_in_exotics_w
+							divide = 100
+						}
+						set_variable = { 
+							name = trade_resolve_trade_t
+							value = var:prod_tools_exotics_w
+						}
+						change_variable = { 
+							name = trade_resolve_trade_t
+							multiply = prev.var:trade_resolve_trade_t
+						}
+						change_variable = { 
+							name = prod_pay_exotics_w
+							add = var:trade_resolve_trade_t
+						}
 					}
 				}
 				every_in_list = { 
@@ -37582,29 +39952,60 @@
 					value = prev.var:trade_resolve_trade_tt
 				}
 				every_in_list = { 
-					limit = { 
-						has_variable = prod_dmnd_exotics_e
-					}
 					variable = prod_instances
-					set_variable = { 
-						name = prod_in_exotics_e
-						value = var:prod_dmnd_exotics_e
+					if = { 
+						limit = { 
+							has_variable = prod_dmnd_exotics_e
+						}
+						set_variable = { 
+							name = prod_in_exotics_e
+							value = var:prod_dmnd_exotics_e
+						}
+						change_variable = { 
+							name = prod_in_exotics_e
+							multiply = prev.var:trade_resolve_trade_tt
+						}
+						change_variable = { 
+							name = prod_in_exotics_e
+							divide = 100
+						}
+						set_variable = { 
+							name = prod_pay_exotics_e
+							value = var:prod_dmnd_exotics_e
+						}
+						change_variable = { 
+							name = prod_pay_exotics_e
+							multiply = prev.var:trade_resolve_trade_t
+						}
 					}
-					change_variable = { 
-						name = prod_in_exotics_e
-						multiply = prev.var:trade_resolve_trade_tt
-					}
-					change_variable = { 
-						name = prod_in_exotics_e
-						divide = 100
-					}
-					set_variable = { 
-						name = prod_pay_exotics_e
-						value = var:prod_dmnd_exotics_e
-					}
-					change_variable = { 
-						name = prod_pay_exotics_e
-						multiply = prev.var:trade_resolve_trade_t
+					if = { 
+						limit = { 
+							has_variable = prod_tools_exotics_e
+						}
+						set_variable = { 
+							name = prod_tools_in_exotics_e
+							value = var:prod_tools_exotics_e
+						}
+						change_variable = { 
+							name = prod_tools_in_exotics_e
+							multiply = prev.var:trade_resolve_trade_tt
+						}
+						change_variable = { 
+							name = prod_tools_in_exotics_e
+							divide = 100
+						}
+						set_variable = { 
+							name = trade_resolve_trade_t
+							value = var:prod_tools_exotics_e
+						}
+						change_variable = { 
+							name = trade_resolve_trade_t
+							multiply = prev.var:trade_resolve_trade_t
+						}
+						change_variable = { 
+							name = prod_pay_exotics_e
+							add = var:trade_resolve_trade_t
+						}
 					}
 				}
 				every_in_list = { 
@@ -37884,29 +40285,60 @@
 					value = prev.var:trade_resolve_trade_tt
 				}
 				every_in_list = { 
-					limit = { 
-						has_variable = prod_dmnd_exotics_g
-					}
 					variable = prod_instances
-					set_variable = { 
-						name = prod_in_exotics_g
-						value = var:prod_dmnd_exotics_g
+					if = { 
+						limit = { 
+							has_variable = prod_dmnd_exotics_g
+						}
+						set_variable = { 
+							name = prod_in_exotics_g
+							value = var:prod_dmnd_exotics_g
+						}
+						change_variable = { 
+							name = prod_in_exotics_g
+							multiply = prev.var:trade_resolve_trade_tt
+						}
+						change_variable = { 
+							name = prod_in_exotics_g
+							divide = 100
+						}
+						set_variable = { 
+							name = prod_pay_exotics_g
+							value = var:prod_dmnd_exotics_g
+						}
+						change_variable = { 
+							name = prod_pay_exotics_g
+							multiply = prev.var:trade_resolve_trade_t
+						}
 					}
-					change_variable = { 
-						name = prod_in_exotics_g
-						multiply = prev.var:trade_resolve_trade_tt
-					}
-					change_variable = { 
-						name = prod_in_exotics_g
-						divide = 100
-					}
-					set_variable = { 
-						name = prod_pay_exotics_g
-						value = var:prod_dmnd_exotics_g
-					}
-					change_variable = { 
-						name = prod_pay_exotics_g
-						multiply = prev.var:trade_resolve_trade_t
+					if = { 
+						limit = { 
+							has_variable = prod_tools_exotics_g
+						}
+						set_variable = { 
+							name = prod_tools_in_exotics_g
+							value = var:prod_tools_exotics_g
+						}
+						change_variable = { 
+							name = prod_tools_in_exotics_g
+							multiply = prev.var:trade_resolve_trade_tt
+						}
+						change_variable = { 
+							name = prod_tools_in_exotics_g
+							divide = 100
+						}
+						set_variable = { 
+							name = trade_resolve_trade_t
+							value = var:prod_tools_exotics_g
+						}
+						change_variable = { 
+							name = trade_resolve_trade_t
+							multiply = prev.var:trade_resolve_trade_t
+						}
+						change_variable = { 
+							name = prod_pay_exotics_g
+							add = var:trade_resolve_trade_t
+						}
 					}
 				}
 				every_in_list = { 
@@ -38186,29 +40618,60 @@
 					value = prev.var:trade_resolve_trade_tt
 				}
 				every_in_list = { 
-					limit = { 
-						has_variable = prod_dmnd_textile
-					}
 					variable = prod_instances
-					set_variable = { 
-						name = prod_in_textile
-						value = var:prod_dmnd_textile
+					if = { 
+						limit = { 
+							has_variable = prod_dmnd_textile
+						}
+						set_variable = { 
+							name = prod_in_textile
+							value = var:prod_dmnd_textile
+						}
+						change_variable = { 
+							name = prod_in_textile
+							multiply = prev.var:trade_resolve_trade_tt
+						}
+						change_variable = { 
+							name = prod_in_textile
+							divide = 100
+						}
+						set_variable = { 
+							name = prod_pay_textile
+							value = var:prod_dmnd_textile
+						}
+						change_variable = { 
+							name = prod_pay_textile
+							multiply = prev.var:trade_resolve_trade_t
+						}
 					}
-					change_variable = { 
-						name = prod_in_textile
-						multiply = prev.var:trade_resolve_trade_tt
-					}
-					change_variable = { 
-						name = prod_in_textile
-						divide = 100
-					}
-					set_variable = { 
-						name = prod_pay_textile
-						value = var:prod_dmnd_textile
-					}
-					change_variable = { 
-						name = prod_pay_textile
-						multiply = prev.var:trade_resolve_trade_t
+					if = { 
+						limit = { 
+							has_variable = prod_tools_textile
+						}
+						set_variable = { 
+							name = prod_tools_in_textile
+							value = var:prod_tools_textile
+						}
+						change_variable = { 
+							name = prod_tools_in_textile
+							multiply = prev.var:trade_resolve_trade_tt
+						}
+						change_variable = { 
+							name = prod_tools_in_textile
+							divide = 100
+						}
+						set_variable = { 
+							name = trade_resolve_trade_t
+							value = var:prod_tools_textile
+						}
+						change_variable = { 
+							name = trade_resolve_trade_t
+							multiply = prev.var:trade_resolve_trade_t
+						}
+						change_variable = { 
+							name = prod_pay_textile
+							add = var:trade_resolve_trade_t
+						}
 					}
 				}
 				every_in_list = { 
@@ -38488,29 +40951,60 @@
 					value = prev.var:trade_resolve_trade_tt
 				}
 				every_in_list = { 
-					limit = { 
-						has_variable = prod_dmnd_pottery
-					}
 					variable = prod_instances
-					set_variable = { 
-						name = prod_in_pottery
-						value = var:prod_dmnd_pottery
+					if = { 
+						limit = { 
+							has_variable = prod_dmnd_pottery
+						}
+						set_variable = { 
+							name = prod_in_pottery
+							value = var:prod_dmnd_pottery
+						}
+						change_variable = { 
+							name = prod_in_pottery
+							multiply = prev.var:trade_resolve_trade_tt
+						}
+						change_variable = { 
+							name = prod_in_pottery
+							divide = 100
+						}
+						set_variable = { 
+							name = prod_pay_pottery
+							value = var:prod_dmnd_pottery
+						}
+						change_variable = { 
+							name = prod_pay_pottery
+							multiply = prev.var:trade_resolve_trade_t
+						}
 					}
-					change_variable = { 
-						name = prod_in_pottery
-						multiply = prev.var:trade_resolve_trade_tt
-					}
-					change_variable = { 
-						name = prod_in_pottery
-						divide = 100
-					}
-					set_variable = { 
-						name = prod_pay_pottery
-						value = var:prod_dmnd_pottery
-					}
-					change_variable = { 
-						name = prod_pay_pottery
-						multiply = prev.var:trade_resolve_trade_t
+					if = { 
+						limit = { 
+							has_variable = prod_tools_pottery
+						}
+						set_variable = { 
+							name = prod_tools_in_pottery
+							value = var:prod_tools_pottery
+						}
+						change_variable = { 
+							name = prod_tools_in_pottery
+							multiply = prev.var:trade_resolve_trade_tt
+						}
+						change_variable = { 
+							name = prod_tools_in_pottery
+							divide = 100
+						}
+						set_variable = { 
+							name = trade_resolve_trade_t
+							value = var:prod_tools_pottery
+						}
+						change_variable = { 
+							name = trade_resolve_trade_t
+							multiply = prev.var:trade_resolve_trade_t
+						}
+						change_variable = { 
+							name = prod_pay_pottery
+							add = var:trade_resolve_trade_t
+						}
 					}
 				}
 				every_in_list = { 
@@ -38790,29 +41284,60 @@
 					value = prev.var:trade_resolve_trade_tt
 				}
 				every_in_list = { 
-					limit = { 
-						has_variable = prod_dmnd_furniture
-					}
 					variable = prod_instances
-					set_variable = { 
-						name = prod_in_furniture
-						value = var:prod_dmnd_furniture
+					if = { 
+						limit = { 
+							has_variable = prod_dmnd_furniture
+						}
+						set_variable = { 
+							name = prod_in_furniture
+							value = var:prod_dmnd_furniture
+						}
+						change_variable = { 
+							name = prod_in_furniture
+							multiply = prev.var:trade_resolve_trade_tt
+						}
+						change_variable = { 
+							name = prod_in_furniture
+							divide = 100
+						}
+						set_variable = { 
+							name = prod_pay_furniture
+							value = var:prod_dmnd_furniture
+						}
+						change_variable = { 
+							name = prod_pay_furniture
+							multiply = prev.var:trade_resolve_trade_t
+						}
 					}
-					change_variable = { 
-						name = prod_in_furniture
-						multiply = prev.var:trade_resolve_trade_tt
-					}
-					change_variable = { 
-						name = prod_in_furniture
-						divide = 100
-					}
-					set_variable = { 
-						name = prod_pay_furniture
-						value = var:prod_dmnd_furniture
-					}
-					change_variable = { 
-						name = prod_pay_furniture
-						multiply = prev.var:trade_resolve_trade_t
+					if = { 
+						limit = { 
+							has_variable = prod_tools_furniture
+						}
+						set_variable = { 
+							name = prod_tools_in_furniture
+							value = var:prod_tools_furniture
+						}
+						change_variable = { 
+							name = prod_tools_in_furniture
+							multiply = prev.var:trade_resolve_trade_tt
+						}
+						change_variable = { 
+							name = prod_tools_in_furniture
+							divide = 100
+						}
+						set_variable = { 
+							name = trade_resolve_trade_t
+							value = var:prod_tools_furniture
+						}
+						change_variable = { 
+							name = trade_resolve_trade_t
+							multiply = prev.var:trade_resolve_trade_t
+						}
+						change_variable = { 
+							name = prod_pay_furniture
+							add = var:trade_resolve_trade_t
+						}
 					}
 				}
 				every_in_list = { 
@@ -39092,29 +41617,60 @@
 					value = prev.var:trade_resolve_trade_tt
 				}
 				every_in_list = { 
-					limit = { 
-						has_variable = prod_dmnd_tools
-					}
 					variable = prod_instances
-					set_variable = { 
-						name = prod_in_tools
-						value = var:prod_dmnd_tools
+					if = { 
+						limit = { 
+							has_variable = prod_dmnd_tools
+						}
+						set_variable = { 
+							name = prod_in_tools
+							value = var:prod_dmnd_tools
+						}
+						change_variable = { 
+							name = prod_in_tools
+							multiply = prev.var:trade_resolve_trade_tt
+						}
+						change_variable = { 
+							name = prod_in_tools
+							divide = 100
+						}
+						set_variable = { 
+							name = prod_pay_tools
+							value = var:prod_dmnd_tools
+						}
+						change_variable = { 
+							name = prod_pay_tools
+							multiply = prev.var:trade_resolve_trade_t
+						}
 					}
-					change_variable = { 
-						name = prod_in_tools
-						multiply = prev.var:trade_resolve_trade_tt
-					}
-					change_variable = { 
-						name = prod_in_tools
-						divide = 100
-					}
-					set_variable = { 
-						name = prod_pay_tools
-						value = var:prod_dmnd_tools
-					}
-					change_variable = { 
-						name = prod_pay_tools
-						multiply = prev.var:trade_resolve_trade_t
+					if = { 
+						limit = { 
+							has_variable = prod_tools_tools
+						}
+						set_variable = { 
+							name = prod_tools_in_tools
+							value = var:prod_tools_tools
+						}
+						change_variable = { 
+							name = prod_tools_in_tools
+							multiply = prev.var:trade_resolve_trade_tt
+						}
+						change_variable = { 
+							name = prod_tools_in_tools
+							divide = 100
+						}
+						set_variable = { 
+							name = trade_resolve_trade_t
+							value = var:prod_tools_tools
+						}
+						change_variable = { 
+							name = trade_resolve_trade_t
+							multiply = prev.var:trade_resolve_trade_t
+						}
+						change_variable = { 
+							name = prod_pay_tools
+							add = var:trade_resolve_trade_t
+						}
 					}
 				}
 				every_in_list = { 
@@ -39394,29 +41950,60 @@
 					value = prev.var:trade_resolve_trade_tt
 				}
 				every_in_list = { 
-					limit = { 
-						has_variable = prod_dmnd_industrial
-					}
 					variable = prod_instances
-					set_variable = { 
-						name = prod_in_industrial
-						value = var:prod_dmnd_industrial
+					if = { 
+						limit = { 
+							has_variable = prod_dmnd_industrial
+						}
+						set_variable = { 
+							name = prod_in_industrial
+							value = var:prod_dmnd_industrial
+						}
+						change_variable = { 
+							name = prod_in_industrial
+							multiply = prev.var:trade_resolve_trade_tt
+						}
+						change_variable = { 
+							name = prod_in_industrial
+							divide = 100
+						}
+						set_variable = { 
+							name = prod_pay_industrial
+							value = var:prod_dmnd_industrial
+						}
+						change_variable = { 
+							name = prod_pay_industrial
+							multiply = prev.var:trade_resolve_trade_t
+						}
 					}
-					change_variable = { 
-						name = prod_in_industrial
-						multiply = prev.var:trade_resolve_trade_tt
-					}
-					change_variable = { 
-						name = prod_in_industrial
-						divide = 100
-					}
-					set_variable = { 
-						name = prod_pay_industrial
-						value = var:prod_dmnd_industrial
-					}
-					change_variable = { 
-						name = prod_pay_industrial
-						multiply = prev.var:trade_resolve_trade_t
+					if = { 
+						limit = { 
+							has_variable = prod_tools_industrial
+						}
+						set_variable = { 
+							name = prod_tools_in_industrial
+							value = var:prod_tools_industrial
+						}
+						change_variable = { 
+							name = prod_tools_in_industrial
+							multiply = prev.var:trade_resolve_trade_tt
+						}
+						change_variable = { 
+							name = prod_tools_in_industrial
+							divide = 100
+						}
+						set_variable = { 
+							name = trade_resolve_trade_t
+							value = var:prod_tools_industrial
+						}
+						change_variable = { 
+							name = trade_resolve_trade_t
+							multiply = prev.var:trade_resolve_trade_t
+						}
+						change_variable = { 
+							name = prod_pay_industrial
+							add = var:trade_resolve_trade_t
+						}
 					}
 				}
 				every_in_list = { 
@@ -39925,6 +42512,7 @@
 		else = { 
 			remove_variable = prod_earn_industrial
 		}
+		remove_variable = trade_resolve_trade_t
 	}
 	every_in_global_list = { 
 		limit = { 

@@ -20,6 +20,7 @@
 		^^goods^
 			[[dmnd_&goods&] set_variable = { name = prod_dmnd_&goods& value = $dmnd_&goods&$ } ]
 			[[sply_&goods&] set_variable = { name = prod_sply_&goods& value = $sply_&goods&$ } ]
+			[[tools_&goods&] set_variable = { name = prod_tools_&goods& value = $tools_&goods&$ } ]
 		^
 	}
 }
@@ -60,6 +61,9 @@ prod_new_instance = {
 			set_variable = { name = prod_pay_old value = 0 }
 			set_variable = { name = prod_earn_old value = 0 }
 			
+			set_variable = { name = prod_tools value = 0 }
+			set_variable = { name = prod_effic value = 1 }
+			
 			^^goods^prod_new_instance_helper = { template = $template$ good = &goods& }^
 		}
 	}
@@ -88,6 +92,17 @@ prod_new_instance_helper = {
 		set_variable = { name = prod_sply_old_$good$ value = 0 }
 		set_variable = { name = prod_has_$good$ value = 0 }
 		set_variable = { name = prod_earn_$good$ value = 0 }
+	}
+	if = { 
+		limit = { 
+			global_var:$template$ = { 
+				has_variable = prod_tools_$good$ 
+			} 
+		} 
+		set_variable = { name = prod_tools_$good$ value = 0 }
+		set_variable = { name = prod_tools_in_$good$ value = 0 }
+		set_variable = { name = prod_tools_old_$good$ value = 0 }
+		set_variable = { name = prod_tools_in_old_$good$ value = 0 }
 	}
 }
 
@@ -188,6 +203,132 @@ prod_update_instances = {
 		
 		remove_variable = prod_update_instances_t
 		remove_variable = prod_update_instances_tt
+	}
+	
+	every_in_global_list = {
+		variable = prod_instances
+		
+		change_variable = { name = prod_tools multiply = 0.9 }
+		
+		^^goods^
+			if = {
+				limit = {
+					has_variable = prod_tools_in_&goods&
+					
+					var:prod_tools_in_&goods& > 0
+				}
+				set_variable = { name = prod_update_instances_t value = var:prod_tools_in_&goods& }
+				change_variable = { name = prod_update_instances_t multiply = var:prod_template.var:prod_tools_&goods& }
+				change_variable = { name = prod_tools add = var:prod_update_instances_t }
+			}
+		^
+		
+		if = {
+			limit = {
+				OR = {
+					NOT = {
+						has_variable = prod_size
+					}
+					
+					var:prod_size = 0
+				}
+			}
+			set_variable = { name = prod_effic value = 1 }
+		}
+		else = {
+			set_variable = { name = prod_effic value = var:prod_tools }
+			change_variable = { name = prod_effic divide = var:prod_size }
+			change_variable = { name = prod_effic divide = 10 }
+			change_variable = { name = prod_effic add = 1 }
+			
+			^^goods^
+				if = {
+					limit = {
+						has_variable = prod_dmnd_&goods&
+						
+						var:prod_dmnd_&goods& > 0
+					}
+					change_variable = { name = prod_dmnd_&goods& multiply = var:prod_effic }
+				}
+				if = {
+					limit = {
+						has_variable = prod_sply_&goods&
+						
+						var:prod_sply_&goods& > 0
+					}
+					change_variable = { name = prod_sply_&goods& multiply = var:prod_effic }
+				}
+			^
+		}
+		
+		set_variable = { name = prod_update_instances_t value = 0 }
+		
+		^^goods^
+			if = {
+				limit = {
+					var:prod_template = {
+						has_variable = prod_tools_&goods&
+					}
+				}
+				set_variable = { name = prod_tools_old_&goods& value = var:prod_tools_&goods& }
+				set_variable = { name = prod_tools_in_old_&goods& value = var:prod_tools_in_&goods& }
+				
+				set_variable = { name = prod_tools_&goods& value = var:prod_template.var:prod_tools_&goods& }
+				change_variable = { name = prod_tools_&goods& multiply = 10 }
+				change_variable = { name = prod_tools_&goods& divide = var:prod_location.county.var:trade_price_&goods& }
+				change_variable = { name = prod_tools_&goods& multiply = var:prod_tools_&goods& }
+				change_variable = { name = prod_tools_&goods& add = 0.001 }
+				change_variable = { name = prod_update_instances_t add = var:prod_tools_&goods& }
+				
+				remove_variable = prod_tools_in_&goods&
+			}
+		^
+		
+		if = {
+			limit = {
+				has_variable = prod_update_instances_t
+				
+				var:prod_update_instances_t > 0
+			}
+			set_variable = { name = prod_update_instances_tt value = 0.001 }
+			
+			^^goods^
+				if = {
+					limit = {
+						has_variable = prod_tools_&goods&
+						
+						var:prod_tools_&goods& > 0
+					}
+					change_variable = { name = prod_tools_&goods& multiply = 10 }
+					change_variable = { name = prod_tools_&goods& divide = var:prod_update_instances_t }
+					change_variable = { name = prod_tools_&goods& divide = var:prod_template.var:prod_tools_&goods& }
+					
+					set_variable = { name = prod_update_instances_ttt value = var:prod_tools_&goods& }
+					change_variable = { name = prod_update_instances_ttt multiply = var:prod_location.county.var:trade_price_&goods& }
+					change_variable = { name = prod_update_instances_ttt divide = 10 }
+					change_variable = { name = prod_update_instances_tt add = var:prod_update_instances_ttt }
+				}
+			^
+			
+			set_variable = { name = prod_update_instances_ttt value = var:prod_earn }
+			change_variable = { name = prod_update_instances_ttt multiply = 0.1 }
+			change_variable = { name = prod_update_instances_ttt divide = var:prod_update_instances_tt }
+			
+			^^goods^
+				if = {
+					limit = {
+						has_variable = prod_tools_&goods&
+						
+						var:prod_tools_&goods& > 0
+					}
+					change_variable = { name = prod_tools_&goods& multiply = var:prod_update_instances_ttt }
+					change_variable = { name = prod_tools_&goods& divide = 10 }
+				}
+			^
+			
+			remove_variable = prod_update_instances_tt
+			remove_variable = prod_update_instances_ttt
+		}
 	}
 }
 

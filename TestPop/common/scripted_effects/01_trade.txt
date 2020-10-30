@@ -799,6 +799,14 @@ trade_do_trade_helper_0 = {
 						change_variable = { name = trade_sply_&goods& add = prev.var:prod_sply_old_&goods& } 
 					} 
 				}
+				if = { 
+					limit = { 
+						has_variable = prod_tools_&goods& 
+					} 
+					scope:trade_do_trade_select = { 
+						change_variable = { name = trade_dmnd_&goods& add = prev.var:prod_tools_&goods& } 
+					} 
+				}
 			^
 		}
 		
@@ -1212,6 +1220,8 @@ trade_resolve_trade = {
 				remove_variable = prod_earn_&goods&
 			}
 		^
+		
+		remove_variable = trade_resolve_trade_t
 	}
 	every_in_global_list = {
 		limit = {
@@ -1474,17 +1484,31 @@ trade_resolve_trade_helper_1 = {
 			set_variable = { name = trade_resolve_trade_tt value = prev.var:trade_resolve_trade_tt }
 			
 			every_in_list = {
-				limit = {
-					has_variable = prod_dmnd_$good$
-				}
 				variable = prod_instances
 				
-				set_variable = { name = prod_in_$good$ value = var:prod_dmnd_$good$ }
-				change_variable = { name = prod_in_$good$ multiply = prev.var:trade_resolve_trade_tt }
-				change_variable = { name = prod_in_$good$ divide = 100 }
-				
-				set_variable = { name = prod_pay_$good$ value = var:prod_dmnd_$good$ }
-				change_variable = { name = prod_pay_$good$ multiply = prev.var:trade_resolve_trade_t }
+				if = {
+					limit = {
+						has_variable = prod_dmnd_$good$
+					}
+					set_variable = { name = prod_in_$good$ value = var:prod_dmnd_$good$ }
+					change_variable = { name = prod_in_$good$ multiply = prev.var:trade_resolve_trade_tt }
+					change_variable = { name = prod_in_$good$ divide = 100 }
+					
+					set_variable = { name = prod_pay_$good$ value = var:prod_dmnd_$good$ }
+					change_variable = { name = prod_pay_$good$ multiply = prev.var:trade_resolve_trade_t }
+				}
+				if = {
+					limit = {
+						has_variable = prod_tools_$good$
+					}
+					set_variable = { name = prod_tools_in_$good$ value = var:prod_tools_$good$ }
+					change_variable = { name = prod_tools_in_$good$ multiply = prev.var:trade_resolve_trade_tt }
+					change_variable = { name = prod_tools_in_$good$ divide = 100 }
+					
+					set_variable = { name = trade_resolve_trade_t value = var:prod_tools_$good$ }
+					change_variable = { name = trade_resolve_trade_t multiply = prev.var:trade_resolve_trade_t }
+					change_variable = { name = prod_pay_$good$ add = var:trade_resolve_trade_t }
+				}
 			}
 			every_in_list = {
 				limit = {
