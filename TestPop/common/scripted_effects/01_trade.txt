@@ -1160,7 +1160,7 @@ trade_resolve_trade = {
 	every_in_global_list = {
 		variable = prod_instances
 		
-		set_variable = { name = prod_pay_tools value = 0 }
+		set_variable = { name = prod_tools_pay value = 0 }
 		
 		^^goods^
 			set_variable = { name = prod_earn_&goods& value = 0 }
@@ -1200,11 +1200,11 @@ trade_resolve_trade = {
 		every_in_list = {
 			variable = prod_instances
 			
-			set_variable = { name = prod_pay_tools value = var:prod_size }
-			change_variable = { name = prod_pay_tools multiply = 100 }
-			change_variable = { name = prod_pay_tools divide = prev.var:trade_resolve_trade_t }
-			change_variable = { name = prod_pay_tools multiply = prev.var:prod_pay }
-			change_variable = { name = prod_pay_tools divide = 100 }
+			set_variable = { name = prod_tools_pay value = var:prod_size }
+			change_variable = { name = prod_tools_pay multiply = 100 }
+			change_variable = { name = prod_tools_pay divide = prev.var:trade_resolve_trade_t }
+			change_variable = { name = prod_tools_pay multiply = prev.var:prod_pay }
+			change_variable = { name = prod_tools_pay divide = 100 }
 		}
 		
 		remove_variable = trade_resolve_trade_t
@@ -1248,11 +1248,11 @@ trade_resolve_trade = {
 		
 		if = {
 			limit = {
-				has_variable = prod_pay_tools
+				has_variable = prod_tools_pay
 				
-				var:prod_pay_tools > 0
+				var:prod_tools_pay > 0
 			}
-			change_variable = { name = prod_pay add = var:prod_pay_tools }
+			change_variable = { name = prod_pay add = var:prod_tools_pay }
 		}
 		
 		remove_variable = trade_resolve_trade_t
@@ -1562,10 +1562,7 @@ trade_resolve_trade_helper_1 = {
 		}
 	}
 	else = {
-		set_variable = { name = pop_calorie_actual_$good$ value = 0 }
-		set_variable = { name = pop_nutrient_actual_$good$ value = 0 }
-		set_variable = { name = pop_comfort_actual_$good$ value = 0 }
-		set_variable = { name = pop_luxury_actual_$good$ value = 0 }
+		set_variable = { name = prod_tools_in_$good$ value = 0 }
 		
 		every_county_province = {
 			limit = {
