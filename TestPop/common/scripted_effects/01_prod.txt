@@ -18,7 +18,7 @@
 		set_variable = { name = prod_land value = $land$ }
 		
 		^^goods^
-			[[dmnd_&goods&] set_variable = { name = prod_dmnd_&goods& value = $dmnd_&goods&$ } ]
+			[[dmnd_&goods&] set_variable = { name = prod_dmnd } set_variable = { name = prod_dmnd_&goods& value = $dmnd_&goods&$ } ]
 			[[sply_&goods&] set_variable = { name = prod_sply_&goods& value = $sply_&goods&$ } ]
 		^
 	}
@@ -119,25 +119,62 @@ prod_update_instances = {
 	every_in_global_list = {
 		variable = prod_instances
 		
-		set_variable = { name = prod_update_instances_t value = 1 }
-		set_variable = { name = prod_update_instances_tt value = 0 }
-		
-		^^goods^prod_update_instances_helper_4 = { good = &goods& }^
+		^^goods^
+			if = {
+				limit = {
+					has_variable = prod_sply_&goods&
+				}
+				set_variable = { name = prod_sply_old_&goods& value = var:prod_sply_&goods& }
+			}
+		^
 		
 		if = {
 			limit = {
-				has_variable = prod_update_instances_tt
+				has_variable = prod_size
 				
-				var:prod_update_instances_tt > 0
+				var:prod_size > 0
+				
+				var:prod_template = {
+					has_variable = prod_dmnd
+				}
 			}
-			root_effect = {
-				inp = var:prod_update_instances_t
-				root = var:prod_update_instances_tt
-				return = prod_update_instances_t
-			}
+			set_variable = { name = prod_update_instances_t value = 0 }
+			
+			^^goods^
+				if = {
+					limit = {
+						has_variable = prod_in_&goods&
+						
+						var:prod_in_&goods& > 0
+					}
+					set_variable = { name = prod_update_instances_tt value = var:prod_in_&goods& }
+					change_variable = { name = prod_update_instances_tt multiply = var:prod_template.var:prod_dmnd_&goods& }
+					change_variable = { name = prod_update_instances_tt divide = var:prod_location.county.var:modi_prod_dmnd_&goods& }
+					change_variable = { name = prod_update_instances_t add = var:prod_update_instances_tt }
+				}
+				
+				if = {
+					limit = {
+						var:prod_template = {
+							has_variable = prod_dmnd_&goods&
+						}
+					}
+					set_variable = { name = prod_dmnd_old_&goods& value = var:prod_dmnd_&goods& }
+					set_variable = { name = prod_in_old_&goods& value = var:prod_in_&goods& }
+				}
+			^
+			
+			change_variable = { name = prod_update_instances_t divide = var:prod_size }
+			
+			^^goods^
+				if = {
+					limit = {
+						has_variable = prod_sply_&goods&
+					}
+					change_variable = { name = prod_sply_old_&goods& multiply = var:prod_update_instances_t }
+				}
+			^
 		}
-		
-		^^goods^prod_update_instances_helper_5 = { good = &goods& }^
 	}
 	
 	every_in_global_list = {
@@ -328,8 +365,57 @@ prod_update_instances = {
 	every_in_global_list = {
 		variable = prod_instances
 		
-		^^goods^prod_update_instances_helper_6 = { name = prod_dmnd_&goods& }^
-		^^goods^prod_update_instances_helper_6 = { name = prod_sply_&goods& }^
+		^^goods^
+			if = {
+				limit = {
+					has_variable = prod_sply_&goods&
+				}
+				set_variable = { name = prod_sply_&goods& value = var:prod_template.var:prod_sply_&goods& }
+				change_variable = { name = prod_sply_&goods& multiply = var:prod_size }
+				change_variable = { name = prod_sply_&goods& multiply = var:prod_location.county.var:modi_prod_sply_&goods& }
+			}
+		^
+		
+		if = {
+			limit = {
+				var:prod_template = {
+					has_variable = prod_dmnd
+				}
+			}
+			set_variable = { name = prod_update_instances_t value = 0 }
+			
+			^^goods^
+				if = {
+					limit = {
+						var:prod_template = {
+							has_variable = prod_dmnd_&goods&
+						}
+					}
+					set_variable = { name = prod_dmnd_&goods& value = var:prod_template.var:prod_dmnd_&goods& }
+					change_variable = { name = prod_dmnd_&goods& multiply = 4 }
+					change_variable = { name = prod_dmnd_&goods& divide = var:prod_location.county.var:trade_price_&goods& }
+					change_variable = { name = prod_dmnd_&goods& multiply = var:prod_dmnd_&goods& }
+					change_variable = { name = prod_dmnd_&goods& add = 0.001 }
+					change_variable = { name = prod_update_instances_t add = var:prod_dmnd_&goods& }
+				}
+			^
+			
+			^^goods^
+				if = {
+					limit = {
+						has_variable = prod_dmnd_&goods&
+					}
+					change_variable = { name = prod_dmnd_&goods& multiply = 10 }
+					change_variable = { name = prod_dmnd_&goods& divide = var:prod_update_instances_t }
+					change_variable = { name = prod_dmnd_&goods& multiply = var:prod_size }
+					change_variable = { name = prod_dmnd_&goods& divide = 10 }
+					change_variable = { name = prod_dmnd_&goods& divide = var:prod_template.var:prod_dmnd_&goods& }
+					change_variable = { name = prod_dmnd_&goods& multiply = var:prod_location.county.var:modi_prod_dmnd_&goods& }
+				}
+			^
+			
+			remove_variable = prod_update_instances_t
+		}
 	}
 }
 
@@ -430,48 +516,5 @@ prod_update_instances_helper_3 = {
 			
 			set_variable = { name = prod_labor value = 0 }
 		}
-	}
-}
-
-prod_update_instances_helper_4 = {
-	if = {
-		limit = {
-			has_variable = prod_dmnd_$good$
-		}
-		if = {
-			limit = {
-				var:prod_dmnd_$good$ = {
-					compare_value != prev.var:prod_in_$good$
-				}
-			}
-			change_variable = { name = prod_update_instances_t multiply = var:prod_in_$good$ }
-			change_variable = { name = prod_update_instances_t divide = var:prod_dmnd_$good$ }
-		}
-		
-		change_variable = { name = prod_update_instances_tt add = 1 }
-		
-		set_variable = { name = prod_dmnd_old_$good$ value = var:prod_dmnd_$good$ }
-		set_variable = { name = prod_in_old_$good$ value = var:prod_in_$good$ }
-	}
-}
-
-prod_update_instances_helper_5 = {
-	if = {
-		limit = {
-			has_variable = prod_sply_$good$
-		}
-		set_variable = { name = prod_sply_old_$good$ value = var:prod_sply_$good$ }
-		change_variable = { name = prod_sply_old_$good$ multiply = var:prod_update_instances_t }
-	}
-}
-
-prod_update_instances_helper_6 = {
-	if = {
-		limit = {
-			has_variable = $name$
-		}
-		set_variable = { name = $name$ value = var:prod_template.var:$name$ }
-		change_variable = { name = $name$ multiply = var:prod_size }
-		change_variable = { name = $name$ multiply = var:prod_location.county.var:modi_$name$ }
 	}
 }
