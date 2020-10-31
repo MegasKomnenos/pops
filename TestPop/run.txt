@@ -1,14 +1,19 @@
+set_global_variable = { name = sim_i value = 0 }
+
 while = {
 	count = 100
+	
+	change_global_variable = { name = sim_i add = 1 }
 	
 	modi_refresh = yes
 	
 	prod_update_instances = yes
 	
-	every_in_global_list = {
-		variable = prod_instances
-		
-		if = {
+	if = {
+		limit = {
+			global_var:sim_i > 50
+		}
+		every_in_global_list = {
 			limit = {
 				OR = {
 					NOT = {
@@ -18,29 +23,9 @@ while = {
 					var:prod_size < 0.01
 				}
 			}
-			if = {
-				limit = {
-					has_variable = prod_pop_1
-				}
-				remove_variable = prod_pop_1
-				
-				prod_pop_instance = yes
-			}
-			else_if = {
-				limit = {
-					has_variable = prod_pop_0
-				}
-				remove_variable = prod_pop_0
-				
-				set_variable = { name = prod_pop_1 }
-			}
-			else = {
-				set_variable = { name = prod_pop_0 }
-			}
-		}
-		else = {
-			remove_variable = prod_pop_0
-			remove_variable = prod_pop_1
+			variable = prod_instances
+			
+			prod_pop_instance = yes
 		}
 	}
 

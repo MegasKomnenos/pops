@@ -1,5 +1,13 @@
-﻿while = { 
+﻿set_global_variable = { 
+	name = sim_i
+	value = 0
+}
+while = { 
 	count = 100
+	change_global_variable = { 
+		name = sim_i
+		add = 1
+	}
 	every_county = { 
 		limit = { 
 			is_valid_prov = yes
@@ -5981,9 +5989,11 @@
 			remove_variable = prod_update_instances_t
 		}
 	}
-	every_in_global_list = { 
-		variable = prod_instances
-		if = { 
+	if = { 
+		limit = { 
+			global_var:sim_i > 50
+		}
+		every_in_global_list = { 
 			limit = { 
 				OR = { 
 					NOT = { 
@@ -5992,54 +6002,31 @@
 					var:prod_size < 0.01
 				}
 			}
-			if = { 
-				limit = { 
-					has_variable = prod_pop_1
-				}
-				remove_variable = prod_pop_1
-				save_temporary_scope_as = prod_pop_instance_t
-				remove_list_global_variable = { 
+			variable = prod_instances
+			save_temporary_scope_as = prod_pop_instance_t
+			remove_list_global_variable = { 
+				name = prod_instances
+				target = this
+			}
+			var:prod_template = { 
+				remove_list_variable = { 
 					name = prod_instances
-					target = this
+					target = prev
 				}
-				var:prod_template = { 
+			}
+			var:prod_location = { 
+				remove_list_variable = { 
+					name = prod_instances
+					target = prev
+				}
+				county = { 
 					remove_list_variable = { 
 						name = prod_instances
-						target = prev
+						target = scope:prod_pop_instance_t
 					}
 				}
-				var:prod_location = { 
-					remove_list_variable = { 
-						name = prod_instances
-						target = prev
-					}
-					county = { 
-						remove_list_variable = { 
-							name = prod_instances
-							target = scope:prod_pop_instance_t
-						}
-					}
-				}
-				death = natural
 			}
-			else_if = { 
-				limit = { 
-					has_variable = prod_pop_0
-				}
-				remove_variable = prod_pop_0
-				set_variable = { 
-					name = prod_pop_1
-				}
-			}
-			else = { 
-				set_variable = { 
-					name = prod_pop_0
-				}
-			}
-		}
-		else = { 
-			remove_variable = prod_pop_0
-			remove_variable = prod_pop_1
+			death = natural
 		}
 	}
 	every_province = { 
