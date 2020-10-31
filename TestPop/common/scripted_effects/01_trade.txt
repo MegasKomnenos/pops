@@ -458,14 +458,24 @@ trade_do_trade = {
 						change_variable = { name = trade_do_trade_tt multiply = prev.var:trade_do_trade_tt }
 						change_variable = { name = trade_do_trade_tt divide = 100 }
 						change_variable = { name = trade_do_trade_tt divide = var:trade_cost }
+					}
+					every_in_global_list = {
+						limit = {
+							has_variable = trade_do_trade_tt
+							var:trade_do_trade_tt > 0.01
+								
+							has_variable = trade_do_trade_t
+							var:trade_do_trade_t > 0
+						}
+						variable = trade_do_trade_list
 						
 						^^goods^
 							if = {
 								limit = {
 									has_variable = trade_point_&goods&
-									has_variable = trade_do_trade_t_&goods&
-								
 									var:trade_point_&goods& > 0
+									
+									has_variable = trade_do_trade_t_&goods&
 									var:trade_do_trade_t_&goods& > 0
 								}
 								set_variable = { name = trade_do_trade_ttt_&goods& value = var:trade_do_trade_t_&goods& }
@@ -477,14 +487,6 @@ trade_do_trade = {
 								change_variable = { name = trade_do_trade_tt_&goods& add = var:trade_do_trade_ttt_&goods& }
 							}
 						^
-					}
-					every_in_global_list = {
-						limit = {
-							has_variable = trade_do_trade_t
-						
-							var:trade_do_trade_t > 0
-						}
-						variable = trade_do_trade_list
 						
 						set_variable = { name = trade_do_trade_ttt value = 0 }
 						
@@ -492,9 +494,9 @@ trade_do_trade = {
 							if = {
 								limit = {
 									has_variable = trade_point_&goods&
-									has_variable = trade_do_trade_t_&goods&
-								
 									var:trade_point_&goods& > 0
+									
+									has_variable = trade_do_trade_t_&goods&
 									var:trade_do_trade_t_&goods& > 0
 								}
 								if = {
@@ -519,6 +521,7 @@ trade_do_trade = {
 									
 									change_variable = { name = trade_do_trade_t subtract = var:trade_do_trade_t_&goods& }
 									
+									set_variable = { name = trade_point_&goods& value = 0 }
 									set_variable = { name = trade_do_trade_t_&goods& value = 0 }
 								}
 								
@@ -541,7 +544,7 @@ trade_do_trade = {
 									has_variable = trade_do_trade_ttt
 								}
 								
-								var:trade_do_trade_ttt < 0.01
+								var:trade_do_trade_ttt < 1
 							}
 						}
 						set_variable = { name = trade_do_trade_tt value = 0 }

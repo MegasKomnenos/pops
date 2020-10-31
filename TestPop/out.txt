@@ -25897,11 +25897,20 @@
 							name = trade_do_trade_tt
 							divide = var:trade_cost
 						}
+					}
+					every_in_global_list = { 
+						limit = { 
+							has_variable = trade_do_trade_tt
+							var:trade_do_trade_tt > 0.01
+							has_variable = trade_do_trade_t
+							var:trade_do_trade_t > 0
+						}
+						variable = trade_do_trade_list
 						if = { 
 							limit = { 
 								has_variable = trade_point_food
-								has_variable = trade_do_trade_t_food
 								var:trade_point_food > 0
+								has_variable = trade_do_trade_t_food
 								var:trade_do_trade_t_food > 0
 							}
 							set_variable = { 
@@ -25936,8 +25945,8 @@
 						if = { 
 							limit = { 
 								has_variable = trade_point_cereal
-								has_variable = trade_do_trade_t_cereal
 								var:trade_point_cereal > 0
+								has_variable = trade_do_trade_t_cereal
 								var:trade_do_trade_t_cereal > 0
 							}
 							set_variable = { 
@@ -25972,8 +25981,8 @@
 						if = { 
 							limit = { 
 								has_variable = trade_point_salted
-								has_variable = trade_do_trade_t_salted
 								var:trade_point_salted > 0
+								has_variable = trade_do_trade_t_salted
 								var:trade_do_trade_t_salted > 0
 							}
 							set_variable = { 
@@ -26008,8 +26017,8 @@
 						if = { 
 							limit = { 
 								has_variable = trade_point_salt
-								has_variable = trade_do_trade_t_salt
 								var:trade_point_salt > 0
+								has_variable = trade_do_trade_t_salt
 								var:trade_do_trade_t_salt > 0
 							}
 							set_variable = { 
@@ -26044,8 +26053,8 @@
 						if = { 
 							limit = { 
 								has_variable = trade_point_mud
-								has_variable = trade_do_trade_t_mud
 								var:trade_point_mud > 0
+								has_variable = trade_do_trade_t_mud
 								var:trade_do_trade_t_mud > 0
 							}
 							set_variable = { 
@@ -26080,8 +26089,8 @@
 						if = { 
 							limit = { 
 								has_variable = trade_point_fuel
-								has_variable = trade_do_trade_t_fuel
 								var:trade_point_fuel > 0
+								has_variable = trade_do_trade_t_fuel
 								var:trade_do_trade_t_fuel > 0
 							}
 							set_variable = { 
@@ -26116,8 +26125,8 @@
 						if = { 
 							limit = { 
 								has_variable = trade_point_fiber
-								has_variable = trade_do_trade_t_fiber
 								var:trade_point_fiber > 0
+								has_variable = trade_do_trade_t_fiber
 								var:trade_do_trade_t_fiber > 0
 							}
 							set_variable = { 
@@ -26152,8 +26161,8 @@
 						if = { 
 							limit = { 
 								has_variable = trade_point_timber
-								has_variable = trade_do_trade_t_timber
 								var:trade_point_timber > 0
+								has_variable = trade_do_trade_t_timber
 								var:trade_do_trade_t_timber > 0
 							}
 							set_variable = { 
@@ -26188,8 +26197,8 @@
 						if = { 
 							limit = { 
 								has_variable = trade_point_metal
-								has_variable = trade_do_trade_t_metal
 								var:trade_point_metal > 0
+								has_variable = trade_do_trade_t_metal
 								var:trade_do_trade_t_metal > 0
 							}
 							set_variable = { 
@@ -26224,8 +26233,8 @@
 						if = { 
 							limit = { 
 								has_variable = trade_point_exotics_w
-								has_variable = trade_do_trade_t_exotics_w
 								var:trade_point_exotics_w > 0
+								has_variable = trade_do_trade_t_exotics_w
 								var:trade_do_trade_t_exotics_w > 0
 							}
 							set_variable = { 
@@ -26260,8 +26269,8 @@
 						if = { 
 							limit = { 
 								has_variable = trade_point_exotics_e
-								has_variable = trade_do_trade_t_exotics_e
 								var:trade_point_exotics_e > 0
+								has_variable = trade_do_trade_t_exotics_e
 								var:trade_do_trade_t_exotics_e > 0
 							}
 							set_variable = { 
@@ -26296,8 +26305,8 @@
 						if = { 
 							limit = { 
 								has_variable = trade_point_exotics_g
-								has_variable = trade_do_trade_t_exotics_g
 								var:trade_point_exotics_g > 0
+								has_variable = trade_do_trade_t_exotics_g
 								var:trade_do_trade_t_exotics_g > 0
 							}
 							set_variable = { 
@@ -26332,8 +26341,8 @@
 						if = { 
 							limit = { 
 								has_variable = trade_point_textile
-								has_variable = trade_do_trade_t_textile
 								var:trade_point_textile > 0
+								has_variable = trade_do_trade_t_textile
 								var:trade_do_trade_t_textile > 0
 							}
 							set_variable = { 
@@ -26368,8 +26377,8 @@
 						if = { 
 							limit = { 
 								has_variable = trade_point_pottery
-								has_variable = trade_do_trade_t_pottery
 								var:trade_point_pottery > 0
+								has_variable = trade_do_trade_t_pottery
 								var:trade_do_trade_t_pottery > 0
 							}
 							set_variable = { 
@@ -26404,8 +26413,8 @@
 						if = { 
 							limit = { 
 								has_variable = trade_point_tools
-								has_variable = trade_do_trade_t_tools
 								var:trade_point_tools > 0
+								has_variable = trade_do_trade_t_tools
 								var:trade_do_trade_t_tools > 0
 							}
 							set_variable = { 
@@ -26437,13 +26446,6 @@
 								add = var:trade_do_trade_ttt_tools
 							}
 						}
-					}
-					every_in_global_list = { 
-						limit = { 
-							has_variable = trade_do_trade_t
-							var:trade_do_trade_t > 0
-						}
-						variable = trade_do_trade_list
 						set_variable = { 
 							name = trade_do_trade_ttt
 							value = 0
@@ -26451,8 +26453,8 @@
 						if = { 
 							limit = { 
 								has_variable = trade_point_food
-								has_variable = trade_do_trade_t_food
 								var:trade_point_food > 0
+								has_variable = trade_do_trade_t_food
 								var:trade_do_trade_t_food > 0
 							}
 							if = { 
@@ -26494,6 +26496,10 @@
 									subtract = var:trade_do_trade_t_food
 								}
 								set_variable = { 
+									name = trade_point_food
+									value = 0
+								}
+								set_variable = { 
 									name = trade_do_trade_t_food
 									value = 0
 								}
@@ -26510,8 +26516,8 @@
 						if = { 
 							limit = { 
 								has_variable = trade_point_cereal
-								has_variable = trade_do_trade_t_cereal
 								var:trade_point_cereal > 0
+								has_variable = trade_do_trade_t_cereal
 								var:trade_do_trade_t_cereal > 0
 							}
 							if = { 
@@ -26553,6 +26559,10 @@
 									subtract = var:trade_do_trade_t_cereal
 								}
 								set_variable = { 
+									name = trade_point_cereal
+									value = 0
+								}
+								set_variable = { 
 									name = trade_do_trade_t_cereal
 									value = 0
 								}
@@ -26569,8 +26579,8 @@
 						if = { 
 							limit = { 
 								has_variable = trade_point_salted
-								has_variable = trade_do_trade_t_salted
 								var:trade_point_salted > 0
+								has_variable = trade_do_trade_t_salted
 								var:trade_do_trade_t_salted > 0
 							}
 							if = { 
@@ -26612,6 +26622,10 @@
 									subtract = var:trade_do_trade_t_salted
 								}
 								set_variable = { 
+									name = trade_point_salted
+									value = 0
+								}
+								set_variable = { 
 									name = trade_do_trade_t_salted
 									value = 0
 								}
@@ -26628,8 +26642,8 @@
 						if = { 
 							limit = { 
 								has_variable = trade_point_salt
-								has_variable = trade_do_trade_t_salt
 								var:trade_point_salt > 0
+								has_variable = trade_do_trade_t_salt
 								var:trade_do_trade_t_salt > 0
 							}
 							if = { 
@@ -26671,6 +26685,10 @@
 									subtract = var:trade_do_trade_t_salt
 								}
 								set_variable = { 
+									name = trade_point_salt
+									value = 0
+								}
+								set_variable = { 
 									name = trade_do_trade_t_salt
 									value = 0
 								}
@@ -26687,8 +26705,8 @@
 						if = { 
 							limit = { 
 								has_variable = trade_point_mud
-								has_variable = trade_do_trade_t_mud
 								var:trade_point_mud > 0
+								has_variable = trade_do_trade_t_mud
 								var:trade_do_trade_t_mud > 0
 							}
 							if = { 
@@ -26730,6 +26748,10 @@
 									subtract = var:trade_do_trade_t_mud
 								}
 								set_variable = { 
+									name = trade_point_mud
+									value = 0
+								}
+								set_variable = { 
 									name = trade_do_trade_t_mud
 									value = 0
 								}
@@ -26746,8 +26768,8 @@
 						if = { 
 							limit = { 
 								has_variable = trade_point_fuel
-								has_variable = trade_do_trade_t_fuel
 								var:trade_point_fuel > 0
+								has_variable = trade_do_trade_t_fuel
 								var:trade_do_trade_t_fuel > 0
 							}
 							if = { 
@@ -26789,6 +26811,10 @@
 									subtract = var:trade_do_trade_t_fuel
 								}
 								set_variable = { 
+									name = trade_point_fuel
+									value = 0
+								}
+								set_variable = { 
 									name = trade_do_trade_t_fuel
 									value = 0
 								}
@@ -26805,8 +26831,8 @@
 						if = { 
 							limit = { 
 								has_variable = trade_point_fiber
-								has_variable = trade_do_trade_t_fiber
 								var:trade_point_fiber > 0
+								has_variable = trade_do_trade_t_fiber
 								var:trade_do_trade_t_fiber > 0
 							}
 							if = { 
@@ -26848,6 +26874,10 @@
 									subtract = var:trade_do_trade_t_fiber
 								}
 								set_variable = { 
+									name = trade_point_fiber
+									value = 0
+								}
+								set_variable = { 
 									name = trade_do_trade_t_fiber
 									value = 0
 								}
@@ -26864,8 +26894,8 @@
 						if = { 
 							limit = { 
 								has_variable = trade_point_timber
-								has_variable = trade_do_trade_t_timber
 								var:trade_point_timber > 0
+								has_variable = trade_do_trade_t_timber
 								var:trade_do_trade_t_timber > 0
 							}
 							if = { 
@@ -26907,6 +26937,10 @@
 									subtract = var:trade_do_trade_t_timber
 								}
 								set_variable = { 
+									name = trade_point_timber
+									value = 0
+								}
+								set_variable = { 
 									name = trade_do_trade_t_timber
 									value = 0
 								}
@@ -26923,8 +26957,8 @@
 						if = { 
 							limit = { 
 								has_variable = trade_point_metal
-								has_variable = trade_do_trade_t_metal
 								var:trade_point_metal > 0
+								has_variable = trade_do_trade_t_metal
 								var:trade_do_trade_t_metal > 0
 							}
 							if = { 
@@ -26966,6 +27000,10 @@
 									subtract = var:trade_do_trade_t_metal
 								}
 								set_variable = { 
+									name = trade_point_metal
+									value = 0
+								}
+								set_variable = { 
 									name = trade_do_trade_t_metal
 									value = 0
 								}
@@ -26982,8 +27020,8 @@
 						if = { 
 							limit = { 
 								has_variable = trade_point_exotics_w
-								has_variable = trade_do_trade_t_exotics_w
 								var:trade_point_exotics_w > 0
+								has_variable = trade_do_trade_t_exotics_w
 								var:trade_do_trade_t_exotics_w > 0
 							}
 							if = { 
@@ -27025,6 +27063,10 @@
 									subtract = var:trade_do_trade_t_exotics_w
 								}
 								set_variable = { 
+									name = trade_point_exotics_w
+									value = 0
+								}
+								set_variable = { 
 									name = trade_do_trade_t_exotics_w
 									value = 0
 								}
@@ -27041,8 +27083,8 @@
 						if = { 
 							limit = { 
 								has_variable = trade_point_exotics_e
-								has_variable = trade_do_trade_t_exotics_e
 								var:trade_point_exotics_e > 0
+								has_variable = trade_do_trade_t_exotics_e
 								var:trade_do_trade_t_exotics_e > 0
 							}
 							if = { 
@@ -27084,6 +27126,10 @@
 									subtract = var:trade_do_trade_t_exotics_e
 								}
 								set_variable = { 
+									name = trade_point_exotics_e
+									value = 0
+								}
+								set_variable = { 
 									name = trade_do_trade_t_exotics_e
 									value = 0
 								}
@@ -27100,8 +27146,8 @@
 						if = { 
 							limit = { 
 								has_variable = trade_point_exotics_g
-								has_variable = trade_do_trade_t_exotics_g
 								var:trade_point_exotics_g > 0
+								has_variable = trade_do_trade_t_exotics_g
 								var:trade_do_trade_t_exotics_g > 0
 							}
 							if = { 
@@ -27143,6 +27189,10 @@
 									subtract = var:trade_do_trade_t_exotics_g
 								}
 								set_variable = { 
+									name = trade_point_exotics_g
+									value = 0
+								}
+								set_variable = { 
 									name = trade_do_trade_t_exotics_g
 									value = 0
 								}
@@ -27159,8 +27209,8 @@
 						if = { 
 							limit = { 
 								has_variable = trade_point_textile
-								has_variable = trade_do_trade_t_textile
 								var:trade_point_textile > 0
+								has_variable = trade_do_trade_t_textile
 								var:trade_do_trade_t_textile > 0
 							}
 							if = { 
@@ -27202,6 +27252,10 @@
 									subtract = var:trade_do_trade_t_textile
 								}
 								set_variable = { 
+									name = trade_point_textile
+									value = 0
+								}
+								set_variable = { 
 									name = trade_do_trade_t_textile
 									value = 0
 								}
@@ -27218,8 +27272,8 @@
 						if = { 
 							limit = { 
 								has_variable = trade_point_pottery
-								has_variable = trade_do_trade_t_pottery
 								var:trade_point_pottery > 0
+								has_variable = trade_do_trade_t_pottery
 								var:trade_do_trade_t_pottery > 0
 							}
 							if = { 
@@ -27261,6 +27315,10 @@
 									subtract = var:trade_do_trade_t_pottery
 								}
 								set_variable = { 
+									name = trade_point_pottery
+									value = 0
+								}
+								set_variable = { 
 									name = trade_do_trade_t_pottery
 									value = 0
 								}
@@ -27277,8 +27335,8 @@
 						if = { 
 							limit = { 
 								has_variable = trade_point_tools
-								has_variable = trade_do_trade_t_tools
 								var:trade_point_tools > 0
+								has_variable = trade_do_trade_t_tools
 								var:trade_do_trade_t_tools > 0
 							}
 							if = { 
@@ -27320,6 +27378,10 @@
 									subtract = var:trade_do_trade_t_tools
 								}
 								set_variable = { 
+									name = trade_point_tools
+									value = 0
+								}
+								set_variable = { 
 									name = trade_do_trade_t_tools
 									value = 0
 								}
@@ -27350,7 +27412,7 @@
 								NOT = { 
 									has_variable = trade_do_trade_ttt
 								}
-								var:trade_do_trade_ttt < 0.01
+								var:trade_do_trade_ttt < 1
 							}
 						}
 						set_variable = { 
