@@ -329,6 +329,10 @@ sqrt_effect = {
 		
 		while = {
 			limit = {
+				has_variable = math_sqrt_n
+					
+				var:math_sqrt_n > 0
+				
 				OR = {
 					var:math_sqrt_tt < 0.995
 					var:math_sqrt_tt > 1.005

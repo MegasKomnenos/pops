@@ -218,15 +218,30 @@ prod_update_instances = {
 	every_in_global_list = {
 		variable = prod_instances
 		
-		pow_effect = {
-			inp = var:prod_labor
-			exp = var:prod_template.var:prod_labor
-			return = prod_size
+		if = {
+			limit = {
+				var:prod_template.var:prod_labor = 0.5
+			}
+			sqrt_effect = {
+				inp = var:prod_labor
+				return = prod_size
+			}
+			sqrt_effect = {
+				inp = var:prod_land
+				return = prod_update_instances_t
+			}
 		}
-		pow_effect = {
-			inp = var:prod_land
-			exp = var:prod_template.var:prod_land
-			return = prod_update_instances_t
+		else = {
+			pow_effect = {
+				inp = var:prod_labor
+				exp = var:prod_template.var:prod_labor
+				return = prod_size
+			}
+			pow_effect = {
+				inp = var:prod_land
+				exp = var:prod_template.var:prod_land
+				return = prod_update_instances_t
+			}
 		}
 		
 		change_variable = { name = prod_size multiply = var:prod_update_instances_t }
