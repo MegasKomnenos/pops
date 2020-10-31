@@ -4,6 +4,45 @@ while = {
 	modi_refresh = yes
 	
 	prod_update_instances = yes
+	
+	every_in_global_list = {
+		variable = prod_instances
+		
+		if = {
+			limit = {
+				OR = {
+					NOT = {
+						has_variable = prod_size
+					}
+					
+					var:prod_size < 0.01
+				}
+			}
+			if = {
+				limit = {
+					has_variable = prod_pop_1
+				}
+				remove_variable = prod_pop_1
+				
+				prod_pop_instance = yes
+			}
+			else_if = {
+				limit = {
+					has_variable = prod_pop_0
+				}
+				remove_variable = prod_pop_0
+				
+				set_variable = { name = prod_pop_1 }
+			}
+			else = {
+				set_variable = { name = prod_pop_0 }
+			}
+		}
+		else = {
+			remove_variable = prod_pop_0
+			remove_variable = prod_pop_1
+		}
+	}
 
 	every_province = {
 		limit = {
