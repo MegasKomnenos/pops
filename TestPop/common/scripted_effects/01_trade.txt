@@ -148,6 +148,7 @@ trade_do_trade = {
 			travel_distance_dijkstra_every = {
 				start = var:trade_location
 				start_list = trade_outposts
+				base_list = 380
 				max = 760
 				return_dist = trade_do_trade_dist
 				return_prev = trade_do_trade_prev
@@ -195,6 +196,23 @@ trade_do_trade = {
 				
 				set_variable = { name = trade_do_trade_dist value = var:trade_location.county.var:trade_do_trade_dist }
 				set_variable = { name = trade_do_trade_prev value = var:trade_location.county.var:trade_do_trade_prev }
+				
+				change_variable = { name = trade_do_trade_dist divide = 1.6 }
+				change_variable = { name = trade_do_trade_dist subtract = 95 }
+				
+				if = {
+					limit = {
+						OR = {
+							NOT = {
+								has_variable = trade_do_trade_dist
+							}
+							
+							var:trade_do_trade_dist = 0
+							var:trade_do_trade_dist < 0
+						}
+					}
+					set_variable = { name = trade_do_trade_dist value = 0.001 }
+				}
 			}
 			
 			remove_variable = trade_do_trade_select
@@ -205,7 +223,7 @@ trade_do_trade = {
 				set_variable = { name = trade_cost value = var:trade_do_trade_dist }
 				change_variable = { name = trade_cost divide = 40 }
 				change_variable = { name = trade_cost add = 1 }
-				change_variable = { name = trade_cost divide = 10 }
+				change_variable = { name = trade_cost divide = 20 }
 			}
 			
 			^^goods^
@@ -534,7 +552,7 @@ trade_do_trade = {
 								compare_value > prev.var:trade_power
 							}
 						}
-						count = 2
+						count = 3
 						
 						set_variable = { name = trade_do_trade_t value = var:trade_power }
 						change_variable = { name = trade_do_trade_t multiply = 100 }
@@ -1096,7 +1114,7 @@ trade_do_trade_helper_2 = {
 						compare_value > prev.var:trade_$type1$_$good$
 					}
 				}
-				count = 2
+				count = 3
 				
 				set_variable = { name = trade_do_trade_t value = var:trade_$type1$_$good$ }
 				change_variable = { name = trade_do_trade_t multiply = 100 }

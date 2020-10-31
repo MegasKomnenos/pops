@@ -10,6 +10,7 @@
 		start = $start$
 		[[start_list] start_list = $start_list$ ]
 		[[start_list_global] start_list_global = $start_list_global$ ]
+		[[base_list] base_list = $base_list$ ]
 		max = $max$
 		return_dist = $return_dist$
 		return_prev = $return_prev$
@@ -44,6 +45,7 @@ travel_distance_dijkstra_black = {
 		start = $start$
 		[[start_list] start_list = $start_list$ ]
 		[[start_list_global] start_list_global = $start_list_global$ ]
+		[[base_list] base_list = $base_list$ ]
 		max = $max$
 		return_dist = $return_dist$
 		return_prev = $return_prev$
@@ -67,6 +69,7 @@ travel_distance_dijkstra_every = {
 		start = $start$
 		[[start_list] start_list = $start_list$ ]
 		[[start_list_global] start_list_global = $start_list_global$ ]
+		[[base_list] base_list = $base_list$ ]
 		max = $max$
 		return_dist = $return_dist$
 		return_prev = $return_prev$
@@ -76,15 +79,7 @@ travel_distance_dijkstra_every = {
 }
 
 # start should always be a land province
-travel_distance_dijkstra = {	
-	$start$ = {
-		set_variable = { name = travel_distance_distance value = 0.001 }
-		set_variable = { name = travel_distance_prev value = this }
-		
-		add_to_global_variable_list = { name = travel_distance_fray target = this }
-		add_to_global_variable_list = { name = travel_distance_visited target = this }
-	}
-	
+travel_distance_dijkstra = {
 	[[start_list]
 		if = {
 			limit = {
@@ -102,6 +97,8 @@ travel_distance_dijkstra = {
 				set_variable = { name = travel_distance_distance value = 0.001 }
 				set_variable = { name = travel_distance_prev value = this }
 				
+				[[base_list] change_variable = { name = travel_distance_distance add = $base_list$ } ]
+				
 				add_to_global_variable_list = { name = travel_distance_fray target = this }
 				add_to_global_variable_list = { name = travel_distance_visited target = this }
 			}
@@ -113,11 +110,21 @@ travel_distance_dijkstra = {
 				set_variable = { name = travel_distance_distance value = 0.001 }
 				set_variable = { name = travel_distance_prev value = this }
 				
+				[[base_list] change_variable = { name = travel_distance_distance add = $base_list$ } ]
+				
 				add_to_global_variable_list = { name = travel_distance_fray target = this }
 				add_to_global_variable_list = { name = travel_distance_visited target = this }
 			}
 		}
 	]
+	
+	$start$ = {
+		set_variable = { name = travel_distance_distance value = 0.001 }
+		set_variable = { name = travel_distance_prev value = this }
+		
+		add_to_global_variable_list = { name = travel_distance_fray target = this }
+		add_to_global_variable_list = { name = travel_distance_visited target = this }
+	}
 	
 	while = {
 		limit = {

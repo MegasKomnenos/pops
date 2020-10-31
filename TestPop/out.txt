@@ -1,5 +1,5 @@
 ﻿while = { 
-	count = 300
+	count = 100
 	every_county = { 
 		limit = { 
 			is_valid_prov = yes
@@ -14709,24 +14709,6 @@
 					value = this
 				}
 			}
-			var:trade_location = { 
-				set_variable = { 
-					name = travel_distance_distance
-					value = 0.001
-				}
-				set_variable = { 
-					name = travel_distance_prev
-					value = this
-				}
-				add_to_global_variable_list = { 
-					name = travel_distance_fray
-					target = this
-				}
-				add_to_global_variable_list = { 
-					name = travel_distance_visited
-					target = this
-				}
-			}
 			if = { 
 				limit = { 
 					or = { 
@@ -14742,6 +14724,10 @@
 					set_variable = { 
 						name = travel_distance_prev
 						value = this
+					}
+					change_variable = { 
+						name = travel_distance_distance
+						add = 380
 					}
 					add_to_global_variable_list = { 
 						name = travel_distance_fray
@@ -14764,6 +14750,10 @@
 						name = travel_distance_prev
 						value = this
 					}
+					change_variable = { 
+						name = travel_distance_distance
+						add = 380
+					}
 					add_to_global_variable_list = { 
 						name = travel_distance_fray
 						target = this
@@ -14772,6 +14762,24 @@
 						name = travel_distance_visited
 						target = this
 					}
+				}
+			}
+			var:trade_location = { 
+				set_variable = { 
+					name = travel_distance_distance
+					value = 0.001
+				}
+				set_variable = { 
+					name = travel_distance_prev
+					value = this
+				}
+				add_to_global_variable_list = { 
+					name = travel_distance_fray
+					target = this
+				}
+				add_to_global_variable_list = { 
+					name = travel_distance_visited
+					target = this
 				}
 			}
 			while = { 
@@ -15229,6 +15237,29 @@
 					name = trade_do_trade_prev
 					value = var:trade_location.county.var:trade_do_trade_prev
 				}
+				change_variable = { 
+					name = trade_do_trade_dist
+					divide = 1.6
+				}
+				change_variable = { 
+					name = trade_do_trade_dist
+					subtract = 95
+				}
+				if = { 
+					limit = { 
+						OR = { 
+							NOT = { 
+								has_variable = trade_do_trade_dist
+							}
+							var:trade_do_trade_dist = 0
+							var:trade_do_trade_dist < 0
+						}
+					}
+					set_variable = { 
+						name = trade_do_trade_dist
+						value = 0.001
+					}
+				}
 			}
 			remove_variable = trade_do_trade_select
 			every_in_global_list = { 
@@ -15247,7 +15278,7 @@
 				}
 				change_variable = { 
 					name = trade_cost
-					divide = 10
+					divide = 20
 				}
 			}
 			set_variable = { 
@@ -18906,7 +18937,7 @@
 								compare_value > prev.var:trade_sell_food
 							}
 						}
-						count = 2
+						count = 3
 						set_variable = { 
 							name = trade_do_trade_t
 							value = var:trade_sell_food
@@ -19284,7 +19315,7 @@
 								compare_value > prev.var:trade_sell_cereal
 							}
 						}
-						count = 2
+						count = 3
 						set_variable = { 
 							name = trade_do_trade_t
 							value = var:trade_sell_cereal
@@ -19662,7 +19693,7 @@
 								compare_value > prev.var:trade_sell_salted
 							}
 						}
-						count = 2
+						count = 3
 						set_variable = { 
 							name = trade_do_trade_t
 							value = var:trade_sell_salted
@@ -20040,7 +20071,7 @@
 								compare_value > prev.var:trade_sell_salt
 							}
 						}
-						count = 2
+						count = 3
 						set_variable = { 
 							name = trade_do_trade_t
 							value = var:trade_sell_salt
@@ -20418,7 +20449,7 @@
 								compare_value > prev.var:trade_sell_mud
 							}
 						}
-						count = 2
+						count = 3
 						set_variable = { 
 							name = trade_do_trade_t
 							value = var:trade_sell_mud
@@ -20796,7 +20827,7 @@
 								compare_value > prev.var:trade_sell_fuel
 							}
 						}
-						count = 2
+						count = 3
 						set_variable = { 
 							name = trade_do_trade_t
 							value = var:trade_sell_fuel
@@ -21174,7 +21205,7 @@
 								compare_value > prev.var:trade_sell_fiber
 							}
 						}
-						count = 2
+						count = 3
 						set_variable = { 
 							name = trade_do_trade_t
 							value = var:trade_sell_fiber
@@ -21552,7 +21583,7 @@
 								compare_value > prev.var:trade_sell_timber
 							}
 						}
-						count = 2
+						count = 3
 						set_variable = { 
 							name = trade_do_trade_t
 							value = var:trade_sell_timber
@@ -21930,7 +21961,7 @@
 								compare_value > prev.var:trade_sell_metal
 							}
 						}
-						count = 2
+						count = 3
 						set_variable = { 
 							name = trade_do_trade_t
 							value = var:trade_sell_metal
@@ -22308,7 +22339,7 @@
 								compare_value > prev.var:trade_sell_exotics_w
 							}
 						}
-						count = 2
+						count = 3
 						set_variable = { 
 							name = trade_do_trade_t
 							value = var:trade_sell_exotics_w
@@ -22686,7 +22717,7 @@
 								compare_value > prev.var:trade_sell_exotics_e
 							}
 						}
-						count = 2
+						count = 3
 						set_variable = { 
 							name = trade_do_trade_t
 							value = var:trade_sell_exotics_e
@@ -23064,7 +23095,7 @@
 								compare_value > prev.var:trade_sell_exotics_g
 							}
 						}
-						count = 2
+						count = 3
 						set_variable = { 
 							name = trade_do_trade_t
 							value = var:trade_sell_exotics_g
@@ -23442,7 +23473,7 @@
 								compare_value > prev.var:trade_sell_textile
 							}
 						}
-						count = 2
+						count = 3
 						set_variable = { 
 							name = trade_do_trade_t
 							value = var:trade_sell_textile
@@ -23820,7 +23851,7 @@
 								compare_value > prev.var:trade_sell_pottery
 							}
 						}
-						count = 2
+						count = 3
 						set_variable = { 
 							name = trade_do_trade_t
 							value = var:trade_sell_pottery
@@ -24198,7 +24229,7 @@
 								compare_value > prev.var:trade_sell_tools
 							}
 						}
-						count = 2
+						count = 3
 						set_variable = { 
 							name = trade_do_trade_t
 							value = var:trade_sell_tools
@@ -24576,7 +24607,7 @@
 								compare_value > prev.var:trade_buy_food
 							}
 						}
-						count = 2
+						count = 3
 						set_variable = { 
 							name = trade_do_trade_t
 							value = var:trade_buy_food
@@ -24954,7 +24985,7 @@
 								compare_value > prev.var:trade_buy_cereal
 							}
 						}
-						count = 2
+						count = 3
 						set_variable = { 
 							name = trade_do_trade_t
 							value = var:trade_buy_cereal
@@ -25332,7 +25363,7 @@
 								compare_value > prev.var:trade_buy_salted
 							}
 						}
-						count = 2
+						count = 3
 						set_variable = { 
 							name = trade_do_trade_t
 							value = var:trade_buy_salted
@@ -25710,7 +25741,7 @@
 								compare_value > prev.var:trade_buy_salt
 							}
 						}
-						count = 2
+						count = 3
 						set_variable = { 
 							name = trade_do_trade_t
 							value = var:trade_buy_salt
@@ -26088,7 +26119,7 @@
 								compare_value > prev.var:trade_buy_mud
 							}
 						}
-						count = 2
+						count = 3
 						set_variable = { 
 							name = trade_do_trade_t
 							value = var:trade_buy_mud
@@ -26466,7 +26497,7 @@
 								compare_value > prev.var:trade_buy_fuel
 							}
 						}
-						count = 2
+						count = 3
 						set_variable = { 
 							name = trade_do_trade_t
 							value = var:trade_buy_fuel
@@ -26844,7 +26875,7 @@
 								compare_value > prev.var:trade_buy_fiber
 							}
 						}
-						count = 2
+						count = 3
 						set_variable = { 
 							name = trade_do_trade_t
 							value = var:trade_buy_fiber
@@ -27222,7 +27253,7 @@
 								compare_value > prev.var:trade_buy_timber
 							}
 						}
-						count = 2
+						count = 3
 						set_variable = { 
 							name = trade_do_trade_t
 							value = var:trade_buy_timber
@@ -27600,7 +27631,7 @@
 								compare_value > prev.var:trade_buy_metal
 							}
 						}
-						count = 2
+						count = 3
 						set_variable = { 
 							name = trade_do_trade_t
 							value = var:trade_buy_metal
@@ -27978,7 +28009,7 @@
 								compare_value > prev.var:trade_buy_exotics_w
 							}
 						}
-						count = 2
+						count = 3
 						set_variable = { 
 							name = trade_do_trade_t
 							value = var:trade_buy_exotics_w
@@ -28356,7 +28387,7 @@
 								compare_value > prev.var:trade_buy_exotics_e
 							}
 						}
-						count = 2
+						count = 3
 						set_variable = { 
 							name = trade_do_trade_t
 							value = var:trade_buy_exotics_e
@@ -28734,7 +28765,7 @@
 								compare_value > prev.var:trade_buy_exotics_g
 							}
 						}
-						count = 2
+						count = 3
 						set_variable = { 
 							name = trade_do_trade_t
 							value = var:trade_buy_exotics_g
@@ -29112,7 +29143,7 @@
 								compare_value > prev.var:trade_buy_textile
 							}
 						}
-						count = 2
+						count = 3
 						set_variable = { 
 							name = trade_do_trade_t
 							value = var:trade_buy_textile
@@ -29490,7 +29521,7 @@
 								compare_value > prev.var:trade_buy_pottery
 							}
 						}
-						count = 2
+						count = 3
 						set_variable = { 
 							name = trade_do_trade_t
 							value = var:trade_buy_pottery
@@ -29868,7 +29899,7 @@
 								compare_value > prev.var:trade_buy_tools
 							}
 						}
-						count = 2
+						count = 3
 						set_variable = { 
 							name = trade_do_trade_t
 							value = var:trade_buy_tools
@@ -32301,7 +32332,7 @@
 								compare_value > prev.var:trade_power
 							}
 						}
-						count = 2
+						count = 3
 						set_variable = { 
 							name = trade_do_trade_t
 							value = var:trade_power
