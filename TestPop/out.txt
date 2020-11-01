@@ -6423,13 +6423,13 @@ while = {
 				limit = { 
 					OR = { 
 						NOT = { 
-							has_variable_list = build_slots
+							has_global_variable_list = build_slots
 						}
-						variable_list_size = { 
+						global_variable_list_size = { 
 							name = build_slots
 							value = 0
 						}
-						any_in_list = { 
+						any_in_global_list = { 
 							variable = build_slots
 							count = all
 							has_variable = build_active
@@ -6448,35 +6448,14 @@ while = {
 					name = build_slots
 					target = scope:build_new_slot_temp
 				}
-				this = { 
-					add_to_variable_list = { 
-						name = build_slots
-						target = scope:build_new_slot_temp
+				scope:build_new_slot_temp = { 
+					set_variable = { 
+						name = build_id
+						value = global_var:build_id
 					}
-					if = { 
-						limit = { 
-							NOT = { 
-								has_variable = build_slots_num
-							}
-						}
-						set_variable = { 
-							name = build_slots_num
-							value = 0
-						}
-					}
-					change_variable = { 
-						name = build_slots_num
+					change_global_variable = { 
+						name = build_id
 						add = 1
-					}
-					scope:build_new_slot_temp = { 
-						set_variable = { 
-							name = build_location
-							value = prev
-						}
-						set_variable = { 
-							name = build_id
-							value = prev.var:build_slots_num
-						}
 					}
 				}
 			}
@@ -6492,7 +6471,7 @@ while = {
 				name = build_start_project_ttt
 				value = 3
 			}
-			ordered_in_list = { 
+			ordered_in_global_list = { 
 				limit = { 
 					NOT = { 
 						has_variable = build_active
@@ -6512,6 +6491,10 @@ while = {
 				set_variable = { 
 					name = build_owner
 					value = prev.var:build_start_project_ttt
+				}
+				set_variable = { 
+					name = build_location
+					value = prev
 				}
 				set_variable = { 
 					name = build_name
@@ -7610,13 +7593,13 @@ while = {
 				limit = { 
 					OR = { 
 						NOT = { 
-							has_variable_list = build_slots
+							has_global_variable_list = build_slots
 						}
-						variable_list_size = { 
+						global_variable_list_size = { 
 							name = build_slots
 							value = 0
 						}
-						any_in_list = { 
+						any_in_global_list = { 
 							variable = build_slots
 							count = all
 							has_variable = build_active
@@ -7635,35 +7618,14 @@ while = {
 					name = build_slots
 					target = scope:build_new_slot_temp
 				}
-				this = { 
-					add_to_variable_list = { 
-						name = build_slots
-						target = scope:build_new_slot_temp
+				scope:build_new_slot_temp = { 
+					set_variable = { 
+						name = build_id
+						value = global_var:build_id
 					}
-					if = { 
-						limit = { 
-							NOT = { 
-								has_variable = build_slots_num
-							}
-						}
-						set_variable = { 
-							name = build_slots_num
-							value = 0
-						}
-					}
-					change_variable = { 
-						name = build_slots_num
+					change_global_variable = { 
+						name = build_id
 						add = 1
-					}
-					scope:build_new_slot_temp = { 
-						set_variable = { 
-							name = build_location
-							value = prev
-						}
-						set_variable = { 
-							name = build_id
-							value = prev.var:build_slots_num
-						}
 					}
 				}
 			}
@@ -7679,7 +7641,7 @@ while = {
 				name = build_start_project_ttt
 				value = 3
 			}
-			ordered_in_list = { 
+			ordered_in_global_list = { 
 				limit = { 
 					NOT = { 
 						has_variable = build_active
@@ -7699,6 +7661,10 @@ while = {
 				set_variable = { 
 					name = build_owner
 					value = prev.var:build_start_project_ttt
+				}
+				set_variable = { 
+					name = build_location
+					value = prev
 				}
 				set_variable = { 
 					name = build_name
@@ -45444,6 +45410,7 @@ while = {
 				remove_variable = build_prog
 				remove_variable = build_pay
 				remove_variable = build_owner
+				remove_variable = build_location
 				remove_variable = build_food
 				remove_variable = build_in_food
 				remove_variable = build_pay_food
