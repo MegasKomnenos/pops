@@ -53,9 +53,9 @@
 			
 			var:forest_base > 0
 		}
-		set_variable = { name = forest_main_tt value = var:forest_base_start }
+		set_variable = { name = forest_main_tt value = var:forest_base }
 		change_variable = { name = forest_main_tt divide = 100 }
-		change_variable = { name = forest_main_tt multiply = var:forest_base }
+		change_variable = { name = forest_main_tt multiply = var:forest_total }
 		
 		sqrt_effect = {
 			inp = var:forest_main_tt
@@ -133,33 +133,9 @@
 			change_variable = { name = wasteland_forest subtract = var:forest_main_tt }
 		}
 		
-		set_variable = { name = forest_base value = var:forest_wasteland }
-		change_variable = { name = forest_base add = var:forest_farm }
-		change_variable = { name = forest_base add = var:forest_pasture }
-		
-		set_variable = { name = forest_total value = var:forest_base }
-		
-		if = {
-			limit = {
-				var:forest_intensivity > 50
-			}
-			set_variable = { name = forest_main_t value = var:forest_intensivity }
-			change_variable = { name = forest_main_t subtract = 50 }
-			change_variable = { name = forest_main_t divide = 5 }
-			change_variable = { name = forest_main_t add = 10 }
-			change_variable = { name = forest_total multiply = var:forest_main_t }
-			change_variable = { name = forest_total divide = 10 }
-		}
-		else_if = {
-			limit = {
-				var:forest_intensivity < 50
-			}
-			set_variable = { name = forest_main_t value = var:forest_intensivity }
-			change_variable = { name = forest_main_t add = 50 }
-			change_variable = { name = forest_main_t divide = 10 }
-			change_variable = { name = forest_total multiply = var:forest_main_t }
-			change_variable = { name = forest_total divide = 10 }
-		}
+		set_variable = { name = forest_total value = var:forest_wasteland }
+		change_variable = { name = forest_total add = var:forest_farm }
+		change_variable = { name = forest_total add = var:forest_pasture }
 		
 		remove_variable = forest_main_t
 		remove_variable = forest_main_tt
