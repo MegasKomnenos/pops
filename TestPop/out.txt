@@ -6086,13 +6086,104 @@ while = {
 			has_variable = forest_base
 			var:forest_base > 0
 		}
+		set_variable = { 
+			name = forest_main_tt
+			value = var:forest_base_start
+		}
+		change_variable = { 
+			name = forest_main_tt
+			divide = 100
+		}
+		change_variable = { 
+			name = forest_main_tt
+			multiply = var:forest_base
+		}
+		set_variable = { 
+			name = math_sqrt_i
+			value = var:forest_main_tt
+		}
+		if = { 
+			limit = { 
+				has_variable = math_sqrt_i
+				var:math_sqrt_i > 0
+			}
+			set_variable = { 
+				name = math_sqrt_x
+				value = var:math_sqrt_i
+			}
+			set_variable = { 
+				name = math_sqrt_n
+				value = var:math_sqrt_i
+			}
+			change_variable = { 
+				name = math_sqrt_n
+				divide = 2
+			}
+			set_variable = { 
+				name = math_sqrt_tt
+				value = 0.5
+			}
+			while = { 
+				limit = { 
+					has_variable = math_sqrt_n
+					var:math_sqrt_n > 0
+					OR = { 
+						var:math_sqrt_tt < 0.995
+						var:math_sqrt_tt > 1.005
+					}
+				}
+				set_variable = { 
+					name = math_sqrt_x
+					value = var:math_sqrt_n
+				}
+				set_variable = { 
+					name = math_sqrt_t
+					value = var:math_sqrt_i
+				}
+				change_variable = { 
+					name = math_sqrt_t
+					divide = var:math_sqrt_n
+				}
+				change_variable = { 
+					name = math_sqrt_n
+					add = var:math_sqrt_t
+				}
+				change_variable = { 
+					name = math_sqrt_n
+					divide = 2
+				}
+				set_variable = { 
+					name = math_sqrt_tt
+					value = var:math_sqrt_x
+				}
+				change_variable = { 
+					name = math_sqrt_tt
+					divide = var:math_sqrt_n
+				}
+			}
+			set_variable = { 
+				name = forest_main_tt
+				value = var:math_sqrt_n
+			}
+			remove_variable = math_sqrt_x
+			remove_variable = math_sqrt_t
+			remove_variable = math_sqrt_n
+			remove_variable = math_sqrt_tt
+		}
+		else = { 
+			set_variable = { 
+				name = forest_main_tt
+				value = 0
+			}
+		}
+		remove_variable = math_sqrt_i
 		change_variable = { 
 			name = forest_main_t
-			multiply = 100
+			multiply = 10
 		}
 		change_variable = { 
 			name = forest_main_t
-			divide = var:forest_base
+			divide = var:forest_main_tt
 		}
 		change_variable = { 
 			name = forest_intensivity
@@ -6366,133 +6457,8 @@ while = {
 				divide = 10
 			}
 		}
-		set_variable = { 
-			name = forest_main_t
-			value = var:forest_base
-		}
-		change_variable = { 
-			name = forest_main_t
-			multiply = 100
-		}
-		change_variable = { 
-			name = forest_main_t
-			divide = var:forest_base_start
-		}
-		if = { 
-			limit = { 
-				has_variable = forest_main_t
-				var:forest_main_t > 0
-			}
-			if = { 
-				limit = { 
-					var:forest_main_t < 100
-				}
-				set_variable = { 
-					name = math_sqrt_i
-					value = var:forest_main_t
-				}
-				if = { 
-					limit = { 
-						has_variable = math_sqrt_i
-						var:math_sqrt_i > 0
-					}
-					set_variable = { 
-						name = math_sqrt_x
-						value = var:math_sqrt_i
-					}
-					set_variable = { 
-						name = math_sqrt_n
-						value = var:math_sqrt_i
-					}
-					change_variable = { 
-						name = math_sqrt_n
-						divide = 2
-					}
-					set_variable = { 
-						name = math_sqrt_tt
-						value = 0.5
-					}
-					while = { 
-						limit = { 
-							has_variable = math_sqrt_n
-							var:math_sqrt_n > 0
-							OR = { 
-								var:math_sqrt_tt < 0.995
-								var:math_sqrt_tt > 1.005
-							}
-						}
-						set_variable = { 
-							name = math_sqrt_x
-							value = var:math_sqrt_n
-						}
-						set_variable = { 
-							name = math_sqrt_t
-							value = var:math_sqrt_i
-						}
-						change_variable = { 
-							name = math_sqrt_t
-							divide = var:math_sqrt_n
-						}
-						change_variable = { 
-							name = math_sqrt_n
-							add = var:math_sqrt_t
-						}
-						change_variable = { 
-							name = math_sqrt_n
-							divide = 2
-						}
-						set_variable = { 
-							name = math_sqrt_tt
-							value = var:math_sqrt_x
-						}
-						change_variable = { 
-							name = math_sqrt_tt
-							divide = var:math_sqrt_n
-						}
-					}
-					set_variable = { 
-						name = forest_main_t
-						value = var:math_sqrt_n
-					}
-					remove_variable = math_sqrt_x
-					remove_variable = math_sqrt_t
-					remove_variable = math_sqrt_n
-					remove_variable = math_sqrt_tt
-				}
-				else = { 
-					set_variable = { 
-						name = forest_main_t
-						value = 0
-					}
-				}
-				remove_variable = math_sqrt_i
-			}
-			else = { 
-				change_variable = { 
-					name = forest_main_t
-					multiply = var:forest_main_t
-				}
-				change_variable = { 
-					name = forest_main_t
-					divide = 1000
-				}
-			}
-		}
-		else = { 
-			set_variable = { 
-				name = forest_main_t
-				value = 10
-			}
-		}
-		change_variable = { 
-			name = forest_total
-			multiply = var:forest_main_t
-		}
-		change_variable = { 
-			name = forest_total
-			divide = 10
-		}
 		remove_variable = forest_main_t
+		remove_variable = forest_main_tt
 	}
 	every_province = { 
 		limit = { 

@@ -53,8 +53,17 @@
 			
 			var:forest_base > 0
 		}
-		change_variable = { name = forest_main_t multiply = 100 }
-		change_variable = { name = forest_main_t divide = var:forest_base }
+		set_variable = { name = forest_main_tt value = var:forest_base_start }
+		change_variable = { name = forest_main_tt divide = 100 }
+		change_variable = { name = forest_main_tt multiply = var:forest_base }
+		
+		sqrt_effect = {
+			inp = var:forest_main_tt
+			return = forest_main_tt
+		}
+		
+		change_variable = { name = forest_main_t multiply = 10 }
+		change_variable = { name = forest_main_t divide = var:forest_main_tt }
 		
 		change_variable = { name = forest_intensivity add = var:forest_main_t }
 		change_variable = { name = forest_intensivity divide = 2 }
@@ -152,37 +161,7 @@
 			change_variable = { name = forest_total divide = 10 }
 		}
 		
-		set_variable = { name = forest_main_t value = var:forest_base }
-		change_variable = { name = forest_main_t multiply = 100 }
-		change_variable = { name = forest_main_t divide = var:forest_base_start }
-		
-		if = {
-			limit = {
-				has_variable = forest_main_t
-				
-				var:forest_main_t > 0
-			}
-			if = {
-				limit = {
-					var:forest_main_t < 100
-				}
-				sqrt_effect = {
-					inp = var:forest_main_t
-					return = forest_main_t
-				}
-			}
-			else = {
-				change_variable = { name = forest_main_t multiply = var:forest_main_t }
-				change_variable = { name = forest_main_t divide = 1000 }
-			}
-		}
-		else = {
-			set_variable = { name = forest_main_t  value = 10 }
-		}
-		
-		change_variable = { name = forest_total multiply = var:forest_main_t }
-		change_variable = { name = forest_total divide = 10 }
-		
 		remove_variable = forest_main_t
+		remove_variable = forest_main_tt
 	}
 }
