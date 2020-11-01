@@ -72,6 +72,10 @@ build_start_project = {
 		build_new_slot = { location = this }
 	}
 	
+	set_variable = { name = build_start_project_t value = $size$ }
+	set_variable = { name = build_start_project_tt value = $para$ }
+	set_variable = { name = build_start_project_ttt value = $owner$ }
+	
 	ordered_in_list = {
 		limit = {
 			NOT = {
@@ -82,12 +86,12 @@ build_start_project = {
 		order_by = build_start_project_order_value
 		position = 0
 		
-		set_variable = { name = build_active value = $size$ }
-		set_variable = { name = build_para value = $para$ }
+		set_variable = { name = build_active value = prev.var:build_start_project_t }
+		set_variable = { name = build_para value = prev.var:build_start_project_tt }
+		set_variable = { name = build_owner value = prev.var:build_start_project_ttt }
 		set_variable = { name = build_name value = global_var:$name$ }
 		set_variable = { name = build_prog value = 100 }
 		set_variable = { name = build_pay value = 0 }
-		set_variable = { name = build_owner value = $owner$ }
 		
 		if = {
 			limit = {
@@ -100,6 +104,10 @@ build_start_project = {
 		
 		build_set_dmnd = yes
 	}
+	
+	remove_variable = build_start_project_t
+	remove_variable = build_start_project_tt
+	remove_variable = build_start_project_ttt
 }
 
 build_set_dmnd = {
@@ -163,6 +171,8 @@ build_update_project = {
 		if = {
 			limit = {
 				has_variable = build_in_&goods&
+				
+				var:build_in_&goods& > 0
 			}
 			set_variable = { name = build_update_project_tt value = var:build_in_&goods& }
 			change_variable = { name = build_update_project_tt multiply = var:build_update_project_t }
@@ -203,7 +213,7 @@ build_update_project = {
 			}
 		^
 		
-		change_variable = { name = build_active subtract = build_para }
+		change_variable = { name = build_active subtract = var:build_para }
 		
 		if = {
 			limit = {
@@ -245,6 +255,8 @@ build_update_project = {
 	if = {
 		limit = {
 			has_variable = build_prog
+			
+			var:build_prog > 0
 		}
 		build_set_dmnd = yes
 	}

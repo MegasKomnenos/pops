@@ -1157,8 +1157,15 @@ trade_resolve_trade = {
 		variable = build_slots
 		
 		^^goods^
-			set_variable = { name = build_in_&goods& value = 0 }
-			set_variable = { name = build_pay_&goods& value = 0 }
+			if = {
+				limit = {
+					has_variable = build_&goods&
+					
+					var:build_&goods& > 0
+				}
+				set_variable = { name = build_in_&goods& value = 0 }
+				set_variable = { name = build_pay_&goods& value = 0 }
+			}
 		^
 	}
 	
@@ -1544,6 +1551,8 @@ trade_resolve_trade_helper_1 = {
 			every_in_list = {
 				limit = {
 					has_variable = build_$good$
+					
+					var:build_$good$ > 0
 				}
 				variable = build_slots
 				
