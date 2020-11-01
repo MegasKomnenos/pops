@@ -230,6 +230,21 @@ while = {
 	}
 
 	debug_log = "Total Forest: [THIS.Var('t_disp').GetValue]"
+	
+	set_variable = { name = t_disp value = 0 }
+
+	every_province = {
+		limit = {
+			is_valid_prov = yes
+		}
+		prev = {
+			set_variable = { name = t_disp_t value = prev.var:forest_total }
+			change_variable = { name = t_disp_t divide = 100 }
+			change_variable = { name = t_disp add = var:t_disp_t }
+		}
+	}
+
+	debug_log = "Effective Forest: [THIS.Var('t_disp').GetValue]"
 
 	^^goods^
 		set_variable = { name = t_disp value = 0 }
