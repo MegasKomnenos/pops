@@ -29,6 +29,8 @@
 		change_variable = { name = farm_total add = 1 }
 		change_variable = { name = pasture_total add = 1 }
 		
+		change_variable = { name = farm_total add = var:pop_total }
+		
 		set_variable = { name = forest_farm value = var:farm_total }
 		change_variable = { name = forest_farm multiply = 0.5 }
 		change_variable = { name = farm_total subtract = var:forest_farm }
@@ -44,10 +46,6 @@
 		set_variable = { name = forest_total value = var:forest_base } 
 		
 		set_variable = { name = forest_base_start value = var:forest_base }
-		
-		set_variable = { name = init_land_t value = var:pop_total }
-		change_variable = { name = init_land_t divide = 2 }
-		change_variable = { name = farm_total add = var:init_land_t }
 		
 		remove_variable = init_land_t
 	}
