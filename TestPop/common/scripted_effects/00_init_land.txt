@@ -25,11 +25,8 @@
 		change_variable = { name = forest_wasteland multiply = 2 }
 		change_variable = { name = forest_wasteland subtract = var:farm_total }
 		change_variable = { name = forest_wasteland subtract = var:pasture_total }
-		set_variable = { name = init_land_t value = 25 }
-		change_variable = { name = init_land_t add = var:forest_score }
-		change_variable = { name = init_land_t divide = 1.25 }
-		change_variable = { name = forest_wasteland multiply = var:init_land_t }
-		change_variable = { name = forest_wasteland divide = 100 }
+		change_variable = { name = forest_wasteland multiply = var:forest_score }
+		change_variable = { name = forest_wasteland divide = 50 }
 		set_variable = { name = wasteland_forest value = 0 }
 		
 		change_variable = { name = farm_total add = 1 }
