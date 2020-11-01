@@ -1,0 +1,188 @@
+﻿forest_main = {
+	every_province = {
+		limit = {
+			is_valid_prov = yes
+		}
+		if = {
+			limit = {
+				has_variable = forest_base
+				
+				var:forest_base > 0
+			}
+			set_variable = { name = forest_main_t value = 0 }
+		}
+		else = {
+			set_variable = { name = forest_intensivity value = 50 }
+		}
+	}
+	
+	global_var:timber = {
+		every_in_list = {
+			limit = {
+				has_variable = prod_sply_timber
+				
+				var:prod_sply_timber > 0
+			}
+			variable = prod_instances
+			
+			var:prod_location = {
+				change_variable = { name = forest_main_t add = prev.var:prod_sply_timber }
+			}
+		}
+	}
+	global_var:charcoal = {
+		every_in_list = {
+			limit = {
+				has_variable = prod_sply_fuel
+				
+				var:prod_sply_fuel > 0
+			}
+			variable = prod_instances
+			
+			var:prod_location = {
+				change_variable = { name = forest_main_t add = prev.var:prod_sply_fuel }
+			}
+		}
+	}
+	
+	every_province = {
+		limit = {
+			is_valid_prov = yes
+			
+			has_variable = forest_base
+			
+			var:forest_base > 0
+		}
+		change_variable = { name = forest_main_t multiply = 100 }
+		change_variable = { name = forest_main_t divide = var:forest_base }
+		
+		change_variable = { name = forest_intensivity add = var:forest_main_t }
+		change_variable = { name = forest_intensivity divide = 2 }
+		
+		if = {
+			limit = {
+				var:forest_intensivity > 60
+			}
+			set_variable = { name = forest_main_t value = var:forest_intensivity }
+			change_variable = { name = forest_main_t subtract = 50 }
+			change_variable = { name = forest_main_t divide = 50 }
+			
+			set_variable = { name = forest_main_tt value = var:forest_main_t }
+			change_variable = { name = forest_main_tt multiply = var:forest_farm }
+			change_variable = { name = forest_main_tt divide = 100 }
+			change_variable = { name = forest_farm subtract = var:forest_main_tt }
+			change_variable = { name = farm_potential add = var:forest_main_tt }
+			
+			set_variable = { name = forest_main_tt value = var:forest_main_t }
+			change_variable = { name = forest_main_tt multiply = var:forest_pasture }
+			change_variable = { name = forest_main_tt divide = 100 }
+			change_variable = { name = forest_pasture subtract = var:forest_main_tt }
+			change_variable = { name = pasture_potential add = var:forest_main_tt }
+			
+			set_variable = { name = forest_main_tt value = var:forest_main_t }
+			change_variable = { name = forest_main_tt multiply = var:forest_wasteland }
+			change_variable = { name = forest_main_tt divide = 100 }
+			change_variable = { name = forest_wasteland subtract = var:forest_main_tt }
+			change_variable = { name = wasteland_forest add = var:forest_main_tt }
+		}
+		else_if = {
+			limit = {
+				var:forest_intensivity < 40
+			}
+			set_variable = { name = forest_main_t value = 50 }
+			change_variable = { name = forest_main_t subtract = var:forest_intensivity }
+			change_variable = { name = forest_main_t divide = 50 }
+			
+			set_variable = { name = forest_main_tt value = var:forest_main_t }
+			change_variable = { name = forest_main_tt multiply = var:farm_total }
+			change_variable = { name = forest_main_tt divide = 100 }
+			change_variable = { name = forest_farm add = var:forest_main_tt }
+			change_variable = { name = farm_total subtract = var:forest_main_tt }
+			
+			set_variable = { name = forest_main_tt value = var:forest_main_t }
+			change_variable = { name = forest_main_tt multiply = var:farm_potential }
+			change_variable = { name = forest_main_tt divide = 100 }
+			change_variable = { name = forest_farm add = var:forest_main_tt }
+			change_variable = { name = farm_potential subtract = var:forest_main_tt }
+			
+			set_variable = { name = forest_main_tt value = var:forest_main_t }
+			change_variable = { name = forest_main_tt multiply = var:pasture_total }
+			change_variable = { name = forest_main_tt divide = 100 }
+			change_variable = { name = forest_pasture add = var:forest_main_tt }
+			change_variable = { name = pasture_total subtract = var:forest_main_tt }
+			
+			set_variable = { name = forest_main_tt value = var:forest_main_t }
+			change_variable = { name = forest_main_tt multiply = var:pasture_potential }
+			change_variable = { name = forest_main_tt divide = 100 }
+			change_variable = { name = forest_pasture add = var:forest_main_tt }
+			change_variable = { name = pasture_potential subtract = var:forest_main_tt }
+			
+			set_variable = { name = forest_main_tt value = var:forest_main_t }
+			change_variable = { name = forest_main_tt multiply = var:wasteland_forest }
+			change_variable = { name = forest_main_tt divide = 100 }
+			change_variable = { name = forest_wasteland add = var:forest_main_tt }
+			change_variable = { name = wasteland_forest subtract = var:forest_main_tt }
+		}
+		
+		set_variable = { name = forest_base value = var:forest_wasteland }
+		change_variable = { name = forest_base add = var:forest_farm }
+		change_variable = { name = forest_base add = var:forest_pasture }
+		
+		set_variable = { name = forest_total value = var:forest_base }
+		
+		if = {
+			limit = {
+				var:forest_intensivity > 50
+			}
+			set_variable = { name = forest_main_t value = var:forest_intensivity }
+			change_variable = { name = forest_main_t subtract = 50 }
+			change_variable = { name = forest_main_t divide = 5 }
+			change_variable = { name = forest_main_t add = 10 }
+			change_variable = { name = forest_total multiply = var:forest_main_t }
+			change_variable = { name = forest_total divide = 10 }
+		}
+		else_if = {
+			limit = {
+				var:forest_intensivity < 50
+			}
+			set_variable = { name = forest_main_t value = var:forest_intensivity }
+			change_variable = { name = forest_main_t add = 50 }
+			change_variable = { name = forest_main_t divide = 10 }
+			change_variable = { name = forest_total multiply = var:forest_main_t }
+			change_variable = { name = forest_total divide = 10 }
+		}
+		
+		set_variable = { name = forest_main_t value = var:forest_base }
+		change_variable = { name = forest_main_t multiply = 100 }
+		change_variable = { name = forest_main_t divide = var:forest_base_start }
+		
+		if = {
+			limit = {
+				has_variable = forest_main_t
+				
+				var:forest_main_t > 0
+			}
+			if = {
+				limit = {
+					var:forest_main_t < 100
+				}
+				sqrt_effect = {
+					inp = var:forest_main_t
+					return = forest_main_t
+				}
+			}
+			else = {
+				change_variable = { name = forest_main_t multiply = var:forest_main_t }
+				change_variable = { name = forest_main_t divide = 1000 }
+			}
+		}
+		else = {
+			set_variable = { name = forest_main_t  value = 10 }
+		}
+		
+		change_variable = { name = forest_total multiply = var:forest_main_t }
+		change_variable = { name = forest_total divide = 10 }
+		
+		remove_variable = forest_main_t
+	}
+}

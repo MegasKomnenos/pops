@@ -28,6 +28,50 @@ while = {
 			prod_pop_instance = yes
 		}
 	}
+	
+	forest_main = yes
+	
+	every_province = {
+		limit = {
+			is_valid_prov = yes
+		}
+		if = {
+			limit = {
+				has_variable = farm_potential
+				
+				var:farm_potential >= 1
+			}
+			set_variable = { name = sim_t value = var:farm_potential }
+			change_variable = { name = sim_t divide = 5 }
+			
+			build_start_project = {
+				name = farm
+				size = var:farm_potential
+				para = var:sim_t
+				owner = 3
+			}
+			
+			set_variable = { name = farm_potential value = 0 }
+		}
+		if = {
+			limit = {
+				has_variable = pasture_potential
+				
+				var:pasture_potential >= 1
+			}
+			set_variable = { name = sim_t value = var:pasture_potential }
+			change_variable = { name = sim_t divide = 5 }
+			
+			build_start_project = {
+				name = pasture
+				size = var:pasture_potential
+				para = var:sim_t
+				owner = 3
+			}
+			
+			set_variable = { name = pasture_potential value = 0 }
+		}
+	}
 
 	every_province = {
 		limit = {
@@ -40,6 +84,15 @@ while = {
 	trade_resolve_trade = yes
 	trade_update_merchant = yes
 	trade_update_price = yes
+	
+	every_in_global_list = {
+		limit = {
+			has_variable = build_active
+		}
+		variable = build_slots
+		
+		build_update_project = yes
+	}
 
 	every_province = {
 		limit = {
@@ -162,6 +215,21 @@ while = {
 	change_variable = { name = t_disp divide = var:t_disp_s }
 
 	debug_log = "Average Luxury: [THIS.Var('t_disp').GetValue]"
+	
+	set_variable = { name = t_disp value = 0 }
+
+	every_province = {
+		limit = {
+			is_valid_prov = yes
+		}
+		prev = {
+			set_variable = { name = t_disp_t value = prev.var:forest_base }
+			change_variable = { name = t_disp_t divide = 1000 }
+			change_variable = { name = t_disp add = var:t_disp_t }
+		}
+	}
+
+	debug_log = "Total Forest: [THIS.Var('t_disp').GetValue]"
 
 	^^goods^
 		set_variable = { name = t_disp value = 0 }

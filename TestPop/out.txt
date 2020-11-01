@@ -6033,6 +6033,2850 @@ while = {
 		limit = { 
 			is_valid_prov = yes
 		}
+		if = { 
+			limit = { 
+				has_variable = forest_base
+				var:forest_base > 0
+			}
+			set_variable = { 
+				name = forest_main_t
+				value = 0
+			}
+		}
+		else = { 
+			set_variable = { 
+				name = forest_intensivity
+				value = 50
+			}
+		}
+	}
+	global_var:timber = { 
+		every_in_list = { 
+			limit = { 
+				has_variable = prod_sply_timber
+				var:prod_sply_timber > 0
+			}
+			variable = prod_instances
+			var:prod_location = { 
+				change_variable = { 
+					name = forest_main_t
+					add = prev.var:prod_sply_timber
+				}
+			}
+		}
+	}
+	global_var:charcoal = { 
+		every_in_list = { 
+			limit = { 
+				has_variable = prod_sply_fuel
+				var:prod_sply_fuel > 0
+			}
+			variable = prod_instances
+			var:prod_location = { 
+				change_variable = { 
+					name = forest_main_t
+					add = prev.var:prod_sply_fuel
+				}
+			}
+		}
+	}
+	every_province = { 
+		limit = { 
+			is_valid_prov = yes
+			has_variable = forest_base
+			var:forest_base > 0
+		}
+		change_variable = { 
+			name = forest_main_t
+			multiply = 100
+		}
+		change_variable = { 
+			name = forest_main_t
+			divide = var:forest_base
+		}
+		change_variable = { 
+			name = forest_intensivity
+			add = var:forest_main_t
+		}
+		change_variable = { 
+			name = forest_intensivity
+			divide = 2
+		}
+		if = { 
+			limit = { 
+				var:forest_intensivity > 60
+			}
+			set_variable = { 
+				name = forest_main_t
+				value = var:forest_intensivity
+			}
+			change_variable = { 
+				name = forest_main_t
+				subtract = 50
+			}
+			change_variable = { 
+				name = forest_main_t
+				divide = 50
+			}
+			set_variable = { 
+				name = forest_main_tt
+				value = var:forest_main_t
+			}
+			change_variable = { 
+				name = forest_main_tt
+				multiply = var:forest_farm
+			}
+			change_variable = { 
+				name = forest_main_tt
+				divide = 100
+			}
+			change_variable = { 
+				name = forest_farm
+				subtract = var:forest_main_tt
+			}
+			change_variable = { 
+				name = farm_potential
+				add = var:forest_main_tt
+			}
+			set_variable = { 
+				name = forest_main_tt
+				value = var:forest_main_t
+			}
+			change_variable = { 
+				name = forest_main_tt
+				multiply = var:forest_pasture
+			}
+			change_variable = { 
+				name = forest_main_tt
+				divide = 100
+			}
+			change_variable = { 
+				name = forest_pasture
+				subtract = var:forest_main_tt
+			}
+			change_variable = { 
+				name = pasture_potential
+				add = var:forest_main_tt
+			}
+			set_variable = { 
+				name = forest_main_tt
+				value = var:forest_main_t
+			}
+			change_variable = { 
+				name = forest_main_tt
+				multiply = var:forest_wasteland
+			}
+			change_variable = { 
+				name = forest_main_tt
+				divide = 100
+			}
+			change_variable = { 
+				name = forest_wasteland
+				subtract = var:forest_main_tt
+			}
+			change_variable = { 
+				name = wasteland_forest
+				add = var:forest_main_tt
+			}
+		}
+		else_if = { 
+			limit = { 
+				var:forest_intensivity < 40
+			}
+			set_variable = { 
+				name = forest_main_t
+				value = 50
+			}
+			change_variable = { 
+				name = forest_main_t
+				subtract = var:forest_intensivity
+			}
+			change_variable = { 
+				name = forest_main_t
+				divide = 50
+			}
+			set_variable = { 
+				name = forest_main_tt
+				value = var:forest_main_t
+			}
+			change_variable = { 
+				name = forest_main_tt
+				multiply = var:farm_total
+			}
+			change_variable = { 
+				name = forest_main_tt
+				divide = 100
+			}
+			change_variable = { 
+				name = forest_farm
+				add = var:forest_main_tt
+			}
+			change_variable = { 
+				name = farm_total
+				subtract = var:forest_main_tt
+			}
+			set_variable = { 
+				name = forest_main_tt
+				value = var:forest_main_t
+			}
+			change_variable = { 
+				name = forest_main_tt
+				multiply = var:farm_potential
+			}
+			change_variable = { 
+				name = forest_main_tt
+				divide = 100
+			}
+			change_variable = { 
+				name = forest_farm
+				add = var:forest_main_tt
+			}
+			change_variable = { 
+				name = farm_potential
+				subtract = var:forest_main_tt
+			}
+			set_variable = { 
+				name = forest_main_tt
+				value = var:forest_main_t
+			}
+			change_variable = { 
+				name = forest_main_tt
+				multiply = var:pasture_total
+			}
+			change_variable = { 
+				name = forest_main_tt
+				divide = 100
+			}
+			change_variable = { 
+				name = forest_pasture
+				add = var:forest_main_tt
+			}
+			change_variable = { 
+				name = pasture_total
+				subtract = var:forest_main_tt
+			}
+			set_variable = { 
+				name = forest_main_tt
+				value = var:forest_main_t
+			}
+			change_variable = { 
+				name = forest_main_tt
+				multiply = var:pasture_potential
+			}
+			change_variable = { 
+				name = forest_main_tt
+				divide = 100
+			}
+			change_variable = { 
+				name = forest_pasture
+				add = var:forest_main_tt
+			}
+			change_variable = { 
+				name = pasture_potential
+				subtract = var:forest_main_tt
+			}
+			set_variable = { 
+				name = forest_main_tt
+				value = var:forest_main_t
+			}
+			change_variable = { 
+				name = forest_main_tt
+				multiply = var:wasteland_forest
+			}
+			change_variable = { 
+				name = forest_main_tt
+				divide = 100
+			}
+			change_variable = { 
+				name = forest_wasteland
+				add = var:forest_main_tt
+			}
+			change_variable = { 
+				name = wasteland_forest
+				subtract = var:forest_main_tt
+			}
+		}
+		set_variable = { 
+			name = forest_base
+			value = var:forest_wasteland
+		}
+		change_variable = { 
+			name = forest_base
+			add = var:forest_farm
+		}
+		change_variable = { 
+			name = forest_base
+			add = var:forest_pasture
+		}
+		set_variable = { 
+			name = forest_total
+			value = var:forest_base
+		}
+		if = { 
+			limit = { 
+				var:forest_intensivity > 50
+			}
+			set_variable = { 
+				name = forest_main_t
+				value = var:forest_intensivity
+			}
+			change_variable = { 
+				name = forest_main_t
+				subtract = 50
+			}
+			change_variable = { 
+				name = forest_main_t
+				divide = 5
+			}
+			change_variable = { 
+				name = forest_main_t
+				add = 10
+			}
+			change_variable = { 
+				name = forest_total
+				multiply = var:forest_main_t
+			}
+			change_variable = { 
+				name = forest_total
+				divide = 10
+			}
+		}
+		else_if = { 
+			limit = { 
+				var:forest_intensivity < 50
+			}
+			set_variable = { 
+				name = forest_main_t
+				value = var:forest_intensivity
+			}
+			change_variable = { 
+				name = forest_main_t
+				add = 50
+			}
+			change_variable = { 
+				name = forest_main_t
+				divide = 10
+			}
+			change_variable = { 
+				name = forest_total
+				multiply = var:forest_main_t
+			}
+			change_variable = { 
+				name = forest_total
+				divide = 10
+			}
+		}
+		set_variable = { 
+			name = forest_main_t
+			value = var:forest_base
+		}
+		change_variable = { 
+			name = forest_main_t
+			multiply = 100
+		}
+		change_variable = { 
+			name = forest_main_t
+			divide = var:forest_base_start
+		}
+		if = { 
+			limit = { 
+				has_variable = forest_main_t
+				var:forest_main_t > 0
+			}
+			if = { 
+				limit = { 
+					var:forest_main_t < 100
+				}
+				set_variable = { 
+					name = math_sqrt_i
+					value = var:forest_main_t
+				}
+				if = { 
+					limit = { 
+						has_variable = math_sqrt_i
+						var:math_sqrt_i > 0
+					}
+					set_variable = { 
+						name = math_sqrt_x
+						value = var:math_sqrt_i
+					}
+					set_variable = { 
+						name = math_sqrt_n
+						value = var:math_sqrt_i
+					}
+					change_variable = { 
+						name = math_sqrt_n
+						divide = 2
+					}
+					set_variable = { 
+						name = math_sqrt_tt
+						value = 0.5
+					}
+					while = { 
+						limit = { 
+							has_variable = math_sqrt_n
+							var:math_sqrt_n > 0
+							OR = { 
+								var:math_sqrt_tt < 0.995
+								var:math_sqrt_tt > 1.005
+							}
+						}
+						set_variable = { 
+							name = math_sqrt_x
+							value = var:math_sqrt_n
+						}
+						set_variable = { 
+							name = math_sqrt_t
+							value = var:math_sqrt_i
+						}
+						change_variable = { 
+							name = math_sqrt_t
+							divide = var:math_sqrt_n
+						}
+						change_variable = { 
+							name = math_sqrt_n
+							add = var:math_sqrt_t
+						}
+						change_variable = { 
+							name = math_sqrt_n
+							divide = 2
+						}
+						set_variable = { 
+							name = math_sqrt_tt
+							value = var:math_sqrt_x
+						}
+						change_variable = { 
+							name = math_sqrt_tt
+							divide = var:math_sqrt_n
+						}
+					}
+					set_variable = { 
+						name = forest_main_t
+						value = var:math_sqrt_n
+					}
+					remove_variable = math_sqrt_x
+					remove_variable = math_sqrt_t
+					remove_variable = math_sqrt_n
+					remove_variable = math_sqrt_tt
+				}
+				else = { 
+					set_variable = { 
+						name = forest_main_t
+						value = 0
+					}
+				}
+				remove_variable = math_sqrt_i
+			}
+			else = { 
+				change_variable = { 
+					name = forest_main_t
+					multiply = var:forest_main_t
+				}
+				change_variable = { 
+					name = forest_main_t
+					divide = 1000
+				}
+			}
+		}
+		else = { 
+			set_variable = { 
+				name = forest_main_t
+				value = 10
+			}
+		}
+		change_variable = { 
+			name = forest_total
+			multiply = var:forest_main_t
+		}
+		change_variable = { 
+			name = forest_total
+			divide = 10
+		}
+		remove_variable = forest_main_t
+	}
+	every_province = { 
+		limit = { 
+			is_valid_prov = yes
+		}
+		if = { 
+			limit = { 
+				has_variable = farm_potential
+				var:farm_potential >= 1
+			}
+			set_variable = { 
+				name = sim_t
+				value = var:farm_potential
+			}
+			change_variable = { 
+				name = sim_t
+				divide = 5
+			}
+			if = { 
+				limit = { 
+					OR = { 
+						NOT = { 
+							has_variable_list = build_slots
+						}
+						variable_list_size = { 
+							name = build_slots
+							value = 0
+						}
+						any_in_list = { 
+							variable = build_slots
+							count = all
+							has_variable = build_active
+						}
+					}
+				}
+				create_character = { 
+					save_temporary_scope_as = build_new_slot_temp
+					gender = male
+					trait = character_not_1
+					employer = global_var:arhat
+					faith = global_var:arhat.faith
+					culture = global_var:arhat.culture
+				}
+				add_to_global_variable_list = { 
+					name = build_slots
+					target = scope:build_new_slot_temp
+				}
+				this = { 
+					add_to_variable_list = { 
+						name = build_slots
+						target = scope:build_new_slot_temp
+					}
+					if = { 
+						limit = { 
+							NOT = { 
+								has_variable = build_slots_num
+							}
+						}
+						set_variable = { 
+							name = build_slots_num
+							value = 0
+						}
+					}
+					change_variable = { 
+						name = build_slots_num
+						add = 1
+					}
+					scope:build_new_slot_temp = { 
+						set_variable = { 
+							name = build_location
+							value = prev
+						}
+						set_variable = { 
+							name = build_id
+							value = prev.var:build_slots_num
+						}
+					}
+				}
+			}
+			set_variable = { 
+				name = build_start_project_t
+				value = var:farm_potential
+			}
+			set_variable = { 
+				name = build_start_project_tt
+				value = var:sim_t
+			}
+			set_variable = { 
+				name = build_start_project_ttt
+				value = 3
+			}
+			ordered_in_list = { 
+				limit = { 
+					NOT = { 
+						has_variable = build_active
+					}
+				}
+				variable = build_slots
+				order_by = build_start_project_order_value
+				position = 0
+				set_variable = { 
+					name = build_active
+					value = prev.var:build_start_project_t
+				}
+				set_variable = { 
+					name = build_para
+					value = prev.var:build_start_project_tt
+				}
+				set_variable = { 
+					name = build_owner
+					value = prev.var:build_start_project_ttt
+				}
+				set_variable = { 
+					name = build_name
+					value = global_var:farm
+				}
+				set_variable = { 
+					name = build_prog
+					value = 100
+				}
+				set_variable = { 
+					name = build_pay
+					value = 0
+				}
+				if = { 
+					limit = { 
+						var:build_para = { 
+							compare_value > prev.var:build_active
+						}
+					}
+					set_variable = { 
+						name = build_para
+						value = var:build_active
+					}
+				}
+				var:build_name = { 
+					if = { 
+						limit = { 
+							has_variable = build_food
+						}
+						prev = { 
+							set_variable = { 
+								name = build_food
+								value = prev.var:build_food
+							}
+						}
+					}
+					if = { 
+						limit = { 
+							has_variable = build_cereal
+						}
+						prev = { 
+							set_variable = { 
+								name = build_cereal
+								value = prev.var:build_cereal
+							}
+						}
+					}
+					if = { 
+						limit = { 
+							has_variable = build_salted
+						}
+						prev = { 
+							set_variable = { 
+								name = build_salted
+								value = prev.var:build_salted
+							}
+						}
+					}
+					if = { 
+						limit = { 
+							has_variable = build_salt
+						}
+						prev = { 
+							set_variable = { 
+								name = build_salt
+								value = prev.var:build_salt
+							}
+						}
+					}
+					if = { 
+						limit = { 
+							has_variable = build_mud
+						}
+						prev = { 
+							set_variable = { 
+								name = build_mud
+								value = prev.var:build_mud
+							}
+						}
+					}
+					if = { 
+						limit = { 
+							has_variable = build_fuel
+						}
+						prev = { 
+							set_variable = { 
+								name = build_fuel
+								value = prev.var:build_fuel
+							}
+						}
+					}
+					if = { 
+						limit = { 
+							has_variable = build_fiber
+						}
+						prev = { 
+							set_variable = { 
+								name = build_fiber
+								value = prev.var:build_fiber
+							}
+						}
+					}
+					if = { 
+						limit = { 
+							has_variable = build_timber
+						}
+						prev = { 
+							set_variable = { 
+								name = build_timber
+								value = prev.var:build_timber
+							}
+						}
+					}
+					if = { 
+						limit = { 
+							has_variable = build_metal
+						}
+						prev = { 
+							set_variable = { 
+								name = build_metal
+								value = prev.var:build_metal
+							}
+						}
+					}
+					if = { 
+						limit = { 
+							has_variable = build_exotics_w
+						}
+						prev = { 
+							set_variable = { 
+								name = build_exotics_w
+								value = prev.var:build_exotics_w
+							}
+						}
+					}
+					if = { 
+						limit = { 
+							has_variable = build_exotics_e
+						}
+						prev = { 
+							set_variable = { 
+								name = build_exotics_e
+								value = prev.var:build_exotics_e
+							}
+						}
+					}
+					if = { 
+						limit = { 
+							has_variable = build_exotics_g
+						}
+						prev = { 
+							set_variable = { 
+								name = build_exotics_g
+								value = prev.var:build_exotics_g
+							}
+						}
+					}
+					if = { 
+						limit = { 
+							has_variable = build_textile
+						}
+						prev = { 
+							set_variable = { 
+								name = build_textile
+								value = prev.var:build_textile
+							}
+						}
+					}
+					if = { 
+						limit = { 
+							has_variable = build_pottery
+						}
+						prev = { 
+							set_variable = { 
+								name = build_pottery
+								value = prev.var:build_pottery
+							}
+						}
+					}
+					if = { 
+						limit = { 
+							has_variable = build_tools
+						}
+						prev = { 
+							set_variable = { 
+								name = build_tools
+								value = prev.var:build_tools
+							}
+						}
+					}
+				}
+				set_variable = { 
+					name = build_set_dmnd_t
+					value = 0
+				}
+				if = { 
+					limit = { 
+						has_variable = build_food
+					}
+					change_variable = { 
+						name = build_food
+						multiply = 10
+					}
+					change_variable = { 
+						name = build_food
+						divide = var:build_location.county.var:trade_price_food
+					}
+					change_variable = { 
+						name = build_food
+						multiply = var:build_food
+					}
+					change_variable = { 
+						name = build_food
+						add = 0.001
+					}
+					change_variable = { 
+						name = build_set_dmnd_t
+						add = var:build_food
+					}
+				}
+				if = { 
+					limit = { 
+						has_variable = build_cereal
+					}
+					change_variable = { 
+						name = build_cereal
+						multiply = 10
+					}
+					change_variable = { 
+						name = build_cereal
+						divide = var:build_location.county.var:trade_price_cereal
+					}
+					change_variable = { 
+						name = build_cereal
+						multiply = var:build_cereal
+					}
+					change_variable = { 
+						name = build_cereal
+						add = 0.001
+					}
+					change_variable = { 
+						name = build_set_dmnd_t
+						add = var:build_cereal
+					}
+				}
+				if = { 
+					limit = { 
+						has_variable = build_salted
+					}
+					change_variable = { 
+						name = build_salted
+						multiply = 10
+					}
+					change_variable = { 
+						name = build_salted
+						divide = var:build_location.county.var:trade_price_salted
+					}
+					change_variable = { 
+						name = build_salted
+						multiply = var:build_salted
+					}
+					change_variable = { 
+						name = build_salted
+						add = 0.001
+					}
+					change_variable = { 
+						name = build_set_dmnd_t
+						add = var:build_salted
+					}
+				}
+				if = { 
+					limit = { 
+						has_variable = build_salt
+					}
+					change_variable = { 
+						name = build_salt
+						multiply = 10
+					}
+					change_variable = { 
+						name = build_salt
+						divide = var:build_location.county.var:trade_price_salt
+					}
+					change_variable = { 
+						name = build_salt
+						multiply = var:build_salt
+					}
+					change_variable = { 
+						name = build_salt
+						add = 0.001
+					}
+					change_variable = { 
+						name = build_set_dmnd_t
+						add = var:build_salt
+					}
+				}
+				if = { 
+					limit = { 
+						has_variable = build_mud
+					}
+					change_variable = { 
+						name = build_mud
+						multiply = 10
+					}
+					change_variable = { 
+						name = build_mud
+						divide = var:build_location.county.var:trade_price_mud
+					}
+					change_variable = { 
+						name = build_mud
+						multiply = var:build_mud
+					}
+					change_variable = { 
+						name = build_mud
+						add = 0.001
+					}
+					change_variable = { 
+						name = build_set_dmnd_t
+						add = var:build_mud
+					}
+				}
+				if = { 
+					limit = { 
+						has_variable = build_fuel
+					}
+					change_variable = { 
+						name = build_fuel
+						multiply = 10
+					}
+					change_variable = { 
+						name = build_fuel
+						divide = var:build_location.county.var:trade_price_fuel
+					}
+					change_variable = { 
+						name = build_fuel
+						multiply = var:build_fuel
+					}
+					change_variable = { 
+						name = build_fuel
+						add = 0.001
+					}
+					change_variable = { 
+						name = build_set_dmnd_t
+						add = var:build_fuel
+					}
+				}
+				if = { 
+					limit = { 
+						has_variable = build_fiber
+					}
+					change_variable = { 
+						name = build_fiber
+						multiply = 10
+					}
+					change_variable = { 
+						name = build_fiber
+						divide = var:build_location.county.var:trade_price_fiber
+					}
+					change_variable = { 
+						name = build_fiber
+						multiply = var:build_fiber
+					}
+					change_variable = { 
+						name = build_fiber
+						add = 0.001
+					}
+					change_variable = { 
+						name = build_set_dmnd_t
+						add = var:build_fiber
+					}
+				}
+				if = { 
+					limit = { 
+						has_variable = build_timber
+					}
+					change_variable = { 
+						name = build_timber
+						multiply = 10
+					}
+					change_variable = { 
+						name = build_timber
+						divide = var:build_location.county.var:trade_price_timber
+					}
+					change_variable = { 
+						name = build_timber
+						multiply = var:build_timber
+					}
+					change_variable = { 
+						name = build_timber
+						add = 0.001
+					}
+					change_variable = { 
+						name = build_set_dmnd_t
+						add = var:build_timber
+					}
+				}
+				if = { 
+					limit = { 
+						has_variable = build_metal
+					}
+					change_variable = { 
+						name = build_metal
+						multiply = 10
+					}
+					change_variable = { 
+						name = build_metal
+						divide = var:build_location.county.var:trade_price_metal
+					}
+					change_variable = { 
+						name = build_metal
+						multiply = var:build_metal
+					}
+					change_variable = { 
+						name = build_metal
+						add = 0.001
+					}
+					change_variable = { 
+						name = build_set_dmnd_t
+						add = var:build_metal
+					}
+				}
+				if = { 
+					limit = { 
+						has_variable = build_exotics_w
+					}
+					change_variable = { 
+						name = build_exotics_w
+						multiply = 10
+					}
+					change_variable = { 
+						name = build_exotics_w
+						divide = var:build_location.county.var:trade_price_exotics_w
+					}
+					change_variable = { 
+						name = build_exotics_w
+						multiply = var:build_exotics_w
+					}
+					change_variable = { 
+						name = build_exotics_w
+						add = 0.001
+					}
+					change_variable = { 
+						name = build_set_dmnd_t
+						add = var:build_exotics_w
+					}
+				}
+				if = { 
+					limit = { 
+						has_variable = build_exotics_e
+					}
+					change_variable = { 
+						name = build_exotics_e
+						multiply = 10
+					}
+					change_variable = { 
+						name = build_exotics_e
+						divide = var:build_location.county.var:trade_price_exotics_e
+					}
+					change_variable = { 
+						name = build_exotics_e
+						multiply = var:build_exotics_e
+					}
+					change_variable = { 
+						name = build_exotics_e
+						add = 0.001
+					}
+					change_variable = { 
+						name = build_set_dmnd_t
+						add = var:build_exotics_e
+					}
+				}
+				if = { 
+					limit = { 
+						has_variable = build_exotics_g
+					}
+					change_variable = { 
+						name = build_exotics_g
+						multiply = 10
+					}
+					change_variable = { 
+						name = build_exotics_g
+						divide = var:build_location.county.var:trade_price_exotics_g
+					}
+					change_variable = { 
+						name = build_exotics_g
+						multiply = var:build_exotics_g
+					}
+					change_variable = { 
+						name = build_exotics_g
+						add = 0.001
+					}
+					change_variable = { 
+						name = build_set_dmnd_t
+						add = var:build_exotics_g
+					}
+				}
+				if = { 
+					limit = { 
+						has_variable = build_textile
+					}
+					change_variable = { 
+						name = build_textile
+						multiply = 10
+					}
+					change_variable = { 
+						name = build_textile
+						divide = var:build_location.county.var:trade_price_textile
+					}
+					change_variable = { 
+						name = build_textile
+						multiply = var:build_textile
+					}
+					change_variable = { 
+						name = build_textile
+						add = 0.001
+					}
+					change_variable = { 
+						name = build_set_dmnd_t
+						add = var:build_textile
+					}
+				}
+				if = { 
+					limit = { 
+						has_variable = build_pottery
+					}
+					change_variable = { 
+						name = build_pottery
+						multiply = 10
+					}
+					change_variable = { 
+						name = build_pottery
+						divide = var:build_location.county.var:trade_price_pottery
+					}
+					change_variable = { 
+						name = build_pottery
+						multiply = var:build_pottery
+					}
+					change_variable = { 
+						name = build_pottery
+						add = 0.001
+					}
+					change_variable = { 
+						name = build_set_dmnd_t
+						add = var:build_pottery
+					}
+				}
+				if = { 
+					limit = { 
+						has_variable = build_tools
+					}
+					change_variable = { 
+						name = build_tools
+						multiply = 10
+					}
+					change_variable = { 
+						name = build_tools
+						divide = var:build_location.county.var:trade_price_tools
+					}
+					change_variable = { 
+						name = build_tools
+						multiply = var:build_tools
+					}
+					change_variable = { 
+						name = build_tools
+						add = 0.001
+					}
+					change_variable = { 
+						name = build_set_dmnd_t
+						add = var:build_tools
+					}
+				}
+				if = { 
+					limit = { 
+						has_variable = build_set_dmnd_t
+						var:build_set_dmnd_t > 0
+					}
+					if = { 
+						limit = { 
+							has_variable = build_food
+						}
+						change_variable = { 
+							name = build_food
+							multiply = 10
+						}
+						change_variable = { 
+							name = build_food
+							divide = var:build_set_dmnd_t
+						}
+						change_variable = { 
+							name = build_food
+							multiply = var:build_prog
+						}
+						change_variable = { 
+							name = build_food
+							divide = 100
+						}
+						change_variable = { 
+							name = build_food
+							multiply = var:build_para
+						}
+						change_variable = { 
+							name = build_food
+							divide = var:build_name.var:build_food
+						}
+						change_variable = { 
+							name = build_food
+							divide = 10
+						}
+					}
+					if = { 
+						limit = { 
+							has_variable = build_cereal
+						}
+						change_variable = { 
+							name = build_cereal
+							multiply = 10
+						}
+						change_variable = { 
+							name = build_cereal
+							divide = var:build_set_dmnd_t
+						}
+						change_variable = { 
+							name = build_cereal
+							multiply = var:build_prog
+						}
+						change_variable = { 
+							name = build_cereal
+							divide = 100
+						}
+						change_variable = { 
+							name = build_cereal
+							multiply = var:build_para
+						}
+						change_variable = { 
+							name = build_cereal
+							divide = var:build_name.var:build_cereal
+						}
+						change_variable = { 
+							name = build_cereal
+							divide = 10
+						}
+					}
+					if = { 
+						limit = { 
+							has_variable = build_salted
+						}
+						change_variable = { 
+							name = build_salted
+							multiply = 10
+						}
+						change_variable = { 
+							name = build_salted
+							divide = var:build_set_dmnd_t
+						}
+						change_variable = { 
+							name = build_salted
+							multiply = var:build_prog
+						}
+						change_variable = { 
+							name = build_salted
+							divide = 100
+						}
+						change_variable = { 
+							name = build_salted
+							multiply = var:build_para
+						}
+						change_variable = { 
+							name = build_salted
+							divide = var:build_name.var:build_salted
+						}
+						change_variable = { 
+							name = build_salted
+							divide = 10
+						}
+					}
+					if = { 
+						limit = { 
+							has_variable = build_salt
+						}
+						change_variable = { 
+							name = build_salt
+							multiply = 10
+						}
+						change_variable = { 
+							name = build_salt
+							divide = var:build_set_dmnd_t
+						}
+						change_variable = { 
+							name = build_salt
+							multiply = var:build_prog
+						}
+						change_variable = { 
+							name = build_salt
+							divide = 100
+						}
+						change_variable = { 
+							name = build_salt
+							multiply = var:build_para
+						}
+						change_variable = { 
+							name = build_salt
+							divide = var:build_name.var:build_salt
+						}
+						change_variable = { 
+							name = build_salt
+							divide = 10
+						}
+					}
+					if = { 
+						limit = { 
+							has_variable = build_mud
+						}
+						change_variable = { 
+							name = build_mud
+							multiply = 10
+						}
+						change_variable = { 
+							name = build_mud
+							divide = var:build_set_dmnd_t
+						}
+						change_variable = { 
+							name = build_mud
+							multiply = var:build_prog
+						}
+						change_variable = { 
+							name = build_mud
+							divide = 100
+						}
+						change_variable = { 
+							name = build_mud
+							multiply = var:build_para
+						}
+						change_variable = { 
+							name = build_mud
+							divide = var:build_name.var:build_mud
+						}
+						change_variable = { 
+							name = build_mud
+							divide = 10
+						}
+					}
+					if = { 
+						limit = { 
+							has_variable = build_fuel
+						}
+						change_variable = { 
+							name = build_fuel
+							multiply = 10
+						}
+						change_variable = { 
+							name = build_fuel
+							divide = var:build_set_dmnd_t
+						}
+						change_variable = { 
+							name = build_fuel
+							multiply = var:build_prog
+						}
+						change_variable = { 
+							name = build_fuel
+							divide = 100
+						}
+						change_variable = { 
+							name = build_fuel
+							multiply = var:build_para
+						}
+						change_variable = { 
+							name = build_fuel
+							divide = var:build_name.var:build_fuel
+						}
+						change_variable = { 
+							name = build_fuel
+							divide = 10
+						}
+					}
+					if = { 
+						limit = { 
+							has_variable = build_fiber
+						}
+						change_variable = { 
+							name = build_fiber
+							multiply = 10
+						}
+						change_variable = { 
+							name = build_fiber
+							divide = var:build_set_dmnd_t
+						}
+						change_variable = { 
+							name = build_fiber
+							multiply = var:build_prog
+						}
+						change_variable = { 
+							name = build_fiber
+							divide = 100
+						}
+						change_variable = { 
+							name = build_fiber
+							multiply = var:build_para
+						}
+						change_variable = { 
+							name = build_fiber
+							divide = var:build_name.var:build_fiber
+						}
+						change_variable = { 
+							name = build_fiber
+							divide = 10
+						}
+					}
+					if = { 
+						limit = { 
+							has_variable = build_timber
+						}
+						change_variable = { 
+							name = build_timber
+							multiply = 10
+						}
+						change_variable = { 
+							name = build_timber
+							divide = var:build_set_dmnd_t
+						}
+						change_variable = { 
+							name = build_timber
+							multiply = var:build_prog
+						}
+						change_variable = { 
+							name = build_timber
+							divide = 100
+						}
+						change_variable = { 
+							name = build_timber
+							multiply = var:build_para
+						}
+						change_variable = { 
+							name = build_timber
+							divide = var:build_name.var:build_timber
+						}
+						change_variable = { 
+							name = build_timber
+							divide = 10
+						}
+					}
+					if = { 
+						limit = { 
+							has_variable = build_metal
+						}
+						change_variable = { 
+							name = build_metal
+							multiply = 10
+						}
+						change_variable = { 
+							name = build_metal
+							divide = var:build_set_dmnd_t
+						}
+						change_variable = { 
+							name = build_metal
+							multiply = var:build_prog
+						}
+						change_variable = { 
+							name = build_metal
+							divide = 100
+						}
+						change_variable = { 
+							name = build_metal
+							multiply = var:build_para
+						}
+						change_variable = { 
+							name = build_metal
+							divide = var:build_name.var:build_metal
+						}
+						change_variable = { 
+							name = build_metal
+							divide = 10
+						}
+					}
+					if = { 
+						limit = { 
+							has_variable = build_exotics_w
+						}
+						change_variable = { 
+							name = build_exotics_w
+							multiply = 10
+						}
+						change_variable = { 
+							name = build_exotics_w
+							divide = var:build_set_dmnd_t
+						}
+						change_variable = { 
+							name = build_exotics_w
+							multiply = var:build_prog
+						}
+						change_variable = { 
+							name = build_exotics_w
+							divide = 100
+						}
+						change_variable = { 
+							name = build_exotics_w
+							multiply = var:build_para
+						}
+						change_variable = { 
+							name = build_exotics_w
+							divide = var:build_name.var:build_exotics_w
+						}
+						change_variable = { 
+							name = build_exotics_w
+							divide = 10
+						}
+					}
+					if = { 
+						limit = { 
+							has_variable = build_exotics_e
+						}
+						change_variable = { 
+							name = build_exotics_e
+							multiply = 10
+						}
+						change_variable = { 
+							name = build_exotics_e
+							divide = var:build_set_dmnd_t
+						}
+						change_variable = { 
+							name = build_exotics_e
+							multiply = var:build_prog
+						}
+						change_variable = { 
+							name = build_exotics_e
+							divide = 100
+						}
+						change_variable = { 
+							name = build_exotics_e
+							multiply = var:build_para
+						}
+						change_variable = { 
+							name = build_exotics_e
+							divide = var:build_name.var:build_exotics_e
+						}
+						change_variable = { 
+							name = build_exotics_e
+							divide = 10
+						}
+					}
+					if = { 
+						limit = { 
+							has_variable = build_exotics_g
+						}
+						change_variable = { 
+							name = build_exotics_g
+							multiply = 10
+						}
+						change_variable = { 
+							name = build_exotics_g
+							divide = var:build_set_dmnd_t
+						}
+						change_variable = { 
+							name = build_exotics_g
+							multiply = var:build_prog
+						}
+						change_variable = { 
+							name = build_exotics_g
+							divide = 100
+						}
+						change_variable = { 
+							name = build_exotics_g
+							multiply = var:build_para
+						}
+						change_variable = { 
+							name = build_exotics_g
+							divide = var:build_name.var:build_exotics_g
+						}
+						change_variable = { 
+							name = build_exotics_g
+							divide = 10
+						}
+					}
+					if = { 
+						limit = { 
+							has_variable = build_textile
+						}
+						change_variable = { 
+							name = build_textile
+							multiply = 10
+						}
+						change_variable = { 
+							name = build_textile
+							divide = var:build_set_dmnd_t
+						}
+						change_variable = { 
+							name = build_textile
+							multiply = var:build_prog
+						}
+						change_variable = { 
+							name = build_textile
+							divide = 100
+						}
+						change_variable = { 
+							name = build_textile
+							multiply = var:build_para
+						}
+						change_variable = { 
+							name = build_textile
+							divide = var:build_name.var:build_textile
+						}
+						change_variable = { 
+							name = build_textile
+							divide = 10
+						}
+					}
+					if = { 
+						limit = { 
+							has_variable = build_pottery
+						}
+						change_variable = { 
+							name = build_pottery
+							multiply = 10
+						}
+						change_variable = { 
+							name = build_pottery
+							divide = var:build_set_dmnd_t
+						}
+						change_variable = { 
+							name = build_pottery
+							multiply = var:build_prog
+						}
+						change_variable = { 
+							name = build_pottery
+							divide = 100
+						}
+						change_variable = { 
+							name = build_pottery
+							multiply = var:build_para
+						}
+						change_variable = { 
+							name = build_pottery
+							divide = var:build_name.var:build_pottery
+						}
+						change_variable = { 
+							name = build_pottery
+							divide = 10
+						}
+					}
+					if = { 
+						limit = { 
+							has_variable = build_tools
+						}
+						change_variable = { 
+							name = build_tools
+							multiply = 10
+						}
+						change_variable = { 
+							name = build_tools
+							divide = var:build_set_dmnd_t
+						}
+						change_variable = { 
+							name = build_tools
+							multiply = var:build_prog
+						}
+						change_variable = { 
+							name = build_tools
+							divide = 100
+						}
+						change_variable = { 
+							name = build_tools
+							multiply = var:build_para
+						}
+						change_variable = { 
+							name = build_tools
+							divide = var:build_name.var:build_tools
+						}
+						change_variable = { 
+							name = build_tools
+							divide = 10
+						}
+					}
+				}
+				remove_variable = build_set_dmnd_t
+			}
+			remove_variable = build_start_project_t
+			remove_variable = build_start_project_tt
+			remove_variable = build_start_project_ttt
+			set_variable = { 
+				name = farm_potential
+				value = 0
+			}
+		}
+		if = { 
+			limit = { 
+				has_variable = pasture_potential
+				var:pasture_potential >= 1
+			}
+			set_variable = { 
+				name = sim_t
+				value = var:pasture_potential
+			}
+			change_variable = { 
+				name = sim_t
+				divide = 5
+			}
+			if = { 
+				limit = { 
+					OR = { 
+						NOT = { 
+							has_variable_list = build_slots
+						}
+						variable_list_size = { 
+							name = build_slots
+							value = 0
+						}
+						any_in_list = { 
+							variable = build_slots
+							count = all
+							has_variable = build_active
+						}
+					}
+				}
+				create_character = { 
+					save_temporary_scope_as = build_new_slot_temp
+					gender = male
+					trait = character_not_1
+					employer = global_var:arhat
+					faith = global_var:arhat.faith
+					culture = global_var:arhat.culture
+				}
+				add_to_global_variable_list = { 
+					name = build_slots
+					target = scope:build_new_slot_temp
+				}
+				this = { 
+					add_to_variable_list = { 
+						name = build_slots
+						target = scope:build_new_slot_temp
+					}
+					if = { 
+						limit = { 
+							NOT = { 
+								has_variable = build_slots_num
+							}
+						}
+						set_variable = { 
+							name = build_slots_num
+							value = 0
+						}
+					}
+					change_variable = { 
+						name = build_slots_num
+						add = 1
+					}
+					scope:build_new_slot_temp = { 
+						set_variable = { 
+							name = build_location
+							value = prev
+						}
+						set_variable = { 
+							name = build_id
+							value = prev.var:build_slots_num
+						}
+					}
+				}
+			}
+			set_variable = { 
+				name = build_start_project_t
+				value = var:pasture_potential
+			}
+			set_variable = { 
+				name = build_start_project_tt
+				value = var:sim_t
+			}
+			set_variable = { 
+				name = build_start_project_ttt
+				value = 3
+			}
+			ordered_in_list = { 
+				limit = { 
+					NOT = { 
+						has_variable = build_active
+					}
+				}
+				variable = build_slots
+				order_by = build_start_project_order_value
+				position = 0
+				set_variable = { 
+					name = build_active
+					value = prev.var:build_start_project_t
+				}
+				set_variable = { 
+					name = build_para
+					value = prev.var:build_start_project_tt
+				}
+				set_variable = { 
+					name = build_owner
+					value = prev.var:build_start_project_ttt
+				}
+				set_variable = { 
+					name = build_name
+					value = global_var:pasture
+				}
+				set_variable = { 
+					name = build_prog
+					value = 100
+				}
+				set_variable = { 
+					name = build_pay
+					value = 0
+				}
+				if = { 
+					limit = { 
+						var:build_para = { 
+							compare_value > prev.var:build_active
+						}
+					}
+					set_variable = { 
+						name = build_para
+						value = var:build_active
+					}
+				}
+				var:build_name = { 
+					if = { 
+						limit = { 
+							has_variable = build_food
+						}
+						prev = { 
+							set_variable = { 
+								name = build_food
+								value = prev.var:build_food
+							}
+						}
+					}
+					if = { 
+						limit = { 
+							has_variable = build_cereal
+						}
+						prev = { 
+							set_variable = { 
+								name = build_cereal
+								value = prev.var:build_cereal
+							}
+						}
+					}
+					if = { 
+						limit = { 
+							has_variable = build_salted
+						}
+						prev = { 
+							set_variable = { 
+								name = build_salted
+								value = prev.var:build_salted
+							}
+						}
+					}
+					if = { 
+						limit = { 
+							has_variable = build_salt
+						}
+						prev = { 
+							set_variable = { 
+								name = build_salt
+								value = prev.var:build_salt
+							}
+						}
+					}
+					if = { 
+						limit = { 
+							has_variable = build_mud
+						}
+						prev = { 
+							set_variable = { 
+								name = build_mud
+								value = prev.var:build_mud
+							}
+						}
+					}
+					if = { 
+						limit = { 
+							has_variable = build_fuel
+						}
+						prev = { 
+							set_variable = { 
+								name = build_fuel
+								value = prev.var:build_fuel
+							}
+						}
+					}
+					if = { 
+						limit = { 
+							has_variable = build_fiber
+						}
+						prev = { 
+							set_variable = { 
+								name = build_fiber
+								value = prev.var:build_fiber
+							}
+						}
+					}
+					if = { 
+						limit = { 
+							has_variable = build_timber
+						}
+						prev = { 
+							set_variable = { 
+								name = build_timber
+								value = prev.var:build_timber
+							}
+						}
+					}
+					if = { 
+						limit = { 
+							has_variable = build_metal
+						}
+						prev = { 
+							set_variable = { 
+								name = build_metal
+								value = prev.var:build_metal
+							}
+						}
+					}
+					if = { 
+						limit = { 
+							has_variable = build_exotics_w
+						}
+						prev = { 
+							set_variable = { 
+								name = build_exotics_w
+								value = prev.var:build_exotics_w
+							}
+						}
+					}
+					if = { 
+						limit = { 
+							has_variable = build_exotics_e
+						}
+						prev = { 
+							set_variable = { 
+								name = build_exotics_e
+								value = prev.var:build_exotics_e
+							}
+						}
+					}
+					if = { 
+						limit = { 
+							has_variable = build_exotics_g
+						}
+						prev = { 
+							set_variable = { 
+								name = build_exotics_g
+								value = prev.var:build_exotics_g
+							}
+						}
+					}
+					if = { 
+						limit = { 
+							has_variable = build_textile
+						}
+						prev = { 
+							set_variable = { 
+								name = build_textile
+								value = prev.var:build_textile
+							}
+						}
+					}
+					if = { 
+						limit = { 
+							has_variable = build_pottery
+						}
+						prev = { 
+							set_variable = { 
+								name = build_pottery
+								value = prev.var:build_pottery
+							}
+						}
+					}
+					if = { 
+						limit = { 
+							has_variable = build_tools
+						}
+						prev = { 
+							set_variable = { 
+								name = build_tools
+								value = prev.var:build_tools
+							}
+						}
+					}
+				}
+				set_variable = { 
+					name = build_set_dmnd_t
+					value = 0
+				}
+				if = { 
+					limit = { 
+						has_variable = build_food
+					}
+					change_variable = { 
+						name = build_food
+						multiply = 10
+					}
+					change_variable = { 
+						name = build_food
+						divide = var:build_location.county.var:trade_price_food
+					}
+					change_variable = { 
+						name = build_food
+						multiply = var:build_food
+					}
+					change_variable = { 
+						name = build_food
+						add = 0.001
+					}
+					change_variable = { 
+						name = build_set_dmnd_t
+						add = var:build_food
+					}
+				}
+				if = { 
+					limit = { 
+						has_variable = build_cereal
+					}
+					change_variable = { 
+						name = build_cereal
+						multiply = 10
+					}
+					change_variable = { 
+						name = build_cereal
+						divide = var:build_location.county.var:trade_price_cereal
+					}
+					change_variable = { 
+						name = build_cereal
+						multiply = var:build_cereal
+					}
+					change_variable = { 
+						name = build_cereal
+						add = 0.001
+					}
+					change_variable = { 
+						name = build_set_dmnd_t
+						add = var:build_cereal
+					}
+				}
+				if = { 
+					limit = { 
+						has_variable = build_salted
+					}
+					change_variable = { 
+						name = build_salted
+						multiply = 10
+					}
+					change_variable = { 
+						name = build_salted
+						divide = var:build_location.county.var:trade_price_salted
+					}
+					change_variable = { 
+						name = build_salted
+						multiply = var:build_salted
+					}
+					change_variable = { 
+						name = build_salted
+						add = 0.001
+					}
+					change_variable = { 
+						name = build_set_dmnd_t
+						add = var:build_salted
+					}
+				}
+				if = { 
+					limit = { 
+						has_variable = build_salt
+					}
+					change_variable = { 
+						name = build_salt
+						multiply = 10
+					}
+					change_variable = { 
+						name = build_salt
+						divide = var:build_location.county.var:trade_price_salt
+					}
+					change_variable = { 
+						name = build_salt
+						multiply = var:build_salt
+					}
+					change_variable = { 
+						name = build_salt
+						add = 0.001
+					}
+					change_variable = { 
+						name = build_set_dmnd_t
+						add = var:build_salt
+					}
+				}
+				if = { 
+					limit = { 
+						has_variable = build_mud
+					}
+					change_variable = { 
+						name = build_mud
+						multiply = 10
+					}
+					change_variable = { 
+						name = build_mud
+						divide = var:build_location.county.var:trade_price_mud
+					}
+					change_variable = { 
+						name = build_mud
+						multiply = var:build_mud
+					}
+					change_variable = { 
+						name = build_mud
+						add = 0.001
+					}
+					change_variable = { 
+						name = build_set_dmnd_t
+						add = var:build_mud
+					}
+				}
+				if = { 
+					limit = { 
+						has_variable = build_fuel
+					}
+					change_variable = { 
+						name = build_fuel
+						multiply = 10
+					}
+					change_variable = { 
+						name = build_fuel
+						divide = var:build_location.county.var:trade_price_fuel
+					}
+					change_variable = { 
+						name = build_fuel
+						multiply = var:build_fuel
+					}
+					change_variable = { 
+						name = build_fuel
+						add = 0.001
+					}
+					change_variable = { 
+						name = build_set_dmnd_t
+						add = var:build_fuel
+					}
+				}
+				if = { 
+					limit = { 
+						has_variable = build_fiber
+					}
+					change_variable = { 
+						name = build_fiber
+						multiply = 10
+					}
+					change_variable = { 
+						name = build_fiber
+						divide = var:build_location.county.var:trade_price_fiber
+					}
+					change_variable = { 
+						name = build_fiber
+						multiply = var:build_fiber
+					}
+					change_variable = { 
+						name = build_fiber
+						add = 0.001
+					}
+					change_variable = { 
+						name = build_set_dmnd_t
+						add = var:build_fiber
+					}
+				}
+				if = { 
+					limit = { 
+						has_variable = build_timber
+					}
+					change_variable = { 
+						name = build_timber
+						multiply = 10
+					}
+					change_variable = { 
+						name = build_timber
+						divide = var:build_location.county.var:trade_price_timber
+					}
+					change_variable = { 
+						name = build_timber
+						multiply = var:build_timber
+					}
+					change_variable = { 
+						name = build_timber
+						add = 0.001
+					}
+					change_variable = { 
+						name = build_set_dmnd_t
+						add = var:build_timber
+					}
+				}
+				if = { 
+					limit = { 
+						has_variable = build_metal
+					}
+					change_variable = { 
+						name = build_metal
+						multiply = 10
+					}
+					change_variable = { 
+						name = build_metal
+						divide = var:build_location.county.var:trade_price_metal
+					}
+					change_variable = { 
+						name = build_metal
+						multiply = var:build_metal
+					}
+					change_variable = { 
+						name = build_metal
+						add = 0.001
+					}
+					change_variable = { 
+						name = build_set_dmnd_t
+						add = var:build_metal
+					}
+				}
+				if = { 
+					limit = { 
+						has_variable = build_exotics_w
+					}
+					change_variable = { 
+						name = build_exotics_w
+						multiply = 10
+					}
+					change_variable = { 
+						name = build_exotics_w
+						divide = var:build_location.county.var:trade_price_exotics_w
+					}
+					change_variable = { 
+						name = build_exotics_w
+						multiply = var:build_exotics_w
+					}
+					change_variable = { 
+						name = build_exotics_w
+						add = 0.001
+					}
+					change_variable = { 
+						name = build_set_dmnd_t
+						add = var:build_exotics_w
+					}
+				}
+				if = { 
+					limit = { 
+						has_variable = build_exotics_e
+					}
+					change_variable = { 
+						name = build_exotics_e
+						multiply = 10
+					}
+					change_variable = { 
+						name = build_exotics_e
+						divide = var:build_location.county.var:trade_price_exotics_e
+					}
+					change_variable = { 
+						name = build_exotics_e
+						multiply = var:build_exotics_e
+					}
+					change_variable = { 
+						name = build_exotics_e
+						add = 0.001
+					}
+					change_variable = { 
+						name = build_set_dmnd_t
+						add = var:build_exotics_e
+					}
+				}
+				if = { 
+					limit = { 
+						has_variable = build_exotics_g
+					}
+					change_variable = { 
+						name = build_exotics_g
+						multiply = 10
+					}
+					change_variable = { 
+						name = build_exotics_g
+						divide = var:build_location.county.var:trade_price_exotics_g
+					}
+					change_variable = { 
+						name = build_exotics_g
+						multiply = var:build_exotics_g
+					}
+					change_variable = { 
+						name = build_exotics_g
+						add = 0.001
+					}
+					change_variable = { 
+						name = build_set_dmnd_t
+						add = var:build_exotics_g
+					}
+				}
+				if = { 
+					limit = { 
+						has_variable = build_textile
+					}
+					change_variable = { 
+						name = build_textile
+						multiply = 10
+					}
+					change_variable = { 
+						name = build_textile
+						divide = var:build_location.county.var:trade_price_textile
+					}
+					change_variable = { 
+						name = build_textile
+						multiply = var:build_textile
+					}
+					change_variable = { 
+						name = build_textile
+						add = 0.001
+					}
+					change_variable = { 
+						name = build_set_dmnd_t
+						add = var:build_textile
+					}
+				}
+				if = { 
+					limit = { 
+						has_variable = build_pottery
+					}
+					change_variable = { 
+						name = build_pottery
+						multiply = 10
+					}
+					change_variable = { 
+						name = build_pottery
+						divide = var:build_location.county.var:trade_price_pottery
+					}
+					change_variable = { 
+						name = build_pottery
+						multiply = var:build_pottery
+					}
+					change_variable = { 
+						name = build_pottery
+						add = 0.001
+					}
+					change_variable = { 
+						name = build_set_dmnd_t
+						add = var:build_pottery
+					}
+				}
+				if = { 
+					limit = { 
+						has_variable = build_tools
+					}
+					change_variable = { 
+						name = build_tools
+						multiply = 10
+					}
+					change_variable = { 
+						name = build_tools
+						divide = var:build_location.county.var:trade_price_tools
+					}
+					change_variable = { 
+						name = build_tools
+						multiply = var:build_tools
+					}
+					change_variable = { 
+						name = build_tools
+						add = 0.001
+					}
+					change_variable = { 
+						name = build_set_dmnd_t
+						add = var:build_tools
+					}
+				}
+				if = { 
+					limit = { 
+						has_variable = build_set_dmnd_t
+						var:build_set_dmnd_t > 0
+					}
+					if = { 
+						limit = { 
+							has_variable = build_food
+						}
+						change_variable = { 
+							name = build_food
+							multiply = 10
+						}
+						change_variable = { 
+							name = build_food
+							divide = var:build_set_dmnd_t
+						}
+						change_variable = { 
+							name = build_food
+							multiply = var:build_prog
+						}
+						change_variable = { 
+							name = build_food
+							divide = 100
+						}
+						change_variable = { 
+							name = build_food
+							multiply = var:build_para
+						}
+						change_variable = { 
+							name = build_food
+							divide = var:build_name.var:build_food
+						}
+						change_variable = { 
+							name = build_food
+							divide = 10
+						}
+					}
+					if = { 
+						limit = { 
+							has_variable = build_cereal
+						}
+						change_variable = { 
+							name = build_cereal
+							multiply = 10
+						}
+						change_variable = { 
+							name = build_cereal
+							divide = var:build_set_dmnd_t
+						}
+						change_variable = { 
+							name = build_cereal
+							multiply = var:build_prog
+						}
+						change_variable = { 
+							name = build_cereal
+							divide = 100
+						}
+						change_variable = { 
+							name = build_cereal
+							multiply = var:build_para
+						}
+						change_variable = { 
+							name = build_cereal
+							divide = var:build_name.var:build_cereal
+						}
+						change_variable = { 
+							name = build_cereal
+							divide = 10
+						}
+					}
+					if = { 
+						limit = { 
+							has_variable = build_salted
+						}
+						change_variable = { 
+							name = build_salted
+							multiply = 10
+						}
+						change_variable = { 
+							name = build_salted
+							divide = var:build_set_dmnd_t
+						}
+						change_variable = { 
+							name = build_salted
+							multiply = var:build_prog
+						}
+						change_variable = { 
+							name = build_salted
+							divide = 100
+						}
+						change_variable = { 
+							name = build_salted
+							multiply = var:build_para
+						}
+						change_variable = { 
+							name = build_salted
+							divide = var:build_name.var:build_salted
+						}
+						change_variable = { 
+							name = build_salted
+							divide = 10
+						}
+					}
+					if = { 
+						limit = { 
+							has_variable = build_salt
+						}
+						change_variable = { 
+							name = build_salt
+							multiply = 10
+						}
+						change_variable = { 
+							name = build_salt
+							divide = var:build_set_dmnd_t
+						}
+						change_variable = { 
+							name = build_salt
+							multiply = var:build_prog
+						}
+						change_variable = { 
+							name = build_salt
+							divide = 100
+						}
+						change_variable = { 
+							name = build_salt
+							multiply = var:build_para
+						}
+						change_variable = { 
+							name = build_salt
+							divide = var:build_name.var:build_salt
+						}
+						change_variable = { 
+							name = build_salt
+							divide = 10
+						}
+					}
+					if = { 
+						limit = { 
+							has_variable = build_mud
+						}
+						change_variable = { 
+							name = build_mud
+							multiply = 10
+						}
+						change_variable = { 
+							name = build_mud
+							divide = var:build_set_dmnd_t
+						}
+						change_variable = { 
+							name = build_mud
+							multiply = var:build_prog
+						}
+						change_variable = { 
+							name = build_mud
+							divide = 100
+						}
+						change_variable = { 
+							name = build_mud
+							multiply = var:build_para
+						}
+						change_variable = { 
+							name = build_mud
+							divide = var:build_name.var:build_mud
+						}
+						change_variable = { 
+							name = build_mud
+							divide = 10
+						}
+					}
+					if = { 
+						limit = { 
+							has_variable = build_fuel
+						}
+						change_variable = { 
+							name = build_fuel
+							multiply = 10
+						}
+						change_variable = { 
+							name = build_fuel
+							divide = var:build_set_dmnd_t
+						}
+						change_variable = { 
+							name = build_fuel
+							multiply = var:build_prog
+						}
+						change_variable = { 
+							name = build_fuel
+							divide = 100
+						}
+						change_variable = { 
+							name = build_fuel
+							multiply = var:build_para
+						}
+						change_variable = { 
+							name = build_fuel
+							divide = var:build_name.var:build_fuel
+						}
+						change_variable = { 
+							name = build_fuel
+							divide = 10
+						}
+					}
+					if = { 
+						limit = { 
+							has_variable = build_fiber
+						}
+						change_variable = { 
+							name = build_fiber
+							multiply = 10
+						}
+						change_variable = { 
+							name = build_fiber
+							divide = var:build_set_dmnd_t
+						}
+						change_variable = { 
+							name = build_fiber
+							multiply = var:build_prog
+						}
+						change_variable = { 
+							name = build_fiber
+							divide = 100
+						}
+						change_variable = { 
+							name = build_fiber
+							multiply = var:build_para
+						}
+						change_variable = { 
+							name = build_fiber
+							divide = var:build_name.var:build_fiber
+						}
+						change_variable = { 
+							name = build_fiber
+							divide = 10
+						}
+					}
+					if = { 
+						limit = { 
+							has_variable = build_timber
+						}
+						change_variable = { 
+							name = build_timber
+							multiply = 10
+						}
+						change_variable = { 
+							name = build_timber
+							divide = var:build_set_dmnd_t
+						}
+						change_variable = { 
+							name = build_timber
+							multiply = var:build_prog
+						}
+						change_variable = { 
+							name = build_timber
+							divide = 100
+						}
+						change_variable = { 
+							name = build_timber
+							multiply = var:build_para
+						}
+						change_variable = { 
+							name = build_timber
+							divide = var:build_name.var:build_timber
+						}
+						change_variable = { 
+							name = build_timber
+							divide = 10
+						}
+					}
+					if = { 
+						limit = { 
+							has_variable = build_metal
+						}
+						change_variable = { 
+							name = build_metal
+							multiply = 10
+						}
+						change_variable = { 
+							name = build_metal
+							divide = var:build_set_dmnd_t
+						}
+						change_variable = { 
+							name = build_metal
+							multiply = var:build_prog
+						}
+						change_variable = { 
+							name = build_metal
+							divide = 100
+						}
+						change_variable = { 
+							name = build_metal
+							multiply = var:build_para
+						}
+						change_variable = { 
+							name = build_metal
+							divide = var:build_name.var:build_metal
+						}
+						change_variable = { 
+							name = build_metal
+							divide = 10
+						}
+					}
+					if = { 
+						limit = { 
+							has_variable = build_exotics_w
+						}
+						change_variable = { 
+							name = build_exotics_w
+							multiply = 10
+						}
+						change_variable = { 
+							name = build_exotics_w
+							divide = var:build_set_dmnd_t
+						}
+						change_variable = { 
+							name = build_exotics_w
+							multiply = var:build_prog
+						}
+						change_variable = { 
+							name = build_exotics_w
+							divide = 100
+						}
+						change_variable = { 
+							name = build_exotics_w
+							multiply = var:build_para
+						}
+						change_variable = { 
+							name = build_exotics_w
+							divide = var:build_name.var:build_exotics_w
+						}
+						change_variable = { 
+							name = build_exotics_w
+							divide = 10
+						}
+					}
+					if = { 
+						limit = { 
+							has_variable = build_exotics_e
+						}
+						change_variable = { 
+							name = build_exotics_e
+							multiply = 10
+						}
+						change_variable = { 
+							name = build_exotics_e
+							divide = var:build_set_dmnd_t
+						}
+						change_variable = { 
+							name = build_exotics_e
+							multiply = var:build_prog
+						}
+						change_variable = { 
+							name = build_exotics_e
+							divide = 100
+						}
+						change_variable = { 
+							name = build_exotics_e
+							multiply = var:build_para
+						}
+						change_variable = { 
+							name = build_exotics_e
+							divide = var:build_name.var:build_exotics_e
+						}
+						change_variable = { 
+							name = build_exotics_e
+							divide = 10
+						}
+					}
+					if = { 
+						limit = { 
+							has_variable = build_exotics_g
+						}
+						change_variable = { 
+							name = build_exotics_g
+							multiply = 10
+						}
+						change_variable = { 
+							name = build_exotics_g
+							divide = var:build_set_dmnd_t
+						}
+						change_variable = { 
+							name = build_exotics_g
+							multiply = var:build_prog
+						}
+						change_variable = { 
+							name = build_exotics_g
+							divide = 100
+						}
+						change_variable = { 
+							name = build_exotics_g
+							multiply = var:build_para
+						}
+						change_variable = { 
+							name = build_exotics_g
+							divide = var:build_name.var:build_exotics_g
+						}
+						change_variable = { 
+							name = build_exotics_g
+							divide = 10
+						}
+					}
+					if = { 
+						limit = { 
+							has_variable = build_textile
+						}
+						change_variable = { 
+							name = build_textile
+							multiply = 10
+						}
+						change_variable = { 
+							name = build_textile
+							divide = var:build_set_dmnd_t
+						}
+						change_variable = { 
+							name = build_textile
+							multiply = var:build_prog
+						}
+						change_variable = { 
+							name = build_textile
+							divide = 100
+						}
+						change_variable = { 
+							name = build_textile
+							multiply = var:build_para
+						}
+						change_variable = { 
+							name = build_textile
+							divide = var:build_name.var:build_textile
+						}
+						change_variable = { 
+							name = build_textile
+							divide = 10
+						}
+					}
+					if = { 
+						limit = { 
+							has_variable = build_pottery
+						}
+						change_variable = { 
+							name = build_pottery
+							multiply = 10
+						}
+						change_variable = { 
+							name = build_pottery
+							divide = var:build_set_dmnd_t
+						}
+						change_variable = { 
+							name = build_pottery
+							multiply = var:build_prog
+						}
+						change_variable = { 
+							name = build_pottery
+							divide = 100
+						}
+						change_variable = { 
+							name = build_pottery
+							multiply = var:build_para
+						}
+						change_variable = { 
+							name = build_pottery
+							divide = var:build_name.var:build_pottery
+						}
+						change_variable = { 
+							name = build_pottery
+							divide = 10
+						}
+					}
+					if = { 
+						limit = { 
+							has_variable = build_tools
+						}
+						change_variable = { 
+							name = build_tools
+							multiply = 10
+						}
+						change_variable = { 
+							name = build_tools
+							divide = var:build_set_dmnd_t
+						}
+						change_variable = { 
+							name = build_tools
+							multiply = var:build_prog
+						}
+						change_variable = { 
+							name = build_tools
+							divide = 100
+						}
+						change_variable = { 
+							name = build_tools
+							multiply = var:build_para
+						}
+						change_variable = { 
+							name = build_tools
+							divide = var:build_name.var:build_tools
+						}
+						change_variable = { 
+							name = build_tools
+							divide = 10
+						}
+					}
+				}
+				remove_variable = build_set_dmnd_t
+			}
+			remove_variable = build_start_project_t
+			remove_variable = build_start_project_tt
+			remove_variable = build_start_project_ttt
+			set_variable = { 
+				name = pasture_potential
+				value = 0
+			}
+		}
+	}
+	every_province = { 
+		limit = { 
+			is_valid_prov = yes
+		}
 		set_variable = { 
 			name = pop_calorie_food
 			value = pop_calorie_food
@@ -29796,125 +32640,215 @@ while = {
 			has_variable = build_active
 		}
 		variable = build_slots
-		set_variable = { 
-			name = build_in_food
-			value = 0
+		if = { 
+			limit = { 
+				has_variable = build_food
+				var:build_food > 0
+			}
+			set_variable = { 
+				name = build_in_food
+				value = 0
+			}
+			set_variable = { 
+				name = build_pay_food
+				value = 0
+			}
 		}
-		set_variable = { 
-			name = build_pay_food
-			value = 0
+		if = { 
+			limit = { 
+				has_variable = build_cereal
+				var:build_cereal > 0
+			}
+			set_variable = { 
+				name = build_in_cereal
+				value = 0
+			}
+			set_variable = { 
+				name = build_pay_cereal
+				value = 0
+			}
 		}
-		set_variable = { 
-			name = build_in_cereal
-			value = 0
+		if = { 
+			limit = { 
+				has_variable = build_salted
+				var:build_salted > 0
+			}
+			set_variable = { 
+				name = build_in_salted
+				value = 0
+			}
+			set_variable = { 
+				name = build_pay_salted
+				value = 0
+			}
 		}
-		set_variable = { 
-			name = build_pay_cereal
-			value = 0
+		if = { 
+			limit = { 
+				has_variable = build_salt
+				var:build_salt > 0
+			}
+			set_variable = { 
+				name = build_in_salt
+				value = 0
+			}
+			set_variable = { 
+				name = build_pay_salt
+				value = 0
+			}
 		}
-		set_variable = { 
-			name = build_in_salted
-			value = 0
+		if = { 
+			limit = { 
+				has_variable = build_mud
+				var:build_mud > 0
+			}
+			set_variable = { 
+				name = build_in_mud
+				value = 0
+			}
+			set_variable = { 
+				name = build_pay_mud
+				value = 0
+			}
 		}
-		set_variable = { 
-			name = build_pay_salted
-			value = 0
+		if = { 
+			limit = { 
+				has_variable = build_fuel
+				var:build_fuel > 0
+			}
+			set_variable = { 
+				name = build_in_fuel
+				value = 0
+			}
+			set_variable = { 
+				name = build_pay_fuel
+				value = 0
+			}
 		}
-		set_variable = { 
-			name = build_in_salt
-			value = 0
+		if = { 
+			limit = { 
+				has_variable = build_fiber
+				var:build_fiber > 0
+			}
+			set_variable = { 
+				name = build_in_fiber
+				value = 0
+			}
+			set_variable = { 
+				name = build_pay_fiber
+				value = 0
+			}
 		}
-		set_variable = { 
-			name = build_pay_salt
-			value = 0
+		if = { 
+			limit = { 
+				has_variable = build_timber
+				var:build_timber > 0
+			}
+			set_variable = { 
+				name = build_in_timber
+				value = 0
+			}
+			set_variable = { 
+				name = build_pay_timber
+				value = 0
+			}
 		}
-		set_variable = { 
-			name = build_in_mud
-			value = 0
+		if = { 
+			limit = { 
+				has_variable = build_metal
+				var:build_metal > 0
+			}
+			set_variable = { 
+				name = build_in_metal
+				value = 0
+			}
+			set_variable = { 
+				name = build_pay_metal
+				value = 0
+			}
 		}
-		set_variable = { 
-			name = build_pay_mud
-			value = 0
+		if = { 
+			limit = { 
+				has_variable = build_exotics_w
+				var:build_exotics_w > 0
+			}
+			set_variable = { 
+				name = build_in_exotics_w
+				value = 0
+			}
+			set_variable = { 
+				name = build_pay_exotics_w
+				value = 0
+			}
 		}
-		set_variable = { 
-			name = build_in_fuel
-			value = 0
+		if = { 
+			limit = { 
+				has_variable = build_exotics_e
+				var:build_exotics_e > 0
+			}
+			set_variable = { 
+				name = build_in_exotics_e
+				value = 0
+			}
+			set_variable = { 
+				name = build_pay_exotics_e
+				value = 0
+			}
 		}
-		set_variable = { 
-			name = build_pay_fuel
-			value = 0
+		if = { 
+			limit = { 
+				has_variable = build_exotics_g
+				var:build_exotics_g > 0
+			}
+			set_variable = { 
+				name = build_in_exotics_g
+				value = 0
+			}
+			set_variable = { 
+				name = build_pay_exotics_g
+				value = 0
+			}
 		}
-		set_variable = { 
-			name = build_in_fiber
-			value = 0
+		if = { 
+			limit = { 
+				has_variable = build_textile
+				var:build_textile > 0
+			}
+			set_variable = { 
+				name = build_in_textile
+				value = 0
+			}
+			set_variable = { 
+				name = build_pay_textile
+				value = 0
+			}
 		}
-		set_variable = { 
-			name = build_pay_fiber
-			value = 0
+		if = { 
+			limit = { 
+				has_variable = build_pottery
+				var:build_pottery > 0
+			}
+			set_variable = { 
+				name = build_in_pottery
+				value = 0
+			}
+			set_variable = { 
+				name = build_pay_pottery
+				value = 0
+			}
 		}
-		set_variable = { 
-			name = build_in_timber
-			value = 0
-		}
-		set_variable = { 
-			name = build_pay_timber
-			value = 0
-		}
-		set_variable = { 
-			name = build_in_metal
-			value = 0
-		}
-		set_variable = { 
-			name = build_pay_metal
-			value = 0
-		}
-		set_variable = { 
-			name = build_in_exotics_w
-			value = 0
-		}
-		set_variable = { 
-			name = build_pay_exotics_w
-			value = 0
-		}
-		set_variable = { 
-			name = build_in_exotics_e
-			value = 0
-		}
-		set_variable = { 
-			name = build_pay_exotics_e
-			value = 0
-		}
-		set_variable = { 
-			name = build_in_exotics_g
-			value = 0
-		}
-		set_variable = { 
-			name = build_pay_exotics_g
-			value = 0
-		}
-		set_variable = { 
-			name = build_in_textile
-			value = 0
-		}
-		set_variable = { 
-			name = build_pay_textile
-			value = 0
-		}
-		set_variable = { 
-			name = build_in_pottery
-			value = 0
-		}
-		set_variable = { 
-			name = build_pay_pottery
-			value = 0
-		}
-		set_variable = { 
-			name = build_in_tools
-			value = 0
-		}
-		set_variable = { 
-			name = build_pay_tools
-			value = 0
+		if = { 
+			limit = { 
+				has_variable = build_tools
+				var:build_tools > 0
+			}
+			set_variable = { 
+				name = build_in_tools
+				value = 0
+			}
+			set_variable = { 
+				name = build_pay_tools
+				value = 0
+			}
 		}
 	}
 	every_county = { 
@@ -32554,6 +35488,7 @@ while = {
 				every_in_list = { 
 					limit = { 
 						has_variable = build_food
+						var:build_food > 0
 					}
 					variable = build_slots
 					set_variable = { 
@@ -32863,6 +35798,7 @@ while = {
 				every_in_list = { 
 					limit = { 
 						has_variable = build_cereal
+						var:build_cereal > 0
 					}
 					variable = build_slots
 					set_variable = { 
@@ -33172,6 +36108,7 @@ while = {
 				every_in_list = { 
 					limit = { 
 						has_variable = build_salted
+						var:build_salted > 0
 					}
 					variable = build_slots
 					set_variable = { 
@@ -33481,6 +36418,7 @@ while = {
 				every_in_list = { 
 					limit = { 
 						has_variable = build_salt
+						var:build_salt > 0
 					}
 					variable = build_slots
 					set_variable = { 
@@ -33790,6 +36728,7 @@ while = {
 				every_in_list = { 
 					limit = { 
 						has_variable = build_mud
+						var:build_mud > 0
 					}
 					variable = build_slots
 					set_variable = { 
@@ -34099,6 +37038,7 @@ while = {
 				every_in_list = { 
 					limit = { 
 						has_variable = build_fuel
+						var:build_fuel > 0
 					}
 					variable = build_slots
 					set_variable = { 
@@ -34408,6 +37348,7 @@ while = {
 				every_in_list = { 
 					limit = { 
 						has_variable = build_fiber
+						var:build_fiber > 0
 					}
 					variable = build_slots
 					set_variable = { 
@@ -34717,6 +37658,7 @@ while = {
 				every_in_list = { 
 					limit = { 
 						has_variable = build_timber
+						var:build_timber > 0
 					}
 					variable = build_slots
 					set_variable = { 
@@ -35026,6 +37968,7 @@ while = {
 				every_in_list = { 
 					limit = { 
 						has_variable = build_metal
+						var:build_metal > 0
 					}
 					variable = build_slots
 					set_variable = { 
@@ -35335,6 +38278,7 @@ while = {
 				every_in_list = { 
 					limit = { 
 						has_variable = build_exotics_w
+						var:build_exotics_w > 0
 					}
 					variable = build_slots
 					set_variable = { 
@@ -35644,6 +38588,7 @@ while = {
 				every_in_list = { 
 					limit = { 
 						has_variable = build_exotics_e
+						var:build_exotics_e > 0
 					}
 					variable = build_slots
 					set_variable = { 
@@ -35953,6 +38898,7 @@ while = {
 				every_in_list = { 
 					limit = { 
 						has_variable = build_exotics_g
+						var:build_exotics_g > 0
 					}
 					variable = build_slots
 					set_variable = { 
@@ -36262,6 +39208,7 @@ while = {
 				every_in_list = { 
 					limit = { 
 						has_variable = build_textile
+						var:build_textile > 0
 					}
 					variable = build_slots
 					set_variable = { 
@@ -36571,6 +39518,7 @@ while = {
 				every_in_list = { 
 					limit = { 
 						has_variable = build_pottery
+						var:build_pottery > 0
 					}
 					variable = build_slots
 					set_variable = { 
@@ -36880,6 +39828,7 @@ while = {
 				every_in_list = { 
 					limit = { 
 						has_variable = build_tools
+						var:build_tools > 0
 					}
 					variable = build_slots
 					set_variable = { 
@@ -42027,6 +44976,1687 @@ while = {
 		}
 		remove_variable = trade_update_price_t
 	}
+	every_in_global_list = { 
+		limit = { 
+			has_variable = build_active
+		}
+		variable = build_slots
+		set_variable = { 
+			name = build_update_project_t
+			value = 100
+		}
+		if = { 
+			limit = { 
+				has_variable = build_in_food
+				var:build_in_food > 0
+			}
+			set_variable = { 
+				name = build_update_project_tt
+				value = var:build_in_food
+			}
+			change_variable = { 
+				name = build_update_project_tt
+				multiply = var:build_update_project_t
+			}
+			change_variable = { 
+				name = build_update_project_tt
+				multiply = var:build_name.var:build_food
+			}
+			change_variable = { 
+				name = build_update_project_tt
+				divide = var:build_para
+			}
+			change_variable = { 
+				name = build_prog
+				subtract = var:build_update_project_tt
+			}
+		}
+		if = { 
+			limit = { 
+				has_variable = build_in_cereal
+				var:build_in_cereal > 0
+			}
+			set_variable = { 
+				name = build_update_project_tt
+				value = var:build_in_cereal
+			}
+			change_variable = { 
+				name = build_update_project_tt
+				multiply = var:build_update_project_t
+			}
+			change_variable = { 
+				name = build_update_project_tt
+				multiply = var:build_name.var:build_cereal
+			}
+			change_variable = { 
+				name = build_update_project_tt
+				divide = var:build_para
+			}
+			change_variable = { 
+				name = build_prog
+				subtract = var:build_update_project_tt
+			}
+		}
+		if = { 
+			limit = { 
+				has_variable = build_in_salted
+				var:build_in_salted > 0
+			}
+			set_variable = { 
+				name = build_update_project_tt
+				value = var:build_in_salted
+			}
+			change_variable = { 
+				name = build_update_project_tt
+				multiply = var:build_update_project_t
+			}
+			change_variable = { 
+				name = build_update_project_tt
+				multiply = var:build_name.var:build_salted
+			}
+			change_variable = { 
+				name = build_update_project_tt
+				divide = var:build_para
+			}
+			change_variable = { 
+				name = build_prog
+				subtract = var:build_update_project_tt
+			}
+		}
+		if = { 
+			limit = { 
+				has_variable = build_in_salt
+				var:build_in_salt > 0
+			}
+			set_variable = { 
+				name = build_update_project_tt
+				value = var:build_in_salt
+			}
+			change_variable = { 
+				name = build_update_project_tt
+				multiply = var:build_update_project_t
+			}
+			change_variable = { 
+				name = build_update_project_tt
+				multiply = var:build_name.var:build_salt
+			}
+			change_variable = { 
+				name = build_update_project_tt
+				divide = var:build_para
+			}
+			change_variable = { 
+				name = build_prog
+				subtract = var:build_update_project_tt
+			}
+		}
+		if = { 
+			limit = { 
+				has_variable = build_in_mud
+				var:build_in_mud > 0
+			}
+			set_variable = { 
+				name = build_update_project_tt
+				value = var:build_in_mud
+			}
+			change_variable = { 
+				name = build_update_project_tt
+				multiply = var:build_update_project_t
+			}
+			change_variable = { 
+				name = build_update_project_tt
+				multiply = var:build_name.var:build_mud
+			}
+			change_variable = { 
+				name = build_update_project_tt
+				divide = var:build_para
+			}
+			change_variable = { 
+				name = build_prog
+				subtract = var:build_update_project_tt
+			}
+		}
+		if = { 
+			limit = { 
+				has_variable = build_in_fuel
+				var:build_in_fuel > 0
+			}
+			set_variable = { 
+				name = build_update_project_tt
+				value = var:build_in_fuel
+			}
+			change_variable = { 
+				name = build_update_project_tt
+				multiply = var:build_update_project_t
+			}
+			change_variable = { 
+				name = build_update_project_tt
+				multiply = var:build_name.var:build_fuel
+			}
+			change_variable = { 
+				name = build_update_project_tt
+				divide = var:build_para
+			}
+			change_variable = { 
+				name = build_prog
+				subtract = var:build_update_project_tt
+			}
+		}
+		if = { 
+			limit = { 
+				has_variable = build_in_fiber
+				var:build_in_fiber > 0
+			}
+			set_variable = { 
+				name = build_update_project_tt
+				value = var:build_in_fiber
+			}
+			change_variable = { 
+				name = build_update_project_tt
+				multiply = var:build_update_project_t
+			}
+			change_variable = { 
+				name = build_update_project_tt
+				multiply = var:build_name.var:build_fiber
+			}
+			change_variable = { 
+				name = build_update_project_tt
+				divide = var:build_para
+			}
+			change_variable = { 
+				name = build_prog
+				subtract = var:build_update_project_tt
+			}
+		}
+		if = { 
+			limit = { 
+				has_variable = build_in_timber
+				var:build_in_timber > 0
+			}
+			set_variable = { 
+				name = build_update_project_tt
+				value = var:build_in_timber
+			}
+			change_variable = { 
+				name = build_update_project_tt
+				multiply = var:build_update_project_t
+			}
+			change_variable = { 
+				name = build_update_project_tt
+				multiply = var:build_name.var:build_timber
+			}
+			change_variable = { 
+				name = build_update_project_tt
+				divide = var:build_para
+			}
+			change_variable = { 
+				name = build_prog
+				subtract = var:build_update_project_tt
+			}
+		}
+		if = { 
+			limit = { 
+				has_variable = build_in_metal
+				var:build_in_metal > 0
+			}
+			set_variable = { 
+				name = build_update_project_tt
+				value = var:build_in_metal
+			}
+			change_variable = { 
+				name = build_update_project_tt
+				multiply = var:build_update_project_t
+			}
+			change_variable = { 
+				name = build_update_project_tt
+				multiply = var:build_name.var:build_metal
+			}
+			change_variable = { 
+				name = build_update_project_tt
+				divide = var:build_para
+			}
+			change_variable = { 
+				name = build_prog
+				subtract = var:build_update_project_tt
+			}
+		}
+		if = { 
+			limit = { 
+				has_variable = build_in_exotics_w
+				var:build_in_exotics_w > 0
+			}
+			set_variable = { 
+				name = build_update_project_tt
+				value = var:build_in_exotics_w
+			}
+			change_variable = { 
+				name = build_update_project_tt
+				multiply = var:build_update_project_t
+			}
+			change_variable = { 
+				name = build_update_project_tt
+				multiply = var:build_name.var:build_exotics_w
+			}
+			change_variable = { 
+				name = build_update_project_tt
+				divide = var:build_para
+			}
+			change_variable = { 
+				name = build_prog
+				subtract = var:build_update_project_tt
+			}
+		}
+		if = { 
+			limit = { 
+				has_variable = build_in_exotics_e
+				var:build_in_exotics_e > 0
+			}
+			set_variable = { 
+				name = build_update_project_tt
+				value = var:build_in_exotics_e
+			}
+			change_variable = { 
+				name = build_update_project_tt
+				multiply = var:build_update_project_t
+			}
+			change_variable = { 
+				name = build_update_project_tt
+				multiply = var:build_name.var:build_exotics_e
+			}
+			change_variable = { 
+				name = build_update_project_tt
+				divide = var:build_para
+			}
+			change_variable = { 
+				name = build_prog
+				subtract = var:build_update_project_tt
+			}
+		}
+		if = { 
+			limit = { 
+				has_variable = build_in_exotics_g
+				var:build_in_exotics_g > 0
+			}
+			set_variable = { 
+				name = build_update_project_tt
+				value = var:build_in_exotics_g
+			}
+			change_variable = { 
+				name = build_update_project_tt
+				multiply = var:build_update_project_t
+			}
+			change_variable = { 
+				name = build_update_project_tt
+				multiply = var:build_name.var:build_exotics_g
+			}
+			change_variable = { 
+				name = build_update_project_tt
+				divide = var:build_para
+			}
+			change_variable = { 
+				name = build_prog
+				subtract = var:build_update_project_tt
+			}
+		}
+		if = { 
+			limit = { 
+				has_variable = build_in_textile
+				var:build_in_textile > 0
+			}
+			set_variable = { 
+				name = build_update_project_tt
+				value = var:build_in_textile
+			}
+			change_variable = { 
+				name = build_update_project_tt
+				multiply = var:build_update_project_t
+			}
+			change_variable = { 
+				name = build_update_project_tt
+				multiply = var:build_name.var:build_textile
+			}
+			change_variable = { 
+				name = build_update_project_tt
+				divide = var:build_para
+			}
+			change_variable = { 
+				name = build_prog
+				subtract = var:build_update_project_tt
+			}
+		}
+		if = { 
+			limit = { 
+				has_variable = build_in_pottery
+				var:build_in_pottery > 0
+			}
+			set_variable = { 
+				name = build_update_project_tt
+				value = var:build_in_pottery
+			}
+			change_variable = { 
+				name = build_update_project_tt
+				multiply = var:build_update_project_t
+			}
+			change_variable = { 
+				name = build_update_project_tt
+				multiply = var:build_name.var:build_pottery
+			}
+			change_variable = { 
+				name = build_update_project_tt
+				divide = var:build_para
+			}
+			change_variable = { 
+				name = build_prog
+				subtract = var:build_update_project_tt
+			}
+		}
+		if = { 
+			limit = { 
+				has_variable = build_in_tools
+				var:build_in_tools > 0
+			}
+			set_variable = { 
+				name = build_update_project_tt
+				value = var:build_in_tools
+			}
+			change_variable = { 
+				name = build_update_project_tt
+				multiply = var:build_update_project_t
+			}
+			change_variable = { 
+				name = build_update_project_tt
+				multiply = var:build_name.var:build_tools
+			}
+			change_variable = { 
+				name = build_update_project_tt
+				divide = var:build_para
+			}
+			change_variable = { 
+				name = build_prog
+				subtract = var:build_update_project_tt
+			}
+		}
+		if = { 
+			limit = { 
+				OR = { 
+					NOT = { 
+						has_variable = build_prog
+					}
+					var:build_prog = 0
+					var:build_prog < 1
+				}
+			}
+			if = { 
+				limit = { 
+					var:build_name = { 
+						has_variable = build_farm
+					}
+				}
+				var:build_location = { 
+					set_variable = { 
+						name = build_update_project_t
+						value = prev.var:build_name.var:build_farm
+					}
+					change_variable = { 
+						name = build_update_project_t
+						multiply = prev.var:build_para
+					}
+					change_variable = { 
+						name = farm_total
+						add = var:build_update_project_t
+					}
+					remove_variable = build_update_project_t
+				}
+			}
+			if = { 
+				limit = { 
+					var:build_name = { 
+						has_variable = build_pasture
+					}
+				}
+				var:build_location = { 
+					set_variable = { 
+						name = build_update_project_t
+						value = prev.var:build_name.var:build_pasture
+					}
+					change_variable = { 
+						name = build_update_project_t
+						multiply = prev.var:build_para
+					}
+					change_variable = { 
+						name = pasture_total
+						add = var:build_update_project_t
+					}
+					remove_variable = build_update_project_t
+				}
+			}
+			if = { 
+				limit = { 
+					var:build_name = { 
+						has_variable = build_workshop
+					}
+				}
+				var:build_location = { 
+					set_variable = { 
+						name = build_update_project_t
+						value = prev.var:build_name.var:build_workshop
+					}
+					change_variable = { 
+						name = build_update_project_t
+						multiply = prev.var:build_para
+					}
+					change_variable = { 
+						name = workshop_total
+						add = var:build_update_project_t
+					}
+					remove_variable = build_update_project_t
+				}
+			}
+			if = { 
+				limit = { 
+					var:build_name = { 
+						has_variable = build_extraction
+					}
+				}
+				var:build_location = { 
+					set_variable = { 
+						name = build_update_project_t
+						value = prev.var:build_name.var:build_extraction
+					}
+					change_variable = { 
+						name = build_update_project_t
+						multiply = prev.var:build_para
+					}
+					change_variable = { 
+						name = extraction_total
+						add = var:build_update_project_t
+					}
+					remove_variable = build_update_project_t
+				}
+			}
+			if = { 
+				limit = { 
+					var:build_name = { 
+						has_variable = build_road
+					}
+				}
+				var:build_location = { 
+					set_variable = { 
+						name = build_update_project_t
+						value = prev.var:build_name.var:build_road
+					}
+					change_variable = { 
+						name = build_update_project_t
+						multiply = prev.var:build_para
+					}
+					change_variable = { 
+						name = road_total
+						add = var:build_update_project_t
+					}
+					remove_variable = build_update_project_t
+				}
+			}
+			if = { 
+				limit = { 
+					var:build_name = { 
+						has_variable = build_harbor
+					}
+				}
+				var:build_location = { 
+					set_variable = { 
+						name = build_update_project_t
+						value = prev.var:build_name.var:build_harbor
+					}
+					change_variable = { 
+						name = build_update_project_t
+						multiply = prev.var:build_para
+					}
+					change_variable = { 
+						name = harbor_total
+						add = var:build_update_project_t
+					}
+					remove_variable = build_update_project_t
+				}
+			}
+			change_variable = { 
+				name = build_active
+				subtract = var:build_para
+			}
+			if = { 
+				limit = { 
+					OR = { 
+						NOT = { 
+							has_variable = build_active
+						}
+						var:build_active = 0
+					}
+				}
+				remove_variable = build_active
+				remove_variable = build_para
+				remove_variable = build_name
+				remove_variable = build_prog
+				remove_variable = build_pay
+				remove_variable = build_owner
+				remove_variable = build_food
+				remove_variable = build_in_food
+				remove_variable = build_pay_food
+				remove_variable = build_cereal
+				remove_variable = build_in_cereal
+				remove_variable = build_pay_cereal
+				remove_variable = build_salted
+				remove_variable = build_in_salted
+				remove_variable = build_pay_salted
+				remove_variable = build_salt
+				remove_variable = build_in_salt
+				remove_variable = build_pay_salt
+				remove_variable = build_mud
+				remove_variable = build_in_mud
+				remove_variable = build_pay_mud
+				remove_variable = build_fuel
+				remove_variable = build_in_fuel
+				remove_variable = build_pay_fuel
+				remove_variable = build_fiber
+				remove_variable = build_in_fiber
+				remove_variable = build_pay_fiber
+				remove_variable = build_timber
+				remove_variable = build_in_timber
+				remove_variable = build_pay_timber
+				remove_variable = build_metal
+				remove_variable = build_in_metal
+				remove_variable = build_pay_metal
+				remove_variable = build_exotics_w
+				remove_variable = build_in_exotics_w
+				remove_variable = build_pay_exotics_w
+				remove_variable = build_exotics_e
+				remove_variable = build_in_exotics_e
+				remove_variable = build_pay_exotics_e
+				remove_variable = build_exotics_g
+				remove_variable = build_in_exotics_g
+				remove_variable = build_pay_exotics_g
+				remove_variable = build_textile
+				remove_variable = build_in_textile
+				remove_variable = build_pay_textile
+				remove_variable = build_pottery
+				remove_variable = build_in_pottery
+				remove_variable = build_pay_pottery
+				remove_variable = build_tools
+				remove_variable = build_in_tools
+				remove_variable = build_pay_tools
+			}
+			else = { 
+				set_variable = { 
+					name = build_prog
+					value = 100
+				}
+				if = { 
+					limit = { 
+						var:build_para = { 
+							compare_value > prev.var:build_active
+						}
+					}
+					set_variable = { 
+						name = build_para
+						value = var:build_active
+					}
+				}
+			}
+		}
+		if = { 
+			limit = { 
+				has_variable = build_prog
+				var:build_prog > 0
+			}
+			var:build_name = { 
+				if = { 
+					limit = { 
+						has_variable = build_food
+					}
+					prev = { 
+						set_variable = { 
+							name = build_food
+							value = prev.var:build_food
+						}
+					}
+				}
+				if = { 
+					limit = { 
+						has_variable = build_cereal
+					}
+					prev = { 
+						set_variable = { 
+							name = build_cereal
+							value = prev.var:build_cereal
+						}
+					}
+				}
+				if = { 
+					limit = { 
+						has_variable = build_salted
+					}
+					prev = { 
+						set_variable = { 
+							name = build_salted
+							value = prev.var:build_salted
+						}
+					}
+				}
+				if = { 
+					limit = { 
+						has_variable = build_salt
+					}
+					prev = { 
+						set_variable = { 
+							name = build_salt
+							value = prev.var:build_salt
+						}
+					}
+				}
+				if = { 
+					limit = { 
+						has_variable = build_mud
+					}
+					prev = { 
+						set_variable = { 
+							name = build_mud
+							value = prev.var:build_mud
+						}
+					}
+				}
+				if = { 
+					limit = { 
+						has_variable = build_fuel
+					}
+					prev = { 
+						set_variable = { 
+							name = build_fuel
+							value = prev.var:build_fuel
+						}
+					}
+				}
+				if = { 
+					limit = { 
+						has_variable = build_fiber
+					}
+					prev = { 
+						set_variable = { 
+							name = build_fiber
+							value = prev.var:build_fiber
+						}
+					}
+				}
+				if = { 
+					limit = { 
+						has_variable = build_timber
+					}
+					prev = { 
+						set_variable = { 
+							name = build_timber
+							value = prev.var:build_timber
+						}
+					}
+				}
+				if = { 
+					limit = { 
+						has_variable = build_metal
+					}
+					prev = { 
+						set_variable = { 
+							name = build_metal
+							value = prev.var:build_metal
+						}
+					}
+				}
+				if = { 
+					limit = { 
+						has_variable = build_exotics_w
+					}
+					prev = { 
+						set_variable = { 
+							name = build_exotics_w
+							value = prev.var:build_exotics_w
+						}
+					}
+				}
+				if = { 
+					limit = { 
+						has_variable = build_exotics_e
+					}
+					prev = { 
+						set_variable = { 
+							name = build_exotics_e
+							value = prev.var:build_exotics_e
+						}
+					}
+				}
+				if = { 
+					limit = { 
+						has_variable = build_exotics_g
+					}
+					prev = { 
+						set_variable = { 
+							name = build_exotics_g
+							value = prev.var:build_exotics_g
+						}
+					}
+				}
+				if = { 
+					limit = { 
+						has_variable = build_textile
+					}
+					prev = { 
+						set_variable = { 
+							name = build_textile
+							value = prev.var:build_textile
+						}
+					}
+				}
+				if = { 
+					limit = { 
+						has_variable = build_pottery
+					}
+					prev = { 
+						set_variable = { 
+							name = build_pottery
+							value = prev.var:build_pottery
+						}
+					}
+				}
+				if = { 
+					limit = { 
+						has_variable = build_tools
+					}
+					prev = { 
+						set_variable = { 
+							name = build_tools
+							value = prev.var:build_tools
+						}
+					}
+				}
+			}
+			set_variable = { 
+				name = build_set_dmnd_t
+				value = 0
+			}
+			if = { 
+				limit = { 
+					has_variable = build_food
+				}
+				change_variable = { 
+					name = build_food
+					multiply = 10
+				}
+				change_variable = { 
+					name = build_food
+					divide = var:build_location.county.var:trade_price_food
+				}
+				change_variable = { 
+					name = build_food
+					multiply = var:build_food
+				}
+				change_variable = { 
+					name = build_food
+					add = 0.001
+				}
+				change_variable = { 
+					name = build_set_dmnd_t
+					add = var:build_food
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = build_cereal
+				}
+				change_variable = { 
+					name = build_cereal
+					multiply = 10
+				}
+				change_variable = { 
+					name = build_cereal
+					divide = var:build_location.county.var:trade_price_cereal
+				}
+				change_variable = { 
+					name = build_cereal
+					multiply = var:build_cereal
+				}
+				change_variable = { 
+					name = build_cereal
+					add = 0.001
+				}
+				change_variable = { 
+					name = build_set_dmnd_t
+					add = var:build_cereal
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = build_salted
+				}
+				change_variable = { 
+					name = build_salted
+					multiply = 10
+				}
+				change_variable = { 
+					name = build_salted
+					divide = var:build_location.county.var:trade_price_salted
+				}
+				change_variable = { 
+					name = build_salted
+					multiply = var:build_salted
+				}
+				change_variable = { 
+					name = build_salted
+					add = 0.001
+				}
+				change_variable = { 
+					name = build_set_dmnd_t
+					add = var:build_salted
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = build_salt
+				}
+				change_variable = { 
+					name = build_salt
+					multiply = 10
+				}
+				change_variable = { 
+					name = build_salt
+					divide = var:build_location.county.var:trade_price_salt
+				}
+				change_variable = { 
+					name = build_salt
+					multiply = var:build_salt
+				}
+				change_variable = { 
+					name = build_salt
+					add = 0.001
+				}
+				change_variable = { 
+					name = build_set_dmnd_t
+					add = var:build_salt
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = build_mud
+				}
+				change_variable = { 
+					name = build_mud
+					multiply = 10
+				}
+				change_variable = { 
+					name = build_mud
+					divide = var:build_location.county.var:trade_price_mud
+				}
+				change_variable = { 
+					name = build_mud
+					multiply = var:build_mud
+				}
+				change_variable = { 
+					name = build_mud
+					add = 0.001
+				}
+				change_variable = { 
+					name = build_set_dmnd_t
+					add = var:build_mud
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = build_fuel
+				}
+				change_variable = { 
+					name = build_fuel
+					multiply = 10
+				}
+				change_variable = { 
+					name = build_fuel
+					divide = var:build_location.county.var:trade_price_fuel
+				}
+				change_variable = { 
+					name = build_fuel
+					multiply = var:build_fuel
+				}
+				change_variable = { 
+					name = build_fuel
+					add = 0.001
+				}
+				change_variable = { 
+					name = build_set_dmnd_t
+					add = var:build_fuel
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = build_fiber
+				}
+				change_variable = { 
+					name = build_fiber
+					multiply = 10
+				}
+				change_variable = { 
+					name = build_fiber
+					divide = var:build_location.county.var:trade_price_fiber
+				}
+				change_variable = { 
+					name = build_fiber
+					multiply = var:build_fiber
+				}
+				change_variable = { 
+					name = build_fiber
+					add = 0.001
+				}
+				change_variable = { 
+					name = build_set_dmnd_t
+					add = var:build_fiber
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = build_timber
+				}
+				change_variable = { 
+					name = build_timber
+					multiply = 10
+				}
+				change_variable = { 
+					name = build_timber
+					divide = var:build_location.county.var:trade_price_timber
+				}
+				change_variable = { 
+					name = build_timber
+					multiply = var:build_timber
+				}
+				change_variable = { 
+					name = build_timber
+					add = 0.001
+				}
+				change_variable = { 
+					name = build_set_dmnd_t
+					add = var:build_timber
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = build_metal
+				}
+				change_variable = { 
+					name = build_metal
+					multiply = 10
+				}
+				change_variable = { 
+					name = build_metal
+					divide = var:build_location.county.var:trade_price_metal
+				}
+				change_variable = { 
+					name = build_metal
+					multiply = var:build_metal
+				}
+				change_variable = { 
+					name = build_metal
+					add = 0.001
+				}
+				change_variable = { 
+					name = build_set_dmnd_t
+					add = var:build_metal
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = build_exotics_w
+				}
+				change_variable = { 
+					name = build_exotics_w
+					multiply = 10
+				}
+				change_variable = { 
+					name = build_exotics_w
+					divide = var:build_location.county.var:trade_price_exotics_w
+				}
+				change_variable = { 
+					name = build_exotics_w
+					multiply = var:build_exotics_w
+				}
+				change_variable = { 
+					name = build_exotics_w
+					add = 0.001
+				}
+				change_variable = { 
+					name = build_set_dmnd_t
+					add = var:build_exotics_w
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = build_exotics_e
+				}
+				change_variable = { 
+					name = build_exotics_e
+					multiply = 10
+				}
+				change_variable = { 
+					name = build_exotics_e
+					divide = var:build_location.county.var:trade_price_exotics_e
+				}
+				change_variable = { 
+					name = build_exotics_e
+					multiply = var:build_exotics_e
+				}
+				change_variable = { 
+					name = build_exotics_e
+					add = 0.001
+				}
+				change_variable = { 
+					name = build_set_dmnd_t
+					add = var:build_exotics_e
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = build_exotics_g
+				}
+				change_variable = { 
+					name = build_exotics_g
+					multiply = 10
+				}
+				change_variable = { 
+					name = build_exotics_g
+					divide = var:build_location.county.var:trade_price_exotics_g
+				}
+				change_variable = { 
+					name = build_exotics_g
+					multiply = var:build_exotics_g
+				}
+				change_variable = { 
+					name = build_exotics_g
+					add = 0.001
+				}
+				change_variable = { 
+					name = build_set_dmnd_t
+					add = var:build_exotics_g
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = build_textile
+				}
+				change_variable = { 
+					name = build_textile
+					multiply = 10
+				}
+				change_variable = { 
+					name = build_textile
+					divide = var:build_location.county.var:trade_price_textile
+				}
+				change_variable = { 
+					name = build_textile
+					multiply = var:build_textile
+				}
+				change_variable = { 
+					name = build_textile
+					add = 0.001
+				}
+				change_variable = { 
+					name = build_set_dmnd_t
+					add = var:build_textile
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = build_pottery
+				}
+				change_variable = { 
+					name = build_pottery
+					multiply = 10
+				}
+				change_variable = { 
+					name = build_pottery
+					divide = var:build_location.county.var:trade_price_pottery
+				}
+				change_variable = { 
+					name = build_pottery
+					multiply = var:build_pottery
+				}
+				change_variable = { 
+					name = build_pottery
+					add = 0.001
+				}
+				change_variable = { 
+					name = build_set_dmnd_t
+					add = var:build_pottery
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = build_tools
+				}
+				change_variable = { 
+					name = build_tools
+					multiply = 10
+				}
+				change_variable = { 
+					name = build_tools
+					divide = var:build_location.county.var:trade_price_tools
+				}
+				change_variable = { 
+					name = build_tools
+					multiply = var:build_tools
+				}
+				change_variable = { 
+					name = build_tools
+					add = 0.001
+				}
+				change_variable = { 
+					name = build_set_dmnd_t
+					add = var:build_tools
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = build_set_dmnd_t
+					var:build_set_dmnd_t > 0
+				}
+				if = { 
+					limit = { 
+						has_variable = build_food
+					}
+					change_variable = { 
+						name = build_food
+						multiply = 10
+					}
+					change_variable = { 
+						name = build_food
+						divide = var:build_set_dmnd_t
+					}
+					change_variable = { 
+						name = build_food
+						multiply = var:build_prog
+					}
+					change_variable = { 
+						name = build_food
+						divide = 100
+					}
+					change_variable = { 
+						name = build_food
+						multiply = var:build_para
+					}
+					change_variable = { 
+						name = build_food
+						divide = var:build_name.var:build_food
+					}
+					change_variable = { 
+						name = build_food
+						divide = 10
+					}
+				}
+				if = { 
+					limit = { 
+						has_variable = build_cereal
+					}
+					change_variable = { 
+						name = build_cereal
+						multiply = 10
+					}
+					change_variable = { 
+						name = build_cereal
+						divide = var:build_set_dmnd_t
+					}
+					change_variable = { 
+						name = build_cereal
+						multiply = var:build_prog
+					}
+					change_variable = { 
+						name = build_cereal
+						divide = 100
+					}
+					change_variable = { 
+						name = build_cereal
+						multiply = var:build_para
+					}
+					change_variable = { 
+						name = build_cereal
+						divide = var:build_name.var:build_cereal
+					}
+					change_variable = { 
+						name = build_cereal
+						divide = 10
+					}
+				}
+				if = { 
+					limit = { 
+						has_variable = build_salted
+					}
+					change_variable = { 
+						name = build_salted
+						multiply = 10
+					}
+					change_variable = { 
+						name = build_salted
+						divide = var:build_set_dmnd_t
+					}
+					change_variable = { 
+						name = build_salted
+						multiply = var:build_prog
+					}
+					change_variable = { 
+						name = build_salted
+						divide = 100
+					}
+					change_variable = { 
+						name = build_salted
+						multiply = var:build_para
+					}
+					change_variable = { 
+						name = build_salted
+						divide = var:build_name.var:build_salted
+					}
+					change_variable = { 
+						name = build_salted
+						divide = 10
+					}
+				}
+				if = { 
+					limit = { 
+						has_variable = build_salt
+					}
+					change_variable = { 
+						name = build_salt
+						multiply = 10
+					}
+					change_variable = { 
+						name = build_salt
+						divide = var:build_set_dmnd_t
+					}
+					change_variable = { 
+						name = build_salt
+						multiply = var:build_prog
+					}
+					change_variable = { 
+						name = build_salt
+						divide = 100
+					}
+					change_variable = { 
+						name = build_salt
+						multiply = var:build_para
+					}
+					change_variable = { 
+						name = build_salt
+						divide = var:build_name.var:build_salt
+					}
+					change_variable = { 
+						name = build_salt
+						divide = 10
+					}
+				}
+				if = { 
+					limit = { 
+						has_variable = build_mud
+					}
+					change_variable = { 
+						name = build_mud
+						multiply = 10
+					}
+					change_variable = { 
+						name = build_mud
+						divide = var:build_set_dmnd_t
+					}
+					change_variable = { 
+						name = build_mud
+						multiply = var:build_prog
+					}
+					change_variable = { 
+						name = build_mud
+						divide = 100
+					}
+					change_variable = { 
+						name = build_mud
+						multiply = var:build_para
+					}
+					change_variable = { 
+						name = build_mud
+						divide = var:build_name.var:build_mud
+					}
+					change_variable = { 
+						name = build_mud
+						divide = 10
+					}
+				}
+				if = { 
+					limit = { 
+						has_variable = build_fuel
+					}
+					change_variable = { 
+						name = build_fuel
+						multiply = 10
+					}
+					change_variable = { 
+						name = build_fuel
+						divide = var:build_set_dmnd_t
+					}
+					change_variable = { 
+						name = build_fuel
+						multiply = var:build_prog
+					}
+					change_variable = { 
+						name = build_fuel
+						divide = 100
+					}
+					change_variable = { 
+						name = build_fuel
+						multiply = var:build_para
+					}
+					change_variable = { 
+						name = build_fuel
+						divide = var:build_name.var:build_fuel
+					}
+					change_variable = { 
+						name = build_fuel
+						divide = 10
+					}
+				}
+				if = { 
+					limit = { 
+						has_variable = build_fiber
+					}
+					change_variable = { 
+						name = build_fiber
+						multiply = 10
+					}
+					change_variable = { 
+						name = build_fiber
+						divide = var:build_set_dmnd_t
+					}
+					change_variable = { 
+						name = build_fiber
+						multiply = var:build_prog
+					}
+					change_variable = { 
+						name = build_fiber
+						divide = 100
+					}
+					change_variable = { 
+						name = build_fiber
+						multiply = var:build_para
+					}
+					change_variable = { 
+						name = build_fiber
+						divide = var:build_name.var:build_fiber
+					}
+					change_variable = { 
+						name = build_fiber
+						divide = 10
+					}
+				}
+				if = { 
+					limit = { 
+						has_variable = build_timber
+					}
+					change_variable = { 
+						name = build_timber
+						multiply = 10
+					}
+					change_variable = { 
+						name = build_timber
+						divide = var:build_set_dmnd_t
+					}
+					change_variable = { 
+						name = build_timber
+						multiply = var:build_prog
+					}
+					change_variable = { 
+						name = build_timber
+						divide = 100
+					}
+					change_variable = { 
+						name = build_timber
+						multiply = var:build_para
+					}
+					change_variable = { 
+						name = build_timber
+						divide = var:build_name.var:build_timber
+					}
+					change_variable = { 
+						name = build_timber
+						divide = 10
+					}
+				}
+				if = { 
+					limit = { 
+						has_variable = build_metal
+					}
+					change_variable = { 
+						name = build_metal
+						multiply = 10
+					}
+					change_variable = { 
+						name = build_metal
+						divide = var:build_set_dmnd_t
+					}
+					change_variable = { 
+						name = build_metal
+						multiply = var:build_prog
+					}
+					change_variable = { 
+						name = build_metal
+						divide = 100
+					}
+					change_variable = { 
+						name = build_metal
+						multiply = var:build_para
+					}
+					change_variable = { 
+						name = build_metal
+						divide = var:build_name.var:build_metal
+					}
+					change_variable = { 
+						name = build_metal
+						divide = 10
+					}
+				}
+				if = { 
+					limit = { 
+						has_variable = build_exotics_w
+					}
+					change_variable = { 
+						name = build_exotics_w
+						multiply = 10
+					}
+					change_variable = { 
+						name = build_exotics_w
+						divide = var:build_set_dmnd_t
+					}
+					change_variable = { 
+						name = build_exotics_w
+						multiply = var:build_prog
+					}
+					change_variable = { 
+						name = build_exotics_w
+						divide = 100
+					}
+					change_variable = { 
+						name = build_exotics_w
+						multiply = var:build_para
+					}
+					change_variable = { 
+						name = build_exotics_w
+						divide = var:build_name.var:build_exotics_w
+					}
+					change_variable = { 
+						name = build_exotics_w
+						divide = 10
+					}
+				}
+				if = { 
+					limit = { 
+						has_variable = build_exotics_e
+					}
+					change_variable = { 
+						name = build_exotics_e
+						multiply = 10
+					}
+					change_variable = { 
+						name = build_exotics_e
+						divide = var:build_set_dmnd_t
+					}
+					change_variable = { 
+						name = build_exotics_e
+						multiply = var:build_prog
+					}
+					change_variable = { 
+						name = build_exotics_e
+						divide = 100
+					}
+					change_variable = { 
+						name = build_exotics_e
+						multiply = var:build_para
+					}
+					change_variable = { 
+						name = build_exotics_e
+						divide = var:build_name.var:build_exotics_e
+					}
+					change_variable = { 
+						name = build_exotics_e
+						divide = 10
+					}
+				}
+				if = { 
+					limit = { 
+						has_variable = build_exotics_g
+					}
+					change_variable = { 
+						name = build_exotics_g
+						multiply = 10
+					}
+					change_variable = { 
+						name = build_exotics_g
+						divide = var:build_set_dmnd_t
+					}
+					change_variable = { 
+						name = build_exotics_g
+						multiply = var:build_prog
+					}
+					change_variable = { 
+						name = build_exotics_g
+						divide = 100
+					}
+					change_variable = { 
+						name = build_exotics_g
+						multiply = var:build_para
+					}
+					change_variable = { 
+						name = build_exotics_g
+						divide = var:build_name.var:build_exotics_g
+					}
+					change_variable = { 
+						name = build_exotics_g
+						divide = 10
+					}
+				}
+				if = { 
+					limit = { 
+						has_variable = build_textile
+					}
+					change_variable = { 
+						name = build_textile
+						multiply = 10
+					}
+					change_variable = { 
+						name = build_textile
+						divide = var:build_set_dmnd_t
+					}
+					change_variable = { 
+						name = build_textile
+						multiply = var:build_prog
+					}
+					change_variable = { 
+						name = build_textile
+						divide = 100
+					}
+					change_variable = { 
+						name = build_textile
+						multiply = var:build_para
+					}
+					change_variable = { 
+						name = build_textile
+						divide = var:build_name.var:build_textile
+					}
+					change_variable = { 
+						name = build_textile
+						divide = 10
+					}
+				}
+				if = { 
+					limit = { 
+						has_variable = build_pottery
+					}
+					change_variable = { 
+						name = build_pottery
+						multiply = 10
+					}
+					change_variable = { 
+						name = build_pottery
+						divide = var:build_set_dmnd_t
+					}
+					change_variable = { 
+						name = build_pottery
+						multiply = var:build_prog
+					}
+					change_variable = { 
+						name = build_pottery
+						divide = 100
+					}
+					change_variable = { 
+						name = build_pottery
+						multiply = var:build_para
+					}
+					change_variable = { 
+						name = build_pottery
+						divide = var:build_name.var:build_pottery
+					}
+					change_variable = { 
+						name = build_pottery
+						divide = 10
+					}
+				}
+				if = { 
+					limit = { 
+						has_variable = build_tools
+					}
+					change_variable = { 
+						name = build_tools
+						multiply = 10
+					}
+					change_variable = { 
+						name = build_tools
+						divide = var:build_set_dmnd_t
+					}
+					change_variable = { 
+						name = build_tools
+						multiply = var:build_prog
+					}
+					change_variable = { 
+						name = build_tools
+						divide = 100
+					}
+					change_variable = { 
+						name = build_tools
+						multiply = var:build_para
+					}
+					change_variable = { 
+						name = build_tools
+						divide = var:build_name.var:build_tools
+					}
+					change_variable = { 
+						name = build_tools
+						divide = 10
+					}
+				}
+			}
+			remove_variable = build_set_dmnd_t
+		}
+		remove_variable = build_update_project_t
+		remove_variable = build_update_project_tt
+	}
 	every_province = { 
 		limit = { 
 			is_valid_prov = yes
@@ -43546,6 +48176,30 @@ while = {
 		divide = var:t_disp_s
 	}
 	debug_log = "Average Luxury: [THIS.Var('t_disp').GetValue]"
+	set_variable = { 
+		name = t_disp
+		value = 0
+	}
+	every_province = { 
+		limit = { 
+			is_valid_prov = yes
+		}
+		prev = { 
+			set_variable = { 
+				name = t_disp_t
+				value = prev.var:forest_base
+			}
+			change_variable = { 
+				name = t_disp_t
+				divide = 1000
+			}
+			change_variable = { 
+				name = t_disp
+				add = var:t_disp_t
+			}
+		}
+	}
+	debug_log = "Total Forest: [THIS.Var('t_disp').GetValue]"
 	set_variable = { 
 		name = t_disp
 		value = 0

@@ -3,50 +3,54 @@
 		limit = {
 			is_valid_prov = yes
 		}
-		set_variable = { name = forest_total value = var:forest_score }
-		change_variable = { name = forest_total multiply = var:prov_size }
-		change_variable = { name = forest_total divide = 100 }
-		
-		set_variable = { name = land_cleared value = var:prov_size }
-		change_variable = { name = land_cleared subtract = var:forest_total }
-		
 		set_variable = { name = farm_total value = var:farm_score }
 		set_variable = { name = pasture_total value = var:pasture_score }
 		change_variable = { name = farm_total multiply = var:farm_total }
 		change_variable = { name = pasture_total multiply = var:pasture_total }
 		
-		set_variable = { name = divisor value = var:farm_total }
-		change_variable = { name = divisor add = var:pasture_total }
-		change_variable = { name = divisor add = 0.001 }
-		change_variable = { name = farm_total divide = var:divisor }
-		change_variable = { name = pasture_total divide = var:divisor }
-		change_variable = { name = farm_total multiply = var:land_cleared }
-		change_variable = { name = pasture_total multiply = var:land_cleared }
+		set_variable = { name = init_land_t value = var:farm_total }
+		change_variable = { name = init_land_t add = var:pasture_total }
+		change_variable = { name = init_land_t add = 0.001 }
+		change_variable = { name = farm_total divide = var:init_land_t }
+		change_variable = { name = pasture_total divide = var:init_land_t }
+		
+		change_variable = { name = farm_total multiply = var:prov_size }
+		change_variable = { name = pasture_total multiply = var:prov_size }
+		change_variable = { name = farm_total multiply = 2 }
+		change_variable = { name = pasture_total multiply = 2 }
 		change_variable = { name = farm_total multiply = var:farm_score }
 		change_variable = { name = pasture_total multiply = var:pasture_score }
 		
-		change_variable = { name = forest_total multiply = 50 }
-		change_variable = { name = farm_total multiply = 1.5 }
-		change_variable = { name = pasture_total multiply = 1.5 }
+		set_variable = { name = forest_wasteland value = var:prov_size }
+		change_variable = { name = forest_wasteland multiply = 2 }
+		change_variable = { name = forest_wasteland subtract = var:farm_total }
+		change_variable = { name = forest_wasteland subtract = var:pasture_total }
+		set_variable = { name = init_land_t value = 25 }
+		change_variable = { name = init_land_t add = var:forest_score }
+		change_variable = { name = init_land_t divide = 1.25 }
+		change_variable = { name = forest_wasteland multiply = var:init_land_t }
+		change_variable = { name = forest_wasteland divide = 100 }
+		set_variable = { name = wasteland_forest value = 0 }
 		
-		set_variable = { name = adder value = var:pop_total }
-		change_variable = { name = adder multiply = 0.5 }
-		change_variable = { name = farm_total add = var:adder }
-		
-		change_variable = { name = forest_total divide = 1000 }
-		change_variable = { name = farm_total divide = 1000 }
-		change_variable = { name = pasture_total divide = 1000 }
-		
-		change_variable = { name = forest_total multiply = 1000 }
-		change_variable = { name = farm_total multiply = 1000 }
-		change_variable = { name = pasture_total multiply = 1000 }
-		
-		change_variable = { name = forest_total add = 1 }
 		change_variable = { name = farm_total add = 1 }
 		change_variable = { name = pasture_total add = 1 }
 		
-		remove_variable = land_cleared
-		remove_variable = divisor
-		remove_variable = adder
+		set_variable = { name = forest_farm value = var:farm_total }
+		change_variable = { name = forest_farm multiply = 0.5 }
+		change_variable = { name = farm_total subtract = var:forest_farm }
+		
+		set_variable = { name = forest_pasture value = var:pasture_total }
+		change_variable = { name = forest_pasture multiply = 0.5 }
+		change_variable = { name = pasture_total subtract = var:forest_pasture }
+		
+		set_variable = { name = forest_base value = var:forest_wasteland }
+		change_variable = { name = forest_base add = var:forest_farm }
+		change_variable = { name = forest_base add = var:forest_pasture }
+		
+		set_variable = { name = forest_total value = var:forest_base } 
+		
+		set_variable = { name = forest_base_start value = var:forest_base }
+		
+		remove_variable = init_land_t
 	}
 }
