@@ -16,16 +16,15 @@
 		
 		change_variable = { name = farm_total multiply = var:prov_size }
 		change_variable = { name = pasture_total multiply = var:prov_size }
-		change_variable = { name = farm_total multiply = 2 }
-		change_variable = { name = pasture_total multiply = 2 }
+		change_variable = { name = farm_total multiply = 1.5 }
+		change_variable = { name = pasture_total multiply = 1.5 }
 		change_variable = { name = farm_total multiply = var:farm_score }
 		change_variable = { name = pasture_total multiply = var:pasture_score }
 		
 		set_variable = { name = forest_wasteland value = var:farm_total }
 		change_variable = { name = forest_wasteland add = var:pasture_total }
-		change_variable = { name = forest_wasteland divide = -200 }
+		change_variable = { name = forest_wasteland divide = -150 }
 		change_variable = { name = forest_wasteland add = var:prov_size }
-		change_variable = { name = forest_wasteland multiply = 2 }
 		change_variable = { name = forest_wasteland multiply = var:forest_score }
 		set_variable = { name = wasteland_forest value = 0 }
 		
@@ -47,6 +46,10 @@
 		set_variable = { name = forest_total value = var:forest_base } 
 		
 		set_variable = { name = forest_base_start value = var:forest_base }
+		
+		set_variable = { name = init_land_t value = var:pop_total }
+		change_variable = { name = init_land_t divide = 2 }
+		change_variable = { name = farm_total add = var:init_land_t }
 		
 		remove_variable = init_land_t
 	}
