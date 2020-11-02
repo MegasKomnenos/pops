@@ -218,36 +218,106 @@ prod_update_instances = {
 	every_in_global_list = {
 		variable = prod_instances
 		
+		#pow_effect = {
+		#	inp = var:prod_labor
+		#	exp = var:prod_template.var:prod_labor
+		#	return = prod_size
+		#}
+		#pow_effect = {
+		#	inp = var:prod_land
+		#	exp = var:prod_template.var:prod_land
+		#	return = prod_update_instances_t
+		#}
+		#a^b * c^d is the value that we're trying to calculate right?
+		#let's just say that it's value is K
+		#some value
+		#a^b * c^d = K
+		#let's multiply a^d * c^b on both sides
+		#a^b * a^d * c^b * c^d = K * a^d * c^b
+		#a^b * a^d * c^b * c^d = a^(b+d) * c^(b+d)
+		#= (ac)^(b+d)
+		#but, by assumption, b+d = 1
+		#so
+		#= ac
+		#ac = K * a^d * c^b
+		#and
+		#let's divide both sides by a
+		#then
+		#c = K * c^b * a^d  / a
+		#a^d / a = a^(d - 1)
+		#so
+		#c = K * c^b * a^(d - 1)
+		#by assumption, b + d = 1
+		#so, d - 1 = -b
+		#so
+		#c = K * c^b * a^-b
+		#by law of exponentiation, a^-b = 1 / a^b
+		#so
+		#c = K * c^b / a^b
+		#by law of exponentiation, c^b / a^b = (c / a)^b
+		#so
+		#c = K * (c / a)^b
+		#divide both sides by (c / a)^b
+		#and
+		#c / (c / a)^b = K
+		#and voila
+		#that's just one exponentiation
 		if = {
 			limit = {
-				var:prod_template.var:prod_labor = 0.5
+				OR = {
+					NOT = {
+						has_variable = prod_land
+					}
+					
+					var:prod_land = 0
+					
+					var:prod_land = {
+						compare_value < prev.var:prod_labor
+					}
+				}
 			}
-			sqrt_effect = {
-				inp = var:prod_labor
-				return = prod_size
-			}
-			sqrt_effect = {
-				inp = var:prod_land
-				return = prod_update_instances_t
-			}
+			set_variable = { name = prod_update_instances_t value = var:prod_labor }
+			set_variable = { name = prod_update_instances_tt value = var:prod_land }
+			set_variable = { name = prod_update_instances_ttt value = var:prod_template.var:prod_land }
 		}
 		else = {
-			pow_effect = {
-				inp = var:prod_labor
-				exp = var:prod_template.var:prod_labor
-				return = prod_size
-			}
-			pow_effect = {
-				inp = var:prod_land
-				exp = var:prod_template.var:prod_land
-				return = prod_update_instances_t
-			}
+			set_variable = { name = prod_update_instances_t value = var:prod_land }
+			set_variable = { name = prod_update_instances_tt value = var:prod_labor }
+			set_variable = { name = prod_update_instances_ttt value = var:prod_template.var:prod_labor }
 		}
 		
-		change_variable = { name = prod_size multiply = var:prod_update_instances_t }
+		if = {
+			limit = {
+				OR = {
+					NOT = {
+						has_variable = prod_update_instances_tt
+					}
+					
+					var:prod_update_instances_tt = 0
+				}
+			}
+			set_variable = { name = prod_size value = 0 }
+		}
+		else = {
+			set_variable = { name = prod_update_instances_tttt value = var:prod_update_instances_t }
+			change_variable = { name = prod_update_instances_tttt divide = var:prod_update_instances_tt }
+			
+			pow_effect = {
+				inp = var:prod_update_instances_tttt
+				exp = var:prod_update_instances_ttt
+				return = prod_update_instances_tttt
+			}
+			
+			change_variable = { name = prod_update_instances_t divide = var:prod_update_instances_tttt }
+			
+			set_variable = { name = prod_size value = var:prod_update_instances_t }
+			
+			remove_variable = prod_update_instances_tttt
+		}
 		
 		remove_variable = prod_update_instances_t
 		remove_variable = prod_update_instances_tt
+		remove_variable = prod_update_instances_ttt
 	}
 	
 	every_county = {
