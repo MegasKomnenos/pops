@@ -85,10 +85,17 @@ while = {
 	trade_update_merchant = yes
 	trade_update_price = yes
 	
-	every_in_global_list = {
-		variable = build_slots_active
-		
-		build_update_project = yes
+	if = {
+		limit = {
+			has_global_variable_list = build_slots_active
+				
+			global_variable_list_size = { name = build_slots_active value >= 1}
+		}
+		every_in_global_list = {
+			variable = build_slots_active
+			
+			build_update_project = yes
+		}
 	}
 
 	every_province = {

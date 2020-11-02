@@ -1147,20 +1147,28 @@ trade_resolve_trade = {
 			set_variable = { name = prod_pay_&goods& value = 0 }
 		^
 	}
-	every_in_global_list = {
-		variable = build_slots_active
-		
-		^^goods^
-			if = {
-				limit = {
-					has_variable = build_&goods&
-					
-					var:build_&goods& > 0
+	
+	if = {
+		limit = {
+			has_global_variable_list = build_slots_active
+				
+			global_variable_list_size = { name = build_slots_active value >= 1}
+		}
+		every_in_global_list = {
+			variable = build_slots_active
+			
+			^^goods^
+				if = {
+					limit = {
+						has_variable = build_&goods&
+						
+						var:build_&goods& > 0
+					}
+					set_variable = { name = build_in_&goods& value = 0 }
+					set_variable = { name = build_pay_&goods& value = 0 }
 				}
-				set_variable = { name = build_in_&goods& value = 0 }
-				set_variable = { name = build_pay_&goods& value = 0 }
-			}
-		^
+			^
+		}
 	}
 	
 	every_county = {
@@ -1242,24 +1250,31 @@ trade_resolve_trade = {
 		remove_variable = trade_resolve_trade_t
 	}
 	
-	every_in_global_list = {
-		variable = build_slots_active
-		
-		set_variable = { name = build_pay value = 0 }  
-		
-		^^goods^
-			if = {
-				limit = {
-					has_variable = build_pay_&goods&
-					
-					var:build_pay_&goods& > 0
+	if = {
+		limit = {
+			has_global_variable_list = build_slots_active
+				
+			global_variable_list_size = { name = build_slots_active value >= 1}
+		}
+		every_in_global_list = {
+			variable = build_slots_active
+			
+			set_variable = { name = build_pay value = 0 }  
+			
+			^^goods^
+				if = {
+					limit = {
+						has_variable = build_pay_&goods&
+						
+						var:build_pay_&goods& > 0
+					}
+					change_variable = { name = build_pay add = var:build_pay_&goods& }
 				}
-				change_variable = { name = build_pay add = var:build_pay_&goods& }
-			}
-			else = {
-				remove_variable = build_pay_&goods&
-			}
-		^
+				else = {
+					remove_variable = build_pay_&goods&
+				}
+			^
+		}
 	}
 	
 	every_province = {
