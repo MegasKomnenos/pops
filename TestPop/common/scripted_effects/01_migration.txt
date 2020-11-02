@@ -41,7 +41,7 @@
 		
 		travel_distance_dijkstra_every = {
 			start = this
-			max = 720
+			max = 540
 			return_dist = migration_main_dist
 			return_prev = migration_main_prev
 			return_list = migration_main_list
@@ -69,8 +69,22 @@
 				set_variable = { name = migration_main_tt value = var:migration_main_t }
 				change_variable = { name = migration_main_tt subtract = prev.var:migration_main_t }
 				
+				if = {
+					limit = {
+						NOT = {
+							has_variable = migration_main_tttt
+						}
+					}
+					sqrt_effect = {
+						inp = var:pop_total
+						return = migration_main_tttt
+					}
+				}
+				
+				change_variable = { name = migration_main_tt multiply = var:migration_main_tttt }
+				
 				set_variable = { name = migration_main_ttt value = var:migration_main_dist }
-				change_variable = { name = migration_main_ttt divide = 80 }
+				change_variable = { name = migration_main_ttt divide = 60 }
 				change_variable = { name = migration_main_ttt add = 1 }
 				
 				if = {
@@ -105,15 +119,91 @@
 				
 				if = {
 					limit = {
-						religion = scope:migration_main_t.religion
+						OR = {
+							religion != scope:migration_main_t.religion
+							religion != scope:migration_main_t.province_owner.religion
+						}
 					}
-					change_variable = { name = migration_main_ttt divide = 2 }
-					change_variable = { name = migration_main_ttt subtract = 0.1 }
+					change_variable = { name = migration_main_ttt multiply = 2 }
+					change_variable = { name = migration_main_ttt add = 0.1 }
+				}
+				
+				change_variable = { name = migration_main_ttt add = 1 } 
+				
+				change_variable = { name = migration_main_tt divide = var:migration_main_ttt }
+				
+				prev = {
+					change_variable = { name = migration_main_tt add = prev.var:migration_main_tt }
 				}
 			}
 			else = {
 				remove_list_global_variable = { name = migration_main_list target = this }
 			}
 		}
+		
+		if = {
+			limit = {
+				OR = {
+					NOT = {
+						has_variable = migration_main_tt
+					}
+					
+					var:migration_main_tt = 0
+				}
+			}
+			set_variable = { name = migration_tick value = 0 }
+		}
+		else = {
+			every_in_global_list = {
+				variable = migration_main_list
+				
+				change_variable = { name = migration_main_tt multiply = 100 }
+				change_variable = { name = migration_main_tt divide = prev.var:migration_main_tt }
+				change_variable = { name = migration_main_tt multiply = prev.var:migration_tick }
+				change_variable = { name = migration_main_tt divide = 100 }
+				
+				change_variable = { name = pop_total add = var:migration_main_tt }
+				
+				prev = {
+					change_variable = { name = pop_total subtract = prev.var:migration_main_tt }
+				}
+				
+				save_temporary_scope_as = migration_main_t
+				
+				while = {
+					limit = {
+						scope:migration_main_t = {
+							var:migration_main_prev != this
+						}
+					}
+					scope:migration_main_t = {
+						change_variable = { name = migration_route add = prev.var:migration_main_tt }
+						
+						var:migration_main_prev = {
+							save_temporary_scope_as = migration_main_t
+						}
+					}
+				}
+			}
+		}
+		
+		clear_global_variable_list = migration_main_list
+	}
+	
+	every_province = {
+		limit = {
+			has_variable = migration_main_dist
+		}
+		remove_variable = migration_main_dist
+		remove_variable = migration_main_prev
+	}
+	every_province = {
+		limit = {
+			is_valid_prov = yes
+		}
+		remove_variable = migration_main_t
+		remove_variable = migration_main_tt
+		remove_variable = migration_main_ttt
+		remove_variable = migration_main_tttt
 	}
 }
