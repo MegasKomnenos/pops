@@ -2,12 +2,8 @@ import re
 
 def parse_block(block):
     block = re.sub('\#.*\".*?\".*', '', block)
-    
     strings = re.findall('\".*?\"', block)
-
-    for string in strings:
-        block = block.replace(string, ' %s ', 1)
-        
+    block = re.sub('\".*?\"', ' %s ', block)
     block = re.sub('#.*', '\n', block)
     block = re.sub('(\[\[[\w&$]*\]|\^\^[\w&$]*\^|[\>\<\!\=]+|[\{\}\]^])', r' \1 ', block)
     block = block.strip()

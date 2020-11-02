@@ -1,119 +1,112 @@
-def parse_line(line):
-    line = line.strip()
-    line = line.replace('\t', ' ')
-    line = line.replace('{', ' { ')
-    line = line.replace('}', ' } ')
-    line = line.replace('[', ' [ ')
-    line = line.replace(']', ' ] ')
-    line = line.replace('!=', ' != ')
-    line = line.replace('=', ' = ')
-    line = line.replace('>', ' > ')
-    line = line.replace('<', ' < ')
+import re
 
-    while '  ' in line:
-        line = line.replace('  ', ' ')
+def parse_block(block):
+    block = re.sub('\#.*\".*?\".*', '', block)
+    strings = re.findall('\".*?\"', block)
+    block = re.sub('\".*?\"', ' %s ', block)
+    block = re.sub('#.*', '\n', block)
+    block = re.sub('(\[\[[\w&$]*\]|\^\^[\w&$]*\^|[\>\<\!\=]+|[\{\}\]^])', r' \1 ', block)
+    block = block.strip()
 
-    line = line.replace('> =', '>=')
-    line = line.replace('< =', '<=')
-    line = line.replace('= =', '==')
-    line = line.replace('! =', '!=')
+    if block:
+        block = re.split('\s+', block)
 
-    comma = False
-    comment = False
+        if strings:
+            i = 0
 
-    for i, char in enumerate(line):
-        if char == '#':
-            if not comma:
-                line = line[:i]
-                
-                break
-        elif char == '"':
-            if comma:
-                comma = False
-            else:
-                comma = True
-        elif char == ' ':
-            if comma:
-                line = line[:i] + '%' + line[i + 1:]
+            for ii in range(len(block)):
+                if block[ii] == '%s':
+                    block[ii] = strings[i]
 
-    line = line.strip()
+                    i += 1
 
-    prev = 0
-    
-    while True:
-        start = line.find('[ [', prev)
-
-        if start + 1:
-            end = line.find(']', start)
-            block = line[start:end + 1]
-            block_new = block.replace(' ', '')
-            line = line.replace(block, block_new)
-            prev = start + len(block_new)
-        else:
-            break
-
-    if line:
-        tokens = line.split(' ')
-        tokens = [token.replace('%', ' ') for token in tokens]
-
-        return tokens
+        return block
     else:
         return []
-    
 
 def parse_file(path):
     with open(path, encoding='utf-8-sig') as f:
         file = list()
         stack = [file]
+        rhs = False
+    
+        for token in parse_block(f.read()):
+            if token == '=' or token == '>' or token == '<' or token == '>=' or token == '<=' or token == '==' or token == '!=':
+                rhs = True
 
-        for line in f.readlines():
-            rhs = False
-            
-            for token in parse_line(line):
-                if token == '=' or token == '>' or token == '<' or token == '>=' or token == '<=' or token == '==' or token == '!=':
-                    rhs = True
+                stack[-1][-1] = [stack[-1][-1], token]
+                stack.append(stack[-1][-1])
+            elif token == '{':
+                stack[-1].append(list())
 
-                    stack[-1][-1] = [stack[-1][-1], token]
-                    stack.append(stack[-1][-1])
-                elif token == '{':
+                if rhs:
                     rhs = False
                     
-                    stack[-1].append(list())
-
-                    if type(stack[-1][0]) == type(str()):
-                        stack.append(stack.pop()[-1])
-                    else:
-                        stack.append(stack[-1][-1])
-                elif token == '}' or token == ']':
-                    stack.pop()
-                elif '[[' in token:
-                    stack[-1].append([token[1:], list()])
-                    stack.append(stack[-1][-1][1])
+                    stack.append(stack.pop()[-1])
                 else:
-                    stack[-1].append(token)
+                    stack.append(stack[-1][-1])
+            elif token == '}' or token == ']' or token == '^':
+                stack.pop()
+            elif '[[' in token or '^^' in token:
+                stack[-1].append([token[1:], list()])
+                stack.append(stack[-1][-1][1])
+            else:
+                stack[-1].append(token)
 
-                    if rhs:
-                        rhs = False
+                if rhs:
+                    rhs = False
 
-                        stack.pop()
+                    stack.pop()
 
         return file
 
-def apply_script(file, scripts):
+def apply_macro(file, macros, check=[False]):
+    out = list()
+    
+    for f in file:
+        if f and type(f) == type(list()):
+            if f[0].count('^') == 2:
+                check[0] = True
+                
+                name = f[0][1:-1]
+
+                for foo in [expand_macro(f[1], f'&{name}&', item) for item in macros[name]]:
+                    out.extend(foo)
+            else:
+                out.append(apply_macro(f, macros, check))
+        else:
+            out.append(f)
+
+    return out
+
+def expand_macro(content, name, item):
+    out = list()
+
+    for c in content:
+        if type(c) == type(list()):
+            out.append(expand_macro(c, name, item))
+        else:
+            out.append(c.replace(name, item))
+
+    return out
+                        
+def apply_script(file, scripts, check=[False]):
     out = list()
 
     for f in file:
         if f[0] in scripts:
+            check[0] = True
+            
             if f[2] == 'yes':
                 out.extend(apply_paras(scripts[f[0]], []))
             elif f[2] == 'no':
-                out.append(['NOT', apply_paras(scripts[f[0]], [])])
+                out.append(['NOT', '=', apply_paras(scripts[f[0]], [])])
             else:
                 out.extend(apply_paras(scripts[f[0]], f[2]))
         elif type(f[2]) != type(list()) or not f[2] or type(f[2][0]) != type(list()):
             out.append(f)
         else:
-            out.append([f[0], f[1], apply_script(f[2], scripts)])
+            out.append([f[0], f[1], apply_script(f[2], scripts, check)])
             
     return out
 
@@ -140,7 +133,7 @@ def apply_paras(script, paras):
                     outout.append(foo)
                 else:
                     outout.append(part)
-
+                    
             if type(section[2]) != type(list()):
                 if '$' in section[2]:
                     foo = str(section[2])
@@ -165,23 +158,21 @@ def reconstruct(file, t=''):
         if f:
             if len(f) == 3 and type(f[0]) != type(list()) and type(f[1]) != type(list()):
                 if type(f[2]) == type(list()):
-                    txt += '%s%s %s {' % (t, f[0], f[1])
+                    tail = ''
+                        
+                    if f[2]:
+                        if type(f[2][0]) != type(list()):
+                            tail = ' '.join(f[2])
+                        else:
+                            tail = '\n%s%s' % (reconstruct(f[2], t + '\t'), t)
 
-                    if not f[2]:
-                        txt += '}\n'
-                    elif type(f[2][0]) != type(list()):
-                        for item in f[2]:
-                            txt += ' %s' % item
-                        txt += ' }\n'
-                    else:
-                        txt += '\n%s%s}\n' % (reconstruct(f[2], t + '\t'), t)
+                    txt += '%s%s %s { %s}\n' % (t, f[0], f[1], tail)
                 else:
                     txt += '%s%s %s %s\n' % (t, f[0], f[1], f[2])
             elif len(f) == 2 and type(f[0]) != type(list()):
                 txt += '%s[%s\n%s%s]\n' % (t, f[0], reconstruct(f[1], t + '\t'), t)
 
     return txt
-            
             
 if __name__ == '__main__':
     import glob
