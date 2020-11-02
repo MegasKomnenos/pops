@@ -1,4 +1,5 @@
 from PIL import Image
+import math
 
 if __name__ == '__main__':
     density = {
@@ -15,12 +16,12 @@ if __name__ == '__main__':
         (0, 0, 0): 100,
         (9, 32, 237): 100,
         (224, 224, 224): 0,
-        (158, 158, 158): 10,
-        (255, 255, 191): 20,
-        (255, 174, 0): 35,
-        (255, 102, 0): 50,
-        (169, 255, 115): 65,
-        (77, 209, 0): 80,
+        (158, 158, 158): 30,
+        (255, 255, 191): 45,
+        (255, 174, 0): 60,
+        (255, 102, 0): 70,
+        (169, 255, 115): 80,
+        (77, 209, 0): 90,
         (38, 115, 0): 100,
     }
 
@@ -64,7 +65,7 @@ if __name__ == '__main__':
                 pasture[p][0] += livestock.getpixel((x, y))[0] / 2.55
                 pasture[p][1] += 1
 
-                forest[p][0] += max(150 - tree.getpixel((x, y))[0], 0) / 1.5
+                forest[p][0] += math.sqrt((max(150 - tree.getpixel((x, y))[0], 0) / 1.5) * 100)
                 forest[p][1] += 1
             else:
                 weight[p] = density[pop.getpixel((x, y))[:3]]
@@ -75,7 +76,7 @@ if __name__ == '__main__':
                     farm[p] = [50, 1]
 
                 pasture[p] = [livestock.getpixel((x, y))[0] / 2.55, 1]
-                forest[p] = [max(150 - tree.getpixel((x, y))[0], 0) / 1.5, 1]
+                forest[p] = [math.sqrt((max(150 - tree.getpixel((x, y))[0], 0) / 1.5) * 100), 1]
 
     loc = ''
 
