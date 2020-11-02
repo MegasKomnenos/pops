@@ -3,6 +3,18 @@
 		limit = {
 			is_valid_prov = yes
 		}
+		change_variable = { name = farm_score multiply = 100 }
+		change_variable = { name = forest_score multiply = 100 }
+		
+		sqrt_effect = {
+			inp = var:farm_score
+			return = farm_score
+		}
+		sqrt_effect = {
+			inp = var:forest_score
+			return = forest_score
+		}
+		
 		set_variable = { name = farm_total value = var:farm_score }
 		set_variable = { name = pasture_total value = var:pasture_score }
 		change_variable = { name = farm_total multiply = var:farm_total }
@@ -36,7 +48,8 @@
 		change_variable = { name = farm_total subtract = var:forest_farm }
 		
 		set_variable = { name = forest_pasture value = var:pasture_total }
-		change_variable = { name = forest_pasture multiply = 0.5 }
+		change_variable = { name = forest_pasture multiply = var:forest_score }
+		change_variable = { name = forest_pasture divide = 100 }
 		change_variable = { name = pasture_total subtract = var:forest_pasture }
 		
 		set_variable = { name = forest_base value = var:forest_wasteland }
