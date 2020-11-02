@@ -6,6 +6,7 @@
 		employer = global_var:arhat
 		faith = global_var:arhat.faith
 		culture = global_var:arhat.culture
+		dynasty = none
 	}
 	
 	add_to_global_variable_list = { name = trade_merchants target = scope:trade_new_merchant_t }
@@ -753,6 +754,8 @@ trade_do_trade = {
 			change_variable = { name = trade_route divide = global_var:trade_route_max }
 		}
 	}
+	
+	remove_global_variable = trade_route_max
 }
 
 trade_do_trade_helper_0 = {

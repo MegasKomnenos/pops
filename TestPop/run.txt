@@ -1,3 +1,22 @@
+character:999999 = {
+	set_global_variable = { name = arhat value = this }
+	
+	every_courtier_or_guest = {
+		limit = {
+			is_character = yes
+		}
+		death = natural
+	}
+	every_councillor = {
+		limit = {
+			is_character = yes
+		}
+		death = natural
+	}
+}
+
+init_main = yes
+
 set_global_variable = { name = sim_i value = 0 }
 
 while = {
@@ -351,3 +370,5 @@ while = {
 
 	debug_log = "Logging End"
 }
+
+remove_global_variable = sim_i

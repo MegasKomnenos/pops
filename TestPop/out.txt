@@ -1,4 +1,23 @@
-﻿set_global_variable = { 
+﻿character:999999 = { 
+	set_global_variable = { 
+		name = arhat
+		value = this
+	}
+	every_courtier_or_guest = { 
+		limit = { 
+			is_character = yes
+		}
+		death = natural
+	}
+	every_councillor = { 
+		limit = { 
+			is_character = yes
+		}
+		death = natural
+	}
+}
+init_main = yes
+set_global_variable = { 
 	name = sim_i
 	value = 0
 }
@@ -5888,6 +5907,7 @@ while = {
 					employer = global_var:arhat
 					faith = global_var:arhat.faith
 					culture = global_var:arhat.culture
+					dynasty = none
 				}
 				add_to_global_variable_list = { 
 					name = build_slots
@@ -7050,6 +7070,7 @@ while = {
 					employer = global_var:arhat
 					faith = global_var:arhat.faith
 					culture = global_var:arhat.culture
+					dynasty = none
 				}
 				add_to_global_variable_list = { 
 					name = build_slots
@@ -31741,6 +31762,7 @@ while = {
 			}
 		}
 	}
+	remove_global_variable = trade_route_max
 	every_province = { 
 		limit = { 
 			is_valid_prov = yes
@@ -50132,3 +50154,4 @@ while = {
 	debug_log = "Total tools Revenue: [THIS.Var('t_disp').GetValue]"
 	debug_log = "Logging End"
 }
+remove_global_variable = sim_i
