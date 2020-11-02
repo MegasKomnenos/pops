@@ -14,6 +14,7 @@
 		max = $max$
 		return_dist = $return_dist$
 		return_prev = $return_prev$
+		[[return_list] return_list = $return_list$ ]
 	}
 	
 	every_in_global_list = {
@@ -49,6 +50,7 @@ travel_distance_dijkstra_black = {
 		max = $max$
 		return_dist = $return_dist$
 		return_prev = $return_prev$
+		[[return_list] return_list = $return_list$ ]
 	}
 	
 	clear_global_variable_list = travel_distance_dijkstra_black_white
@@ -73,6 +75,7 @@ travel_distance_dijkstra_every = {
 		max = $max$
 		return_dist = $return_dist$
 		return_prev = $return_prev$
+		[[return_list] return_list = $return_list$ ]
 	}
 	
 	clear_global_variable_list = travel_distance_dijkstra_every_white
@@ -247,6 +250,8 @@ travel_distance_dijkstra = {
 	
 	every_in_global_list = {
 		variable = travel_distance_visited
+		
+		[[return_list] add_to_global_variable_list = { name = $return_list$ target = this } ]
 		
 		set_variable = { name = $return_dist$ value = var:travel_distance_distance }
 		set_variable = { name = $return_prev$ value = var:travel_distance_prev }
