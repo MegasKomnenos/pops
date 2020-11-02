@@ -14458,170 +14458,179 @@ while = {
 					}
 				}
 			}
-			every_in_list = { 
-				variable = build_slots
-				if = { 
-					limit = { 
-						has_variable = build_food
-					}
-					scope:trade_do_trade_select = { 
-						change_variable = { 
-							name = trade_dmnd_food
-							add = prev.var:build_food
-						}
+			if = { 
+				limit = { 
+					has_variable_list = build_slots
+					variable_list_size = { 
+						name = build_slots
+						value >= 1
 					}
 				}
-				if = { 
-					limit = { 
-						has_variable = build_cereal
-					}
-					scope:trade_do_trade_select = { 
-						change_variable = { 
-							name = trade_dmnd_cereal
-							add = prev.var:build_cereal
+				every_in_list = { 
+					variable = build_slots
+					if = { 
+						limit = { 
+							has_variable = build_food
+						}
+						scope:trade_do_trade_select = { 
+							change_variable = { 
+								name = trade_dmnd_food
+								add = prev.var:build_food
+							}
 						}
 					}
-				}
-				if = { 
-					limit = { 
-						has_variable = build_salted
-					}
-					scope:trade_do_trade_select = { 
-						change_variable = { 
-							name = trade_dmnd_salted
-							add = prev.var:build_salted
+					if = { 
+						limit = { 
+							has_variable = build_cereal
+						}
+						scope:trade_do_trade_select = { 
+							change_variable = { 
+								name = trade_dmnd_cereal
+								add = prev.var:build_cereal
+							}
 						}
 					}
-				}
-				if = { 
-					limit = { 
-						has_variable = build_salt
-					}
-					scope:trade_do_trade_select = { 
-						change_variable = { 
-							name = trade_dmnd_salt
-							add = prev.var:build_salt
+					if = { 
+						limit = { 
+							has_variable = build_salted
+						}
+						scope:trade_do_trade_select = { 
+							change_variable = { 
+								name = trade_dmnd_salted
+								add = prev.var:build_salted
+							}
 						}
 					}
-				}
-				if = { 
-					limit = { 
-						has_variable = build_mud
-					}
-					scope:trade_do_trade_select = { 
-						change_variable = { 
-							name = trade_dmnd_mud
-							add = prev.var:build_mud
+					if = { 
+						limit = { 
+							has_variable = build_salt
+						}
+						scope:trade_do_trade_select = { 
+							change_variable = { 
+								name = trade_dmnd_salt
+								add = prev.var:build_salt
+							}
 						}
 					}
-				}
-				if = { 
-					limit = { 
-						has_variable = build_fuel
-					}
-					scope:trade_do_trade_select = { 
-						change_variable = { 
-							name = trade_dmnd_fuel
-							add = prev.var:build_fuel
+					if = { 
+						limit = { 
+							has_variable = build_mud
+						}
+						scope:trade_do_trade_select = { 
+							change_variable = { 
+								name = trade_dmnd_mud
+								add = prev.var:build_mud
+							}
 						}
 					}
-				}
-				if = { 
-					limit = { 
-						has_variable = build_fiber
-					}
-					scope:trade_do_trade_select = { 
-						change_variable = { 
-							name = trade_dmnd_fiber
-							add = prev.var:build_fiber
+					if = { 
+						limit = { 
+							has_variable = build_fuel
+						}
+						scope:trade_do_trade_select = { 
+							change_variable = { 
+								name = trade_dmnd_fuel
+								add = prev.var:build_fuel
+							}
 						}
 					}
-				}
-				if = { 
-					limit = { 
-						has_variable = build_timber
-					}
-					scope:trade_do_trade_select = { 
-						change_variable = { 
-							name = trade_dmnd_timber
-							add = prev.var:build_timber
+					if = { 
+						limit = { 
+							has_variable = build_fiber
+						}
+						scope:trade_do_trade_select = { 
+							change_variable = { 
+								name = trade_dmnd_fiber
+								add = prev.var:build_fiber
+							}
 						}
 					}
-				}
-				if = { 
-					limit = { 
-						has_variable = build_metal
-					}
-					scope:trade_do_trade_select = { 
-						change_variable = { 
-							name = trade_dmnd_metal
-							add = prev.var:build_metal
+					if = { 
+						limit = { 
+							has_variable = build_timber
+						}
+						scope:trade_do_trade_select = { 
+							change_variable = { 
+								name = trade_dmnd_timber
+								add = prev.var:build_timber
+							}
 						}
 					}
-				}
-				if = { 
-					limit = { 
-						has_variable = build_exotics_w
-					}
-					scope:trade_do_trade_select = { 
-						change_variable = { 
-							name = trade_dmnd_exotics_w
-							add = prev.var:build_exotics_w
+					if = { 
+						limit = { 
+							has_variable = build_metal
+						}
+						scope:trade_do_trade_select = { 
+							change_variable = { 
+								name = trade_dmnd_metal
+								add = prev.var:build_metal
+							}
 						}
 					}
-				}
-				if = { 
-					limit = { 
-						has_variable = build_exotics_e
-					}
-					scope:trade_do_trade_select = { 
-						change_variable = { 
-							name = trade_dmnd_exotics_e
-							add = prev.var:build_exotics_e
+					if = { 
+						limit = { 
+							has_variable = build_exotics_w
+						}
+						scope:trade_do_trade_select = { 
+							change_variable = { 
+								name = trade_dmnd_exotics_w
+								add = prev.var:build_exotics_w
+							}
 						}
 					}
-				}
-				if = { 
-					limit = { 
-						has_variable = build_exotics_g
-					}
-					scope:trade_do_trade_select = { 
-						change_variable = { 
-							name = trade_dmnd_exotics_g
-							add = prev.var:build_exotics_g
+					if = { 
+						limit = { 
+							has_variable = build_exotics_e
+						}
+						scope:trade_do_trade_select = { 
+							change_variable = { 
+								name = trade_dmnd_exotics_e
+								add = prev.var:build_exotics_e
+							}
 						}
 					}
-				}
-				if = { 
-					limit = { 
-						has_variable = build_textile
-					}
-					scope:trade_do_trade_select = { 
-						change_variable = { 
-							name = trade_dmnd_textile
-							add = prev.var:build_textile
+					if = { 
+						limit = { 
+							has_variable = build_exotics_g
+						}
+						scope:trade_do_trade_select = { 
+							change_variable = { 
+								name = trade_dmnd_exotics_g
+								add = prev.var:build_exotics_g
+							}
 						}
 					}
-				}
-				if = { 
-					limit = { 
-						has_variable = build_pottery
-					}
-					scope:trade_do_trade_select = { 
-						change_variable = { 
-							name = trade_dmnd_pottery
-							add = prev.var:build_pottery
+					if = { 
+						limit = { 
+							has_variable = build_textile
+						}
+						scope:trade_do_trade_select = { 
+							change_variable = { 
+								name = trade_dmnd_textile
+								add = prev.var:build_textile
+							}
 						}
 					}
-				}
-				if = { 
-					limit = { 
-						has_variable = build_tools
+					if = { 
+						limit = { 
+							has_variable = build_pottery
+						}
+						scope:trade_do_trade_select = { 
+							change_variable = { 
+								name = trade_dmnd_pottery
+								add = prev.var:build_pottery
+							}
+						}
 					}
-					scope:trade_do_trade_select = { 
-						change_variable = { 
-							name = trade_dmnd_tools
-							add = prev.var:build_tools
+					if = { 
+						limit = { 
+							has_variable = build_tools
+						}
+						scope:trade_do_trade_select = { 
+							change_variable = { 
+								name = trade_dmnd_tools
+								add = prev.var:build_tools
+							}
 						}
 					}
 				}
@@ -35346,31 +35355,40 @@ while = {
 						}
 					}
 				}
-				every_in_list = { 
+				if = { 
 					limit = { 
-						has_variable = build_food
-						var:build_food > 0
+						has_variable_list = build_slots
+						variable_list_size = { 
+							name = build_slots
+							value >= 1
+						}
 					}
-					variable = build_slots
-					set_variable = { 
-						name = build_in_food
-						value = var:build_food
-					}
-					change_variable = { 
-						name = build_in_food
-						multiply = prev.var:trade_resolve_trade_tt
-					}
-					change_variable = { 
-						name = build_in_food
-						divide = 100
-					}
-					set_variable = { 
-						name = build_pay_food
-						value = var:build_food
-					}
-					change_variable = { 
-						name = build_pay_food
-						multiply = prev.var:trade_resolve_trade_t
+					every_in_list = { 
+						limit = { 
+							has_variable = build_food
+							var:build_food > 0
+						}
+						variable = build_slots
+						set_variable = { 
+							name = build_in_food
+							value = var:build_food
+						}
+						change_variable = { 
+							name = build_in_food
+							multiply = prev.var:trade_resolve_trade_tt
+						}
+						change_variable = { 
+							name = build_in_food
+							divide = 100
+						}
+						set_variable = { 
+							name = build_pay_food
+							value = var:build_food
+						}
+						change_variable = { 
+							name = build_pay_food
+							multiply = prev.var:trade_resolve_trade_t
+						}
 					}
 				}
 			}
@@ -35414,18 +35432,27 @@ while = {
 						value = 0
 					}
 				}
-				every_in_list = { 
+				if = { 
 					limit = { 
-						has_variable = build_food
+						has_variable_list = build_slots
+						variable_list_size = { 
+							name = build_slots
+							value >= 1
+						}
 					}
-					variable = build_slots
-					set_variable = { 
-						name = build_in_food
-						value = 0
-					}
-					set_variable = { 
-						name = build_pay_food
-						value = 0
+					every_in_list = { 
+						limit = { 
+							has_variable = build_food
+						}
+						variable = build_slots
+						set_variable = { 
+							name = build_in_food
+							value = 0
+						}
+						set_variable = { 
+							name = build_pay_food
+							value = 0
+						}
 					}
 				}
 			}
@@ -35656,31 +35683,40 @@ while = {
 						}
 					}
 				}
-				every_in_list = { 
+				if = { 
 					limit = { 
-						has_variable = build_cereal
-						var:build_cereal > 0
+						has_variable_list = build_slots
+						variable_list_size = { 
+							name = build_slots
+							value >= 1
+						}
 					}
-					variable = build_slots
-					set_variable = { 
-						name = build_in_cereal
-						value = var:build_cereal
-					}
-					change_variable = { 
-						name = build_in_cereal
-						multiply = prev.var:trade_resolve_trade_tt
-					}
-					change_variable = { 
-						name = build_in_cereal
-						divide = 100
-					}
-					set_variable = { 
-						name = build_pay_cereal
-						value = var:build_cereal
-					}
-					change_variable = { 
-						name = build_pay_cereal
-						multiply = prev.var:trade_resolve_trade_t
+					every_in_list = { 
+						limit = { 
+							has_variable = build_cereal
+							var:build_cereal > 0
+						}
+						variable = build_slots
+						set_variable = { 
+							name = build_in_cereal
+							value = var:build_cereal
+						}
+						change_variable = { 
+							name = build_in_cereal
+							multiply = prev.var:trade_resolve_trade_tt
+						}
+						change_variable = { 
+							name = build_in_cereal
+							divide = 100
+						}
+						set_variable = { 
+							name = build_pay_cereal
+							value = var:build_cereal
+						}
+						change_variable = { 
+							name = build_pay_cereal
+							multiply = prev.var:trade_resolve_trade_t
+						}
 					}
 				}
 			}
@@ -35724,18 +35760,27 @@ while = {
 						value = 0
 					}
 				}
-				every_in_list = { 
+				if = { 
 					limit = { 
-						has_variable = build_cereal
+						has_variable_list = build_slots
+						variable_list_size = { 
+							name = build_slots
+							value >= 1
+						}
 					}
-					variable = build_slots
-					set_variable = { 
-						name = build_in_cereal
-						value = 0
-					}
-					set_variable = { 
-						name = build_pay_cereal
-						value = 0
+					every_in_list = { 
+						limit = { 
+							has_variable = build_cereal
+						}
+						variable = build_slots
+						set_variable = { 
+							name = build_in_cereal
+							value = 0
+						}
+						set_variable = { 
+							name = build_pay_cereal
+							value = 0
+						}
 					}
 				}
 			}
@@ -35966,31 +36011,40 @@ while = {
 						}
 					}
 				}
-				every_in_list = { 
+				if = { 
 					limit = { 
-						has_variable = build_salted
-						var:build_salted > 0
+						has_variable_list = build_slots
+						variable_list_size = { 
+							name = build_slots
+							value >= 1
+						}
 					}
-					variable = build_slots
-					set_variable = { 
-						name = build_in_salted
-						value = var:build_salted
-					}
-					change_variable = { 
-						name = build_in_salted
-						multiply = prev.var:trade_resolve_trade_tt
-					}
-					change_variable = { 
-						name = build_in_salted
-						divide = 100
-					}
-					set_variable = { 
-						name = build_pay_salted
-						value = var:build_salted
-					}
-					change_variable = { 
-						name = build_pay_salted
-						multiply = prev.var:trade_resolve_trade_t
+					every_in_list = { 
+						limit = { 
+							has_variable = build_salted
+							var:build_salted > 0
+						}
+						variable = build_slots
+						set_variable = { 
+							name = build_in_salted
+							value = var:build_salted
+						}
+						change_variable = { 
+							name = build_in_salted
+							multiply = prev.var:trade_resolve_trade_tt
+						}
+						change_variable = { 
+							name = build_in_salted
+							divide = 100
+						}
+						set_variable = { 
+							name = build_pay_salted
+							value = var:build_salted
+						}
+						change_variable = { 
+							name = build_pay_salted
+							multiply = prev.var:trade_resolve_trade_t
+						}
 					}
 				}
 			}
@@ -36034,18 +36088,27 @@ while = {
 						value = 0
 					}
 				}
-				every_in_list = { 
+				if = { 
 					limit = { 
-						has_variable = build_salted
+						has_variable_list = build_slots
+						variable_list_size = { 
+							name = build_slots
+							value >= 1
+						}
 					}
-					variable = build_slots
-					set_variable = { 
-						name = build_in_salted
-						value = 0
-					}
-					set_variable = { 
-						name = build_pay_salted
-						value = 0
+					every_in_list = { 
+						limit = { 
+							has_variable = build_salted
+						}
+						variable = build_slots
+						set_variable = { 
+							name = build_in_salted
+							value = 0
+						}
+						set_variable = { 
+							name = build_pay_salted
+							value = 0
+						}
 					}
 				}
 			}
@@ -36276,31 +36339,40 @@ while = {
 						}
 					}
 				}
-				every_in_list = { 
+				if = { 
 					limit = { 
-						has_variable = build_salt
-						var:build_salt > 0
+						has_variable_list = build_slots
+						variable_list_size = { 
+							name = build_slots
+							value >= 1
+						}
 					}
-					variable = build_slots
-					set_variable = { 
-						name = build_in_salt
-						value = var:build_salt
-					}
-					change_variable = { 
-						name = build_in_salt
-						multiply = prev.var:trade_resolve_trade_tt
-					}
-					change_variable = { 
-						name = build_in_salt
-						divide = 100
-					}
-					set_variable = { 
-						name = build_pay_salt
-						value = var:build_salt
-					}
-					change_variable = { 
-						name = build_pay_salt
-						multiply = prev.var:trade_resolve_trade_t
+					every_in_list = { 
+						limit = { 
+							has_variable = build_salt
+							var:build_salt > 0
+						}
+						variable = build_slots
+						set_variable = { 
+							name = build_in_salt
+							value = var:build_salt
+						}
+						change_variable = { 
+							name = build_in_salt
+							multiply = prev.var:trade_resolve_trade_tt
+						}
+						change_variable = { 
+							name = build_in_salt
+							divide = 100
+						}
+						set_variable = { 
+							name = build_pay_salt
+							value = var:build_salt
+						}
+						change_variable = { 
+							name = build_pay_salt
+							multiply = prev.var:trade_resolve_trade_t
+						}
 					}
 				}
 			}
@@ -36344,18 +36416,27 @@ while = {
 						value = 0
 					}
 				}
-				every_in_list = { 
+				if = { 
 					limit = { 
-						has_variable = build_salt
+						has_variable_list = build_slots
+						variable_list_size = { 
+							name = build_slots
+							value >= 1
+						}
 					}
-					variable = build_slots
-					set_variable = { 
-						name = build_in_salt
-						value = 0
-					}
-					set_variable = { 
-						name = build_pay_salt
-						value = 0
+					every_in_list = { 
+						limit = { 
+							has_variable = build_salt
+						}
+						variable = build_slots
+						set_variable = { 
+							name = build_in_salt
+							value = 0
+						}
+						set_variable = { 
+							name = build_pay_salt
+							value = 0
+						}
 					}
 				}
 			}
@@ -36586,31 +36667,40 @@ while = {
 						}
 					}
 				}
-				every_in_list = { 
+				if = { 
 					limit = { 
-						has_variable = build_mud
-						var:build_mud > 0
+						has_variable_list = build_slots
+						variable_list_size = { 
+							name = build_slots
+							value >= 1
+						}
 					}
-					variable = build_slots
-					set_variable = { 
-						name = build_in_mud
-						value = var:build_mud
-					}
-					change_variable = { 
-						name = build_in_mud
-						multiply = prev.var:trade_resolve_trade_tt
-					}
-					change_variable = { 
-						name = build_in_mud
-						divide = 100
-					}
-					set_variable = { 
-						name = build_pay_mud
-						value = var:build_mud
-					}
-					change_variable = { 
-						name = build_pay_mud
-						multiply = prev.var:trade_resolve_trade_t
+					every_in_list = { 
+						limit = { 
+							has_variable = build_mud
+							var:build_mud > 0
+						}
+						variable = build_slots
+						set_variable = { 
+							name = build_in_mud
+							value = var:build_mud
+						}
+						change_variable = { 
+							name = build_in_mud
+							multiply = prev.var:trade_resolve_trade_tt
+						}
+						change_variable = { 
+							name = build_in_mud
+							divide = 100
+						}
+						set_variable = { 
+							name = build_pay_mud
+							value = var:build_mud
+						}
+						change_variable = { 
+							name = build_pay_mud
+							multiply = prev.var:trade_resolve_trade_t
+						}
 					}
 				}
 			}
@@ -36654,18 +36744,27 @@ while = {
 						value = 0
 					}
 				}
-				every_in_list = { 
+				if = { 
 					limit = { 
-						has_variable = build_mud
+						has_variable_list = build_slots
+						variable_list_size = { 
+							name = build_slots
+							value >= 1
+						}
 					}
-					variable = build_slots
-					set_variable = { 
-						name = build_in_mud
-						value = 0
-					}
-					set_variable = { 
-						name = build_pay_mud
-						value = 0
+					every_in_list = { 
+						limit = { 
+							has_variable = build_mud
+						}
+						variable = build_slots
+						set_variable = { 
+							name = build_in_mud
+							value = 0
+						}
+						set_variable = { 
+							name = build_pay_mud
+							value = 0
+						}
 					}
 				}
 			}
@@ -36896,31 +36995,40 @@ while = {
 						}
 					}
 				}
-				every_in_list = { 
+				if = { 
 					limit = { 
-						has_variable = build_fuel
-						var:build_fuel > 0
+						has_variable_list = build_slots
+						variable_list_size = { 
+							name = build_slots
+							value >= 1
+						}
 					}
-					variable = build_slots
-					set_variable = { 
-						name = build_in_fuel
-						value = var:build_fuel
-					}
-					change_variable = { 
-						name = build_in_fuel
-						multiply = prev.var:trade_resolve_trade_tt
-					}
-					change_variable = { 
-						name = build_in_fuel
-						divide = 100
-					}
-					set_variable = { 
-						name = build_pay_fuel
-						value = var:build_fuel
-					}
-					change_variable = { 
-						name = build_pay_fuel
-						multiply = prev.var:trade_resolve_trade_t
+					every_in_list = { 
+						limit = { 
+							has_variable = build_fuel
+							var:build_fuel > 0
+						}
+						variable = build_slots
+						set_variable = { 
+							name = build_in_fuel
+							value = var:build_fuel
+						}
+						change_variable = { 
+							name = build_in_fuel
+							multiply = prev.var:trade_resolve_trade_tt
+						}
+						change_variable = { 
+							name = build_in_fuel
+							divide = 100
+						}
+						set_variable = { 
+							name = build_pay_fuel
+							value = var:build_fuel
+						}
+						change_variable = { 
+							name = build_pay_fuel
+							multiply = prev.var:trade_resolve_trade_t
+						}
 					}
 				}
 			}
@@ -36964,18 +37072,27 @@ while = {
 						value = 0
 					}
 				}
-				every_in_list = { 
+				if = { 
 					limit = { 
-						has_variable = build_fuel
+						has_variable_list = build_slots
+						variable_list_size = { 
+							name = build_slots
+							value >= 1
+						}
 					}
-					variable = build_slots
-					set_variable = { 
-						name = build_in_fuel
-						value = 0
-					}
-					set_variable = { 
-						name = build_pay_fuel
-						value = 0
+					every_in_list = { 
+						limit = { 
+							has_variable = build_fuel
+						}
+						variable = build_slots
+						set_variable = { 
+							name = build_in_fuel
+							value = 0
+						}
+						set_variable = { 
+							name = build_pay_fuel
+							value = 0
+						}
 					}
 				}
 			}
@@ -37206,31 +37323,40 @@ while = {
 						}
 					}
 				}
-				every_in_list = { 
+				if = { 
 					limit = { 
-						has_variable = build_fiber
-						var:build_fiber > 0
+						has_variable_list = build_slots
+						variable_list_size = { 
+							name = build_slots
+							value >= 1
+						}
 					}
-					variable = build_slots
-					set_variable = { 
-						name = build_in_fiber
-						value = var:build_fiber
-					}
-					change_variable = { 
-						name = build_in_fiber
-						multiply = prev.var:trade_resolve_trade_tt
-					}
-					change_variable = { 
-						name = build_in_fiber
-						divide = 100
-					}
-					set_variable = { 
-						name = build_pay_fiber
-						value = var:build_fiber
-					}
-					change_variable = { 
-						name = build_pay_fiber
-						multiply = prev.var:trade_resolve_trade_t
+					every_in_list = { 
+						limit = { 
+							has_variable = build_fiber
+							var:build_fiber > 0
+						}
+						variable = build_slots
+						set_variable = { 
+							name = build_in_fiber
+							value = var:build_fiber
+						}
+						change_variable = { 
+							name = build_in_fiber
+							multiply = prev.var:trade_resolve_trade_tt
+						}
+						change_variable = { 
+							name = build_in_fiber
+							divide = 100
+						}
+						set_variable = { 
+							name = build_pay_fiber
+							value = var:build_fiber
+						}
+						change_variable = { 
+							name = build_pay_fiber
+							multiply = prev.var:trade_resolve_trade_t
+						}
 					}
 				}
 			}
@@ -37274,18 +37400,27 @@ while = {
 						value = 0
 					}
 				}
-				every_in_list = { 
+				if = { 
 					limit = { 
-						has_variable = build_fiber
+						has_variable_list = build_slots
+						variable_list_size = { 
+							name = build_slots
+							value >= 1
+						}
 					}
-					variable = build_slots
-					set_variable = { 
-						name = build_in_fiber
-						value = 0
-					}
-					set_variable = { 
-						name = build_pay_fiber
-						value = 0
+					every_in_list = { 
+						limit = { 
+							has_variable = build_fiber
+						}
+						variable = build_slots
+						set_variable = { 
+							name = build_in_fiber
+							value = 0
+						}
+						set_variable = { 
+							name = build_pay_fiber
+							value = 0
+						}
 					}
 				}
 			}
@@ -37516,31 +37651,40 @@ while = {
 						}
 					}
 				}
-				every_in_list = { 
+				if = { 
 					limit = { 
-						has_variable = build_timber
-						var:build_timber > 0
+						has_variable_list = build_slots
+						variable_list_size = { 
+							name = build_slots
+							value >= 1
+						}
 					}
-					variable = build_slots
-					set_variable = { 
-						name = build_in_timber
-						value = var:build_timber
-					}
-					change_variable = { 
-						name = build_in_timber
-						multiply = prev.var:trade_resolve_trade_tt
-					}
-					change_variable = { 
-						name = build_in_timber
-						divide = 100
-					}
-					set_variable = { 
-						name = build_pay_timber
-						value = var:build_timber
-					}
-					change_variable = { 
-						name = build_pay_timber
-						multiply = prev.var:trade_resolve_trade_t
+					every_in_list = { 
+						limit = { 
+							has_variable = build_timber
+							var:build_timber > 0
+						}
+						variable = build_slots
+						set_variable = { 
+							name = build_in_timber
+							value = var:build_timber
+						}
+						change_variable = { 
+							name = build_in_timber
+							multiply = prev.var:trade_resolve_trade_tt
+						}
+						change_variable = { 
+							name = build_in_timber
+							divide = 100
+						}
+						set_variable = { 
+							name = build_pay_timber
+							value = var:build_timber
+						}
+						change_variable = { 
+							name = build_pay_timber
+							multiply = prev.var:trade_resolve_trade_t
+						}
 					}
 				}
 			}
@@ -37584,18 +37728,27 @@ while = {
 						value = 0
 					}
 				}
-				every_in_list = { 
+				if = { 
 					limit = { 
-						has_variable = build_timber
+						has_variable_list = build_slots
+						variable_list_size = { 
+							name = build_slots
+							value >= 1
+						}
 					}
-					variable = build_slots
-					set_variable = { 
-						name = build_in_timber
-						value = 0
-					}
-					set_variable = { 
-						name = build_pay_timber
-						value = 0
+					every_in_list = { 
+						limit = { 
+							has_variable = build_timber
+						}
+						variable = build_slots
+						set_variable = { 
+							name = build_in_timber
+							value = 0
+						}
+						set_variable = { 
+							name = build_pay_timber
+							value = 0
+						}
 					}
 				}
 			}
@@ -37826,31 +37979,40 @@ while = {
 						}
 					}
 				}
-				every_in_list = { 
+				if = { 
 					limit = { 
-						has_variable = build_metal
-						var:build_metal > 0
+						has_variable_list = build_slots
+						variable_list_size = { 
+							name = build_slots
+							value >= 1
+						}
 					}
-					variable = build_slots
-					set_variable = { 
-						name = build_in_metal
-						value = var:build_metal
-					}
-					change_variable = { 
-						name = build_in_metal
-						multiply = prev.var:trade_resolve_trade_tt
-					}
-					change_variable = { 
-						name = build_in_metal
-						divide = 100
-					}
-					set_variable = { 
-						name = build_pay_metal
-						value = var:build_metal
-					}
-					change_variable = { 
-						name = build_pay_metal
-						multiply = prev.var:trade_resolve_trade_t
+					every_in_list = { 
+						limit = { 
+							has_variable = build_metal
+							var:build_metal > 0
+						}
+						variable = build_slots
+						set_variable = { 
+							name = build_in_metal
+							value = var:build_metal
+						}
+						change_variable = { 
+							name = build_in_metal
+							multiply = prev.var:trade_resolve_trade_tt
+						}
+						change_variable = { 
+							name = build_in_metal
+							divide = 100
+						}
+						set_variable = { 
+							name = build_pay_metal
+							value = var:build_metal
+						}
+						change_variable = { 
+							name = build_pay_metal
+							multiply = prev.var:trade_resolve_trade_t
+						}
 					}
 				}
 			}
@@ -37894,18 +38056,27 @@ while = {
 						value = 0
 					}
 				}
-				every_in_list = { 
+				if = { 
 					limit = { 
-						has_variable = build_metal
+						has_variable_list = build_slots
+						variable_list_size = { 
+							name = build_slots
+							value >= 1
+						}
 					}
-					variable = build_slots
-					set_variable = { 
-						name = build_in_metal
-						value = 0
-					}
-					set_variable = { 
-						name = build_pay_metal
-						value = 0
+					every_in_list = { 
+						limit = { 
+							has_variable = build_metal
+						}
+						variable = build_slots
+						set_variable = { 
+							name = build_in_metal
+							value = 0
+						}
+						set_variable = { 
+							name = build_pay_metal
+							value = 0
+						}
 					}
 				}
 			}
@@ -38136,31 +38307,40 @@ while = {
 						}
 					}
 				}
-				every_in_list = { 
+				if = { 
 					limit = { 
-						has_variable = build_exotics_w
-						var:build_exotics_w > 0
+						has_variable_list = build_slots
+						variable_list_size = { 
+							name = build_slots
+							value >= 1
+						}
 					}
-					variable = build_slots
-					set_variable = { 
-						name = build_in_exotics_w
-						value = var:build_exotics_w
-					}
-					change_variable = { 
-						name = build_in_exotics_w
-						multiply = prev.var:trade_resolve_trade_tt
-					}
-					change_variable = { 
-						name = build_in_exotics_w
-						divide = 100
-					}
-					set_variable = { 
-						name = build_pay_exotics_w
-						value = var:build_exotics_w
-					}
-					change_variable = { 
-						name = build_pay_exotics_w
-						multiply = prev.var:trade_resolve_trade_t
+					every_in_list = { 
+						limit = { 
+							has_variable = build_exotics_w
+							var:build_exotics_w > 0
+						}
+						variable = build_slots
+						set_variable = { 
+							name = build_in_exotics_w
+							value = var:build_exotics_w
+						}
+						change_variable = { 
+							name = build_in_exotics_w
+							multiply = prev.var:trade_resolve_trade_tt
+						}
+						change_variable = { 
+							name = build_in_exotics_w
+							divide = 100
+						}
+						set_variable = { 
+							name = build_pay_exotics_w
+							value = var:build_exotics_w
+						}
+						change_variable = { 
+							name = build_pay_exotics_w
+							multiply = prev.var:trade_resolve_trade_t
+						}
 					}
 				}
 			}
@@ -38204,18 +38384,27 @@ while = {
 						value = 0
 					}
 				}
-				every_in_list = { 
+				if = { 
 					limit = { 
-						has_variable = build_exotics_w
+						has_variable_list = build_slots
+						variable_list_size = { 
+							name = build_slots
+							value >= 1
+						}
 					}
-					variable = build_slots
-					set_variable = { 
-						name = build_in_exotics_w
-						value = 0
-					}
-					set_variable = { 
-						name = build_pay_exotics_w
-						value = 0
+					every_in_list = { 
+						limit = { 
+							has_variable = build_exotics_w
+						}
+						variable = build_slots
+						set_variable = { 
+							name = build_in_exotics_w
+							value = 0
+						}
+						set_variable = { 
+							name = build_pay_exotics_w
+							value = 0
+						}
 					}
 				}
 			}
@@ -38446,31 +38635,40 @@ while = {
 						}
 					}
 				}
-				every_in_list = { 
+				if = { 
 					limit = { 
-						has_variable = build_exotics_e
-						var:build_exotics_e > 0
+						has_variable_list = build_slots
+						variable_list_size = { 
+							name = build_slots
+							value >= 1
+						}
 					}
-					variable = build_slots
-					set_variable = { 
-						name = build_in_exotics_e
-						value = var:build_exotics_e
-					}
-					change_variable = { 
-						name = build_in_exotics_e
-						multiply = prev.var:trade_resolve_trade_tt
-					}
-					change_variable = { 
-						name = build_in_exotics_e
-						divide = 100
-					}
-					set_variable = { 
-						name = build_pay_exotics_e
-						value = var:build_exotics_e
-					}
-					change_variable = { 
-						name = build_pay_exotics_e
-						multiply = prev.var:trade_resolve_trade_t
+					every_in_list = { 
+						limit = { 
+							has_variable = build_exotics_e
+							var:build_exotics_e > 0
+						}
+						variable = build_slots
+						set_variable = { 
+							name = build_in_exotics_e
+							value = var:build_exotics_e
+						}
+						change_variable = { 
+							name = build_in_exotics_e
+							multiply = prev.var:trade_resolve_trade_tt
+						}
+						change_variable = { 
+							name = build_in_exotics_e
+							divide = 100
+						}
+						set_variable = { 
+							name = build_pay_exotics_e
+							value = var:build_exotics_e
+						}
+						change_variable = { 
+							name = build_pay_exotics_e
+							multiply = prev.var:trade_resolve_trade_t
+						}
 					}
 				}
 			}
@@ -38514,18 +38712,27 @@ while = {
 						value = 0
 					}
 				}
-				every_in_list = { 
+				if = { 
 					limit = { 
-						has_variable = build_exotics_e
+						has_variable_list = build_slots
+						variable_list_size = { 
+							name = build_slots
+							value >= 1
+						}
 					}
-					variable = build_slots
-					set_variable = { 
-						name = build_in_exotics_e
-						value = 0
-					}
-					set_variable = { 
-						name = build_pay_exotics_e
-						value = 0
+					every_in_list = { 
+						limit = { 
+							has_variable = build_exotics_e
+						}
+						variable = build_slots
+						set_variable = { 
+							name = build_in_exotics_e
+							value = 0
+						}
+						set_variable = { 
+							name = build_pay_exotics_e
+							value = 0
+						}
 					}
 				}
 			}
@@ -38756,31 +38963,40 @@ while = {
 						}
 					}
 				}
-				every_in_list = { 
+				if = { 
 					limit = { 
-						has_variable = build_exotics_g
-						var:build_exotics_g > 0
+						has_variable_list = build_slots
+						variable_list_size = { 
+							name = build_slots
+							value >= 1
+						}
 					}
-					variable = build_slots
-					set_variable = { 
-						name = build_in_exotics_g
-						value = var:build_exotics_g
-					}
-					change_variable = { 
-						name = build_in_exotics_g
-						multiply = prev.var:trade_resolve_trade_tt
-					}
-					change_variable = { 
-						name = build_in_exotics_g
-						divide = 100
-					}
-					set_variable = { 
-						name = build_pay_exotics_g
-						value = var:build_exotics_g
-					}
-					change_variable = { 
-						name = build_pay_exotics_g
-						multiply = prev.var:trade_resolve_trade_t
+					every_in_list = { 
+						limit = { 
+							has_variable = build_exotics_g
+							var:build_exotics_g > 0
+						}
+						variable = build_slots
+						set_variable = { 
+							name = build_in_exotics_g
+							value = var:build_exotics_g
+						}
+						change_variable = { 
+							name = build_in_exotics_g
+							multiply = prev.var:trade_resolve_trade_tt
+						}
+						change_variable = { 
+							name = build_in_exotics_g
+							divide = 100
+						}
+						set_variable = { 
+							name = build_pay_exotics_g
+							value = var:build_exotics_g
+						}
+						change_variable = { 
+							name = build_pay_exotics_g
+							multiply = prev.var:trade_resolve_trade_t
+						}
 					}
 				}
 			}
@@ -38824,18 +39040,27 @@ while = {
 						value = 0
 					}
 				}
-				every_in_list = { 
+				if = { 
 					limit = { 
-						has_variable = build_exotics_g
+						has_variable_list = build_slots
+						variable_list_size = { 
+							name = build_slots
+							value >= 1
+						}
 					}
-					variable = build_slots
-					set_variable = { 
-						name = build_in_exotics_g
-						value = 0
-					}
-					set_variable = { 
-						name = build_pay_exotics_g
-						value = 0
+					every_in_list = { 
+						limit = { 
+							has_variable = build_exotics_g
+						}
+						variable = build_slots
+						set_variable = { 
+							name = build_in_exotics_g
+							value = 0
+						}
+						set_variable = { 
+							name = build_pay_exotics_g
+							value = 0
+						}
 					}
 				}
 			}
@@ -39066,31 +39291,40 @@ while = {
 						}
 					}
 				}
-				every_in_list = { 
+				if = { 
 					limit = { 
-						has_variable = build_textile
-						var:build_textile > 0
+						has_variable_list = build_slots
+						variable_list_size = { 
+							name = build_slots
+							value >= 1
+						}
 					}
-					variable = build_slots
-					set_variable = { 
-						name = build_in_textile
-						value = var:build_textile
-					}
-					change_variable = { 
-						name = build_in_textile
-						multiply = prev.var:trade_resolve_trade_tt
-					}
-					change_variable = { 
-						name = build_in_textile
-						divide = 100
-					}
-					set_variable = { 
-						name = build_pay_textile
-						value = var:build_textile
-					}
-					change_variable = { 
-						name = build_pay_textile
-						multiply = prev.var:trade_resolve_trade_t
+					every_in_list = { 
+						limit = { 
+							has_variable = build_textile
+							var:build_textile > 0
+						}
+						variable = build_slots
+						set_variable = { 
+							name = build_in_textile
+							value = var:build_textile
+						}
+						change_variable = { 
+							name = build_in_textile
+							multiply = prev.var:trade_resolve_trade_tt
+						}
+						change_variable = { 
+							name = build_in_textile
+							divide = 100
+						}
+						set_variable = { 
+							name = build_pay_textile
+							value = var:build_textile
+						}
+						change_variable = { 
+							name = build_pay_textile
+							multiply = prev.var:trade_resolve_trade_t
+						}
 					}
 				}
 			}
@@ -39134,18 +39368,27 @@ while = {
 						value = 0
 					}
 				}
-				every_in_list = { 
+				if = { 
 					limit = { 
-						has_variable = build_textile
+						has_variable_list = build_slots
+						variable_list_size = { 
+							name = build_slots
+							value >= 1
+						}
 					}
-					variable = build_slots
-					set_variable = { 
-						name = build_in_textile
-						value = 0
-					}
-					set_variable = { 
-						name = build_pay_textile
-						value = 0
+					every_in_list = { 
+						limit = { 
+							has_variable = build_textile
+						}
+						variable = build_slots
+						set_variable = { 
+							name = build_in_textile
+							value = 0
+						}
+						set_variable = { 
+							name = build_pay_textile
+							value = 0
+						}
 					}
 				}
 			}
@@ -39376,31 +39619,40 @@ while = {
 						}
 					}
 				}
-				every_in_list = { 
+				if = { 
 					limit = { 
-						has_variable = build_pottery
-						var:build_pottery > 0
+						has_variable_list = build_slots
+						variable_list_size = { 
+							name = build_slots
+							value >= 1
+						}
 					}
-					variable = build_slots
-					set_variable = { 
-						name = build_in_pottery
-						value = var:build_pottery
-					}
-					change_variable = { 
-						name = build_in_pottery
-						multiply = prev.var:trade_resolve_trade_tt
-					}
-					change_variable = { 
-						name = build_in_pottery
-						divide = 100
-					}
-					set_variable = { 
-						name = build_pay_pottery
-						value = var:build_pottery
-					}
-					change_variable = { 
-						name = build_pay_pottery
-						multiply = prev.var:trade_resolve_trade_t
+					every_in_list = { 
+						limit = { 
+							has_variable = build_pottery
+							var:build_pottery > 0
+						}
+						variable = build_slots
+						set_variable = { 
+							name = build_in_pottery
+							value = var:build_pottery
+						}
+						change_variable = { 
+							name = build_in_pottery
+							multiply = prev.var:trade_resolve_trade_tt
+						}
+						change_variable = { 
+							name = build_in_pottery
+							divide = 100
+						}
+						set_variable = { 
+							name = build_pay_pottery
+							value = var:build_pottery
+						}
+						change_variable = { 
+							name = build_pay_pottery
+							multiply = prev.var:trade_resolve_trade_t
+						}
 					}
 				}
 			}
@@ -39444,18 +39696,27 @@ while = {
 						value = 0
 					}
 				}
-				every_in_list = { 
+				if = { 
 					limit = { 
-						has_variable = build_pottery
+						has_variable_list = build_slots
+						variable_list_size = { 
+							name = build_slots
+							value >= 1
+						}
 					}
-					variable = build_slots
-					set_variable = { 
-						name = build_in_pottery
-						value = 0
-					}
-					set_variable = { 
-						name = build_pay_pottery
-						value = 0
+					every_in_list = { 
+						limit = { 
+							has_variable = build_pottery
+						}
+						variable = build_slots
+						set_variable = { 
+							name = build_in_pottery
+							value = 0
+						}
+						set_variable = { 
+							name = build_pay_pottery
+							value = 0
+						}
 					}
 				}
 			}
@@ -39686,31 +39947,40 @@ while = {
 						}
 					}
 				}
-				every_in_list = { 
+				if = { 
 					limit = { 
-						has_variable = build_tools
-						var:build_tools > 0
+						has_variable_list = build_slots
+						variable_list_size = { 
+							name = build_slots
+							value >= 1
+						}
 					}
-					variable = build_slots
-					set_variable = { 
-						name = build_in_tools
-						value = var:build_tools
-					}
-					change_variable = { 
-						name = build_in_tools
-						multiply = prev.var:trade_resolve_trade_tt
-					}
-					change_variable = { 
-						name = build_in_tools
-						divide = 100
-					}
-					set_variable = { 
-						name = build_pay_tools
-						value = var:build_tools
-					}
-					change_variable = { 
-						name = build_pay_tools
-						multiply = prev.var:trade_resolve_trade_t
+					every_in_list = { 
+						limit = { 
+							has_variable = build_tools
+							var:build_tools > 0
+						}
+						variable = build_slots
+						set_variable = { 
+							name = build_in_tools
+							value = var:build_tools
+						}
+						change_variable = { 
+							name = build_in_tools
+							multiply = prev.var:trade_resolve_trade_tt
+						}
+						change_variable = { 
+							name = build_in_tools
+							divide = 100
+						}
+						set_variable = { 
+							name = build_pay_tools
+							value = var:build_tools
+						}
+						change_variable = { 
+							name = build_pay_tools
+							multiply = prev.var:trade_resolve_trade_t
+						}
 					}
 				}
 			}
@@ -39754,18 +40024,27 @@ while = {
 						value = 0
 					}
 				}
-				every_in_list = { 
+				if = { 
 					limit = { 
-						has_variable = build_tools
+						has_variable_list = build_slots
+						variable_list_size = { 
+							name = build_slots
+							value >= 1
+						}
 					}
-					variable = build_slots
-					set_variable = { 
-						name = build_in_tools
-						value = 0
-					}
-					set_variable = { 
-						name = build_pay_tools
-						value = 0
+					every_in_list = { 
+						limit = { 
+							has_variable = build_tools
+						}
+						variable = build_slots
+						set_variable = { 
+							name = build_in_tools
+							value = 0
+						}
+						set_variable = { 
+							name = build_pay_tools
+							value = 0
+						}
 					}
 				}
 			}
@@ -40533,55 +40812,64 @@ while = {
 			name = pop_pay_free
 			add = var:trade_resolve_trade_t
 		}
-		every_in_list = { 
+		if = { 
 			limit = { 
-				has_variable = build_pay
-				var:build_pay > 0
+				has_variable_list = build_slots
+				variable_list_size = { 
+					name = build_slots
+					value >= 1
+				}
 			}
-			variable = build_slots
-			if = { 
+			every_in_list = { 
 				limit = { 
-					var:build_owner = 1
+					has_variable = build_pay
+					var:build_pay > 0
 				}
-				prev = { 
-					change_variable = { 
-						name = pop_pay_serf
-						add = prev.var:build_pay
+				variable = build_slots
+				if = { 
+					limit = { 
+						var:build_owner = 1
 					}
-				}
-			}
-			else_if = { 
-				limit = { 
-					var:build_owner = 2
-				}
-				prev = { 
-					change_variable = { 
-						name = pop_pay_free
-						add = prev.var:build_pay
+					prev = { 
+						change_variable = { 
+							name = pop_pay_serf
+							add = prev.var:build_pay
+						}
 					}
 				}
-			}
-			else = { 
-				prev = { 
-					set_variable = { 
-						name = trade_resolve_trade_t
-						value = prev.var:build_pay
+				else_if = { 
+					limit = { 
+						var:build_owner = 2
 					}
-					change_variable = { 
-						name = trade_resolve_trade_t
-						multiply = var:pop_freedom
+					prev = { 
+						change_variable = { 
+							name = pop_pay_free
+							add = prev.var:build_pay
+						}
 					}
-					change_variable = { 
-						name = pop_pay_serf
-						add = prev.var:build_pay
-					}
-					change_variable = { 
-						name = pop_pay_serf
-						subtract = var:trade_resolve_trade_t
-					}
-					change_variable = { 
-						name = pop_pay_free
-						add = var:trade_resolve_trade_t
+				}
+				else = { 
+					prev = { 
+						set_variable = { 
+							name = trade_resolve_trade_t
+							value = prev.var:build_pay
+						}
+						change_variable = { 
+							name = trade_resolve_trade_t
+							multiply = var:pop_freedom
+						}
+						change_variable = { 
+							name = pop_pay_serf
+							add = prev.var:build_pay
+						}
+						change_variable = { 
+							name = pop_pay_serf
+							subtract = var:trade_resolve_trade_t
+						}
+						change_variable = { 
+							name = pop_pay_free
+							add = var:trade_resolve_trade_t
+						}
 					}
 				}
 			}

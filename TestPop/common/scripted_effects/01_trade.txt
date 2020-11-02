@@ -785,19 +785,26 @@ trade_do_trade_helper_0 = {
 			^
 		}
 		
-		every_in_list = {
-			variable = build_slots
-			
-			^^goods^
-				if = { 
-					limit = { 
-						has_variable = build_&goods& 
-					} 
-					scope:trade_do_trade_select = { 
-						change_variable = { name = trade_dmnd_&goods& add = prev.var:build_&goods& } 
-					} 
-				}
-			^
+		if = {
+			limit = {
+				has_variable_list = build_slots
+				
+				variable_list_size = { name = build_slots value >= 1 }
+			}
+			every_in_list = {
+				variable = build_slots
+				
+				^^goods^
+					if = { 
+						limit = { 
+							has_variable = build_&goods& 
+						} 
+						scope:trade_do_trade_select = { 
+							change_variable = { name = trade_dmnd_&goods& add = prev.var:build_&goods& } 
+						} 
+					}
+				^
+			}
 		}
 		
 		^^goods^
@@ -1308,38 +1315,45 @@ trade_resolve_trade = {
 		change_variable = { name = pop_pay_serf subtract = var:trade_resolve_trade_t }
 		change_variable = { name = pop_pay_free add = var:trade_resolve_trade_t }
 		
-		every_in_list = {
+		if = {
 			limit = {
-				has_variable = build_pay
+				has_variable_list = build_slots
 				
-				var:build_pay > 0
+				variable_list_size = { name = build_slots value >= 1 }
 			}
-			variable = build_slots
-			
-			if = {
+			every_in_list = {
 				limit = {
-					var:build_owner = 1
-				}
-				prev = {
-					change_variable = { name = pop_pay_serf add = prev.var:build_pay }
-				}
-			}
-			else_if = {
-				limit = {
-					var:build_owner = 2
-				}
-				prev = {
-					change_variable = { name = pop_pay_free add = prev.var:build_pay }
-				}
-			}
-			else = {
-				prev = {
-					set_variable = { name = trade_resolve_trade_t value = prev.var:build_pay }
-					change_variable = { name = trade_resolve_trade_t multiply = var:pop_freedom }
+					has_variable = build_pay
 					
-					change_variable = { name = pop_pay_serf add = prev.var:build_pay }
-					change_variable = { name = pop_pay_serf subtract = var:trade_resolve_trade_t }
-					change_variable = { name = pop_pay_free add = var:trade_resolve_trade_t }
+					var:build_pay > 0
+				}
+				variable = build_slots
+				
+				if = {
+					limit = {
+						var:build_owner = 1
+					}
+					prev = {
+						change_variable = { name = pop_pay_serf add = prev.var:build_pay }
+					}
+				}
+				else_if = {
+					limit = {
+						var:build_owner = 2
+					}
+					prev = {
+						change_variable = { name = pop_pay_free add = prev.var:build_pay }
+					}
+				}
+				else = {
+					prev = {
+						set_variable = { name = trade_resolve_trade_t value = prev.var:build_pay }
+						change_variable = { name = trade_resolve_trade_t multiply = var:pop_freedom }
+						
+						change_variable = { name = pop_pay_serf add = prev.var:build_pay }
+						change_variable = { name = pop_pay_serf subtract = var:trade_resolve_trade_t }
+						change_variable = { name = pop_pay_free add = var:trade_resolve_trade_t }
+					}
 				}
 			}
 		}
@@ -1554,20 +1568,28 @@ trade_resolve_trade_helper_1 = {
 					change_variable = { name = prod_pay_$good$ multiply = prev.var:trade_resolve_trade_t }
 				}
 			}
-			every_in_list = {
+			
+			if = {
 				limit = {
-					has_variable = build_$good$
+					has_variable_list = build_slots
 					
-					var:build_$good$ > 0
+					variable_list_size = { name = build_slots value >= 1 }
 				}
-				variable = build_slots
-				
-				set_variable = { name = build_in_$good$ value = var:build_$good$ }
-				change_variable = { name = build_in_$good$ multiply = prev.var:trade_resolve_trade_tt }
-				change_variable = { name = build_in_$good$ divide = 100 }
-				
-				set_variable = { name = build_pay_$good$ value = var:build_$good$ }
-				change_variable = { name = build_pay_$good$ multiply = prev.var:trade_resolve_trade_t }
+				every_in_list = {
+					limit = {
+						has_variable = build_$good$
+						
+						var:build_$good$ > 0
+					}
+					variable = build_slots
+					
+					set_variable = { name = build_in_$good$ value = var:build_$good$ }
+					change_variable = { name = build_in_$good$ multiply = prev.var:trade_resolve_trade_tt }
+					change_variable = { name = build_in_$good$ divide = 100 }
+					
+					set_variable = { name = build_pay_$good$ value = var:build_$good$ }
+					change_variable = { name = build_pay_$good$ multiply = prev.var:trade_resolve_trade_t }
+				}
 			}
 		}
 	}
@@ -1592,14 +1614,22 @@ trade_resolve_trade_helper_1 = {
 				set_variable = { name = prod_in_$good$ value = 0 }
 				set_variable = { name = prod_pay_$good$ value = 0 }
 			}
-			every_in_list = {
+			
+			if = {
 				limit = {
-					has_variable = build_$good$
+					has_variable_list = build_slots
+					
+					variable_list_size = { name = build_slots value >= 1 }
 				}
-				variable = build_slots
-				
-				set_variable = { name = build_in_$good$ value = 0 }
-				set_variable = { name = build_pay_$good$ value = 0 }
+				every_in_list = {
+					limit = {
+						has_variable = build_$good$
+					}
+					variable = build_slots
+					
+					set_variable = { name = build_in_$good$ value = 0 }
+					set_variable = { name = build_pay_$good$ value = 0 }
+				}
 			}
 		}
 	}
