@@ -29,12 +29,6 @@ build_new_slot = {
 	}
 	
 	add_to_global_variable_list = { name = build_slots target = scope:build_new_slot_temp }
-	
-	scope:build_new_slot_temp = {
-		set_variable = { name = build_id value = global_var:build_id }
-		
-		change_global_variable = { name = build_id add = 1 }
-	}
 }
 
 build_start_project = {
@@ -46,13 +40,6 @@ build_start_project = {
 				}
 				
 				global_variable_list_size = { name = build_slots value = 0 }
-				
-				any_in_global_list = {
-					variable = build_slots
-					count = all
-					
-					has_variable = build_active
-				}
 			}
 		}
 		build_new_slot = yes
@@ -62,15 +49,15 @@ build_start_project = {
 	set_variable = { name = build_start_project_tt value = $para$ }
 	set_variable = { name = build_start_project_ttt value = $owner$ }
 	
-	ordered_in_global_list = {
-		limit = {
-			NOT = {
-				has_variable = build_active
-			}
-		}
+	random_in_global_list = {
 		variable = build_slots
-		order_by = build_start_project_order_value
-		position = 0
+		
+		add_to_global_variable_list = { name = build_slots_active target = this }
+		remove_list_global_variable = { name = build_slots target = this }
+		
+		prev = {
+			add_to_variable_list = { name = build_slots target = prev }
+		}
 		
 		set_variable = { name = build_active value = prev.var:build_start_project_t }
 		set_variable = { name = build_para value = prev.var:build_start_project_tt }
@@ -212,6 +199,13 @@ build_update_project = {
 					var:build_active = 0
 				}
 			}
+			var:prod_location = {
+				remove_list_variable = { name = build_slots target = prev }
+			}
+			
+			remove_list_global_variable = { name = build_slots_active target = this }
+			add_to_global_variable_list = { name = build_slots target = this }
+			
 			remove_variable = build_active
 			remove_variable = build_para
 			remove_variable = build_name

@@ -786,9 +786,6 @@ trade_do_trade_helper_0 = {
 		}
 		
 		every_in_list = {
-			limit = {
-				has_variable = build_active
-			}
 			variable = build_slots
 			
 			^^goods^
@@ -1151,10 +1148,7 @@ trade_resolve_trade = {
 		^
 	}
 	every_in_global_list = {
-		limit = {
-			has_variable = build_active
-		}
-		variable = build_slots
+		variable = build_slots_active
 		
 		^^goods^
 			if = {
@@ -1249,10 +1243,7 @@ trade_resolve_trade = {
 	}
 	
 	every_in_global_list = {
-		limit = {
-			has_variable = build_active
-		}
-		variable = build_slots
+		variable = build_slots_active
 		
 		set_variable = { name = build_pay value = 0 }  
 		

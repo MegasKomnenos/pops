@@ -6429,11 +6429,6 @@ while = {
 							name = build_slots
 							value = 0
 						}
-						any_in_global_list = { 
-							variable = build_slots
-							count = all
-							has_variable = build_active
-						}
 					}
 				}
 				create_character = { 
@@ -6448,16 +6443,6 @@ while = {
 					name = build_slots
 					target = scope:build_new_slot_temp
 				}
-				scope:build_new_slot_temp = { 
-					set_variable = { 
-						name = build_id
-						value = global_var:build_id
-					}
-					change_global_variable = { 
-						name = build_id
-						add = 1
-					}
-				}
 			}
 			set_variable = { 
 				name = build_start_project_t
@@ -6471,15 +6456,22 @@ while = {
 				name = build_start_project_ttt
 				value = 3
 			}
-			ordered_in_global_list = { 
-				limit = { 
-					NOT = { 
-						has_variable = build_active
+			random_in_global_list = { 
+				variable = build_slots
+				add_to_global_variable_list = { 
+					name = build_slots_active
+					target = this
+				}
+				remove_list_global_variable = { 
+					name = build_slots
+					target = this
+				}
+				prev = { 
+					add_to_variable_list = { 
+						name = build_slots
+						target = prev
 					}
 				}
-				variable = build_slots
-				order_by = build_start_project_order_value
-				position = 0
 				set_variable = { 
 					name = build_active
 					value = prev.var:build_start_project_t
@@ -7599,11 +7591,6 @@ while = {
 							name = build_slots
 							value = 0
 						}
-						any_in_global_list = { 
-							variable = build_slots
-							count = all
-							has_variable = build_active
-						}
 					}
 				}
 				create_character = { 
@@ -7618,16 +7605,6 @@ while = {
 					name = build_slots
 					target = scope:build_new_slot_temp
 				}
-				scope:build_new_slot_temp = { 
-					set_variable = { 
-						name = build_id
-						value = global_var:build_id
-					}
-					change_global_variable = { 
-						name = build_id
-						add = 1
-					}
-				}
 			}
 			set_variable = { 
 				name = build_start_project_t
@@ -7641,15 +7618,22 @@ while = {
 				name = build_start_project_ttt
 				value = 3
 			}
-			ordered_in_global_list = { 
-				limit = { 
-					NOT = { 
-						has_variable = build_active
+			random_in_global_list = { 
+				variable = build_slots
+				add_to_global_variable_list = { 
+					name = build_slots_active
+					target = this
+				}
+				remove_list_global_variable = { 
+					name = build_slots
+					target = this
+				}
+				prev = { 
+					add_to_variable_list = { 
+						name = build_slots
+						target = prev
 					}
 				}
-				variable = build_slots
-				order_by = build_start_project_order_value
-				position = 0
 				set_variable = { 
 					name = build_active
 					value = prev.var:build_start_project_t
@@ -14475,9 +14459,6 @@ while = {
 				}
 			}
 			every_in_list = { 
-				limit = { 
-					has_variable = build_active
-				}
 				variable = build_slots
 				if = { 
 					limit = { 
@@ -32510,10 +32491,7 @@ while = {
 		}
 	}
 	every_in_global_list = { 
-		limit = { 
-			has_variable = build_active
-		}
-		variable = build_slots
+		variable = build_slots_active
 		if = { 
 			limit = { 
 				has_variable = build_food
@@ -40244,10 +40222,7 @@ while = {
 		remove_variable = trade_resolve_trade_t
 	}
 	every_in_global_list = { 
-		limit = { 
-			has_variable = build_active
-		}
-		variable = build_slots
+		variable = build_slots_active
 		set_variable = { 
 			name = build_pay
 			value = 0
@@ -44851,10 +44826,7 @@ while = {
 		remove_variable = trade_update_price_t
 	}
 	every_in_global_list = { 
-		limit = { 
-			has_variable = build_active
-		}
-		variable = build_slots
+		variable = build_slots_active
 		set_variable = { 
 			name = build_update_project_t
 			value = 100
@@ -45403,6 +45375,20 @@ while = {
 						}
 						var:build_active = 0
 					}
+				}
+				var:prod_location = { 
+					remove_list_variable = { 
+						name = build_slots
+						target = prev
+					}
+				}
+				remove_list_global_variable = { 
+					name = build_slots_active
+					target = this
+				}
+				add_to_global_variable_list = { 
+					name = build_slots
+					target = this
 				}
 				remove_variable = build_active
 				remove_variable = build_para
