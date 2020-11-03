@@ -181,7 +181,7 @@ if __name__ == '__main__':
     macros = dict()
 
     for path in glob.glob('common\\scripted_effects\\*.txt'):
-        if not '00_init' in path:
+        if not '00_sim' in path:
             file = parse_file(path)
 
             for script in file:

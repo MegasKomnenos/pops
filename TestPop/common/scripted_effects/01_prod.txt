@@ -298,7 +298,21 @@ prod_update_instances = {
 					var:prod_update_instances_tt = 0
 				}
 			}
-			set_variable = { name = prod_size value = 0 }
+			if = {
+				limit = {
+					OR = {
+						NOT = {
+							has_variable = prod_update_instances_ttt
+						}
+						
+						var:prod_update_instances_ttt = 0
+					}
+				}
+				set_variable = { name = prod_size value = var:prod_update_instances_t }
+			}
+			else = {
+				set_variable = { name = prod_size value = 0 }
+			}
 		}
 		else = {
 			set_variable = { name = prod_update_instances_tttt value = var:prod_update_instances_t }
