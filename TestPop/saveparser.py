@@ -120,31 +120,21 @@ if __name__ == '__main__':
                                 break
                         break
 
-        with open('history\\characters\\sim_data.txt', 'w', encoding='utf-8-sig') as ff:
-            template = '''%s = {
-    name = "Arhat"
-    religion = "theravada"
-    culture = "bodpa"
-    trait = character_not_1
-    dynasty = character_not
-    1.1.1 = {
-        birth = yes
-        
-        employer = 999999
-    }
-}
-'''
-            out = []
-
-            for data in chars.values():
-                out.append(template % data[0])
-
-            ff.write(''.join(out))
-
         with open('common\\scripted_effects\\00_sim_char.txt', 'w', encoding='utf-8-sig') as ff:
             out = ['sim_char = {\n']
 
-            for data in chars.values():
+            for char in chars:
+                out.append('''\tcreate_character = {
+        save_scope_as = sim_char_%s
+        gender = male
+        trait = character_not_1
+        employer = character:999999
+        faith = character:999999
+        culture = character:999999
+        dynasty = none
+    }\n''' % char)
+
+            for char, data in chars.items():
                 foo = []
 
                 for var in data[1]:
@@ -155,7 +145,7 @@ if __name__ == '__main__':
                             else:
                                 foo.append('set_variable = { name = %s value = %s } ' % (var[0], round(int(var[2]) / 1000, 3)))
                         elif var[1] == 'char':
-                            foo.append('set_variable = { name = %s value = character:%s } ' % (var[0], chars[var[2]][0]))
+                            foo.append('set_variable = { name = %s value = scope:sim_char_%s } ' % (var[0], var[2]))
                         elif var[1] == 'prov':
                             foo.append('set_variable = { name = %s value = province:%s } ' % (var[0], var[2]))
                         elif var[1] == 'boolean':
@@ -167,13 +157,13 @@ if __name__ == '__main__':
                 for lst in data[2]:
                     for var in lst[1]:
                         if var[0] == 'char':
-                            foo.append('add_to_variable_list = { name = %s target = character:%s } ' % (lst[0], chars[var[1]][0]))
+                            foo.append('add_to_variable_list = { name = %s target = scope:sim_char_%s } ' % (lst[0], var[1]))
                         elif var[0] == 'prov':
                             foo.append('add_to_variable_list = { name = %s target = province:%s } ' % (lst[0], var[1]))
                         elif var[0] == 'lt':
                             foo.append('add_to_variable_list = { name = %s target = title:%s } ' % (lst[0], var[1]))
-
-                out.append('\tcharacter:%s = { %s}\n' % (data[0], ''.join(foo)))
+            
+                out.append('\tscope:sim_char_%s = { %s}\n' % (char, ''.join(foo)))
 
             out.append('}')
             
@@ -190,7 +180,7 @@ if __name__ == '__main__':
                         else:
                             out.append('\tset_global_variable = { name = %s value = %s }\n' % (var[0], round(int(var[2]) / 1000, 3)))
                     elif var[1] == 'char' and var[2] in chars:
-                        out.append('\tset_global_variable = { name = %s value = character:%s }\n' % (var[0], chars[var[2]][0]))
+                        out.append('\tset_global_variable = { name = %s value = scope:sim_char_%s }\n' % (var[0], var[2]))
                     elif var[1] == 'prov':
                         out.append('\tset_global_variable = { name = %s value = province:%s }\n' % (var[0], var[2]))
                     elif var[1] == 'boolean':
@@ -202,7 +192,7 @@ if __name__ == '__main__':
             for lst in glob_lists:
                 for var in lst[1]:
                     if var[0] == 'char':
-                        out.append('\tadd_to_global_variable_list = { name = %s target = character:%s }\n' % (lst[0], chars[var[1]][0]))
+                        out.append('\tadd_to_global_variable_list = { name = %s target = scope:sim_char_%s }\n' % (lst[0], var[1]))
                     elif var[0] == 'prov':
                         out.append('\tadd_to_global_variable_list = { name = %s target = province:%s }\n' % (lst[0], var[1]))
                     elif var[0] == 'lt':
@@ -258,7 +248,7 @@ if __name__ == '__main__':
                             else:
                                 foo.append('set_variable = { name = %s value = %s } ' % (var[0], round(int(var[2]) / 1000, 3)))
                         elif var[1] == 'char':
-                            foo.append('set_variable = { name = %s value = character:%s } ' % (var[0], chars[var[2]][0]))
+                            foo.append('set_variable = { name = %s value = scope:sim_char_%s } ' % (var[0], var[2]))
                         elif var[1] == 'prov':
                             foo.append('set_variable = { name = %s value = province:%s } ' % (var[0], var[2]))
                         elif var[1] == 'boolean':
@@ -270,7 +260,7 @@ if __name__ == '__main__':
                 for lst in data[2]:
                     for var in lst[1]:
                         if var[0] == 'char':
-                            foo.append('add_to_variable_list = { name = %s target = character:%s } ' % (lst[0], chars[var[1]][0]))
+                            foo.append('add_to_variable_list = { name = %s target = scope:sim_char_%s } ' % (lst[0], var[1]))
                         elif var[0] == 'prov':
                             foo.append('add_to_variable_list = { name = %s target = province:%s } ' % (lst[0], var[1]))
                         elif var[0] == 'lt':
@@ -339,7 +329,7 @@ if __name__ == '__main__':
                             else:
                                 foo.append('set_variable = { name = %s value = %s } ' % (var[0], round(int(var[2]) / 1000, 3)))
                         elif var[1] == 'char':
-                            foo.append('set_variable = { name = %s value = character:%s } ' % (var[0], chars[var[2]][0]))
+                            foo.append('set_variable = { name = %s value = scope:sim_char_%s } ' % (var[0], var[2]))
                         elif var[1] == 'prov':
                             foo.append('set_variable = { name = %s value = province:%s } ' % (var[0], var[2]))
                         elif var[1] == 'boolean':
@@ -351,7 +341,7 @@ if __name__ == '__main__':
                 for lst in data[2]:
                     for var in lst[1]:
                         if var[0] == 'char':
-                            foo.append('add_to_variable_list = { name = %s target = character:%s } ' % (lst[0], chars[var[1]][0]))
+                            foo.append('add_to_variable_list = { name = %s target = scope:sim_char_%s } ' % (lst[0], var[1]))
                         elif var[0] == 'prov':
                             foo.append('add_to_variable_list = { name = %s target = province:%s } ' % (lst[0], var[1]))
                         elif var[0] == 'lt':
