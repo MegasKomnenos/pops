@@ -276,6 +276,9 @@ sim_run.01 = {
 	}
 	
 	option = {
+            trigger_event = {
+                id = sim_run.02
+            }
 	}
 }
 sim_run.02 = {

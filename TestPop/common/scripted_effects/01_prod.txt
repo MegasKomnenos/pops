@@ -13,7 +13,7 @@
 	add_to_global_variable_list = { name = prod_templates target = scope:prod_new_template_temp }
 	
 	scope:prod_new_template_temp = {
-		add_character_flag = { flag = prod_land_$land_type$ }
+		set_variable = { name = prod_land_$land_type$ }
 		
 		set_variable = { name = prod_labor value = $labor$ }
 		set_variable = { name = prod_land value = $land$ }
@@ -532,7 +532,7 @@ prod_update_instances_helper_2 = {
 		every_in_list = {
 			limit = {
 				var:prod_template = {
-					has_character_flag = prod_land_$land$
+					has_variable = prod_land_$land$
 				}
 			}
 			variable = prod_instances
@@ -555,7 +555,7 @@ prod_update_instances_helper_2 = {
 			every_in_list = {
 				limit = {
 					var:prod_template = {
-						has_character_flag = prod_land_$land$
+						has_variable = prod_land_$land$
 					}
 				}
 				variable = prod_instances
@@ -570,7 +570,7 @@ prod_update_instances_helper_2 = {
 			every_in_list = {
 				limit = {
 					var:prod_template = {
-						has_character_flag = prod_land_$land$
+						has_variable = prod_land_$land$
 					}
 				}
 				variable = prod_instances
