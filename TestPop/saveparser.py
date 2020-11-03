@@ -282,13 +282,13 @@ if __name__ == '__main__':
                     outout.append(character_data % ''.join([helper(('\t\t\tset_variable', 'value'), n, d) for n, d in chars[data[1]][0].items()]))
                     outout.append('\t\tset_global_variable = { name = %s value = scope:save_data_t }\n' % name)
 
-                    if data[1] in glob_lsts['prod_templates']:
+                    if ('char', data[1]) in glob_lsts['prod_templates']:
                         outout.append('\t\tadd_to_global_variable_list = { name = prod_templates target = scope:save_data_t }\n')
-                    elif data[1] in glob_lsts['tech_techs']:
+                    elif ('char', data[1]) in glob_lsts['tech_techs']:
                         outout.append('\t\tadd_to_global_variable_list = { name = tech_techs target = scope:save_data_t }\n')
-                    elif data[1] in glob_lsts['tech_eras']:
+                    elif ('char', data[1]) in glob_lsts['tech_eras']:
                         outout.append('\t\tadd_to_global_variable_list = { name = tech_eras target = scope:save_data_t }\n')
-                    elif data[1] in glob_lsts['build_templates']:
+                    elif ('char', data[1]) in glob_lsts['build_templates']:
                         outout.append('\t\tadd_to_global_variable_list = { name = build_templates target = scope:save_data_t }\n')
                 else:
                     outout.append(helper(('\t\tset_global_variable', 'value'), name, data))
