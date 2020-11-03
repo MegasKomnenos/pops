@@ -78,7 +78,7 @@ if __name__ == '__main__':
 
         chars = dict()
 
-        i = 800000
+        i = 100000
 
         for lst in glob_lists:
             if lst[0] in names:
@@ -130,14 +130,7 @@ if __name__ == '__main__':
     1.1.1 = {
         birth = yes
         
-        if = {
-            limit = {
-                NOT = {
-                    court_owner = character:999999
-                }
-            }
-            set_employer = character:999999
-        }
+        employer = 999999
     }
 }
 '''
