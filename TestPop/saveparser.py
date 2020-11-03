@@ -76,13 +76,11 @@ def reconstruct(file, t=''):
     return txt
 
 if __name__ == '__main__':
-    names = ['prod_templates', 'prod_instances', 'trade_merchants', 'tech_techs', 'tech_eras', 'build_templates', 'build_slots_active', 'build_slots']
-    
     with open('gamestate', encoding='utf-8-sig') as f:
         t = f.read()
 
-        glob_vars = []
-        glob_lists = []
+        glob_vars = dict()
+        glob_lsts = dict()
 
         print('Parsing Globals')
 
@@ -92,25 +90,16 @@ if __name__ == '__main__':
         f = parse_block(t[start:end])
 
         for var in f[0][2][0][2]:
-            glob_vars.append((var[0][2].strip('"'), var[2][2][0][2], var[2][2][1][2]))
+            glob_vars[var[0][2].strip('"')] = (var[2][2][0][2], var[2][2][1][2])
         for lst in f[0][2][1][2]:
-            foo = (lst[0][2].strip('"'), [])
-
-            for var in lst[1:]:
-                foo[1].append((var[2][0][2], var[2][1][2]))
-
-            glob_lists.append(foo)
+            glob_lsts[lst[0][2].strip('"')] = [(var[2][0][2], var[2][1][2]) for var in lst[1:]]
 
         chars = dict()
 
-        i = 100000
-
-        for lst in glob_lists:
-            if lst[0] in names:
-                for var in lst[1]:
-                    if not var[1] in chars:
-                        chars[var[1]] = (i, [], [], [])
-                        i += 1
+        for name in ['prod_templates', 'prod_instances', 'trade_merchants', 'tech_techs', 'tech_eras', 'build_templates', 'build_slots_active']:
+            for var in glob_lsts[name]:
+                if not var[1] in chars:
+                    chars[var[1]] = (dict(), dict())
 
         print('Parsing Chars')
         
@@ -119,8 +108,8 @@ if __name__ == '__main__':
 
         for char in parse_block(t[start:end])[0][2]:
             if char[0] in chars:
-                lst_var = chars[char[0]][1]
-                lst_lst = chars[char[0]][2]
+                lst_var = chars[char[0]][0]
+                lst_lst = chars[char[0]][1]
                 
                 for entry in char[2]:
                     if entry[0] == 'alive_data':
@@ -131,31 +120,29 @@ if __name__ == '__main__':
                                         for var in entry[2]:
                                             if var[2][2]:
                                                 if len(var[2][2]) >= 2:
-                                                    lst_var.append((var[0][2].strip('"'), var[2][2][0][2], var[2][2][1][2]))
+                                                    lst_var[var[0][2].strip('"')] = (var[2][2][0][2], var[2][2][1][2])
                                                 else:
-                                                    lst_var.append((var[0][2].strip('"'), var[2][2][0][2], 0))
+                                                    lst_var[var[0][2].strip('"')] = (var[2][2][0][2], 0)
                                             else:
-                                                lst_var.append((var[0][2].strip('"')))
+                                                lst_var[var[0][2].strip('"')] = ()
                                     elif entry[0] == 'list':
                                         for lst in entry[2]:
-                                            foo = (lst[0][2].strip('"'), [])
-
-                                            for var in lst[1:]:
-                                                foo[1].append((var[2][0][2], var[2][1][2]))
-
-                                            lst_lst.append(foo)
+                                            lst_lst[lst[0][2].strip('"')] = [(var[2][0][2], var[2][1][2]) for var in lst[1:]]
                                 break
                         break
 
         print('Parsing Provs')
         
-        provs = []
+        provs = dict()
         
         start = t.find('\nprovinces={')
         end = t.find('\nlanded_titles={', start)
 
         for province in parse_block(t[start:end])[0][2]:
-            foo = (province[0], [], [])
+            provs[province[0]] = (dict(), dict())
+
+            lst_var = provs[province[0]][0]
+            lst_lst = provs[province[0]][1]
 
             for entry in province[2]:
                 if entry[0] == 'variables':
@@ -164,26 +151,19 @@ if __name__ == '__main__':
                             for var in entry[2]:
                                 if var[2][2]:
                                     if len(var[2][2]) >= 2:
-                                        foo[1].append((var[0][2].strip('"'), var[2][2][0][2], var[2][2][1][2]))
+                                        lst_var[var[0][2].strip('"')] = (var[2][2][0][2], var[2][2][1][2])
                                     else:
-                                        foo[1].append((var[0][2].strip('"'), var[2][2][0][2], 0))
+                                        lst_var[var[0][2].strip('"')] = (var[2][2][0][2], 0)
                                 else:
-                                    foo[1].append((var[0][2].strip('"')))
+                                    lst_var[var[0][2].strip('"')] = ()
                         elif entry[0] == 'list':
                             for lst in entry[2]:
-                                foofoo = (lst[0][2].strip('"'), [])
-
-                                for var in lst[1:]:
-                                    foofoo[1].append((var[2][0][2], var[2][1][2]))
-
-                                foo[2].append(foofoo)
+                                lst_lst[lst[0][2].strip('"')] = [(var[2][0][2], var[2][1][2]) for var in lst[1:]]
                     break
-
-            provs.append(foo)
 
         print('Parsing Titles')
         
-        titles = []
+        titles = dict()
         
         start = t.find('\nlanded_titles={')
         end = t.find('\ndynasties={', start)
@@ -200,7 +180,10 @@ if __name__ == '__main__':
             if name[:2] != 'c_':
                 continue
 
-            foo = (name, [], [])
+            titles[name] = (dict(), dict())
+
+            lst_var = titles[name][0]
+            lst_lst = titles[name][1]
 
             for entry in title[2]:
                 if entry[0] == 'variables':
@@ -209,24 +192,43 @@ if __name__ == '__main__':
                             for var in entry[2]:
                                 if var[2][2]:
                                     if len(var[2][2]) >= 2:
-                                        foo[1].append((var[0][2].strip('"'), var[2][2][0][2], var[2][2][1][2]))
+                                        lst_var[var[0][2].strip('"')] = (var[2][2][0][2], var[2][2][1][2])
                                     else:
-                                        foo[1].append((var[0][2].strip('"'), var[2][2][0][2], 0))
+                                        lst_var[var[0][2].strip('"')] = (var[2][2][0][2], 0)
                                 else:
-                                    foo[1].append((var[0][2].strip('"')))
+                                    lst_var[var[0][2].strip('"')] = ()
                         elif entry[0] == 'list':
                             for lst in entry[2]:
-                                foofoo = (lst[0][2].strip('"'), [])
-
-                                for var in lst[1:]:
-                                    foofoo[1].append((var[2][0][2], var[2][1][2]))
-
-                                foo[2].append(foofoo)
+                                lst_lst[lst[0][2].strip('"')] = [(var[2][0][2], var[2][1][2]) for var in lst[1:]]
                     break
 
-            titles.append(foo)
-
         print('Writing Events')
+
+        templates = dict()
+        names = dict()
+
+        with open('common\\scripted_effects\\00_init_industry.txt', encoding='utf-8-sig') as ff:
+            for scripts in parse_block(ff.read()):
+                if scripts[0] == 'init_industry_templates':
+                    for template in scripts[2]:
+                        if template[0] == 'prod_new_template':
+                            for entry in template[2]:
+                                if entry[0] == 'name':
+                                    templates[glob_vars[entry[2]][1]] = entry[2]
+                                    
+                                    break
+                    break
+        with open('common\\scripted_effects\\00_init_build.txt', encoding='utf-8-sig') as ff:
+            for scripts in parse_block(ff.read()):
+                if scripts[0] == 'init_buildings':
+                    for template in scripts[2]:
+                        if template[0] == 'build_new_template':
+                            for entry in template[2]:
+                                if entry[0] == 'name':
+                                    names[glob_vars[entry[2]][1]] = entry[2]
+                                    
+                                    break
+                    break
         
         event = '''save_data.0%s = {
 	type = empty
@@ -236,110 +238,145 @@ if __name__ == '__main__':
 %s
 	}
 	
-	option = {
-            trigger_event = {
-                id = save_data.0%s
-            }
+	option = {%s
 	}
 }
 '''
+        nxt = '''
+            trigger_event = {
+                id = save_data.0%s
+            }'''
+        
         arhat = '\t\tcharacter:999999 = { set_global_variable = { name = arhat value = this } every_courtier_or_guest = { limit = { is_character = yes } death = natural } every_councillor = { limit = { is_character = yes } death = natural } }'
-        create_character = '\t\tcreate_character = { save_scope_as = save_data_char_%s gender = male trait = character_not_1 employer = global_var:arhat faith = global_var:arhat.faith culture = global_var:arhat.culture dynasty = none }\n'
-
-        def helper(form, var, chars):
-            if type(var) == type(tuple()):
-                if var[1] == 'value':
-                    if int(var[2]) / 1000 > 210000:
-                        return '%s = { name = %s %s = 0 }\n' % (form[0], var[0], form[1])
+        create_character = '\t\tcreate_character = { save_temporary_scope_as = save_data_t gender = male trait = character_not_1 employer = global_var:arhat faith = global_var:arhat.faith culture = global_var:arhat.culture dynasty = none }\n'
+        character_data = '\t\tscope:save_data_t = {\n%s\n\t\t}\n'
+        
+        def helper(form, name, data):
+            if data:
+                if data[0] == 'value':
+                    if int(data[1]) / 1000 > 210000:
+                        return '%s = { name = %s %s = 0 }\n' % (form[0], name, form[1])
                     else:
-                        return '%s = { name = %s %s = %s }\n' % (form[0], var[0], form[1], round(int(var[2]) / 1000, 3))
-                elif var[1] == 'char' and var[2] in chars:
-                    return '%s = { name = %s %s = scope:save_data_char_%s }\n' % (form[0], var[0], form[1], var[2])
-                elif var[1] == 'prov':
-                    return '%s = { name = %s %s = province:%s }\n' % (form[0], var[0], form[1], var[2])
-                elif var[1] == 'boolean':
-                    return '%s = { name = %s }\n' % (form[0], var[0])
-                elif var[1] == 'lt':
-                    return '%s = { name = %s %s = title:%s }\n' % (form[0], var[0], form[1], var[2])
+                        return '%s = { name = %s %s = %s }\n' % (form[0], name, form[1], round(int(data[1]) / 1000, 3))
+                elif data[0] == 'prov':
+                    return '%s = { name = %s %s = province:%s }\n' % (form[0], name, form[1], data[1])
+                elif data[0] == 'boolean':
+                    return '%s = { name = %s }\n' % (form[0], name)
+                elif data[0] == 'lt':
+                    return '%s = { name = %s %s = title:%s }\n' % (form[0], name, form[1], data[1])
+                else:
+                    return ''
             else:
-                return '%s = { name = %s }\n' % (form[0], var)
+                return '%s = { name = %s }\n' % (form[0], name)
         
         with open('events\\save_data.txt', 'w', encoding='utf-8-sig') as ff:
-            print('Writing Arhat Event')
+            out = ['namespace = save_data\n\n']
             
-            out = ['namespace = save_data\n\n', event % (1, arhat, 2)]
+            outout = [arhat]
 
-            print('Writing Char Creation Event')
+            print('Writing Global Event')
 
-            out.append(event % (2, ''.join([create_character % char for char in chars]), 3))
+            for name, data in glob_vars.items():
+                if data[0] == 'char' and data[1] in chars:
+                    outout.append(create_character)
+                    outout.append(character_data % ''.join([helper(('\t\t\tset_variable', 'value'), n, d) for n, d in chars[data[1]][0].items()]))
+                    outout.append('\t\tset_global_variable = { name = %s value = scope:save_data_t }\n' % name)
 
-            print('Writing Char Data Event')
+                    if data[1] in glob_lsts['prod_templates']:
+                        outout.append('\t\tadd_to_global_variable_list = { name = prod_templates target = scope:save_data_t }\n')
+                    elif data[1] in glob_lsts['tech_techs']:
+                        outout.append('\t\tadd_to_global_variable_list = { name = tech_techs target = scope:save_data_t }\n')
+                    elif data[1] in glob_lsts['tech_eras']:
+                        outout.append('\t\tadd_to_global_variable_list = { name = tech_eras target = scope:save_data_t }\n')
+                    elif data[1] in glob_lsts['build_templates']:
+                        outout.append('\t\tadd_to_global_variable_list = { name = build_templates target = scope:save_data_t }\n')
+                else:
+                    outout.append(helper(('\t\tset_global_variable', 'value'), name, data))
 
-            outout = []
+            out.append(event % (1, ''.join(outout), nxt % 2))
 
-            for char, data in chars.items():
-                outout.append('\t\tscope:save_data_char_%s = {\n' % char)
+            i = 1
+            ii = 500
+            iii = 2
+            
+            loop = True
 
-                for var in data[1]:
-                    outout.append(helper(('\t\t\tset_variable', 'value'), var, chars))
-                for lst in data[2]:
-                    for var in lst[1]:
-                        outout.append(helper(('\t\t\tadd_to_variable_list', 'target'), (lst[0], var[0], var[1]), chars))
+            while loop:
+                outout = []
+                
+                print(f'Writing Provinces {i}~{ii}')
 
-                outout.append('\t\t}\n')
+                for iiii in range(i, ii + 1):
+                    iiii = str(iiii)
 
-            out.append(event % (3, ''.join([item for item in outout if item]), 4))
+                    if not iiii in provs:
+                        loop = False
 
-            print('Writing Global Data Event')
+                        break
 
-            outout = []
+                    prov = provs[iiii]
 
-            for var in glob_vars:
-                outout.append(helper(('\t\tset_global_variable', 'value'), var, chars))
-            for lst in glob_lists:
-                for var in lst[1]:
-                    outout.append(helper(('\t\tadd_to_global_variable_list', 'target'), (lst[0], var[0], var[1]), chars))
+                    outout.append('\t\tprovince:%s = {\n' % iiii)
+
+                    for name, data in prov[0].items():
+                        if data[0] == 'char' and data[1] in chars:
+                            outout.append('\t')
+                            outout.append(create_character)
+                            outout.append('\t')
+                            outout.append(character_data % ''.join([helper(('\t\t\t\tset_variable', 'value'), n, d) for n, d in chars[data[1]][0].items()]))
+                            outout.append('\t\t\tadd_to_global_variable_list = { name = trade_merchants target = scope:save_data_t }\n')
+                            outout.append('\t\t\tset_variable = { name = trade_merchant value = scope:save_data_t }\n')
+                        else:
+                            outout.append(helper(('\t\t\tset_variable', 'value'), name, data))
+                    for name, data in prov[1].items():
+                        if name == 'prod_instances':
+                            for var in data:
+                                outout.append('\t')
+                                outout.append(create_character)
+                                outout.append('\t')
+                                outout.append(character_data % ''.join([helper(('\t\t\t\tset_variable', 'value'), n, d) for n, d in chars[var[1]][0].items()]))
+                                outout.append('\t\t\tadd_to_global_variable_list = { name = prod_instances target = scope:save_data_t }\n')
+                                outout.append('\t\t\tglobal_var:%s = { add_to_variable_list = { name = prod_instances target = scope:save_data_t } scope:save_data_t = { set_variable = { name = prod_template value = prev } } }\n' % templates[chars[var[1]][0]['prod_template'][1]])
+                                outout.append('\t\t\tadd_to_variable_list = { name = prod_instances target = scope:save_data_t }\n')
+                                outout.append('\t\t\tcounty = { add_to_variable_list = { name = prod_instances target = scope:save_data_t } }\n')
+                        elif name == 'build_slots':
+                            for var in data:
+                                outout.append('\t')
+                                outout.append(create_character)
+                                outout.append('\t')
+                                outout.append(character_data % ''.join([helper(('\t\t\t\tset_variable', 'value'), n, d) for n, d in chars[var[1]][0].items()]))
+                                outout.append('\t\t\tscope:save_data_t = { set_variable = { name = build_name value = global_var:%s } }\n' % names[chars[var[1]][0]['build_name'][1]])
+                                outout.append('\t\t\tadd_to_global_variable_list = { name = build_slots_active target = scope:save_data_t }\n')
+                                outout.append('\t\t\tadd_to_variable_list = { name = build_slots target = scope:save_data_t }\n')
+                        else:
+                            for var in data:
+                                outout.append(helper(('\t\t\tadd_to_variable_list', 'target'), name, var))
+
+                    outout.append('\t\t}\n')
                     
-            out.append(event % (4, ''.join([item for item in outout if item]), 5))
-
-            print('Writing Prov Data Event')
-
-            outout = []
-
-            for data in provs:
-                outout.append('\t\tprovince:%s = {\n' % data[0])
-
-                for var in data[1]:
-                    outout.append(helper(('\t\t\tset_variable', 'value'), var, chars))
-                for lst in data[2]:
-                    for var in lst[1]:
-                        outout.append(helper(('\t\t\tadd_to_variable_list', 'target'), (lst[0], var[0], var[1]), chars))
-
-                outout.append('\t\t}\n')
-
-            out.append(event % (5, ''.join([item for item in outout if item]), 6))
+                out.append(event % (str(iii), ''.join(outout), nxt % str(iii + 1)))
+                
+                i += 500
+                ii += 500
+                iii += 1
 
             print('Writing Title Data Event')
 
             outout = []
 
-            for data in titles:
-                outout.append('\t\ttitle:%s = {\n' % data[0])
+            for name, data in titles.items():
+                outout.append('\t\ttitle:%s = {\n' % name)
 
-                for var in data[1]:
-                    outout.append(helper(('\t\t\tset_variable', 'value'), var, chars))
-                for lst in data[2]:
-                    for var in lst[1]:
-                        outout.append(helper(('\t\t\tadd_to_variable_list', 'target'), (lst[0], var[0], var[1]), chars))
+                for n, d in data[0].items():
+                    outout.append(helper(('\t\t\tset_variable', 'value'), n, d))
 
                 outout.append('\t\t}\n')
 
-            out.append(event % (5, ''.join([item for item in outout if item]), 6))
+            out.append(event % (iii, ''.join([item for item in outout if item]), ''))
 
             print('Parsing and Reconstructing the Events')
 
             out[1] = reconstruct(parse_block(out[1]))
-            out[2] = reconstruct(parse_block(out[2]))
 
             print('Joining the Events')
             
