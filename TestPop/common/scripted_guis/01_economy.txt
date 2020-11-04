@@ -1,0 +1,26 @@
+﻿toggle_county_trade = {
+	scope = province
+	
+	is_shown = {
+		always = yes
+	}
+	is_valid = {
+		always = yes
+	}
+	
+	effect = {
+		if = {
+			limit = {
+				has_variable = toggled_county_trade
+			}
+			remove_variable = toggled_county_trade
+			
+			^^goods^remove_variable = info_trade_county_price_&goods&^
+		}
+		else = {
+			set_variable = { name = toggled_county_trade value = 1 }
+			
+			^^goods^set_variable = { name = info_trade_county_price_&goods& value = county.var:trade_price_&goods& }^
+		}
+	}
+}

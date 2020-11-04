@@ -51,6 +51,8 @@ prod_new_instance = {
 			county = {
 				add_to_variable_list = { name = prod_instances target = scope:prod_new_instance_temp }
 			}
+			
+			slot_assign = { name = prod_slot target = scope:prod_new_instance_temp }
 		}
 		
 		scope:prod_new_instance_temp = {
@@ -112,6 +114,8 @@ prod_pop_instance = {
 		county = {
 			remove_list_variable = { name = prod_instances target = scope:prod_pop_instance_t }
 		}
+		
+		slot_remove = { name = prod_slot target = scope:prod_pop_instance_t }
 	}
 	
 	death = natural

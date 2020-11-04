@@ -1,922 +1,675 @@
-﻿while = { 
-	count = 100
-	every_county = { 
-		limit = { 
-			is_valid_prov = yes
-		}
-		set_variable = { 
-			name = migration_main_t
-			value = 0
-		}
+﻿every_province = { 
+	limit = { 
+		is_valid_prov = yes
 	}
-	every_province = { 
-		limit = { 
-			is_valid_prov = yes
-		}
-		set_variable = { 
-			name = migration_main_t
-			value = var:pop_nutrient
-		}
-		change_variable = { 
-			name = migration_main_t
-			add = 1
-		}
-		change_variable = { 
-			name = migration_main_t
-			multiply = var:pop_calorie
-		}
-		change_variable = { 
-			name = migration_main_t
-			subtract = 2
-		}
-		change_variable = { 
-			name = migration_main_t
-			divide = -2
-		}
-		change_variable = { 
-			name = migration_main_t
-			multiply = var:migration_main_t
-		}
-		if = { 
-			limit = { 
-				NOT = { 
-					has_variable = migration_tick
-				}
-			}
-			set_variable = { 
-				name = migration_tick
-				value = 0
-			}
-		}
-		change_variable = { 
-			name = migration_tick
-			add = var:migration_main_t
-		}
-		if = { 
-			limit = { 
-				has_variable = migration_tick
-				var:migration_tick >= 10
-			}
-			set_variable = { 
-				name = migration_tick
-				value = 10
-			}
-		}
-		set_variable = { 
-			name = migration_main_ttttt
-			value = var:migration_tick
-		}
-		change_variable = { 
-			name = migration_main_ttttt
-			multiply = var:pop_total
-		}
-		change_variable = { 
-			name = migration_main_ttttt
-			divide = 100
-		}
-		county = { 
-			change_variable = { 
-				name = migration_main_t
-				add = prev.var:migration_main_ttttt
-			}
-		}
-		set_variable = { 
-			name = migration_main_t
-			value = var:pop_calorie
-		}
-		change_variable = { 
-			name = migration_main_t
-			add = var:pop_nutrient
-		}
-		change_variable = { 
-			name = migration_main_t
-			add = var:pop_comfort
-		}
-		change_variable = { 
-			name = migration_main_t
-			add = var:pop_luxury
-		}
-		change_variable = { 
-			name = migration_main_t
-			multiply = 25
-		}
-		change_variable = { 
-			name = migration_route
-			multiply = 0.95
-		}
-	}
-	every_county = { 
-		limit = { 
-			is_valid_prov = yes
-		}
-		if = { 
-			limit = { 
-				has_variable = migration_main_t
-				var:migration_main_t >= 5
-			}
-			every_county_province = { 
-				save_temporary_scope_as = migration_main_t
-				prev = { 
-					add_to_variable_list = { 
-						name = migration_main_provs
-						target = prev
-					}
-				}
-				if = { 
-					limit = { 
-						has_variable = migration_main_ttttt
-						var:migration_main_ttttt > 0
-					}
-					change_variable = { 
-						name = pop_total
-						subtract = var:migration_main_ttttt
-					}
-					set_variable = { 
-						name = migration_tick
-						value = 0
-					}
-				}
-			}
-			every_province = { 
-				add_to_global_variable_list = { 
-					name = travel_distance_dijkstra_every_white
-					target = this
-				}
-			}
-			every_in_global_list = { 
-				variable = every_water
-				add_to_global_variable_list = { 
-					name = travel_distance_dijkstra_every_white
-					target = this
-				}
-			}
-			every_in_global_list = { 
-				variable = travel_distance_dijkstra_every_white
-				set_variable = { 
-					name = travel_distance_distance
-					value = 210000
-				}
-				set_variable = { 
-					name = travel_distance_prev
-					value = this
-				}
-			}
+	every_in_list = { 
+		variable = prod_instances
+		prev = { 
 			if = { 
 				limit = { 
-					or = { 
-						always = no
+					NOT = { 
+						has_variable = prod_slot_0
 					}
-				}
-				every_in_global_list = { 
-					variable = migration_main_provs
-					set_variable = { 
-						name = travel_distance_distance
-						value = 0.001
-					}
-					set_variable = { 
-						name = travel_distance_prev
-						value = this
-					}
-					add_to_global_variable_list = { 
-						name = travel_distance_fray
-						target = this
-					}
-					add_to_global_variable_list = { 
-						name = travel_distance_visited
-						target = this
-					}
-				}
-			}
-			else = { 
-				every_in_list = { 
-					variable = migration_main_provs
-					set_variable = { 
-						name = travel_distance_distance
-						value = 0.001
-					}
-					set_variable = { 
-						name = travel_distance_prev
-						value = this
-					}
-					add_to_global_variable_list = { 
-						name = travel_distance_fray
-						target = this
-					}
-					add_to_global_variable_list = { 
-						name = travel_distance_visited
-						target = this
-					}
-				}
-			}
-			scope:migration_main_t = { 
-				set_variable = { 
-					name = travel_distance_distance
-					value = 0.001
 				}
 				set_variable = { 
-					name = travel_distance_prev
-					value = this
-				}
-				add_to_global_variable_list = { 
-					name = travel_distance_fray
-					target = this
-				}
-				add_to_global_variable_list = { 
-					name = travel_distance_visited
-					target = this
+					name = prod_slot_0
+					value = prev
 				}
 			}
-			while = { 
+			else_if = { 
 				limit = { 
-					has_global_variable_list = travel_distance_fray
-					global_variable_list_size = { 
-						name = travel_distance_fray
-						value >= 1
+					NOT = { 
+						has_variable = prod_slot_1
 					}
 				}
-				count = 100000
-				ordered_in_global_list = { 
-					variable = travel_distance_fray
-					order_by = travel_distance_order_value
-					position = 0
-					set_global_variable = { 
-						name = travel_distance_select
-						value = this
-					}
-					remove_list_global_variable = { 
-						name = travel_distance_fray
-						target = this
-					}
-				}
-				global_var:travel_distance_select = { 
-					if = { 
-						limit = { 
-							has_variable_list = prov_neighb
-						}
-						every_in_list = { 
-							variable = prov_neighb
-							limit = { 
-								has_variable = travel_distance_distance
-								var:travel_distance_distance = { 
-									compare_value > global_var:travel_distance_select.var:travel_distance_distance
-								}
-							}
-							set_variable = { 
-								name = get_distance_neighb_x_diff
-								value = global_var:travel_distance_select.var:prov_x
-							}
-							set_variable = { 
-								name = get_distance_neighb_y_diff
-								value = global_var:travel_distance_select.var:prov_y
-							}
-							change_variable = { 
-								name = get_distance_neighb_x_diff
-								subtract = this.var:prov_x
-							}
-							change_variable = { 
-								name = get_distance_neighb_y_diff
-								subtract = this.var:prov_y
-							}
-							set_variable = { 
-								name = math_dist_x
-								value = var:get_distance_neighb_x_diff
-							}
-							set_variable = { 
-								name = math_dist_y
-								value = var:get_distance_neighb_y_diff
-							}
-							if = { 
-								limit = { 
-									var:math_dist_x < 0
-								}
-								set_variable = { 
-									name = math_dist_t
-									value = var:math_dist_x
-								}
-								set_variable = { 
-									name = math_dist_x
-									value = 0
-								}
-								change_variable = { 
-									name = math_dist_x
-									subtract = var:math_dist_t
-								}
-							}
-							if = { 
-								limit = { 
-									var:math_dist_y < 0
-								}
-								set_variable = { 
-									name = math_dist_t
-									value = var:math_dist_y
-								}
-								set_variable = { 
-									name = math_dist_y
-									value = 0
-								}
-								change_variable = { 
-									name = math_dist_y
-									subtract = var:math_dist_t
-								}
-							}
-							if = { 
-								limit = { 
-									var:math_dist_x = { 
-										compare_value < prev.var:math_dist_y
-									}
-								}
-								set_variable = { 
-									name = math_dist_t
-									value = var:math_dist_x
-								}
-								set_variable = { 
-									name = math_dist_x
-									value = var:math_dist_y
-								}
-								set_variable = { 
-									name = math_dist_y
-									value = var:math_dist_t
-								}
-							}
-							change_variable = { 
-								name = math_dist_x
-								multiply = 100.7
-							}
-							change_variable = { 
-								name = math_dist_y
-								multiply = 44.1
-							}
-							set_variable = { 
-								name = travel_distance_distance_new
-								value = var:math_dist_x
-							}
-							change_variable = { 
-								name = travel_distance_distance_new
-								add = var:math_dist_y
-							}
-							change_variable = { 
-								name = travel_distance_distance_new
-								divide = 102.4
-							}
-							remove_variable = math_dist_x
-							remove_variable = math_dist_y
-							remove_variable = math_dist_t
-							set_variable = { 
-								name = get_distance_neighb_cost
-								value = global_var:travel_distance_select.var:prov_cost
-							}
-							change_variable = { 
-								name = get_distance_neighb_cost
-								add = this.var:prov_cost
-							}
-							change_variable = { 
-								name = travel_distance_distance_new
-								multiply = var:get_distance_neighb_cost
-							}
-							change_variable = { 
-								name = travel_distance_distance_new
-								add = global_var:travel_distance_select.var:travel_distance_distance
-							}
-							remove_variable = get_distance_neighb_x_diff
-							remove_variable = get_distance_neighb_y_diff
-							remove_variable = get_distance_neighb_cost
-							if = { 
-								limit = { 
-									var:travel_distance_distance_new <= 380
-									var:travel_distance_distance_new = { 
-										compare_value < prev.var:travel_distance_distance
-									}
-								}
-								add_to_global_variable_list = { 
-									name = travel_distance_fray
-									target = this
-								}
-								add_to_global_variable_list = { 
-									name = travel_distance_visited
-									target = this
-								}
-								set_variable = { 
-									name = travel_distance_distance
-									value = var:travel_distance_distance_new
-								}
-								set_variable = { 
-									name = travel_distance_prev
-									value = global_var:travel_distance_select
-								}
-							}
-						}
-					}
-					if = { 
-						limit = { 
-							has_variable_list = prov_port
-						}
-						every_in_list = { 
-							variable = prov_port
-							limit = { 
-								has_variable = travel_distance_distance
-								var:travel_distance_distance = { 
-									compare_value > global_var:travel_distance_select.var:travel_distance_distance
-								}
-							}
-							set_variable = { 
-								name = get_distance_port_cost
-								value = 100
-							}
-							set_variable = { 
-								name = get_distance_neighb_x_diff
-								value = global_var:travel_distance_select.var:prov_x
-							}
-							set_variable = { 
-								name = get_distance_neighb_y_diff
-								value = global_var:travel_distance_select.var:prov_y
-							}
-							change_variable = { 
-								name = get_distance_neighb_x_diff
-								subtract = this.var:prov_x
-							}
-							change_variable = { 
-								name = get_distance_neighb_y_diff
-								subtract = this.var:prov_y
-							}
-							set_variable = { 
-								name = math_dist_x
-								value = var:get_distance_neighb_x_diff
-							}
-							set_variable = { 
-								name = math_dist_y
-								value = var:get_distance_neighb_y_diff
-							}
-							if = { 
-								limit = { 
-									var:math_dist_x < 0
-								}
-								set_variable = { 
-									name = math_dist_t
-									value = var:math_dist_x
-								}
-								set_variable = { 
-									name = math_dist_x
-									value = 0
-								}
-								change_variable = { 
-									name = math_dist_x
-									subtract = var:math_dist_t
-								}
-							}
-							if = { 
-								limit = { 
-									var:math_dist_y < 0
-								}
-								set_variable = { 
-									name = math_dist_t
-									value = var:math_dist_y
-								}
-								set_variable = { 
-									name = math_dist_y
-									value = 0
-								}
-								change_variable = { 
-									name = math_dist_y
-									subtract = var:math_dist_t
-								}
-							}
-							if = { 
-								limit = { 
-									var:math_dist_x = { 
-										compare_value < prev.var:math_dist_y
-									}
-								}
-								set_variable = { 
-									name = math_dist_t
-									value = var:math_dist_x
-								}
-								set_variable = { 
-									name = math_dist_x
-									value = var:math_dist_y
-								}
-								set_variable = { 
-									name = math_dist_y
-									value = var:math_dist_t
-								}
-							}
-							change_variable = { 
-								name = math_dist_x
-								multiply = 100.7
-							}
-							change_variable = { 
-								name = math_dist_y
-								multiply = 44.1
-							}
-							set_variable = { 
-								name = travel_distance_distance_new
-								value = var:math_dist_x
-							}
-							change_variable = { 
-								name = travel_distance_distance_new
-								add = var:math_dist_y
-							}
-							change_variable = { 
-								name = travel_distance_distance_new
-								divide = 102.4
-							}
-							remove_variable = math_dist_x
-							remove_variable = math_dist_y
-							remove_variable = math_dist_t
-							set_variable = { 
-								name = get_distance_neighb_cost
-								value = global_var:travel_distance_select.var:prov_cost
-							}
-							change_variable = { 
-								name = get_distance_neighb_cost
-								add = this.var:prov_cost
-							}
-							change_variable = { 
-								name = travel_distance_distance_new
-								multiply = var:get_distance_neighb_cost
-							}
-							change_variable = { 
-								name = travel_distance_distance_new
-								add = global_var:travel_distance_select.var:travel_distance_distance
-							}
-							remove_variable = get_distance_neighb_x_diff
-							remove_variable = get_distance_neighb_y_diff
-							remove_variable = get_distance_neighb_cost
-							change_variable = { 
-								name = travel_distance_distance_new
-								add = var:get_distance_port_cost
-							}
-							remove_variable = get_distance_port_cost
-							if = { 
-								limit = { 
-									var:travel_distance_distance_new <= 380
-									var:travel_distance_distance_new = { 
-										compare_value < prev.var:travel_distance_distance
-									}
-								}
-								add_to_global_variable_list = { 
-									name = travel_distance_fray
-									target = this
-								}
-								add_to_global_variable_list = { 
-									name = travel_distance_visited
-									target = this
-								}
-								set_variable = { 
-									name = travel_distance_distance
-									value = var:travel_distance_distance_new
-								}
-								set_variable = { 
-									name = travel_distance_prev
-									value = global_var:travel_distance_select
-								}
-							}
-						}
-					}
+				set_variable = { 
+					name = prod_slot_1
+					value = prev
 				}
 			}
-			every_in_global_list = { 
-				variable = travel_distance_visited
+			else_if = { 
 				limit = { 
-					var:prov_sea = 2
+					NOT = { 
+						has_variable = prod_slot_2
+					}
 				}
-				while = { 
-					limit = { 
-						var:travel_distance_prev.var:prov_sea = 2
-					}
-					set_variable = { 
-						name = travel_distance_prev
-						value = var:travel_distance_prev.var:travel_distance_prev
-					}
+				set_variable = { 
+					name = prod_slot_2
+					value = prev
 				}
 			}
-			every_in_global_list = { 
-				variable = travel_distance_visited
+			else_if = { 
 				limit = { 
-					var:prov_sea = 1
-				}
-				while = { 
-					limit = { 
-						var:travel_distance_prev.var:prov_sea = 2
-					}
-					set_variable = { 
-						name = travel_distance_prev
-						value = var:travel_distance_prev.var:travel_distance_prev
+					NOT = { 
+						has_variable = prod_slot_3
 					}
 				}
-			}
-			every_in_global_list = { 
-				variable = travel_distance_visited
-				add_to_global_variable_list = { 
-					name = migration_main_list
-					target = this
-				}
 				set_variable = { 
-					name = migration_main_dist
-					value = var:travel_distance_distance
+					name = prod_slot_3
+					value = prev
 				}
-				set_variable = { 
-					name = migration_main_prev
-					value = var:travel_distance_prev
-				}
-				remove_variable = travel_distance_distance_new
-				remove_variable = travel_distance_distance
-				remove_variable = travel_distance_prev
 			}
-			clear_global_variable_list = travel_distance_fray
-			clear_global_variable_list = travel_distance_visited
-			remove_global_variable = travel_distance_select
-			every_in_global_list = { 
-				variable = travel_distance_dijkstra_every_white
-				remove_variable = travel_distance_distance
-				remove_variable = travel_distance_prev
-			}
-			clear_global_variable_list = travel_distance_dijkstra_every_white
-			save_temporary_scope_as = migration_main_t
-			set_variable = { 
-				name = migration_main_tt
-				value = 0
-			}
-			every_in_global_list = { 
+			else_if = { 
 				limit = { 
-					is_valid_prov = yes
-					has_variable = migration_main_t
-					var:migration_main_t > 0
-				}
-				variable = migration_main_list
-				set_variable = { 
-					name = migration_main_tt
-					value = var:migration_main_t
-				}
-				if = { 
-					limit = { 
-						NOT = { 
-							has_variable = migration_main_tttt
-						}
+					NOT = { 
+						has_variable = prod_slot_4
 					}
-					set_variable = { 
-						name = math_sqrt_i
-						value = var:pop_total
-					}
-					if = { 
-						limit = { 
-							has_variable = math_sqrt_i
-							var:math_sqrt_i > 0
-						}
-						set_variable = { 
-							name = math_sqrt_x
-							value = var:math_sqrt_i
-						}
-						set_variable = { 
-							name = math_sqrt_n
-							value = var:math_sqrt_i
-						}
-						change_variable = { 
-							name = math_sqrt_n
-							divide = 2
-						}
-						set_variable = { 
-							name = math_sqrt_tt
-							value = 0.5
-						}
-						while = { 
-							limit = { 
-								has_variable = math_sqrt_n
-								var:math_sqrt_n > 0
-								OR = { 
-									var:math_sqrt_tt < 0.995
-									var:math_sqrt_tt > 1.005
-								}
-							}
-							set_variable = { 
-								name = math_sqrt_x
-								value = var:math_sqrt_n
-							}
-							set_variable = { 
-								name = math_sqrt_t
-								value = var:math_sqrt_i
-							}
-							change_variable = { 
-								name = math_sqrt_t
-								divide = var:math_sqrt_n
-							}
-							change_variable = { 
-								name = math_sqrt_n
-								add = var:math_sqrt_t
-							}
-							change_variable = { 
-								name = math_sqrt_n
-								divide = 2
-							}
-							set_variable = { 
-								name = math_sqrt_tt
-								value = var:math_sqrt_x
-							}
-							change_variable = { 
-								name = math_sqrt_tt
-								divide = var:math_sqrt_n
-							}
-						}
-						set_variable = { 
-							name = migration_main_tttt
-							value = var:math_sqrt_n
-						}
-						remove_variable = math_sqrt_x
-						remove_variable = math_sqrt_t
-						remove_variable = math_sqrt_n
-						remove_variable = math_sqrt_tt
-					}
-					else = { 
-						set_variable = { 
-							name = migration_main_tttt
-							value = 0
-						}
-					}
-					remove_variable = math_sqrt_i
-				}
-				change_variable = { 
-					name = migration_main_tt
-					multiply = var:migration_main_tttt
 				}
 				set_variable = { 
-					name = migration_main_ttt
-					value = var:migration_main_dist
-				}
-				change_variable = { 
-					name = migration_main_ttt
-					divide = 20
-				}
-				change_variable = { 
-					name = migration_main_ttt
-					add = 1
-				}
-				if = { 
-					limit = { 
-						county = scope:migration_main_t
-					}
-					change_variable = { 
-						name = migration_main_ttt
-						divide = 2
-					}
-					change_variable = { 
-						name = migration_main_ttt
-						subtract = 0.1
-					}
-				}
-				else_if = { 
-					limit = { 
-						county.holder.top_liege = scope:migration_main_t.holder.top_liege
-					}
-					change_variable = { 
-						name = migration_main_ttt
-						divide = 1.5
-					}
-					change_variable = { 
-						name = migration_main_ttt
-						subtract = 0.05
-					}
-				}
-				if = { 
-					limit = { 
-						culture = scope:migration_main_t.culture
-					}
-					change_variable = { 
-						name = migration_main_ttt
-						divide = 2
-					}
-					change_variable = { 
-						name = migration_main_ttt
-						subtract = 0.1
-					}
-				}
-				else_if = { 
-					limit = { 
-						culture_group = scope:migration_main_t.culture_group
-					}
-					change_variable = { 
-						name = migration_main_ttt
-						divide = 1.5
-					}
-					change_variable = { 
-						name = migration_main_ttt
-						subtract = 0.05
-					}
-				}
-				if = { 
-					limit = { 
-						OR = { 
-							NOT = { 
-								religion = scope:migration_main_t.religion
-							}
-							NOT = { 
-								religion = scope:migration_main_t.holder.religion
-							}
-						}
-					}
-					change_variable = { 
-						name = migration_main_ttt
-						multiply = 2
-					}
-					change_variable = { 
-						name = migration_main_ttt
-						add = 0.1
-					}
-				}
-				change_variable = { 
-					name = migration_main_ttt
-					add = 1
-				}
-				change_variable = { 
-					name = migration_main_tt
-					divide = var:migration_main_ttt
-				}
-				prev = { 
-					change_variable = { 
-						name = migration_main_tt
-						add = prev.var:migration_main_tt
-					}
+					name = prod_slot_4
+					value = prev
 				}
 			}
+			else_if = { 
+				limit = { 
+					NOT = { 
+						has_variable = prod_slot_5
+					}
+				}
+				set_variable = { 
+					name = prod_slot_5
+					value = prev
+				}
+			}
+			else_if = { 
+				limit = { 
+					NOT = { 
+						has_variable = prod_slot_6
+					}
+				}
+				set_variable = { 
+					name = prod_slot_6
+					value = prev
+				}
+			}
+			else_if = { 
+				limit = { 
+					NOT = { 
+						has_variable = prod_slot_7
+					}
+				}
+				set_variable = { 
+					name = prod_slot_7
+					value = prev
+				}
+			}
+			else_if = { 
+				limit = { 
+					NOT = { 
+						has_variable = prod_slot_8
+					}
+				}
+				set_variable = { 
+					name = prod_slot_8
+					value = prev
+				}
+			}
+			else_if = { 
+				limit = { 
+					NOT = { 
+						has_variable = prod_slot_9
+					}
+				}
+				set_variable = { 
+					name = prod_slot_9
+					value = prev
+				}
+			}
+			else_if = { 
+				limit = { 
+					NOT = { 
+						has_variable = prod_slot_10
+					}
+				}
+				set_variable = { 
+					name = prod_slot_10
+					value = prev
+				}
+			}
+			else_if = { 
+				limit = { 
+					NOT = { 
+						has_variable = prod_slot_11
+					}
+				}
+				set_variable = { 
+					name = prod_slot_11
+					value = prev
+				}
+			}
+			else_if = { 
+				limit = { 
+					NOT = { 
+						has_variable = prod_slot_12
+					}
+				}
+				set_variable = { 
+					name = prod_slot_12
+					value = prev
+				}
+			}
+			else_if = { 
+				limit = { 
+					NOT = { 
+						has_variable = prod_slot_13
+					}
+				}
+				set_variable = { 
+					name = prod_slot_13
+					value = prev
+				}
+			}
+			else_if = { 
+				limit = { 
+					NOT = { 
+						has_variable = prod_slot_14
+					}
+				}
+				set_variable = { 
+					name = prod_slot_14
+					value = prev
+				}
+			}
+			else_if = { 
+				limit = { 
+					NOT = { 
+						has_variable = prod_slot_15
+					}
+				}
+				set_variable = { 
+					name = prod_slot_15
+					value = prev
+				}
+			}
+			else_if = { 
+				limit = { 
+					NOT = { 
+						has_variable = prod_slot_16
+					}
+				}
+				set_variable = { 
+					name = prod_slot_16
+					value = prev
+				}
+			}
+			else_if = { 
+				limit = { 
+					NOT = { 
+						has_variable = prod_slot_17
+					}
+				}
+				set_variable = { 
+					name = prod_slot_17
+					value = prev
+				}
+			}
+			else_if = { 
+				limit = { 
+					NOT = { 
+						has_variable = prod_slot_18
+					}
+				}
+				set_variable = { 
+					name = prod_slot_18
+					value = prev
+				}
+			}
+			else_if = { 
+				limit = { 
+					NOT = { 
+						has_variable = prod_slot_19
+					}
+				}
+				set_variable = { 
+					name = prod_slot_19
+					value = prev
+				}
+			}
+			else_if = { 
+				limit = { 
+					NOT = { 
+						has_variable = prod_slot_20
+					}
+				}
+				set_variable = { 
+					name = prod_slot_20
+					value = prev
+				}
+			}
+			else_if = { 
+				limit = { 
+					NOT = { 
+						has_variable = prod_slot_21
+					}
+				}
+				set_variable = { 
+					name = prod_slot_21
+					value = prev
+				}
+			}
+			else_if = { 
+				limit = { 
+					NOT = { 
+						has_variable = prod_slot_22
+					}
+				}
+				set_variable = { 
+					name = prod_slot_22
+					value = prev
+				}
+			}
+			else_if = { 
+				limit = { 
+					NOT = { 
+						has_variable = prod_slot_23
+					}
+				}
+				set_variable = { 
+					name = prod_slot_23
+					value = prev
+				}
+			}
+			else_if = { 
+				limit = { 
+					NOT = { 
+						has_variable = prod_slot_24
+					}
+				}
+				set_variable = { 
+					name = prod_slot_24
+					value = prev
+				}
+			}
+			else_if = { 
+				limit = { 
+					NOT = { 
+						has_variable = prod_slot_25
+					}
+				}
+				set_variable = { 
+					name = prod_slot_25
+					value = prev
+				}
+			}
+			else_if = { 
+				limit = { 
+					NOT = { 
+						has_variable = prod_slot_26
+					}
+				}
+				set_variable = { 
+					name = prod_slot_26
+					value = prev
+				}
+			}
+			else_if = { 
+				limit = { 
+					NOT = { 
+						has_variable = prod_slot_27
+					}
+				}
+				set_variable = { 
+					name = prod_slot_27
+					value = prev
+				}
+			}
+			else_if = { 
+				limit = { 
+					NOT = { 
+						has_variable = prod_slot_28
+					}
+				}
+				set_variable = { 
+					name = prod_slot_28
+					value = prev
+				}
+			}
+			else_if = { 
+				limit = { 
+					NOT = { 
+						has_variable = prod_slot_29
+					}
+				}
+				set_variable = { 
+					name = prod_slot_29
+					value = prev
+				}
+			}
+		}
+	}
+	every_in_list = { 
+		variable = build_slots
+		prev = { 
 			if = { 
 				limit = { 
-					has_variable = migration_main_tt
-					var:migration_main_tt > 0
+					NOT = { 
+						has_variable = build_slot_0
+					}
 				}
-				every_in_global_list = { 
-					limit = { 
-						is_valid_prov = yes
-						has_variable = migration_main_tt
-						var:migration_main_tt > 0
-					}
-					variable = migration_main_list
-					change_variable = { 
-						name = migration_main_tt
-						multiply = 100
-					}
-					change_variable = { 
-						name = migration_main_tt
-						divide = prev.var:migration_main_tt
-					}
-					change_variable = { 
-						name = migration_main_tt
-						multiply = prev.var:migration_main_t
-					}
-					change_variable = { 
-						name = migration_main_tt
-						divide = 100
-					}
-					change_variable = { 
-						name = pop_total
-						add = var:migration_main_tt
-					}
-					prev = { 
-						change_variable = { 
-							name = pop_total
-							subtract = prev.var:migration_main_tt
-						}
-					}
-					save_temporary_scope_as = migration_main_t
-					while = { 
-						limit = { 
-							scope:migration_main_t = { 
-								NOT = { 
-									var:migration_main_prev = this
-								}
-							}
-						}
-						scope:migration_main_t = { 
-							change_variable = { 
-								name = migration_route
-								add = prev.var:migration_main_tt
-							}
-							var:migration_main_prev = { 
-								save_temporary_scope_as = migration_main_t
-							}
-						}
-					}
+				set_variable = { 
+					name = build_slot_0
+					value = prev
 				}
 			}
-			remove_variable = migration_main_tt
-			clear_variable_list = migration_main_provs
-			clear_global_variable_list = migration_main_list
+			else_if = { 
+				limit = { 
+					NOT = { 
+						has_variable = build_slot_1
+					}
+				}
+				set_variable = { 
+					name = build_slot_1
+					value = prev
+				}
+			}
+			else_if = { 
+				limit = { 
+					NOT = { 
+						has_variable = build_slot_2
+					}
+				}
+				set_variable = { 
+					name = build_slot_2
+					value = prev
+				}
+			}
+			else_if = { 
+				limit = { 
+					NOT = { 
+						has_variable = build_slot_3
+					}
+				}
+				set_variable = { 
+					name = build_slot_3
+					value = prev
+				}
+			}
+			else_if = { 
+				limit = { 
+					NOT = { 
+						has_variable = build_slot_4
+					}
+				}
+				set_variable = { 
+					name = build_slot_4
+					value = prev
+				}
+			}
+			else_if = { 
+				limit = { 
+					NOT = { 
+						has_variable = build_slot_5
+					}
+				}
+				set_variable = { 
+					name = build_slot_5
+					value = prev
+				}
+			}
+			else_if = { 
+				limit = { 
+					NOT = { 
+						has_variable = build_slot_6
+					}
+				}
+				set_variable = { 
+					name = build_slot_6
+					value = prev
+				}
+			}
+			else_if = { 
+				limit = { 
+					NOT = { 
+						has_variable = build_slot_7
+					}
+				}
+				set_variable = { 
+					name = build_slot_7
+					value = prev
+				}
+			}
+			else_if = { 
+				limit = { 
+					NOT = { 
+						has_variable = build_slot_8
+					}
+				}
+				set_variable = { 
+					name = build_slot_8
+					value = prev
+				}
+			}
+			else_if = { 
+				limit = { 
+					NOT = { 
+						has_variable = build_slot_9
+					}
+				}
+				set_variable = { 
+					name = build_slot_9
+					value = prev
+				}
+			}
+			else_if = { 
+				limit = { 
+					NOT = { 
+						has_variable = build_slot_10
+					}
+				}
+				set_variable = { 
+					name = build_slot_10
+					value = prev
+				}
+			}
+			else_if = { 
+				limit = { 
+					NOT = { 
+						has_variable = build_slot_11
+					}
+				}
+				set_variable = { 
+					name = build_slot_11
+					value = prev
+				}
+			}
+			else_if = { 
+				limit = { 
+					NOT = { 
+						has_variable = build_slot_12
+					}
+				}
+				set_variable = { 
+					name = build_slot_12
+					value = prev
+				}
+			}
+			else_if = { 
+				limit = { 
+					NOT = { 
+						has_variable = build_slot_13
+					}
+				}
+				set_variable = { 
+					name = build_slot_13
+					value = prev
+				}
+			}
+			else_if = { 
+				limit = { 
+					NOT = { 
+						has_variable = build_slot_14
+					}
+				}
+				set_variable = { 
+					name = build_slot_14
+					value = prev
+				}
+			}
+			else_if = { 
+				limit = { 
+					NOT = { 
+						has_variable = build_slot_15
+					}
+				}
+				set_variable = { 
+					name = build_slot_15
+					value = prev
+				}
+			}
+			else_if = { 
+				limit = { 
+					NOT = { 
+						has_variable = build_slot_16
+					}
+				}
+				set_variable = { 
+					name = build_slot_16
+					value = prev
+				}
+			}
+			else_if = { 
+				limit = { 
+					NOT = { 
+						has_variable = build_slot_17
+					}
+				}
+				set_variable = { 
+					name = build_slot_17
+					value = prev
+				}
+			}
+			else_if = { 
+				limit = { 
+					NOT = { 
+						has_variable = build_slot_18
+					}
+				}
+				set_variable = { 
+					name = build_slot_18
+					value = prev
+				}
+			}
+			else_if = { 
+				limit = { 
+					NOT = { 
+						has_variable = build_slot_19
+					}
+				}
+				set_variable = { 
+					name = build_slot_19
+					value = prev
+				}
+			}
+			else_if = { 
+				limit = { 
+					NOT = { 
+						has_variable = build_slot_20
+					}
+				}
+				set_variable = { 
+					name = build_slot_20
+					value = prev
+				}
+			}
+			else_if = { 
+				limit = { 
+					NOT = { 
+						has_variable = build_slot_21
+					}
+				}
+				set_variable = { 
+					name = build_slot_21
+					value = prev
+				}
+			}
+			else_if = { 
+				limit = { 
+					NOT = { 
+						has_variable = build_slot_22
+					}
+				}
+				set_variable = { 
+					name = build_slot_22
+					value = prev
+				}
+			}
+			else_if = { 
+				limit = { 
+					NOT = { 
+						has_variable = build_slot_23
+					}
+				}
+				set_variable = { 
+					name = build_slot_23
+					value = prev
+				}
+			}
+			else_if = { 
+				limit = { 
+					NOT = { 
+						has_variable = build_slot_24
+					}
+				}
+				set_variable = { 
+					name = build_slot_24
+					value = prev
+				}
+			}
+			else_if = { 
+				limit = { 
+					NOT = { 
+						has_variable = build_slot_25
+					}
+				}
+				set_variable = { 
+					name = build_slot_25
+					value = prev
+				}
+			}
+			else_if = { 
+				limit = { 
+					NOT = { 
+						has_variable = build_slot_26
+					}
+				}
+				set_variable = { 
+					name = build_slot_26
+					value = prev
+				}
+			}
+			else_if = { 
+				limit = { 
+					NOT = { 
+						has_variable = build_slot_27
+					}
+				}
+				set_variable = { 
+					name = build_slot_27
+					value = prev
+				}
+			}
+			else_if = { 
+				limit = { 
+					NOT = { 
+						has_variable = build_slot_28
+					}
+				}
+				set_variable = { 
+					name = build_slot_28
+					value = prev
+				}
+			}
+			else_if = { 
+				limit = { 
+					NOT = { 
+						has_variable = build_slot_29
+					}
+				}
+				set_variable = { 
+					name = build_slot_29
+					value = prev
+				}
+			}
 		}
-		remove_variable = migration_main_t
-	}
-	clear_global_variable_list = migration_main_counties
-	every_province = { 
-		limit = { 
-			has_variable = migration_main_dist
-		}
-		remove_variable = migration_main_dist
-		remove_variable = migration_main_prev
-	}
-	every_province = { 
-		limit = { 
-			is_valid_prov = yes
-		}
-		remove_variable = migration_main_t
-		remove_variable = migration_main_tt
-		remove_variable = migration_main_ttt
-		remove_variable = migration_main_tttt
-		remove_variable = migration_main_ttttt
 	}
 }

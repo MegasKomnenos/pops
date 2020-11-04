@@ -248,7 +248,25 @@ if __name__ == '__main__':
         scripts[name] = apply_macro(script, macros)
 
     with open('out.txt', 'w', encoding='utf-8-sig') as ff:
-        run = 'while = { count = 100 migration_main = yes }'
+        run = '''every_province = {
+	limit = {
+		is_valid_prov = yes
+	}
+	every_in_list = {
+		variable = prod_instances
+		
+		prev = {
+			slot_assign = { name = prod_slot target = prev }
+		}
+	}
+	every_in_list = {
+		variable = build_slots
+		
+		prev = {
+			slot_assign = { name = build_slot target = prev }
+		}
+	}
+}'''
         
         file = apply_macro(parse_file_block(run), macros)
         

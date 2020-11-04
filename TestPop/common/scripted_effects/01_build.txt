@@ -59,6 +59,8 @@ build_start_project = {
 		
 		prev = {
 			add_to_variable_list = { name = build_slots target = prev }
+			
+			slot_assign = { name = build_slot target = prev }
 		}
 		
 		set_variable = { name = build_active value = prev.var:build_start_project_t }
@@ -203,6 +205,8 @@ build_update_project = {
 			}
 			var:build_location = {
 				remove_list_variable = { name = build_slots target = prev }
+				
+				slot_remove = { name = build_slot target = prev }
 			}
 			
 			remove_list_global_variable = { name = build_slots_active target = this }
