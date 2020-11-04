@@ -1,0 +1,209 @@
+﻿toggle_county_trade = {
+	scope = province
+	
+	is_shown = {
+		always = yes
+	}
+	is_valid = {
+		always = yes
+	}
+	
+	effect = {
+		if = {
+			limit = {
+				has_variable = toggled_county_trade
+			}
+			remove_variable = toggled_county_trade
+			
+			^^goods^remove_variable = info_trade_county_price_&goods&^
+		}
+		else = {
+			set_variable = { name = toggled_county_trade value = 1 }
+			
+			^^goods^set_variable = { name = info_trade_county_price_&goods& value = county.var:trade_price_&goods& }^
+		}
+	}
+}
+
+toggle_prov_trade = {
+	scope = province
+	
+	is_shown = {
+		always = yes
+	}
+	is_valid = {
+		always = yes
+	}
+	
+	effect = {
+		if = {
+			limit = {
+				has_variable = toggled_prov_trade
+			}
+			remove_variable = toggled_prov_trade
+			
+			^^goods^
+				remove_variable = info_trade_prov_sply_&goods&
+				remove_variable = info_trade_prov_dmnd_&goods&
+				remove_variable = info_trade_prov_dmnd_pop_&goods&
+				remove_variable = info_trade_prov_dmnd_prod_&goods&
+				remove_variable = info_trade_prov_dmnd_build_&goods&
+				remove_variable = info_trade_prov_in_&goods&
+				remove_variable = info_trade_prov_in_pop_&goods&
+				remove_variable = info_trade_prov_in_prod_&goods&
+				remove_variable = info_trade_prov_in_build_&goods&
+			^
+		}
+		else = {
+			set_variable = { name = toggled_prov_trade value = 1 }
+			
+			^^goods^
+				set_variable = { name = info_trade_prov_sply_&goods& value = 0 }
+				set_variable = { name = info_trade_prov_dmnd_&goods& value = 0 }
+				set_variable = { name = info_trade_prov_dmnd_pop_&goods& value = 0 }
+				set_variable = { name = info_trade_prov_dmnd_prod_&goods& value = 0 }
+				set_variable = { name = info_trade_prov_dmnd_build_&goods& value = 0 }
+				set_variable = { name = info_trade_prov_in_&goods& value = 0 }
+				set_variable = { name = info_trade_prov_in_pop_&goods& value = 0 }
+				set_variable = { name = info_trade_prov_in_prod_&goods& value = 0 }
+				set_variable = { name = info_trade_prov_in_build_&goods& value = 0 }
+				
+				if = {
+					limit = {
+						has_variable = pop_calorie_&goods&
+						
+						var:pop_calorie_&goods& > 0
+					}
+					change_variable = { name = info_trade_prov_dmnd_pop_&goods& add = var:pop_calorie_&goods& }
+				}
+				if = {
+					limit = {
+						has_variable = pop_calorie_actual_&goods&
+						
+						var:pop_calorie_actual_&goods& > 0
+					}
+					change_variable = { name = info_trade_prov_in_pop_&goods& add = var:pop_calorie_actual_&goods& }
+				}
+				
+				if = {
+					limit = {
+						has_variable = pop_nutrient_&goods&
+						
+						var:pop_nutrient_&goods& > 0
+					}
+					change_variable = { name = info_trade_prov_dmnd_pop_&goods& add = var:pop_nutrient_&goods& }
+				}
+				if = {
+					limit = {
+						has_variable = pop_nutrient_actual_&goods&
+						
+						var:pop_nutrient_actual_&goods& > 0
+					}
+					change_variable = { name = info_trade_prov_in_pop_&goods& add = var:pop_nutrient_actual_&goods& }
+				}
+				
+				if = {
+					limit = {
+						has_variable = pop_comfort_&goods&
+						
+						var:pop_comfort_&goods& > 0
+					}
+					change_variable = { name = info_trade_prov_dmnd_pop_&goods& add = var:pop_comfort_&goods& }
+				}
+				if = {
+					limit = {
+						has_variable = pop_comfort_actual_&goods&
+						
+						var:pop_comfort_actual_&goods& > 0
+					}
+					change_variable = { name = info_trade_prov_in_pop_&goods& add = var:pop_comfort_actual_&goods& }
+				}
+				
+				if = {
+					limit = {
+						has_variable = pop_luxury_&goods&
+						
+						var:pop_luxury_&goods& > 0
+					}
+					change_variable = { name = info_trade_prov_dmnd_pop_&goods& add = var:pop_luxury_&goods& }
+				}
+				if = {
+					limit = {
+						has_variable = pop_luxury_actual_&goods&
+						
+						var:pop_luxury_actual_&goods& > 0
+					}
+					change_variable = { name = info_trade_prov_in_pop_&goods& add = var:pop_luxury_actual_&goods& }
+				}
+
+				
+				every_in_list = {
+					variable = prod_instances
+					
+					if = {
+						limit = {
+							has_variable = prod_sply_old_&goods&
+							
+							var:prod_sply_old_&goods& > 0
+						}
+						prev = {
+							change_variable = { name = info_trade_prov_sply_&goods& add = prev.var:prod_sply_old_&goods& }
+						}
+					}
+					if = {
+						limit = {
+							has_variable = prod_dmnd_old_&goods&
+							
+							var:prod_dmnd_old_&goods& > 0
+						}
+						prev = {
+							change_variable = { name = info_trade_prov_dmnd_prod_&goods& add = prev.var:prod_dmnd_old_&goods& }
+						}
+					}
+					if = {
+						limit = {
+							has_variable = prod_in_old_&goods&
+							
+							var:prod_in_old_&goods& > 0
+						}
+						prev = {
+							change_variable = { name = info_trade_prov_in_prod_&goods& add = prev.var:prod_in_old_&goods& }
+						}
+					}
+				}
+				every_in_list = {
+					variable = build_slots
+					
+					if = {
+						limit = {
+							has_variable = build_&goods&
+							
+							var:build_&goods& > 0
+						}
+						prev = {
+							change_variable = { name = info_trade_prov_dmnd_build_&goods& add = prev.var:build_&goods& }
+						}
+					}
+					if = {
+						limit = {
+							has_variable = build_in_&goods&
+							
+							var:build_in_&goods& > 0
+						}
+						prev = {
+							change_variable = { name = info_trade_prov_in_build_&goods& add = prev.var:build_in_&goods& }
+						}
+					}
+				}
+				
+				change_variable = { name = info_trade_prov_dmnd_&goods& add = var:info_trade_prov_dmnd_pop_&goods& }
+				change_variable = { name = info_trade_prov_dmnd_&goods& add = var:info_trade_prov_dmnd_prod_&goods& }
+				change_variable = { name = info_trade_prov_dmnd_&goods& add = var:info_trade_prov_dmnd_build_&goods& }
+				
+				change_variable = { name = info_trade_prov_in_&goods& add = var:info_trade_prov_in_pop_&goods& }
+				change_variable = { name = info_trade_prov_in_&goods& add = var:info_trade_prov_in_prod_&goods& }
+				change_variable = { name = info_trade_prov_in_&goods& add = var:info_trade_prov_in_build_&goods& }
+			^
+		}
+	}
+}

@@ -91,78 +91,178 @@ window = {
 			
 			text_single = {
 				layoutpolicy_horizontal = expanding
-				text = "Food: [County.GetCapital.MakeScope.Var('info_trade_county_price_food').GetValue]"
+				text = "Food Price: [County.GetCapital.MakeScope.Var('info_trade_county_price_food').GetValue]"
 				using = Font_Size_Small
 			}
 			text_single = {
 				layoutpolicy_horizontal = expanding
-				text = "Cereal: [County.GetCapital.MakeScope.Var('info_trade_county_price_cereal').GetValue]"
+				text = "Cereal Price: [County.GetCapital.MakeScope.Var('info_trade_county_price_cereal').GetValue]"
 				using = Font_Size_Small
 			}
 			text_single = {
 				layoutpolicy_horizontal = expanding
-				text = "Salted: [County.GetCapital.MakeScope.Var('info_trade_county_price_salted').GetValue]"
+				text = "Salted Price: [County.GetCapital.MakeScope.Var('info_trade_county_price_salted').GetValue]"
 				using = Font_Size_Small
 			}
 			text_single = {
 				layoutpolicy_horizontal = expanding
-				text = "Salt: [County.GetCapital.MakeScope.Var('info_trade_county_price_salt').GetValue]"
+				text = "Salt Price: [County.GetCapital.MakeScope.Var('info_trade_county_price_salt').GetValue]"
 				using = Font_Size_Small
 			}
 			text_single = {
 				layoutpolicy_horizontal = expanding
-				text = "Mud: [County.GetCapital.MakeScope.Var('info_trade_county_price_mud').GetValue]"
+				text = "Mud Price: [County.GetCapital.MakeScope.Var('info_trade_county_price_mud').GetValue]"
 				using = Font_Size_Small
 			}
 			text_single = {
 				layoutpolicy_horizontal = expanding
-				text = "Fuel: [County.GetCapital.MakeScope.Var('info_trade_county_price_fuel').GetValue]"
+				text = "Fuel Price: [County.GetCapital.MakeScope.Var('info_trade_county_price_fuel').GetValue]"
 				using = Font_Size_Small
 			}
 			text_single = {
 				layoutpolicy_horizontal = expanding
-				text = "Fiber: [County.GetCapital.MakeScope.Var('info_trade_county_price_fiber').GetValue]"
+				text = "Fiber Price: [County.GetCapital.MakeScope.Var('info_trade_county_price_fiber').GetValue]"
 				using = Font_Size_Small
 			}
 			text_single = {
 				layoutpolicy_horizontal = expanding
-				text = "Timber: [County.GetCapital.MakeScope.Var('info_trade_county_price_timber').GetValue]"
+				text = "Timber Price: [County.GetCapital.MakeScope.Var('info_trade_county_price_timber').GetValue]"
 				using = Font_Size_Small
 			}
 			text_single = {
 				layoutpolicy_horizontal = expanding
-				text = "Metal: [County.GetCapital.MakeScope.Var('info_trade_county_price_metal').GetValue]"
+				text = "Metal Price: [County.GetCapital.MakeScope.Var('info_trade_county_price_metal').GetValue]"
 				using = Font_Size_Small
 			}
 			text_single = {
 				layoutpolicy_horizontal = expanding
-				text = "Western Exotics: [County.GetCapital.MakeScope.Var('info_trade_county_price_exotics_w').GetValue]"
+				text = "Western Exotics Price: [County.GetCapital.MakeScope.Var('info_trade_county_price_exotics_w').GetValue]"
 				using = Font_Size_Small
 			}
 			text_single = {
 				layoutpolicy_horizontal = expanding
-				text = "Eastern Exotics: [County.GetCapital.MakeScope.Var('info_trade_county_price_exotics_e').GetValue]"
+				text = "Eastern Exotics Price: [County.GetCapital.MakeScope.Var('info_trade_county_price_exotics_e').GetValue]"
 				using = Font_Size_Small
 			}
 			text_single = {
 				layoutpolicy_horizontal = expanding
-				text = "General Exotics: [County.GetCapital.MakeScope.Var('info_trade_county_price_exotics_g').GetValue]"
+				text = "General Exotics Price: [County.GetCapital.MakeScope.Var('info_trade_county_price_exotics_g').GetValue]"
 				using = Font_Size_Small
 			}
 			text_single = {
 				layoutpolicy_horizontal = expanding
-				text = "Textile: [County.GetCapital.MakeScope.Var('info_trade_county_price_textile').GetValue]"
+				text = "Textile Price: [County.GetCapital.MakeScope.Var('info_trade_county_price_textile').GetValue]"
 				using = Font_Size_Small
 			}
 			text_single = {
 				layoutpolicy_horizontal = expanding
-				text = "Pottery: [County.GetCapital.MakeScope.Var('info_trade_county_price_pottery').GetValue]"
+				text = "Pottery Price: [County.GetCapital.MakeScope.Var('info_trade_county_price_pottery').GetValue]"
 				using = Font_Size_Small
 			}
 			text_single = {
 				layoutpolicy_horizontal = expanding
-				text = "Tools: [County.GetCapital.MakeScope.Var('info_trade_county_price_tools').GetValue]"
+				text = "Tools Price: [County.GetCapital.MakeScope.Var('info_trade_county_price_tools').GetValue]"
 				using = Font_Size_Small
+			}
+		}
+	}
+	
+	window = {
+		parentanchor = top|right
+		size = { 200 500 }
+		position = { 400 -400 }
+		movable = yes
+		visible = "[EqualTo_CFixedPoint('(CFixedPoint)1', Province.MakeScope.Var('toggled_prov_trade').GetValue)]"
+		
+		background = {
+			texture = "gfx/interface/component_tiles/tile_window_background_subwindow.dds"
+			spriteType = Corneredtiled
+			spriteborder = { 18 18 }
+			texture_density = 2
+			
+			modify_texture = {
+				name = "overlay"
+				texture = "gfx/interface/component_overlay/overlay_effect.dds"
+				spriteType = Corneredstretched
+				spriteborder = { 0 0 }
+				blend_mode = overlay
+			}
+		}
+		
+		buttons_window_control = {
+			parentanchor = top|right
+			blockoverride "button_close"
+			{
+				datacontext = "[GetScriptedGui( 'toggle_prov_trade' )]"
+				onclick = "[ScriptedGui.Execute( GuiScope.SetRoot( Province.MakeScope ).End )]"
+			}
+		}
+		
+		vbox = {
+			margin_left = 20
+			margin_bottom = 15
+			margin_top = 5
+			layoutpolicy_vertical = expanding
+			
+			hbox = {
+				text_single = {
+					layoutpolicy_horizontal = expanding
+					text = "Food "
+					using = Font_Size_Small
+				}
+				
+				vbox = {
+					text_single = {
+						layoutpolicy_horizontal = expanding
+						text = "Stockpile: [Province.MakeScope.Var('prod_has_food').GetValue]"
+						using = Font_Size_Small
+					}
+					text_single = {
+						layoutpolicy_horizontal = expanding
+						text = "Supply: [Province.MakeScope.Var('info_trade_prov_sply_food').GetValue]"
+						using = Font_Size_Small
+					}
+					text_single = {
+						layoutpolicy_horizontal = expanding
+						text = "Demand: [Province.MakeScope.Var('info_trade_prov_dmnd_food').GetValue]"
+						using = Font_Size_Small
+					}
+					text_single = {
+						layoutpolicy_horizontal = expanding
+						text = "Demand Met: [Province.MakeScope.Var('info_trade_prov_in_food').GetValue]"
+						using = Font_Size_Small
+					}
+				}
+			}
+			hbox = {
+				text_single = {
+					layoutpolicy_horizontal = expanding
+					text = "Cereal "
+					using = Font_Size_Small
+				}
+				
+				vbox = {
+					text_single = {
+						layoutpolicy_horizontal = expanding
+						text = "Stockpile: [Province.MakeScope.Var('prod_has_cereal').GetValue]"
+						using = Font_Size_Small
+					}
+					text_single = {
+						layoutpolicy_horizontal = expanding
+						text = "Supply: [Province.MakeScope.Var('info_trade_prov_sply_cereal').GetValue]"
+						using = Font_Size_Small
+					}
+					text_single = {
+						layoutpolicy_horizontal = expanding
+						text = "Demand: [Province.MakeScope.Var('info_trade_prov_dmnd_cereal').GetValue]"
+						using = Font_Size_Small
+					}
+					text_single = {
+						layoutpolicy_horizontal = expanding
+						text = "Demand Met: [Province.MakeScope.Var('info_trade_prov_in_cereal').GetValue]"
+						using = Font_Size_Small
+					}
+				}
 			}
 		}
 	}
@@ -984,6 +1084,25 @@ window = {
 								texture = "gfx/interface/icons/flat_icons/move_capital.dds"
 								onclick = "[HoldingView.SetCountyCapital]"
 								tooltip = "SET_COUNTY_CAPITAL_TOOLTIP"
+							}
+						}
+						
+						button_icon = {
+							name = "toggle_prov_trade"
+							datacontext = "[GetScriptedGui( 'toggle_prov_trade' )]"
+							onclick = "[ScriptedGui.Execute( GuiScope.SetRoot( Province.MakeScope ).End )]"
+							size = { 25 25 }
+							texture = "gfx/interface/buttons/button_round_big.dds"
+
+							background = {
+								texture = "gfx/interface/window_county/building_status_circle.dds"
+								size = { 25 25 }
+								framesize = { 120 120 }
+								using = Master_Button_Modify_Texture
+
+								blockoverride "master_color_frame" {
+									frame = 3
+								}
 							}
 						}
 					}
