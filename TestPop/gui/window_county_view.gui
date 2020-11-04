@@ -60,8 +60,18 @@ window = {
 		visible = "[EqualTo_CFixedPoint('(CFixedPoint)1', County.GetCapital.MakeScope.Var('toggled_county_trade').GetValue)]"
 		
 		background = {
-			using = Background_Area_Dark
-			margin_left = 5
+			texture = "gfx/interface/component_tiles/tile_window_background_subwindow.dds"
+			spriteType = Corneredtiled
+			spriteborder = { 18 18 }
+			texture_density = 2
+			
+			modify_texture = {
+				name = "overlay"
+				texture = "gfx/interface/component_overlay/overlay_effect.dds"
+				spriteType = Corneredstretched
+				spriteborder = { 0 0 }
+				blend_mode = overlay
+			}
 		}
 		
 		buttons_window_control = {
@@ -74,6 +84,9 @@ window = {
 		}
 		
 		vbox = {
+			margin_left = 20
+			margin_bottom = 15
+			margin_top = 5
 			layoutpolicy_vertical = expanding
 			
 			text_single = {
