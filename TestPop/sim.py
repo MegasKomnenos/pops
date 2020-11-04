@@ -335,7 +335,7 @@ sim_run.02 = {
 						name = farm
 						size = var:farm_potential
 						para = var:sim_t
-						owner = 3
+						owner = 2
 					}
 					
 					set_variable = { name = farm_potential value = 0 }
@@ -353,7 +353,7 @@ sim_run.02 = {
 						name = pasture
 						size = var:pasture_potential
 						para = var:sim_t
-						owner = 3
+						owner = 2
 					}
 					
 					set_variable = { name = pasture_potential value = 0 }

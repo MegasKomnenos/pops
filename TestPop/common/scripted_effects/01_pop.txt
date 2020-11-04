@@ -64,32 +64,31 @@ pop_update_demand = {
 		}
 		pop_get_need = {
 			pay = pop_update_demand_t
-			calorie = pop_free_calorie
-			nutrient = pop_free_nutrient
-			comfort = pop_free_comfort
-			luxury = pop_free_luxury
+			calorie = pop_calorie
+			nutrient = pop_nutrient
+			comfort = pop_comfort
+			luxury = pop_luxury
 		}
 		
 		set_variable = { name = pop_update_demand_tt value = 0 }
 		
-		set_variable = { name = pop_update_demand_ttt value = var:pop_free_calorie }
+		set_variable = { name = pop_update_demand_ttt value = var:pop_calorie }
 		change_variable = { name = pop_update_demand_ttt multiply = var:pop_calorie_cost }
 		change_variable = { name = pop_update_demand_tt add = var:pop_update_demand_ttt }
 		
-		set_variable = { name = pop_update_demand_ttt value = var:pop_free_nutrient }
+		set_variable = { name = pop_update_demand_ttt value = var:pop_nutrient }
 		change_variable = { name = pop_update_demand_ttt multiply = var:pop_nutrient_cost }
 		change_variable = { name = pop_update_demand_tt add = var:pop_update_demand_ttt }
 		
-		set_variable = { name = pop_update_demand_ttt value = var:pop_free_comfort }
+		set_variable = { name = pop_update_demand_ttt value = var:pop_comfort }
 		change_variable = { name = pop_update_demand_ttt multiply = var:pop_comfort_cost }
 		change_variable = { name = pop_update_demand_tt add = var:pop_update_demand_ttt }
 		
-		set_variable = { name = pop_update_demand_ttt value = var:pop_free_luxury }
+		set_variable = { name = pop_update_demand_ttt value = var:pop_luxury }
 		change_variable = { name = pop_update_demand_ttt multiply = var:pop_luxury_cost }
 		change_variable = { name = pop_update_demand_tt add = var:pop_update_demand_ttt }
 		
 		change_variable = { name = pop_update_demand_tt multiply = var:pop_total }
-		change_variable = { name = pop_update_demand_tt multiply = var:pop_freedom }
 		
 		set_variable = { name = pop_update_demand_ttt value = var:pop_wealth }
 		change_variable = { name = pop_update_demand_ttt divide = 3 }
@@ -104,83 +103,54 @@ pop_update_demand = {
 			}
 			change_variable = { name = pop_update_demand_t add = 1 }
 			
-			set_variable = { name = pop_update_demand_calorie value = var:pop_free_calorie }
-			set_variable = { name = pop_update_demand_nutrient value = var:pop_free_nutrient }
-			set_variable = { name = pop_update_demand_comfort value = var:pop_free_comfort }
-			set_variable = { name = pop_update_demand_luxury value = var:pop_free_luxury }
+			set_variable = { name = pop_update_demand_calorie value = var:pop_calorie }
+			set_variable = { name = pop_update_demand_nutrient value = var:pop_nutrient }
+			set_variable = { name = pop_update_demand_comfort value = var:pop_comfort }
+			set_variable = { name = pop_update_demand_luxury value = var:pop_luxury }
 		}
 		else = {
 			set_variable = { name = pop_update_demand_t value = 5 }
 			
-			change_variable = { name = pop_free_calorie add = var:pop_update_demand_calorie }
-			change_variable = { name = pop_free_nutrient add = var:pop_update_demand_nutrient }
-			change_variable = { name = pop_free_comfort add = var:pop_update_demand_comfort }
-			change_variable = { name = pop_free_luxury add = var:pop_update_demand_luxury }
+			change_variable = { name = pop_calorie add = var:pop_update_demand_calorie }
+			change_variable = { name = pop_nutrient add = var:pop_update_demand_nutrient }
+			change_variable = { name = pop_comfort add = var:pop_update_demand_comfort }
+			change_variable = { name = pop_luxury add = var:pop_update_demand_luxury }
 			
-			change_variable = { name = pop_free_calorie divide = 2 }
-			change_variable = { name = pop_free_nutrient divide = 2 }
-			change_variable = { name = pop_free_comfort divide = 2 }
-			change_variable = { name = pop_free_luxury divide = 2 }
+			change_variable = { name = pop_calorie divide = 2 }
+			change_variable = { name = pop_nutrient divide = 2 }
+			change_variable = { name = pop_comfort divide = 2 }
+			change_variable = { name = pop_luxury divide = 2 }
 		}
 	}
 	
-	pop_get_need = {
-		pay = pop_pay_level
-		calorie = pop_serf_calorie
-		nutrient = pop_serf_nutrient
-		comfort = pop_serf_comfort
-		luxury = pop_serf_luxury
-	}
+	change_variable = { name = pop_calorie add = var:pop_calorie_serf }
+	change_variable = { name = pop_nutrient add = var:pop_nutrient_serf }
+	change_variable = { name = pop_comfort add = var:pop_comfort_serf }
+	change_variable = { name = pop_luxury add = var:pop_luxury_serf }
 	
-	set_variable = { name = pop_calorie value = 0 }
-	set_variable = { name = pop_nutrient value = 0 }
-	set_variable = { name = pop_comfort value = 0 }
-	set_variable = { name = pop_luxury value = 0 }
+	set_variable = { name = pop_update_demand_t value = var:pop_calorie_serf }
+	change_variable = { name = pop_update_demand_t add = 1 }
+	set_variable = { name = pop_calorie_serf_share value = var:pop_calorie_serf }
+	change_variable = { name = pop_calorie divide = var:pop_update_demand_t }
+	change_variable = { name = pop_calorie_serf_share divide = var:pop_update_demand_t }
 	
-	set_variable = { name = pop_update_demand_t value = 1 }
-	change_variable = { name = pop_update_demand_t subtract = var:pop_freedom }
+	set_variable = { name = pop_update_demand_t value = var:pop_nutrient_serf }
+	change_variable = { name = pop_update_demand_t add = 1 }
+	set_variable = { name = pop_nutrient_serf_share value = var:pop_nutrient_serf }
+	change_variable = { name = pop_nutrient divide = var:pop_update_demand_t }
+	change_variable = { name = pop_nutrient_serf_share divide = var:pop_update_demand_t }
 	
-	set_variable = { name = pop_update_demand_tt value = var:pop_serf_calorie }
-	change_variable = { name = pop_update_demand_tt multiply = var:pop_update_demand_t }
-	change_variable = { name = pop_calorie add = var:pop_update_demand_tt }
+	set_variable = { name = pop_update_demand_t value = var:pop_comfort_serf }
+	change_variable = { name = pop_update_demand_t add = 1 }
+	set_variable = { name = pop_comfort_serf_share value = var:pop_comfort_serf }
+	change_variable = { name = pop_comfort divide = var:pop_update_demand_t }
+	change_variable = { name = pop_comfort_serf_share divide = var:pop_update_demand_t }
 	
-	set_variable = { name = pop_update_demand_tt value = var:pop_serf_nutrient }
-	change_variable = { name = pop_update_demand_tt multiply = var:pop_update_demand_t }
-	change_variable = { name = pop_nutrient add = var:pop_update_demand_tt }
-	
-	set_variable = { name = pop_update_demand_tt value = var:pop_serf_comfort }
-	change_variable = { name = pop_update_demand_tt multiply = var:pop_update_demand_t }
-	change_variable = { name = pop_comfort add = var:pop_update_demand_tt }
-	
-	set_variable = { name = pop_update_demand_tt value = var:pop_serf_luxury }
-	change_variable = { name = pop_update_demand_tt multiply = var:pop_update_demand_t }
-	change_variable = { name = pop_luxury add = var:pop_update_demand_tt }
-	
-	set_variable = { name = pop_update_demand_tt value = var:pop_free_calorie }
-	change_variable = { name = pop_update_demand_tt multiply = var:pop_freedom }
-	change_variable = { name = pop_calorie add = var:pop_update_demand_tt }
-	
-	set_variable = { name = pop_update_demand_tt value = var:pop_free_nutrient }
-	change_variable = { name = pop_update_demand_tt multiply = var:pop_freedom }
-	change_variable = { name = pop_nutrient add = var:pop_update_demand_tt }
-	
-	set_variable = { name = pop_update_demand_tt value = var:pop_free_comfort }
-	change_variable = { name = pop_update_demand_tt multiply = var:pop_freedom }
-	change_variable = { name = pop_comfort add = var:pop_update_demand_tt }
-	
-	set_variable = { name = pop_update_demand_tt value = var:pop_free_luxury }
-	change_variable = { name = pop_update_demand_tt multiply = var:pop_freedom }
-	change_variable = { name = pop_luxury add = var:pop_update_demand_tt }
-	
-	change_variable = { name = pop_free_calorie multiply = var:pop_freedom }
-	change_variable = { name = pop_free_nutrient multiply = var:pop_freedom }
-	change_variable = { name = pop_free_comfort multiply = var:pop_freedom }
-	change_variable = { name = pop_free_luxury multiply = var:pop_freedom }
-	
-	if = { limit = { has_variable = pop_calorie var:pop_calorie > 0 } change_variable = { name = pop_free_calorie divide = var:pop_calorie } }
-	if = { limit = { has_variable = pop_nutrient var:pop_nutrient > 0 } change_variable = { name = pop_free_nutrient divide = var:pop_nutrient } }
-	if = { limit = { has_variable = pop_comfort var:pop_comfort > 0 } change_variable = { name = pop_free_comfort divide = var:pop_comfort } }
-	if = { limit = { has_variable = pop_luxury var:pop_luxury > 0 } change_variable = { name = pop_free_luxury divide = var:pop_luxury } }
+	set_variable = { name = pop_update_demand_t value = var:pop_luxury_serf }
+	change_variable = { name = pop_update_demand_t add = 1 }
+	set_variable = { name = pop_luxury_serf_share value = var:pop_luxury_serf }
+	change_variable = { name = pop_luxury divide = var:pop_update_demand_t }
+	change_variable = { name = pop_luxury_serf_share divide = var:pop_update_demand_t }
 	
 	change_variable = { name = pop_calorie multiply = var:pop_total }
 	change_variable = { name = pop_calorie multiply = this.county.var:modi_pop_calorie }
@@ -209,11 +179,6 @@ pop_update_demand = {
 	remove_variable = pop_update_demand_nutrient
 	remove_variable = pop_update_demand_comfort
 	remove_variable = pop_update_demand_luxury
-	
-	remove_variable = pop_serf_calorie
-	remove_variable = pop_serf_nutrient
-	remove_variable = pop_serf_comfort
-	remove_variable = pop_serf_luxury
 }
 
 pop_get_need = {

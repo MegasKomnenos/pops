@@ -1285,28 +1285,28 @@ trade_resolve_trade = {
 		set_variable = { name = pop_pay_free value = 0 }
 		
 		set_variable = { name = trade_resolve_trade_t value = var:pop_pay_calorie }
-		change_variable = { name = trade_resolve_trade_t multiply = var:pop_free_calorie }
-		change_variable = { name = pop_pay_serf add = var:pop_pay_calorie }
-		change_variable = { name = pop_pay_serf subtract = var:trade_resolve_trade_t }
-		change_variable = { name = pop_pay_free add = var:trade_resolve_trade_t }
+		change_variable = { name = trade_resolve_trade_t multiply = var:pop_calorie_serf_share }
+		change_variable = { name = pop_pay_free add = var:pop_pay_calorie }
+		change_variable = { name = pop_pay_free subtract = var:trade_resolve_trade_t }
+		change_variable = { name = pop_pay_serf add = var:trade_resolve_trade_t }
 		
 		set_variable = { name = trade_resolve_trade_t value = var:pop_pay_nutrient }
-		change_variable = { name = trade_resolve_trade_t multiply = var:pop_free_nutrient }
-		change_variable = { name = pop_pay_serf add = var:pop_pay_nutrient }
-		change_variable = { name = pop_pay_serf subtract = var:trade_resolve_trade_t }
-		change_variable = { name = pop_pay_free add = var:trade_resolve_trade_t }
+		change_variable = { name = trade_resolve_trade_t multiply = var:pop_nutrient_serf_share }
+		change_variable = { name = pop_pay_free add = var:pop_pay_nutrient }
+		change_variable = { name = pop_pay_free subtract = var:trade_resolve_trade_t }
+		change_variable = { name = pop_pay_serf add = var:trade_resolve_trade_t }
 		
 		set_variable = { name = trade_resolve_trade_t value = var:pop_pay_comfort }
-		change_variable = { name = trade_resolve_trade_t multiply = var:pop_free_comfort }
-		change_variable = { name = pop_pay_serf add = var:pop_pay_comfort }
-		change_variable = { name = pop_pay_serf subtract = var:trade_resolve_trade_t }
-		change_variable = { name = pop_pay_free add = var:trade_resolve_trade_t }
+		change_variable = { name = trade_resolve_trade_t multiply = var:pop_comfort_serf_share }
+		change_variable = { name = pop_pay_free add = var:pop_pay_comfort }
+		change_variable = { name = pop_pay_free subtract = var:trade_resolve_trade_t }
+		change_variable = { name = pop_pay_serf add = var:trade_resolve_trade_t }
 		
 		set_variable = { name = trade_resolve_trade_t value = var:pop_pay_luxury }
-		change_variable = { name = trade_resolve_trade_t multiply = var:pop_free_luxury }
-		change_variable = { name = pop_pay_serf add = var:pop_pay_luxury }
-		change_variable = { name = pop_pay_serf subtract = var:trade_resolve_trade_t }
-		change_variable = { name = pop_pay_free add = var:trade_resolve_trade_t }
+		change_variable = { name = trade_resolve_trade_t multiply = var:pop_luxury_serf_share }
+		change_variable = { name = pop_pay_free add = var:pop_pay_luxury }
+		change_variable = { name = pop_pay_free subtract = var:trade_resolve_trade_t }
+		change_variable = { name = pop_pay_serf add = var:trade_resolve_trade_t }
 		
 		if = {
 			limit = {
@@ -1338,16 +1338,6 @@ trade_resolve_trade = {
 						change_variable = { name = pop_pay_free add = prev.var:build_pay }
 					}
 				}
-				else = {
-					prev = {
-						set_variable = { name = trade_resolve_trade_t value = prev.var:build_pay }
-						change_variable = { name = trade_resolve_trade_t multiply = var:pop_freedom }
-						
-						change_variable = { name = pop_pay_serf add = prev.var:build_pay }
-						change_variable = { name = pop_pay_serf subtract = var:trade_resolve_trade_t }
-						change_variable = { name = pop_pay_free add = var:trade_resolve_trade_t }
-					}
-				}
 			}
 		}
 		
@@ -1375,11 +1365,15 @@ trade_resolve_trade = {
 			}
 		}
 		
+		change_variable = { name = trade_resolve_trade_t divide = 2 }
+		
 		set_variable = { name = pop_earn_free value = var:pop_freedom }
 		change_variable = { name = pop_earn_free multiply = var:trade_resolve_trade_t }
 		
 		set_variable = { name = pop_earn_serf value = var:trade_resolve_trade_t }
 		change_variable = { name = pop_earn_serf subtract = var:pop_earn_free }
+		
+		change_variable = { name = pop_earn_free add = var:trade_resolve_trade_t }
 		
 		remove_variable = trade_resolve_trade_t
 		remove_variable = trade_resolve_trade_tt

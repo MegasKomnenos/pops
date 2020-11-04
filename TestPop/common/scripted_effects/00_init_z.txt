@@ -12,7 +12,6 @@
 	init_city = yes
 	init_industry_templates = yes
 	init_industry = yes
-	init_pay = yes
 	init_freedom = yes
 	init_merchants = yes
 	init_tech = yes
@@ -113,9 +112,13 @@
 			set_variable = { name = pop_comfort value = 0 }
 			set_variable = { name = pop_luxury value = 0 }
 			
+			set_variable = { name = pop_calorie_serf value = 0 }
+			set_variable = { name = pop_nutrient_serf value = 0 }
+			set_variable = { name = pop_comfort_serf value = 0 }
+			set_variable = { name = pop_luxury_serf value = 0 }
+			
 			set_variable = { name = pop_wealth value = var:pop_total }
-			change_variable = { name = pop_wealth multiply = var:pop_freedom }
-			change_variable = { name = pop_wealth multiply = 12 }
+			change_variable = { name = pop_wealth multiply = 20 }
 			
 			set_variable = { name = trade_route value = 0 }
 			
