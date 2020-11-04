@@ -4,7 +4,6 @@
 			is_valid_prov = yes
 		}
 		set_variable = { name = migration_main_t value = 0 }
-		set_variable = { name = migration_main_tt value = 0 }
 	}
 	
 	every_province = {
@@ -40,14 +39,10 @@
 		
 		set_variable = { name = migration_main_ttttt value = var:migration_tick }
 		change_variable = { name = migration_main_ttttt multiply = var:pop_total }
-		change_variable = { name = migration_main_ttttt divide = 200 }
-		
-		set_variable = { name = migration_main_tt value = var:pop_total }
-		change_variable = { name = migration_main_tt divide = 50 }
+		change_variable = { name = migration_main_ttttt divide = 100 }
 		
 		county = {
 			change_variable = { name = migration_main_t add = prev.var:migration_main_ttttt }
-			change_variable = { name = migration_main_tt add = prev.var:migration_main_tt }
 		}
 		
 		set_variable = { name = migration_main_t value = var:pop_calorie }
@@ -56,7 +51,7 @@
 		change_variable = { name = migration_main_t add = var:pop_luxury }
 		change_variable = { name = migration_main_t multiply = 25 }
 		
-		change_variable = { name = migration_route multiply = 0.9 }
+		change_variable = { name = migration_route multiply = 0.95 }
 	}
 	
 	every_county = {
@@ -67,11 +62,7 @@
 			limit = {
 				has_variable = migration_main_t
 			
-				var:migration_main_t >= 2
-				
-				var:migration_main_t = {
-					compare_value >= prev.var:migration_main_tt
-				}
+				var:migration_main_t >= 5
 			}
 			every_county_province = {
 				save_temporary_scope_as = migration_main_t
@@ -95,7 +86,7 @@
 			travel_distance_dijkstra_every = {
 				start = scope:migration_main_t
 				start_list = migration_main_provs
-				max = 360
+				max = 380
 				return_dist = migration_main_dist
 				return_prev = migration_main_prev
 				return_list = migration_main_list
@@ -132,7 +123,7 @@
 				change_variable = { name = migration_main_tt multiply = var:migration_main_tttt }
 				
 				set_variable = { name = migration_main_ttt value = var:migration_main_dist }
-				change_variable = { name = migration_main_ttt divide = 40 }
+				change_variable = { name = migration_main_ttt divide = 20 }
 				change_variable = { name = migration_main_ttt add = 1 }
 				
 				if = {
@@ -237,12 +228,13 @@
 				}
 			}
 			
+			remove_variable = migration_main_tt
+			
 			clear_variable_list = migration_main_provs
 			clear_global_variable_list = migration_main_list
 		}
 		
 		remove_variable = migration_main_t
-		remove_variable = migration_main_tt
 	}
 	
 	clear_global_variable_list = migration_main_counties

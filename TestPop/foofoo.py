@@ -248,7 +248,7 @@ if __name__ == '__main__':
         scripts[name] = apply_macro(script, macros)
 
     with open('out.txt', 'w', encoding='utf-8-sig') as ff:
-        run = 'migration_main = yes'
+        run = 'while = { count = 100 migration_main = yes }'
         
         file = apply_macro(parse_file_block(run), macros)
         
