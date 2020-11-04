@@ -324,31 +324,25 @@ if __name__ == '__main__':
                             outout.append(create_character)
                             outout.append('\t')
                             outout.append(character_data % ''.join([helper(('\t\t\t\tset_variable', 'value'), n, d) for n, d in chars[data[1]][0].items()]))
-                            outout.append('\t\t\tadd_to_global_variable_list = { name = trade_merchants target = scope:save_data_t }\n')
-                            outout.append('\t\t\tset_variable = { name = trade_merchant value = scope:save_data_t }\n')
+
+                            if 'prod_slot' in name:
+                                outout.append('\t\t\tadd_to_global_variable_list = { name = prod_instances target = scope:save_data_t }\n')
+                                outout.append('\t\t\tglobal_var:%s = { add_to_variable_list = { name = prod_instances target = scope:save_data_t } scope:save_data_t = { set_variable = { name = prod_template value = prev } } }\n' % templates[chars[data[1]][0]['prod_template'][1]])
+                                outout.append('\t\t\tadd_to_variable_list = { name = prod_instances target = scope:save_data_t }\n')
+                                outout.append('\t\t\tcounty = { add_to_variable_list = { name = prod_instances target = scope:save_data_t } }\n')
+                                outout.append('\t\t\tset_variable = { name = %s value = scope:save_data_t }\n' % name)
+                            elif 'build_slot' in name:
+                                outout.append('\t\t\tscope:save_data_t = { set_variable = { name = build_name value = global_var:%s } }\n' % names[chars[data[1]][0]['build_name'][1]])
+                                outout.append('\t\t\tadd_to_global_variable_list = { name = build_slots_active target = scope:save_data_t }\n')
+                                outout.append('\t\t\tadd_to_variable_list = { name = build_slots target = scope:save_data_t }\n')
+                                outout.append('\t\t\tset_variable = { name = %s value = scope:save_data_t }\n' % name)
+                            else:
+                                outout.append('\t\t\tadd_to_global_variable_list = { name = trade_merchants target = scope:save_data_t }\n')
+                                outout.append('\t\t\tset_variable = { name = trade_merchant value = scope:save_data_t }\n')
                         else:
                             outout.append(helper(('\t\t\tset_variable', 'value'), name, data))
                     for name, data in prov[1].items():
-                        if name == 'prod_instances':
-                            for var in data:
-                                outout.append('\t')
-                                outout.append(create_character)
-                                outout.append('\t')
-                                outout.append(character_data % ''.join([helper(('\t\t\t\tset_variable', 'value'), n, d) for n, d in chars[var[1]][0].items()]))
-                                outout.append('\t\t\tadd_to_global_variable_list = { name = prod_instances target = scope:save_data_t }\n')
-                                outout.append('\t\t\tglobal_var:%s = { add_to_variable_list = { name = prod_instances target = scope:save_data_t } scope:save_data_t = { set_variable = { name = prod_template value = prev } } }\n' % templates[chars[var[1]][0]['prod_template'][1]])
-                                outout.append('\t\t\tadd_to_variable_list = { name = prod_instances target = scope:save_data_t }\n')
-                                outout.append('\t\t\tcounty = { add_to_variable_list = { name = prod_instances target = scope:save_data_t } }\n')
-                        elif name == 'build_slots':
-                            for var in data:
-                                outout.append('\t')
-                                outout.append(create_character)
-                                outout.append('\t')
-                                outout.append(character_data % ''.join([helper(('\t\t\t\tset_variable', 'value'), n, d) for n, d in chars[var[1]][0].items()]))
-                                outout.append('\t\t\tscope:save_data_t = { set_variable = { name = build_name value = global_var:%s } }\n' % names[chars[var[1]][0]['build_name'][1]])
-                                outout.append('\t\t\tadd_to_global_variable_list = { name = build_slots_active target = scope:save_data_t }\n')
-                                outout.append('\t\t\tadd_to_variable_list = { name = build_slots target = scope:save_data_t }\n')
-                        else:
+                        if name != 'prod_instances' and name != 'build_slots':
                             for var in data:
                                 outout.append(helper(('\t\t\tadd_to_variable_list', 'target'), name, var))
 
