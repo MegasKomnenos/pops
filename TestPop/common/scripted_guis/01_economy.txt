@@ -96,6 +96,38 @@
 		}
 	}
 }
+close_county_trade = { 
+	scope = province
+	is_shown = { 
+		always = yes
+	}
+	is_valid = { 
+		always = yes
+	}
+	effect = { 
+		if = { 
+			limit = { 
+				has_variable = toggled_county_trade
+			}
+			remove_variable = toggled_county_trade
+			remove_variable = info_trade_county_price_food
+			remove_variable = info_trade_county_price_cereal
+			remove_variable = info_trade_county_price_salted
+			remove_variable = info_trade_county_price_salt
+			remove_variable = info_trade_county_price_mud
+			remove_variable = info_trade_county_price_fuel
+			remove_variable = info_trade_county_price_fiber
+			remove_variable = info_trade_county_price_timber
+			remove_variable = info_trade_county_price_metal
+			remove_variable = info_trade_county_price_exotics_w
+			remove_variable = info_trade_county_price_exotics_e
+			remove_variable = info_trade_county_price_exotics_g
+			remove_variable = info_trade_county_price_textile
+			remove_variable = info_trade_county_price_pottery
+			remove_variable = info_trade_county_price_tools
+		}
+	}
+}
 toggle_prov_trade = { 
 	scope = province
 	is_shown = { 
@@ -3341,6 +3373,158 @@ toggle_prov_trade = {
 				name = info_trade_prov_in_tools
 				add = var:info_trade_prov_in_build_tools
 			}
+		}
+	}
+}
+close_prov_trade = { 
+	scope = province
+	is_shown = { 
+		always = yes
+	}
+	is_valid = { 
+		always = yes
+	}
+	effect = { 
+		if = { 
+			limit = { 
+				has_variable = toggled_prov_trade
+			}
+			remove_variable = toggled_prov_trade
+			remove_variable = info_trade_prov_sply_food
+			remove_variable = info_trade_prov_dmnd_food
+			remove_variable = info_trade_prov_dmnd_pop_food
+			remove_variable = info_trade_prov_dmnd_prod_food
+			remove_variable = info_trade_prov_dmnd_build_food
+			remove_variable = info_trade_prov_in_food
+			remove_variable = info_trade_prov_in_pop_food
+			remove_variable = info_trade_prov_in_prod_food
+			remove_variable = info_trade_prov_in_build_food
+			remove_variable = info_trade_prov_sply_cereal
+			remove_variable = info_trade_prov_dmnd_cereal
+			remove_variable = info_trade_prov_dmnd_pop_cereal
+			remove_variable = info_trade_prov_dmnd_prod_cereal
+			remove_variable = info_trade_prov_dmnd_build_cereal
+			remove_variable = info_trade_prov_in_cereal
+			remove_variable = info_trade_prov_in_pop_cereal
+			remove_variable = info_trade_prov_in_prod_cereal
+			remove_variable = info_trade_prov_in_build_cereal
+			remove_variable = info_trade_prov_sply_salted
+			remove_variable = info_trade_prov_dmnd_salted
+			remove_variable = info_trade_prov_dmnd_pop_salted
+			remove_variable = info_trade_prov_dmnd_prod_salted
+			remove_variable = info_trade_prov_dmnd_build_salted
+			remove_variable = info_trade_prov_in_salted
+			remove_variable = info_trade_prov_in_pop_salted
+			remove_variable = info_trade_prov_in_prod_salted
+			remove_variable = info_trade_prov_in_build_salted
+			remove_variable = info_trade_prov_sply_salt
+			remove_variable = info_trade_prov_dmnd_salt
+			remove_variable = info_trade_prov_dmnd_pop_salt
+			remove_variable = info_trade_prov_dmnd_prod_salt
+			remove_variable = info_trade_prov_dmnd_build_salt
+			remove_variable = info_trade_prov_in_salt
+			remove_variable = info_trade_prov_in_pop_salt
+			remove_variable = info_trade_prov_in_prod_salt
+			remove_variable = info_trade_prov_in_build_salt
+			remove_variable = info_trade_prov_sply_mud
+			remove_variable = info_trade_prov_dmnd_mud
+			remove_variable = info_trade_prov_dmnd_pop_mud
+			remove_variable = info_trade_prov_dmnd_prod_mud
+			remove_variable = info_trade_prov_dmnd_build_mud
+			remove_variable = info_trade_prov_in_mud
+			remove_variable = info_trade_prov_in_pop_mud
+			remove_variable = info_trade_prov_in_prod_mud
+			remove_variable = info_trade_prov_in_build_mud
+			remove_variable = info_trade_prov_sply_fuel
+			remove_variable = info_trade_prov_dmnd_fuel
+			remove_variable = info_trade_prov_dmnd_pop_fuel
+			remove_variable = info_trade_prov_dmnd_prod_fuel
+			remove_variable = info_trade_prov_dmnd_build_fuel
+			remove_variable = info_trade_prov_in_fuel
+			remove_variable = info_trade_prov_in_pop_fuel
+			remove_variable = info_trade_prov_in_prod_fuel
+			remove_variable = info_trade_prov_in_build_fuel
+			remove_variable = info_trade_prov_sply_fiber
+			remove_variable = info_trade_prov_dmnd_fiber
+			remove_variable = info_trade_prov_dmnd_pop_fiber
+			remove_variable = info_trade_prov_dmnd_prod_fiber
+			remove_variable = info_trade_prov_dmnd_build_fiber
+			remove_variable = info_trade_prov_in_fiber
+			remove_variable = info_trade_prov_in_pop_fiber
+			remove_variable = info_trade_prov_in_prod_fiber
+			remove_variable = info_trade_prov_in_build_fiber
+			remove_variable = info_trade_prov_sply_timber
+			remove_variable = info_trade_prov_dmnd_timber
+			remove_variable = info_trade_prov_dmnd_pop_timber
+			remove_variable = info_trade_prov_dmnd_prod_timber
+			remove_variable = info_trade_prov_dmnd_build_timber
+			remove_variable = info_trade_prov_in_timber
+			remove_variable = info_trade_prov_in_pop_timber
+			remove_variable = info_trade_prov_in_prod_timber
+			remove_variable = info_trade_prov_in_build_timber
+			remove_variable = info_trade_prov_sply_metal
+			remove_variable = info_trade_prov_dmnd_metal
+			remove_variable = info_trade_prov_dmnd_pop_metal
+			remove_variable = info_trade_prov_dmnd_prod_metal
+			remove_variable = info_trade_prov_dmnd_build_metal
+			remove_variable = info_trade_prov_in_metal
+			remove_variable = info_trade_prov_in_pop_metal
+			remove_variable = info_trade_prov_in_prod_metal
+			remove_variable = info_trade_prov_in_build_metal
+			remove_variable = info_trade_prov_sply_exotics_w
+			remove_variable = info_trade_prov_dmnd_exotics_w
+			remove_variable = info_trade_prov_dmnd_pop_exotics_w
+			remove_variable = info_trade_prov_dmnd_prod_exotics_w
+			remove_variable = info_trade_prov_dmnd_build_exotics_w
+			remove_variable = info_trade_prov_in_exotics_w
+			remove_variable = info_trade_prov_in_pop_exotics_w
+			remove_variable = info_trade_prov_in_prod_exotics_w
+			remove_variable = info_trade_prov_in_build_exotics_w
+			remove_variable = info_trade_prov_sply_exotics_e
+			remove_variable = info_trade_prov_dmnd_exotics_e
+			remove_variable = info_trade_prov_dmnd_pop_exotics_e
+			remove_variable = info_trade_prov_dmnd_prod_exotics_e
+			remove_variable = info_trade_prov_dmnd_build_exotics_e
+			remove_variable = info_trade_prov_in_exotics_e
+			remove_variable = info_trade_prov_in_pop_exotics_e
+			remove_variable = info_trade_prov_in_prod_exotics_e
+			remove_variable = info_trade_prov_in_build_exotics_e
+			remove_variable = info_trade_prov_sply_exotics_g
+			remove_variable = info_trade_prov_dmnd_exotics_g
+			remove_variable = info_trade_prov_dmnd_pop_exotics_g
+			remove_variable = info_trade_prov_dmnd_prod_exotics_g
+			remove_variable = info_trade_prov_dmnd_build_exotics_g
+			remove_variable = info_trade_prov_in_exotics_g
+			remove_variable = info_trade_prov_in_pop_exotics_g
+			remove_variable = info_trade_prov_in_prod_exotics_g
+			remove_variable = info_trade_prov_in_build_exotics_g
+			remove_variable = info_trade_prov_sply_textile
+			remove_variable = info_trade_prov_dmnd_textile
+			remove_variable = info_trade_prov_dmnd_pop_textile
+			remove_variable = info_trade_prov_dmnd_prod_textile
+			remove_variable = info_trade_prov_dmnd_build_textile
+			remove_variable = info_trade_prov_in_textile
+			remove_variable = info_trade_prov_in_pop_textile
+			remove_variable = info_trade_prov_in_prod_textile
+			remove_variable = info_trade_prov_in_build_textile
+			remove_variable = info_trade_prov_sply_pottery
+			remove_variable = info_trade_prov_dmnd_pottery
+			remove_variable = info_trade_prov_dmnd_pop_pottery
+			remove_variable = info_trade_prov_dmnd_prod_pottery
+			remove_variable = info_trade_prov_dmnd_build_pottery
+			remove_variable = info_trade_prov_in_pottery
+			remove_variable = info_trade_prov_in_pop_pottery
+			remove_variable = info_trade_prov_in_prod_pottery
+			remove_variable = info_trade_prov_in_build_pottery
+			remove_variable = info_trade_prov_sply_tools
+			remove_variable = info_trade_prov_dmnd_tools
+			remove_variable = info_trade_prov_dmnd_pop_tools
+			remove_variable = info_trade_prov_dmnd_prod_tools
+			remove_variable = info_trade_prov_dmnd_build_tools
+			remove_variable = info_trade_prov_in_tools
+			remove_variable = info_trade_prov_in_pop_tools
+			remove_variable = info_trade_prov_in_prod_tools
+			remove_variable = info_trade_prov_in_build_tools
 		}
 	}
 }

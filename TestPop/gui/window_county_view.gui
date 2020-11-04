@@ -47,6 +47,8 @@ window = {
 		position = { -60 60 }
 		on_start = "[GetVariableSystem.Clear( 'county_view_open' )]"
 		on_start = "[GetVariableSystem.Clear( 'hide_bottom_left_HUD' )]"
+		on_start = "[GetScriptedGui( 'close_county_trade' ).Execute( GuiScope.SetRoot( HoldingView.GetProvince.GetCounty.GetCapital.MakeScope ).End )]"
+		on_start = "[GetScriptedGui( 'close_prov_trade' ).Execute( GuiScope.SetRoot( Province.MakeScope ).End )]"
 
 		using = Animation_FadeOut_Standard
 		using = Sound_WindowHide_Standard
@@ -54,7 +56,7 @@ window = {
 	
 	window = {
 		parentanchor = top|right
-		size = { 200 500 }
+		size = { 250 500 }
 		position = { 400 0 }
 		movable = yes
 		visible = "[EqualTo_CFixedPoint('(CFixedPoint)1', County.GetCapital.MakeScope.Var('toggled_county_trade').GetValue)]"
@@ -78,7 +80,7 @@ window = {
 			parentanchor = top|right
 			blockoverride "button_close"
 			{
-				datacontext = "[GetScriptedGui( 'toggle_county_trade' )]"
+				datacontext = "[GetScriptedGui( 'close_county_trade' )]"
 				onclick = "[ScriptedGui.Execute( GuiScope.SetRoot( HoldingView.GetProvince.GetCounty.GetCapital.MakeScope ).End )]"
 			}
 		}
@@ -169,7 +171,7 @@ window = {
 	
 	window = {
 		parentanchor = top|right
-		size = { 200 500 }
+		size = { 450 900 }
 		position = { 400 -400 }
 		movable = yes
 		visible = "[EqualTo_CFixedPoint('(CFixedPoint)1', Province.MakeScope.Var('toggled_prov_trade').GetValue)]"
@@ -193,7 +195,7 @@ window = {
 			parentanchor = top|right
 			blockoverride "button_close"
 			{
-				datacontext = "[GetScriptedGui( 'toggle_prov_trade' )]"
+				datacontext = "[GetScriptedGui( 'close_prov_trade' )]"
 				onclick = "[ScriptedGui.Execute( GuiScope.SetRoot( Province.MakeScope ).End )]"
 			}
 		}
@@ -201,67 +203,516 @@ window = {
 		vbox = {
 			margin_left = 20
 			margin_bottom = 15
-			margin_top = 5
+			margin_top = 10
 			layoutpolicy_vertical = expanding
 			
 			hbox = {
-				text_single = {
-					layoutpolicy_horizontal = expanding
-					text = "Food "
-					using = Font_Size_Small
-				}
+				layoutpolicy_horizontal = expanding
 				
 				vbox = {
+					layoutpolicy_horizontal = expanding
+					
+					text_single = {
+						parentanchor = left
+						text = "Food:"
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
 					text_single = {
 						layoutpolicy_horizontal = expanding
-						text = "Stockpile: [Province.MakeScope.Var('prod_has_food').GetValue]"
+						text = " - Stockpile: [Province.MakeScope.Var('prod_has_food').GetValue]"
 						using = Font_Size_Small
 					}
 					text_single = {
 						layoutpolicy_horizontal = expanding
-						text = "Supply: [Province.MakeScope.Var('info_trade_prov_sply_food').GetValue]"
+						text = " - Supply: [Province.MakeScope.Var('info_trade_prov_sply_food').GetValue]"
 						using = Font_Size_Small
 					}
 					text_single = {
 						layoutpolicy_horizontal = expanding
-						text = "Demand: [Province.MakeScope.Var('info_trade_prov_dmnd_food').GetValue]"
+						text = " - Demand: [Province.MakeScope.Var('info_trade_prov_dmnd_food').GetValue]"
+						using = Font_Size_Small
+						tooltip = "Pop, Industry, Construction: ([Province.MakeScope.Var('info_trade_prov_dmnd_pop_food').GetValue], [Province.MakeScope.Var('info_trade_prov_dmnd_prod_food').GetValue], [Province.MakeScope.Var('info_trade_prov_dmnd_build_food').GetValue])"
+					}
+					text_single = {
+						layoutpolicy_horizontal = expanding
+						text = " - Demand Met: [Province.MakeScope.Var('info_trade_prov_in_food').GetValue]"
+						using = Font_Size_Small
+						tooltip = "Pop, Industry, Construction: ([Province.MakeScope.Var('info_trade_prov_in_pop_food').GetValue], [Province.MakeScope.Var('info_trade_prov_in_prod_food').GetValue], [Province.MakeScope.Var('info_trade_prov_in_build_food').GetValue])"
+					}
+				}
+				vbox = {
+					layoutpolicy_horizontal = expanding
+					
+					text_single = {
+						parentanchor = left
+						text = "Cereal:"
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						layoutpolicy_horizontal = expanding
+						text = " - Stockpile: [Province.MakeScope.Var('prod_has_cereal').GetValue]"
 						using = Font_Size_Small
 					}
 					text_single = {
 						layoutpolicy_horizontal = expanding
-						text = "Demand Met: [Province.MakeScope.Var('info_trade_prov_in_food').GetValue]"
+						text = " - Supply: [Province.MakeScope.Var('info_trade_prov_sply_cereal').GetValue]"
 						using = Font_Size_Small
+					}
+					text_single = {
+						layoutpolicy_horizontal = expanding
+						text = " - Demand: [Province.MakeScope.Var('info_trade_prov_dmnd_cereal').GetValue]"
+						using = Font_Size_Small
+						tooltip = "Pop, Industry, Construction: ([Province.MakeScope.Var('info_trade_prov_dmnd_pop_cereal').GetValue], [Province.MakeScope.Var('info_trade_prov_dmnd_prod_cereal').GetValue], [Province.MakeScope.Var('info_trade_prov_dmnd_build_cereal').GetValue])"
+					}
+					text_single = {
+						layoutpolicy_horizontal = expanding
+						text = " - Demand Met: [Province.MakeScope.Var('info_trade_prov_in_cereal').GetValue]"
+						using = Font_Size_Small
+						tooltip = "Pop, Industry, Construction: ([Province.MakeScope.Var('info_trade_prov_in_pop_cereal').GetValue], [Province.MakeScope.Var('info_trade_prov_in_prod_cereal').GetValue], [Province.MakeScope.Var('info_trade_prov_in_build_cereal').GetValue])"
 					}
 				}
 			}
 			hbox = {
-				text_single = {
-					layoutpolicy_horizontal = expanding
-					text = "Cereal "
-					using = Font_Size_Small
-				}
+				layoutpolicy_horizontal = expanding
 				
 				vbox = {
+					layoutpolicy_horizontal = expanding
+					
+					text_single = {
+						parentanchor = left
+						text = "Salted:"
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
 					text_single = {
 						layoutpolicy_horizontal = expanding
-						text = "Stockpile: [Province.MakeScope.Var('prod_has_cereal').GetValue]"
+						text = " - Stockpile: [Province.MakeScope.Var('prod_has_salted').GetValue]"
 						using = Font_Size_Small
 					}
 					text_single = {
 						layoutpolicy_horizontal = expanding
-						text = "Supply: [Province.MakeScope.Var('info_trade_prov_sply_cereal').GetValue]"
+						text = " - Supply: [Province.MakeScope.Var('info_trade_prov_sply_salted').GetValue]"
 						using = Font_Size_Small
 					}
 					text_single = {
 						layoutpolicy_horizontal = expanding
-						text = "Demand: [Province.MakeScope.Var('info_trade_prov_dmnd_cereal').GetValue]"
+						text = " - Demand: [Province.MakeScope.Var('info_trade_prov_dmnd_salted').GetValue]"
+						using = Font_Size_Small
+						tooltip = "Pop, Industry, Construction: ([Province.MakeScope.Var('info_trade_prov_dmnd_pop_salted').GetValue], [Province.MakeScope.Var('info_trade_prov_dmnd_prod_salted').GetValue], [Province.MakeScope.Var('info_trade_prov_dmnd_build_salted').GetValue])"
+					}
+					text_single = {
+						layoutpolicy_horizontal = expanding
+						text = " - Demand Met: [Province.MakeScope.Var('info_trade_prov_in_salted').GetValue]"
+						using = Font_Size_Small
+						tooltip = "Pop, Industry, Construction: ([Province.MakeScope.Var('info_trade_prov_in_pop_salted').GetValue], [Province.MakeScope.Var('info_trade_prov_in_prod_salted').GetValue], [Province.MakeScope.Var('info_trade_prov_in_build_salted').GetValue])"
+					}
+				}
+				vbox = {
+					layoutpolicy_horizontal = expanding
+					
+					text_single = {
+						parentanchor = left
+						text = "Salt:"
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						layoutpolicy_horizontal = expanding
+						text = " - Stockpile: [Province.MakeScope.Var('prod_has_salt').GetValue]"
 						using = Font_Size_Small
 					}
 					text_single = {
 						layoutpolicy_horizontal = expanding
-						text = "Demand Met: [Province.MakeScope.Var('info_trade_prov_in_cereal').GetValue]"
+						text = " - Supply: [Province.MakeScope.Var('info_trade_prov_sply_salt').GetValue]"
 						using = Font_Size_Small
 					}
+					text_single = {
+						layoutpolicy_horizontal = expanding
+						text = " - Demand: [Province.MakeScope.Var('info_trade_prov_dmnd_salt').GetValue]"
+						using = Font_Size_Small
+						tooltip = "Pop, Industry, Construction: ([Province.MakeScope.Var('info_trade_prov_dmnd_pop_salt').GetValue], [Province.MakeScope.Var('info_trade_prov_dmnd_prod_salt').GetValue], [Province.MakeScope.Var('info_trade_prov_dmnd_build_salt').GetValue])"
+					}
+					text_single = {
+						layoutpolicy_horizontal = expanding
+						text = " - Demand Met: [Province.MakeScope.Var('info_trade_prov_in_salt').GetValue]"
+						using = Font_Size_Small
+						tooltip = "Pop, Industry, Construction: ([Province.MakeScope.Var('info_trade_prov_in_pop_salt').GetValue], [Province.MakeScope.Var('info_trade_prov_in_prod_salt').GetValue], [Province.MakeScope.Var('info_trade_prov_in_build_salt').GetValue])"
+					}
+				}
+			}
+			hbox = {
+				layoutpolicy_horizontal = expanding
+				
+				vbox = {
+					layoutpolicy_horizontal = expanding
+					
+					text_single = {
+						parentanchor = left
+						text = "Mud:"
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						layoutpolicy_horizontal = expanding
+						text = " - Stockpile: [Province.MakeScope.Var('prod_has_mud').GetValue]"
+						using = Font_Size_Small
+					}
+					text_single = {
+						layoutpolicy_horizontal = expanding
+						text = " - Supply: [Province.MakeScope.Var('info_trade_prov_sply_mud').GetValue]"
+						using = Font_Size_Small
+					}
+					text_single = {
+						layoutpolicy_horizontal = expanding
+						text = " - Demand: [Province.MakeScope.Var('info_trade_prov_dmnd_mud').GetValue]"
+						using = Font_Size_Small
+						tooltip = "Pop, Industry, Construction: ([Province.MakeScope.Var('info_trade_prov_dmnd_pop_mud').GetValue], [Province.MakeScope.Var('info_trade_prov_dmnd_prod_mud').GetValue], [Province.MakeScope.Var('info_trade_prov_dmnd_build_mud').GetValue])"
+					}
+					text_single = {
+						layoutpolicy_horizontal = expanding
+						text = " - Demand Met: [Province.MakeScope.Var('info_trade_prov_in_mud').GetValue]"
+						using = Font_Size_Small
+						tooltip = "Pop, Industry, Construction: ([Province.MakeScope.Var('info_trade_prov_in_pop_mud').GetValue], [Province.MakeScope.Var('info_trade_prov_in_prod_mud').GetValue], [Province.MakeScope.Var('info_trade_prov_in_build_mud').GetValue])"
+					}
+				}
+				vbox = {
+					layoutpolicy_horizontal = expanding
+					
+					text_single = {
+						parentanchor = left
+						text = "Fuel:"
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						layoutpolicy_horizontal = expanding
+						text = " - Stockpile: [Province.MakeScope.Var('prod_has_fuel').GetValue]"
+						using = Font_Size_Small
+					}
+					text_single = {
+						layoutpolicy_horizontal = expanding
+						text = " - Supply: [Province.MakeScope.Var('info_trade_prov_sply_fuel').GetValue]"
+						using = Font_Size_Small
+					}
+					text_single = {
+						layoutpolicy_horizontal = expanding
+						text = " - Demand: [Province.MakeScope.Var('info_trade_prov_dmnd_fuel').GetValue]"
+						using = Font_Size_Small
+						tooltip = "Pop, Industry, Construction: ([Province.MakeScope.Var('info_trade_prov_dmnd_pop_fuel').GetValue], [Province.MakeScope.Var('info_trade_prov_dmnd_prod_fuel').GetValue], [Province.MakeScope.Var('info_trade_prov_dmnd_build_fuel').GetValue])"
+					}
+					text_single = {
+						layoutpolicy_horizontal = expanding
+						text = " - Demand Met: [Province.MakeScope.Var('info_trade_prov_in_fuel').GetValue]"
+						using = Font_Size_Small
+						tooltip = "Pop, Industry, Construction: ([Province.MakeScope.Var('info_trade_prov_in_pop_fuel').GetValue], [Province.MakeScope.Var('info_trade_prov_in_prod_fuel').GetValue], [Province.MakeScope.Var('info_trade_prov_in_build_fuel').GetValue])"
+					}
+				}
+			}
+			hbox = {
+				layoutpolicy_horizontal = expanding
+				
+				vbox = {
+					layoutpolicy_horizontal = expanding
+					
+					text_single = {
+						parentanchor = left
+						text = "Fiber:"
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						layoutpolicy_horizontal = expanding
+						text = " - Stockpile: [Province.MakeScope.Var('prod_has_fiber').GetValue]"
+						using = Font_Size_Small
+					}
+					text_single = {
+						layoutpolicy_horizontal = expanding
+						text = " - Supply: [Province.MakeScope.Var('info_trade_prov_sply_fiber').GetValue]"
+						using = Font_Size_Small
+					}
+					text_single = {
+						layoutpolicy_horizontal = expanding
+						text = " - Demand: [Province.MakeScope.Var('info_trade_prov_dmnd_fiber').GetValue]"
+						using = Font_Size_Small
+						tooltip = "Pop, Industry, Construction: ([Province.MakeScope.Var('info_trade_prov_dmnd_pop_fiber').GetValue], [Province.MakeScope.Var('info_trade_prov_dmnd_prod_fiber').GetValue], [Province.MakeScope.Var('info_trade_prov_dmnd_build_fiber').GetValue])"
+					}
+					text_single = {
+						layoutpolicy_horizontal = expanding
+						text = " - Demand Met: [Province.MakeScope.Var('info_trade_prov_in_fiber').GetValue]"
+						using = Font_Size_Small
+						tooltip = "Pop, Industry, Construction: ([Province.MakeScope.Var('info_trade_prov_in_pop_fiber').GetValue], [Province.MakeScope.Var('info_trade_prov_in_prod_fiber').GetValue], [Province.MakeScope.Var('info_trade_prov_in_build_fiber').GetValue])"
+					}
+				}
+				vbox = {
+					layoutpolicy_horizontal = expanding
+					
+					text_single = {
+						parentanchor = left
+						text = "Timber:"
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						layoutpolicy_horizontal = expanding
+						text = " - Stockpile: [Province.MakeScope.Var('prod_has_timber').GetValue]"
+						using = Font_Size_Small
+					}
+					text_single = {
+						layoutpolicy_horizontal = expanding
+						text = " - Supply: [Province.MakeScope.Var('info_trade_prov_sply_timber').GetValue]"
+						using = Font_Size_Small
+					}
+					text_single = {
+						layoutpolicy_horizontal = expanding
+						text = " - Demand: [Province.MakeScope.Var('info_trade_prov_dmnd_timber').GetValue]"
+						using = Font_Size_Small
+						tooltip = "Pop, Industry, Construction: ([Province.MakeScope.Var('info_trade_prov_dmnd_pop_timber').GetValue], [Province.MakeScope.Var('info_trade_prov_dmnd_prod_timber').GetValue], [Province.MakeScope.Var('info_trade_prov_dmnd_build_timber').GetValue])"
+					}
+					text_single = {
+						layoutpolicy_horizontal = expanding
+						text = " - Demand Met: [Province.MakeScope.Var('info_trade_prov_in_timber').GetValue]"
+						using = Font_Size_Small
+						tooltip = "Pop, Industry, Construction: ([Province.MakeScope.Var('info_trade_prov_in_pop_timber').GetValue], [Province.MakeScope.Var('info_trade_prov_in_prod_timber').GetValue], [Province.MakeScope.Var('info_trade_prov_in_build_timber').GetValue])"
+					}
+				}
+			}
+			hbox = {
+				layoutpolicy_horizontal = expanding
+				
+				vbox = {
+					layoutpolicy_horizontal = expanding
+					
+					text_single = {
+						parentanchor = left
+						text = "Metal:"
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						layoutpolicy_horizontal = expanding
+						text = " - Stockpile: [Province.MakeScope.Var('prod_has_metal').GetValue]"
+						using = Font_Size_Small
+					}
+					text_single = {
+						layoutpolicy_horizontal = expanding
+						text = " - Supply: [Province.MakeScope.Var('info_trade_prov_sply_metal').GetValue]"
+						using = Font_Size_Small
+					}
+					text_single = {
+						layoutpolicy_horizontal = expanding
+						text = " - Demand: [Province.MakeScope.Var('info_trade_prov_dmnd_metal').GetValue]"
+						using = Font_Size_Small
+						tooltip = "Pop, Industry, Construction: ([Province.MakeScope.Var('info_trade_prov_dmnd_pop_metal').GetValue], [Province.MakeScope.Var('info_trade_prov_dmnd_prod_metal').GetValue], [Province.MakeScope.Var('info_trade_prov_dmnd_build_metal').GetValue])"
+					}
+					text_single = {
+						layoutpolicy_horizontal = expanding
+						text = " - Demand Met: [Province.MakeScope.Var('info_trade_prov_in_metal').GetValue]"
+						using = Font_Size_Small
+						tooltip = "Pop, Industry, Construction: ([Province.MakeScope.Var('info_trade_prov_in_pop_metal').GetValue], [Province.MakeScope.Var('info_trade_prov_in_prod_metal').GetValue], [Province.MakeScope.Var('info_trade_prov_in_build_metal').GetValue])"
+					}
+				}
+				vbox = {
+					layoutpolicy_horizontal = expanding
+					
+					text_single = {
+						parentanchor = left
+						text = "Western Exotics:"
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						layoutpolicy_horizontal = expanding
+						text = " - Stockpile: [Province.MakeScope.Var('prod_has_exotics_w').GetValue]"
+						using = Font_Size_Small
+					}
+					text_single = {
+						layoutpolicy_horizontal = expanding
+						text = " - Supply: [Province.MakeScope.Var('info_trade_prov_sply_exotics_w').GetValue]"
+						using = Font_Size_Small
+					}
+					text_single = {
+						layoutpolicy_horizontal = expanding
+						text = " - Demand: [Province.MakeScope.Var('info_trade_prov_dmnd_exotics_w').GetValue]"
+						using = Font_Size_Small
+						tooltip = "Pop, Industry, Construction: ([Province.MakeScope.Var('info_trade_prov_dmnd_pop_exotics_w').GetValue], [Province.MakeScope.Var('info_trade_prov_dmnd_prod_exotics_w').GetValue], [Province.MakeScope.Var('info_trade_prov_dmnd_build_exotics_w').GetValue])"
+					}
+					text_single = {
+						layoutpolicy_horizontal = expanding
+						text = " - Demand Met: [Province.MakeScope.Var('info_trade_prov_in_exotics_w').GetValue]"
+						using = Font_Size_Small
+						tooltip = "Pop, Industry, Construction: ([Province.MakeScope.Var('info_trade_prov_in_pop_exotics_w').GetValue], [Province.MakeScope.Var('info_trade_prov_in_prod_exotics_w').GetValue], [Province.MakeScope.Var('info_trade_prov_in_build_exotics_w').GetValue])"
+					}
+				}
+			}
+			hbox = {
+				layoutpolicy_horizontal = expanding
+				
+				vbox = {
+					layoutpolicy_horizontal = expanding
+					
+					text_single = {
+						parentanchor = left
+						text = "Eastern Exotics:"
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						layoutpolicy_horizontal = expanding
+						text = " - Stockpile: [Province.MakeScope.Var('prod_has_exotics_e').GetValue]"
+						using = Font_Size_Small
+					}
+					text_single = {
+						layoutpolicy_horizontal = expanding
+						text = " - Supply: [Province.MakeScope.Var('info_trade_prov_sply_exotics_e').GetValue]"
+						using = Font_Size_Small
+					}
+					text_single = {
+						layoutpolicy_horizontal = expanding
+						text = " - Demand: [Province.MakeScope.Var('info_trade_prov_dmnd_exotics_e').GetValue]"
+						using = Font_Size_Small
+						tooltip = "Pop, Industry, Construction: ([Province.MakeScope.Var('info_trade_prov_dmnd_pop_exotics_e').GetValue], [Province.MakeScope.Var('info_trade_prov_dmnd_prod_exotics_e').GetValue], [Province.MakeScope.Var('info_trade_prov_dmnd_build_exotics_e').GetValue])"
+					}
+					text_single = {
+						layoutpolicy_horizontal = expanding
+						text = " - Demand Met: [Province.MakeScope.Var('info_trade_prov_in_exotics_e').GetValue]"
+						using = Font_Size_Small
+						tooltip = "Pop, Industry, Construction: ([Province.MakeScope.Var('info_trade_prov_in_pop_exotics_e').GetValue], [Province.MakeScope.Var('info_trade_prov_in_prod_exotics_e').GetValue], [Province.MakeScope.Var('info_trade_prov_in_build_exotics_e').GetValue])"
+					}
+				}
+				vbox = {
+					layoutpolicy_horizontal = expanding
+					
+					text_single = {
+						parentanchor = left
+						text = "General Exotics:"
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						layoutpolicy_horizontal = expanding
+						text = " - Stockpile: [Province.MakeScope.Var('prod_has_exotics_g').GetValue]"
+						using = Font_Size_Small
+					}
+					text_single = {
+						layoutpolicy_horizontal = expanding
+						text = " - Supply: [Province.MakeScope.Var('info_trade_prov_sply_exotics_g').GetValue]"
+						using = Font_Size_Small
+					}
+					text_single = {
+						layoutpolicy_horizontal = expanding
+						text = " - Demand: [Province.MakeScope.Var('info_trade_prov_dmnd_exotics_g').GetValue]"
+						using = Font_Size_Small
+						tooltip = "Pop, Industry, Construction: ([Province.MakeScope.Var('info_trade_prov_dmnd_pop_exotics_g').GetValue], [Province.MakeScope.Var('info_trade_prov_dmnd_prod_exotics_g').GetValue], [Province.MakeScope.Var('info_trade_prov_dmnd_build_exotics_g').GetValue])"
+					}
+					text_single = {
+						layoutpolicy_horizontal = expanding
+						text = " - Demand Met: [Province.MakeScope.Var('info_trade_prov_in_exotics_g').GetValue]"
+						using = Font_Size_Small
+						tooltip = "Pop, Industry, Construction: ([Province.MakeScope.Var('info_trade_prov_in_pop_exotics_g').GetValue], [Province.MakeScope.Var('info_trade_prov_in_prod_exotics_g').GetValue], [Province.MakeScope.Var('info_trade_prov_in_build_exotics_g').GetValue])"
+					}
+				}
+			}
+			hbox = {
+				layoutpolicy_horizontal = expanding
+				
+				vbox = {
+					layoutpolicy_horizontal = expanding
+					
+					text_single = {
+						parentanchor = left
+						text = "Textile:"
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						layoutpolicy_horizontal = expanding
+						text = " - Stockpile: [Province.MakeScope.Var('prod_has_textile').GetValue]"
+						using = Font_Size_Small
+					}
+					text_single = {
+						layoutpolicy_horizontal = expanding
+						text = " - Supply: [Province.MakeScope.Var('info_trade_prov_sply_textile').GetValue]"
+						using = Font_Size_Small
+					}
+					text_single = {
+						layoutpolicy_horizontal = expanding
+						text = " - Demand: [Province.MakeScope.Var('info_trade_prov_dmnd_textile').GetValue]"
+						using = Font_Size_Small
+						tooltip = "Pop, Industry, Construction: ([Province.MakeScope.Var('info_trade_prov_dmnd_pop_textile').GetValue], [Province.MakeScope.Var('info_trade_prov_dmnd_prod_textile').GetValue], [Province.MakeScope.Var('info_trade_prov_dmnd_build_textile').GetValue])"
+					}
+					text_single = {
+						layoutpolicy_horizontal = expanding
+						text = " - Demand Met: [Province.MakeScope.Var('info_trade_prov_in_textile').GetValue]"
+						using = Font_Size_Small
+						tooltip = "Pop, Industry, Construction: ([Province.MakeScope.Var('info_trade_prov_in_pop_textile').GetValue], [Province.MakeScope.Var('info_trade_prov_in_prod_textile').GetValue], [Province.MakeScope.Var('info_trade_prov_in_build_textile').GetValue])"
+					}
+				}
+				vbox = {
+					layoutpolicy_horizontal = expanding
+					
+					text_single = {
+						parentanchor = left
+						text = "Pottery:"
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						layoutpolicy_horizontal = expanding
+						text = " - Stockpile: [Province.MakeScope.Var('prod_has_pottery').GetValue]"
+						using = Font_Size_Small
+					}
+					text_single = {
+						layoutpolicy_horizontal = expanding
+						text = " - Supply: [Province.MakeScope.Var('info_trade_prov_sply_pottery').GetValue]"
+						using = Font_Size_Small
+					}
+					text_single = {
+						layoutpolicy_horizontal = expanding
+						text = " - Demand: [Province.MakeScope.Var('info_trade_prov_dmnd_pottery').GetValue]"
+						using = Font_Size_Small
+						tooltip = "Pop, Industry, Construction: ([Province.MakeScope.Var('info_trade_prov_dmnd_pop_pottery').GetValue], [Province.MakeScope.Var('info_trade_prov_dmnd_prod_pottery').GetValue], [Province.MakeScope.Var('info_trade_prov_dmnd_build_pottery').GetValue])"
+					}
+					text_single = {
+						layoutpolicy_horizontal = expanding
+						text = " - Demand Met: [Province.MakeScope.Var('info_trade_prov_in_pottery').GetValue]"
+						using = Font_Size_Small
+						tooltip = "Pop, Industry, Construction: ([Province.MakeScope.Var('info_trade_prov_in_pop_pottery').GetValue], [Province.MakeScope.Var('info_trade_prov_in_prod_pottery').GetValue], [Province.MakeScope.Var('info_trade_prov_in_build_pottery').GetValue])"
+					}
+				}
+			}
+			
+			vbox = {
+				layoutpolicy_horizontal = expanding
+				
+				text_single = {
+					parentanchor = left
+					text = "Tools:"
+					using = Font_Size_Small
+					layoutpolicy_horizontal = expanding
+				}
+				text_single = {
+					layoutpolicy_horizontal = expanding
+					text = " - Stockpile: [Province.MakeScope.Var('prod_has_tools').GetValue]"
+					using = Font_Size_Small
+				}
+				text_single = {
+					layoutpolicy_horizontal = expanding
+					text = " - Supply: [Province.MakeScope.Var('info_trade_prov_sply_tools').GetValue]"
+					using = Font_Size_Small
+				}
+				text_single = {
+					layoutpolicy_horizontal = expanding
+					text = " - Demand: [Province.MakeScope.Var('info_trade_prov_dmnd_tools').GetValue]"
+					using = Font_Size_Small
+					tooltip = "Pop, Industry, Construction: ([Province.MakeScope.Var('info_trade_prov_dmnd_pop_tools').GetValue], [Province.MakeScope.Var('info_trade_prov_dmnd_prod_tools').GetValue], [Province.MakeScope.Var('info_trade_prov_dmnd_build_tools').GetValue])"
+				}
+				text_single = {
+					layoutpolicy_horizontal = expanding
+					text = " - Demand Met: [Province.MakeScope.Var('info_trade_prov_in_tools').GetValue]"
+					using = Font_Size_Small
+					tooltip = "Pop, Industry, Construction: ([Province.MakeScope.Var('info_trade_prov_in_pop_tools').GetValue], [Province.MakeScope.Var('info_trade_prov_in_prod_tools').GetValue], [Province.MakeScope.Var('info_trade_prov_in_build_tools').GetValue])"
 				}
 			}
 		}
@@ -1086,25 +1537,6 @@ window = {
 								tooltip = "SET_COUNTY_CAPITAL_TOOLTIP"
 							}
 						}
-						
-						button_icon = {
-							name = "toggle_prov_trade"
-							datacontext = "[GetScriptedGui( 'toggle_prov_trade' )]"
-							onclick = "[ScriptedGui.Execute( GuiScope.SetRoot( Province.MakeScope ).End )]"
-							size = { 25 25 }
-							texture = "gfx/interface/buttons/button_round_big.dds"
-
-							background = {
-								texture = "gfx/interface/window_county/building_status_circle.dds"
-								size = { 25 25 }
-								framesize = { 120 120 }
-								using = Master_Button_Modify_Texture
-
-								blockoverride "master_color_frame" {
-									frame = 3
-								}
-							}
-						}
 					}
 
 					text_single = {
@@ -1127,6 +1559,25 @@ window = {
 						visible = "[HoldingView.GetProvince.IsOccupied]"
 						text = "[HoldingView.GetOccupiedInfo]"
 						default_format = "#high"
+					}
+					
+					button_icon = {
+						name = "toggle_prov_trade"
+						datacontext = "[GetScriptedGui( 'toggle_prov_trade' )]"
+						onclick = "[ScriptedGui.Execute( GuiScope.SetRoot( Province.MakeScope ).End )]"
+						size = { 25 25 }
+						texture = "gfx/interface/buttons/button_round_big.dds"
+
+						background = {
+							texture = "gfx/interface/window_county/building_status_circle.dds"
+							size = { 25 25 }
+							framesize = { 120 120 }
+							using = Master_Button_Modify_Texture
+
+							blockoverride "master_color_frame" {
+								frame = 3
+							}
+						}
 					}
 				}
 			}

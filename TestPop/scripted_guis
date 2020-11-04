@@ -24,6 +24,27 @@
 		}
 	}
 }
+close_county_trade = {
+	scope = province
+	
+	is_shown = {
+		always = yes
+	}
+	is_valid = {
+		always = yes
+	}
+	
+	effect = {
+		if = {
+			limit = {
+				has_variable = toggled_county_trade
+			}
+			remove_variable = toggled_county_trade
+		
+			^^goods^remove_variable = info_trade_county_price_&goods&^
+		}
+	}
+}
 
 toggle_prov_trade = {
 	scope = province
@@ -203,6 +224,37 @@ toggle_prov_trade = {
 				change_variable = { name = info_trade_prov_in_&goods& add = var:info_trade_prov_in_pop_&goods& }
 				change_variable = { name = info_trade_prov_in_&goods& add = var:info_trade_prov_in_prod_&goods& }
 				change_variable = { name = info_trade_prov_in_&goods& add = var:info_trade_prov_in_build_&goods& }
+			^
+		}
+	}
+}
+close_prov_trade = {
+	scope = province
+	
+	is_shown = {
+		always = yes
+	}
+	is_valid = {
+		always = yes
+	}
+	
+	effect = {
+		if = {
+			limit = {
+				has_variable = toggled_prov_trade
+			}
+			remove_variable = toggled_prov_trade
+			
+			^^goods^
+				remove_variable = info_trade_prov_sply_&goods&
+				remove_variable = info_trade_prov_dmnd_&goods&
+				remove_variable = info_trade_prov_dmnd_pop_&goods&
+				remove_variable = info_trade_prov_dmnd_prod_&goods&
+				remove_variable = info_trade_prov_dmnd_build_&goods&
+				remove_variable = info_trade_prov_in_&goods&
+				remove_variable = info_trade_prov_in_pop_&goods&
+				remove_variable = info_trade_prov_in_prod_&goods&
+				remove_variable = info_trade_prov_in_build_&goods&
 			^
 		}
 	}
