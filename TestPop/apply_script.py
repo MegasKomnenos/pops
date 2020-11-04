@@ -233,11 +233,10 @@ if __name__ == '__main__':
     macros = dict()
 
     for path in glob.glob('common\\scripted_effects\\*.txt'):
-        if not '00_sim' in path:
-            file = parse_file(path)
+        file = parse_file(path)
 
-            for script in file:
-                scripts[script[0]] = script[2]
+        for script in file:
+            scripts[script[0]] = script[2]
     for path in glob.glob('macro\\*.txt'):
         file = parse_file(path)
 
