@@ -314,6 +314,20 @@ sim_run.02 = {
 					
 					prod_pop_instance = yes
 				}
+				every_in_global_list = {
+					limit = {
+						OR = {
+							NOT = {
+								has_variable = trade_power
+							}
+							
+							var:trade_power < 0.1
+						}
+					}
+					variable = trade_merchants	
+					
+					trade_pop_merchant = yes
+				}
 			}
 			
 			forest_main = yes

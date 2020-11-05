@@ -2,7 +2,7 @@
 	set_variable = { name = init_merchants_t value = $rank$ }
 	change_variable = { name = init_merchants_t multiply = $skill$ }
 	set_variable = { name = init_merchants_tt value = var:init_merchants_t }
-	change_variable = { name = init_merchants_tt multiply = 20 }
+	change_variable = { name = init_merchants_tt multiply = 100 }
 	
 	trade_new_merchant = {
 		location = $location$
@@ -148,6 +148,21 @@ init_merchants = {
 	init_merchants_helper = { location = province:3117 rank = 2 skill = 10 }	# Graz
 	init_merchants_helper = { location = province:2823 rank = 2 skill = 10 }	# Szczecin
 	init_merchants_helper = { location = province:63 rank = 4 skill = 20 outpost_0 = province:1595 }	# Roskilde
+	
+	every_province = {
+		limit = {
+			has_variable = workshop_total
+			
+			var:workshop_total > 1
+			
+			NOT = {
+				has_variable = trade_merchant
+			}
+		}
+		save_temporary_scope_as = init_merchants_t
+		
+		init_merchants_helper = { location = scope:init_merchants_t rank = 1 skill = 5 }
+	}
 	
 	remove_variable = init_merchants_t
 	remove_variable = init_merchants_tt
