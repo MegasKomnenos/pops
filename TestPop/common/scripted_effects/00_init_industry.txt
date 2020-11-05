@@ -82,6 +82,13 @@
 		sply_salt = 1.5
 	}
 	prod_new_template = {
+		name = plantsalt
+		land_type = farm
+		labor = 0.5
+		land = 0.5
+		sply_salt = 0.5
+	}
+	prod_new_template = {
 		name = timber
 		land_type = forest
 		labor = 0.4
@@ -520,6 +527,10 @@ init_industry = {
 			}
 			prod_new_instance = {
 				template = vegetables
+				location = scope:init_industry_select
+			}
+			prod_new_instance = {
+				template = plantsalt
 				location = scope:init_industry_select
 			}
 			prod_new_instance = {
