@@ -1473,7 +1473,7 @@ trade_resolve_trade = {
 		}
 		
 		set_variable = { name = trade_retire_pay value = var:trade_retire }
-		change_variable = { name = trade_retire_pay mutliply = var:trade_wealth }
+		change_variable = { name = trade_retire_pay multiply = var:trade_wealth }
 		change_variable = { name = trade_wealth subtract = var:trade_retire_pay }
 		change_variable = { name = trade_pay add = var:trade_retire_pay }
 		var:trade_location = { change_variable = { name = pop_earn_free add = prev.var:trade_retire_pay } }
