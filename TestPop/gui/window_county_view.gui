@@ -49,7 +49,9 @@ window = {
 		on_start = "[GetVariableSystem.Clear( 'hide_bottom_left_HUD' )]"
 		on_start = "[GetScriptedGui( 'close_county_trade' ).Execute( GuiScope.SetRoot( HoldingView.GetProvince.GetCounty.GetCapital.MakeScope ).End )]"
 		on_start = "[GetScriptedGui( 'close_prov_trade' ).Execute( GuiScope.SetRoot( Province.MakeScope ).End )]"
-
+		on_start = "[GetScriptedGui( 'close_prov_pop' ).Execute( GuiScope.SetRoot( Province.MakeScope ).End )]"
+		on_start = "[GetScriptedGui( 'close_prov_prod' ).Execute( GuiScope.SetRoot( Province.MakeScope ).End )]"
+		
 		using = Animation_FadeOut_Standard
 		using = Sound_WindowHide_Standard
 	}
@@ -713,6 +715,526 @@ window = {
 					text = " - Demand Met: [Province.MakeScope.Var('info_trade_prov_in_tools').GetValue]"
 					using = Font_Size_Small
 					tooltip = "Pop, Industry, Construction: ([Province.MakeScope.Var('info_trade_prov_in_pop_tools').GetValue], [Province.MakeScope.Var('info_trade_prov_in_prod_tools').GetValue], [Province.MakeScope.Var('info_trade_prov_in_build_tools').GetValue])"
+				}
+			}
+		}
+	}
+	
+	window = {
+		parentanchor = top|right
+		size = { 200 800 }
+		position = { 400 -400 }
+		movable = yes
+		visible = "[EqualTo_CFixedPoint('(CFixedPoint)1', Province.MakeScope.Var('toggled_prov_pop').GetValue)]"
+		
+		background = {
+			texture = "gfx/interface/component_tiles/tile_window_background_subwindow.dds"
+			spriteType = Corneredtiled
+			spriteborder = { 18 18 }
+			texture_density = 2
+			
+			modify_texture = {
+				name = "overlay"
+				texture = "gfx/interface/component_overlay/overlay_effect.dds"
+				spriteType = Corneredstretched
+				spriteborder = { 0 0 }
+				blend_mode = overlay
+			}
+		}
+		
+		buttons_window_control = {
+			parentanchor = top|right
+			blockoverride "button_close"
+			{
+				datacontext = "[GetScriptedGui( 'close_prov_pop' )]"
+				onclick = "[ScriptedGui.Execute( GuiScope.SetRoot( Province.MakeScope ).End )]"
+			}
+		}
+		
+		vbox = {
+			margin_left = 20
+			margin_bottom = 15
+			margin_top = 10
+			layoutpolicy_vertical = expanding
+			
+			vbox = {
+				layoutpolicy_horizontal = expanding
+				
+				text_single = {
+					parentanchor = left
+					text = "Pop:"
+					using = Font_Size_Small
+					layoutpolicy_horizontal = expanding
+				}
+				text_single = {
+					layoutpolicy_horizontal = expanding
+					text = " - Size: [Province.MakeScope.Var('pop_total').GetValue]k"
+					using = Font_Size_Small
+				}
+				text_single = {
+					layoutpolicy_horizontal = expanding
+					text = " - Wealth: [Province.MakeScope.Var('pop_wealth').GetValue]"
+					using = Font_Size_Small
+				}
+				text_single = {
+					layoutpolicy_horizontal = expanding
+					text = " - Income: [Province.MakeScope.Var('info_pop_prov_earn_pop').GetValue]"
+					using = Font_Size_Small
+					tooltip = "Free, Lord: ([Province.MakeScope.Var('pop_earn_free').GetValue], [Province.MakeScope.Var('pop_earn_serf').GetValue])"
+				}
+				text_single = {
+					layoutpolicy_horizontal = expanding
+					text = " - Spending: [Province.MakeScope.Var('info_pop_prov_pay_pop').GetValue]"
+					using = Font_Size_Small
+					tooltip = "Free, Lord: ([Province.MakeScope.Var('pop_pay_free').GetValue], [Province.MakeScope.Var('pop_pay_serf').GetValue])"
+				}
+				text_single = {
+					layoutpolicy_horizontal = expanding
+					text = " - Calorie: [Province.MakeScope.Var('pop_calorie').GetValue]"
+					using = Font_Size_Small
+					tooltip = "Spending: [Province.MakeScope.Var('pop_pay_calorie').GetValue]"
+				}
+				text_single = {
+					layoutpolicy_horizontal = expanding
+					text = " - Nutrient: [Province.MakeScope.Var('pop_nutrient').GetValue]"
+					using = Font_Size_Small
+					tooltip = "Spending: [Province.MakeScope.Var('pop_pay_nutrient').GetValue]"
+				}
+				text_single = {
+					layoutpolicy_horizontal = expanding
+					text = " - Comfort: [Province.MakeScope.Var('pop_comfort').GetValue]"
+					using = Font_Size_Small
+					tooltip = "Spending: [Province.MakeScope.Var('pop_pay_comfort').GetValue]"
+				}
+				text_single = {
+					layoutpolicy_horizontal = expanding
+					text = " - Luxury: [Province.MakeScope.Var('pop_luxury').GetValue]"
+					using = Font_Size_Small
+					tooltip = "Spending: [Province.MakeScope.Var('pop_pay_luxury').GetValue]"
+				}
+			}
+			
+			vbox = {
+				layoutpolicy_horizontal = expanding
+				
+				text_single = {
+					parentanchor = left
+					text = "Farm:"
+					using = Font_Size_Small
+					layoutpolicy_horizontal = expanding
+				}
+				text_single = {
+					layoutpolicy_horizontal = expanding
+					text = " - Size: [Province.MakeScope.Var('farm_total').GetValue]"
+					using = Font_Size_Small
+				}
+				text_single = {
+					layoutpolicy_horizontal = expanding
+					text = " - Potential: [Province.MakeScope.Var('farm_potential').GetValue]"
+					using = Font_Size_Small
+				}
+				text_single = {
+					layoutpolicy_horizontal = expanding
+					text = " - Income: [Province.MakeScope.Var('info_pop_prov_earn_farm').GetValue]"
+					using = Font_Size_Small
+				}
+				text_single = {
+					layoutpolicy_horizontal = expanding
+					text = " - Spending: [Province.MakeScope.Var('info_pop_prov_pay_farm').GetValue]"
+					using = Font_Size_Small
+				}
+			}
+			
+			vbox = {
+				layoutpolicy_horizontal = expanding
+				
+				text_single = {
+					parentanchor = left
+					text = "Pasture:"
+					using = Font_Size_Small
+					layoutpolicy_horizontal = expanding
+				}
+				text_single = {
+					layoutpolicy_horizontal = expanding
+					text = " - Size: [Province.MakeScope.Var('pasture_total').GetValue]"
+					using = Font_Size_Small
+				}
+				text_single = {
+					layoutpolicy_horizontal = expanding
+					text = " - Potential: [Province.MakeScope.Var('pasture_potential').GetValue]"
+					using = Font_Size_Small
+				}
+				text_single = {
+					layoutpolicy_horizontal = expanding
+					text = " - Income: [Province.MakeScope.Var('info_pop_prov_earn_pasture').GetValue]"
+					using = Font_Size_Small
+				}
+				text_single = {
+					layoutpolicy_horizontal = expanding
+					text = " - Spending: [Province.MakeScope.Var('info_pop_prov_pay_pasture').GetValue]"
+					using = Font_Size_Small
+				}
+			}
+			
+			vbox = {
+				layoutpolicy_horizontal = expanding
+				
+				text_single = {
+					parentanchor = left
+					text = "Forest:"
+					using = Font_Size_Small
+					layoutpolicy_horizontal = expanding
+				}
+				text_single = {
+					layoutpolicy_horizontal = expanding
+					text = " - Size: [Province.MakeScope.Var('forest_total').GetValue]"
+					using = Font_Size_Small
+				}
+				text_single = {
+					layoutpolicy_horizontal = expanding
+					text = " - Intensivity: [Province.MakeScope.Var('forest_intensivity').GetValue]"
+					using = Font_Size_Small
+				}
+				text_single = {
+					layoutpolicy_horizontal = expanding
+					text = " - Income: [Province.MakeScope.Var('info_pop_prov_earn_forest').GetValue]"
+					using = Font_Size_Small
+				}
+				text_single = {
+					layoutpolicy_horizontal = expanding
+					text = " - Spending: [Province.MakeScope.Var('info_pop_prov_pay_forest').GetValue]"
+					using = Font_Size_Small
+				}
+			}
+			
+			vbox = {
+				layoutpolicy_horizontal = expanding
+				
+				text_single = {
+					parentanchor = left
+					text = "Extraction:"
+					using = Font_Size_Small
+					layoutpolicy_horizontal = expanding
+				}
+				text_single = {
+					layoutpolicy_horizontal = expanding
+					text = " - Size: [Province.MakeScope.Var('extraction_total').GetValue]"
+					using = Font_Size_Small
+				}
+				text_single = {
+					layoutpolicy_horizontal = expanding
+					text = " - Potential: [Province.MakeScope.Var('extraction_potential').GetValue]"
+					using = Font_Size_Small
+				}
+				text_single = {
+					layoutpolicy_horizontal = expanding
+					text = " - Income: [Province.MakeScope.Var('info_pop_prov_earn_extraction').GetValue]"
+					using = Font_Size_Small
+				}
+				text_single = {
+					layoutpolicy_horizontal = expanding
+					text = " - Spending: [Province.MakeScope.Var('info_pop_prov_pay_extraction').GetValue]"
+					using = Font_Size_Small
+				}
+			}
+			
+			vbox = {
+				layoutpolicy_horizontal = expanding
+				
+				text_single = {
+					parentanchor = left
+					text = "Workshop:"
+					using = Font_Size_Small
+					layoutpolicy_horizontal = expanding
+				}
+				text_single = {
+					layoutpolicy_horizontal = expanding
+					text = " - Size: [Province.MakeScope.Var('workshop_total').GetValue]"
+					using = Font_Size_Small
+				}
+				text_single = {
+					layoutpolicy_horizontal = expanding
+					text = " - Potential: Unlimited"
+					using = Font_Size_Small
+				}
+				text_single = {
+					layoutpolicy_horizontal = expanding
+					text = " - Income: [Province.MakeScope.Var('info_pop_prov_earn_workshop').GetValue]"
+					using = Font_Size_Small
+				}
+				text_single = {
+					layoutpolicy_horizontal = expanding
+					text = " - Spending: [Province.MakeScope.Var('info_pop_prov_pay_workshop').GetValue]"
+					using = Font_Size_Small
+				}
+			}
+		}
+	}
+	
+	window = {
+		parentanchor = top|right
+		size = { 800 800 }
+		position = { 400 -400 }
+		movable = yes
+		visible = "[EqualTo_CFixedPoint('(CFixedPoint)1', Province.MakeScope.Var('toggled_prov_prod').GetValue)]"
+		
+		background = {
+			texture = "gfx/interface/component_tiles/tile_window_background_subwindow.dds"
+			spriteType = Corneredtiled
+			spriteborder = { 18 18 }
+			texture_density = 2
+			
+			modify_texture = {
+				name = "overlay"
+				texture = "gfx/interface/component_overlay/overlay_effect.dds"
+				spriteType = Corneredstretched
+				spriteborder = { 0 0 }
+				blend_mode = overlay
+			}
+		}
+		
+		buttons_window_control = {
+			parentanchor = top|right
+			blockoverride "button_close"
+			{
+				datacontext = "[GetScriptedGui( 'close_prov_prod' )]"
+				onclick = "[ScriptedGui.Execute( GuiScope.SetRoot( Province.MakeScope ).End )]"
+			}
+		}
+		
+		vbox = {
+			margin_left = 20
+			margin_bottom = 15
+			margin_top = 10
+			layoutpolicy_vertical = expanding
+			
+			hbox = {
+				layoutpolicy_horizontal = expanding
+			
+				text_single = {
+					parentanchor = left
+					text = "[Province.Custom('province_prod_0')]"
+					using = Font_Size_Small
+					layoutpolicy_horizontal = expanding
+				}
+				text_single = {
+					parentanchor = left
+					text = "[Province.Custom('province_prod_1')]"
+					using = Font_Size_Small
+					layoutpolicy_horizontal = expanding
+				}
+				text_single = {
+					parentanchor = left
+					text = "[Province.Custom('province_prod_2')]"
+					using = Font_Size_Small
+					layoutpolicy_horizontal = expanding
+				}
+			}
+
+			hbox = {
+				layoutpolicy_horizontal = expanding
+			
+				text_single = {
+					parentanchor = left
+					text = "[Province.Custom('province_prod_3')]"
+					using = Font_Size_Small
+					layoutpolicy_horizontal = expanding
+				}
+				text_single = {
+					parentanchor = left
+					text = "[Province.Custom('province_prod_4')]"
+					using = Font_Size_Small
+					layoutpolicy_horizontal = expanding
+				}
+				text_single = {
+					parentanchor = left
+					text = "[Province.Custom('province_prod_5')]"
+					using = Font_Size_Small
+					layoutpolicy_horizontal = expanding
+				}
+			}
+			
+			hbox = {
+				layoutpolicy_horizontal = expanding
+			
+				text_single = {
+					parentanchor = left
+					text = "[Province.Custom('province_prod_6')]"
+					using = Font_Size_Small
+					layoutpolicy_horizontal = expanding
+				}
+				text_single = {
+					parentanchor = left
+					text = "[Province.Custom('province_prod_7')]"
+					using = Font_Size_Small
+					layoutpolicy_horizontal = expanding
+				}
+				text_single = {
+					parentanchor = left
+					text = "[Province.Custom('province_prod_8')]"
+					using = Font_Size_Small
+					layoutpolicy_horizontal = expanding
+				}
+			}
+
+			hbox = {
+				layoutpolicy_horizontal = expanding
+			
+				text_single = {
+					parentanchor = left
+					text = "[Province.Custom('province_prod_9')]"
+					using = Font_Size_Small
+					layoutpolicy_horizontal = expanding
+				}
+				text_single = {
+					parentanchor = left
+					text = "[Province.Custom('province_prod_10')]"
+					using = Font_Size_Small
+					layoutpolicy_horizontal = expanding
+				}
+				text_single = {
+					parentanchor = left
+					text = "[Province.Custom('province_prod_11')]"
+					using = Font_Size_Small
+					layoutpolicy_horizontal = expanding
+				}
+			}
+			
+			hbox = {
+				layoutpolicy_horizontal = expanding
+				
+				text_single = {
+					parentanchor = left
+					text = "[Province.Custom('province_prod_12')]"
+					using = Font_Size_Small
+					layoutpolicy_horizontal = expanding
+				}
+				text_single = {
+					parentanchor = left
+					text = "[Province.Custom('province_prod_13')]"
+					using = Font_Size_Small
+					layoutpolicy_horizontal = expanding
+				}
+				text_single = {
+					parentanchor = left
+					text = "[Province.Custom('province_prod_14')]"
+					using = Font_Size_Small
+					layoutpolicy_horizontal = expanding
+				}
+			}
+			
+			hbox = {
+				layoutpolicy_horizontal = expanding
+				
+				text_single = {
+					parentanchor = left
+					text = "[Province.Custom('province_prod_15')]"
+					using = Font_Size_Small
+					layoutpolicy_horizontal = expanding
+				}
+				text_single = {
+					parentanchor = left
+					text = "[Province.Custom('province_prod_16')]"
+					using = Font_Size_Small
+					layoutpolicy_horizontal = expanding
+				}
+				text_single = {
+					parentanchor = left
+					text = "[Province.Custom('province_prod_17')]"
+					using = Font_Size_Small
+					layoutpolicy_horizontal = expanding
+				}
+			}
+
+			hbox = {
+				layoutpolicy_horizontal = expanding
+				
+				text_single = {
+					parentanchor = left
+					text = "[Province.Custom('province_prod_18')]"
+					using = Font_Size_Small
+					layoutpolicy_horizontal = expanding
+				}
+				text_single = {
+					parentanchor = left
+					text = "[Province.Custom('province_prod_19')]"
+					using = Font_Size_Small
+					layoutpolicy_horizontal = expanding
+				}
+				text_single = {
+					parentanchor = left
+					text = "[Province.Custom('province_prod_20')]"
+					using = Font_Size_Small
+					layoutpolicy_horizontal = expanding
+				}
+			}
+			
+			hbox = {
+				layoutpolicy_horizontal = expanding
+				
+				text_single = {
+					parentanchor = left
+					text = "[Province.Custom('province_prod_21')]"
+					using = Font_Size_Small
+					layoutpolicy_horizontal = expanding
+				}
+				text_single = {
+					parentanchor = left
+					text = "[Province.Custom('province_prod_22')]"
+					using = Font_Size_Small
+					layoutpolicy_horizontal = expanding
+				}
+				text_single = {
+					parentanchor = left
+					text = "[Province.Custom('province_prod_23')]"
+					using = Font_Size_Small
+					layoutpolicy_horizontal = expanding
+				}
+			}
+			
+			hbox = {
+				layoutpolicy_horizontal = expanding
+				
+				text_single = {
+					parentanchor = left
+					text = "[Province.Custom('province_prod_24')]"
+					using = Font_Size_Small
+					layoutpolicy_horizontal = expanding
+				}
+				text_single = {
+					parentanchor = left
+					text = "[Province.Custom('province_prod_25')]"
+					using = Font_Size_Small
+					layoutpolicy_horizontal = expanding
+				}
+				text_single = {
+					parentanchor = left
+					text = "[Province.Custom('province_prod_26')]"
+					using = Font_Size_Small
+					layoutpolicy_horizontal = expanding
+				}
+			}
+			
+			hbox = {
+				layoutpolicy_horizontal = expanding
+				
+				text_single = {
+					parentanchor = left
+					text = "[Province.Custom('province_prod_27')]"
+					using = Font_Size_Small
+					layoutpolicy_horizontal = expanding
+				}
+				text_single = {
+					parentanchor = left
+					text = "[Province.Custom('province_prod_28')]"
+					using = Font_Size_Small
+					layoutpolicy_horizontal = expanding
+				}
+				text_single = {
+					parentanchor = left
+					text = "[Province.Custom('province_prod_29')]"
+					using = Font_Size_Small
+					layoutpolicy_horizontal = expanding
 				}
 			}
 		}
@@ -1561,21 +2083,59 @@ window = {
 						default_format = "#high"
 					}
 					
-					button_icon = {
-						name = "toggle_prov_trade"
-						datacontext = "[GetScriptedGui( 'toggle_prov_trade' )]"
-						onclick = "[ScriptedGui.Execute( GuiScope.SetRoot( Province.MakeScope ).End )]"
-						size = { 25 25 }
-						texture = "gfx/interface/buttons/button_round_big.dds"
-
-						background = {
-							texture = "gfx/interface/window_county/building_status_circle.dds"
+					flowcontainer = {
+						button_icon = {
+							name = "toggle_prov_trade"
+							datacontext = "[GetScriptedGui( 'toggle_prov_trade' )]"
+							onclick = "[ScriptedGui.Execute( GuiScope.SetRoot( Province.MakeScope ).End )]"
 							size = { 25 25 }
-							framesize = { 120 120 }
-							using = Master_Button_Modify_Texture
+							texture = "gfx/interface/buttons/button_round_big.dds"
 
-							blockoverride "master_color_frame" {
-								frame = 3
+							background = {
+								texture = "gfx/interface/window_county/building_status_circle.dds"
+								size = { 25 25 }
+								framesize = { 120 120 }
+								using = Master_Button_Modify_Texture
+
+								blockoverride "master_color_frame" {
+									frame = 3
+								}
+							}
+						}
+						button_icon = {
+							name = "toggle_prov_pop"
+							datacontext = "[GetScriptedGui( 'toggle_prov_pop' )]"
+							onclick = "[ScriptedGui.Execute( GuiScope.SetRoot( Province.MakeScope ).End )]"
+							size = { 25 25 }
+							texture = "gfx/interface/buttons/button_round_big.dds"
+
+							background = {
+								texture = "gfx/interface/window_county/building_status_circle.dds"
+								size = { 25 25 }
+								framesize = { 120 120 }
+								using = Master_Button_Modify_Texture
+
+								blockoverride "master_color_frame" {
+									frame = 3
+								}
+							}
+						}
+						button_icon = {
+							name = "toggle_prov_prod"
+							datacontext = "[GetScriptedGui( 'toggle_prov_prod' )]"
+							onclick = "[ScriptedGui.Execute( GuiScope.SetRoot( Province.MakeScope ).End )]"
+							size = { 25 25 }
+							texture = "gfx/interface/buttons/button_round_big.dds"
+
+							background = {
+								texture = "gfx/interface/window_county/building_status_circle.dds"
+								size = { 25 25 }
+								framesize = { 120 120 }
+								using = Master_Button_Modify_Texture
+
+								blockoverride "master_color_frame" {
+									frame = 3
+								}
 							}
 						}
 					}
@@ -2177,7 +2737,7 @@ window = {
 						}
 
 						widget = {
-							# This is needed to offset the building slots correctly when special building slots exist.
+							# THIS is needed to offset the building slots correctly when special building slots exist.
 							name = "Conditional_margin_widget"
 							size = { 0 0 }
 							visible = "[HoldingView.HasSpecialBuildingSlot]"

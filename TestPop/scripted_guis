@@ -259,3 +259,137 @@ close_prov_trade = {
 		}
 	}
 }
+
+toggle_prov_pop = {
+	scope = province
+	
+	is_shown = {
+		always = yes
+	}
+	is_valid = {
+		always = yes
+	}
+	
+	effect = {
+		if = {
+			limit = {
+				has_variable = toggled_prov_pop
+			}
+			remove_variable = toggled_prov_pop
+			
+			remove_variable = info_pop_prov_earn_pop
+			remove_variable = info_pop_prov_pay_pop
+			
+			^^lands^
+				set_variable = { name = info_pop_prov_earn_&lands& value = 0 }
+				set_variable = { name = info_pop_prov_pay_&lands& value = 0 }
+			^
+		}
+		else = {
+			set_variable = { name = toggled_prov_pop value = 1 }
+			
+			set_variable = { name = info_pop_prov_earn_pop value = var:pop_earn_free }
+			change_variable = { name = info_pop_prov_earn_pop add = var:pop_earn_serf }
+			
+			set_variable = { name = info_pop_prov_pay_pop value = var:pop_pay_free }
+			change_variable = { name = info_pop_prov_pay_pop add = var:pop_pay_serf }
+			
+			if = {
+				limit = {
+					NOT = {
+						has_variable = extraction_potential
+					}
+				}
+				set_variable = { name = extraction_potential value = 0 }
+			}
+			
+			^^lands^
+				set_variable = { name = info_pop_prov_earn_&lands& value = 0 }
+				set_variable = { name = info_pop_prov_pay_&lands& value = 0 }
+				
+				every_in_list = {
+					limit = {
+						var:prod_template = {
+							has_variable = prod_land_&lands&
+						}
+					}
+					variable = prod_instances
+					
+					prev = {
+						change_variable = { name = info_pop_prov_earn_&lands& add = prev.var:prod_earn }
+						change_variable = { name = info_pop_prov_pay_&lands& add = prev.var:prod_pay_old }
+					}
+				}
+			^
+		}
+	}
+}
+close_prov_pop = {
+	scope = province
+	
+	is_shown = {
+		always = yes
+	}
+	is_valid = {
+		always = yes
+	}
+	
+	effect = {
+		if = {
+			limit = {
+				has_variable = toggled_prov_pop
+			}
+			remove_variable = toggled_prov_pop
+			
+			remove_variable = info_pop_prov_earn_pop
+			remove_variable = info_pop_prov_pay_pop
+			
+			^^lands^
+				set_variable = { name = info_pop_prov_earn_&lands& value = 0 }
+				set_variable = { name = info_pop_prov_pay_&lands& value = 0 }
+			^
+		}
+	}
+}
+
+toggle_prov_prod = {
+	scope = province
+	
+	is_shown = {
+		always = yes
+	}
+	is_valid = {
+		always = yes
+	}
+	
+	effect = {
+		if = {
+			limit = {
+				has_variable = toggled_prov_prod
+			}
+			remove_variable = toggled_prov_prod
+		}
+		else = {
+			set_variable = { name = toggled_prov_prod value = 1 }
+		}
+	}
+}
+close_prov_prod = {
+	scope = province
+	
+	is_shown = {
+		always = yes
+	}
+	is_valid = {
+		always = yes
+	}
+	
+	effect = {
+		if = {
+			limit = {
+				has_variable = toggled_prov_prod
+			}
+			remove_variable = toggled_prov_prod
+		}
+	}
+}
