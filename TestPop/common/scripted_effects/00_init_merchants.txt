@@ -1,10 +1,13 @@
 ﻿init_merchants_helper = {
+	set_variable = { name = init_merchants_t value = $power$ }
+	change_variable = { name = init_merchants_t multiply = $rank$ }
+	set_variable = { name = init_merchants_tt value = var:init_merchants_t }
+	change_variable = { name =init_merchants_tt multiply = 20 }
+	
 	trade_new_merchant = {
 		location = $location$
-		tax = 0
-		wealth = 0
-		rank = $rank$
-		skill = $skill$
+		power = var:init_merchants_t
+		wealth = var:init_merchants_tt
 		outpost = 1
 	}
 	
@@ -145,4 +148,7 @@ init_merchants = {
 	init_merchants_helper = { location = province:3117 rank = 2 skill = 10 }	# Graz
 	init_merchants_helper = { location = province:2823 rank = 2 skill = 10 }	# Szczecin
 	init_merchants_helper = { location = province:63 rank = 4 skill = 20 outpost_0 = province:1595 }	# Roskilde
+	
+	remove_variable = init_merchants_t
+	remove_variable = init_merchants_tt
 }

@@ -395,14 +395,6 @@ sim_run.02 = {
 				change_variable = { name = pop_wealth add = var:pop_earn_serf }
 				change_variable = { name = pop_wealth subtract = var:pop_pay_free }
 				change_variable = { name = pop_wealth subtract = var:pop_pay_serf }
-				
-				if = {
-					limit = {
-						has_variable = trade_merchant
-					}
-					change_variable = { name = pop_wealth add = var:trade_merchant.var:trade_earn }
-					change_variable = { name = pop_wealth subtract = var:trade_merchant.var:trade_pay }
-				}
 			}
 
 			debug_log = "Logging Start"
@@ -415,6 +407,15 @@ sim_run.02 = {
 				}
 				prev = {
 					set_variable = { name = t_disp_t value = prev.var:pop_wealth }
+					change_variable = { name = t_disp_t divide = 100 }
+					change_variable = { name = t_disp add = var:t_disp_t }
+				}
+			}
+			every_in_global_list = {
+				variable = trade_merchants
+				
+				prev = {
+					set_variable = { name = t_disp_t value = prev.var:trade_wealth }
 					change_variable = { name = t_disp_t divide = 100 }
 					change_variable = { name = t_disp add = var:t_disp_t }
 				}
