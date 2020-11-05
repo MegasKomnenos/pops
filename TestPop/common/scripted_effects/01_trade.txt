@@ -33,9 +33,9 @@
 			set_variable = { name = trade_price_&goods& value = $location$.county.var:trade_price_&goods& }
 		^
 		
-		set_variable = { name = trade_retire value = 0.008 }
-		set_variable = { name = trade_luxury value = 0.008 }
-		set_variable = { name = trade_invest value = 0.034 }
+		set_variable = { name = trade_retire value = 0.01 }
+		set_variable = { name = trade_luxury value = 0.01 }
+		set_variable = { name = trade_invest value = 0.03 }
 		
 		set_variable = { name = trade_outposts_max value = $outpost$ }
 		
@@ -1491,9 +1491,13 @@ trade_resolve_trade = {
 				set_variable = { name = trade_resolve_trade_t value = var:trade_luxury_&goods& }
 				change_variable = { name = trade_resolve_trade_t multiply = 100 }
 				change_variable = { name = trade_resolve_trade_t divide = var:trade_dmnd_&goods& }
+				set_variable = { name = trade_resolve_trade_tt value = var:trade_resolve_trade_t }
 				change_variable = { name = trade_resolve_trade_t multiply = var:trade_pay_&goods& }
 				change_variable = { name = trade_resolve_trade_t divide = 100 }
 				change_variable = { name = trade_luxury_pay add = var:trade_resolve_trade_t }
+				change_variable = { name = trade_resolve_trade_tt multiply = var:trade_in_&goods& }
+				change_variable = { name = trade_resolve_trade_tt divide = 100 }
+				change_variable = { name = trade_out_&goods& add = var:trade_resolve_trade_tt }
 			}
 			else = {
 				remove_variable = trade_luxury_pay_&goods&
@@ -1517,8 +1521,9 @@ trade_resolve_trade = {
 				change_variable = { name = trade_invest_pay_&goods& divide = 100 }
 				change_variable = { name = trade_invest_pay add = var:trade_invest_pay_&goods& }
 				change_variable = { name = trade_resolve_trade_t multiply = var:trade_in_&goods& }
-				change_variable = { name = trade_resolve_trade_t multiply = trade_invest_&goods& }
 				change_variable = { name = trade_resolve_trade_t divide = 100 }
+				change_variable = { name = trade_out_&goods& add = var:trade_resolve_trade }
+				change_variable = { name = trade_resolve_trade_t multiply = trade_invest_&goods& }
 				change_variable = { name = trade_power add = var:trade_resolve_trade_t }
 			}
 			else = {
@@ -1527,6 +1532,7 @@ trade_resolve_trade = {
 		^
 		
 		remove_variable = trade_resolve_trade_t
+		remove_variable = trade_resolve_trade_tt
 	}
 }
 

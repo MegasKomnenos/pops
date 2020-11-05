@@ -321,7 +321,7 @@ sim_run.02 = {
 								has_variable = trade_power
 							}
 							
-							var:trade_power < 0.1
+							var:trade_power < 1
 						}
 					}
 					variable = trade_merchants	
