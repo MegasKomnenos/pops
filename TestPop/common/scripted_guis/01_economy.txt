@@ -3849,3 +3849,86 @@ close_prov_prod = {
 		}
 	}
 }
+toggle_prov_build = { 
+	scope = province
+	is_shown = { 
+		always = yes
+	}
+	is_valid = { 
+		always = yes
+	}
+	effect = { 
+		if = { 
+			limit = { 
+				has_variable = toggled_prov_build
+			}
+			remove_variable = toggled_prov_build
+		}
+		else = { 
+			set_variable = { 
+				name = toggled_prov_build
+				value = 1
+			}
+		}
+	}
+}
+close_prov_build = { 
+	scope = province
+	is_shown = { 
+		always = yes
+	}
+	is_valid = { 
+		always = yes
+	}
+	effect = { 
+		if = { 
+			limit = { 
+				has_variable = toggled_prov_build
+			}
+			remove_variable = toggled_prov_build
+		}
+	}
+}
+toggle_prov_merchant = { 
+	scope = province
+	is_shown = { 
+		always = yes
+	}
+	is_valid = { 
+		always = yes
+	}
+	effect = { 
+		if = { 
+			limit = { 
+				has_variable = toggled_prov_merchant
+			}
+			remove_variable = toggled_prov_merchant
+		}
+		else_if = { 
+			limit = { 
+				has_variable = trade_merchant
+			}
+			set_variable = { 
+				name = toggled_prov_merchant
+				value = 1
+			}
+		}
+	}
+}
+close_prov_merchant = { 
+	scope = province
+	is_shown = { 
+		always = yes
+	}
+	is_valid = { 
+		always = yes
+	}
+	effect = { 
+		if = { 
+			limit = { 
+				has_variable = toggled_prov_merchant
+			}
+			remove_variable = toggled_prov_merchant
+		}
+	}
+}

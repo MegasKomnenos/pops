@@ -51,6 +51,8 @@ window = {
 		on_start = "[GetScriptedGui( 'close_prov_trade' ).Execute( GuiScope.SetRoot( Province.MakeScope ).End )]"
 		on_start = "[GetScriptedGui( 'close_prov_pop' ).Execute( GuiScope.SetRoot( Province.MakeScope ).End )]"
 		on_start = "[GetScriptedGui( 'close_prov_prod' ).Execute( GuiScope.SetRoot( Province.MakeScope ).End )]"
+		on_start = "[GetScriptedGui( 'close_prov_build' ).Execute( GuiScope.SetRoot( Province.MakeScope ).End )]"
+		on_start = "[GetScriptedGui( 'close_prov_merchant' ).Execute( GuiScope.SetRoot( Province.MakeScope ).End )]"
 		
 		using = Animation_FadeOut_Standard
 		using = Sound_WindowHide_Standard
@@ -1239,6 +1241,839 @@ window = {
 			}
 		}
 	}
+	
+	window = {
+		parentanchor = top|right
+		size = { 800 900 }
+		position = { 400 -400 }
+		movable = yes
+		visible = "[EqualTo_CFixedPoint('(CFixedPoint)1', Province.MakeScope.Var('toggled_prov_build').GetValue)]"
+		
+		background = {
+			texture = "gfx/interface/component_tiles/tile_window_background_subwindow.dds"
+			spriteType = Corneredtiled
+			spriteborder = { 18 18 }
+			texture_density = 2
+			
+			modify_texture = {
+				name = "overlay"
+				texture = "gfx/interface/component_overlay/overlay_effect.dds"
+				spriteType = Corneredstretched
+				spriteborder = { 0 0 }
+				blend_mode = overlay
+			}
+		}
+		
+		buttons_window_control = {
+			parentanchor = top|right
+			blockoverride "button_close"
+			{
+				datacontext = "[GetScriptedGui( 'close_prov_build' )]"
+				onclick = "[ScriptedGui.Execute( GuiScope.SetRoot( Province.MakeScope ).End )]"
+			}
+		}
+		
+		vbox = {
+			margin_left = 20
+			margin_bottom = 15
+			margin_top = 10
+			layoutpolicy_vertical = expanding
+			
+			hbox = {
+				layoutpolicy_horizontal = expanding
+			
+				text_single = {
+					parentanchor = left
+					text = "[Province.Custom('province_build_0')]"
+					using = Font_Size_Small
+					layoutpolicy_horizontal = expanding
+				}
+				text_single = {
+					parentanchor = left
+					text = "[Province.Custom('province_build_1')]"
+					using = Font_Size_Small
+					layoutpolicy_horizontal = expanding
+				}
+				text_single = {
+					parentanchor = left
+					text = "[Province.Custom('province_build_2')]"
+					using = Font_Size_Small
+					layoutpolicy_horizontal = expanding
+				}
+			}
+
+			hbox = {
+				layoutpolicy_horizontal = expanding
+			
+				text_single = {
+					parentanchor = left
+					text = "[Province.Custom('province_build_3')]"
+					using = Font_Size_Small
+					layoutpolicy_horizontal = expanding
+				}
+				text_single = {
+					parentanchor = left
+					text = "[Province.Custom('province_build_4')]"
+					using = Font_Size_Small
+					layoutpolicy_horizontal = expanding
+				}
+				text_single = {
+					parentanchor = left
+					text = "[Province.Custom('province_build_5')]"
+					using = Font_Size_Small
+					layoutpolicy_horizontal = expanding
+				}
+			}
+			
+			hbox = {
+				layoutpolicy_horizontal = expanding
+			
+				text_single = {
+					parentanchor = left
+					text = "[Province.Custom('province_build_6')]"
+					using = Font_Size_Small
+					layoutpolicy_horizontal = expanding
+				}
+				text_single = {
+					parentanchor = left
+					text = "[Province.Custom('province_build_7')]"
+					using = Font_Size_Small
+					layoutpolicy_horizontal = expanding
+				}
+				text_single = {
+					parentanchor = left
+					text = "[Province.Custom('province_build_8')]"
+					using = Font_Size_Small
+					layoutpolicy_horizontal = expanding
+				}
+			}
+
+			hbox = {
+				layoutpolicy_horizontal = expanding
+			
+				text_single = {
+					parentanchor = left
+					text = "[Province.Custom('province_build_9')]"
+					using = Font_Size_Small
+					layoutpolicy_horizontal = expanding
+				}
+				text_single = {
+					parentanchor = left
+					text = "[Province.Custom('province_build_10')]"
+					using = Font_Size_Small
+					layoutpolicy_horizontal = expanding
+				}
+				text_single = {
+					parentanchor = left
+					text = "[Province.Custom('province_build_11')]"
+					using = Font_Size_Small
+					layoutpolicy_horizontal = expanding
+				}
+			}
+			
+			hbox = {
+				layoutpolicy_horizontal = expanding
+				
+				text_single = {
+					parentanchor = left
+					text = "[Province.Custom('province_build_12')]"
+					using = Font_Size_Small
+					layoutpolicy_horizontal = expanding
+				}
+				text_single = {
+					parentanchor = left
+					text = "[Province.Custom('province_build_13')]"
+					using = Font_Size_Small
+					layoutpolicy_horizontal = expanding
+				}
+				text_single = {
+					parentanchor = left
+					text = "[Province.Custom('province_build_14')]"
+					using = Font_Size_Small
+					layoutpolicy_horizontal = expanding
+				}
+			}
+			
+			hbox = {
+				layoutpolicy_horizontal = expanding
+				
+				text_single = {
+					parentanchor = left
+					text = "[Province.Custom('province_build_15')]"
+					using = Font_Size_Small
+					layoutpolicy_horizontal = expanding
+				}
+				text_single = {
+					parentanchor = left
+					text = "[Province.Custom('province_build_16')]"
+					using = Font_Size_Small
+					layoutpolicy_horizontal = expanding
+				}
+				text_single = {
+					parentanchor = left
+					text = "[Province.Custom('province_build_17')]"
+					using = Font_Size_Small
+					layoutpolicy_horizontal = expanding
+				}
+			}
+
+			hbox = {
+				layoutpolicy_horizontal = expanding
+				
+				text_single = {
+					parentanchor = left
+					text = "[Province.Custom('province_build_18')]"
+					using = Font_Size_Small
+					layoutpolicy_horizontal = expanding
+				}
+				text_single = {
+					parentanchor = left
+					text = "[Province.Custom('province_build_19')]"
+					using = Font_Size_Small
+					layoutpolicy_horizontal = expanding
+				}
+				text_single = {
+					parentanchor = left
+					text = "[Province.Custom('province_build_20')]"
+					using = Font_Size_Small
+					layoutpolicy_horizontal = expanding
+				}
+			}
+			
+			hbox = {
+				layoutpolicy_horizontal = expanding
+				
+				text_single = {
+					parentanchor = left
+					text = "[Province.Custom('province_build_21')]"
+					using = Font_Size_Small
+					layoutpolicy_horizontal = expanding
+				}
+				text_single = {
+					parentanchor = left
+					text = "[Province.Custom('province_build_22')]"
+					using = Font_Size_Small
+					layoutpolicy_horizontal = expanding
+				}
+				text_single = {
+					parentanchor = left
+					text = "[Province.Custom('province_build_23')]"
+					using = Font_Size_Small
+					layoutpolicy_horizontal = expanding
+				}
+			}
+			
+			hbox = {
+				layoutpolicy_horizontal = expanding
+				
+				text_single = {
+					parentanchor = left
+					text = "[Province.Custom('province_build_24')]"
+					using = Font_Size_Small
+					layoutpolicy_horizontal = expanding
+				}
+				text_single = {
+					parentanchor = left
+					text = "[Province.Custom('province_build_25')]"
+					using = Font_Size_Small
+					layoutpolicy_horizontal = expanding
+				}
+				text_single = {
+					parentanchor = left
+					text = "[Province.Custom('province_build_26')]"
+					using = Font_Size_Small
+					layoutpolicy_horizontal = expanding
+				}
+			}
+			
+			hbox = {
+				layoutpolicy_horizontal = expanding
+				
+				text_single = {
+					parentanchor = left
+					text = "[Province.Custom('province_build_27')]"
+					using = Font_Size_Small
+					layoutpolicy_horizontal = expanding
+				}
+				text_single = {
+					parentanchor = left
+					text = "[Province.Custom('province_build_28')]"
+					using = Font_Size_Small
+					layoutpolicy_horizontal = expanding
+				}
+				text_single = {
+					parentanchor = left
+					text = "[Province.Custom('province_build_29')]"
+					using = Font_Size_Small
+					layoutpolicy_horizontal = expanding
+				}
+			}
+		}
+	}
+	
+	window = {
+		parentanchor = top|right
+		size = { 500 950 }
+		position = { 400 -400 }
+		movable = yes
+		visible = "[EqualTo_CFixedPoint('(CFixedPoint)1', Province.MakeScope.Var('toggled_prov_merchant').GetValue)]"
+		
+		background = {
+			texture = "gfx/interface/component_tiles/tile_window_background_subwindow.dds"
+			spriteType = Corneredtiled
+			spriteborder = { 18 18 }
+			texture_density = 2
+			
+			modify_texture = {
+				name = "overlay"
+				texture = "gfx/interface/component_overlay/overlay_effect.dds"
+				spriteType = Corneredstretched
+				spriteborder = { 0 0 }
+				blend_mode = overlay
+			}
+		}
+		
+		buttons_window_control = {
+			parentanchor = top|right
+			blockoverride "button_close"
+			{
+				datacontext = "[GetScriptedGui( 'close_prov_merchant' )]"
+				onclick = "[ScriptedGui.Execute( GuiScope.SetRoot( Province.MakeScope ).End )]"
+			}
+		}
+		
+		vbox = {
+			margin_left = 20
+			margin_bottom = 15
+			margin_top = 10
+			layoutpolicy_vertical = expanding
+			
+			hbox = {
+				layoutpolicy_horizontal = expanding
+				
+				vbox = {
+					layoutpolicy_horizontal = expanding
+					
+					text_single = {
+						parentanchor = left
+						text = "Trade:"
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						layoutpolicy_horizontal = expanding
+						text = " - Income: [Province.MakeScope.Var('trade_merchant').Var('trade_earn').GetValue]"
+						using = Font_Size_Small
+					}
+					text_single = {
+						layoutpolicy_horizontal = expanding
+						text = " - Spending: [Province.MakeScope.Var('trade_merchant').Var('trade_pay').GetValue]"
+						using = Font_Size_Small
+					}
+				}
+				vbox = {
+					layoutpolicy_horizontal = expanding
+					
+					text_single = {
+						parentanchor = left
+						text = "Food:"
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						parentanchor = left
+						text = " - Price: [Province.MakeScope.Var('trade_merchant').Var('trade_price_food').GetValue]"
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						layoutpolicy_horizontal = expanding
+						text = " - Stockpile: [Province.MakeScope.Var('trade_merchant').Var('trade_has_food').GetValue]"
+						using = Font_Size_Small
+					}
+					text_single = {
+						layoutpolicy_horizontal = expanding
+						text = " - Offer, Sold: [Province.MakeScope.Var('trade_merchant').Var('trade_sply_food').GetValue], [Province.MakeScope.Var('trade_merchant').Var('trade_out_food').GetValue]"
+						using = Font_Size_Small
+					}
+					text_single = {
+						layoutpolicy_horizontal = expanding
+						text = " - Bid, Bought: [Province.MakeScope.Var('trade_merchant').Var('trade_dmnd_food').GetValue], [Province.MakeScope.Var('trade_merchant').Var('trade_in_food').GetValue]"
+						using = Font_Size_Small
+					}
+				}
+			}
+			
+			hbox = {
+				layoutpolicy_horizontal = expanding
+				
+				vbox = {
+					layoutpolicy_horizontal = expanding
+					
+					text_single = {
+						parentanchor = left
+						text = "Cereal:"
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						parentanchor = left
+						text = " - Price: [Province.MakeScope.Var('trade_merchant').Var('trade_price_cereal').GetValue]"
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						layoutpolicy_horizontal = expanding
+						text = " - Stockpile: [Province.MakeScope.Var('trade_merchant').Var('trade_has_cereal').GetValue]"
+						using = Font_Size_Small
+					}
+					text_single = {
+						layoutpolicy_horizontal = expanding
+						text = " - Offer, Sold: [Province.MakeScope.Var('trade_merchant').Var('trade_sply_cereal').GetValue], [Province.MakeScope.Var('trade_merchant').Var('trade_out_cereal').GetValue]"
+						using = Font_Size_Small
+					}
+					text_single = {
+						layoutpolicy_horizontal = expanding
+						text = " - Bid, Bought: [Province.MakeScope.Var('trade_merchant').Var('trade_dmnd_cereal').GetValue], [Province.MakeScope.Var('trade_merchant').Var('trade_in_cereal').GetValue]"
+						using = Font_Size_Small
+					}
+				}
+				vbox = {
+					layoutpolicy_horizontal = expanding
+					
+					text_single = {
+						parentanchor = left
+						text = "Salted:"
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						parentanchor = left
+						text = " - Price: [Province.MakeScope.Var('trade_merchant').Var('trade_price_salted').GetValue]"
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						layoutpolicy_horizontal = expanding
+						text = " - Stockpile: [Province.MakeScope.Var('trade_merchant').Var('trade_has_salted').GetValue]"
+						using = Font_Size_Small
+					}
+					text_single = {
+						layoutpolicy_horizontal = expanding
+						text = " - Offer, Sold: [Province.MakeScope.Var('trade_merchant').Var('trade_sply_salted').GetValue], [Province.MakeScope.Var('trade_merchant').Var('trade_out_salted').GetValue]"
+						using = Font_Size_Small
+					}
+					text_single = {
+						layoutpolicy_horizontal = expanding
+						text = " - Bid, Bought: [Province.MakeScope.Var('trade_merchant').Var('trade_dmnd_salted').GetValue], [Province.MakeScope.Var('trade_merchant').Var('trade_in_salted').GetValue]"
+						using = Font_Size_Small
+					}
+				}
+			}
+			
+			hbox = {
+				layoutpolicy_horizontal = expanding
+				
+				vbox = {
+					layoutpolicy_horizontal = expanding
+					
+					text_single = {
+						parentanchor = left
+						text = "Salt:"
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						parentanchor = left
+						text = " - Price: [Province.MakeScope.Var('trade_merchant').Var('trade_price_salt').GetValue]"
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						layoutpolicy_horizontal = expanding
+						text = " - Stockpile: [Province.MakeScope.Var('trade_merchant').Var('trade_has_salt').GetValue]"
+						using = Font_Size_Small
+					}
+					text_single = {
+						layoutpolicy_horizontal = expanding
+						text = " - Offer, Sold: [Province.MakeScope.Var('trade_merchant').Var('trade_sply_salt').GetValue], [Province.MakeScope.Var('trade_merchant').Var('trade_out_salt').GetValue]"
+						using = Font_Size_Small
+					}
+					text_single = {
+						layoutpolicy_horizontal = expanding
+						text = " - Bid, Bought: [Province.MakeScope.Var('trade_merchant').Var('trade_dmnd_salt').GetValue], [Province.MakeScope.Var('trade_merchant').Var('trade_in_salt').GetValue]"
+						using = Font_Size_Small
+					}
+				}
+				vbox = {
+					layoutpolicy_horizontal = expanding
+					
+					text_single = {
+						parentanchor = left
+						text = "Mud:"
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						parentanchor = left
+						text = " - Price: [Province.MakeScope.Var('trade_merchant').Var('trade_price_mud').GetValue]"
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						layoutpolicy_horizontal = expanding
+						text = " - Stockpile: [Province.MakeScope.Var('trade_merchant').Var('trade_has_mud').GetValue]"
+						using = Font_Size_Small
+					}
+					text_single = {
+						layoutpolicy_horizontal = expanding
+						text = " - Offer, Sold: [Province.MakeScope.Var('trade_merchant').Var('trade_sply_mud').GetValue], [Province.MakeScope.Var('trade_merchant').Var('trade_out_mud').GetValue]"
+						using = Font_Size_Small
+					}
+					text_single = {
+						layoutpolicy_horizontal = expanding
+						text = " - Bid, Bought: [Province.MakeScope.Var('trade_merchant').Var('trade_dmnd_mud').GetValue], [Province.MakeScope.Var('trade_merchant').Var('trade_in_mud').GetValue]"
+						using = Font_Size_Small
+					}
+				}
+			}
+			
+			hbox = {
+				layoutpolicy_horizontal = expanding
+				
+				vbox = {
+					layoutpolicy_horizontal = expanding
+					
+					text_single = {
+						parentanchor = left
+						text = "Fuel:"
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						parentanchor = left
+						text = " - Price: [Province.MakeScope.Var('trade_merchant').Var('trade_price_fuel').GetValue]"
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						layoutpolicy_horizontal = expanding
+						text = " - Stockpile: [Province.MakeScope.Var('trade_merchant').Var('trade_has_fuel').GetValue]"
+						using = Font_Size_Small
+					}
+					text_single = {
+						layoutpolicy_horizontal = expanding
+						text = " - Offer, Sold: [Province.MakeScope.Var('trade_merchant').Var('trade_sply_fuel').GetValue], [Province.MakeScope.Var('trade_merchant').Var('trade_out_fuel').GetValue]"
+						using = Font_Size_Small
+					}
+					text_single = {
+						layoutpolicy_horizontal = expanding
+						text = " - Bid, Bought: [Province.MakeScope.Var('trade_merchant').Var('trade_dmnd_fuel').GetValue], [Province.MakeScope.Var('trade_merchant').Var('trade_in_fuel').GetValue]"
+						using = Font_Size_Small
+					}
+				}
+				vbox = {
+					layoutpolicy_horizontal = expanding
+					
+					text_single = {
+						parentanchor = left
+						text = "Fiber:"
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						parentanchor = left
+						text = " - Price: [Province.MakeScope.Var('trade_merchant').Var('trade_price_fiber').GetValue]"
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						layoutpolicy_horizontal = expanding
+						text = " - Stockpile: [Province.MakeScope.Var('trade_merchant').Var('trade_has_fiber').GetValue]"
+						using = Font_Size_Small
+					}
+					text_single = {
+						layoutpolicy_horizontal = expanding
+						text = " - Offer, Sold: [Province.MakeScope.Var('trade_merchant').Var('trade_sply_fiber').GetValue], [Province.MakeScope.Var('trade_merchant').Var('trade_out_fiber').GetValue]"
+						using = Font_Size_Small
+					}
+					text_single = {
+						layoutpolicy_horizontal = expanding
+						text = " - Bid, Bought: [Province.MakeScope.Var('trade_merchant').Var('trade_dmnd_fiber').GetValue], [Province.MakeScope.Var('trade_merchant').Var('trade_in_fiber').GetValue]"
+						using = Font_Size_Small
+					}
+				}
+			}
+			
+			hbox = {
+				layoutpolicy_horizontal = expanding
+				
+				vbox = {
+					layoutpolicy_horizontal = expanding
+					
+					text_single = {
+						parentanchor = left
+						text = "Timber:"
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						parentanchor = left
+						text = " - Price: [Province.MakeScope.Var('trade_merchant').Var('trade_price_timber').GetValue]"
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						layoutpolicy_horizontal = expanding
+						text = " - Stockpile: [Province.MakeScope.Var('trade_merchant').Var('trade_has_timber').GetValue]"
+						using = Font_Size_Small
+					}
+					text_single = {
+						layoutpolicy_horizontal = expanding
+						text = " - Offer, Sold: [Province.MakeScope.Var('trade_merchant').Var('trade_sply_timber').GetValue], [Province.MakeScope.Var('trade_merchant').Var('trade_out_timber').GetValue]"
+						using = Font_Size_Small
+					}
+					text_single = {
+						layoutpolicy_horizontal = expanding
+						text = " - Bid, Bought: [Province.MakeScope.Var('trade_merchant').Var('trade_dmnd_timber').GetValue], [Province.MakeScope.Var('trade_merchant').Var('trade_in_timber').GetValue]"
+						using = Font_Size_Small
+					}
+				}
+				vbox = {
+					layoutpolicy_horizontal = expanding
+					
+					text_single = {
+						parentanchor = left
+						text = "Metal:"
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						parentanchor = left
+						text = " - Price: [Province.MakeScope.Var('trade_merchant').Var('trade_price_metal').GetValue]"
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						layoutpolicy_horizontal = expanding
+						text = " - Stockpile: [Province.MakeScope.Var('trade_merchant').Var('trade_has_metal').GetValue]"
+						using = Font_Size_Small
+					}
+					text_single = {
+						layoutpolicy_horizontal = expanding
+						text = " - Offer, Sold: [Province.MakeScope.Var('trade_merchant').Var('trade_sply_metal').GetValue], [Province.MakeScope.Var('trade_merchant').Var('trade_out_metal').GetValue]"
+						using = Font_Size_Small
+					}
+					text_single = {
+						layoutpolicy_horizontal = expanding
+						text = " - Bid, Bought: [Province.MakeScope.Var('trade_merchant').Var('trade_dmnd_metal').GetValue], [Province.MakeScope.Var('trade_merchant').Var('trade_in_metal').GetValue]"
+						using = Font_Size_Small
+					}
+				}
+			}
+			
+			hbox = {
+				layoutpolicy_horizontal = expanding
+				
+				vbox = {
+					layoutpolicy_horizontal = expanding
+					
+					text_single = {
+						parentanchor = left
+						text = "Western Exotics:"
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						parentanchor = left
+						text = " - Price: [Province.MakeScope.Var('trade_merchant').Var('trade_price_exotics_w').GetValue]"
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						layoutpolicy_horizontal = expanding
+						text = " - Stockpile: [Province.MakeScope.Var('trade_merchant').Var('trade_has_exotics_w').GetValue]"
+						using = Font_Size_Small
+					}
+					text_single = {
+						layoutpolicy_horizontal = expanding
+						text = " - Offer, Sold: [Province.MakeScope.Var('trade_merchant').Var('trade_sply_exotics_w').GetValue], [Province.MakeScope.Var('trade_merchant').Var('trade_out_exotics_w').GetValue]"
+						using = Font_Size_Small
+					}
+					text_single = {
+						layoutpolicy_horizontal = expanding
+						text = " - Bid, Bought: [Province.MakeScope.Var('trade_merchant').Var('trade_dmnd_exotics_w').GetValue], [Province.MakeScope.Var('trade_merchant').Var('trade_in_exotics_w').GetValue]"
+						using = Font_Size_Small
+					}
+				}
+				vbox = {
+					layoutpolicy_horizontal = expanding
+					
+					text_single = {
+						parentanchor = left
+						text = "Eastern Exotics:"
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						parentanchor = left
+						text = " - Price: [Province.MakeScope.Var('trade_merchant').Var('trade_price_exotics_e').GetValue]"
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						layoutpolicy_horizontal = expanding
+						text = " - Stockpile: [Province.MakeScope.Var('trade_merchant').Var('trade_has_exotics_e').GetValue]"
+						using = Font_Size_Small
+					}
+					text_single = {
+						layoutpolicy_horizontal = expanding
+						text = " - Offer, Sold: [Province.MakeScope.Var('trade_merchant').Var('trade_sply_exotics_e').GetValue], [Province.MakeScope.Var('trade_merchant').Var('trade_out_exotics_e').GetValue]"
+						using = Font_Size_Small
+					}
+					text_single = {
+						layoutpolicy_horizontal = expanding
+						text = " - Bid, Bought: [Province.MakeScope.Var('trade_merchant').Var('trade_dmnd_exotics_e').GetValue], [Province.MakeScope.Var('trade_merchant').Var('trade_in_exotics_e').GetValue]"
+						using = Font_Size_Small
+					}
+				}
+			}
+			
+			hbox = {
+				layoutpolicy_horizontal = expanding
+				
+				vbox = {
+					layoutpolicy_horizontal = expanding
+					
+					text_single = {
+						parentanchor = left
+						text = "General Exotics:"
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						parentanchor = left
+						text = " - Price: [Province.MakeScope.Var('trade_merchant').Var('trade_price_exotics_g').GetValue]"
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						layoutpolicy_horizontal = expanding
+						text = " - Stockpile: [Province.MakeScope.Var('trade_merchant').Var('trade_has_exotics_g').GetValue]"
+						using = Font_Size_Small
+					}
+					text_single = {
+						layoutpolicy_horizontal = expanding
+						text = " - Offer, Sold: [Province.MakeScope.Var('trade_merchant').Var('trade_sply_exotics_g').GetValue], [Province.MakeScope.Var('trade_merchant').Var('trade_out_exotics_g').GetValue]"
+						using = Font_Size_Small
+					}
+					text_single = {
+						layoutpolicy_horizontal = expanding
+						text = " - Bid, Bought: [Province.MakeScope.Var('trade_merchant').Var('trade_dmnd_exotics_g').GetValue], [Province.MakeScope.Var('trade_merchant').Var('trade_in_exotics_g').GetValue]"
+						using = Font_Size_Small
+					}
+				}
+				vbox = {
+					layoutpolicy_horizontal = expanding
+					
+					text_single = {
+						parentanchor = left
+						text = "Textile:"
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						parentanchor = left
+						text = " - Price: [Province.MakeScope.Var('trade_merchant').Var('trade_price_textile').GetValue]"
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						layoutpolicy_horizontal = expanding
+						text = " - Stockpile: [Province.MakeScope.Var('trade_merchant').Var('trade_has_textile').GetValue]"
+						using = Font_Size_Small
+					}
+					text_single = {
+						layoutpolicy_horizontal = expanding
+						text = " - Offer, Sold: [Province.MakeScope.Var('trade_merchant').Var('trade_sply_textile').GetValue], [Province.MakeScope.Var('trade_merchant').Var('trade_out_textile').GetValue]"
+						using = Font_Size_Small
+					}
+					text_single = {
+						layoutpolicy_horizontal = expanding
+						text = " - Bid, Bought: [Province.MakeScope.Var('trade_merchant').Var('trade_dmnd_textile').GetValue], [Province.MakeScope.Var('trade_merchant').Var('trade_in_textile').GetValue]"
+						using = Font_Size_Small
+					}
+				}
+			}
+			
+			hbox = {
+				layoutpolicy_horizontal = expanding
+				
+				vbox = {
+					layoutpolicy_horizontal = expanding
+					
+					text_single = {
+						parentanchor = left
+						text = "Pottery:"
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						parentanchor = left
+						text = " - Price: [Province.MakeScope.Var('trade_merchant').Var('trade_price_pottery').GetValue]"
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						layoutpolicy_horizontal = expanding
+						text = " - Stockpile: [Province.MakeScope.Var('trade_merchant').Var('trade_has_pottery').GetValue]"
+						using = Font_Size_Small
+					}
+					text_single = {
+						layoutpolicy_horizontal = expanding
+						text = " - Offer, Sold: [Province.MakeScope.Var('trade_merchant').Var('trade_sply_pottery').GetValue], [Province.MakeScope.Var('trade_merchant').Var('trade_out_pottery').GetValue]"
+						using = Font_Size_Small
+					}
+					text_single = {
+						layoutpolicy_horizontal = expanding
+						text = " - Bid, Bought: [Province.MakeScope.Var('trade_merchant').Var('trade_dmnd_pottery').GetValue], [Province.MakeScope.Var('trade_merchant').Var('trade_in_pottery').GetValue]"
+						using = Font_Size_Small
+					}
+				}
+				vbox = {
+					layoutpolicy_horizontal = expanding
+					
+					text_single = {
+						parentanchor = left
+						text = "Tools:"
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						parentanchor = left
+						text = " - Price: [Province.MakeScope.Var('trade_merchant').Var('trade_price_tools').GetValue]"
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						layoutpolicy_horizontal = expanding
+						text = " - Stockpile: [Province.MakeScope.Var('trade_merchant').Var('trade_has_tools').GetValue]"
+						using = Font_Size_Small
+					}
+					text_single = {
+						layoutpolicy_horizontal = expanding
+						text = " - Offer, Sold: [Province.MakeScope.Var('trade_merchant').Var('trade_sply_tools').GetValue], [Province.MakeScope.Var('trade_merchant').Var('trade_out_tools').GetValue]"
+						using = Font_Size_Small
+					}
+					text_single = {
+						layoutpolicy_horizontal = expanding
+						text = " - Bid, Bought: [Province.MakeScope.Var('trade_merchant').Var('trade_dmnd_tools').GetValue], [Province.MakeScope.Var('trade_merchant').Var('trade_in_tools').GetValue]"
+						using = Font_Size_Small
+					}
+				}
+			}
+		}
+	}
 
 	vbox = {
 		name = "window_content"
@@ -2123,6 +2958,42 @@ window = {
 						button_icon = {
 							name = "toggle_prov_prod"
 							datacontext = "[GetScriptedGui( 'toggle_prov_prod' )]"
+							onclick = "[ScriptedGui.Execute( GuiScope.SetRoot( Province.MakeScope ).End )]"
+							size = { 25 25 }
+							texture = "gfx/interface/buttons/button_round_big.dds"
+
+							background = {
+								texture = "gfx/interface/window_county/building_status_circle.dds"
+								size = { 25 25 }
+								framesize = { 120 120 }
+								using = Master_Button_Modify_Texture
+
+								blockoverride "master_color_frame" {
+									frame = 3
+								}
+							}
+						}
+						button_icon = {
+							name = "toggle_prov_build"
+							datacontext = "[GetScriptedGui( 'toggle_prov_build' )]"
+							onclick = "[ScriptedGui.Execute( GuiScope.SetRoot( Province.MakeScope ).End )]"
+							size = { 25 25 }
+							texture = "gfx/interface/buttons/button_round_big.dds"
+
+							background = {
+								texture = "gfx/interface/window_county/building_status_circle.dds"
+								size = { 25 25 }
+								framesize = { 120 120 }
+								using = Master_Button_Modify_Texture
+
+								blockoverride "master_color_frame" {
+									frame = 3
+								}
+							}
+						}
+						button_icon = {
+							name = "toggle_prov_merchant"
+							datacontext = "[GetScriptedGui( 'toggle_prov_merchant' )]"
 							onclick = "[ScriptedGui.Execute( GuiScope.SetRoot( Province.MakeScope ).End )]"
 							size = { 25 25 }
 							texture = "gfx/interface/buttons/button_round_big.dds"
