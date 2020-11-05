@@ -1522,7 +1522,7 @@ trade_resolve_trade = {
 				change_variable = { name = trade_invest_pay add = var:trade_invest_pay_&goods& }
 				change_variable = { name = trade_resolve_trade_t multiply = var:trade_in_&goods& }
 				change_variable = { name = trade_resolve_trade_t divide = 100 }
-				change_variable = { name = trade_out_&goods& add = var:trade_resolve_trade }
+				change_variable = { name = trade_out_&goods& add = var:trade_resolve_trade_t }
 				change_variable = { name = trade_resolve_trade_t multiply = trade_invest_&goods& }
 				change_variable = { name = trade_power add = var:trade_resolve_trade_t }
 			}
