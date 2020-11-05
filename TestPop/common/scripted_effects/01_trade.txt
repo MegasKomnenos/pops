@@ -33,9 +33,9 @@
 			set_variable = { name = trade_price_&goods& value = $location$.county.var:trade_price_&goods& }
 		^
 		
-		set_variable = { name = trade_retire value = 0.01 }
-		set_variable = { name = trade_luxury value = 0.01 }
-		set_variable = { name = trade_invest value = 0.03 }
+		set_variable = { name = trade_retire value = 0.02 }
+		set_variable = { name = trade_luxury value = 0.03 }
+		set_variable = { name = trade_invest value = 0.05 }
 		
 		set_variable = { name = trade_outposts_max value = $outpost$ }
 		
@@ -179,7 +179,6 @@ trade_do_trade = {
 		^
 		
 		set_variable = { name = trade_power_t value = var:trade_power }
-		change_variable = { name = trade_power_t multiply = 5 }
 	}
 	
 	every_province = {
