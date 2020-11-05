@@ -15,10 +15,13 @@
 		set_variable = { name = trade_merchant value = scope:trade_new_merchant_t }
 	}
 	
+	set_variable = { name = trade_new_merchant_t value = $power$ }
+	set_variable = { name = trade_new_merchant_tt value = $wealth$ }
+	
 	scope:trade_new_merchant_t = {
 		set_variable = { name = trade_location value = $location$ }
-		set_variable = { name = trade_power value = $power$ }
-		set_variable = { name = trade_wealth value = $wealth$ }
+		set_variable = { name = trade_power value = prev.var:trade_new_merchant_t }
+		set_variable = { name = trade_wealth value = prev.var:trade_new_merchant_tt }
 		
 		set_variable = { name = trade_profit value = 0 }
 		set_variable = { name = trade_earn value = 0 }
@@ -38,6 +41,9 @@
 		
 		add_to_variable_list = { name = trade_outposts target = $location$ }
 	}
+	
+	remove_variable = trade_new_merchant_t
+	remove_variable = trade_new_merchant_tt
 }
 
 trade_pop_merchant = {
@@ -1493,6 +1499,9 @@ trade_resolve_trade = {
 				remove_variable = trade_luxury_pay_&goods&
 			}
 		^
+		
+		change_variable = { name = trade_power multiply = 0.95 }
+		
 		^^goods^
 			if = {
 				limit = {
