@@ -1513,7 +1513,7 @@ window = {
 	
 	window = {
 		parentanchor = top|right
-		size = { 500 950 }
+		size = { 500 1000 }
 		position = { 400 -400 }
 		movable = yes
 		visible = "[EqualTo_CFixedPoint('(CFixedPoint)1', Province.MakeScope.Var('toggled_prov_merchant').GetValue)]"
@@ -1563,6 +1563,12 @@ window = {
 					text_single = {
 						parentanchor = left
 						text = " - Power: [Province.MakeScope.Var('trade_merchant').Var('trade_power').GetValue]"
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						parentanchor = left
+						text = " - Wealth: [Province.MakeScope.Var('trade_merchant').Var('trade_wealth').GetValue]"
 						using = Font_Size_Small
 						layoutpolicy_horizontal = expanding
 					}
