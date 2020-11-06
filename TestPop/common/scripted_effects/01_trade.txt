@@ -275,13 +275,6 @@ trade_do_trade = {
 		change_variable = { name = trade_power_t multiply = 5 }
 	}
 	
-	every_province = {
-		limit = {
-			is_valid_prov = yes
-		}
-		set_variable = { name = trade_route value = 0 }
-	}
-	
 	set_global_variable = { name = trade_do_trade_loop }
 	
 	while = {
@@ -774,53 +767,7 @@ trade_do_trade = {
 			every_in_global_list = {
 				variable = trade_do_trade_list
 				
-				set_variable = { name = trade_route_t value = 0 }
-				
 				^^goods^trade_do_trade_helper_4 = { good = &goods& }^
-				
-				change_variable = { name = trade_route_t divide = 100 }
-				
-				if = {
-					limit = {
-						has_variable = trade_route_t
-						
-						var:trade_route_t > 0
-					}
-					var:trade_do_trade_prev = {
-						save_temporary_scope_as = trade_route_t
-					}
-					
-					while = {
-						limit = {
-							NOT = {
-								scope:trade_route_t.var:trade_do_trade_prev = scope:trade_route_t
-							}
-						}
-						scope:trade_route_t = {
-							if = {
-								limit = {
-									var:prov_sea = 1
-								}
-								change_variable = { name = trade_route add = prev.var:trade_route_t }
-							}
-							
-							var:trade_do_trade_prev = {
-								save_temporary_scope_as = trade_route_t
-							}
-						}
-					}
-					
-					scope:trade_route_t = {
-						if = {
-							limit = {
-								var:prov_sea = 1
-							}
-							change_variable = { name = trade_route add = prev.var:trade_route_t }
-						}
-					}
-				}
-				
-				remove_variable = trade_route_t
 			}
 			
 			every_in_global_list = {
@@ -887,37 +834,6 @@ trade_do_trade = {
 		remove_variable = trade_do_trade_ttt
 		remove_variable = trade_power_t
 	}
-	
-	set_global_variable = { name = trade_route_max value = 0 }
-	
-	ordered_province = {
-		limit = {
-			has_variable = trade_route
-			
-			var:trade_route > 0
-		}
-		order_by = trade_do_trade_order_value_3
-		position = 0
-		
-		set_global_variable = { name = trade_route_max value = var:trade_route }
-	}
-	
-	if = {
-		limit = {
-			has_global_variable = trade_route_max
-			
-			global_var:trade_route_max > 0
-		}
-		every_province = {
-			limit = {
-				has_variable = trade_route
-			}
-			change_variable = { name = trade_route multiply = 100 }
-			change_variable = { name = trade_route divide = global_var:trade_route_max }
-		}
-	}
-	
-	remove_global_variable = trade_route_max
 }
 
 trade_do_trade_helper_0 = {
@@ -1272,7 +1188,6 @@ trade_do_trade_helper_4 = {
 			var:trade_buy_$good$ > 0
 		}
 		change_variable = { name = trade_in_$good$ add = var:trade_buy_$good$ }
-		change_variable = { name = trade_route_t add = var:trade_buy_$good$ }
 		change_variable = { name = trade_buy_$good$ multiply = var:trade_do_trade_t }
 		change_variable = { name = trade_pay_$good$ add = var:trade_buy_$good$ }
 		
@@ -1287,7 +1202,6 @@ trade_do_trade_helper_4 = {
 			var:trade_sell_$good$ > 0
 		}
 		change_variable = { name = trade_out_$good$ add = var:trade_sell_$good$ }
-		change_variable = { name = trade_route_t add = var:trade_sell_$good$ }
 		change_variable = { name = trade_sell_$good$ multiply = var:trade_do_trade_t }
 		change_variable = { name = trade_earn_$good$ add = var:trade_sell_$good$ }
 		
