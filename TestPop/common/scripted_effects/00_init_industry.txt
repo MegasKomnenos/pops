@@ -21,37 +21,37 @@
 		land_type = farm
 		labor = 0.7
 		land = 0.3
-		sply_fiber = 1.5
+		sply_fiber = 1
 	}
 	prod_new_template = {
 		name = mud
 		land_type = farm
 		labor = 0.8
 		land = 0.2
-		sply_mud = 1.5
+		sply_mud = 1
 	}
 	prod_new_template = {
 		name = livestock
 		land_type = pasture
 		labor = 0.4
 		land = 0.6
-		sply_food = 1
-		sply_fiber = 0.5
+		sply_food = 0.75
+		sply_fiber = 0.25
 	}
 	prod_new_template = {
 		name = wool
 		land_type = pasture
 		labor = 0.4
 		land = 0.6
-		sply_food = 0.5
-		sply_fiber = 1
+		sply_food = 0.25
+		sply_fiber = 0.75
 	}
 	prod_new_template = {
 		name = dairy_aged
 		land_type = pasture
 		labor = 0.5
 		land = 0.5
-		sply_salted = 2
+		sply_salted = 1.5
 		dmnd_salt = 2
 	}
 	prod_new_template = {
@@ -59,7 +59,7 @@
 		land_type = pasture
 		labor = 0.2
 		land = 0.8
-		sply_food = 0.4
+		sply_food = 0.3
 		sply_salted = 0.2
 		sply_fiber = 0.1
 		sply_fuel = 0.05
@@ -86,21 +86,21 @@
 		land_type = farm
 		labor = 0.5
 		land = 0.5
-		sply_salt = 0.5
+		sply_salt = 0.4
 	}
 	prod_new_template = {
 		name = timber
 		land_type = forest
 		labor = 0.4
 		land = 0.6
-		sply_timber = 1.5
+		sply_timber = 1
 	}
 	prod_new_template = {
 		name = charcoal
 		land_type = forest
 		labor = 0.4
 		land = 0.6
-		sply_fuel = 1.5
+		sply_fuel = 1
 	}
 	prod_new_template = {
 		name = bog
@@ -133,7 +133,7 @@
 		labor = 0.3
 		land = 0.7
 		sply_exotics_g = 0.8
-		dmnd_fuel = 3
+		dmnd_fuel = 4
 	}
 	prod_new_template = {
 		name = silver
@@ -141,7 +141,7 @@
 		labor = 0.3
 		land = 0.7
 		sply_exotics_g = 0.6
-		dmnd_fuel = 3
+		dmnd_fuel = 4
 	}
 	prod_new_template = {
 		name = gems
@@ -221,15 +221,6 @@
 		sply_tools = 2
 		dmnd_metal = 0.5
 		dmnd_timber = 0.5
-		dmnd_fuel = 0.5
-	}
-	prod_new_template = {
-		name = bricks
-		land_type = workshop
-		labor = 0.5
-		land = 0.5
-		sply_tools = 1
-		dmnd_mud = 0.5
 		dmnd_fuel = 0.5
 	}
 }
@@ -609,10 +600,6 @@ init_industry = {
 			}
 			prod_new_instance = {
 				template = tools
-				location = scope:init_industry_select
-			}
-			prod_new_instance = {
-				template = bricks
 				location = scope:init_industry_select
 			}
 		}
