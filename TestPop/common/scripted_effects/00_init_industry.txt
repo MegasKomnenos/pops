@@ -7,6 +7,14 @@
 		sply_food = 2.5
 	}
 	prod_new_template = {
+		name = pickled
+		land_type = farm
+		labor = 0.5
+		land = 0.5
+		sply_salted = 2.5
+		dmnd_salt = 1
+	}
+	prod_new_template = {
 		name = crop
 		land_type = farm
 		labor = 0.6
@@ -51,8 +59,8 @@
 		land_type = pasture
 		labor = 0.5
 		land = 0.5
-		sply_salted = 2
-		dmnd_salt = 2
+		sply_salted = 2.5
+		dmnd_salt = 1
 	}
 	prod_new_template = {
 		name = nomadic
@@ -518,6 +526,10 @@ init_industry = {
 			}
 			prod_new_instance = {
 				template = vegetables
+				location = scope:init_industry_select
+			}
+			prod_new_instance = {
+				template = pickled
 				location = scope:init_industry_select
 			}
 			prod_new_instance = {
