@@ -247,8 +247,8 @@ if __name__ == '__main__':
     for name, script in scripts.items():
         scripts[name] = apply_macro(script, macros)
 
-    paths = ['scripted_guis']
-    outpaths = ['common\\scripted_guis\\01_economy.txt']
+    paths = ['scripted_guis', 'run.txt']
+    outpaths = ['common\\scripted_guis\\01_economy.txt', 'out.txt']
     files = [apply_macro(parse_file(path), macros) for path in paths]
 
     check = [True]

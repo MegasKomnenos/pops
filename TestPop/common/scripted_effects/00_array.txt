@@ -1,0 +1,48 @@
+﻿array_add = {
+	set_variable = { name = array_add_t value = $value$ }
+	change_variable = { name = array_add_t multiply = 100 }
+	
+	if = {
+		limit = {
+			NOT = {
+				has_variable_list = array_$name$
+			}
+		}
+		add_to_variable_list = { name = array_$name$ target = var:array_add_t }
+	}
+	else = {
+		while = {
+			limit = {
+				is_target_in_variable_list = { name = array_$name$ target = var:array_add_t }
+			}
+			count = 100
+			
+			change_variable = { name = array_add_t add = 0.001 }
+		}
+		
+		add_to_variable_list = { name = array_$name$ target = var:array_add_t }
+	}
+	
+	remove_variable = array_add_t
+}
+
+array_get = {
+	set_global_variable = { name = array_get_t value = $value$ }
+	
+	ordered_in_list = {
+		variable = array_$name$
+		position = global_var:array_get_t.compare_value
+		
+		prev = {
+			set_variable = { name = $return$ value = prev }
+		}
+	}
+	
+	change_variable = { name = $return$ divide = 100 }
+	
+	remove_global_variable = array_get_t
+}
+
+array_clear = {
+	clear_variable_list = array_$name$
+}
