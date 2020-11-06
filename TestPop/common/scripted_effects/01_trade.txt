@@ -207,7 +207,7 @@ trade_do_trade = {
 					set_variable = { name = trade_out_&goods& value = var:trade_sply_&goods& }
 					
 					set_variable = { name = trade_do_trade_tt value = var:trade_sply_&goods& }
-					change_variable = { name = trade_do_trade_tt value = 100 }
+					change_variable = { name = trade_do_trade_tt multiply = 100 }
 					change_variable = { name = trade_do_trade_tt divide = var:trade_do_trade_t }
 					
 					if = {
