@@ -34,8 +34,8 @@
 		^
 		
 		set_variable = { name = trade_retire value = 0.01 }
-		set_variable = { name = trade_luxury value = 0.015 }
-		set_variable = { name = trade_invest value = 0.025 }
+		set_variable = { name = trade_luxury value = 0.01 }
+		set_variable = { name = trade_invest value = 0.03 }
 		
 		set_variable = { name = trade_outposts_max value = $outpost$ }
 		
@@ -303,17 +303,29 @@ trade_do_trade = {
 			position = 0
 			
 			set_global_variable = { name = trade_do_trade_loop }
-			
 			set_global_variable = { name = trade_do_trade_select value = this }
+			set_global_variable = { name = trade_do_trade_t value = 800 }
 			
-			travel_distance_dijkstra_every = {
+			if = {
+				limit = {
+					var:trade_power < 20
+				}
+				change_global_variable = { name = trade_do_trade_t multiply = var:trade_power }
+				change_global_variable = { name = trade_do_trade_t divide = 20 }
+			}
+			
+			change_global_variable = { name = trade_do_trade_t subtract = 40 }
+			
+			travel_distance_dijkstra_opti = {
 				start = var:trade_location
 				start_list = trade_outposts
-				base_list = 380
-				max = 760
+				base_list = 400
+				max = global_var:trade_do_trade_t
 				return_dist = trade_do_trade_dist
 				return_prev = trade_do_trade_prev
 			}
+			
+			remove_global_variable = trade_do_trade_t
 			
 			every_county = {
 				limit = {
@@ -358,8 +370,8 @@ trade_do_trade = {
 				set_variable = { name = trade_do_trade_dist value = var:trade_location.county.var:trade_do_trade_dist }
 				set_variable = { name = trade_do_trade_prev value = var:trade_location.county.var:trade_do_trade_prev }
 				
-				change_variable = { name = trade_do_trade_dist divide = 1.6 }
-				change_variable = { name = trade_do_trade_dist subtract = 95 }
+				change_variable = { name = trade_do_trade_dist divide = 2.5 }
+				change_variable = { name = trade_do_trade_dist subtract = 160 }
 				
 				if = {
 					limit = {

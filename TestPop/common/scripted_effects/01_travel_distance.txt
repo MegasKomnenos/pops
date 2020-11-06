@@ -266,255 +266,213 @@ travel_distance_dijkstra = {
 	remove_global_variable = travel_distance_select
 }
 
-find_path_dijkstra_white = {
-	every_in_global_list = {
-		$white_type$ = $white_name$
-		
-		set_variable = { name = find_path_distance value = 210000 }
-		set_variable = { name = find_path_prev value = this }
-	}
+travel_distance_dijkstra_opti = {
+	[[start_list]
+		if = {
+			limit = {
+				or = {
+					always = no
+					
+					[[start_list_global]
+						always = $start_list_global$
+					]
+				}
+			}
+			every_in_global_list = {
+				variable = $start_list$
+				
+				set_variable = { name = travel_distance_distance value = 0 }
+				set_variable = { name = travel_distance_prev value = this }
+				
+				[[base_list] change_variable = { name = travel_distance_distance add = $base_list$ } ]
+				
+				add_to_global_variable_list = { name = travel_distance_fray target = this }
+				add_to_global_variable_list = { name = travel_distance_visited target = this }
+			}
+		}
+		else = {
+			every_in_list = {
+				variable = $start_list$
+				
+				set_variable = { name = travel_distance_distance value = 0 }
+				set_variable = { name = travel_distance_prev value = this }
+				
+				[[base_list] change_variable = { name = travel_distance_distance add = $base_list$ } ]
+				
+				add_to_global_variable_list = { name = travel_distance_fray target = this }
+				add_to_global_variable_list = { name = travel_distance_visited target = this }
+			}
+		}
+	]
 	
-	find_path_dijkstra = {
-		start = $start$
-		dest = $dest$
-		return_path = $return_path$
-		return_dist = $return_dist$
-	}
-	
-	every_in_global_list = {
-		$white_type$ = $white_name$
-		
-		remove_variable = find_path_distance
-		remove_variable = find_path_prev
-	}
-}
-find_path_dijkstra_black = {
-	every_province = {
-		add_to_global_variable_list = { name = find_path_dijkstra_black_white target = this }
-	}
-	every_in_global_list = {
-		variable = every_water
-		
-		add_to_global_variable_list = { name = find_path_dijkstra_black_white target = this }
-	}
-	
-	every_in_global_list = {
-		$black_type$ = $black_name$
-		
-		remove_list_global_variable = { name = find_path_dijkstra_black_white target = this }
-	}
-	
-	find_path_dijkstra_white = {
-		white_type = variable
-		white_name = find_path_dijkstra_black_white
-		start = $start$
-		dest = $dest$
-		return_path = $return_path$
-		return_dist = $return_dist$
-	}
-	
-	clear_global_variable_list = find_path_dijkstra_black_white
-}
-find_path_dijkstra_every = {
-	every_province = {
-		add_to_global_variable_list = { name = find_path_dijkstra_every_white target = this }
-	}
-	every_in_global_list = {
-		variable = every_water
-		
-		add_to_global_variable_list = { name = find_path_dijkstra_every_white target = this }
-	}
-	
-	find_path_dijkstra_white = {
-		white_type = variable
-		white_name = find_path_dijkstra_every_white
-		start = $start$
-		dest = $dest$
-		return_path = $return_path$
-		return_dist = $return_dist$
-	}
-	
-	clear_global_variable_list = find_path_dijkstra_every_white
-}
-
-# start should always be a land province
-find_path_dijkstra = {	
 	$start$ = {
-		set_variable = { name = find_path_distance value = 0 }
-		set_variable = { name = find_path_prev value = this }
+		set_variable = { name = travel_distance_distance value = 0 }
+		set_variable = { name = travel_distance_prev value = this }
 		
-		add_to_global_variable_list = { name = find_path_fray target = this }
-		add_to_global_variable_list = { name = find_path_visited target = this }
-	}
-	$dest$ = {
-		set_variable = { name = find_path_dest }
-		set_variable = { name = find_path_distance value = 210000 }
-		set_variable = { name = find_path_prev value = this }
+		add_to_global_variable_list = { name = travel_distance_fray target = this }
+		add_to_global_variable_list = { name = travel_distance_visited target = this }
 	}
 	
 	while = {
 		limit = {
-			has_global_variable_list = find_path_fray
+			has_global_variable_list = travel_distance_fray
 			
-			global_variable_list_size = { name = find_path_fray value >= 1 }
+			global_variable_list_size = { name = travel_distance_fray value >= 1 }
 		}
 		count = 100000
 		
 		ordered_in_global_list = {
-			variable = find_path_fray
-			order_by = find_path_order_value
+			variable = travel_distance_fray
+			order_by = travel_distance_order_value
 			position = 0
 			
-			set_global_variable = { name = find_path_select value = this }
+			set_global_variable = { name = travel_distance_select value = this }
 			
-			remove_list_global_variable = { name = find_path_fray target = this }
+			remove_list_global_variable = { name = travel_distance_fray target = this }
 		}
 		
-		global_var:find_path_select = {
+		global_var:travel_distance_select = {
 			if = {
 				limit = {
-					has_variable = find_path_dest
+					has_variable_list = prov_neighb
 				}
-				set_global_variable = { name = find_path_dest_found }
-				
-				clear_global_variable_list = find_path_fray
+				every_in_list = {
+					limit = {
+						OR = {
+							NOT = {
+								has_variable = travel_distance_distance
+							}
+								
+							var:travel_distance_distance = {
+								compare_value > global_var:travel_distance_select.var:travel_distance_distance
+							}
+						}
+					}
+					variable = prov_neighb
+					
+					get_distance_neighb = { 
+						one = global_var:travel_distance_select
+						other = this
+						base = global_var:travel_distance_select.var:travel_distance_distance 
+						return = travel_distance_distance_new
+					}
+					
+					if = {
+						limit = {
+							var:travel_distance_distance_new <= $max$
+							
+							OR = {
+								NOT = {
+									has_variable = travel_distance_distance
+								}
+								
+								var:travel_distance_distance_new = {
+									compare_value < prev.var:travel_distance_distance
+								}
+							}
+						}
+						add_to_global_variable_list = { name = travel_distance_fray target = this }
+						add_to_global_variable_list = { name = travel_distance_visited target = this }
+						
+						set_variable = { name = travel_distance_distance value = var:travel_distance_distance_new }
+						set_variable = { name = travel_distance_prev value = global_var:travel_distance_select }
+					}
+					
+					remove_variable = travel_distance_distance_new
+				}
 			}
-			else = {
-				if = {
-					limit = {
-						has_variable_list = prov_neighb
-					}
-					every_in_list = {
-						variable = prov_neighb
-						limit = {
-							has_variable = find_path_distance
-						}
-						get_distance_neighb = { 
-							one = global_var:find_path_select
-							other = this
-							base = global_var:find_path_select.var:find_path_distance 
-							return = find_path_distance_new
-						}
-						
-						if = {
-							limit = {
-								var:find_path_distance_new = {
-									compare_value < prev.var:find_path_distance
-								}
-							}
-							add_to_global_variable_list = { name = find_path_fray target = this }
-							add_to_global_variable_list = { name = find_path_visited target = this }
-							
-							set_variable = { name = find_path_distance value = var:find_path_distance_new }
-							set_variable = { name = find_path_prev value = global_var:find_path_select }
-						}
-					}
+			if = {
+				limit = {
+					has_variable_list = prov_port
 				}
-				if = {
+				every_in_list = {
 					limit = {
-						has_variable_list = prov_port
+						OR = {
+							NOT = {
+								has_variable = travel_distance_distance
+							}
+								
+							var:travel_distance_distance = {
+								compare_value > global_var:travel_distance_select.var:travel_distance_distance
+							}
+						}
 					}
-					every_in_list = {
-						variable = prov_port
+					variable = prov_port
+					
+					get_distance_port = { 
+						one = global_var:travel_distance_select
+						other = this
+						base = global_var:travel_distance_select.var:travel_distance_distance 
+						return = travel_distance_distance_new
+					}
+					
+					if = {
 						limit = {
-							has_variable = find_path_distance
-						}
-						get_distance_port = { 
-							one = global_var:find_path_select
-							other = this
-							base = global_var:find_path_select.var:find_path_distance 
-							return = find_path_distance_new
-						}
-						
-						if = {
-							limit = {
-								var:find_path_distance_new = {
-									compare_value < prev.var:find_path_distance
+							var:travel_distance_distance_new <= $max$
+							
+							OR = {
+								NOT = {
+									has_variable = travel_distance_distance
+								}
+								
+								var:travel_distance_distance_new = {
+									compare_value < prev.var:travel_distance_distance
 								}
 							}
-							add_to_global_variable_list = { name = find_path_fray target = this }
-							add_to_global_variable_list = { name = find_path_visited target = this }
-							
-							set_variable = { name = find_path_distance value = var:find_path_distance_new }
-							set_variable = { name = find_path_prev value = global_var:find_path_select }
 						}
+						add_to_global_variable_list = { name = travel_distance_fray target = this }
+						add_to_global_variable_list = { name = travel_distance_visited target = this }
+						
+						set_variable = { name = travel_distance_distance value = var:travel_distance_distance_new }
+						set_variable = { name = travel_distance_prev value = global_var:travel_distance_select }
 					}
+					
+					remove_variable = travel_distance_distance_new
 				}
 			}
 		}
 	}
 	
 	every_in_global_list = {
-		variable = find_path_visited
+		variable = travel_distance_visited
 		limit = {
 			var:prov_sea = 2
 		}
 		while = {
 			limit = {
-				var:find_path_prev.var:prov_sea = 2
+				var:travel_distance_prev.var:prov_sea = 2
 			}
-			set_variable = { name = find_path_prev value = var:find_path_prev.var:find_path_prev }
+			set_variable = { name = travel_distance_prev value = var:travel_distance_prev.var:travel_distance_prev }
 		}
 	}
 	every_in_global_list = {
-		variable = find_path_visited
+		variable = travel_distance_visited
 		limit = {
 			var:prov_sea = 1
 		}
 		while = {
 			limit = {
-				var:find_path_prev.var:prov_sea = 2
+				var:travel_distance_prev.var:prov_sea = 2
 			}
-			set_variable = { name = find_path_prev value = var:find_path_prev.var:find_path_prev }
+			set_variable = { name = travel_distance_prev value = var:travel_distance_prev.var:travel_distance_prev }
 		}
-	}
-	
-	clear_variable_list = $return_path$
-	
-	set_variable = { name = $return_dist$ value = -1 }
-	
-	if = {
-		limit = {
-			has_global_variable = find_path_dest_found
-		}
-		remove_global_variable = find_path_dest_found
-		
-		set_global_variable = { name = find_path_select value = $dest$ }
-		
-		while = {
-			limit = {
-				$start$.var:prov_id = {
-					compare_value != global_var:find_path_select.var:prov_id
-				}
-			}
-			add_to_variable_list = { name = $return_path$ target = global_var:find_path_select }
-			
-			set_global_variable = { name = find_path_select value = global_var:find_path_select.var:find_path_prev }
-		}
-		
-		add_to_variable_list = { name = $return_path$ target = $start$ }
-		
-		set_variable = { name = $return_dist$ value = $dest$.var:find_path_distance }
-	}
-	
-	$dest$ = {
-		remove_variable = find_path_dest
-		remove_variable = find_path_distance_new
-		remove_variable = find_path_distance
-		remove_variable = find_path_prev
 	}
 	
 	every_in_global_list = {
-		variable = find_path_visited
+		variable = travel_distance_visited
 		
-		remove_variable = find_path_distance_new
-		remove_variable = find_path_distance
-		remove_variable = find_path_prev
+		[[return_list] add_to_global_variable_list = { name = $return_list$ target = this } ]
+		
+		set_variable = { name = $return_dist$ value = var:travel_distance_distance }
+		set_variable = { name = $return_prev$ value = var:travel_distance_prev }
+		
+		remove_variable = travel_distance_distance
+		remove_variable = travel_distance_prev
 	}
 	
-	clear_global_variable_list = find_path_fray
-	clear_global_variable_list = find_path_visited
-	remove_global_variable = find_path_select
+	clear_global_variable_list = travel_distance_fray
+	clear_global_variable_list = travel_distance_visited
+	remove_global_variable = travel_distance_select
 }
 
 get_distance_neighb = {

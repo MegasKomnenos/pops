@@ -153,6 +153,20 @@ init_merchants = {
 		limit = {
 			has_variable = workshop_total
 			
+			var:workshop_total > 10
+			
+			NOT = {
+				has_variable = trade_merchant
+			}
+		}
+		save_temporary_scope_as = init_merchants_t
+		
+		init_merchants_helper = { location = scope:init_merchants_t rank = 2 skill = 10 }
+	}
+	every_province = {
+		limit = {
+			has_variable = workshop_total
+			
 			var:workshop_total > 1
 			
 			NOT = {
