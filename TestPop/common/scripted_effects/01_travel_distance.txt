@@ -170,9 +170,8 @@ travel_distance_dijkstra = {
 					
 					if = {
 						limit = {
-							var:travel_distance_distance_new <= $max$
-							
 							var:travel_distance_distance_new = {
+								compare_value <= $max$
 								compare_value < prev.var:travel_distance_distance
 							}
 						}
@@ -206,9 +205,8 @@ travel_distance_dijkstra = {
 					
 					if = {
 						limit = {
-							var:travel_distance_distance_new <= $max$
-							
 							var:travel_distance_distance_new = {
+								compare_value <= $max$
 								compare_value < prev.var:travel_distance_distance
 							}
 						}
@@ -359,7 +357,9 @@ travel_distance_dijkstra_opti = {
 					
 					if = {
 						limit = {
-							var:travel_distance_distance_new <= $max$
+							var:travel_distance_distance_new = {
+								compare_value <= $max$
+							}
 							
 							OR = {
 								NOT = {
@@ -408,7 +408,9 @@ travel_distance_dijkstra_opti = {
 					
 					if = {
 						limit = {
-							var:travel_distance_distance_new <= $max$
+							var:travel_distance_distance_new = {
+								compare_value <= $max$
+							}
 							
 							OR = {
 								NOT = {
