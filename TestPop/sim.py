@@ -307,7 +307,7 @@ sim_run.02 = {
 								has_variable = prod_size
 							}
 							
-							var:prod_size < 0.01
+							var:prod_size < 0.1
 						}
 					}
 					variable = prod_instances
