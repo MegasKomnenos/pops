@@ -146,13 +146,26 @@ trade_do_trade = {
 		trade_do_trade_helper_3 = { type = luxury }
 		trade_do_trade_helper_3 = { type = invest }
 		
+		set_variable = { name = trade_luxury_pay value = 0 }
+		set_variable = { name = trade_invest_pay value = 0 }
+		
+		change_variable = { name = trade_power multiply = 0.95 }
+		
 		^^goods^
 			set_variable = { name = trade_in_&goods& value = 0 }
 			set_variable = { name = trade_out_&goods& value = 0 }
 			
+			set_variable = { name = trade_earn_&goods& value = 0 }
+			set_variable = { name = trade_pay_&goods& value = 0 }
+			
 			set_variable = { name = trade_dmnd_&goods& value = var:trade_want_&goods& }
 			change_variable = { name = trade_dmnd_&goods& subtract = var:trade_has_&goods& }
 			change_variable = { name = trade_dmnd_&goods& divide = 2 }
+			
+			set_variable = { name = trade_sply_&goods& value = var:trade_has_&goods& }
+			change_variable = { name = trade_sply_&goods& divide = 2 }
+			
+			set_variable = { name = trade_do_trade_t value = 0 }
 			
 			if = {
 				limit = {
@@ -161,6 +174,7 @@ trade_do_trade = {
 					var:trade_luxury_&goods& > 0
 				}
 				change_variable = { name = trade_dmnd_&goods& add = var:trade_luxury_&goods& }
+				change_variable = { name = trade_do_trade_t add = var:trade_luxury_&goods& }
 			}
 			if = {
 				limit = {
@@ -169,13 +183,92 @@ trade_do_trade = {
 					var:trade_invest_&goods& > 0
 				}
 				change_variable = { name = trade_dmnd_&goods& add = var:trade_invest_&goods& }
+				change_variable = { name = trade_do_trade_t add = var:trade_invest_&goods& }
 			}
 			
-			set_variable = { name = trade_sply_&goods& value = var:trade_has_&goods& }
-			change_variable = { name = trade_sply_&goods& divide = 2 }
-			
-			set_variable = { name = trade_earn_&goods& value = 0 }
-			set_variable = { name = trade_pay_&goods& value = 0 }
+			if = {
+				limit = {
+					has_variable = trade_do_trade_t
+					
+					var:trade_do_trade_t > 0
+				}
+				if = {
+					limit = {
+						OR = {
+							NOT = {
+								has_variable = trade_sply_&goods&
+							}
+							
+							var:trade_sply_&goods& = {
+								compare_value < prev.var:trade_do_trade_t
+							}
+						}
+					}
+					set_variable = { name = trade_out_&goods& value = var:trade_sply_&goods& }
+					
+					set_variable = { name = trade_do_trade_tt value = var:trade_sply_&goods& }
+					change_variable = { name = trade_do_trade_tt value = 100 }
+					change_variable = { name = trade_do_trade_tt divide = var:trade_do_trade_t }
+					
+					if = {
+						limit = {
+							has_variable = trade_luxury_&goods&
+							
+							var:trade_luxury_&goods& > 0
+						}
+						set_variable = { name = trade_do_trade_t value = var:trade_luxury_&goods& }
+						change_variable = { name = trade_do_trade_t multiply = var:trade_do_trade_tt }
+						change_variable = { name = trade_do_trade_t divide = 100 }
+						change_variable = { name = trade_do_trade_t multiply = var:trade_price_&goods& }
+						change_variable = { name = trade_luxury_pay add = var:trade_do_trade_t }
+					}
+					if = {
+						limit = {
+							has_variable = trade_invest_&goods&
+							
+							var:trade_invest_&goods& > 0
+						}
+						set_variable = { name = trade_invest_pay_&goods& value = var:trade_invest_&goods& }
+						change_variable = { name = trade_invest_pay_&goods& multiply = var:trade_do_trade_tt }
+						change_variable = { name = trade_invest_pay_&goods& divide = 100 }
+						set_variable = { name = trade_do_trade_t value = var:trade_invest_pay_&goods& }
+						change_variable = { name = trade_do_trade_t multiply = trade_invest_&goods& }
+						change_variable = { name = trade_power add = var:trade_do_trade_t }
+						change_variable = { name = trade_invest_pay_&goods& multiply = var:trade_price_&goods& }
+						change_variable = { name = trade_invest_pay add = var:trade_invest_pay_&goods& }
+					}
+				}
+				else = {
+					change_variable = { name = trade_out_&goods& add = var:trade_do_trade_t }
+					
+					if = {
+						limit = {
+							has_variable = trade_luxury_&goods&
+							
+							var:trade_luxury_&goods& > 0
+						}
+						set_variable = { name = trade_do_trade_t value = var:trade_luxury_&goods& }
+						change_variable = { name = trade_do_trade_t multiply = var:trade_price_&goods& }
+						change_variable = { name = trade_luxury_pay add = var:trade_do_trade_t }
+					}
+					if = {
+						limit = {
+							has_variable = trade_invest_&goods&
+							
+							var:trade_invest_&goods& > 0
+						}
+						set_variable = { name = trade_invest_pay_&goods& value = var:trade_invest_&goods& }
+						set_variable = { name = trade_do_trade_t value = var:trade_invest_pay_&goods& }
+						change_variable = { name = trade_do_trade_t multiply = trade_invest_&goods& }
+						change_variable = { name = trade_power add = var:trade_do_trade_t }
+						change_variable = { name = trade_invest_pay_&goods& multiply = var:trade_price_&goods& }
+						change_variable = { name = trade_invest_pay add = var:trade_invest_pay_&goods& }
+					}
+				}
+			}
+			else = {
+				remove_variable = trade_invest_pay_&goods&
+			}
 		^
 		
 		set_variable = { name = trade_power_t value = var:trade_power }
@@ -1478,59 +1571,6 @@ trade_resolve_trade = {
 		change_variable = { name = trade_wealth subtract = var:trade_retire_pay }
 		change_variable = { name = trade_pay add = var:trade_retire_pay }
 		var:trade_location = { change_variable = { name = pop_earn_free add = prev.var:trade_retire_pay } }
-		
-		set_variable = { name = trade_luxury_pay value = 0 }
-		set_variable = { name = trade_invest_pay value = 0 }
-		
-		^^goods^
-			if = {
-				limit = {
-					has_variable = trade_luxury_&goods&
-					
-					var:trade_luxury_&goods& > 0
-				}
-				set_variable = { name = trade_resolve_trade_t value = var:trade_luxury_&goods& }
-				change_variable = { name = trade_resolve_trade_t multiply = 100 }
-				change_variable = { name = trade_resolve_trade_t divide = var:trade_dmnd_&goods& }
-				set_variable = { name = trade_resolve_trade_tt value = var:trade_resolve_trade_t }
-				change_variable = { name = trade_resolve_trade_t multiply = var:trade_pay_&goods& }
-				change_variable = { name = trade_resolve_trade_t divide = 100 }
-				change_variable = { name = trade_luxury_pay add = var:trade_resolve_trade_t }
-				change_variable = { name = trade_resolve_trade_tt multiply = var:trade_in_&goods& }
-				change_variable = { name = trade_resolve_trade_tt divide = 100 }
-				change_variable = { name = trade_out_&goods& add = var:trade_resolve_trade_tt }
-			}
-			else = {
-				remove_variable = trade_luxury_pay_&goods&
-			}
-		^
-		
-		change_variable = { name = trade_power multiply = 0.95 }
-		
-		^^goods^
-			if = {
-				limit = {
-					has_variable = trade_invest_&goods&
-					
-					var:trade_invest_&goods& > 0
-				}
-				set_variable = { name = trade_invest_pay_&goods& value = var:trade_invest_&goods& }
-				change_variable = { name = trade_invest_pay_&goods& multiply = 100 }
-				change_variable = { name = trade_invest_pay_&goods& divide = var:trade_dmnd_&goods& }
-				set_variable = { name = trade_resolve_trade_t value = var:trade_invest_pay_&goods& }
-				change_variable = { name = trade_invest_pay_&goods& multiply = var:trade_pay_&goods& }
-				change_variable = { name = trade_invest_pay_&goods& divide = 100 }
-				change_variable = { name = trade_invest_pay add = var:trade_invest_pay_&goods& }
-				change_variable = { name = trade_resolve_trade_t multiply = var:trade_in_&goods& }
-				change_variable = { name = trade_resolve_trade_t divide = 100 }
-				change_variable = { name = trade_out_&goods& add = var:trade_resolve_trade_t }
-				change_variable = { name = trade_resolve_trade_t multiply = trade_invest_&goods& }
-				change_variable = { name = trade_power add = var:trade_resolve_trade_t }
-			}
-			else = {
-				remove_variable = trade_invest_pay_&goods&
-			}
-		^
 		
 		remove_variable = trade_resolve_trade_t
 		remove_variable = trade_resolve_trade_tt
