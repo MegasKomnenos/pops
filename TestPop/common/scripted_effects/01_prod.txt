@@ -322,10 +322,21 @@ prod_update_instances = {
 			set_variable = { name = prod_update_instances_tttt value = var:prod_update_instances_t }
 			change_variable = { name = prod_update_instances_tttt divide = var:prod_update_instances_tt }
 			
-			pow_effect = {
-				inp = var:prod_update_instances_tttt
-				exp = var:prod_update_instances_ttt
-				return = prod_update_instances_tttt
+			if = {
+				limit = {
+					var:prod_update_instances_ttt = 0.5
+				}
+				sqrt_effect = {
+					inp = var:prod_update_instances_tttt
+					return = prod_update_instances_tttt
+				}
+			}
+			else = {
+				pow_effect = {
+					inp = var:prod_update_instances_tttt
+					exp = var:prod_update_instances_ttt
+					return = prod_update_instances_tttt
+				}
 			}
 			
 			change_variable = { name = prod_update_instances_t divide = var:prod_update_instances_tttt }
