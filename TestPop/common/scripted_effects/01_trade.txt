@@ -78,13 +78,13 @@ trade_set_range = {
 	
 	if = {
 		limit = {
-			var:trade_power >= 300
+			var:trade_power >= 150
 		}
-		set_global_variable = { name = trade_set_range_tt value = 5000 }
+		set_global_variable = { name = trade_set_range_tt value = 2000 }
 	}
 	else = {
 		set_global_variable = { name = trade_set_range_tt value = var:trade_power }
-		change_global_variable = { name = trade_set_range_tt multiply = 15 }
+		change_global_variable = { name = trade_set_range_tt multiply = 10 }
 		change_global_variable = { name = trade_set_range_tt add = 100 }
 		change_global_variable = { name = trade_set_range_tt add = global_var:trade_set_range_t }
 	}
@@ -447,8 +447,8 @@ trade_do_trade = {
 							add_to_global_variable_list = { name = trade_do_trade_list target = this }
 							
 							set_variable = { name = trade_do_trade_dist value = global_var:trade_do_trade_select.var:trade_do_trade_t }
-							change_variable = { name = trade_do_trade_dist add = 600 }
-							change_variable = { name = trade_do_trade_dist divide = 4 }
+							change_variable = { name = trade_do_trade_dist divide = 2 }
+							change_variable = { name = trade_do_trade_dist add = 200 }
 						}
 					}
 				}
