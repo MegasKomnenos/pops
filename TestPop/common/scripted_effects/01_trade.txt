@@ -959,9 +959,6 @@ trade_do_trade = {
 			is_valid_prov = yes
 		}
 		^^goods^
-			add_to_variable_list = { name = trade_do_trade_t target = this }
-			array_add = { name = trade_do_trade_t value = 0 }
-			
 			every_in_list = {
 				variable = trade_dat_&goods&
 				
@@ -995,7 +992,7 @@ trade_do_trade = {
 					
 					ordered_in_list = {
 						variable = trade_do_trade_t
-						position = prev.var:trade_do_trade_tt.compare_value
+						position = global_var:trade_do_trade_tt.compare_value
 						
 						prev = {
 							add_to_variable_list = { name = trade_dat_&goods& target = prev }
@@ -1005,7 +1002,7 @@ trade_do_trade = {
 					}
 					ordered_in_list = {
 						variable = array_trade_do_trade_t
-						position = prev.var:trade_do_trade_tt.compare_value
+						position = global_var:trade_do_trade_tt.compare_value
 						
 						prev = {
 							remove_list_variable = { name = array_trade_do_trade_t target = prev }
@@ -1028,7 +1025,7 @@ trade_do_trade = {
 					
 					ordered_in_list = {
 						variable = trade_do_trade_t
-						position = prev.var:trade_do_trade_tt.compare_value
+						position = global_var:trade_do_trade_tt.compare_value
 						
 						prev = {
 							add_to_variable_list = { name = trade_dat_&goods& target = prev }
@@ -1038,7 +1035,7 @@ trade_do_trade = {
 					}
 					ordered_in_list = {
 						variable = array_trade_do_trade_t
-						position = prev.var:trade_do_trade_tt.compare_value
+						position = global_var:trade_do_trade_tt.compare_value
 						
 						prev = {
 							remove_list_variable = { name = array_trade_do_trade_t target = prev }
@@ -1071,9 +1068,6 @@ trade_do_trade = {
 		variable = trade_merchants
 		
 		^^goods^
-			add_to_variable_list = { name = trade_do_trade_t target = this }
-			array_add = { name = trade_do_trade_t value = 0 }
-			
 			every_in_list = {
 				variable = trade_dat_&goods&
 				
@@ -1107,7 +1101,7 @@ trade_do_trade = {
 					
 					ordered_in_list = {
 						variable = trade_do_trade_t
-						position = prev.var:trade_do_trade_tt.compare_value
+						position = global_var:trade_do_trade_tt.compare_value
 						
 						prev = {
 							add_to_variable_list = { name = trade_dat_&goods& target = prev }
@@ -1117,7 +1111,7 @@ trade_do_trade = {
 					}
 					ordered_in_list = {
 						variable = array_trade_do_trade_t
-						position = prev.var:trade_do_trade_tt.compare_value
+						position = global_var:trade_do_trade_tt.compare_value
 						
 						prev = {
 							remove_list_variable = { name = array_trade_do_trade_t target = prev }
@@ -1140,7 +1134,7 @@ trade_do_trade = {
 					
 					ordered_in_list = {
 						variable = trade_do_trade_t
-						position = prev.var:trade_do_trade_tt.compare_value
+						position = global_var:trade_do_trade_tt.compare_value
 						
 						prev = {
 							add_to_variable_list = { name = trade_dat_&goods& target = prev }
@@ -1150,7 +1144,7 @@ trade_do_trade = {
 					}
 					ordered_in_list = {
 						variable = array_trade_do_trade_t
-						position = prev.var:trade_do_trade_tt.compare_value
+						position = global_var:trade_do_trade_tt.compare_value
 						
 						prev = {
 							remove_list_variable = { name = array_trade_do_trade_t target = prev }
@@ -1172,6 +1166,8 @@ trade_do_trade = {
 			remove_variable = trade_do_trade_tt_&goods&
 			remove_variable = trade_do_trade_ttt_&goods&
 		^
+		
+		remove_global_variable = trade_do_trade_tt
 		
 		remove_variable = trade_cost
 		remove_variable = trade_do_trade_t

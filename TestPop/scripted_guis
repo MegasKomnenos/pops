@@ -538,7 +538,7 @@ toggle_prov_merchant_dat = {
 					
 					ordered_in_list = {
 						variable = toggled_prov_merchant_dat_t
-						position = prev.var:toggled_prov_merchant_dat_t.compare_value
+						position = global_var:toggled_prov_merchant_dat_t.compare_value
 						
 						prev = {
 							set_variable = { name = info_dat_merchant_out_scope_&range5&_&goods& value = prev }
@@ -548,7 +548,7 @@ toggle_prov_merchant_dat = {
 					}
 					ordered_in_list = {
 						variable = array_toggled_prov_merchant_dat_t
-						position = prev.var:toggled_prov_merchant_dat_t.compare_value
+						position = global_var:toggled_prov_merchant_dat_t.compare_value
 						
 						prev = {
 							remove_list_variable = { name = array_toggled_prov_merchant_dat_t target = prev }
@@ -566,7 +566,7 @@ toggle_prov_merchant_dat = {
 					
 					ordered_in_list = {
 						variable = toggled_prov_merchant_dat_t
-						position = prev.var:toggled_prov_merchant_dat_t.compare_value
+						position = global_var:toggled_prov_merchant_dat_t.compare_value
 						
 						prev = {
 							set_variable = { name = info_dat_merchant_in_scope_&range5&_&goods& value = prev }
@@ -576,7 +576,7 @@ toggle_prov_merchant_dat = {
 					}
 					ordered_in_list = {
 						variable = array_toggled_prov_merchant_dat_t
-						position = prev.var:toggled_prov_merchant_dat_t.compare_value
+						position = global_var:toggled_prov_merchant_dat_t.compare_value
 						
 						prev = {
 							remove_list_variable = { name = array_toggled_prov_merchant_dat_t target = prev }
@@ -584,6 +584,7 @@ toggle_prov_merchant_dat = {
 					}
 				^
 				
+				remove_global_variable = toggled_prov_merchant_dat_t
 				remove_variable = toggled_prov_merchant_dat_t
 			^
 		}
