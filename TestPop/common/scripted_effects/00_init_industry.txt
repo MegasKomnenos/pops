@@ -414,7 +414,15 @@ init_industry = {
 				OR = {
 					has_variable = has_Seasalt
 					
-					has_variable_list = prov_port
+					AND = {
+						has_variable_list = prov_port
+						
+						any_in_list = {
+							variable = prov_port
+							
+							var:prov_sea = 2
+						}
+					}
 				}
 			}
 			pow_effect = {
@@ -423,7 +431,7 @@ init_industry = {
 				return = init_industry_t
 			}
 			
-			change_variable = { name = init_industry_t multiply = 2 }
+			change_variable = { name = init_industry_t multiply = 3 }
 			change_variable = { name = init_industry_t add = 1 }
 			
 			if = {
@@ -432,12 +440,20 @@ init_industry = {
 				}
 				remove_variable = has_Seasalt
 				
-				change_variable = { name = init_industry_t multiply = 3 }
+				change_variable = { name = init_industry_t multiply = 4 }
 				change_variable = { name = init_industry_t add = 5 }
 			}
 			if = {
 				limit = {
-					has_variable_list = prov_port
+					AND = {
+						has_variable_list = prov_port
+						
+						any_in_list = {
+							variable = prov_port
+							
+							var:prov_sea = 2
+						}
+					}
 				}
 				if = {
 					limit = {
