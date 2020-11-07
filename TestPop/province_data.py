@@ -132,16 +132,26 @@ if __name__ == '__main__':
     file = parse_file('map_data\\default.map')
 
     water = set()
+    river = set()
     wasteland = set()
 
     for entry in file:
-        if entry[0] == 'sea_zones' or entry[0] == 'river_provinces':
+        if entry[0] == 'sea_zones':
             if entry[2] == 'RANGE':
                 for prov in range(int(entry[3][0]), int(entry[3][1]) + 1):
                     water.add(prov)
             elif entry[2] == 'LIST':
                 for prov in entry[3]:
                     water.add(int(prov))
+        elif entry[0] == 'river_provinces':
+            if entry[2] == 'RANGE':
+                for prov in range(int(entry[3][0]), int(entry[3][1]) + 1):
+                    water.add(prov)
+                    river.add(prov)
+            elif entry[2] == 'LIST':
+                for prov in entry[3]:
+                    water.add(int(prov))
+                    river.add(int(prov))
         elif entry[0] == 'impassable_mountains' or entry[0] == 'impassable_seas' or entry[0] == 'lakes':
             if entry[2] == 'RANGE':
                 for prov in range(int(entry[3][0]), int(entry[3][1]) + 1):
@@ -217,7 +227,10 @@ if __name__ == '__main__':
                  loc_coord = ' set_variable = { name = prov_x value = %s } set_variable = { name = prov_y value = %s }' % coord[prov]
 
             if prov in water:
-                loc_sea = ' set_variable = { name = prov_sea value = 2 } add_to_global_variable_list = { name = every_water target = this }'
+                if prov in river:
+                    loc_sea = ' set_variable = { name = prov_sea value = 3 } add_to_global_variable_list = { name = every_water target = this }'
+                else:
+                    loc_sea = ' set_variable = { name = prov_sea value = 2 } add_to_global_variable_list = { name = every_water target = this }'
             else:
                 loc_sea = ' set_variable = { name = prov_sea value = 1 }'
 

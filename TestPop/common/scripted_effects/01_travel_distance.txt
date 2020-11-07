@@ -492,13 +492,43 @@ get_distance_neighb = {
 	change_variable = { name = $return$ multiply = var:get_distance_neighb_cost }
 	change_variable = { name = $return$ add = $base$ }
 	
+	set_variable = { name = get_distance_neighb_t value = $one$.var:prov_sea }
+	set_variable = { name = get_distance_neighb_tt value = $other$.var:prov_sea }
+	
+	if = {
+		limit = {
+			NOT = {
+				var:get_distance_neighb_t = {
+					compare_value = prev.var:get_distance_neighb_tt
+				}
+			}
+		}
+		change_variable = { name = $return$ add = 175 }
+	}
+	
 	remove_variable = get_distance_neighb_x_diff
 	remove_variable = get_distance_neighb_y_diff
+	remove_variable = get_distance_neighb_t
+	remove_variable = get_distance_neighb_tt
 	remove_variable = get_distance_neighb_cost
 }
 
 get_distance_port = {
-	set_variable = { name = get_distance_port_cost value = 100 }
+	set_variable = { name = get_distance_port_t value = $one$.var:prov_sea }
+	set_variable = { name = get_distance_port_tt value = $other$.var:prov_sea }
+	
+	if = {
+		limit = {
+			OR = {
+				var:get_distance_port_t = 2
+				var:get_distance_port_tt = 2
+			}
+		}
+		set_variable = { name = get_distance_port_cost value = 100 }
+	}
+	else = {
+		set_variable = { name = get_distance_port_cost value = 25 }
+	}
 	
 	get_distance_neighb = {
 		one = $one$
@@ -509,5 +539,7 @@ get_distance_port = {
 	
 	change_variable = { name = $return$ add = var:get_distance_port_cost }
 	
+	remove_variable = get_distance_port_t
+	remove_variable = get_distance_port_tt
 	remove_variable = get_distance_port_cost
 }
