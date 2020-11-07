@@ -850,27 +850,48 @@ trade_do_trade = {
 						change_variable = { name = trade_do_trade_t subtract = var:trade_sell_&goods& }
 					}
 					
+					save_temporary_scope_as = trade_do_trade_select
+					
 					if = {
 						limit = {
-							has_variable = trade_location
-						}
-						var:trade_location.county = {
-							save_temporary_scope_as = trade_do_trade_select
+							has_variable = trade_dat_&goods&
 							
-							set_variable = { name = trade_do_trade_t value = prev.var:trade_do_trade_t }
+							is_target_in_variable_list = { name = trade_dat_&goods& target = prev }
 						}
-					}
-					else = {
-						save_temporary_scope_as = trade_do_trade_select
-					}
-					
-					scope:trade_do_trade_select = {
-						if = {
+						set_global_variable = { name = trade_do_trade_t value = 0 }
+						set_global_variable = { name = trade_do_trade_tt }
+						
+						every_in_list = {
 							limit = {
-								has_variable = trade_dat_&goods&
-								
-								is_target_in_variable_list = { name = trade_dat_&goods& target = prev }
+								has_global_variable = trade_do_trade_tt
 							}
+							variable = trade_dat_&goods&
+							
+							if = {
+								limit = {
+									this = global_var:trade_do_trade_select
+								}
+								remove_global_variable = trade_do_trade_tt
+							}
+							else = {
+								change_global_variable = { name = trade_do_trade_t add = 1 }
+							}
+						}
+						
+						remove_list_variable = { name = trade_dat_&goods& target = prev }
+						
+						ordered_in_list = {
+							variable = array_trade_dat_&goods&
+							position = global_var:trade_do_trade_t
+							
+							prev = {
+								change_variable = { name = trade_do_trade_t subtract = prev }
+								
+								remove_list_variable = { name = array_trade_dat_&goods& target = prev }
+							}
+						}
+						
+						prev = {
 							set_global_variable = { name = trade_do_trade_t value = 0 }
 							set_global_variable = { name = trade_do_trade_tt }
 							
@@ -882,7 +903,7 @@ trade_do_trade = {
 								
 								if = {
 									limit = {
-										this = global_var:trade_do_trade_select
+										this = scope:trade_do_trade_select
 									}
 									remove_global_variable = trade_do_trade_tt
 								}
@@ -898,58 +919,23 @@ trade_do_trade = {
 								position = global_var:trade_do_trade_t
 								
 								prev = {
-									change_variable = { name = trade_do_trade_t subtract = prev }
-									
 									remove_list_variable = { name = array_trade_dat_&goods& target = prev }
 								}
 							}
-							
-							prev = {
-								set_global_variable = { name = trade_do_trade_t value = 0 }
-								set_global_variable = { name = trade_do_trade_tt }
-								
-								every_in_list = {
-									limit = {
-										has_global_variable = trade_do_trade_tt
-									}
-									variable = trade_dat_&goods&
-									
-									if = {
-										limit = {
-											this = scope:trade_do_trade_select
-										}
-										remove_global_variable = trade_do_trade_tt
-									}
-									else = {
-										change_global_variable = { name = trade_do_trade_t add = 1 }
-									}
-								}
-								
-								remove_list_variable = { name = trade_dat_&goods& target = prev }
-								
-								ordered_in_list = {
-									variable = array_trade_dat_&goods&
-									position = global_var:trade_do_trade_t
-									
-									prev = {
-										remove_list_variable = { name = array_trade_dat_&goods& target = prev }
-									}
-								}
-							}
-							
-							remove_global_variable = trade_do_trade_t
 						}
 						
-						prev = {
-							add_to_variable_list = { name = trade_dat_&goods& target = prev }
-							array_add = { name = trade_dat_&goods& value = prev.var:trade_do_trade_t }
-						}
-						
-						change_variable = { name = trade_do_trade_t multiply = -1 }
-						
-						add_to_variable_list = { name = trade_dat_&goods& target = prev }
-						array_add = { name = trade_dat_&goods& value = var:trade_do_trade_t }
+						remove_global_variable = trade_do_trade_t
 					}
+					
+					prev = {
+						add_to_variable_list = { name = trade_dat_&goods& target = prev }
+						array_add = { name = trade_dat_&goods& value = prev.var:trade_do_trade_t }
+					}
+					
+					change_variable = { name = trade_do_trade_t multiply = -1 }
+					
+					add_to_variable_list = { name = trade_dat_&goods& target = prev }
+					array_add = { name = trade_dat_&goods& value = var:trade_do_trade_t }
 				}
 			^
 				
@@ -973,6 +959,91 @@ trade_do_trade = {
 			is_valid_prov = yes
 		}
 		^^goods^
+			every_in_list = {
+				variable = trade_dat_&goods&
+				
+				prev = {
+					add_to_variable_list = { name = trade_do_trade_t target = prev }
+				}
+			}
+			every_in_list = {
+				variable = array_trade_dat_&goods&
+				
+				prev = {
+					add_to_variable_list = { name = array_trade_do_trade_t target = prev }
+				}
+			}
+			
+			clear_variable_list = trade_dat_&goods&
+			array_clear = { name = trade_dat_&goods& }
+			
+			^^range3^
+				array_get_max = { 
+					name = trade_do_trade_t 
+					return_val = trade_do_trade_t
+					return_ind = trade_do_trade_tt
+				}
+				
+				if = {
+					limit = {
+						var:trade_do_trade_t > 0
+					}
+					array_add = { name = trade_dat_&goods& value = var:trade_do_trade_t }
+					
+					ordered_in_list = {
+						variable = trade_do_trade_t
+						position = prev.var:trade_do_trade_tt.compare_value
+						
+						prev = {
+							add_to_variable_list = { name = trade_dat_&goods& target = prev }
+							
+							remove_list_variable = { name = trade_do_trade_t target = prev }
+						}
+					}
+					ordered_in_list = {
+						variable = array_trade_do_trade_t
+						position = prev.var:trade_do_trade_tt.compare_value
+						
+						prev = {
+							remove_list_variable = { name = array_trade_do_trade_t target = prev }
+						}
+					}
+				}
+			^
+			^^range3^
+				array_get_min = { 
+					name = trade_do_trade_t 
+					return_val = trade_do_trade_t
+					return_ind = trade_do_trade_tt
+				}
+				
+				if = {
+					limit = {
+						var:trade_do_trade_t < 0
+					}
+					array_add = { name = trade_dat_&goods& value = var:trade_do_trade_t }
+					
+					ordered_in_list = {
+						variable = trade_do_trade_t
+						position = prev.var:trade_do_trade_tt.compare_value
+						
+						prev = {
+							add_to_variable_list = { name = trade_dat_&goods& target = prev }
+							
+							remove_list_variable = { name = trade_do_trade_t target = prev }
+						}
+					}
+					ordered_in_list = {
+						variable = array_trade_do_trade_t
+						position = prev.var:trade_do_trade_tt.compare_value
+						
+						prev = {
+							remove_list_variable = { name = array_trade_do_trade_t target = prev }
+						}
+					}
+				}
+			^
+			
 			remove_variable = trade_buy_&goods&
 			remove_variable = trade_sell_&goods&
 			remove_variable = trade_point_&goods&
@@ -983,17 +1054,105 @@ trade_do_trade = {
 			remove_variable = trade_do_trade_tt_&goods&
 			remove_variable = trade_do_trade_ttt_&goods&
 		^
+		
+		clear_variable_list = trade_do_trade_t
+		array_clear = { name = trade_do_trade_t }
+		
 		remove_variable = trade_cost
 		remove_variable = trade_do_trade_t
 		remove_variable = trade_do_trade_tt
 		remove_variable = trade_do_trade_ttt
-		
 	}
 	
 	every_in_global_list = {
 		variable = trade_merchants
 		
 		^^goods^
+			every_in_list = {
+				variable = trade_dat_&goods&
+				
+				prev = {
+					add_to_variable_list = { name = trade_do_trade_t target = prev }
+				}
+			}
+			every_in_list = {
+				variable = array_trade_dat_&goods&
+				
+				prev = {
+					add_to_variable_list = { name = array_trade_do_trade_t target = prev }
+				}
+			}
+			
+			clear_variable_list = trade_dat_&goods&
+			array_clear = { name = trade_dat_&goods& }
+			
+			^^range5^
+				array_get_max = { 
+					name = trade_do_trade_t 
+					return_val = trade_do_trade_t
+					return_ind = trade_do_trade_tt
+				}
+				
+				if = {
+					limit = {
+						var:trade_do_trade_t > 0
+					}
+					array_add = { name = trade_dat_&goods& value = var:trade_do_trade_t }
+					
+					ordered_in_list = {
+						variable = trade_do_trade_t
+						position = prev.var:trade_do_trade_tt.compare_value
+						
+						prev = {
+							add_to_variable_list = { name = trade_dat_&goods& target = prev }
+							
+							remove_list_variable = { name = trade_do_trade_t target = prev }
+						}
+					}
+					ordered_in_list = {
+						variable = array_trade_do_trade_t
+						position = prev.var:trade_do_trade_tt.compare_value
+						
+						prev = {
+							remove_list_variable = { name = array_trade_do_trade_t target = prev }
+						}
+					}
+				}
+			^
+			^^range5^
+				array_get_min = { 
+					name = trade_do_trade_t 
+					return_val = trade_do_trade_t
+					return_ind = trade_do_trade_tt
+				}
+				
+				if = {
+					limit = {
+						var:trade_do_trade_t < 0
+					}
+					array_add = { name = trade_dat_&goods& value = var:trade_do_trade_t }
+					
+					ordered_in_list = {
+						variable = trade_do_trade_t
+						position = prev.var:trade_do_trade_tt.compare_value
+						
+						prev = {
+							add_to_variable_list = { name = trade_dat_&goods& target = prev }
+							
+							remove_list_variable = { name = trade_do_trade_t target = prev }
+						}
+					}
+					ordered_in_list = {
+						variable = array_trade_do_trade_t
+						position = prev.var:trade_do_trade_tt.compare_value
+						
+						prev = {
+							remove_list_variable = { name = array_trade_do_trade_t target = prev }
+						}
+					}
+				}
+			^
+			
 			remove_variable = trade_buy_&goods&
 			remove_variable = trade_sell_&goods&
 			remove_variable = trade_point_&goods&
@@ -1004,6 +1163,10 @@ trade_do_trade = {
 			remove_variable = trade_do_trade_tt_&goods&
 			remove_variable = trade_do_trade_ttt_&goods&
 		^
+		
+		clear_variable_list = trade_do_trade_t
+		array_clear = { name = trade_do_trade_t }
+		
 		remove_variable = trade_cost
 		remove_variable = trade_do_trade_t
 		remove_variable = trade_do_trade_tt

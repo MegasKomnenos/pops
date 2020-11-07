@@ -243,8 +243,13 @@ if __name__ == '__main__':
         for macro in file:
             macros[macro[0]] = macro[2]
 
-    for name, script in scripts.items():
-        scripts[name] = apply_macro(script, macros)
+    check = [True]
+
+    while check[0]:
+        check[0] = False
+
+        for name, script in scripts.items():
+            scripts[name] = apply_macro(script, macros, check)
 
     with open('events\\sim.txt', 'w', encoding='utf-8-sig') as ff:
         event = '''namespace = sim_run
