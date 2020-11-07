@@ -393,8 +393,8 @@ sim_run.02 = {
 					limit = {
 						var:trade_power = {
 							OR = {
-								compare_value >= trade_refresh_up
-								compare_value <= trade_refresh_down
+								compare_value >= prev.var:trade_refresh_up
+								compare_value <= prev.var:trade_refresh_down
 							}
 						}
 					}
