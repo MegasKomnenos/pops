@@ -389,29 +389,20 @@ sim_run.02 = {
 			every_in_global_list = {
 				variable = trade_merchants
 				
-				random_list = {
-					1 = {
-						change_variable = { name = trade_refresh subtract = 3 }
-					}
-					1 = {
-						change_variable = { name = trade_refresh subtract = 2 }
-					}
-					1 = {
-						change_variable = { name = trade_refresh subtract = 1 }
-					}
-				}
-				
 				if = {
 					limit = {
-						OR = {
-							NOT = {
-								has_variable = trade_refresh
+						var:trade_power = {
+							OR = {
+								compare_value >= trade_refresh_up
+								compare_value <= trade_refresh_down
 							}
-							
-							var:trade_refresh <= 0
 						}
 					}
-					set_variable = { name = trade_refresh value = 20 }
+					set_variable = { name = trade_refresh_up value = var:trade_power }
+					set_variable = { name = trade_refresh_down value = var:trade_power }
+					
+					change_variable = { name = trade_refresh_up multiply = 1.25 }
+					change_variable = { name = trade_refresh_down multiply = 0.8 }
 					
 					trade_set_range = yes
 				}

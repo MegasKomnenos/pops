@@ -37,7 +37,11 @@
 		set_variable = { name = trade_luxury value = 0.01 }
 		set_variable = { name = trade_invest value = 0.03 }
 		
-		set_variable = { name = trade_refresh value = 0 }
+		set_variable = { name = trade_refresh_up value = var:trade_power }
+		set_variable = { name = trade_refresh_down value = var:trade_power }
+		
+		change_variable = { name = trade_refresh_up multiply = 1.25 }
+		change_variable = { name = trade_refresh_down multiply = 0.8 }
 	}
 	
 	remove_variable = trade_new_merchant_t
@@ -439,7 +443,8 @@ trade_do_trade = {
 						add_to_global_variable_list = { name = trade_do_trade_list target = this }
 						
 						set_variable = { name = trade_do_trade_dist value = global_var:trade_do_trade_select.var:trade_do_trade_t }
-						change_variable = { name = trade_do_trade_dist divide = 2.5 }
+						change_variable = { name = trade_do_trade_dist add = 600 }
+						change_variable = { name = trade_do_trade_dist divide = 4 }
 					}
 				}
 			}
