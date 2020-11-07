@@ -17,6 +17,13 @@
 	init_tech = yes
 	init_buildings = yes
 	
+	province:2517 = {
+		add_to_variable_list = { name = prov_neighb target = province:2506 }
+	}
+	province:2506 = {
+		add_to_variable_list = { name = prov_neighb target = province:2517 }
+	}
+	
 	every_province = {
 		limit = {
 			is_valid_prov = yes
