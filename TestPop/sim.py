@@ -386,6 +386,37 @@ sim_run.02 = {
 			trade_update_merchant = yes
 			trade_update_price = yes
 			
+			every_in_global_list = {
+				variable = trade_merchants
+				
+				random_list = {
+					1 = {
+						change_variable = { name = trade_refresh subtract = 3 }
+					}
+					1 = {
+						change_variable = { name = trade_refresh subtract = 2 }
+					}
+					1 = {
+						change_variable = { name = trade_refresh subtract = 1 }
+					}
+				}
+				
+				if = {
+					limit = {
+						OR = {
+							NOT = {
+								has_variable = trade_refresh
+							}
+							
+							var:trade_refresh <= 0
+						}
+					}
+					set_variable = { name = trade_refresh value = 20 }
+					
+					trade_set_range = yes
+				}
+			}
+			
 			if = {
 				limit = {
 					has_global_variable_list = build_slots_active

@@ -1,4 +1,5 @@
-﻿array_add = {
+﻿# Parameters: name, value
+array_add = {
 	set_variable = { name = array_add_t value = $value$ }
 	change_variable = { name = array_add_t multiply = 10 }
 	
@@ -26,6 +27,7 @@
 	remove_variable = array_add_t
 }
 
+# Parameters: name, value, return
 array_get = {
 	set_global_variable = { name = array_get_t value = $value$ }
 	
@@ -43,6 +45,7 @@ array_get = {
 	remove_global_variable = array_get_t
 }
 
+# Parameters: name
 array_clear = {
 	clear_variable_list = array_$name$
 }

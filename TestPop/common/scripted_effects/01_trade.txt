@@ -37,9 +37,7 @@
 		set_variable = { name = trade_luxury value = 0.01 }
 		set_variable = { name = trade_invest value = 0.03 }
 		
-		set_variable = { name = trade_outposts_max value = $outpost$ }
-		
-		add_to_variable_list = { name = trade_outposts target = $location$ }
+		set_variable = { name = trade_refresh value = 0 }
 	}
 	
 	remove_variable = trade_new_merchant_t
@@ -54,6 +52,92 @@ trade_pop_merchant = {
 	}
 	
 	death = natural
+}
+
+trade_set_range = {
+	clear_variable_list = trade_core
+	clear_variable_list = trade_periph
+	
+	array_clear = { name = trade_core }
+	array_clear = { name = trade_periph }
+	
+	if = {
+		limit = {
+			var:trade_power >= 10
+		}
+		set_global_variable = { name = trade_set_range_t value = 300 }
+	}
+	else = {
+		set_global_variable = { name = trade_set_range_t value = var:trade_power }
+		change_global_variable = { name = trade_set_range_t multiply = 30 }
+	}
+	
+	set_global_variable = { name = trade_set_range_tt value = var:trade_power }
+	change_global_variable = { name = trade_set_range_tt multiply = 10 }
+	change_global_variable = { name = trade_set_range_tt add = global_var:trade_set_range_t }
+	
+	travel_distance_dijkstra_opti = {
+		start = var:trade_location
+		max = global_var:trade_set_range_tt
+		return_dist = trade_set_range_dist
+		return_prev = trade_set_range_prev
+		return_list = trade_set_range_list
+	}
+	
+	every_county = {
+		limit = {
+			is_valid_prov = yes
+					
+			any_county_province = {
+				has_variable = trade_set_range_dist
+			}
+		}
+		ordered_county_province = {
+			limit = {
+				has_variable = trade_set_range_dist
+			}
+			order_by = trade_do_trade_order_value_2
+			position = 0
+			
+			prev = {
+				set_variable = { name = trade_set_range_dist value = prev.var:trade_set_range_dist }
+			}
+		}
+
+		if = {
+			limit = {
+				var:trade_set_range_dist = {
+					compare_value <= global_var:trade_set_range_t
+				}
+			}
+			prev = {
+				add_to_variable_list = { name = trade_core target = prev }
+				
+				array_add = { name = trade_core value = prev.var:trade_set_range_dist }
+			}
+		}
+		else = {
+			prev = {
+				add_to_variable_list = { name = trade_periph target = prev }
+				
+				array_add = { name = trade_periph value = prev.var:trade_set_range_dist }
+			}
+		}
+		
+		remove_variable = trade_set_range_dist
+	}
+	
+	every_in_global_list = {
+		variable = trade_set_range_list
+		
+		remove_variable = trade_set_range_dist
+		remove_variable = trade_set_range_prev
+	}
+	
+	remove_global_variable = trade_set_range_t
+	remove_global_variable = trade_set_range_tt
+	
+	clear_global_variable_list = trade_set_range_list
 }
 
 trade_do_trade_helper_3 = {
@@ -297,87 +381,57 @@ trade_do_trade = {
 			
 			set_global_variable = { name = trade_do_trade_loop }
 			set_global_variable = { name = trade_do_trade_select value = this }
-			set_global_variable = { name = trade_do_trade_t value = 800 }
 			
-			if = {
-				limit = {
-					var:trade_power < 20
-				}
-				change_global_variable = { name = trade_do_trade_t multiply = var:trade_power }
-				change_global_variable = { name = trade_do_trade_t divide = 20 }
-			}
+			set_global_variable = { name = trade_do_trade_t value = 0 }
 			
-			change_global_variable = { name = trade_do_trade_t subtract = 40 }
-			
-			travel_distance_dijkstra_opti = {
-				start = var:trade_location
-				start_list = trade_outposts
-				base_list = 400
-				max = global_var:trade_do_trade_t
-				return_dist = trade_do_trade_dist
-				return_prev = trade_do_trade_prev
-			}
-			
-			remove_global_variable = trade_do_trade_t
-			
-			every_county = {
-				limit = {
-					is_valid_prov = yes
-					
-					any_county_province = {
-						has_variable = trade_do_trade_dist
-					}
-				}
+			every_in_list = {
+				variable = trade_core
+				
 				add_to_global_variable_list = { name = trade_do_trade_list target = this }
 				
-				ordered_county_province = {
-					limit = {
-						has_variable = trade_do_trade_dist
-					}
-					order_by = trade_do_trade_order_value_1
-					position = 0
-					
-					prev = {
-						set_variable = { name = trade_do_trade_dist value = prev.var:trade_do_trade_dist }
-						set_variable = { name = trade_do_trade_prev value = prev }
-					}
+				prev = {
+					array_get = { name = trade_core value = global_var:trade_do_trade_t return = trade_do_trade_t }
 				}
+				
+				set_variable = { name = trade_do_trade_dist value = prev.var:trade_do_trade_t }
+				
+				change_global_variable = { name = trade_do_trade_t add = 1 }
 			}
 			
 			set_variable = { name = trade_do_trade_select }
 			
-			every_in_global_list = {
+			set_global_variable = { name = trade_do_trade_t value = 0 }
+			
+			every_in_list = {
 				limit = {
-					NOT = {
-						has_variable = trade_do_trade_select
-					}
-					
-					var:trade_location.county = {
-						has_variable = trade_do_trade_dist
-					}
-				}
-				variable = trade_merchants
-				
-				add_to_global_variable_list = { name = trade_do_trade_list target = this }
-				
-				set_variable = { name = trade_do_trade_dist value = var:trade_location.county.var:trade_do_trade_dist }
-				set_variable = { name = trade_do_trade_prev value = var:trade_location.county.var:trade_do_trade_prev }
-				
-				change_variable = { name = trade_do_trade_dist divide = 2.5 }
-				change_variable = { name = trade_do_trade_dist subtract = 160 }
-				
-				if = {
-					limit = {
-						OR = {
-							NOT = {
-								has_variable = trade_do_trade_dist
-							}
-							
-							var:trade_do_trade_dist = 0
-							var:trade_do_trade_dist < 0
+					any_county_province = {
+						has_variable = trade_merchant
+						
+						NOT = {
+							var:trade_merchant = global_var:trade_do_trade_select
 						}
 					}
-					set_variable = { name = trade_do_trade_dist value = 0.001 }
+				}
+				variable = trade_periph
+				
+				prev = {
+					array_get = { name = trade_periph value = global_var:trade_do_trade_t return = trade_do_trade_t }
+				}
+				
+				every_county_province = {
+					limit = {
+						has_variable = trade_merchant
+						
+						NOT = {
+							var:trade_merchant = global_var:trade_do_trade_select
+						}
+					}
+					var:trade_merchant = {
+						add_to_global_variable_list = { name = trade_do_trade_list target = this }
+						
+						set_variable = { name = trade_do_trade_dist value = global_var:trade_do_trade_select.var:trade_do_trade_t }
+						change_variable = { name = trade_do_trade_dist divide = 2.5 }
+					}
 				}
 			}
 			
@@ -768,21 +822,8 @@ trade_do_trade = {
 				variable = trade_do_trade_list
 				
 				^^goods^trade_do_trade_helper_4 = { good = &goods& }^
-			}
-			
-			every_in_global_list = {
-				variable = trade_do_trade_list
 				
 				remove_variable = trade_do_trade_dist
-				remove_variable = trade_do_trade_prev
-			}
-			
-			every_province = {
-				limit = {
-					has_variable = trade_do_trade_dist
-				}
-				remove_variable = trade_do_trade_dist
-				remove_variable = trade_do_trade_prev
 			}
 			
 			remove_global_variable = trade_do_trade_select

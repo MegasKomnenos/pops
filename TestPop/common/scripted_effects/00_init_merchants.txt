@@ -8,100 +8,42 @@
 		location = $location$
 		power = var:init_merchants_t
 		wealth = var:init_merchants_tt
-		outpost = 1
 	}
-	
-	[[outpost_0]
-		scope:trade_new_merchant_t = {
-			add_to_variable_list = { name = trade_outposts target = $outpost_0$ }
-			
-			change_variable = { name = trade_outposts_max add = 1 }
-		}
-	]
-	[[outpost_1]
-		scope:trade_new_merchant_t = {
-			add_to_variable_list = { name = trade_outposts target = $outpost_1$ }
-			
-			change_variable = { name = trade_outposts_max add = 1 }
-		}
-	]
-	[[outpost_2]
-		scope:trade_new_merchant_t = {
-			add_to_variable_list = { name = trade_outposts target = $outpost_2$ }
-			
-			change_variable = { name = trade_outposts_max add = 1 }
-		}
-	]
-	[[outpost_3]
-		scope:trade_new_merchant_t = {
-			add_to_variable_list = { name = trade_outposts target = $outpost_3$ }
-			
-			change_variable = { name = trade_outposts_max add = 1 }
-		}
-	]
-	[[outpost_4]
-		scope:trade_new_merchant_t = {
-			add_to_variable_list = { name = trade_outposts target = $outpost_4$ }
-			
-			change_variable = { name = trade_outposts_max add = 1 }
-		}
-	]
-	[[outpost_5]
-		scope:trade_new_merchant_t = {
-			add_to_variable_list = { name = trade_outposts target = $outpost_5$ }
-			
-			change_variable = { name = trade_outposts_max add = 1 }
-		}
-	]
-	[[outpost_6]
-		scope:trade_new_merchant_t = {
-			add_to_variable_list = { name = trade_outposts target = $outpost_6$ }
-			
-			change_variable = { name = trade_outposts_max add = 1 }
-		}
-	]
-	[[outpost_7]
-		scope:trade_new_merchant_t = {
-			add_to_variable_list = { name = trade_outposts target = $outpost_7$ }
-			
-			change_variable = { name = trade_outposts_max add = 1 }
-		}
-	]
 }
 
 init_merchants = {
-	init_merchants_helper = { location = province:2517 rank = 10 skill = 50 outpost_0 = province:470 outpost_1 = province:480 outpost_2 = province:496 outpost_3 = province:755 }	# Venice
-	init_merchants_helper = { location = province:2466 rank = 6 skill = 30 outpost_0 = province:2608 outpost_1 = province:2065 }	# Genoa
-	init_merchants_helper = { location = province:2536 rank = 8 skill = 40 outpost_0 = province:2608 outpost_1 = province:2065 outpost_2 = province:2653 }	# Pisa
-	init_merchants_helper = { location = province:2611 rank = 8 skill = 40 outpost_0 = province:2536 outpost_1 = province:2627 outpost_2 = province:482 }	# Amalfi
-	init_merchants_helper = { location = province:2594 rank = 4 skill = 20 outpost_0 = province:470 }	# Ancona
-	init_merchants_helper = { location = province:2380 rank = 6 skill = 30 outpost_0 = province:2333 outpost_1 = province:2088 }	# Dijon
-	init_merchants_helper = { location = province:1527 rank = 4 skill = 20 outpost_0 = province:1595 }	# Lunden
-	init_merchants_helper = { location = province:2088 rank = 4 skill = 20 outpost_0 = province:2732 }	# Cologne
+	init_merchants_helper = { location = province:2517 rank = 10 skill = 50 }	# Venice
+	init_merchants_helper = { location = province:2466 rank = 6 skill = 30 }	# Genoa
+	init_merchants_helper = { location = province:2536 rank = 8 skill = 40 }	# Pisa
+	init_merchants_helper = { location = province:2611 rank = 8 skill = 40 }	# Amalfi
+	init_merchants_helper = { location = province:2594 rank = 4 skill = 20 }	# Ancona
+	init_merchants_helper = { location = province:2380 rank = 6 skill = 30 }	# Dijon
+	init_merchants_helper = { location = province:1527 rank = 4 skill = 20 }	# Lunden
+	init_merchants_helper = { location = province:2088 rank = 4 skill = 20 }	# Cologne
 	init_merchants_helper = { location = province:2142 rank = 2 skill = 10 }	# Bordeaux
 	init_merchants_helper = { location = province:2333 rank = 2 skill = 10 }	# Paris
 	init_merchants_helper = { location = province:2543 rank = 2 skill = 10 }	# Florence
 	init_merchants_helper = { location = province:2482 rank = 2 skill = 10 }	# Milano
 	init_merchants_helper = { location = province:2623 rank = 2 skill = 10 }	# Bari
-	init_merchants_helper = { location = province:2635 rank = 8 skill = 40 outpost_0 = province:1981 outpost_1 = province:4637 outpost_2 = province:6053 }	# Palermo
-	init_merchants_helper = { location = province:4578 rank = 6 skill = 30 outpost_0 = province:6053 outpost_1 = province:4637 }	# Mahdiya
-	init_merchants_helper = { location = province:1995 rank = 6 skill = 30 outpost_0 = province:1887 outpost_1 = province:4694 }	# Cordoba
+	init_merchants_helper = { location = province:2635 rank = 8 skill = 40 }	# Palermo
+	init_merchants_helper = { location = province:4578 rank = 6 skill = 30 }	# Mahdiya
+	init_merchants_helper = { location = province:1995 rank = 6 skill = 30 }	# Cordoba
 	init_merchants_helper = { location = province:1981 rank = 2 skill = 10 }	# Seville
 	init_merchants_helper = { location = province:1897 rank = 2 skill = 10 }	# Valladolid
 	init_merchants_helper = { location = province:1835 rank = 2 skill = 10 }	# Badajoz
 	init_merchants_helper = { location = province:1855 rank = 2 skill = 10 }	# Valencia
 	init_merchants_helper = { location = province:1887 rank = 2 skill = 10 }	# Zaragoza
 	init_merchants_helper = { location = province:1852 rank = 2 skill = 10 }	# Murcia
-	init_merchants_helper = { location = province:4694 rank = 6 skill = 30 outpost_0 = province:4737 outpost_1 = province:4637 }	# Fez
+	init_merchants_helper = { location = province:4694 rank = 6 skill = 30 }	# Fez
 	init_merchants_helper = { location = province:4718 rank = 4 skill = 20 }	# Marrakesh
-	init_merchants_helper = { location = province:4737 rank = 8 skill = 40 outpost_0 = province:6467 outpost_1 = province:6609 outpost_2 = province:4760 }	# Sijilmasa
+	init_merchants_helper = { location = province:4737 rank = 8 skill = 40 }	# Sijilmasa
 	init_merchants_helper = { location = province:4637 rank = 2 skill = 10 }	# Bejaia
 	init_merchants_helper = { location = province:6104 rank = 2 skill = 10 }	# Barqa
-	init_merchants_helper = { location = province:6053 rank = 4 skill = 20 outpost_0 = province:6077 }	# Alexandria
-	init_merchants_helper = { location = province:6042 rank = 10 skill = 50 outpost_0 = province:6077 outpost_1 = province:6104 outpost_2 = province:6344 outpost_3 = province:5924 }	# Cairo
+	init_merchants_helper = { location = province:6053 rank = 4 skill = 20 }	# Alexandria
+	init_merchants_helper = { location = province:6042 rank = 10 skill = 50 }	# Cairo
 	init_merchants_helper = { location = province:5924 rank = 2 skill = 10 }	# Damascus
-	init_merchants_helper = { location = province:5934 rank = 8 skill = 40 outpost_0 = province:5960 outpost_1 = province:759 outpost_2 = province:4840 outpost_3 = province:4828 }	# Halab
-	init_merchants_helper = { location = province:4828 rank = 10 skill = 50 outpost_0 = province:5934 outpost_1 = province:6022 outpost_2 = province:4319 outpost_3 = province:4238 }	# Baghdad
+	init_merchants_helper = { location = province:5934 rank = 8 skill = 40 }	# Halab
+	init_merchants_helper = { location = province:4828 rank = 10 skill = 50 }	# Baghdad
 	init_merchants_helper = { location = province:4319 rank = 2 skill = 10 }	# Rayy
 	init_merchants_helper = { location = province:4238 rank = 2 skill = 10 }	# Merv
 	init_merchants_helper = { location = province:681 rank = 2 skill = 10 }	# Ani
@@ -112,7 +54,7 @@ init_merchants = {
 	init_merchants_helper = { location = province:678 rank = 2 skill = 10 }	# Trapezous
 	init_merchants_helper = { location = province:745 rank = 2 skill = 10 }	# Smyrna
 	init_merchants_helper = { location = province:750 rank = 2 skill = 10 }	# Nikaea
-	init_merchants_helper = { location = province:496 rank = 10 skill = 50 outpost_0 = province:739 outpost_1 = province:745 outpost_2 = province:490 outpost_3 = province:482 outpost_4 = province:5602 }	# Constantinople
+	init_merchants_helper = { location = province:496 rank = 10 skill = 50 }	# Constantinople
 	init_merchants_helper = { location = province:490 rank = 2 skill = 10 }	# Thessaloniki
 	init_merchants_helper = { location = province:482 rank = 2 skill = 10 }	# Athens
 	init_merchants_helper = { location = province:470 rank = 2 skill = 10 }	# Dyrrachion
@@ -121,10 +63,10 @@ init_merchants = {
 	init_merchants_helper = { location = province:562 rank = 2 skill = 10 }	# Bari
 	init_merchants_helper = { location = province:5759 rank = 2 skill = 10 }	# Bari
 	init_merchants_helper = { location = province:4537 rank = 2 skill = 10 }	# Bari
-	init_merchants_helper = { location = province:547 rank = 8 skill = 40 outpost_0 = province:548 outpost_1 = province:568 outpost_2 = province:5269 outpost_3 = province:5137 }	# Kiev
+	init_merchants_helper = { location = province:547 rank = 8 skill = 40 }	# Kiev
 	init_merchants_helper = { location = province:568 rank = 2 skill = 10 }	# Smolensk
 	init_merchants_helper = { location = province:548 rank = 2 skill = 10 }	# Pinsk
-	init_merchants_helper = { location = province:5137 rank = 6 skill = 30 outpost_0 = province:584 outpost_1 = province:554 }	# Novgorod
+	init_merchants_helper = { location = province:5137 rank = 6 skill = 30 }	# Novgorod
 	init_merchants_helper = { location = province:584 rank = 2 skill = 10 }	# Nizhny Novgorod
 	init_merchants_helper = { location = province:527 rank = 2 skill = 10 }	# Krakow
 	init_merchants_helper = { location = province:2830 rank = 2 skill = 10 }	# Gdansk
@@ -134,7 +76,7 @@ init_merchants = {
 	init_merchants_helper = { location = province:522 rank = 2 skill = 10 }	# Pest
 	init_merchants_helper = { location = province:505 rank = 2 skill = 10 }	# Beograd
 	init_merchants_helper = { location = province:465 rank = 2 skill = 10 }	# Zadar
-	init_merchants_helper = { location = province:2115 rank = 4 skill = 20 outpost_0 = province:1527 }	# Bruges
+	init_merchants_helper = { location = province:2115 rank = 4 skill = 20 }	# Bruges
 	init_merchants_helper = { location = province:2732 rank = 2 skill = 10 }	# Speyer
 	init_merchants_helper = { location = province:2694 rank = 2 skill = 10 }	# Mainz
 	init_merchants_helper = { location = province:2721 rank = 2 skill = 10 }	# Strassburg
@@ -147,7 +89,7 @@ init_merchants = {
 	init_merchants_helper = { location = province:2975 rank = 2 skill = 10 }	# Salzburg
 	init_merchants_helper = { location = province:3117 rank = 2 skill = 10 }	# Graz
 	init_merchants_helper = { location = province:2823 rank = 2 skill = 10 }	# Szczecin
-	init_merchants_helper = { location = province:63 rank = 4 skill = 20 outpost_0 = province:1595 }	# Roskilde
+	init_merchants_helper = { location = province:63 rank = 4 skill = 20 }	# Roskilde
 	
 	every_province = {
 		limit = {
@@ -175,7 +117,7 @@ init_merchants = {
 		}
 		save_temporary_scope_as = init_merchants_t
 		
-		init_merchants_helper = { location = scope:init_merchants_t rank = 1 skill = 5 }
+		init_merchants_helper = { location = scope:init_merchants_t rank = 1 skill = 10 }
 	}
 	
 	remove_variable = init_merchants_t
