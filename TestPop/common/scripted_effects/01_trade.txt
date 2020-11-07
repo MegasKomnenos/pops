@@ -63,18 +63,27 @@ trade_set_range = {
 	
 	if = {
 		limit = {
-			var:trade_power >= 10
+			var:trade_power >= 20
 		}
-		set_global_variable = { name = trade_set_range_t value = 300 }
+		set_global_variable = { name = trade_set_range_t value = 400 }
 	}
 	else = {
 		set_global_variable = { name = trade_set_range_t value = var:trade_power }
-		change_global_variable = { name = trade_set_range_t multiply = 30 }
+		change_global_variable = { name = trade_set_range_t multiply = 20 }
 	}
 	
-	set_global_variable = { name = trade_set_range_tt value = var:trade_power }
-	change_global_variable = { name = trade_set_range_tt multiply = 10 }
-	change_global_variable = { name = trade_set_range_tt add = global_var:trade_set_range_t }
+	if = {
+		limit = {
+			var:trade_power >= 300
+		}
+		set_global_variable = { name = trade_set_range_tt value = 5000 }
+	}
+	else = {
+		set_global_variable = { name = trade_set_range_tt value = var:trade_power }
+		change_global_variable = { name = trade_set_range_tt multiply = 15 }
+		change_global_variable = { name = trade_set_range_tt add = 100 }
+		change_global_variable = { name = trade_set_range_tt add = global_var:trade_set_range_t }
+	}
 	
 	travel_distance_dijkstra_opti = {
 		start = var:trade_location
