@@ -1,7 +1,6 @@
 ﻿init_pop_distrib = {
 	set_global_variable = { name = pop_weight_total value = 0 }
-	set_global_variable = { name = pop_total_mult value = $pop$ }
-	change_global_variable = { name = pop_total_mult divide = 1000 }
+	set_global_variable = { name = pop_total value = $pop$ }
 	
 	every_province = {
 		limit = {
@@ -9,7 +8,7 @@
 		}
 		change_global_variable = { name = pop_weight_total add = var:pop_weight }
 		set_variable = { name = pop_total value = var:pop_weight }
-		change_variable = { name = pop_total multiply = global_var:pop_total_mult }
+		change_variable = { name = pop_total multiply = 100 }
 	}
 	
 	every_province = {
@@ -17,12 +16,13 @@
 			geographical_region = $region$
 		}
 		change_variable = { name = pop_total divide = global_var:pop_weight_total }
-		change_variable = { name = pop_total multiply = 1000 }
+		change_variable = { name = pop_total multiply = global_var:pop_total }
+		change_variable = { name = pop_total divide = 100 }
 		change_variable = { name = pop_total add = 1 }
 	}
 	
 	remove_global_variable = pop_weight_total
-	remove_global_variable = pop_total_mult
+	remove_global_variable = pop_total
 }
 
 init_pop_weight = {
@@ -9558,7 +9558,7 @@ init_pop_total = {
 	}
 	init_pop_distrib = {
 		region = pop_iraq
-		pop = 3000
+		pop = 4000
 	}
 	init_pop_distrib = {
 		region = pop_arabia
