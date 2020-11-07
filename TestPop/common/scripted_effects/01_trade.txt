@@ -959,6 +959,9 @@ trade_do_trade = {
 			is_valid_prov = yes
 		}
 		^^goods^
+			add_to_variable_list = { name = trade_do_trade_t target = this }
+			array_add = { name = trade_do_trade_t value = 0 }
+			
 			every_in_list = {
 				variable = trade_dat_&goods&
 				
@@ -1044,6 +1047,9 @@ trade_do_trade = {
 				}
 			^
 			
+			clear_variable_list = trade_do_trade_t
+			array_clear = { name = trade_do_trade_t }
+			
 			remove_variable = trade_buy_&goods&
 			remove_variable = trade_sell_&goods&
 			remove_variable = trade_point_&goods&
@@ -1054,9 +1060,6 @@ trade_do_trade = {
 			remove_variable = trade_do_trade_tt_&goods&
 			remove_variable = trade_do_trade_ttt_&goods&
 		^
-		
-		clear_variable_list = trade_do_trade_t
-		array_clear = { name = trade_do_trade_t }
 		
 		remove_variable = trade_cost
 		remove_variable = trade_do_trade_t
@@ -1068,6 +1071,9 @@ trade_do_trade = {
 		variable = trade_merchants
 		
 		^^goods^
+			add_to_variable_list = { name = trade_do_trade_t target = this }
+			array_add = { name = trade_do_trade_t value = 0 }
+			
 			every_in_list = {
 				variable = trade_dat_&goods&
 				
@@ -1153,6 +1159,9 @@ trade_do_trade = {
 				}
 			^
 			
+			clear_variable_list = trade_do_trade_t
+			array_clear = { name = trade_do_trade_t }
+			
 			remove_variable = trade_buy_&goods&
 			remove_variable = trade_sell_&goods&
 			remove_variable = trade_point_&goods&
@@ -1163,9 +1172,6 @@ trade_do_trade = {
 			remove_variable = trade_do_trade_tt_&goods&
 			remove_variable = trade_do_trade_ttt_&goods&
 		^
-		
-		clear_variable_list = trade_do_trade_t
-		array_clear = { name = trade_do_trade_t }
 		
 		remove_variable = trade_cost
 		remove_variable = trade_do_trade_t
