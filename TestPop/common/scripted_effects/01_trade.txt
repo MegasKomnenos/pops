@@ -854,7 +854,7 @@ trade_do_trade = {
 					
 					if = {
 						limit = {
-							has_variable = trade_dat_&goods&
+							has_variable_list = trade_dat_&goods&
 							
 							is_target_in_variable_list = { name = trade_dat_&goods& target = prev }
 						}
@@ -1103,10 +1103,22 @@ trade_do_trade = {
 						variable = trade_do_trade_t
 						position = global_var:trade_do_trade_tt.compare_value
 						
-						prev = {
-							add_to_variable_list = { name = trade_dat_&goods& target = prev }
-							
-							remove_list_variable = { name = trade_do_trade_t target = prev }
+						if = {
+							limit = {
+								has_variable = trade_power
+							}
+							prev = {
+								add_to_variable_list = { name = trade_dat_&goods& target = prev.var:trade_location }
+								
+								remove_list_variable = { name = trade_do_trade_t target = prev }
+							}
+						}
+						else = {
+							prev = {
+								add_to_variable_list = { name = trade_dat_&goods& target = prev }
+								
+								remove_list_variable = { name = trade_do_trade_t target = prev }
+							}
 						}
 					}
 					ordered_in_list = {
@@ -1136,10 +1148,22 @@ trade_do_trade = {
 						variable = trade_do_trade_t
 						position = global_var:trade_do_trade_tt.compare_value
 						
-						prev = {
-							add_to_variable_list = { name = trade_dat_&goods& target = prev }
-							
-							remove_list_variable = { name = trade_do_trade_t target = prev }
+						if = {
+							limit = {
+								has_variable = trade_power
+							}
+							prev = {
+								add_to_variable_list = { name = trade_dat_&goods& target = prev.var:trade_location }
+								
+								remove_list_variable = { name = trade_do_trade_t target = prev }
+							}
+						}
+						else = {
+							prev = {
+								add_to_variable_list = { name = trade_dat_&goods& target = prev }
+								
+								remove_list_variable = { name = trade_do_trade_t target = prev }
+							}
 						}
 					}
 					ordered_in_list = {
