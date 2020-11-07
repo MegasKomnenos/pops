@@ -90,7 +90,8 @@ if __name__ == '__main__':
         f = parse_block(t[start:end])
 
         for var in f[0][2][0][2]:
-            glob_vars[var[0][2].strip('"')] = (var[2][2][0][2], var[2][2][1][2])
+            if not 'trade_do_trade_t' in var[0][2].strip('"'):
+                glob_vars[var[0][2].strip('"')] = (var[2][2][0][2], var[2][2][1][2])
         for lst in f[0][2][1][2]:
             glob_lsts[lst[0][2].strip('"')] = [(var[2][0][2], var[2][1][2]) for var in lst[1:]]
 
@@ -127,7 +128,13 @@ if __name__ == '__main__':
                                                 lst_var[var[0][2].strip('"')] = ()
                                     elif entry[0] == 'list':
                                         for lst in entry[2]:
-                                            lst_lst[lst[0][2].strip('"')] = [(var[2][0][2], var[2][1][2]) for var in lst[1:]]
+                                            lst_lst[lst[0][2].strip('"')] = list()
+
+                                            for var in lst[1:]:
+                                                if len(var[2]) == 1:
+                                                    lst_lst[lst[0][2].strip('"')].append((var[2][0][2], 0))
+                                                else:
+                                                    lst_lst[lst[0][2].strip('"')].append((var[2][0][2], var[2][1][2]))
                                 break
                         break
 
@@ -199,7 +206,13 @@ if __name__ == '__main__':
                                     lst_var[var[0][2].strip('"')] = ()
                         elif entry[0] == 'list':
                             for lst in entry[2]:
-                                lst_lst[lst[0][2].strip('"')] = [(var[2][0][2], var[2][1][2]) for var in lst[1:]]
+                                lst_lst[lst[0][2].strip('"')] = list()
+
+                                for var in lst[1:]:
+                                    if len(var[2]) == 1:
+                                        lst_lst[lst[0][2].strip('"')].append((var[2][0][2], 0))
+                                    else:
+                                        lst_lst[lst[0][2].strip('"')].append((var[2][0][2], var[2][1][2]))
                     break
 
         print('Writing Events')

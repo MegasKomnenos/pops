@@ -53,6 +53,7 @@ window = {
 		on_start = "[GetScriptedGui( 'close_prov_prod' ).Execute( GuiScope.SetRoot( Province.MakeScope ).End )]"
 		on_start = "[GetScriptedGui( 'close_prov_build' ).Execute( GuiScope.SetRoot( Province.MakeScope ).End )]"
 		on_start = "[GetScriptedGui( 'close_prov_merchant' ).Execute( GuiScope.SetRoot( Province.MakeScope ).End )]"
+		on_start = "[GetScriptedGui( 'close_prov_merchant_dat' ).Execute( GuiScope.SetRoot( Province.MakeScope ).End )]"
 		
 		using = Animation_FadeOut_Standard
 		using = Sound_WindowHide_Standard
@@ -2102,6 +2103,1054 @@ window = {
 			}
 		}
 	}
+	
+	window = {
+		parentanchor = top|right
+		size = { 500 1000 }
+		position = { 400 -400 }
+		movable = yes
+		visible = "[EqualTo_CFixedPoint('(CFixedPoint)1', Province.MakeScope.Var('toggled_prov_merchant_dat').GetValue)]"
+		
+		background = {
+			texture = "gfx/interface/component_tiles/tile_window_background_subwindow.dds"
+			spriteType = Corneredtiled
+			spriteborder = { 18 18 }
+			texture_density = 2
+			
+			modify_texture = {
+				name = "overlay"
+				texture = "gfx/interface/component_overlay/overlay_effect.dds"
+				spriteType = Corneredstretched
+				spriteborder = { 0 0 }
+				blend_mode = overlay
+			}
+		}
+		
+		buttons_window_control = {
+			parentanchor = top|right
+			blockoverride "button_close"
+			{
+				datacontext = "[GetScriptedGui( 'close_prov_merchant_dat' )]"
+				onclick = "[ScriptedGui.Execute( GuiScope.SetRoot( Province.MakeScope ).End )]"
+			}
+		}
+		
+		vbox = {
+			margin_left = 20
+			margin_bottom = 15
+			margin_top = 10
+			layoutpolicy_vertical = expanding
+			
+			hbox = {
+				layoutpolicy_horizontal = expanding
+				
+				vbox = {
+					layoutpolicy_horizontal = expanding
+					
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_out_0_food')]
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_out_1_food')]
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_out_2_food')]
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_out_3_food')]
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_out_4_food')]
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+				}
+				vbox = {
+					layoutpolicy_horizontal = expanding
+					
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_in_0_food')]
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_in_1_food')]
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_in_2_food')]
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_in_3_food')]
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_in_4_food')]
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+				}
+			}
+			hbox = {
+				layoutpolicy_horizontal = expanding
+				
+				vbox = {
+					layoutpolicy_horizontal = expanding
+					
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_out_0_cereal')]
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_out_1_cereal')]
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_out_2_cereal')]
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_out_3_cereal')]
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_out_4_cereal')]
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+				}
+				vbox = {
+					layoutpolicy_horizontal = expanding
+					
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_in_0_cereal')]
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_in_1_cereal')]
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_in_2_cereal')]
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_in_3_cereal')]
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_in_4_cereal')]
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+				}
+			}
+			hbox = {
+				layoutpolicy_horizontal = expanding
+				
+				vbox = {
+					layoutpolicy_horizontal = expanding
+					
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_out_0_salted')]
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_out_1_salted')]
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_out_2_salted')]
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_out_3_salted')]
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_out_4_salted')]
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+				}
+				vbox = {
+					layoutpolicy_horizontal = expanding
+					
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_in_0_salted')]
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_in_1_salted')]
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_in_2_salted')]
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_in_3_salted')]
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_in_4_salted')]
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+				}
+			}
+			hbox = {
+				layoutpolicy_horizontal = expanding
+				
+				vbox = {
+					layoutpolicy_horizontal = expanding
+					
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_out_0_salt')]
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_out_1_salt')]
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_out_2_salt')]
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_out_3_salt')]
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_out_4_salt')]
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+				}
+				vbox = {
+					layoutpolicy_horizontal = expanding
+					
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_in_0_salt')]
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_in_1_salt')]
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_in_2_salt')]
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_in_3_salt')]
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_in_4_salt')]
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+				}
+			}
+			hbox = {
+				layoutpolicy_horizontal = expanding
+				
+				vbox = {
+					layoutpolicy_horizontal = expanding
+					
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_out_0_mud')]
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_out_1_mud')]
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_out_2_mud')]
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_out_3_mud')]
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_out_4_mud')]
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+				}
+				vbox = {
+					layoutpolicy_horizontal = expanding
+					
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_in_0_mud')]
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_in_1_mud')]
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_in_2_mud')]
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_in_3_mud')]
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_in_4_mud')]
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+				}
+			}
+			hbox = {
+				layoutpolicy_horizontal = expanding
+				
+				vbox = {
+					layoutpolicy_horizontal = expanding
+					
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_out_0_fuel')]
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_out_1_fuel')]
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_out_2_fuel')]
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_out_3_fuel')]
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_out_4_fuel')]
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+				}
+				vbox = {
+					layoutpolicy_horizontal = expanding
+					
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_in_0_fuel')]
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_in_1_fuel')]
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_in_2_fuel')]
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_in_3_fuel')]
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_in_4_fuel')]
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+				}
+			}
+			hbox = {
+				layoutpolicy_horizontal = expanding
+				
+				vbox = {
+					layoutpolicy_horizontal = expanding
+					
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_out_0_fiber')]
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_out_1_fiber')]
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_out_2_fiber')]
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_out_3_fiber')]
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_out_4_fiber')]
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+				}
+				vbox = {
+					layoutpolicy_horizontal = expanding
+					
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_in_0_fiber')]
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_in_1_fiber')]
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_in_2_fiber')]
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_in_3_fiber')]
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_in_4_fiber')]
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+				}
+			}
+			hbox = {
+				layoutpolicy_horizontal = expanding
+				
+				vbox = {
+					layoutpolicy_horizontal = expanding
+					
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_out_0_timber')]
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_out_1_timber')]
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_out_2_timber')]
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_out_3_timber')]
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_out_4_timber')]
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+				}
+				vbox = {
+					layoutpolicy_horizontal = expanding
+					
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_in_0_timber')]
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_in_1_timber')]
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_in_2_timber')]
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_in_3_timber')]
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_in_4_timber')]
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+				}
+			}
+			hbox = {
+				layoutpolicy_horizontal = expanding
+				
+				vbox = {
+					layoutpolicy_horizontal = expanding
+					
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_out_0_exotics_w')]
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_out_1_exotics_w')]
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_out_2_exotics_w')]
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_out_3_exotics_w')]
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_out_4_exotics_w')]
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+				}
+				vbox = {
+					layoutpolicy_horizontal = expanding
+					
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_in_0_exotics_w')]
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_in_1_exotics_w')]
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_in_2_exotics_w')]
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_in_3_exotics_w')]
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_in_4_exotics_w')]
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+				}
+			}
+			hbox = {
+				layoutpolicy_horizontal = expanding
+				
+				vbox = {
+					layoutpolicy_horizontal = expanding
+					
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_out_0_exotics_e')]
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_out_1_exotics_e')]
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_out_2_exotics_e')]
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_out_3_exotics_e')]
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_out_4_exotics_e')]
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+				}
+				vbox = {
+					layoutpolicy_horizontal = expanding
+					
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_in_0_exotics_e')]
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_in_1_exotics_e')]
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_in_2_exotics_e')]
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_in_3_exotics_e')]
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_in_4_exotics_e')]
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+				}
+			}
+			hbox = {
+				layoutpolicy_horizontal = expanding
+				
+				vbox = {
+					layoutpolicy_horizontal = expanding
+					
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_out_0_exotics_g')]
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_out_1_exotics_g')]
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_out_2_exotics_g')]
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_out_3_exotics_g')]
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_out_4_exotics_g')]
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+				}
+				vbox = {
+					layoutpolicy_horizontal = expanding
+					
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_in_0_exotics_g')]
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_in_1_exotics_g')]
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_in_2_exotics_g')]
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_in_3_exotics_g')]
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_in_4_exotics_g')]
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+				}
+			}
+			hbox = {
+				layoutpolicy_horizontal = expanding
+				
+				vbox = {
+					layoutpolicy_horizontal = expanding
+					
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_out_0_textile')]
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_out_1_textile')]
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_out_2_textile')]
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_out_3_textile')]
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_out_4_textile')]
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+				}
+				vbox = {
+					layoutpolicy_horizontal = expanding
+					
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_in_0_textile')]
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_in_1_textile')]
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_in_2_textile')]
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_in_3_textile')]
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_in_4_textile')]
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+				}
+			}
+			hbox = {
+				layoutpolicy_horizontal = expanding
+				
+				vbox = {
+					layoutpolicy_horizontal = expanding
+					
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_out_0_pottery')]
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_out_1_pottery')]
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_out_2_pottery')]
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_out_3_pottery')]
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_out_4_pottery')]
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+				}
+				vbox = {
+					layoutpolicy_horizontal = expanding
+					
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_in_0_pottery')]
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_in_1_pottery')]
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_in_2_pottery')]
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_in_3_pottery')]
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_in_4_pottery')]
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+				}
+			}
+			hbox = {
+				layoutpolicy_horizontal = expanding
+				
+				vbox = {
+					layoutpolicy_horizontal = expanding
+					
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_out_0_tools')]
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_out_1_tools')]
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_out_2_tools')]
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_out_3_tools')]
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_out_4_tools')]
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+				}
+				vbox = {
+					layoutpolicy_horizontal = expanding
+					
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_in_0_tools')]
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_in_1_tools')]
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_in_2_tools')]
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_in_3_tools')]
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_in_4_tools')]
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+				}
+			}
+		}
+	}
 
 	vbox = {
 		name = "window_content"
@@ -3023,6 +4072,24 @@ window = {
 						button_icon = {
 							name = "toggle_prov_merchant"
 							datacontext = "[GetScriptedGui( 'toggle_prov_merchant' )]"
+							onclick = "[ScriptedGui.Execute( GuiScope.SetRoot( Province.MakeScope ).End )]"
+							size = { 25 25 }
+							texture = "gfx/interface/buttons/button_round_big.dds"
+
+							background = {
+								texture = "gfx/interface/window_county/building_status_circle.dds"
+								size = { 25 25 }
+								framesize = { 120 120 }
+								using = Master_Button_Modify_Texture
+
+								blockoverride "master_color_frame" {
+									frame = 3
+								}
+							}
+						}
+						button_icon = {
+							name = "toggle_prov_merchant_dat"
+							datacontext = "[GetScriptedGui( 'toggle_prov_merchant_dat' )]"
 							onclick = "[ScriptedGui.Execute( GuiScope.SetRoot( Province.MakeScope ).End )]"
 							size = { 25 25 }
 							texture = "gfx/interface/buttons/button_round_big.dds"

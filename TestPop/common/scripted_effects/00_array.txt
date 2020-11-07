@@ -45,6 +45,74 @@ array_get = {
 	remove_global_variable = array_get_t
 }
 
+# Parameters: name, return_val, return_ind
+array_get_max = {
+	set_global_variable = { name = array_get_max_t value = 0 }
+	set_global_variable = { name = array_get_max_tt value = 0 }
+	set_variable = { name = array_get_max_t value = -210000 }
+	
+	every_in_list = {
+		variable = array_$name$
+		
+		if = {
+			limit = {
+				prev.var:array_get_max_t = {
+					compare_value < prev
+				}
+			}
+			set_global_variable = { name = array_get_max_tt value = global_var:array_get_max_t }
+			
+			prev = {
+				set_variable = { name = array_get_max_t value = prev }
+			}
+		}
+		
+		change_global_variable = { name = array_get_max_t add = 1 }
+	}
+	
+	set_variable = { name = $return_val$ value = var:array_get_max_t }
+	change_variable = { name = $return_val$ divide = 10 }
+	set_variable = { name = $return_ind$ value = global_var:array_get_max_tt }
+	
+	remove_global_variable = array_get_max_t
+	remove_global_variable = array_get_max_tt
+	remove_variable = array_get_max_t
+}
+
+# Parameters: name, return_val, return_ind
+array_get_min = {
+	set_global_variable = { name = array_get_min_t value = 0 }
+	set_global_variable = { name = array_get_min_tt value = 0 }
+	set_variable = { name = array_get_min_t value = 210000 }
+	
+	every_in_list = {
+		variable = array_$name$
+		
+		if = {
+			limit = {
+				prev.var:array_get_min_t = {
+					compare_value > prev
+				}
+			}
+			set_global_variable = { name = array_get_min_tt value = global_var:array_get_min_t }
+			
+			prev = {
+				set_variable = { name = array_get_min_t value = prev }
+			}
+		}
+		
+		change_global_variable = { name = array_get_min_t add = 1 }
+	}
+	
+	set_variable = { name = $return_val$ value = var:array_get_min_t }
+	change_variable = { name = $return_val$ divide = 10 }
+	set_variable = { name = $return_ind$ value = global_var:array_get_min_tt }
+	
+	remove_global_variable = array_get_min_t
+	remove_global_variable = array_get_min_tt
+	remove_variable = array_get_min_t
+}
+
 # Parameters: name
 array_clear = {
 	clear_variable_list = array_$name$

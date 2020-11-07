@@ -1,11 +1,30 @@
-array_clear = { name = foo }
-
-array_add = { name = foo value = 1 }
-array_add = { name = foo value = 2 }
-array_add = { name = foo value = 2 }
-array_add = { name = foo value = 1 }
-
-array_get = { name = foo value = 0 return = bar0 }
-array_get = { name = foo value = 1 return = bar1 }
-array_get = { name = foo value = 2 return = bar2 }
-array_get = { name = foo value = 3 return = bar3 }
+^^goods^
+	^^range5^
+merchant_out_&range5&_&goods& = {
+	type = province
+	
+	text = {
+		trigger = {
+			has_variable = info_dat_merchant_out_val_&range5&_&goods&
+			
+			var:info_dat_merchant_out_val_&range5&_&goods& > 0
+		}
+		
+		localization_key = "merchant_out_&range5&_&goods&"
+	}
+}
+merchant_in_&range5&_&goods& = {
+	type = province
+	
+	text = {
+		trigger = {
+			has_variable = info_dat_merchant_in_val_&range5&_&goods&
+			
+			var:info_dat_merchant_in_val_&range5&_&goods& > 0
+		}
+		
+		localization_key = "merchant_in_&range5&_&goods&"
+	}
+}
+	^
+^

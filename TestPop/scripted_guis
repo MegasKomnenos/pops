@@ -480,3 +480,140 @@ close_prov_merchant = {
 		}
 	}
 }
+
+toggle_prov_merchant_dat = {
+	scope = province
+	
+	is_shown = {
+		always = yes
+	}
+	is_valid = {
+		always = yes
+	}
+	
+	effect = {
+		if = {
+			limit = {
+				has_variable = toggled_prov_merchant_dat
+			}
+			remove_variable = toggled_prov_merchant_dat
+			
+			^^goods^
+				^^range5^
+					remove_variable = info_dat_merchant_out_val_&range5&_&goods&
+					remove_variable = info_dat_merchant_out_scope_&range5&_&goods&
+					remove_variable = info_dat_merchant_in_val_&range5&_&goods&
+					remove_variable = info_dat_merchant_in_scope_&range5&_&goods&
+				^
+			^
+		}
+		else_if = {
+			limit = {
+				has_variable = trade_merchant
+			}
+			set_variable = { name = toggled_prov_merchant_dat value = 1 }
+			
+			^^goods^
+				every_in_list = {
+					variable = trade_dat_&goods&
+					
+					prev = {
+						add_to_variable_list = { name = toggled_prov_merchant_dat_t target = prev }
+					}
+				}
+				every_in_list = {
+					variable = array_trade_dat_&goods&
+					
+					prev = {
+						add_to_variable_list = { name = array_toggled_prov_merchant_dat_t target = prev }
+					}
+				}
+				
+				^^range5^
+					array_get_max = { 
+						name = toggled_prov_merchant_dat_t 
+						return_val = info_dat_merchant_out_val_&range5&_&goods&
+						return_ind = toggled_prov_merchant_dat_t
+					}
+					
+					ordered_in_list = {
+						variable = toggled_prov_merchant_dat_t
+						position = prev.var:toggled_prov_merchant_dat_t.compare_value
+						
+						prev = {
+							set_variable = { name = info_dat_merchant_out_scope_&range5&_&goods& value = prev }
+							
+							remove_list_variable = { name = toggled_prov_merchant_dat_t target = prev }
+						}
+					}
+					ordered_in_list = {
+						variable = array_toggled_prov_merchant_dat_t
+						position = prev.var:toggled_prov_merchant_dat_t.compare_value
+						
+						prev = {
+							remove_list_variable = { name = array_toggled_prov_merchant_dat_t target = prev }
+						}
+					}
+				^
+				^^range5^
+					array_get_min = { 
+						name = toggled_prov_merchant_dat_t 
+						return_val = info_dat_merchant_in_val_&range5&_&goods&
+						return_ind = toggled_prov_merchant_dat_t
+					}
+					
+					change_variable = { name = info_dat_merchant_in_val_&range5&_&goods& multiply = -1 }
+					
+					ordered_in_list = {
+						variable = toggled_prov_merchant_dat_t
+						position = prev.var:toggled_prov_merchant_dat_t.compare_value
+						
+						prev = {
+							set_variable = { name = info_dat_merchant_in_scope_&range5&_&goods& value = prev }
+							
+							remove_list_variable = { name = toggled_prov_merchant_dat_t target = prev }
+						}
+					}
+					ordered_in_list = {
+						variable = array_toggled_prov_merchant_dat_t
+						position = prev.var:toggled_prov_merchant_dat_t.compare_value
+						
+						prev = {
+							remove_list_variable = { name = array_toggled_prov_merchant_dat_t target = prev }
+						}
+					}
+				^
+				
+				remove_variable = toggled_prov_merchant_dat_t
+			^
+		}
+	}
+}
+close_prov_merchant = {
+	scope = province
+	
+	is_shown = {
+		always = yes
+	}
+	is_valid = {
+		always = yes
+	}
+	
+	effect = {
+		if = {
+			limit = {
+				has_variable = toggled_prov_merchant_dat
+			}
+			remove_variable = toggled_prov_merchant_dat
+			
+			^^goods^
+				^^range5^
+					remove_variable = info_dat_merchant_out_val_&range5&_&goods&
+					remove_variable = info_dat_merchant_out_scope_&range5&_&goods&
+					remove_variable = info_dat_merchant_in_val_&range5&_&goods&
+					remove_variable = info_dat_merchant_in_scope_&range5&_&goods&
+				^
+			^
+		}
+	}
+}

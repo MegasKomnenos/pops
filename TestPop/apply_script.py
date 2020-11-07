@@ -244,12 +244,19 @@ if __name__ == '__main__':
         for macro in file:
             macros[macro[0]] = macro[2]
 
-    for name, script in scripts.items():
-        scripts[name] = apply_macro(script, macros)
-
     paths = ['scripted_guis', 'run.txt']
     outpaths = ['common\\scripted_guis\\01_economy.txt', 'out.txt']
-    files = [apply_macro(parse_file(path), macros) for path in paths]
+    files = [parse_file(path) for path in paths]
+
+    check = [True]
+
+    while check[0]:
+        check[0] = False
+
+        for i in range(len(files)):
+            files[i] = apply_macro(files[i], macros, check)
+        for name, script in scripts.items():
+            scripts[name] = apply_macro(script, macros, check)
 
     check = [True]
 
