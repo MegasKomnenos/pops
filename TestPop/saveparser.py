@@ -339,6 +339,13 @@ if __name__ == '__main__':
                             else:
                                 outout.append('\t\t\tadd_to_global_variable_list = { name = trade_merchants target = scope:save_data_t }\n')
                                 outout.append('\t\t\tset_variable = { name = trade_merchant value = scope:save_data_t }\n')
+                                outout.append('\t\t\tscope:save_data_t = {\n')
+
+                                for n, vs in chars[data[1]][1].items():
+                                    for v in vs:
+                                        outout.append(helper(('\t\t\t\tadd_to_variable_list', 'target'), n, v))
+                                        
+                                outout.append('\t\t\t}\n')
                         else:
                             outout.append(helper(('\t\t\tset_variable', 'value'), name, data))
                     for name, data in prov[1].items():
