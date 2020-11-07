@@ -108,3 +108,119 @@ slot_remove = {
 	else_if = { limit = { has_variable = $name$_28 var:$name$_28 = $target$ } remove_variable = $name$_28 }
 	else_if = { limit = { has_variable = $name$_29 var:$name$_29 = $target$ } remove_variable = $name$_29 }
 }
+
+mod_assign = {
+	if = {
+		limit = {
+			has_$type$_modifier = $name$_$value$
+		}
+		if = {
+			limit = {
+				var:$var$ >= $value$
+			}
+			change_variable = { name = $var$ subtract = $value$ }
+		}
+		else = {
+			remove_$type$_modifier = $name$_$value$
+		}
+	}
+	else = {
+		if = {
+			limit = {
+				var:$var$ >= $value$
+			}
+			change_variable = { name = $var$ subtract = $value$ }
+			
+			add_$type$_modifier = $name$_$value$
+		}
+	}
+}
+
+mod_assign_2_8 = {
+	mod_assign = { type = $type$ name = $name$ var = $var$ value = 1.28 }
+	mod_assign = { type = $type$ name = $name$ var = $var$ value = 0.64 }
+	mod_assign = { type = $type$ name = $name$ var = $var$ value = 0.32 }
+	mod_assign = { type = $type$ name = $name$ var = $var$ value = 0.16 }
+	mod_assign = { type = $type$ name = $name$ var = $var$ value = 0.08 }
+	mod_assign = { type = $type$ name = $name$ var = $var$ value = 0.04 }
+	mod_assign = { type = $type$ name = $name$ var = $var$ value = 0.02 }
+	mod_assign = { type = $type$ name = $name$ var = $var$ value = 0.01 }
+}
+mod_assign_2_12 = {
+	mod_assign = { type = $type$ name = $name$ var = $var$ value = 20.48 }
+	mod_assign = { type = $type$ name = $name$ var = $var$ value = 10.24 }
+	mod_assign = { type = $type$ name = $name$ var = $var$ value = 5.12 }
+	mod_assign = { type = $type$ name = $name$ var = $var$ value = 2.56 }
+	mod_assign_2_8 = { type = $type$ name = $name$ var = $var$ }
+}
+mod_assign_2_16 = {
+	mod_assign = { type = $type$ name = $name$ var = $var$ value = 327.68 }
+	mod_assign = { type = $type$ name = $name$ var = $var$ value = 163.84 }
+	mod_assign = { type = $type$ name = $name$ var = $var$ value = 81.92 }
+	mod_assign = { type = $type$ name = $name$ var = $var$ value = 40.96 }
+	mod_assign_2_12 = { type = $type$ name = $name$ var = $var$ }
+}
+mod_assign_2_20 = {
+	mod_assign = { type = $type$ name = $name$ var = $var$ value = 5242.88 }
+	mod_assign = { type = $type$ name = $name$ var = $var$ value = 2621.44 }
+	mod_assign = { type = $type$ name = $name$ var = $var$ value = 1310.72 }
+	mod_assign = { type = $type$ name = $name$ var = $var$ value = 655.36 }
+	mod_assign_2_16 = { type = $type$ name = $name$ var = $var$ }
+}
+
+mod_assign_1_8 = {
+	mod_assign = { type = $type$ name = $name$ var = $var$ value = 12.8 }
+	mod_assign = { type = $type$ name = $name$ var = $var$ value = 6.4 }
+	mod_assign = { type = $type$ name = $name$ var = $var$ value = 3.2 }
+	mod_assign = { type = $type$ name = $name$ var = $var$ value = 1.6 }
+	mod_assign = { type = $type$ name = $name$ var = $var$ value = 0.8 }
+	mod_assign = { type = $type$ name = $name$ var = $var$ value = 0.4 }
+	mod_assign = { type = $type$ name = $name$ var = $var$ value = 0.2 }
+	mod_assign = { type = $type$ name = $name$ var = $var$ value = 0.1 }
+}
+mod_assign_1_12 = {
+	mod_assign = { type = $type$ name = $name$ var = $var$ value = 204.8 }
+	mod_assign = { type = $type$ name = $name$ var = $var$ value = 102.4 }
+	mod_assign = { type = $type$ name = $name$ var = $var$ value = 51.2 }
+	mod_assign = { type = $type$ name = $name$ var = $var$ value = 25.6 }
+	mod_assign_1_8 = { type = $type$ name = $name$ var = $var$ }
+}
+mod_assign_1_16 = {
+	mod_assign = { type = $type$ name = $name$ var = $var$ value = 3276.8 }
+	mod_assign = { type = $type$ name = $name$ var = $var$ value = 1638.4 }
+	mod_assign = { type = $type$ name = $name$ var = $var$ value = 819.2 }
+	mod_assign = { type = $type$ name = $name$ var = $var$ value = 409.6 }
+	mod_assign_1_12 = { type = $type$ name = $name$ var = $var$ }
+}
+mod_assign_1_20 = {
+	mod_assign = { type = $type$ name = $name$ var = $var$ value = 52428.8 }
+	mod_assign = { type = $type$ name = $name$ var = $var$ value = 26214.4 }
+	mod_assign = { type = $type$ name = $name$ var = $var$ value = 13107.2 }
+	mod_assign = { type = $type$ name = $name$ var = $var$ value = 6553.6 }
+	mod_assign_1_16 = { type = $type$ name = $name$ var = $var$ }
+}
+
+mod_assign_0_8 = {
+	mod_assign = { type = $type$ name = $name$ var = $var$ value = 128 }
+	mod_assign = { type = $type$ name = $name$ var = $var$ value = 64 }
+	mod_assign = { type = $type$ name = $name$ var = $var$ value = 32 }
+	mod_assign = { type = $type$ name = $name$ var = $var$ value = 16 }
+	mod_assign = { type = $type$ name = $name$ var = $var$ value = 8 }
+	mod_assign = { type = $type$ name = $name$ var = $var$ value = 4 }
+	mod_assign = { type = $type$ name = $name$ var = $var$ value = 2 }
+	mod_assign = { type = $type$ name = $name$ var = $var$ value = 1 }
+}
+mod_assign_0_12 = {
+	mod_assign = { type = $type$ name = $name$ var = $var$ value = 2048 }
+	mod_assign = { type = $type$ name = $name$ var = $var$ value = 1024 }
+	mod_assign = { type = $type$ name = $name$ var = $var$ value = 512 }
+	mod_assign = { type = $type$ name = $name$ var = $var$ value = 256 }
+	mod_assign_0_8 = { type = $type$ name = $name$ var = $var$ }
+}
+mod_assign_0_16 = {
+	mod_assign = { type = $type$ name = $name$ var = $var$ value = 32768 }
+	mod_assign = { type = $type$ name = $name$ var = $var$ value = 16384 }
+	mod_assign = { type = $type$ name = $name$ var = $var$ value = 8192 }
+	mod_assign = { type = $type$ name = $name$ var = $var$ value = 4096 }
+	mod_assign_0_12 = { type = $type$ name = $name$ var = $var$ }
+}

@@ -1,0 +1,8 @@
+﻿stat_do_prov = {
+	set_variable = { name = stat_do_prov_t value = var:pop_earn_serf }
+	change_variable = { name = stat_do_prov_t divide = 12 }
+	
+	mod_assign_2_16 = { type = province name = stat_tax var = stat_do_prov_t } 
+	
+	remove_variable = stat_do_prov_t
+}
