@@ -11,22 +11,22 @@
 }
 
 init_merchants = {
-	init_merchants_helper = { location = province:2517 power = 240 }	# Venice
-	init_merchants_helper = { location = province:2466 power = 60 }	# Genoa
-	init_merchants_helper = { location = province:2536 power = 120 }	# Pisa
-	init_merchants_helper = { location = province:2611 power = 120 }	# Amalfi
-	init_merchants_helper = { location = province:2635 power = 120 }	# Palermo
-	init_merchants_helper = { location = province:4578 power = 60 }	# Mahdiya
-	init_merchants_helper = { location = province:1995 power = 60 }	# Cordoba
-	init_merchants_helper = { location = province:4694 power = 60 }	# Fez
-	init_merchants_helper = { location = province:4737 power = 120 }	# Sijilmasa
-	init_merchants_helper = { location = province:6053 power = 60 }	# Alexandria
-	init_merchants_helper = { location = province:6042 power = 240 }	# Cairo
-	init_merchants_helper = { location = province:5934 power = 120 }	# Halab
-	init_merchants_helper = { location = province:4828 power = 240 }	# Baghdad
-	init_merchants_helper = { location = province:496 power = 240 }	# Constantinople
-	init_merchants_helper = { location = province:547 power = 120 }	# Kiev
-	init_merchants_helper = { location = province:5137 power = 60 }	# Novgorod
+	init_merchants_helper = { location = province:2517 power = 320 }	# Venice
+	init_merchants_helper = { location = province:2466 power = 80 }	# Genoa
+	init_merchants_helper = { location = province:2536 power = 160 }	# Pisa
+	init_merchants_helper = { location = province:2611 power = 160 }	# Amalfi
+	init_merchants_helper = { location = province:2635 power = 160 }	# Palermo
+	init_merchants_helper = { location = province:4578 power = 80 }	# Mahdiya
+	init_merchants_helper = { location = province:1995 power = 80 }	# Cordoba
+	init_merchants_helper = { location = province:4694 power = 80 }	# Fez
+	init_merchants_helper = { location = province:4737 power = 320 }	# Sijilmasa
+	init_merchants_helper = { location = province:6053 power = 80 }	# Alexandria
+	init_merchants_helper = { location = province:6042 power = 320 }	# Cairo
+	init_merchants_helper = { location = province:5934 power = 160 }	# Halab
+	init_merchants_helper = { location = province:4828 power = 320 }	# Baghdad
+	init_merchants_helper = { location = province:496 power = 320 }	# Constantinople
+	init_merchants_helper = { location = province:547 power = 160 }	# Kiev
+	init_merchants_helper = { location = province:5137 power = 80 }	# Novgorod
 	
 	every_province = {
 		limit = {
@@ -40,7 +40,7 @@ init_merchants = {
 		}
 		save_temporary_scope_as = init_merchants_t
 		
-		init_merchants_helper = { location = scope:init_merchants_t power = 30 }
+		init_merchants_helper = { location = scope:init_merchants_t power = 40 }
 	}
 	
 	remove_variable = init_merchants_t
