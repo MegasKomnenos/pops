@@ -42,6 +42,9 @@
 		
 		change_variable = { name = trade_refresh_up multiply = 1.25 }
 		change_variable = { name = trade_refresh_down multiply = 0.8 }
+		
+		change_variable = { name = trade_refresh_up add = 2 }
+		change_variable = { name = trade_refresh_down subtract = 2 }
 	}
 	
 	remove_variable = trade_new_merchant_t
@@ -65,27 +68,18 @@ trade_set_range = {
 	array_clear = { name = trade_core }
 	array_clear = { name = trade_periph }
 	
-	if = {
-		limit = {
-			var:trade_power >= 20
-		}
-		set_global_variable = { name = trade_set_range_t value = 400 }
-	}
-	else = {
-		set_global_variable = { name = trade_set_range_t value = var:trade_power }
-		change_global_variable = { name = trade_set_range_t multiply = 20 }
-	}
+	set_global_variable = { name = trade_set_range_t value = 400 }
 	
 	if = {
 		limit = {
-			var:trade_power >= 250
+			var:trade_power >= 240
 		}
 		set_global_variable = { name = trade_set_range_tt value = 3000 }
 	}
 	else = {
 		set_global_variable = { name = trade_set_range_tt value = var:trade_power }
 		change_global_variable = { name = trade_set_range_tt multiply = 10 }
-		change_global_variable = { name = trade_set_range_tt add = 100 }
+		change_global_variable = { name = trade_set_range_tt add = 200 }
 		change_global_variable = { name = trade_set_range_tt add = global_var:trade_set_range_t }
 	}
 	

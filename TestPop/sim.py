@@ -408,6 +408,9 @@ sim_run.02 = {
 					
 					change_variable = { name = trade_refresh_up multiply = 1.25 }
 					change_variable = { name = trade_refresh_down multiply = 0.8 }
+
+					change_variable = { name = trade_refresh_up add = 2 }
+					change_variable = { name = trade_refresh_down subtract = 2 }
 					
 					trade_set_range = yes
 				}
