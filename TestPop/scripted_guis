@@ -592,7 +592,7 @@ toggle_prov_merchant_dat = {
 		}
 	}
 }
-close_prov_merchant = {
+close_prov_merchant_dat = {
 	scope = province
 	
 	is_shown = {
@@ -615,6 +615,146 @@ close_prov_merchant = {
 					remove_variable = info_dat_merchant_out_scope_&range5&_&goods&
 					remove_variable = info_dat_merchant_in_val_&range5&_&goods&
 					remove_variable = info_dat_merchant_in_scope_&range5&_&goods&
+				^
+			^
+		}
+	}
+}
+
+toggle_county_dat = {
+	scope = province
+	
+	is_shown = {
+		always = yes
+	}
+	is_valid = {
+		always = yes
+	}
+	
+	effect = {
+		if = {
+			limit = {
+				has_variable = toggled_county_dat
+			}
+			remove_variable = toggled_county_dat
+			
+			^^goods^
+				^^range3^
+					remove_variable = info_dat_county_out_val_&range3&_&goods&
+					remove_variable = info_dat_county_out_scope_&range3&_&goods&
+					remove_variable = info_dat_county_in_val_&range3&_&goods&
+					remove_variable = info_dat_county_in_scope_&range3&_&goods&
+				^
+			^
+		}
+		else_if = {
+			limit = {
+				has_variable = trade_county
+			}
+			set_variable = { name = toggled_county_dat value = 1 }
+			
+			^^goods^
+				every_in_list = {
+					variable = trade_dat_&goods&
+					
+					prev = {
+						add_to_variable_list = { name = toggled_county_dat_t target = prev }
+					}
+				}
+				every_in_list = {
+					variable = array_trade_dat_&goods&
+					
+					prev = {
+						add_to_variable_list = { name = array_toggled_county_dat_t target = prev }
+					}
+				}
+				
+				^^range3^
+					array_get_max = { 
+						name = toggled_county_dat_t 
+						return_val = info_dat_county_out_val_&range3&_&goods&
+						return_ind = toggled_county_dat_t
+						dec = 100
+					}
+					
+					ordered_in_list = {
+						variable = toggled_county_dat_t
+						position = global_var:toggled_county_dat_t.compare_value
+						
+						prev = {
+							set_variable = { name = info_dat_county_out_scope_&range3&_&goods& value = prev.var:trade_location }
+							
+							remove_list_variable = { name = toggled_county_dat_t target = prev }
+						}
+					}
+					ordered_in_list = {
+						variable = array_toggled_county_dat_t
+						position = global_var:toggled_county_dat_t.compare_value
+						
+						prev = {
+							remove_list_variable = { name = array_toggled_county_dat_t target = prev }
+						}
+					}
+				^
+				^^range3^
+					array_get_min = { 
+						name = toggled_county_dat_t 
+						return_val = info_dat_county_in_val_&range3&_&goods&
+						return_ind = toggled_county_dat_t
+						dec = 100
+					}
+					
+					change_variable = { name = info_dat_county_in_val_&range3&_&goods& multiply = -1 }
+					
+					ordered_in_list = {
+						variable = toggled_county_dat_t
+						position = global_var:toggled_county_dat_t.compare_value
+						
+						prev = {
+							set_variable = { name = info_dat_county_in_scope_&range3&_&goods& value = prev.var:trade_location }
+							
+							remove_list_variable = { name = toggled_county_dat_t target = prev }
+						}
+					}
+					ordered_in_list = {
+						variable = array_toggled_county_dat_t
+						position = global_var:toggled_county_dat_t.compare_value
+						
+						prev = {
+							remove_list_variable = { name = array_toggled_county_dat_t target = prev }
+						}
+					}
+				^
+				
+				remove_global_variable = toggled_county_dat_t
+				remove_variable = toggled_county_dat_t
+			^
+		}
+	}
+}
+close_county_dat = {
+	scope = province
+	
+	is_shown = {
+		always = yes
+	}
+	is_valid = {
+		always = yes
+	}
+	
+	effect = {
+		if = {
+			limit = {
+				has_variable = toggled_county_dat
+			}
+			remove_variable = toggled_county_dat
+			
+			^^goods^
+				^^range3^
+					remove_variable = info_dat_county_out_val_&range3&_&goods&
+					remove_variable = info_dat_county_out_scope_&range3&_&goods&
+					remove_variable = info_dat_county_in_val_&range3&_&goods&
+					remove_variable = info_dat_county_in_scope_&range3&_&goods&
 				^
 			^
 		}
