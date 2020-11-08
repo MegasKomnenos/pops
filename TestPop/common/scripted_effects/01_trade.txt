@@ -874,6 +874,8 @@ trade_do_trade = {
 							
 							if = {
 								limit = {
+									has_variable = trade_power
+									
 									this = global_var:trade_do_trade_select
 								}
 								remove_global_variable = trade_do_trade_tt
@@ -908,6 +910,8 @@ trade_do_trade = {
 								
 								if = {
 									limit = {
+										has_variable = trade_power
+										
 										this = scope:trade_do_trade_select
 									}
 									remove_global_variable = trade_do_trade_tt
