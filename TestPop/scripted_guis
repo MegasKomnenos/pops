@@ -537,23 +537,33 @@ toggle_prov_merchant_dat = {
 						dec = 100
 					}
 					
-					ordered_in_list = {
-						variable = toggled_prov_merchant_dat_t
-						position = global_var:toggled_prov_merchant_dat_t.compare_value
-						
-						prev = {
-							set_variable = { name = info_dat_merchant_out_scope_&range5&_&goods& value = prev }
+					if = {
+						limit = {
+							has_variable = info_dat_merchant_out_val_&range5&_&goods&
 							
-							remove_list_variable = { name = toggled_prov_merchant_dat_t target = prev }
+							var:info_dat_merchant_out_val_&range5&_&goods& > 0
+						}
+						ordered_in_list = {
+							variable = toggled_prov_merchant_dat_t
+							position = global_var:toggled_prov_merchant_dat_t.compare_value
+							
+							prev = {
+								set_variable = { name = info_dat_merchant_out_scope_&range5&_&goods& value = prev }
+								
+								remove_list_variable = { name = toggled_prov_merchant_dat_t target = prev }
+							}
+						}
+						ordered_in_list = {
+							variable = array_toggled_prov_merchant_dat_t
+							position = global_var:toggled_prov_merchant_dat_t.compare_value
+							
+							prev = {
+								remove_list_variable = { name = array_toggled_prov_merchant_dat_t target = prev }
+							}
 						}
 					}
-					ordered_in_list = {
-						variable = array_toggled_prov_merchant_dat_t
-						position = global_var:toggled_prov_merchant_dat_t.compare_value
-						
-						prev = {
-							remove_list_variable = { name = array_toggled_prov_merchant_dat_t target = prev }
-						}
+					else = {
+						remove_variable = info_dat_merchant_out_val_&range5&_&goods&
 					}
 				^
 				^^range5^
@@ -587,6 +597,7 @@ toggle_prov_merchant_dat = {
 				^
 				
 				remove_global_variable = toggled_prov_merchant_dat_t
+				array_clear = { name = toggled_prov_merchant_dat_t }
 				remove_variable = toggled_prov_merchant_dat_t
 			^
 		}
@@ -647,10 +658,7 @@ toggle_county_dat = {
 				^
 			^
 		}
-		else_if = {
-			limit = {
-				has_variable = trade_county
-			}
+		else = {
 			set_variable = { name = toggled_county_dat value = 1 }
 			
 			^^goods^

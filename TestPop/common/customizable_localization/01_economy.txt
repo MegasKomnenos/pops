@@ -906,34 +906,26 @@ merchant_out_0_food = {
 			has_variable = info_dat_merchant_out_val_0_food
 			var:info_dat_merchant_out_val_0_food > 0
 			var:info_dat_merchant_out_scope_0_food = { 
-				has_variable = trade_price_food
+				has_variable = trade_merchant
 			}
 		}
-		localization_key = "merchant_out_0_food"
+		localization_key = "merchant_out_prov_0_food"
 	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_out_val_0_food
 			var:info_dat_merchant_out_val_0_food > 0
 			var:info_dat_merchant_out_scope_0_food = { 
-				has_variable = trade_merchant
+				NOT = { 
+					has_variable = trade_merchant
+				}
 			}
 		}
-		localization_key = "merchant_out_prov_0_food"
+		localization_key = "merchant_out_0_food"
 	}
 }
 merchant_in_0_food = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_in_val_0_food
-			var:info_dat_merchant_in_val_0_food > 0
-			var:info_dat_merchant_in_scope_0_food = { 
-				has_variable = trade_price_food
-			}
-		}
-		localization_key = "merchant_in_0_food"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_in_val_0_food
@@ -944,19 +936,21 @@ merchant_in_0_food = {
 		}
 		localization_key = "merchant_in_prov_0_food"
 	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_in_val_0_food
+			var:info_dat_merchant_in_val_0_food > 0
+			var:info_dat_merchant_in_scope_0_food = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_in_0_food"
+	}
 }
 merchant_out_1_food = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_out_val_1_food
-			var:info_dat_merchant_out_val_1_food > 0
-			var:info_dat_merchant_out_scope_1_food = { 
-				has_variable = trade_price_food
-			}
-		}
-		localization_key = "merchant_out_1_food"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_out_val_1_food
@@ -967,19 +961,21 @@ merchant_out_1_food = {
 		}
 		localization_key = "merchant_out_prov_1_food"
 	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_out_val_1_food
+			var:info_dat_merchant_out_val_1_food > 0
+			var:info_dat_merchant_out_scope_1_food = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_out_1_food"
+	}
 }
 merchant_in_1_food = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_in_val_1_food
-			var:info_dat_merchant_in_val_1_food > 0
-			var:info_dat_merchant_in_scope_1_food = { 
-				has_variable = trade_price_food
-			}
-		}
-		localization_key = "merchant_in_1_food"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_in_val_1_food
@@ -990,19 +986,21 @@ merchant_in_1_food = {
 		}
 		localization_key = "merchant_in_prov_1_food"
 	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_in_val_1_food
+			var:info_dat_merchant_in_val_1_food > 0
+			var:info_dat_merchant_in_scope_1_food = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_in_1_food"
+	}
 }
 merchant_out_2_food = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_out_val_2_food
-			var:info_dat_merchant_out_val_2_food > 0
-			var:info_dat_merchant_out_scope_2_food = { 
-				has_variable = trade_price_food
-			}
-		}
-		localization_key = "merchant_out_2_food"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_out_val_2_food
@@ -1013,19 +1011,21 @@ merchant_out_2_food = {
 		}
 		localization_key = "merchant_out_prov_2_food"
 	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_out_val_2_food
+			var:info_dat_merchant_out_val_2_food > 0
+			var:info_dat_merchant_out_scope_2_food = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_out_2_food"
+	}
 }
 merchant_in_2_food = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_in_val_2_food
-			var:info_dat_merchant_in_val_2_food > 0
-			var:info_dat_merchant_in_scope_2_food = { 
-				has_variable = trade_price_food
-			}
-		}
-		localization_key = "merchant_in_2_food"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_in_val_2_food
@@ -1036,19 +1036,21 @@ merchant_in_2_food = {
 		}
 		localization_key = "merchant_in_prov_2_food"
 	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_in_val_2_food
+			var:info_dat_merchant_in_val_2_food > 0
+			var:info_dat_merchant_in_scope_2_food = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_in_2_food"
+	}
 }
 merchant_out_3_food = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_out_val_3_food
-			var:info_dat_merchant_out_val_3_food > 0
-			var:info_dat_merchant_out_scope_3_food = { 
-				has_variable = trade_price_food
-			}
-		}
-		localization_key = "merchant_out_3_food"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_out_val_3_food
@@ -1059,19 +1061,21 @@ merchant_out_3_food = {
 		}
 		localization_key = "merchant_out_prov_3_food"
 	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_out_val_3_food
+			var:info_dat_merchant_out_val_3_food > 0
+			var:info_dat_merchant_out_scope_3_food = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_out_3_food"
+	}
 }
 merchant_in_3_food = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_in_val_3_food
-			var:info_dat_merchant_in_val_3_food > 0
-			var:info_dat_merchant_in_scope_3_food = { 
-				has_variable = trade_price_food
-			}
-		}
-		localization_key = "merchant_in_3_food"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_in_val_3_food
@@ -1082,19 +1086,21 @@ merchant_in_3_food = {
 		}
 		localization_key = "merchant_in_prov_3_food"
 	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_in_val_3_food
+			var:info_dat_merchant_in_val_3_food > 0
+			var:info_dat_merchant_in_scope_3_food = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_in_3_food"
+	}
 }
 merchant_out_4_food = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_out_val_4_food
-			var:info_dat_merchant_out_val_4_food > 0
-			var:info_dat_merchant_out_scope_4_food = { 
-				has_variable = trade_price_food
-			}
-		}
-		localization_key = "merchant_out_4_food"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_out_val_4_food
@@ -1105,19 +1111,21 @@ merchant_out_4_food = {
 		}
 		localization_key = "merchant_out_prov_4_food"
 	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_out_val_4_food
+			var:info_dat_merchant_out_val_4_food > 0
+			var:info_dat_merchant_out_scope_4_food = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_out_4_food"
+	}
 }
 merchant_in_4_food = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_in_val_4_food
-			var:info_dat_merchant_in_val_4_food > 0
-			var:info_dat_merchant_in_scope_4_food = { 
-				has_variable = trade_price_food
-			}
-		}
-		localization_key = "merchant_in_4_food"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_in_val_4_food
@@ -1128,19 +1136,21 @@ merchant_in_4_food = {
 		}
 		localization_key = "merchant_in_prov_4_food"
 	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_in_val_4_food
+			var:info_dat_merchant_in_val_4_food > 0
+			var:info_dat_merchant_in_scope_4_food = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_in_4_food"
+	}
 }
 merchant_out_0_cereal = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_out_val_0_cereal
-			var:info_dat_merchant_out_val_0_cereal > 0
-			var:info_dat_merchant_out_scope_0_cereal = { 
-				has_variable = trade_price_cereal
-			}
-		}
-		localization_key = "merchant_out_0_cereal"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_out_val_0_cereal
@@ -1151,19 +1161,21 @@ merchant_out_0_cereal = {
 		}
 		localization_key = "merchant_out_prov_0_cereal"
 	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_out_val_0_cereal
+			var:info_dat_merchant_out_val_0_cereal > 0
+			var:info_dat_merchant_out_scope_0_cereal = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_out_0_cereal"
+	}
 }
 merchant_in_0_cereal = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_in_val_0_cereal
-			var:info_dat_merchant_in_val_0_cereal > 0
-			var:info_dat_merchant_in_scope_0_cereal = { 
-				has_variable = trade_price_cereal
-			}
-		}
-		localization_key = "merchant_in_0_cereal"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_in_val_0_cereal
@@ -1174,19 +1186,21 @@ merchant_in_0_cereal = {
 		}
 		localization_key = "merchant_in_prov_0_cereal"
 	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_in_val_0_cereal
+			var:info_dat_merchant_in_val_0_cereal > 0
+			var:info_dat_merchant_in_scope_0_cereal = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_in_0_cereal"
+	}
 }
 merchant_out_1_cereal = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_out_val_1_cereal
-			var:info_dat_merchant_out_val_1_cereal > 0
-			var:info_dat_merchant_out_scope_1_cereal = { 
-				has_variable = trade_price_cereal
-			}
-		}
-		localization_key = "merchant_out_1_cereal"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_out_val_1_cereal
@@ -1197,19 +1211,21 @@ merchant_out_1_cereal = {
 		}
 		localization_key = "merchant_out_prov_1_cereal"
 	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_out_val_1_cereal
+			var:info_dat_merchant_out_val_1_cereal > 0
+			var:info_dat_merchant_out_scope_1_cereal = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_out_1_cereal"
+	}
 }
 merchant_in_1_cereal = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_in_val_1_cereal
-			var:info_dat_merchant_in_val_1_cereal > 0
-			var:info_dat_merchant_in_scope_1_cereal = { 
-				has_variable = trade_price_cereal
-			}
-		}
-		localization_key = "merchant_in_1_cereal"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_in_val_1_cereal
@@ -1220,19 +1236,21 @@ merchant_in_1_cereal = {
 		}
 		localization_key = "merchant_in_prov_1_cereal"
 	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_in_val_1_cereal
+			var:info_dat_merchant_in_val_1_cereal > 0
+			var:info_dat_merchant_in_scope_1_cereal = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_in_1_cereal"
+	}
 }
 merchant_out_2_cereal = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_out_val_2_cereal
-			var:info_dat_merchant_out_val_2_cereal > 0
-			var:info_dat_merchant_out_scope_2_cereal = { 
-				has_variable = trade_price_cereal
-			}
-		}
-		localization_key = "merchant_out_2_cereal"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_out_val_2_cereal
@@ -1243,19 +1261,21 @@ merchant_out_2_cereal = {
 		}
 		localization_key = "merchant_out_prov_2_cereal"
 	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_out_val_2_cereal
+			var:info_dat_merchant_out_val_2_cereal > 0
+			var:info_dat_merchant_out_scope_2_cereal = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_out_2_cereal"
+	}
 }
 merchant_in_2_cereal = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_in_val_2_cereal
-			var:info_dat_merchant_in_val_2_cereal > 0
-			var:info_dat_merchant_in_scope_2_cereal = { 
-				has_variable = trade_price_cereal
-			}
-		}
-		localization_key = "merchant_in_2_cereal"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_in_val_2_cereal
@@ -1266,19 +1286,21 @@ merchant_in_2_cereal = {
 		}
 		localization_key = "merchant_in_prov_2_cereal"
 	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_in_val_2_cereal
+			var:info_dat_merchant_in_val_2_cereal > 0
+			var:info_dat_merchant_in_scope_2_cereal = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_in_2_cereal"
+	}
 }
 merchant_out_3_cereal = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_out_val_3_cereal
-			var:info_dat_merchant_out_val_3_cereal > 0
-			var:info_dat_merchant_out_scope_3_cereal = { 
-				has_variable = trade_price_cereal
-			}
-		}
-		localization_key = "merchant_out_3_cereal"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_out_val_3_cereal
@@ -1289,19 +1311,21 @@ merchant_out_3_cereal = {
 		}
 		localization_key = "merchant_out_prov_3_cereal"
 	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_out_val_3_cereal
+			var:info_dat_merchant_out_val_3_cereal > 0
+			var:info_dat_merchant_out_scope_3_cereal = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_out_3_cereal"
+	}
 }
 merchant_in_3_cereal = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_in_val_3_cereal
-			var:info_dat_merchant_in_val_3_cereal > 0
-			var:info_dat_merchant_in_scope_3_cereal = { 
-				has_variable = trade_price_cereal
-			}
-		}
-		localization_key = "merchant_in_3_cereal"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_in_val_3_cereal
@@ -1312,19 +1336,21 @@ merchant_in_3_cereal = {
 		}
 		localization_key = "merchant_in_prov_3_cereal"
 	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_in_val_3_cereal
+			var:info_dat_merchant_in_val_3_cereal > 0
+			var:info_dat_merchant_in_scope_3_cereal = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_in_3_cereal"
+	}
 }
 merchant_out_4_cereal = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_out_val_4_cereal
-			var:info_dat_merchant_out_val_4_cereal > 0
-			var:info_dat_merchant_out_scope_4_cereal = { 
-				has_variable = trade_price_cereal
-			}
-		}
-		localization_key = "merchant_out_4_cereal"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_out_val_4_cereal
@@ -1335,19 +1361,21 @@ merchant_out_4_cereal = {
 		}
 		localization_key = "merchant_out_prov_4_cereal"
 	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_out_val_4_cereal
+			var:info_dat_merchant_out_val_4_cereal > 0
+			var:info_dat_merchant_out_scope_4_cereal = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_out_4_cereal"
+	}
 }
 merchant_in_4_cereal = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_in_val_4_cereal
-			var:info_dat_merchant_in_val_4_cereal > 0
-			var:info_dat_merchant_in_scope_4_cereal = { 
-				has_variable = trade_price_cereal
-			}
-		}
-		localization_key = "merchant_in_4_cereal"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_in_val_4_cereal
@@ -1358,19 +1386,21 @@ merchant_in_4_cereal = {
 		}
 		localization_key = "merchant_in_prov_4_cereal"
 	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_in_val_4_cereal
+			var:info_dat_merchant_in_val_4_cereal > 0
+			var:info_dat_merchant_in_scope_4_cereal = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_in_4_cereal"
+	}
 }
 merchant_out_0_salted = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_out_val_0_salted
-			var:info_dat_merchant_out_val_0_salted > 0
-			var:info_dat_merchant_out_scope_0_salted = { 
-				has_variable = trade_price_salted
-			}
-		}
-		localization_key = "merchant_out_0_salted"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_out_val_0_salted
@@ -1381,19 +1411,21 @@ merchant_out_0_salted = {
 		}
 		localization_key = "merchant_out_prov_0_salted"
 	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_out_val_0_salted
+			var:info_dat_merchant_out_val_0_salted > 0
+			var:info_dat_merchant_out_scope_0_salted = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_out_0_salted"
+	}
 }
 merchant_in_0_salted = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_in_val_0_salted
-			var:info_dat_merchant_in_val_0_salted > 0
-			var:info_dat_merchant_in_scope_0_salted = { 
-				has_variable = trade_price_salted
-			}
-		}
-		localization_key = "merchant_in_0_salted"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_in_val_0_salted
@@ -1404,19 +1436,21 @@ merchant_in_0_salted = {
 		}
 		localization_key = "merchant_in_prov_0_salted"
 	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_in_val_0_salted
+			var:info_dat_merchant_in_val_0_salted > 0
+			var:info_dat_merchant_in_scope_0_salted = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_in_0_salted"
+	}
 }
 merchant_out_1_salted = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_out_val_1_salted
-			var:info_dat_merchant_out_val_1_salted > 0
-			var:info_dat_merchant_out_scope_1_salted = { 
-				has_variable = trade_price_salted
-			}
-		}
-		localization_key = "merchant_out_1_salted"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_out_val_1_salted
@@ -1427,19 +1461,21 @@ merchant_out_1_salted = {
 		}
 		localization_key = "merchant_out_prov_1_salted"
 	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_out_val_1_salted
+			var:info_dat_merchant_out_val_1_salted > 0
+			var:info_dat_merchant_out_scope_1_salted = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_out_1_salted"
+	}
 }
 merchant_in_1_salted = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_in_val_1_salted
-			var:info_dat_merchant_in_val_1_salted > 0
-			var:info_dat_merchant_in_scope_1_salted = { 
-				has_variable = trade_price_salted
-			}
-		}
-		localization_key = "merchant_in_1_salted"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_in_val_1_salted
@@ -1450,19 +1486,21 @@ merchant_in_1_salted = {
 		}
 		localization_key = "merchant_in_prov_1_salted"
 	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_in_val_1_salted
+			var:info_dat_merchant_in_val_1_salted > 0
+			var:info_dat_merchant_in_scope_1_salted = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_in_1_salted"
+	}
 }
 merchant_out_2_salted = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_out_val_2_salted
-			var:info_dat_merchant_out_val_2_salted > 0
-			var:info_dat_merchant_out_scope_2_salted = { 
-				has_variable = trade_price_salted
-			}
-		}
-		localization_key = "merchant_out_2_salted"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_out_val_2_salted
@@ -1473,19 +1511,21 @@ merchant_out_2_salted = {
 		}
 		localization_key = "merchant_out_prov_2_salted"
 	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_out_val_2_salted
+			var:info_dat_merchant_out_val_2_salted > 0
+			var:info_dat_merchant_out_scope_2_salted = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_out_2_salted"
+	}
 }
 merchant_in_2_salted = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_in_val_2_salted
-			var:info_dat_merchant_in_val_2_salted > 0
-			var:info_dat_merchant_in_scope_2_salted = { 
-				has_variable = trade_price_salted
-			}
-		}
-		localization_key = "merchant_in_2_salted"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_in_val_2_salted
@@ -1496,19 +1536,21 @@ merchant_in_2_salted = {
 		}
 		localization_key = "merchant_in_prov_2_salted"
 	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_in_val_2_salted
+			var:info_dat_merchant_in_val_2_salted > 0
+			var:info_dat_merchant_in_scope_2_salted = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_in_2_salted"
+	}
 }
 merchant_out_3_salted = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_out_val_3_salted
-			var:info_dat_merchant_out_val_3_salted > 0
-			var:info_dat_merchant_out_scope_3_salted = { 
-				has_variable = trade_price_salted
-			}
-		}
-		localization_key = "merchant_out_3_salted"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_out_val_3_salted
@@ -1519,19 +1561,21 @@ merchant_out_3_salted = {
 		}
 		localization_key = "merchant_out_prov_3_salted"
 	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_out_val_3_salted
+			var:info_dat_merchant_out_val_3_salted > 0
+			var:info_dat_merchant_out_scope_3_salted = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_out_3_salted"
+	}
 }
 merchant_in_3_salted = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_in_val_3_salted
-			var:info_dat_merchant_in_val_3_salted > 0
-			var:info_dat_merchant_in_scope_3_salted = { 
-				has_variable = trade_price_salted
-			}
-		}
-		localization_key = "merchant_in_3_salted"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_in_val_3_salted
@@ -1542,19 +1586,21 @@ merchant_in_3_salted = {
 		}
 		localization_key = "merchant_in_prov_3_salted"
 	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_in_val_3_salted
+			var:info_dat_merchant_in_val_3_salted > 0
+			var:info_dat_merchant_in_scope_3_salted = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_in_3_salted"
+	}
 }
 merchant_out_4_salted = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_out_val_4_salted
-			var:info_dat_merchant_out_val_4_salted > 0
-			var:info_dat_merchant_out_scope_4_salted = { 
-				has_variable = trade_price_salted
-			}
-		}
-		localization_key = "merchant_out_4_salted"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_out_val_4_salted
@@ -1565,19 +1611,21 @@ merchant_out_4_salted = {
 		}
 		localization_key = "merchant_out_prov_4_salted"
 	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_out_val_4_salted
+			var:info_dat_merchant_out_val_4_salted > 0
+			var:info_dat_merchant_out_scope_4_salted = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_out_4_salted"
+	}
 }
 merchant_in_4_salted = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_in_val_4_salted
-			var:info_dat_merchant_in_val_4_salted > 0
-			var:info_dat_merchant_in_scope_4_salted = { 
-				has_variable = trade_price_salted
-			}
-		}
-		localization_key = "merchant_in_4_salted"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_in_val_4_salted
@@ -1588,19 +1636,21 @@ merchant_in_4_salted = {
 		}
 		localization_key = "merchant_in_prov_4_salted"
 	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_in_val_4_salted
+			var:info_dat_merchant_in_val_4_salted > 0
+			var:info_dat_merchant_in_scope_4_salted = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_in_4_salted"
+	}
 }
 merchant_out_0_salt = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_out_val_0_salt
-			var:info_dat_merchant_out_val_0_salt > 0
-			var:info_dat_merchant_out_scope_0_salt = { 
-				has_variable = trade_price_salt
-			}
-		}
-		localization_key = "merchant_out_0_salt"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_out_val_0_salt
@@ -1611,19 +1661,21 @@ merchant_out_0_salt = {
 		}
 		localization_key = "merchant_out_prov_0_salt"
 	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_out_val_0_salt
+			var:info_dat_merchant_out_val_0_salt > 0
+			var:info_dat_merchant_out_scope_0_salt = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_out_0_salt"
+	}
 }
 merchant_in_0_salt = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_in_val_0_salt
-			var:info_dat_merchant_in_val_0_salt > 0
-			var:info_dat_merchant_in_scope_0_salt = { 
-				has_variable = trade_price_salt
-			}
-		}
-		localization_key = "merchant_in_0_salt"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_in_val_0_salt
@@ -1634,19 +1686,21 @@ merchant_in_0_salt = {
 		}
 		localization_key = "merchant_in_prov_0_salt"
 	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_in_val_0_salt
+			var:info_dat_merchant_in_val_0_salt > 0
+			var:info_dat_merchant_in_scope_0_salt = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_in_0_salt"
+	}
 }
 merchant_out_1_salt = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_out_val_1_salt
-			var:info_dat_merchant_out_val_1_salt > 0
-			var:info_dat_merchant_out_scope_1_salt = { 
-				has_variable = trade_price_salt
-			}
-		}
-		localization_key = "merchant_out_1_salt"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_out_val_1_salt
@@ -1657,19 +1711,21 @@ merchant_out_1_salt = {
 		}
 		localization_key = "merchant_out_prov_1_salt"
 	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_out_val_1_salt
+			var:info_dat_merchant_out_val_1_salt > 0
+			var:info_dat_merchant_out_scope_1_salt = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_out_1_salt"
+	}
 }
 merchant_in_1_salt = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_in_val_1_salt
-			var:info_dat_merchant_in_val_1_salt > 0
-			var:info_dat_merchant_in_scope_1_salt = { 
-				has_variable = trade_price_salt
-			}
-		}
-		localization_key = "merchant_in_1_salt"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_in_val_1_salt
@@ -1680,19 +1736,21 @@ merchant_in_1_salt = {
 		}
 		localization_key = "merchant_in_prov_1_salt"
 	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_in_val_1_salt
+			var:info_dat_merchant_in_val_1_salt > 0
+			var:info_dat_merchant_in_scope_1_salt = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_in_1_salt"
+	}
 }
 merchant_out_2_salt = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_out_val_2_salt
-			var:info_dat_merchant_out_val_2_salt > 0
-			var:info_dat_merchant_out_scope_2_salt = { 
-				has_variable = trade_price_salt
-			}
-		}
-		localization_key = "merchant_out_2_salt"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_out_val_2_salt
@@ -1703,19 +1761,21 @@ merchant_out_2_salt = {
 		}
 		localization_key = "merchant_out_prov_2_salt"
 	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_out_val_2_salt
+			var:info_dat_merchant_out_val_2_salt > 0
+			var:info_dat_merchant_out_scope_2_salt = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_out_2_salt"
+	}
 }
 merchant_in_2_salt = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_in_val_2_salt
-			var:info_dat_merchant_in_val_2_salt > 0
-			var:info_dat_merchant_in_scope_2_salt = { 
-				has_variable = trade_price_salt
-			}
-		}
-		localization_key = "merchant_in_2_salt"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_in_val_2_salt
@@ -1726,19 +1786,21 @@ merchant_in_2_salt = {
 		}
 		localization_key = "merchant_in_prov_2_salt"
 	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_in_val_2_salt
+			var:info_dat_merchant_in_val_2_salt > 0
+			var:info_dat_merchant_in_scope_2_salt = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_in_2_salt"
+	}
 }
 merchant_out_3_salt = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_out_val_3_salt
-			var:info_dat_merchant_out_val_3_salt > 0
-			var:info_dat_merchant_out_scope_3_salt = { 
-				has_variable = trade_price_salt
-			}
-		}
-		localization_key = "merchant_out_3_salt"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_out_val_3_salt
@@ -1749,19 +1811,21 @@ merchant_out_3_salt = {
 		}
 		localization_key = "merchant_out_prov_3_salt"
 	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_out_val_3_salt
+			var:info_dat_merchant_out_val_3_salt > 0
+			var:info_dat_merchant_out_scope_3_salt = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_out_3_salt"
+	}
 }
 merchant_in_3_salt = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_in_val_3_salt
-			var:info_dat_merchant_in_val_3_salt > 0
-			var:info_dat_merchant_in_scope_3_salt = { 
-				has_variable = trade_price_salt
-			}
-		}
-		localization_key = "merchant_in_3_salt"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_in_val_3_salt
@@ -1772,19 +1836,21 @@ merchant_in_3_salt = {
 		}
 		localization_key = "merchant_in_prov_3_salt"
 	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_in_val_3_salt
+			var:info_dat_merchant_in_val_3_salt > 0
+			var:info_dat_merchant_in_scope_3_salt = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_in_3_salt"
+	}
 }
 merchant_out_4_salt = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_out_val_4_salt
-			var:info_dat_merchant_out_val_4_salt > 0
-			var:info_dat_merchant_out_scope_4_salt = { 
-				has_variable = trade_price_salt
-			}
-		}
-		localization_key = "merchant_out_4_salt"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_out_val_4_salt
@@ -1795,19 +1861,21 @@ merchant_out_4_salt = {
 		}
 		localization_key = "merchant_out_prov_4_salt"
 	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_out_val_4_salt
+			var:info_dat_merchant_out_val_4_salt > 0
+			var:info_dat_merchant_out_scope_4_salt = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_out_4_salt"
+	}
 }
 merchant_in_4_salt = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_in_val_4_salt
-			var:info_dat_merchant_in_val_4_salt > 0
-			var:info_dat_merchant_in_scope_4_salt = { 
-				has_variable = trade_price_salt
-			}
-		}
-		localization_key = "merchant_in_4_salt"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_in_val_4_salt
@@ -1818,19 +1886,21 @@ merchant_in_4_salt = {
 		}
 		localization_key = "merchant_in_prov_4_salt"
 	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_in_val_4_salt
+			var:info_dat_merchant_in_val_4_salt > 0
+			var:info_dat_merchant_in_scope_4_salt = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_in_4_salt"
+	}
 }
 merchant_out_0_mud = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_out_val_0_mud
-			var:info_dat_merchant_out_val_0_mud > 0
-			var:info_dat_merchant_out_scope_0_mud = { 
-				has_variable = trade_price_mud
-			}
-		}
-		localization_key = "merchant_out_0_mud"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_out_val_0_mud
@@ -1841,19 +1911,21 @@ merchant_out_0_mud = {
 		}
 		localization_key = "merchant_out_prov_0_mud"
 	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_out_val_0_mud
+			var:info_dat_merchant_out_val_0_mud > 0
+			var:info_dat_merchant_out_scope_0_mud = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_out_0_mud"
+	}
 }
 merchant_in_0_mud = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_in_val_0_mud
-			var:info_dat_merchant_in_val_0_mud > 0
-			var:info_dat_merchant_in_scope_0_mud = { 
-				has_variable = trade_price_mud
-			}
-		}
-		localization_key = "merchant_in_0_mud"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_in_val_0_mud
@@ -1864,19 +1936,21 @@ merchant_in_0_mud = {
 		}
 		localization_key = "merchant_in_prov_0_mud"
 	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_in_val_0_mud
+			var:info_dat_merchant_in_val_0_mud > 0
+			var:info_dat_merchant_in_scope_0_mud = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_in_0_mud"
+	}
 }
 merchant_out_1_mud = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_out_val_1_mud
-			var:info_dat_merchant_out_val_1_mud > 0
-			var:info_dat_merchant_out_scope_1_mud = { 
-				has_variable = trade_price_mud
-			}
-		}
-		localization_key = "merchant_out_1_mud"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_out_val_1_mud
@@ -1887,19 +1961,21 @@ merchant_out_1_mud = {
 		}
 		localization_key = "merchant_out_prov_1_mud"
 	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_out_val_1_mud
+			var:info_dat_merchant_out_val_1_mud > 0
+			var:info_dat_merchant_out_scope_1_mud = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_out_1_mud"
+	}
 }
 merchant_in_1_mud = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_in_val_1_mud
-			var:info_dat_merchant_in_val_1_mud > 0
-			var:info_dat_merchant_in_scope_1_mud = { 
-				has_variable = trade_price_mud
-			}
-		}
-		localization_key = "merchant_in_1_mud"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_in_val_1_mud
@@ -1910,19 +1986,21 @@ merchant_in_1_mud = {
 		}
 		localization_key = "merchant_in_prov_1_mud"
 	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_in_val_1_mud
+			var:info_dat_merchant_in_val_1_mud > 0
+			var:info_dat_merchant_in_scope_1_mud = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_in_1_mud"
+	}
 }
 merchant_out_2_mud = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_out_val_2_mud
-			var:info_dat_merchant_out_val_2_mud > 0
-			var:info_dat_merchant_out_scope_2_mud = { 
-				has_variable = trade_price_mud
-			}
-		}
-		localization_key = "merchant_out_2_mud"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_out_val_2_mud
@@ -1933,19 +2011,21 @@ merchant_out_2_mud = {
 		}
 		localization_key = "merchant_out_prov_2_mud"
 	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_out_val_2_mud
+			var:info_dat_merchant_out_val_2_mud > 0
+			var:info_dat_merchant_out_scope_2_mud = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_out_2_mud"
+	}
 }
 merchant_in_2_mud = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_in_val_2_mud
-			var:info_dat_merchant_in_val_2_mud > 0
-			var:info_dat_merchant_in_scope_2_mud = { 
-				has_variable = trade_price_mud
-			}
-		}
-		localization_key = "merchant_in_2_mud"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_in_val_2_mud
@@ -1956,19 +2036,21 @@ merchant_in_2_mud = {
 		}
 		localization_key = "merchant_in_prov_2_mud"
 	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_in_val_2_mud
+			var:info_dat_merchant_in_val_2_mud > 0
+			var:info_dat_merchant_in_scope_2_mud = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_in_2_mud"
+	}
 }
 merchant_out_3_mud = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_out_val_3_mud
-			var:info_dat_merchant_out_val_3_mud > 0
-			var:info_dat_merchant_out_scope_3_mud = { 
-				has_variable = trade_price_mud
-			}
-		}
-		localization_key = "merchant_out_3_mud"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_out_val_3_mud
@@ -1979,19 +2061,21 @@ merchant_out_3_mud = {
 		}
 		localization_key = "merchant_out_prov_3_mud"
 	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_out_val_3_mud
+			var:info_dat_merchant_out_val_3_mud > 0
+			var:info_dat_merchant_out_scope_3_mud = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_out_3_mud"
+	}
 }
 merchant_in_3_mud = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_in_val_3_mud
-			var:info_dat_merchant_in_val_3_mud > 0
-			var:info_dat_merchant_in_scope_3_mud = { 
-				has_variable = trade_price_mud
-			}
-		}
-		localization_key = "merchant_in_3_mud"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_in_val_3_mud
@@ -2002,19 +2086,21 @@ merchant_in_3_mud = {
 		}
 		localization_key = "merchant_in_prov_3_mud"
 	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_in_val_3_mud
+			var:info_dat_merchant_in_val_3_mud > 0
+			var:info_dat_merchant_in_scope_3_mud = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_in_3_mud"
+	}
 }
 merchant_out_4_mud = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_out_val_4_mud
-			var:info_dat_merchant_out_val_4_mud > 0
-			var:info_dat_merchant_out_scope_4_mud = { 
-				has_variable = trade_price_mud
-			}
-		}
-		localization_key = "merchant_out_4_mud"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_out_val_4_mud
@@ -2025,19 +2111,21 @@ merchant_out_4_mud = {
 		}
 		localization_key = "merchant_out_prov_4_mud"
 	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_out_val_4_mud
+			var:info_dat_merchant_out_val_4_mud > 0
+			var:info_dat_merchant_out_scope_4_mud = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_out_4_mud"
+	}
 }
 merchant_in_4_mud = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_in_val_4_mud
-			var:info_dat_merchant_in_val_4_mud > 0
-			var:info_dat_merchant_in_scope_4_mud = { 
-				has_variable = trade_price_mud
-			}
-		}
-		localization_key = "merchant_in_4_mud"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_in_val_4_mud
@@ -2048,19 +2136,21 @@ merchant_in_4_mud = {
 		}
 		localization_key = "merchant_in_prov_4_mud"
 	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_in_val_4_mud
+			var:info_dat_merchant_in_val_4_mud > 0
+			var:info_dat_merchant_in_scope_4_mud = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_in_4_mud"
+	}
 }
 merchant_out_0_fuel = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_out_val_0_fuel
-			var:info_dat_merchant_out_val_0_fuel > 0
-			var:info_dat_merchant_out_scope_0_fuel = { 
-				has_variable = trade_price_fuel
-			}
-		}
-		localization_key = "merchant_out_0_fuel"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_out_val_0_fuel
@@ -2071,19 +2161,21 @@ merchant_out_0_fuel = {
 		}
 		localization_key = "merchant_out_prov_0_fuel"
 	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_out_val_0_fuel
+			var:info_dat_merchant_out_val_0_fuel > 0
+			var:info_dat_merchant_out_scope_0_fuel = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_out_0_fuel"
+	}
 }
 merchant_in_0_fuel = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_in_val_0_fuel
-			var:info_dat_merchant_in_val_0_fuel > 0
-			var:info_dat_merchant_in_scope_0_fuel = { 
-				has_variable = trade_price_fuel
-			}
-		}
-		localization_key = "merchant_in_0_fuel"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_in_val_0_fuel
@@ -2094,19 +2186,21 @@ merchant_in_0_fuel = {
 		}
 		localization_key = "merchant_in_prov_0_fuel"
 	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_in_val_0_fuel
+			var:info_dat_merchant_in_val_0_fuel > 0
+			var:info_dat_merchant_in_scope_0_fuel = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_in_0_fuel"
+	}
 }
 merchant_out_1_fuel = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_out_val_1_fuel
-			var:info_dat_merchant_out_val_1_fuel > 0
-			var:info_dat_merchant_out_scope_1_fuel = { 
-				has_variable = trade_price_fuel
-			}
-		}
-		localization_key = "merchant_out_1_fuel"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_out_val_1_fuel
@@ -2117,19 +2211,21 @@ merchant_out_1_fuel = {
 		}
 		localization_key = "merchant_out_prov_1_fuel"
 	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_out_val_1_fuel
+			var:info_dat_merchant_out_val_1_fuel > 0
+			var:info_dat_merchant_out_scope_1_fuel = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_out_1_fuel"
+	}
 }
 merchant_in_1_fuel = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_in_val_1_fuel
-			var:info_dat_merchant_in_val_1_fuel > 0
-			var:info_dat_merchant_in_scope_1_fuel = { 
-				has_variable = trade_price_fuel
-			}
-		}
-		localization_key = "merchant_in_1_fuel"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_in_val_1_fuel
@@ -2140,19 +2236,21 @@ merchant_in_1_fuel = {
 		}
 		localization_key = "merchant_in_prov_1_fuel"
 	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_in_val_1_fuel
+			var:info_dat_merchant_in_val_1_fuel > 0
+			var:info_dat_merchant_in_scope_1_fuel = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_in_1_fuel"
+	}
 }
 merchant_out_2_fuel = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_out_val_2_fuel
-			var:info_dat_merchant_out_val_2_fuel > 0
-			var:info_dat_merchant_out_scope_2_fuel = { 
-				has_variable = trade_price_fuel
-			}
-		}
-		localization_key = "merchant_out_2_fuel"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_out_val_2_fuel
@@ -2163,19 +2261,21 @@ merchant_out_2_fuel = {
 		}
 		localization_key = "merchant_out_prov_2_fuel"
 	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_out_val_2_fuel
+			var:info_dat_merchant_out_val_2_fuel > 0
+			var:info_dat_merchant_out_scope_2_fuel = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_out_2_fuel"
+	}
 }
 merchant_in_2_fuel = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_in_val_2_fuel
-			var:info_dat_merchant_in_val_2_fuel > 0
-			var:info_dat_merchant_in_scope_2_fuel = { 
-				has_variable = trade_price_fuel
-			}
-		}
-		localization_key = "merchant_in_2_fuel"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_in_val_2_fuel
@@ -2186,19 +2286,21 @@ merchant_in_2_fuel = {
 		}
 		localization_key = "merchant_in_prov_2_fuel"
 	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_in_val_2_fuel
+			var:info_dat_merchant_in_val_2_fuel > 0
+			var:info_dat_merchant_in_scope_2_fuel = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_in_2_fuel"
+	}
 }
 merchant_out_3_fuel = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_out_val_3_fuel
-			var:info_dat_merchant_out_val_3_fuel > 0
-			var:info_dat_merchant_out_scope_3_fuel = { 
-				has_variable = trade_price_fuel
-			}
-		}
-		localization_key = "merchant_out_3_fuel"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_out_val_3_fuel
@@ -2209,19 +2311,21 @@ merchant_out_3_fuel = {
 		}
 		localization_key = "merchant_out_prov_3_fuel"
 	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_out_val_3_fuel
+			var:info_dat_merchant_out_val_3_fuel > 0
+			var:info_dat_merchant_out_scope_3_fuel = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_out_3_fuel"
+	}
 }
 merchant_in_3_fuel = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_in_val_3_fuel
-			var:info_dat_merchant_in_val_3_fuel > 0
-			var:info_dat_merchant_in_scope_3_fuel = { 
-				has_variable = trade_price_fuel
-			}
-		}
-		localization_key = "merchant_in_3_fuel"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_in_val_3_fuel
@@ -2232,19 +2336,21 @@ merchant_in_3_fuel = {
 		}
 		localization_key = "merchant_in_prov_3_fuel"
 	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_in_val_3_fuel
+			var:info_dat_merchant_in_val_3_fuel > 0
+			var:info_dat_merchant_in_scope_3_fuel = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_in_3_fuel"
+	}
 }
 merchant_out_4_fuel = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_out_val_4_fuel
-			var:info_dat_merchant_out_val_4_fuel > 0
-			var:info_dat_merchant_out_scope_4_fuel = { 
-				has_variable = trade_price_fuel
-			}
-		}
-		localization_key = "merchant_out_4_fuel"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_out_val_4_fuel
@@ -2255,19 +2361,21 @@ merchant_out_4_fuel = {
 		}
 		localization_key = "merchant_out_prov_4_fuel"
 	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_out_val_4_fuel
+			var:info_dat_merchant_out_val_4_fuel > 0
+			var:info_dat_merchant_out_scope_4_fuel = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_out_4_fuel"
+	}
 }
 merchant_in_4_fuel = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_in_val_4_fuel
-			var:info_dat_merchant_in_val_4_fuel > 0
-			var:info_dat_merchant_in_scope_4_fuel = { 
-				has_variable = trade_price_fuel
-			}
-		}
-		localization_key = "merchant_in_4_fuel"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_in_val_4_fuel
@@ -2278,19 +2386,21 @@ merchant_in_4_fuel = {
 		}
 		localization_key = "merchant_in_prov_4_fuel"
 	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_in_val_4_fuel
+			var:info_dat_merchant_in_val_4_fuel > 0
+			var:info_dat_merchant_in_scope_4_fuel = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_in_4_fuel"
+	}
 }
 merchant_out_0_fiber = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_out_val_0_fiber
-			var:info_dat_merchant_out_val_0_fiber > 0
-			var:info_dat_merchant_out_scope_0_fiber = { 
-				has_variable = trade_price_fiber
-			}
-		}
-		localization_key = "merchant_out_0_fiber"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_out_val_0_fiber
@@ -2301,19 +2411,21 @@ merchant_out_0_fiber = {
 		}
 		localization_key = "merchant_out_prov_0_fiber"
 	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_out_val_0_fiber
+			var:info_dat_merchant_out_val_0_fiber > 0
+			var:info_dat_merchant_out_scope_0_fiber = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_out_0_fiber"
+	}
 }
 merchant_in_0_fiber = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_in_val_0_fiber
-			var:info_dat_merchant_in_val_0_fiber > 0
-			var:info_dat_merchant_in_scope_0_fiber = { 
-				has_variable = trade_price_fiber
-			}
-		}
-		localization_key = "merchant_in_0_fiber"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_in_val_0_fiber
@@ -2324,19 +2436,21 @@ merchant_in_0_fiber = {
 		}
 		localization_key = "merchant_in_prov_0_fiber"
 	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_in_val_0_fiber
+			var:info_dat_merchant_in_val_0_fiber > 0
+			var:info_dat_merchant_in_scope_0_fiber = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_in_0_fiber"
+	}
 }
 merchant_out_1_fiber = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_out_val_1_fiber
-			var:info_dat_merchant_out_val_1_fiber > 0
-			var:info_dat_merchant_out_scope_1_fiber = { 
-				has_variable = trade_price_fiber
-			}
-		}
-		localization_key = "merchant_out_1_fiber"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_out_val_1_fiber
@@ -2347,19 +2461,21 @@ merchant_out_1_fiber = {
 		}
 		localization_key = "merchant_out_prov_1_fiber"
 	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_out_val_1_fiber
+			var:info_dat_merchant_out_val_1_fiber > 0
+			var:info_dat_merchant_out_scope_1_fiber = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_out_1_fiber"
+	}
 }
 merchant_in_1_fiber = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_in_val_1_fiber
-			var:info_dat_merchant_in_val_1_fiber > 0
-			var:info_dat_merchant_in_scope_1_fiber = { 
-				has_variable = trade_price_fiber
-			}
-		}
-		localization_key = "merchant_in_1_fiber"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_in_val_1_fiber
@@ -2370,19 +2486,21 @@ merchant_in_1_fiber = {
 		}
 		localization_key = "merchant_in_prov_1_fiber"
 	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_in_val_1_fiber
+			var:info_dat_merchant_in_val_1_fiber > 0
+			var:info_dat_merchant_in_scope_1_fiber = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_in_1_fiber"
+	}
 }
 merchant_out_2_fiber = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_out_val_2_fiber
-			var:info_dat_merchant_out_val_2_fiber > 0
-			var:info_dat_merchant_out_scope_2_fiber = { 
-				has_variable = trade_price_fiber
-			}
-		}
-		localization_key = "merchant_out_2_fiber"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_out_val_2_fiber
@@ -2393,19 +2511,21 @@ merchant_out_2_fiber = {
 		}
 		localization_key = "merchant_out_prov_2_fiber"
 	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_out_val_2_fiber
+			var:info_dat_merchant_out_val_2_fiber > 0
+			var:info_dat_merchant_out_scope_2_fiber = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_out_2_fiber"
+	}
 }
 merchant_in_2_fiber = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_in_val_2_fiber
-			var:info_dat_merchant_in_val_2_fiber > 0
-			var:info_dat_merchant_in_scope_2_fiber = { 
-				has_variable = trade_price_fiber
-			}
-		}
-		localization_key = "merchant_in_2_fiber"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_in_val_2_fiber
@@ -2416,19 +2536,21 @@ merchant_in_2_fiber = {
 		}
 		localization_key = "merchant_in_prov_2_fiber"
 	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_in_val_2_fiber
+			var:info_dat_merchant_in_val_2_fiber > 0
+			var:info_dat_merchant_in_scope_2_fiber = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_in_2_fiber"
+	}
 }
 merchant_out_3_fiber = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_out_val_3_fiber
-			var:info_dat_merchant_out_val_3_fiber > 0
-			var:info_dat_merchant_out_scope_3_fiber = { 
-				has_variable = trade_price_fiber
-			}
-		}
-		localization_key = "merchant_out_3_fiber"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_out_val_3_fiber
@@ -2439,19 +2561,21 @@ merchant_out_3_fiber = {
 		}
 		localization_key = "merchant_out_prov_3_fiber"
 	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_out_val_3_fiber
+			var:info_dat_merchant_out_val_3_fiber > 0
+			var:info_dat_merchant_out_scope_3_fiber = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_out_3_fiber"
+	}
 }
 merchant_in_3_fiber = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_in_val_3_fiber
-			var:info_dat_merchant_in_val_3_fiber > 0
-			var:info_dat_merchant_in_scope_3_fiber = { 
-				has_variable = trade_price_fiber
-			}
-		}
-		localization_key = "merchant_in_3_fiber"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_in_val_3_fiber
@@ -2462,19 +2586,21 @@ merchant_in_3_fiber = {
 		}
 		localization_key = "merchant_in_prov_3_fiber"
 	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_in_val_3_fiber
+			var:info_dat_merchant_in_val_3_fiber > 0
+			var:info_dat_merchant_in_scope_3_fiber = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_in_3_fiber"
+	}
 }
 merchant_out_4_fiber = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_out_val_4_fiber
-			var:info_dat_merchant_out_val_4_fiber > 0
-			var:info_dat_merchant_out_scope_4_fiber = { 
-				has_variable = trade_price_fiber
-			}
-		}
-		localization_key = "merchant_out_4_fiber"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_out_val_4_fiber
@@ -2485,19 +2611,21 @@ merchant_out_4_fiber = {
 		}
 		localization_key = "merchant_out_prov_4_fiber"
 	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_out_val_4_fiber
+			var:info_dat_merchant_out_val_4_fiber > 0
+			var:info_dat_merchant_out_scope_4_fiber = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_out_4_fiber"
+	}
 }
 merchant_in_4_fiber = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_in_val_4_fiber
-			var:info_dat_merchant_in_val_4_fiber > 0
-			var:info_dat_merchant_in_scope_4_fiber = { 
-				has_variable = trade_price_fiber
-			}
-		}
-		localization_key = "merchant_in_4_fiber"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_in_val_4_fiber
@@ -2508,19 +2636,21 @@ merchant_in_4_fiber = {
 		}
 		localization_key = "merchant_in_prov_4_fiber"
 	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_in_val_4_fiber
+			var:info_dat_merchant_in_val_4_fiber > 0
+			var:info_dat_merchant_in_scope_4_fiber = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_in_4_fiber"
+	}
 }
 merchant_out_0_timber = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_out_val_0_timber
-			var:info_dat_merchant_out_val_0_timber > 0
-			var:info_dat_merchant_out_scope_0_timber = { 
-				has_variable = trade_price_timber
-			}
-		}
-		localization_key = "merchant_out_0_timber"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_out_val_0_timber
@@ -2531,19 +2661,21 @@ merchant_out_0_timber = {
 		}
 		localization_key = "merchant_out_prov_0_timber"
 	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_out_val_0_timber
+			var:info_dat_merchant_out_val_0_timber > 0
+			var:info_dat_merchant_out_scope_0_timber = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_out_0_timber"
+	}
 }
 merchant_in_0_timber = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_in_val_0_timber
-			var:info_dat_merchant_in_val_0_timber > 0
-			var:info_dat_merchant_in_scope_0_timber = { 
-				has_variable = trade_price_timber
-			}
-		}
-		localization_key = "merchant_in_0_timber"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_in_val_0_timber
@@ -2554,19 +2686,21 @@ merchant_in_0_timber = {
 		}
 		localization_key = "merchant_in_prov_0_timber"
 	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_in_val_0_timber
+			var:info_dat_merchant_in_val_0_timber > 0
+			var:info_dat_merchant_in_scope_0_timber = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_in_0_timber"
+	}
 }
 merchant_out_1_timber = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_out_val_1_timber
-			var:info_dat_merchant_out_val_1_timber > 0
-			var:info_dat_merchant_out_scope_1_timber = { 
-				has_variable = trade_price_timber
-			}
-		}
-		localization_key = "merchant_out_1_timber"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_out_val_1_timber
@@ -2577,19 +2711,21 @@ merchant_out_1_timber = {
 		}
 		localization_key = "merchant_out_prov_1_timber"
 	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_out_val_1_timber
+			var:info_dat_merchant_out_val_1_timber > 0
+			var:info_dat_merchant_out_scope_1_timber = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_out_1_timber"
+	}
 }
 merchant_in_1_timber = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_in_val_1_timber
-			var:info_dat_merchant_in_val_1_timber > 0
-			var:info_dat_merchant_in_scope_1_timber = { 
-				has_variable = trade_price_timber
-			}
-		}
-		localization_key = "merchant_in_1_timber"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_in_val_1_timber
@@ -2600,19 +2736,21 @@ merchant_in_1_timber = {
 		}
 		localization_key = "merchant_in_prov_1_timber"
 	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_in_val_1_timber
+			var:info_dat_merchant_in_val_1_timber > 0
+			var:info_dat_merchant_in_scope_1_timber = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_in_1_timber"
+	}
 }
 merchant_out_2_timber = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_out_val_2_timber
-			var:info_dat_merchant_out_val_2_timber > 0
-			var:info_dat_merchant_out_scope_2_timber = { 
-				has_variable = trade_price_timber
-			}
-		}
-		localization_key = "merchant_out_2_timber"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_out_val_2_timber
@@ -2623,19 +2761,21 @@ merchant_out_2_timber = {
 		}
 		localization_key = "merchant_out_prov_2_timber"
 	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_out_val_2_timber
+			var:info_dat_merchant_out_val_2_timber > 0
+			var:info_dat_merchant_out_scope_2_timber = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_out_2_timber"
+	}
 }
 merchant_in_2_timber = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_in_val_2_timber
-			var:info_dat_merchant_in_val_2_timber > 0
-			var:info_dat_merchant_in_scope_2_timber = { 
-				has_variable = trade_price_timber
-			}
-		}
-		localization_key = "merchant_in_2_timber"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_in_val_2_timber
@@ -2646,19 +2786,21 @@ merchant_in_2_timber = {
 		}
 		localization_key = "merchant_in_prov_2_timber"
 	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_in_val_2_timber
+			var:info_dat_merchant_in_val_2_timber > 0
+			var:info_dat_merchant_in_scope_2_timber = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_in_2_timber"
+	}
 }
 merchant_out_3_timber = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_out_val_3_timber
-			var:info_dat_merchant_out_val_3_timber > 0
-			var:info_dat_merchant_out_scope_3_timber = { 
-				has_variable = trade_price_timber
-			}
-		}
-		localization_key = "merchant_out_3_timber"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_out_val_3_timber
@@ -2669,19 +2811,21 @@ merchant_out_3_timber = {
 		}
 		localization_key = "merchant_out_prov_3_timber"
 	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_out_val_3_timber
+			var:info_dat_merchant_out_val_3_timber > 0
+			var:info_dat_merchant_out_scope_3_timber = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_out_3_timber"
+	}
 }
 merchant_in_3_timber = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_in_val_3_timber
-			var:info_dat_merchant_in_val_3_timber > 0
-			var:info_dat_merchant_in_scope_3_timber = { 
-				has_variable = trade_price_timber
-			}
-		}
-		localization_key = "merchant_in_3_timber"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_in_val_3_timber
@@ -2692,19 +2836,21 @@ merchant_in_3_timber = {
 		}
 		localization_key = "merchant_in_prov_3_timber"
 	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_in_val_3_timber
+			var:info_dat_merchant_in_val_3_timber > 0
+			var:info_dat_merchant_in_scope_3_timber = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_in_3_timber"
+	}
 }
 merchant_out_4_timber = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_out_val_4_timber
-			var:info_dat_merchant_out_val_4_timber > 0
-			var:info_dat_merchant_out_scope_4_timber = { 
-				has_variable = trade_price_timber
-			}
-		}
-		localization_key = "merchant_out_4_timber"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_out_val_4_timber
@@ -2715,19 +2861,21 @@ merchant_out_4_timber = {
 		}
 		localization_key = "merchant_out_prov_4_timber"
 	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_out_val_4_timber
+			var:info_dat_merchant_out_val_4_timber > 0
+			var:info_dat_merchant_out_scope_4_timber = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_out_4_timber"
+	}
 }
 merchant_in_4_timber = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_in_val_4_timber
-			var:info_dat_merchant_in_val_4_timber > 0
-			var:info_dat_merchant_in_scope_4_timber = { 
-				has_variable = trade_price_timber
-			}
-		}
-		localization_key = "merchant_in_4_timber"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_in_val_4_timber
@@ -2738,19 +2886,21 @@ merchant_in_4_timber = {
 		}
 		localization_key = "merchant_in_prov_4_timber"
 	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_in_val_4_timber
+			var:info_dat_merchant_in_val_4_timber > 0
+			var:info_dat_merchant_in_scope_4_timber = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_in_4_timber"
+	}
 }
 merchant_out_0_metal = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_out_val_0_metal
-			var:info_dat_merchant_out_val_0_metal > 0
-			var:info_dat_merchant_out_scope_0_metal = { 
-				has_variable = trade_price_metal
-			}
-		}
-		localization_key = "merchant_out_0_metal"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_out_val_0_metal
@@ -2761,19 +2911,21 @@ merchant_out_0_metal = {
 		}
 		localization_key = "merchant_out_prov_0_metal"
 	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_out_val_0_metal
+			var:info_dat_merchant_out_val_0_metal > 0
+			var:info_dat_merchant_out_scope_0_metal = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_out_0_metal"
+	}
 }
 merchant_in_0_metal = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_in_val_0_metal
-			var:info_dat_merchant_in_val_0_metal > 0
-			var:info_dat_merchant_in_scope_0_metal = { 
-				has_variable = trade_price_metal
-			}
-		}
-		localization_key = "merchant_in_0_metal"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_in_val_0_metal
@@ -2784,19 +2936,21 @@ merchant_in_0_metal = {
 		}
 		localization_key = "merchant_in_prov_0_metal"
 	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_in_val_0_metal
+			var:info_dat_merchant_in_val_0_metal > 0
+			var:info_dat_merchant_in_scope_0_metal = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_in_0_metal"
+	}
 }
 merchant_out_1_metal = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_out_val_1_metal
-			var:info_dat_merchant_out_val_1_metal > 0
-			var:info_dat_merchant_out_scope_1_metal = { 
-				has_variable = trade_price_metal
-			}
-		}
-		localization_key = "merchant_out_1_metal"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_out_val_1_metal
@@ -2807,19 +2961,21 @@ merchant_out_1_metal = {
 		}
 		localization_key = "merchant_out_prov_1_metal"
 	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_out_val_1_metal
+			var:info_dat_merchant_out_val_1_metal > 0
+			var:info_dat_merchant_out_scope_1_metal = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_out_1_metal"
+	}
 }
 merchant_in_1_metal = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_in_val_1_metal
-			var:info_dat_merchant_in_val_1_metal > 0
-			var:info_dat_merchant_in_scope_1_metal = { 
-				has_variable = trade_price_metal
-			}
-		}
-		localization_key = "merchant_in_1_metal"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_in_val_1_metal
@@ -2830,19 +2986,21 @@ merchant_in_1_metal = {
 		}
 		localization_key = "merchant_in_prov_1_metal"
 	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_in_val_1_metal
+			var:info_dat_merchant_in_val_1_metal > 0
+			var:info_dat_merchant_in_scope_1_metal = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_in_1_metal"
+	}
 }
 merchant_out_2_metal = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_out_val_2_metal
-			var:info_dat_merchant_out_val_2_metal > 0
-			var:info_dat_merchant_out_scope_2_metal = { 
-				has_variable = trade_price_metal
-			}
-		}
-		localization_key = "merchant_out_2_metal"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_out_val_2_metal
@@ -2853,19 +3011,21 @@ merchant_out_2_metal = {
 		}
 		localization_key = "merchant_out_prov_2_metal"
 	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_out_val_2_metal
+			var:info_dat_merchant_out_val_2_metal > 0
+			var:info_dat_merchant_out_scope_2_metal = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_out_2_metal"
+	}
 }
 merchant_in_2_metal = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_in_val_2_metal
-			var:info_dat_merchant_in_val_2_metal > 0
-			var:info_dat_merchant_in_scope_2_metal = { 
-				has_variable = trade_price_metal
-			}
-		}
-		localization_key = "merchant_in_2_metal"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_in_val_2_metal
@@ -2876,19 +3036,21 @@ merchant_in_2_metal = {
 		}
 		localization_key = "merchant_in_prov_2_metal"
 	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_in_val_2_metal
+			var:info_dat_merchant_in_val_2_metal > 0
+			var:info_dat_merchant_in_scope_2_metal = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_in_2_metal"
+	}
 }
 merchant_out_3_metal = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_out_val_3_metal
-			var:info_dat_merchant_out_val_3_metal > 0
-			var:info_dat_merchant_out_scope_3_metal = { 
-				has_variable = trade_price_metal
-			}
-		}
-		localization_key = "merchant_out_3_metal"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_out_val_3_metal
@@ -2899,19 +3061,21 @@ merchant_out_3_metal = {
 		}
 		localization_key = "merchant_out_prov_3_metal"
 	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_out_val_3_metal
+			var:info_dat_merchant_out_val_3_metal > 0
+			var:info_dat_merchant_out_scope_3_metal = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_out_3_metal"
+	}
 }
 merchant_in_3_metal = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_in_val_3_metal
-			var:info_dat_merchant_in_val_3_metal > 0
-			var:info_dat_merchant_in_scope_3_metal = { 
-				has_variable = trade_price_metal
-			}
-		}
-		localization_key = "merchant_in_3_metal"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_in_val_3_metal
@@ -2922,19 +3086,21 @@ merchant_in_3_metal = {
 		}
 		localization_key = "merchant_in_prov_3_metal"
 	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_in_val_3_metal
+			var:info_dat_merchant_in_val_3_metal > 0
+			var:info_dat_merchant_in_scope_3_metal = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_in_3_metal"
+	}
 }
 merchant_out_4_metal = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_out_val_4_metal
-			var:info_dat_merchant_out_val_4_metal > 0
-			var:info_dat_merchant_out_scope_4_metal = { 
-				has_variable = trade_price_metal
-			}
-		}
-		localization_key = "merchant_out_4_metal"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_out_val_4_metal
@@ -2945,19 +3111,21 @@ merchant_out_4_metal = {
 		}
 		localization_key = "merchant_out_prov_4_metal"
 	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_out_val_4_metal
+			var:info_dat_merchant_out_val_4_metal > 0
+			var:info_dat_merchant_out_scope_4_metal = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_out_4_metal"
+	}
 }
 merchant_in_4_metal = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_in_val_4_metal
-			var:info_dat_merchant_in_val_4_metal > 0
-			var:info_dat_merchant_in_scope_4_metal = { 
-				has_variable = trade_price_metal
-			}
-		}
-		localization_key = "merchant_in_4_metal"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_in_val_4_metal
@@ -2968,19 +3136,21 @@ merchant_in_4_metal = {
 		}
 		localization_key = "merchant_in_prov_4_metal"
 	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_in_val_4_metal
+			var:info_dat_merchant_in_val_4_metal > 0
+			var:info_dat_merchant_in_scope_4_metal = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_in_4_metal"
+	}
 }
 merchant_out_0_exotics_w = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_out_val_0_exotics_w
-			var:info_dat_merchant_out_val_0_exotics_w > 0
-			var:info_dat_merchant_out_scope_0_exotics_w = { 
-				has_variable = trade_price_exotics_w
-			}
-		}
-		localization_key = "merchant_out_0_exotics_w"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_out_val_0_exotics_w
@@ -2991,19 +3161,21 @@ merchant_out_0_exotics_w = {
 		}
 		localization_key = "merchant_out_prov_0_exotics_w"
 	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_out_val_0_exotics_w
+			var:info_dat_merchant_out_val_0_exotics_w > 0
+			var:info_dat_merchant_out_scope_0_exotics_w = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_out_0_exotics_w"
+	}
 }
 merchant_in_0_exotics_w = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_in_val_0_exotics_w
-			var:info_dat_merchant_in_val_0_exotics_w > 0
-			var:info_dat_merchant_in_scope_0_exotics_w = { 
-				has_variable = trade_price_exotics_w
-			}
-		}
-		localization_key = "merchant_in_0_exotics_w"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_in_val_0_exotics_w
@@ -3014,19 +3186,21 @@ merchant_in_0_exotics_w = {
 		}
 		localization_key = "merchant_in_prov_0_exotics_w"
 	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_in_val_0_exotics_w
+			var:info_dat_merchant_in_val_0_exotics_w > 0
+			var:info_dat_merchant_in_scope_0_exotics_w = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_in_0_exotics_w"
+	}
 }
 merchant_out_1_exotics_w = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_out_val_1_exotics_w
-			var:info_dat_merchant_out_val_1_exotics_w > 0
-			var:info_dat_merchant_out_scope_1_exotics_w = { 
-				has_variable = trade_price_exotics_w
-			}
-		}
-		localization_key = "merchant_out_1_exotics_w"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_out_val_1_exotics_w
@@ -3037,19 +3211,21 @@ merchant_out_1_exotics_w = {
 		}
 		localization_key = "merchant_out_prov_1_exotics_w"
 	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_out_val_1_exotics_w
+			var:info_dat_merchant_out_val_1_exotics_w > 0
+			var:info_dat_merchant_out_scope_1_exotics_w = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_out_1_exotics_w"
+	}
 }
 merchant_in_1_exotics_w = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_in_val_1_exotics_w
-			var:info_dat_merchant_in_val_1_exotics_w > 0
-			var:info_dat_merchant_in_scope_1_exotics_w = { 
-				has_variable = trade_price_exotics_w
-			}
-		}
-		localization_key = "merchant_in_1_exotics_w"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_in_val_1_exotics_w
@@ -3060,19 +3236,21 @@ merchant_in_1_exotics_w = {
 		}
 		localization_key = "merchant_in_prov_1_exotics_w"
 	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_in_val_1_exotics_w
+			var:info_dat_merchant_in_val_1_exotics_w > 0
+			var:info_dat_merchant_in_scope_1_exotics_w = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_in_1_exotics_w"
+	}
 }
 merchant_out_2_exotics_w = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_out_val_2_exotics_w
-			var:info_dat_merchant_out_val_2_exotics_w > 0
-			var:info_dat_merchant_out_scope_2_exotics_w = { 
-				has_variable = trade_price_exotics_w
-			}
-		}
-		localization_key = "merchant_out_2_exotics_w"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_out_val_2_exotics_w
@@ -3083,19 +3261,21 @@ merchant_out_2_exotics_w = {
 		}
 		localization_key = "merchant_out_prov_2_exotics_w"
 	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_out_val_2_exotics_w
+			var:info_dat_merchant_out_val_2_exotics_w > 0
+			var:info_dat_merchant_out_scope_2_exotics_w = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_out_2_exotics_w"
+	}
 }
 merchant_in_2_exotics_w = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_in_val_2_exotics_w
-			var:info_dat_merchant_in_val_2_exotics_w > 0
-			var:info_dat_merchant_in_scope_2_exotics_w = { 
-				has_variable = trade_price_exotics_w
-			}
-		}
-		localization_key = "merchant_in_2_exotics_w"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_in_val_2_exotics_w
@@ -3106,19 +3286,21 @@ merchant_in_2_exotics_w = {
 		}
 		localization_key = "merchant_in_prov_2_exotics_w"
 	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_in_val_2_exotics_w
+			var:info_dat_merchant_in_val_2_exotics_w > 0
+			var:info_dat_merchant_in_scope_2_exotics_w = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_in_2_exotics_w"
+	}
 }
 merchant_out_3_exotics_w = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_out_val_3_exotics_w
-			var:info_dat_merchant_out_val_3_exotics_w > 0
-			var:info_dat_merchant_out_scope_3_exotics_w = { 
-				has_variable = trade_price_exotics_w
-			}
-		}
-		localization_key = "merchant_out_3_exotics_w"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_out_val_3_exotics_w
@@ -3129,19 +3311,21 @@ merchant_out_3_exotics_w = {
 		}
 		localization_key = "merchant_out_prov_3_exotics_w"
 	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_out_val_3_exotics_w
+			var:info_dat_merchant_out_val_3_exotics_w > 0
+			var:info_dat_merchant_out_scope_3_exotics_w = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_out_3_exotics_w"
+	}
 }
 merchant_in_3_exotics_w = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_in_val_3_exotics_w
-			var:info_dat_merchant_in_val_3_exotics_w > 0
-			var:info_dat_merchant_in_scope_3_exotics_w = { 
-				has_variable = trade_price_exotics_w
-			}
-		}
-		localization_key = "merchant_in_3_exotics_w"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_in_val_3_exotics_w
@@ -3152,19 +3336,21 @@ merchant_in_3_exotics_w = {
 		}
 		localization_key = "merchant_in_prov_3_exotics_w"
 	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_in_val_3_exotics_w
+			var:info_dat_merchant_in_val_3_exotics_w > 0
+			var:info_dat_merchant_in_scope_3_exotics_w = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_in_3_exotics_w"
+	}
 }
 merchant_out_4_exotics_w = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_out_val_4_exotics_w
-			var:info_dat_merchant_out_val_4_exotics_w > 0
-			var:info_dat_merchant_out_scope_4_exotics_w = { 
-				has_variable = trade_price_exotics_w
-			}
-		}
-		localization_key = "merchant_out_4_exotics_w"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_out_val_4_exotics_w
@@ -3175,19 +3361,21 @@ merchant_out_4_exotics_w = {
 		}
 		localization_key = "merchant_out_prov_4_exotics_w"
 	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_out_val_4_exotics_w
+			var:info_dat_merchant_out_val_4_exotics_w > 0
+			var:info_dat_merchant_out_scope_4_exotics_w = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_out_4_exotics_w"
+	}
 }
 merchant_in_4_exotics_w = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_in_val_4_exotics_w
-			var:info_dat_merchant_in_val_4_exotics_w > 0
-			var:info_dat_merchant_in_scope_4_exotics_w = { 
-				has_variable = trade_price_exotics_w
-			}
-		}
-		localization_key = "merchant_in_4_exotics_w"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_in_val_4_exotics_w
@@ -3198,19 +3386,21 @@ merchant_in_4_exotics_w = {
 		}
 		localization_key = "merchant_in_prov_4_exotics_w"
 	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_in_val_4_exotics_w
+			var:info_dat_merchant_in_val_4_exotics_w > 0
+			var:info_dat_merchant_in_scope_4_exotics_w = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_in_4_exotics_w"
+	}
 }
 merchant_out_0_exotics_e = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_out_val_0_exotics_e
-			var:info_dat_merchant_out_val_0_exotics_e > 0
-			var:info_dat_merchant_out_scope_0_exotics_e = { 
-				has_variable = trade_price_exotics_e
-			}
-		}
-		localization_key = "merchant_out_0_exotics_e"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_out_val_0_exotics_e
@@ -3221,19 +3411,21 @@ merchant_out_0_exotics_e = {
 		}
 		localization_key = "merchant_out_prov_0_exotics_e"
 	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_out_val_0_exotics_e
+			var:info_dat_merchant_out_val_0_exotics_e > 0
+			var:info_dat_merchant_out_scope_0_exotics_e = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_out_0_exotics_e"
+	}
 }
 merchant_in_0_exotics_e = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_in_val_0_exotics_e
-			var:info_dat_merchant_in_val_0_exotics_e > 0
-			var:info_dat_merchant_in_scope_0_exotics_e = { 
-				has_variable = trade_price_exotics_e
-			}
-		}
-		localization_key = "merchant_in_0_exotics_e"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_in_val_0_exotics_e
@@ -3244,19 +3436,21 @@ merchant_in_0_exotics_e = {
 		}
 		localization_key = "merchant_in_prov_0_exotics_e"
 	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_in_val_0_exotics_e
+			var:info_dat_merchant_in_val_0_exotics_e > 0
+			var:info_dat_merchant_in_scope_0_exotics_e = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_in_0_exotics_e"
+	}
 }
 merchant_out_1_exotics_e = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_out_val_1_exotics_e
-			var:info_dat_merchant_out_val_1_exotics_e > 0
-			var:info_dat_merchant_out_scope_1_exotics_e = { 
-				has_variable = trade_price_exotics_e
-			}
-		}
-		localization_key = "merchant_out_1_exotics_e"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_out_val_1_exotics_e
@@ -3267,19 +3461,21 @@ merchant_out_1_exotics_e = {
 		}
 		localization_key = "merchant_out_prov_1_exotics_e"
 	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_out_val_1_exotics_e
+			var:info_dat_merchant_out_val_1_exotics_e > 0
+			var:info_dat_merchant_out_scope_1_exotics_e = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_out_1_exotics_e"
+	}
 }
 merchant_in_1_exotics_e = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_in_val_1_exotics_e
-			var:info_dat_merchant_in_val_1_exotics_e > 0
-			var:info_dat_merchant_in_scope_1_exotics_e = { 
-				has_variable = trade_price_exotics_e
-			}
-		}
-		localization_key = "merchant_in_1_exotics_e"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_in_val_1_exotics_e
@@ -3290,19 +3486,21 @@ merchant_in_1_exotics_e = {
 		}
 		localization_key = "merchant_in_prov_1_exotics_e"
 	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_in_val_1_exotics_e
+			var:info_dat_merchant_in_val_1_exotics_e > 0
+			var:info_dat_merchant_in_scope_1_exotics_e = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_in_1_exotics_e"
+	}
 }
 merchant_out_2_exotics_e = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_out_val_2_exotics_e
-			var:info_dat_merchant_out_val_2_exotics_e > 0
-			var:info_dat_merchant_out_scope_2_exotics_e = { 
-				has_variable = trade_price_exotics_e
-			}
-		}
-		localization_key = "merchant_out_2_exotics_e"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_out_val_2_exotics_e
@@ -3313,19 +3511,21 @@ merchant_out_2_exotics_e = {
 		}
 		localization_key = "merchant_out_prov_2_exotics_e"
 	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_out_val_2_exotics_e
+			var:info_dat_merchant_out_val_2_exotics_e > 0
+			var:info_dat_merchant_out_scope_2_exotics_e = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_out_2_exotics_e"
+	}
 }
 merchant_in_2_exotics_e = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_in_val_2_exotics_e
-			var:info_dat_merchant_in_val_2_exotics_e > 0
-			var:info_dat_merchant_in_scope_2_exotics_e = { 
-				has_variable = trade_price_exotics_e
-			}
-		}
-		localization_key = "merchant_in_2_exotics_e"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_in_val_2_exotics_e
@@ -3336,19 +3536,21 @@ merchant_in_2_exotics_e = {
 		}
 		localization_key = "merchant_in_prov_2_exotics_e"
 	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_in_val_2_exotics_e
+			var:info_dat_merchant_in_val_2_exotics_e > 0
+			var:info_dat_merchant_in_scope_2_exotics_e = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_in_2_exotics_e"
+	}
 }
 merchant_out_3_exotics_e = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_out_val_3_exotics_e
-			var:info_dat_merchant_out_val_3_exotics_e > 0
-			var:info_dat_merchant_out_scope_3_exotics_e = { 
-				has_variable = trade_price_exotics_e
-			}
-		}
-		localization_key = "merchant_out_3_exotics_e"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_out_val_3_exotics_e
@@ -3359,19 +3561,21 @@ merchant_out_3_exotics_e = {
 		}
 		localization_key = "merchant_out_prov_3_exotics_e"
 	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_out_val_3_exotics_e
+			var:info_dat_merchant_out_val_3_exotics_e > 0
+			var:info_dat_merchant_out_scope_3_exotics_e = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_out_3_exotics_e"
+	}
 }
 merchant_in_3_exotics_e = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_in_val_3_exotics_e
-			var:info_dat_merchant_in_val_3_exotics_e > 0
-			var:info_dat_merchant_in_scope_3_exotics_e = { 
-				has_variable = trade_price_exotics_e
-			}
-		}
-		localization_key = "merchant_in_3_exotics_e"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_in_val_3_exotics_e
@@ -3382,19 +3586,21 @@ merchant_in_3_exotics_e = {
 		}
 		localization_key = "merchant_in_prov_3_exotics_e"
 	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_in_val_3_exotics_e
+			var:info_dat_merchant_in_val_3_exotics_e > 0
+			var:info_dat_merchant_in_scope_3_exotics_e = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_in_3_exotics_e"
+	}
 }
 merchant_out_4_exotics_e = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_out_val_4_exotics_e
-			var:info_dat_merchant_out_val_4_exotics_e > 0
-			var:info_dat_merchant_out_scope_4_exotics_e = { 
-				has_variable = trade_price_exotics_e
-			}
-		}
-		localization_key = "merchant_out_4_exotics_e"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_out_val_4_exotics_e
@@ -3405,19 +3611,21 @@ merchant_out_4_exotics_e = {
 		}
 		localization_key = "merchant_out_prov_4_exotics_e"
 	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_out_val_4_exotics_e
+			var:info_dat_merchant_out_val_4_exotics_e > 0
+			var:info_dat_merchant_out_scope_4_exotics_e = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_out_4_exotics_e"
+	}
 }
 merchant_in_4_exotics_e = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_in_val_4_exotics_e
-			var:info_dat_merchant_in_val_4_exotics_e > 0
-			var:info_dat_merchant_in_scope_4_exotics_e = { 
-				has_variable = trade_price_exotics_e
-			}
-		}
-		localization_key = "merchant_in_4_exotics_e"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_in_val_4_exotics_e
@@ -3428,19 +3636,21 @@ merchant_in_4_exotics_e = {
 		}
 		localization_key = "merchant_in_prov_4_exotics_e"
 	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_in_val_4_exotics_e
+			var:info_dat_merchant_in_val_4_exotics_e > 0
+			var:info_dat_merchant_in_scope_4_exotics_e = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_in_4_exotics_e"
+	}
 }
 merchant_out_0_exotics_g = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_out_val_0_exotics_g
-			var:info_dat_merchant_out_val_0_exotics_g > 0
-			var:info_dat_merchant_out_scope_0_exotics_g = { 
-				has_variable = trade_price_exotics_g
-			}
-		}
-		localization_key = "merchant_out_0_exotics_g"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_out_val_0_exotics_g
@@ -3451,19 +3661,21 @@ merchant_out_0_exotics_g = {
 		}
 		localization_key = "merchant_out_prov_0_exotics_g"
 	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_out_val_0_exotics_g
+			var:info_dat_merchant_out_val_0_exotics_g > 0
+			var:info_dat_merchant_out_scope_0_exotics_g = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_out_0_exotics_g"
+	}
 }
 merchant_in_0_exotics_g = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_in_val_0_exotics_g
-			var:info_dat_merchant_in_val_0_exotics_g > 0
-			var:info_dat_merchant_in_scope_0_exotics_g = { 
-				has_variable = trade_price_exotics_g
-			}
-		}
-		localization_key = "merchant_in_0_exotics_g"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_in_val_0_exotics_g
@@ -3474,19 +3686,21 @@ merchant_in_0_exotics_g = {
 		}
 		localization_key = "merchant_in_prov_0_exotics_g"
 	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_in_val_0_exotics_g
+			var:info_dat_merchant_in_val_0_exotics_g > 0
+			var:info_dat_merchant_in_scope_0_exotics_g = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_in_0_exotics_g"
+	}
 }
 merchant_out_1_exotics_g = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_out_val_1_exotics_g
-			var:info_dat_merchant_out_val_1_exotics_g > 0
-			var:info_dat_merchant_out_scope_1_exotics_g = { 
-				has_variable = trade_price_exotics_g
-			}
-		}
-		localization_key = "merchant_out_1_exotics_g"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_out_val_1_exotics_g
@@ -3497,19 +3711,21 @@ merchant_out_1_exotics_g = {
 		}
 		localization_key = "merchant_out_prov_1_exotics_g"
 	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_out_val_1_exotics_g
+			var:info_dat_merchant_out_val_1_exotics_g > 0
+			var:info_dat_merchant_out_scope_1_exotics_g = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_out_1_exotics_g"
+	}
 }
 merchant_in_1_exotics_g = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_in_val_1_exotics_g
-			var:info_dat_merchant_in_val_1_exotics_g > 0
-			var:info_dat_merchant_in_scope_1_exotics_g = { 
-				has_variable = trade_price_exotics_g
-			}
-		}
-		localization_key = "merchant_in_1_exotics_g"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_in_val_1_exotics_g
@@ -3520,19 +3736,21 @@ merchant_in_1_exotics_g = {
 		}
 		localization_key = "merchant_in_prov_1_exotics_g"
 	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_in_val_1_exotics_g
+			var:info_dat_merchant_in_val_1_exotics_g > 0
+			var:info_dat_merchant_in_scope_1_exotics_g = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_in_1_exotics_g"
+	}
 }
 merchant_out_2_exotics_g = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_out_val_2_exotics_g
-			var:info_dat_merchant_out_val_2_exotics_g > 0
-			var:info_dat_merchant_out_scope_2_exotics_g = { 
-				has_variable = trade_price_exotics_g
-			}
-		}
-		localization_key = "merchant_out_2_exotics_g"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_out_val_2_exotics_g
@@ -3543,19 +3761,21 @@ merchant_out_2_exotics_g = {
 		}
 		localization_key = "merchant_out_prov_2_exotics_g"
 	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_out_val_2_exotics_g
+			var:info_dat_merchant_out_val_2_exotics_g > 0
+			var:info_dat_merchant_out_scope_2_exotics_g = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_out_2_exotics_g"
+	}
 }
 merchant_in_2_exotics_g = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_in_val_2_exotics_g
-			var:info_dat_merchant_in_val_2_exotics_g > 0
-			var:info_dat_merchant_in_scope_2_exotics_g = { 
-				has_variable = trade_price_exotics_g
-			}
-		}
-		localization_key = "merchant_in_2_exotics_g"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_in_val_2_exotics_g
@@ -3566,19 +3786,21 @@ merchant_in_2_exotics_g = {
 		}
 		localization_key = "merchant_in_prov_2_exotics_g"
 	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_in_val_2_exotics_g
+			var:info_dat_merchant_in_val_2_exotics_g > 0
+			var:info_dat_merchant_in_scope_2_exotics_g = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_in_2_exotics_g"
+	}
 }
 merchant_out_3_exotics_g = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_out_val_3_exotics_g
-			var:info_dat_merchant_out_val_3_exotics_g > 0
-			var:info_dat_merchant_out_scope_3_exotics_g = { 
-				has_variable = trade_price_exotics_g
-			}
-		}
-		localization_key = "merchant_out_3_exotics_g"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_out_val_3_exotics_g
@@ -3589,19 +3811,21 @@ merchant_out_3_exotics_g = {
 		}
 		localization_key = "merchant_out_prov_3_exotics_g"
 	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_out_val_3_exotics_g
+			var:info_dat_merchant_out_val_3_exotics_g > 0
+			var:info_dat_merchant_out_scope_3_exotics_g = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_out_3_exotics_g"
+	}
 }
 merchant_in_3_exotics_g = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_in_val_3_exotics_g
-			var:info_dat_merchant_in_val_3_exotics_g > 0
-			var:info_dat_merchant_in_scope_3_exotics_g = { 
-				has_variable = trade_price_exotics_g
-			}
-		}
-		localization_key = "merchant_in_3_exotics_g"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_in_val_3_exotics_g
@@ -3612,19 +3836,21 @@ merchant_in_3_exotics_g = {
 		}
 		localization_key = "merchant_in_prov_3_exotics_g"
 	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_in_val_3_exotics_g
+			var:info_dat_merchant_in_val_3_exotics_g > 0
+			var:info_dat_merchant_in_scope_3_exotics_g = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_in_3_exotics_g"
+	}
 }
 merchant_out_4_exotics_g = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_out_val_4_exotics_g
-			var:info_dat_merchant_out_val_4_exotics_g > 0
-			var:info_dat_merchant_out_scope_4_exotics_g = { 
-				has_variable = trade_price_exotics_g
-			}
-		}
-		localization_key = "merchant_out_4_exotics_g"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_out_val_4_exotics_g
@@ -3635,19 +3861,21 @@ merchant_out_4_exotics_g = {
 		}
 		localization_key = "merchant_out_prov_4_exotics_g"
 	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_out_val_4_exotics_g
+			var:info_dat_merchant_out_val_4_exotics_g > 0
+			var:info_dat_merchant_out_scope_4_exotics_g = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_out_4_exotics_g"
+	}
 }
 merchant_in_4_exotics_g = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_in_val_4_exotics_g
-			var:info_dat_merchant_in_val_4_exotics_g > 0
-			var:info_dat_merchant_in_scope_4_exotics_g = { 
-				has_variable = trade_price_exotics_g
-			}
-		}
-		localization_key = "merchant_in_4_exotics_g"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_in_val_4_exotics_g
@@ -3658,19 +3886,21 @@ merchant_in_4_exotics_g = {
 		}
 		localization_key = "merchant_in_prov_4_exotics_g"
 	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_in_val_4_exotics_g
+			var:info_dat_merchant_in_val_4_exotics_g > 0
+			var:info_dat_merchant_in_scope_4_exotics_g = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_in_4_exotics_g"
+	}
 }
 merchant_out_0_textile = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_out_val_0_textile
-			var:info_dat_merchant_out_val_0_textile > 0
-			var:info_dat_merchant_out_scope_0_textile = { 
-				has_variable = trade_price_textile
-			}
-		}
-		localization_key = "merchant_out_0_textile"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_out_val_0_textile
@@ -3681,19 +3911,21 @@ merchant_out_0_textile = {
 		}
 		localization_key = "merchant_out_prov_0_textile"
 	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_out_val_0_textile
+			var:info_dat_merchant_out_val_0_textile > 0
+			var:info_dat_merchant_out_scope_0_textile = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_out_0_textile"
+	}
 }
 merchant_in_0_textile = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_in_val_0_textile
-			var:info_dat_merchant_in_val_0_textile > 0
-			var:info_dat_merchant_in_scope_0_textile = { 
-				has_variable = trade_price_textile
-			}
-		}
-		localization_key = "merchant_in_0_textile"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_in_val_0_textile
@@ -3704,19 +3936,21 @@ merchant_in_0_textile = {
 		}
 		localization_key = "merchant_in_prov_0_textile"
 	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_in_val_0_textile
+			var:info_dat_merchant_in_val_0_textile > 0
+			var:info_dat_merchant_in_scope_0_textile = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_in_0_textile"
+	}
 }
 merchant_out_1_textile = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_out_val_1_textile
-			var:info_dat_merchant_out_val_1_textile > 0
-			var:info_dat_merchant_out_scope_1_textile = { 
-				has_variable = trade_price_textile
-			}
-		}
-		localization_key = "merchant_out_1_textile"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_out_val_1_textile
@@ -3727,19 +3961,21 @@ merchant_out_1_textile = {
 		}
 		localization_key = "merchant_out_prov_1_textile"
 	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_out_val_1_textile
+			var:info_dat_merchant_out_val_1_textile > 0
+			var:info_dat_merchant_out_scope_1_textile = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_out_1_textile"
+	}
 }
 merchant_in_1_textile = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_in_val_1_textile
-			var:info_dat_merchant_in_val_1_textile > 0
-			var:info_dat_merchant_in_scope_1_textile = { 
-				has_variable = trade_price_textile
-			}
-		}
-		localization_key = "merchant_in_1_textile"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_in_val_1_textile
@@ -3750,19 +3986,21 @@ merchant_in_1_textile = {
 		}
 		localization_key = "merchant_in_prov_1_textile"
 	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_in_val_1_textile
+			var:info_dat_merchant_in_val_1_textile > 0
+			var:info_dat_merchant_in_scope_1_textile = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_in_1_textile"
+	}
 }
 merchant_out_2_textile = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_out_val_2_textile
-			var:info_dat_merchant_out_val_2_textile > 0
-			var:info_dat_merchant_out_scope_2_textile = { 
-				has_variable = trade_price_textile
-			}
-		}
-		localization_key = "merchant_out_2_textile"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_out_val_2_textile
@@ -3773,19 +4011,21 @@ merchant_out_2_textile = {
 		}
 		localization_key = "merchant_out_prov_2_textile"
 	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_out_val_2_textile
+			var:info_dat_merchant_out_val_2_textile > 0
+			var:info_dat_merchant_out_scope_2_textile = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_out_2_textile"
+	}
 }
 merchant_in_2_textile = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_in_val_2_textile
-			var:info_dat_merchant_in_val_2_textile > 0
-			var:info_dat_merchant_in_scope_2_textile = { 
-				has_variable = trade_price_textile
-			}
-		}
-		localization_key = "merchant_in_2_textile"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_in_val_2_textile
@@ -3796,19 +4036,21 @@ merchant_in_2_textile = {
 		}
 		localization_key = "merchant_in_prov_2_textile"
 	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_in_val_2_textile
+			var:info_dat_merchant_in_val_2_textile > 0
+			var:info_dat_merchant_in_scope_2_textile = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_in_2_textile"
+	}
 }
 merchant_out_3_textile = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_out_val_3_textile
-			var:info_dat_merchant_out_val_3_textile > 0
-			var:info_dat_merchant_out_scope_3_textile = { 
-				has_variable = trade_price_textile
-			}
-		}
-		localization_key = "merchant_out_3_textile"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_out_val_3_textile
@@ -3819,19 +4061,21 @@ merchant_out_3_textile = {
 		}
 		localization_key = "merchant_out_prov_3_textile"
 	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_out_val_3_textile
+			var:info_dat_merchant_out_val_3_textile > 0
+			var:info_dat_merchant_out_scope_3_textile = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_out_3_textile"
+	}
 }
 merchant_in_3_textile = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_in_val_3_textile
-			var:info_dat_merchant_in_val_3_textile > 0
-			var:info_dat_merchant_in_scope_3_textile = { 
-				has_variable = trade_price_textile
-			}
-		}
-		localization_key = "merchant_in_3_textile"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_in_val_3_textile
@@ -3842,19 +4086,21 @@ merchant_in_3_textile = {
 		}
 		localization_key = "merchant_in_prov_3_textile"
 	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_in_val_3_textile
+			var:info_dat_merchant_in_val_3_textile > 0
+			var:info_dat_merchant_in_scope_3_textile = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_in_3_textile"
+	}
 }
 merchant_out_4_textile = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_out_val_4_textile
-			var:info_dat_merchant_out_val_4_textile > 0
-			var:info_dat_merchant_out_scope_4_textile = { 
-				has_variable = trade_price_textile
-			}
-		}
-		localization_key = "merchant_out_4_textile"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_out_val_4_textile
@@ -3865,19 +4111,21 @@ merchant_out_4_textile = {
 		}
 		localization_key = "merchant_out_prov_4_textile"
 	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_out_val_4_textile
+			var:info_dat_merchant_out_val_4_textile > 0
+			var:info_dat_merchant_out_scope_4_textile = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_out_4_textile"
+	}
 }
 merchant_in_4_textile = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_in_val_4_textile
-			var:info_dat_merchant_in_val_4_textile > 0
-			var:info_dat_merchant_in_scope_4_textile = { 
-				has_variable = trade_price_textile
-			}
-		}
-		localization_key = "merchant_in_4_textile"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_in_val_4_textile
@@ -3888,19 +4136,21 @@ merchant_in_4_textile = {
 		}
 		localization_key = "merchant_in_prov_4_textile"
 	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_in_val_4_textile
+			var:info_dat_merchant_in_val_4_textile > 0
+			var:info_dat_merchant_in_scope_4_textile = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_in_4_textile"
+	}
 }
 merchant_out_0_pottery = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_out_val_0_pottery
-			var:info_dat_merchant_out_val_0_pottery > 0
-			var:info_dat_merchant_out_scope_0_pottery = { 
-				has_variable = trade_price_pottery
-			}
-		}
-		localization_key = "merchant_out_0_pottery"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_out_val_0_pottery
@@ -3911,19 +4161,21 @@ merchant_out_0_pottery = {
 		}
 		localization_key = "merchant_out_prov_0_pottery"
 	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_out_val_0_pottery
+			var:info_dat_merchant_out_val_0_pottery > 0
+			var:info_dat_merchant_out_scope_0_pottery = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_out_0_pottery"
+	}
 }
 merchant_in_0_pottery = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_in_val_0_pottery
-			var:info_dat_merchant_in_val_0_pottery > 0
-			var:info_dat_merchant_in_scope_0_pottery = { 
-				has_variable = trade_price_pottery
-			}
-		}
-		localization_key = "merchant_in_0_pottery"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_in_val_0_pottery
@@ -3934,19 +4186,21 @@ merchant_in_0_pottery = {
 		}
 		localization_key = "merchant_in_prov_0_pottery"
 	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_in_val_0_pottery
+			var:info_dat_merchant_in_val_0_pottery > 0
+			var:info_dat_merchant_in_scope_0_pottery = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_in_0_pottery"
+	}
 }
 merchant_out_1_pottery = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_out_val_1_pottery
-			var:info_dat_merchant_out_val_1_pottery > 0
-			var:info_dat_merchant_out_scope_1_pottery = { 
-				has_variable = trade_price_pottery
-			}
-		}
-		localization_key = "merchant_out_1_pottery"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_out_val_1_pottery
@@ -3957,19 +4211,21 @@ merchant_out_1_pottery = {
 		}
 		localization_key = "merchant_out_prov_1_pottery"
 	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_out_val_1_pottery
+			var:info_dat_merchant_out_val_1_pottery > 0
+			var:info_dat_merchant_out_scope_1_pottery = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_out_1_pottery"
+	}
 }
 merchant_in_1_pottery = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_in_val_1_pottery
-			var:info_dat_merchant_in_val_1_pottery > 0
-			var:info_dat_merchant_in_scope_1_pottery = { 
-				has_variable = trade_price_pottery
-			}
-		}
-		localization_key = "merchant_in_1_pottery"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_in_val_1_pottery
@@ -3980,19 +4236,21 @@ merchant_in_1_pottery = {
 		}
 		localization_key = "merchant_in_prov_1_pottery"
 	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_in_val_1_pottery
+			var:info_dat_merchant_in_val_1_pottery > 0
+			var:info_dat_merchant_in_scope_1_pottery = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_in_1_pottery"
+	}
 }
 merchant_out_2_pottery = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_out_val_2_pottery
-			var:info_dat_merchant_out_val_2_pottery > 0
-			var:info_dat_merchant_out_scope_2_pottery = { 
-				has_variable = trade_price_pottery
-			}
-		}
-		localization_key = "merchant_out_2_pottery"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_out_val_2_pottery
@@ -4003,19 +4261,21 @@ merchant_out_2_pottery = {
 		}
 		localization_key = "merchant_out_prov_2_pottery"
 	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_out_val_2_pottery
+			var:info_dat_merchant_out_val_2_pottery > 0
+			var:info_dat_merchant_out_scope_2_pottery = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_out_2_pottery"
+	}
 }
 merchant_in_2_pottery = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_in_val_2_pottery
-			var:info_dat_merchant_in_val_2_pottery > 0
-			var:info_dat_merchant_in_scope_2_pottery = { 
-				has_variable = trade_price_pottery
-			}
-		}
-		localization_key = "merchant_in_2_pottery"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_in_val_2_pottery
@@ -4026,19 +4286,21 @@ merchant_in_2_pottery = {
 		}
 		localization_key = "merchant_in_prov_2_pottery"
 	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_in_val_2_pottery
+			var:info_dat_merchant_in_val_2_pottery > 0
+			var:info_dat_merchant_in_scope_2_pottery = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_in_2_pottery"
+	}
 }
 merchant_out_3_pottery = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_out_val_3_pottery
-			var:info_dat_merchant_out_val_3_pottery > 0
-			var:info_dat_merchant_out_scope_3_pottery = { 
-				has_variable = trade_price_pottery
-			}
-		}
-		localization_key = "merchant_out_3_pottery"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_out_val_3_pottery
@@ -4049,19 +4311,21 @@ merchant_out_3_pottery = {
 		}
 		localization_key = "merchant_out_prov_3_pottery"
 	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_out_val_3_pottery
+			var:info_dat_merchant_out_val_3_pottery > 0
+			var:info_dat_merchant_out_scope_3_pottery = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_out_3_pottery"
+	}
 }
 merchant_in_3_pottery = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_in_val_3_pottery
-			var:info_dat_merchant_in_val_3_pottery > 0
-			var:info_dat_merchant_in_scope_3_pottery = { 
-				has_variable = trade_price_pottery
-			}
-		}
-		localization_key = "merchant_in_3_pottery"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_in_val_3_pottery
@@ -4072,19 +4336,21 @@ merchant_in_3_pottery = {
 		}
 		localization_key = "merchant_in_prov_3_pottery"
 	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_in_val_3_pottery
+			var:info_dat_merchant_in_val_3_pottery > 0
+			var:info_dat_merchant_in_scope_3_pottery = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_in_3_pottery"
+	}
 }
 merchant_out_4_pottery = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_out_val_4_pottery
-			var:info_dat_merchant_out_val_4_pottery > 0
-			var:info_dat_merchant_out_scope_4_pottery = { 
-				has_variable = trade_price_pottery
-			}
-		}
-		localization_key = "merchant_out_4_pottery"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_out_val_4_pottery
@@ -4095,19 +4361,21 @@ merchant_out_4_pottery = {
 		}
 		localization_key = "merchant_out_prov_4_pottery"
 	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_out_val_4_pottery
+			var:info_dat_merchant_out_val_4_pottery > 0
+			var:info_dat_merchant_out_scope_4_pottery = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_out_4_pottery"
+	}
 }
 merchant_in_4_pottery = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_in_val_4_pottery
-			var:info_dat_merchant_in_val_4_pottery > 0
-			var:info_dat_merchant_in_scope_4_pottery = { 
-				has_variable = trade_price_pottery
-			}
-		}
-		localization_key = "merchant_in_4_pottery"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_in_val_4_pottery
@@ -4118,19 +4386,21 @@ merchant_in_4_pottery = {
 		}
 		localization_key = "merchant_in_prov_4_pottery"
 	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_in_val_4_pottery
+			var:info_dat_merchant_in_val_4_pottery > 0
+			var:info_dat_merchant_in_scope_4_pottery = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_in_4_pottery"
+	}
 }
 merchant_out_0_tools = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_out_val_0_tools
-			var:info_dat_merchant_out_val_0_tools > 0
-			var:info_dat_merchant_out_scope_0_tools = { 
-				has_variable = trade_price_tools
-			}
-		}
-		localization_key = "merchant_out_0_tools"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_out_val_0_tools
@@ -4141,19 +4411,21 @@ merchant_out_0_tools = {
 		}
 		localization_key = "merchant_out_prov_0_tools"
 	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_out_val_0_tools
+			var:info_dat_merchant_out_val_0_tools > 0
+			var:info_dat_merchant_out_scope_0_tools = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_out_0_tools"
+	}
 }
 merchant_in_0_tools = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_in_val_0_tools
-			var:info_dat_merchant_in_val_0_tools > 0
-			var:info_dat_merchant_in_scope_0_tools = { 
-				has_variable = trade_price_tools
-			}
-		}
-		localization_key = "merchant_in_0_tools"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_in_val_0_tools
@@ -4164,19 +4436,21 @@ merchant_in_0_tools = {
 		}
 		localization_key = "merchant_in_prov_0_tools"
 	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_in_val_0_tools
+			var:info_dat_merchant_in_val_0_tools > 0
+			var:info_dat_merchant_in_scope_0_tools = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_in_0_tools"
+	}
 }
 merchant_out_1_tools = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_out_val_1_tools
-			var:info_dat_merchant_out_val_1_tools > 0
-			var:info_dat_merchant_out_scope_1_tools = { 
-				has_variable = trade_price_tools
-			}
-		}
-		localization_key = "merchant_out_1_tools"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_out_val_1_tools
@@ -4187,19 +4461,21 @@ merchant_out_1_tools = {
 		}
 		localization_key = "merchant_out_prov_1_tools"
 	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_out_val_1_tools
+			var:info_dat_merchant_out_val_1_tools > 0
+			var:info_dat_merchant_out_scope_1_tools = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_out_1_tools"
+	}
 }
 merchant_in_1_tools = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_in_val_1_tools
-			var:info_dat_merchant_in_val_1_tools > 0
-			var:info_dat_merchant_in_scope_1_tools = { 
-				has_variable = trade_price_tools
-			}
-		}
-		localization_key = "merchant_in_1_tools"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_in_val_1_tools
@@ -4210,19 +4486,21 @@ merchant_in_1_tools = {
 		}
 		localization_key = "merchant_in_prov_1_tools"
 	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_in_val_1_tools
+			var:info_dat_merchant_in_val_1_tools > 0
+			var:info_dat_merchant_in_scope_1_tools = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_in_1_tools"
+	}
 }
 merchant_out_2_tools = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_out_val_2_tools
-			var:info_dat_merchant_out_val_2_tools > 0
-			var:info_dat_merchant_out_scope_2_tools = { 
-				has_variable = trade_price_tools
-			}
-		}
-		localization_key = "merchant_out_2_tools"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_out_val_2_tools
@@ -4233,19 +4511,21 @@ merchant_out_2_tools = {
 		}
 		localization_key = "merchant_out_prov_2_tools"
 	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_out_val_2_tools
+			var:info_dat_merchant_out_val_2_tools > 0
+			var:info_dat_merchant_out_scope_2_tools = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_out_2_tools"
+	}
 }
 merchant_in_2_tools = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_in_val_2_tools
-			var:info_dat_merchant_in_val_2_tools > 0
-			var:info_dat_merchant_in_scope_2_tools = { 
-				has_variable = trade_price_tools
-			}
-		}
-		localization_key = "merchant_in_2_tools"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_in_val_2_tools
@@ -4256,19 +4536,21 @@ merchant_in_2_tools = {
 		}
 		localization_key = "merchant_in_prov_2_tools"
 	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_in_val_2_tools
+			var:info_dat_merchant_in_val_2_tools > 0
+			var:info_dat_merchant_in_scope_2_tools = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_in_2_tools"
+	}
 }
 merchant_out_3_tools = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_out_val_3_tools
-			var:info_dat_merchant_out_val_3_tools > 0
-			var:info_dat_merchant_out_scope_3_tools = { 
-				has_variable = trade_price_tools
-			}
-		}
-		localization_key = "merchant_out_3_tools"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_out_val_3_tools
@@ -4279,19 +4561,21 @@ merchant_out_3_tools = {
 		}
 		localization_key = "merchant_out_prov_3_tools"
 	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_out_val_3_tools
+			var:info_dat_merchant_out_val_3_tools > 0
+			var:info_dat_merchant_out_scope_3_tools = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_out_3_tools"
+	}
 }
 merchant_in_3_tools = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_in_val_3_tools
-			var:info_dat_merchant_in_val_3_tools > 0
-			var:info_dat_merchant_in_scope_3_tools = { 
-				has_variable = trade_price_tools
-			}
-		}
-		localization_key = "merchant_in_3_tools"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_in_val_3_tools
@@ -4302,19 +4586,21 @@ merchant_in_3_tools = {
 		}
 		localization_key = "merchant_in_prov_3_tools"
 	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_in_val_3_tools
+			var:info_dat_merchant_in_val_3_tools > 0
+			var:info_dat_merchant_in_scope_3_tools = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_in_3_tools"
+	}
 }
 merchant_out_4_tools = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_out_val_4_tools
-			var:info_dat_merchant_out_val_4_tools > 0
-			var:info_dat_merchant_out_scope_4_tools = { 
-				has_variable = trade_price_tools
-			}
-		}
-		localization_key = "merchant_out_4_tools"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_out_val_4_tools
@@ -4325,19 +4611,21 @@ merchant_out_4_tools = {
 		}
 		localization_key = "merchant_out_prov_4_tools"
 	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_out_val_4_tools
+			var:info_dat_merchant_out_val_4_tools > 0
+			var:info_dat_merchant_out_scope_4_tools = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_out_4_tools"
+	}
 }
 merchant_in_4_tools = { 
 	type = province
-	text = { 
-		trigger = { 
-			has_variable = info_dat_merchant_in_val_4_tools
-			var:info_dat_merchant_in_val_4_tools > 0
-			var:info_dat_merchant_in_scope_4_tools = { 
-				has_variable = trade_price_tools
-			}
-		}
-		localization_key = "merchant_in_4_tools"
-	}
 	text = { 
 		trigger = { 
 			has_variable = info_dat_merchant_in_val_4_tools
@@ -4347,6 +4635,18 @@ merchant_in_4_tools = {
 			}
 		}
 		localization_key = "merchant_in_prov_4_tools"
+	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_in_val_4_tools
+			var:info_dat_merchant_in_val_4_tools > 0
+			var:info_dat_merchant_in_scope_4_tools = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_in_4_tools"
 	}
 }
 

@@ -4324,29 +4324,38 @@ toggle_prov_merchant_dat = {
 			remove_global_variable = array_get_max_t
 			remove_global_variable = array_get_max_tt
 			remove_variable = array_get_max_t
-			ordered_in_list = { 
-				variable = toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					set_variable = { 
-						name = info_dat_merchant_out_scope_0_food
-						value = prev
+			if = { 
+				limit = { 
+					has_variable = info_dat_merchant_out_val_0_food
+					var:info_dat_merchant_out_val_0_food > 0
+				}
+				ordered_in_list = { 
+					variable = toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						set_variable = { 
+							name = info_dat_merchant_out_scope_0_food
+							value = prev
+						}
+						remove_list_variable = { 
+							name = toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
-					remove_list_variable = { 
-						name = toggled_prov_merchant_dat_t
-						target = prev
+				}
+				ordered_in_list = { 
+					variable = array_toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						remove_list_variable = { 
+							name = array_toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
 				}
 			}
-			ordered_in_list = { 
-				variable = array_toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					remove_list_variable = { 
-						name = array_toggled_prov_merchant_dat_t
-						target = prev
-					}
-				}
+			else = { 
+				remove_variable = info_dat_merchant_out_val_0_food
 			}
 			set_global_variable = { 
 				name = array_get_max_t
@@ -4399,29 +4408,38 @@ toggle_prov_merchant_dat = {
 			remove_global_variable = array_get_max_t
 			remove_global_variable = array_get_max_tt
 			remove_variable = array_get_max_t
-			ordered_in_list = { 
-				variable = toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					set_variable = { 
-						name = info_dat_merchant_out_scope_1_food
-						value = prev
+			if = { 
+				limit = { 
+					has_variable = info_dat_merchant_out_val_1_food
+					var:info_dat_merchant_out_val_1_food > 0
+				}
+				ordered_in_list = { 
+					variable = toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						set_variable = { 
+							name = info_dat_merchant_out_scope_1_food
+							value = prev
+						}
+						remove_list_variable = { 
+							name = toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
-					remove_list_variable = { 
-						name = toggled_prov_merchant_dat_t
-						target = prev
+				}
+				ordered_in_list = { 
+					variable = array_toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						remove_list_variable = { 
+							name = array_toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
 				}
 			}
-			ordered_in_list = { 
-				variable = array_toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					remove_list_variable = { 
-						name = array_toggled_prov_merchant_dat_t
-						target = prev
-					}
-				}
+			else = { 
+				remove_variable = info_dat_merchant_out_val_1_food
 			}
 			set_global_variable = { 
 				name = array_get_max_t
@@ -4474,29 +4492,38 @@ toggle_prov_merchant_dat = {
 			remove_global_variable = array_get_max_t
 			remove_global_variable = array_get_max_tt
 			remove_variable = array_get_max_t
-			ordered_in_list = { 
-				variable = toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					set_variable = { 
-						name = info_dat_merchant_out_scope_2_food
-						value = prev
+			if = { 
+				limit = { 
+					has_variable = info_dat_merchant_out_val_2_food
+					var:info_dat_merchant_out_val_2_food > 0
+				}
+				ordered_in_list = { 
+					variable = toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						set_variable = { 
+							name = info_dat_merchant_out_scope_2_food
+							value = prev
+						}
+						remove_list_variable = { 
+							name = toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
-					remove_list_variable = { 
-						name = toggled_prov_merchant_dat_t
-						target = prev
+				}
+				ordered_in_list = { 
+					variable = array_toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						remove_list_variable = { 
+							name = array_toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
 				}
 			}
-			ordered_in_list = { 
-				variable = array_toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					remove_list_variable = { 
-						name = array_toggled_prov_merchant_dat_t
-						target = prev
-					}
-				}
+			else = { 
+				remove_variable = info_dat_merchant_out_val_2_food
 			}
 			set_global_variable = { 
 				name = array_get_max_t
@@ -4549,29 +4576,38 @@ toggle_prov_merchant_dat = {
 			remove_global_variable = array_get_max_t
 			remove_global_variable = array_get_max_tt
 			remove_variable = array_get_max_t
-			ordered_in_list = { 
-				variable = toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					set_variable = { 
-						name = info_dat_merchant_out_scope_3_food
-						value = prev
+			if = { 
+				limit = { 
+					has_variable = info_dat_merchant_out_val_3_food
+					var:info_dat_merchant_out_val_3_food > 0
+				}
+				ordered_in_list = { 
+					variable = toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						set_variable = { 
+							name = info_dat_merchant_out_scope_3_food
+							value = prev
+						}
+						remove_list_variable = { 
+							name = toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
-					remove_list_variable = { 
-						name = toggled_prov_merchant_dat_t
-						target = prev
+				}
+				ordered_in_list = { 
+					variable = array_toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						remove_list_variable = { 
+							name = array_toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
 				}
 			}
-			ordered_in_list = { 
-				variable = array_toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					remove_list_variable = { 
-						name = array_toggled_prov_merchant_dat_t
-						target = prev
-					}
-				}
+			else = { 
+				remove_variable = info_dat_merchant_out_val_3_food
 			}
 			set_global_variable = { 
 				name = array_get_max_t
@@ -4624,29 +4660,38 @@ toggle_prov_merchant_dat = {
 			remove_global_variable = array_get_max_t
 			remove_global_variable = array_get_max_tt
 			remove_variable = array_get_max_t
-			ordered_in_list = { 
-				variable = toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					set_variable = { 
-						name = info_dat_merchant_out_scope_4_food
-						value = prev
+			if = { 
+				limit = { 
+					has_variable = info_dat_merchant_out_val_4_food
+					var:info_dat_merchant_out_val_4_food > 0
+				}
+				ordered_in_list = { 
+					variable = toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						set_variable = { 
+							name = info_dat_merchant_out_scope_4_food
+							value = prev
+						}
+						remove_list_variable = { 
+							name = toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
-					remove_list_variable = { 
-						name = toggled_prov_merchant_dat_t
-						target = prev
+				}
+				ordered_in_list = { 
+					variable = array_toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						remove_list_variable = { 
+							name = array_toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
 				}
 			}
-			ordered_in_list = { 
-				variable = array_toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					remove_list_variable = { 
-						name = array_toggled_prov_merchant_dat_t
-						target = prev
-					}
-				}
+			else = { 
+				remove_variable = info_dat_merchant_out_val_4_food
 			}
 			set_global_variable = { 
 				name = array_get_min_t
@@ -5044,6 +5089,7 @@ toggle_prov_merchant_dat = {
 				}
 			}
 			remove_global_variable = toggled_prov_merchant_dat_t
+			clear_variable_list = array_toggled_prov_merchant_dat_t
 			remove_variable = toggled_prov_merchant_dat_t
 			every_in_list = { 
 				variable = trade_dat_cereal
@@ -5114,29 +5160,38 @@ toggle_prov_merchant_dat = {
 			remove_global_variable = array_get_max_t
 			remove_global_variable = array_get_max_tt
 			remove_variable = array_get_max_t
-			ordered_in_list = { 
-				variable = toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					set_variable = { 
-						name = info_dat_merchant_out_scope_0_cereal
-						value = prev
+			if = { 
+				limit = { 
+					has_variable = info_dat_merchant_out_val_0_cereal
+					var:info_dat_merchant_out_val_0_cereal > 0
+				}
+				ordered_in_list = { 
+					variable = toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						set_variable = { 
+							name = info_dat_merchant_out_scope_0_cereal
+							value = prev
+						}
+						remove_list_variable = { 
+							name = toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
-					remove_list_variable = { 
-						name = toggled_prov_merchant_dat_t
-						target = prev
+				}
+				ordered_in_list = { 
+					variable = array_toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						remove_list_variable = { 
+							name = array_toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
 				}
 			}
-			ordered_in_list = { 
-				variable = array_toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					remove_list_variable = { 
-						name = array_toggled_prov_merchant_dat_t
-						target = prev
-					}
-				}
+			else = { 
+				remove_variable = info_dat_merchant_out_val_0_cereal
 			}
 			set_global_variable = { 
 				name = array_get_max_t
@@ -5189,29 +5244,38 @@ toggle_prov_merchant_dat = {
 			remove_global_variable = array_get_max_t
 			remove_global_variable = array_get_max_tt
 			remove_variable = array_get_max_t
-			ordered_in_list = { 
-				variable = toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					set_variable = { 
-						name = info_dat_merchant_out_scope_1_cereal
-						value = prev
+			if = { 
+				limit = { 
+					has_variable = info_dat_merchant_out_val_1_cereal
+					var:info_dat_merchant_out_val_1_cereal > 0
+				}
+				ordered_in_list = { 
+					variable = toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						set_variable = { 
+							name = info_dat_merchant_out_scope_1_cereal
+							value = prev
+						}
+						remove_list_variable = { 
+							name = toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
-					remove_list_variable = { 
-						name = toggled_prov_merchant_dat_t
-						target = prev
+				}
+				ordered_in_list = { 
+					variable = array_toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						remove_list_variable = { 
+							name = array_toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
 				}
 			}
-			ordered_in_list = { 
-				variable = array_toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					remove_list_variable = { 
-						name = array_toggled_prov_merchant_dat_t
-						target = prev
-					}
-				}
+			else = { 
+				remove_variable = info_dat_merchant_out_val_1_cereal
 			}
 			set_global_variable = { 
 				name = array_get_max_t
@@ -5264,29 +5328,38 @@ toggle_prov_merchant_dat = {
 			remove_global_variable = array_get_max_t
 			remove_global_variable = array_get_max_tt
 			remove_variable = array_get_max_t
-			ordered_in_list = { 
-				variable = toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					set_variable = { 
-						name = info_dat_merchant_out_scope_2_cereal
-						value = prev
+			if = { 
+				limit = { 
+					has_variable = info_dat_merchant_out_val_2_cereal
+					var:info_dat_merchant_out_val_2_cereal > 0
+				}
+				ordered_in_list = { 
+					variable = toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						set_variable = { 
+							name = info_dat_merchant_out_scope_2_cereal
+							value = prev
+						}
+						remove_list_variable = { 
+							name = toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
-					remove_list_variable = { 
-						name = toggled_prov_merchant_dat_t
-						target = prev
+				}
+				ordered_in_list = { 
+					variable = array_toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						remove_list_variable = { 
+							name = array_toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
 				}
 			}
-			ordered_in_list = { 
-				variable = array_toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					remove_list_variable = { 
-						name = array_toggled_prov_merchant_dat_t
-						target = prev
-					}
-				}
+			else = { 
+				remove_variable = info_dat_merchant_out_val_2_cereal
 			}
 			set_global_variable = { 
 				name = array_get_max_t
@@ -5339,29 +5412,38 @@ toggle_prov_merchant_dat = {
 			remove_global_variable = array_get_max_t
 			remove_global_variable = array_get_max_tt
 			remove_variable = array_get_max_t
-			ordered_in_list = { 
-				variable = toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					set_variable = { 
-						name = info_dat_merchant_out_scope_3_cereal
-						value = prev
+			if = { 
+				limit = { 
+					has_variable = info_dat_merchant_out_val_3_cereal
+					var:info_dat_merchant_out_val_3_cereal > 0
+				}
+				ordered_in_list = { 
+					variable = toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						set_variable = { 
+							name = info_dat_merchant_out_scope_3_cereal
+							value = prev
+						}
+						remove_list_variable = { 
+							name = toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
-					remove_list_variable = { 
-						name = toggled_prov_merchant_dat_t
-						target = prev
+				}
+				ordered_in_list = { 
+					variable = array_toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						remove_list_variable = { 
+							name = array_toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
 				}
 			}
-			ordered_in_list = { 
-				variable = array_toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					remove_list_variable = { 
-						name = array_toggled_prov_merchant_dat_t
-						target = prev
-					}
-				}
+			else = { 
+				remove_variable = info_dat_merchant_out_val_3_cereal
 			}
 			set_global_variable = { 
 				name = array_get_max_t
@@ -5414,29 +5496,38 @@ toggle_prov_merchant_dat = {
 			remove_global_variable = array_get_max_t
 			remove_global_variable = array_get_max_tt
 			remove_variable = array_get_max_t
-			ordered_in_list = { 
-				variable = toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					set_variable = { 
-						name = info_dat_merchant_out_scope_4_cereal
-						value = prev
+			if = { 
+				limit = { 
+					has_variable = info_dat_merchant_out_val_4_cereal
+					var:info_dat_merchant_out_val_4_cereal > 0
+				}
+				ordered_in_list = { 
+					variable = toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						set_variable = { 
+							name = info_dat_merchant_out_scope_4_cereal
+							value = prev
+						}
+						remove_list_variable = { 
+							name = toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
-					remove_list_variable = { 
-						name = toggled_prov_merchant_dat_t
-						target = prev
+				}
+				ordered_in_list = { 
+					variable = array_toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						remove_list_variable = { 
+							name = array_toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
 				}
 			}
-			ordered_in_list = { 
-				variable = array_toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					remove_list_variable = { 
-						name = array_toggled_prov_merchant_dat_t
-						target = prev
-					}
-				}
+			else = { 
+				remove_variable = info_dat_merchant_out_val_4_cereal
 			}
 			set_global_variable = { 
 				name = array_get_min_t
@@ -5834,6 +5925,7 @@ toggle_prov_merchant_dat = {
 				}
 			}
 			remove_global_variable = toggled_prov_merchant_dat_t
+			clear_variable_list = array_toggled_prov_merchant_dat_t
 			remove_variable = toggled_prov_merchant_dat_t
 			every_in_list = { 
 				variable = trade_dat_salted
@@ -5904,29 +5996,38 @@ toggle_prov_merchant_dat = {
 			remove_global_variable = array_get_max_t
 			remove_global_variable = array_get_max_tt
 			remove_variable = array_get_max_t
-			ordered_in_list = { 
-				variable = toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					set_variable = { 
-						name = info_dat_merchant_out_scope_0_salted
-						value = prev
+			if = { 
+				limit = { 
+					has_variable = info_dat_merchant_out_val_0_salted
+					var:info_dat_merchant_out_val_0_salted > 0
+				}
+				ordered_in_list = { 
+					variable = toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						set_variable = { 
+							name = info_dat_merchant_out_scope_0_salted
+							value = prev
+						}
+						remove_list_variable = { 
+							name = toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
-					remove_list_variable = { 
-						name = toggled_prov_merchant_dat_t
-						target = prev
+				}
+				ordered_in_list = { 
+					variable = array_toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						remove_list_variable = { 
+							name = array_toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
 				}
 			}
-			ordered_in_list = { 
-				variable = array_toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					remove_list_variable = { 
-						name = array_toggled_prov_merchant_dat_t
-						target = prev
-					}
-				}
+			else = { 
+				remove_variable = info_dat_merchant_out_val_0_salted
 			}
 			set_global_variable = { 
 				name = array_get_max_t
@@ -5979,29 +6080,38 @@ toggle_prov_merchant_dat = {
 			remove_global_variable = array_get_max_t
 			remove_global_variable = array_get_max_tt
 			remove_variable = array_get_max_t
-			ordered_in_list = { 
-				variable = toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					set_variable = { 
-						name = info_dat_merchant_out_scope_1_salted
-						value = prev
+			if = { 
+				limit = { 
+					has_variable = info_dat_merchant_out_val_1_salted
+					var:info_dat_merchant_out_val_1_salted > 0
+				}
+				ordered_in_list = { 
+					variable = toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						set_variable = { 
+							name = info_dat_merchant_out_scope_1_salted
+							value = prev
+						}
+						remove_list_variable = { 
+							name = toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
-					remove_list_variable = { 
-						name = toggled_prov_merchant_dat_t
-						target = prev
+				}
+				ordered_in_list = { 
+					variable = array_toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						remove_list_variable = { 
+							name = array_toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
 				}
 			}
-			ordered_in_list = { 
-				variable = array_toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					remove_list_variable = { 
-						name = array_toggled_prov_merchant_dat_t
-						target = prev
-					}
-				}
+			else = { 
+				remove_variable = info_dat_merchant_out_val_1_salted
 			}
 			set_global_variable = { 
 				name = array_get_max_t
@@ -6054,29 +6164,38 @@ toggle_prov_merchant_dat = {
 			remove_global_variable = array_get_max_t
 			remove_global_variable = array_get_max_tt
 			remove_variable = array_get_max_t
-			ordered_in_list = { 
-				variable = toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					set_variable = { 
-						name = info_dat_merchant_out_scope_2_salted
-						value = prev
+			if = { 
+				limit = { 
+					has_variable = info_dat_merchant_out_val_2_salted
+					var:info_dat_merchant_out_val_2_salted > 0
+				}
+				ordered_in_list = { 
+					variable = toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						set_variable = { 
+							name = info_dat_merchant_out_scope_2_salted
+							value = prev
+						}
+						remove_list_variable = { 
+							name = toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
-					remove_list_variable = { 
-						name = toggled_prov_merchant_dat_t
-						target = prev
+				}
+				ordered_in_list = { 
+					variable = array_toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						remove_list_variable = { 
+							name = array_toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
 				}
 			}
-			ordered_in_list = { 
-				variable = array_toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					remove_list_variable = { 
-						name = array_toggled_prov_merchant_dat_t
-						target = prev
-					}
-				}
+			else = { 
+				remove_variable = info_dat_merchant_out_val_2_salted
 			}
 			set_global_variable = { 
 				name = array_get_max_t
@@ -6129,29 +6248,38 @@ toggle_prov_merchant_dat = {
 			remove_global_variable = array_get_max_t
 			remove_global_variable = array_get_max_tt
 			remove_variable = array_get_max_t
-			ordered_in_list = { 
-				variable = toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					set_variable = { 
-						name = info_dat_merchant_out_scope_3_salted
-						value = prev
+			if = { 
+				limit = { 
+					has_variable = info_dat_merchant_out_val_3_salted
+					var:info_dat_merchant_out_val_3_salted > 0
+				}
+				ordered_in_list = { 
+					variable = toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						set_variable = { 
+							name = info_dat_merchant_out_scope_3_salted
+							value = prev
+						}
+						remove_list_variable = { 
+							name = toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
-					remove_list_variable = { 
-						name = toggled_prov_merchant_dat_t
-						target = prev
+				}
+				ordered_in_list = { 
+					variable = array_toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						remove_list_variable = { 
+							name = array_toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
 				}
 			}
-			ordered_in_list = { 
-				variable = array_toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					remove_list_variable = { 
-						name = array_toggled_prov_merchant_dat_t
-						target = prev
-					}
-				}
+			else = { 
+				remove_variable = info_dat_merchant_out_val_3_salted
 			}
 			set_global_variable = { 
 				name = array_get_max_t
@@ -6204,29 +6332,38 @@ toggle_prov_merchant_dat = {
 			remove_global_variable = array_get_max_t
 			remove_global_variable = array_get_max_tt
 			remove_variable = array_get_max_t
-			ordered_in_list = { 
-				variable = toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					set_variable = { 
-						name = info_dat_merchant_out_scope_4_salted
-						value = prev
+			if = { 
+				limit = { 
+					has_variable = info_dat_merchant_out_val_4_salted
+					var:info_dat_merchant_out_val_4_salted > 0
+				}
+				ordered_in_list = { 
+					variable = toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						set_variable = { 
+							name = info_dat_merchant_out_scope_4_salted
+							value = prev
+						}
+						remove_list_variable = { 
+							name = toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
-					remove_list_variable = { 
-						name = toggled_prov_merchant_dat_t
-						target = prev
+				}
+				ordered_in_list = { 
+					variable = array_toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						remove_list_variable = { 
+							name = array_toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
 				}
 			}
-			ordered_in_list = { 
-				variable = array_toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					remove_list_variable = { 
-						name = array_toggled_prov_merchant_dat_t
-						target = prev
-					}
-				}
+			else = { 
+				remove_variable = info_dat_merchant_out_val_4_salted
 			}
 			set_global_variable = { 
 				name = array_get_min_t
@@ -6624,6 +6761,7 @@ toggle_prov_merchant_dat = {
 				}
 			}
 			remove_global_variable = toggled_prov_merchant_dat_t
+			clear_variable_list = array_toggled_prov_merchant_dat_t
 			remove_variable = toggled_prov_merchant_dat_t
 			every_in_list = { 
 				variable = trade_dat_salt
@@ -6694,29 +6832,38 @@ toggle_prov_merchant_dat = {
 			remove_global_variable = array_get_max_t
 			remove_global_variable = array_get_max_tt
 			remove_variable = array_get_max_t
-			ordered_in_list = { 
-				variable = toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					set_variable = { 
-						name = info_dat_merchant_out_scope_0_salt
-						value = prev
+			if = { 
+				limit = { 
+					has_variable = info_dat_merchant_out_val_0_salt
+					var:info_dat_merchant_out_val_0_salt > 0
+				}
+				ordered_in_list = { 
+					variable = toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						set_variable = { 
+							name = info_dat_merchant_out_scope_0_salt
+							value = prev
+						}
+						remove_list_variable = { 
+							name = toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
-					remove_list_variable = { 
-						name = toggled_prov_merchant_dat_t
-						target = prev
+				}
+				ordered_in_list = { 
+					variable = array_toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						remove_list_variable = { 
+							name = array_toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
 				}
 			}
-			ordered_in_list = { 
-				variable = array_toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					remove_list_variable = { 
-						name = array_toggled_prov_merchant_dat_t
-						target = prev
-					}
-				}
+			else = { 
+				remove_variable = info_dat_merchant_out_val_0_salt
 			}
 			set_global_variable = { 
 				name = array_get_max_t
@@ -6769,29 +6916,38 @@ toggle_prov_merchant_dat = {
 			remove_global_variable = array_get_max_t
 			remove_global_variable = array_get_max_tt
 			remove_variable = array_get_max_t
-			ordered_in_list = { 
-				variable = toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					set_variable = { 
-						name = info_dat_merchant_out_scope_1_salt
-						value = prev
+			if = { 
+				limit = { 
+					has_variable = info_dat_merchant_out_val_1_salt
+					var:info_dat_merchant_out_val_1_salt > 0
+				}
+				ordered_in_list = { 
+					variable = toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						set_variable = { 
+							name = info_dat_merchant_out_scope_1_salt
+							value = prev
+						}
+						remove_list_variable = { 
+							name = toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
-					remove_list_variable = { 
-						name = toggled_prov_merchant_dat_t
-						target = prev
+				}
+				ordered_in_list = { 
+					variable = array_toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						remove_list_variable = { 
+							name = array_toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
 				}
 			}
-			ordered_in_list = { 
-				variable = array_toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					remove_list_variable = { 
-						name = array_toggled_prov_merchant_dat_t
-						target = prev
-					}
-				}
+			else = { 
+				remove_variable = info_dat_merchant_out_val_1_salt
 			}
 			set_global_variable = { 
 				name = array_get_max_t
@@ -6844,29 +7000,38 @@ toggle_prov_merchant_dat = {
 			remove_global_variable = array_get_max_t
 			remove_global_variable = array_get_max_tt
 			remove_variable = array_get_max_t
-			ordered_in_list = { 
-				variable = toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					set_variable = { 
-						name = info_dat_merchant_out_scope_2_salt
-						value = prev
+			if = { 
+				limit = { 
+					has_variable = info_dat_merchant_out_val_2_salt
+					var:info_dat_merchant_out_val_2_salt > 0
+				}
+				ordered_in_list = { 
+					variable = toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						set_variable = { 
+							name = info_dat_merchant_out_scope_2_salt
+							value = prev
+						}
+						remove_list_variable = { 
+							name = toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
-					remove_list_variable = { 
-						name = toggled_prov_merchant_dat_t
-						target = prev
+				}
+				ordered_in_list = { 
+					variable = array_toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						remove_list_variable = { 
+							name = array_toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
 				}
 			}
-			ordered_in_list = { 
-				variable = array_toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					remove_list_variable = { 
-						name = array_toggled_prov_merchant_dat_t
-						target = prev
-					}
-				}
+			else = { 
+				remove_variable = info_dat_merchant_out_val_2_salt
 			}
 			set_global_variable = { 
 				name = array_get_max_t
@@ -6919,29 +7084,38 @@ toggle_prov_merchant_dat = {
 			remove_global_variable = array_get_max_t
 			remove_global_variable = array_get_max_tt
 			remove_variable = array_get_max_t
-			ordered_in_list = { 
-				variable = toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					set_variable = { 
-						name = info_dat_merchant_out_scope_3_salt
-						value = prev
+			if = { 
+				limit = { 
+					has_variable = info_dat_merchant_out_val_3_salt
+					var:info_dat_merchant_out_val_3_salt > 0
+				}
+				ordered_in_list = { 
+					variable = toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						set_variable = { 
+							name = info_dat_merchant_out_scope_3_salt
+							value = prev
+						}
+						remove_list_variable = { 
+							name = toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
-					remove_list_variable = { 
-						name = toggled_prov_merchant_dat_t
-						target = prev
+				}
+				ordered_in_list = { 
+					variable = array_toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						remove_list_variable = { 
+							name = array_toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
 				}
 			}
-			ordered_in_list = { 
-				variable = array_toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					remove_list_variable = { 
-						name = array_toggled_prov_merchant_dat_t
-						target = prev
-					}
-				}
+			else = { 
+				remove_variable = info_dat_merchant_out_val_3_salt
 			}
 			set_global_variable = { 
 				name = array_get_max_t
@@ -6994,29 +7168,38 @@ toggle_prov_merchant_dat = {
 			remove_global_variable = array_get_max_t
 			remove_global_variable = array_get_max_tt
 			remove_variable = array_get_max_t
-			ordered_in_list = { 
-				variable = toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					set_variable = { 
-						name = info_dat_merchant_out_scope_4_salt
-						value = prev
+			if = { 
+				limit = { 
+					has_variable = info_dat_merchant_out_val_4_salt
+					var:info_dat_merchant_out_val_4_salt > 0
+				}
+				ordered_in_list = { 
+					variable = toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						set_variable = { 
+							name = info_dat_merchant_out_scope_4_salt
+							value = prev
+						}
+						remove_list_variable = { 
+							name = toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
-					remove_list_variable = { 
-						name = toggled_prov_merchant_dat_t
-						target = prev
+				}
+				ordered_in_list = { 
+					variable = array_toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						remove_list_variable = { 
+							name = array_toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
 				}
 			}
-			ordered_in_list = { 
-				variable = array_toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					remove_list_variable = { 
-						name = array_toggled_prov_merchant_dat_t
-						target = prev
-					}
-				}
+			else = { 
+				remove_variable = info_dat_merchant_out_val_4_salt
 			}
 			set_global_variable = { 
 				name = array_get_min_t
@@ -7414,6 +7597,7 @@ toggle_prov_merchant_dat = {
 				}
 			}
 			remove_global_variable = toggled_prov_merchant_dat_t
+			clear_variable_list = array_toggled_prov_merchant_dat_t
 			remove_variable = toggled_prov_merchant_dat_t
 			every_in_list = { 
 				variable = trade_dat_mud
@@ -7484,29 +7668,38 @@ toggle_prov_merchant_dat = {
 			remove_global_variable = array_get_max_t
 			remove_global_variable = array_get_max_tt
 			remove_variable = array_get_max_t
-			ordered_in_list = { 
-				variable = toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					set_variable = { 
-						name = info_dat_merchant_out_scope_0_mud
-						value = prev
+			if = { 
+				limit = { 
+					has_variable = info_dat_merchant_out_val_0_mud
+					var:info_dat_merchant_out_val_0_mud > 0
+				}
+				ordered_in_list = { 
+					variable = toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						set_variable = { 
+							name = info_dat_merchant_out_scope_0_mud
+							value = prev
+						}
+						remove_list_variable = { 
+							name = toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
-					remove_list_variable = { 
-						name = toggled_prov_merchant_dat_t
-						target = prev
+				}
+				ordered_in_list = { 
+					variable = array_toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						remove_list_variable = { 
+							name = array_toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
 				}
 			}
-			ordered_in_list = { 
-				variable = array_toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					remove_list_variable = { 
-						name = array_toggled_prov_merchant_dat_t
-						target = prev
-					}
-				}
+			else = { 
+				remove_variable = info_dat_merchant_out_val_0_mud
 			}
 			set_global_variable = { 
 				name = array_get_max_t
@@ -7559,29 +7752,38 @@ toggle_prov_merchant_dat = {
 			remove_global_variable = array_get_max_t
 			remove_global_variable = array_get_max_tt
 			remove_variable = array_get_max_t
-			ordered_in_list = { 
-				variable = toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					set_variable = { 
-						name = info_dat_merchant_out_scope_1_mud
-						value = prev
+			if = { 
+				limit = { 
+					has_variable = info_dat_merchant_out_val_1_mud
+					var:info_dat_merchant_out_val_1_mud > 0
+				}
+				ordered_in_list = { 
+					variable = toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						set_variable = { 
+							name = info_dat_merchant_out_scope_1_mud
+							value = prev
+						}
+						remove_list_variable = { 
+							name = toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
-					remove_list_variable = { 
-						name = toggled_prov_merchant_dat_t
-						target = prev
+				}
+				ordered_in_list = { 
+					variable = array_toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						remove_list_variable = { 
+							name = array_toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
 				}
 			}
-			ordered_in_list = { 
-				variable = array_toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					remove_list_variable = { 
-						name = array_toggled_prov_merchant_dat_t
-						target = prev
-					}
-				}
+			else = { 
+				remove_variable = info_dat_merchant_out_val_1_mud
 			}
 			set_global_variable = { 
 				name = array_get_max_t
@@ -7634,29 +7836,38 @@ toggle_prov_merchant_dat = {
 			remove_global_variable = array_get_max_t
 			remove_global_variable = array_get_max_tt
 			remove_variable = array_get_max_t
-			ordered_in_list = { 
-				variable = toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					set_variable = { 
-						name = info_dat_merchant_out_scope_2_mud
-						value = prev
+			if = { 
+				limit = { 
+					has_variable = info_dat_merchant_out_val_2_mud
+					var:info_dat_merchant_out_val_2_mud > 0
+				}
+				ordered_in_list = { 
+					variable = toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						set_variable = { 
+							name = info_dat_merchant_out_scope_2_mud
+							value = prev
+						}
+						remove_list_variable = { 
+							name = toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
-					remove_list_variable = { 
-						name = toggled_prov_merchant_dat_t
-						target = prev
+				}
+				ordered_in_list = { 
+					variable = array_toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						remove_list_variable = { 
+							name = array_toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
 				}
 			}
-			ordered_in_list = { 
-				variable = array_toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					remove_list_variable = { 
-						name = array_toggled_prov_merchant_dat_t
-						target = prev
-					}
-				}
+			else = { 
+				remove_variable = info_dat_merchant_out_val_2_mud
 			}
 			set_global_variable = { 
 				name = array_get_max_t
@@ -7709,29 +7920,38 @@ toggle_prov_merchant_dat = {
 			remove_global_variable = array_get_max_t
 			remove_global_variable = array_get_max_tt
 			remove_variable = array_get_max_t
-			ordered_in_list = { 
-				variable = toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					set_variable = { 
-						name = info_dat_merchant_out_scope_3_mud
-						value = prev
+			if = { 
+				limit = { 
+					has_variable = info_dat_merchant_out_val_3_mud
+					var:info_dat_merchant_out_val_3_mud > 0
+				}
+				ordered_in_list = { 
+					variable = toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						set_variable = { 
+							name = info_dat_merchant_out_scope_3_mud
+							value = prev
+						}
+						remove_list_variable = { 
+							name = toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
-					remove_list_variable = { 
-						name = toggled_prov_merchant_dat_t
-						target = prev
+				}
+				ordered_in_list = { 
+					variable = array_toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						remove_list_variable = { 
+							name = array_toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
 				}
 			}
-			ordered_in_list = { 
-				variable = array_toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					remove_list_variable = { 
-						name = array_toggled_prov_merchant_dat_t
-						target = prev
-					}
-				}
+			else = { 
+				remove_variable = info_dat_merchant_out_val_3_mud
 			}
 			set_global_variable = { 
 				name = array_get_max_t
@@ -7784,29 +8004,38 @@ toggle_prov_merchant_dat = {
 			remove_global_variable = array_get_max_t
 			remove_global_variable = array_get_max_tt
 			remove_variable = array_get_max_t
-			ordered_in_list = { 
-				variable = toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					set_variable = { 
-						name = info_dat_merchant_out_scope_4_mud
-						value = prev
+			if = { 
+				limit = { 
+					has_variable = info_dat_merchant_out_val_4_mud
+					var:info_dat_merchant_out_val_4_mud > 0
+				}
+				ordered_in_list = { 
+					variable = toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						set_variable = { 
+							name = info_dat_merchant_out_scope_4_mud
+							value = prev
+						}
+						remove_list_variable = { 
+							name = toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
-					remove_list_variable = { 
-						name = toggled_prov_merchant_dat_t
-						target = prev
+				}
+				ordered_in_list = { 
+					variable = array_toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						remove_list_variable = { 
+							name = array_toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
 				}
 			}
-			ordered_in_list = { 
-				variable = array_toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					remove_list_variable = { 
-						name = array_toggled_prov_merchant_dat_t
-						target = prev
-					}
-				}
+			else = { 
+				remove_variable = info_dat_merchant_out_val_4_mud
 			}
 			set_global_variable = { 
 				name = array_get_min_t
@@ -8204,6 +8433,7 @@ toggle_prov_merchant_dat = {
 				}
 			}
 			remove_global_variable = toggled_prov_merchant_dat_t
+			clear_variable_list = array_toggled_prov_merchant_dat_t
 			remove_variable = toggled_prov_merchant_dat_t
 			every_in_list = { 
 				variable = trade_dat_fuel
@@ -8274,29 +8504,38 @@ toggle_prov_merchant_dat = {
 			remove_global_variable = array_get_max_t
 			remove_global_variable = array_get_max_tt
 			remove_variable = array_get_max_t
-			ordered_in_list = { 
-				variable = toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					set_variable = { 
-						name = info_dat_merchant_out_scope_0_fuel
-						value = prev
+			if = { 
+				limit = { 
+					has_variable = info_dat_merchant_out_val_0_fuel
+					var:info_dat_merchant_out_val_0_fuel > 0
+				}
+				ordered_in_list = { 
+					variable = toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						set_variable = { 
+							name = info_dat_merchant_out_scope_0_fuel
+							value = prev
+						}
+						remove_list_variable = { 
+							name = toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
-					remove_list_variable = { 
-						name = toggled_prov_merchant_dat_t
-						target = prev
+				}
+				ordered_in_list = { 
+					variable = array_toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						remove_list_variable = { 
+							name = array_toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
 				}
 			}
-			ordered_in_list = { 
-				variable = array_toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					remove_list_variable = { 
-						name = array_toggled_prov_merchant_dat_t
-						target = prev
-					}
-				}
+			else = { 
+				remove_variable = info_dat_merchant_out_val_0_fuel
 			}
 			set_global_variable = { 
 				name = array_get_max_t
@@ -8349,29 +8588,38 @@ toggle_prov_merchant_dat = {
 			remove_global_variable = array_get_max_t
 			remove_global_variable = array_get_max_tt
 			remove_variable = array_get_max_t
-			ordered_in_list = { 
-				variable = toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					set_variable = { 
-						name = info_dat_merchant_out_scope_1_fuel
-						value = prev
+			if = { 
+				limit = { 
+					has_variable = info_dat_merchant_out_val_1_fuel
+					var:info_dat_merchant_out_val_1_fuel > 0
+				}
+				ordered_in_list = { 
+					variable = toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						set_variable = { 
+							name = info_dat_merchant_out_scope_1_fuel
+							value = prev
+						}
+						remove_list_variable = { 
+							name = toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
-					remove_list_variable = { 
-						name = toggled_prov_merchant_dat_t
-						target = prev
+				}
+				ordered_in_list = { 
+					variable = array_toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						remove_list_variable = { 
+							name = array_toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
 				}
 			}
-			ordered_in_list = { 
-				variable = array_toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					remove_list_variable = { 
-						name = array_toggled_prov_merchant_dat_t
-						target = prev
-					}
-				}
+			else = { 
+				remove_variable = info_dat_merchant_out_val_1_fuel
 			}
 			set_global_variable = { 
 				name = array_get_max_t
@@ -8424,29 +8672,38 @@ toggle_prov_merchant_dat = {
 			remove_global_variable = array_get_max_t
 			remove_global_variable = array_get_max_tt
 			remove_variable = array_get_max_t
-			ordered_in_list = { 
-				variable = toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					set_variable = { 
-						name = info_dat_merchant_out_scope_2_fuel
-						value = prev
+			if = { 
+				limit = { 
+					has_variable = info_dat_merchant_out_val_2_fuel
+					var:info_dat_merchant_out_val_2_fuel > 0
+				}
+				ordered_in_list = { 
+					variable = toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						set_variable = { 
+							name = info_dat_merchant_out_scope_2_fuel
+							value = prev
+						}
+						remove_list_variable = { 
+							name = toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
-					remove_list_variable = { 
-						name = toggled_prov_merchant_dat_t
-						target = prev
+				}
+				ordered_in_list = { 
+					variable = array_toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						remove_list_variable = { 
+							name = array_toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
 				}
 			}
-			ordered_in_list = { 
-				variable = array_toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					remove_list_variable = { 
-						name = array_toggled_prov_merchant_dat_t
-						target = prev
-					}
-				}
+			else = { 
+				remove_variable = info_dat_merchant_out_val_2_fuel
 			}
 			set_global_variable = { 
 				name = array_get_max_t
@@ -8499,29 +8756,38 @@ toggle_prov_merchant_dat = {
 			remove_global_variable = array_get_max_t
 			remove_global_variable = array_get_max_tt
 			remove_variable = array_get_max_t
-			ordered_in_list = { 
-				variable = toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					set_variable = { 
-						name = info_dat_merchant_out_scope_3_fuel
-						value = prev
+			if = { 
+				limit = { 
+					has_variable = info_dat_merchant_out_val_3_fuel
+					var:info_dat_merchant_out_val_3_fuel > 0
+				}
+				ordered_in_list = { 
+					variable = toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						set_variable = { 
+							name = info_dat_merchant_out_scope_3_fuel
+							value = prev
+						}
+						remove_list_variable = { 
+							name = toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
-					remove_list_variable = { 
-						name = toggled_prov_merchant_dat_t
-						target = prev
+				}
+				ordered_in_list = { 
+					variable = array_toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						remove_list_variable = { 
+							name = array_toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
 				}
 			}
-			ordered_in_list = { 
-				variable = array_toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					remove_list_variable = { 
-						name = array_toggled_prov_merchant_dat_t
-						target = prev
-					}
-				}
+			else = { 
+				remove_variable = info_dat_merchant_out_val_3_fuel
 			}
 			set_global_variable = { 
 				name = array_get_max_t
@@ -8574,29 +8840,38 @@ toggle_prov_merchant_dat = {
 			remove_global_variable = array_get_max_t
 			remove_global_variable = array_get_max_tt
 			remove_variable = array_get_max_t
-			ordered_in_list = { 
-				variable = toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					set_variable = { 
-						name = info_dat_merchant_out_scope_4_fuel
-						value = prev
+			if = { 
+				limit = { 
+					has_variable = info_dat_merchant_out_val_4_fuel
+					var:info_dat_merchant_out_val_4_fuel > 0
+				}
+				ordered_in_list = { 
+					variable = toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						set_variable = { 
+							name = info_dat_merchant_out_scope_4_fuel
+							value = prev
+						}
+						remove_list_variable = { 
+							name = toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
-					remove_list_variable = { 
-						name = toggled_prov_merchant_dat_t
-						target = prev
+				}
+				ordered_in_list = { 
+					variable = array_toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						remove_list_variable = { 
+							name = array_toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
 				}
 			}
-			ordered_in_list = { 
-				variable = array_toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					remove_list_variable = { 
-						name = array_toggled_prov_merchant_dat_t
-						target = prev
-					}
-				}
+			else = { 
+				remove_variable = info_dat_merchant_out_val_4_fuel
 			}
 			set_global_variable = { 
 				name = array_get_min_t
@@ -8994,6 +9269,7 @@ toggle_prov_merchant_dat = {
 				}
 			}
 			remove_global_variable = toggled_prov_merchant_dat_t
+			clear_variable_list = array_toggled_prov_merchant_dat_t
 			remove_variable = toggled_prov_merchant_dat_t
 			every_in_list = { 
 				variable = trade_dat_fiber
@@ -9064,29 +9340,38 @@ toggle_prov_merchant_dat = {
 			remove_global_variable = array_get_max_t
 			remove_global_variable = array_get_max_tt
 			remove_variable = array_get_max_t
-			ordered_in_list = { 
-				variable = toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					set_variable = { 
-						name = info_dat_merchant_out_scope_0_fiber
-						value = prev
+			if = { 
+				limit = { 
+					has_variable = info_dat_merchant_out_val_0_fiber
+					var:info_dat_merchant_out_val_0_fiber > 0
+				}
+				ordered_in_list = { 
+					variable = toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						set_variable = { 
+							name = info_dat_merchant_out_scope_0_fiber
+							value = prev
+						}
+						remove_list_variable = { 
+							name = toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
-					remove_list_variable = { 
-						name = toggled_prov_merchant_dat_t
-						target = prev
+				}
+				ordered_in_list = { 
+					variable = array_toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						remove_list_variable = { 
+							name = array_toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
 				}
 			}
-			ordered_in_list = { 
-				variable = array_toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					remove_list_variable = { 
-						name = array_toggled_prov_merchant_dat_t
-						target = prev
-					}
-				}
+			else = { 
+				remove_variable = info_dat_merchant_out_val_0_fiber
 			}
 			set_global_variable = { 
 				name = array_get_max_t
@@ -9139,29 +9424,38 @@ toggle_prov_merchant_dat = {
 			remove_global_variable = array_get_max_t
 			remove_global_variable = array_get_max_tt
 			remove_variable = array_get_max_t
-			ordered_in_list = { 
-				variable = toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					set_variable = { 
-						name = info_dat_merchant_out_scope_1_fiber
-						value = prev
+			if = { 
+				limit = { 
+					has_variable = info_dat_merchant_out_val_1_fiber
+					var:info_dat_merchant_out_val_1_fiber > 0
+				}
+				ordered_in_list = { 
+					variable = toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						set_variable = { 
+							name = info_dat_merchant_out_scope_1_fiber
+							value = prev
+						}
+						remove_list_variable = { 
+							name = toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
-					remove_list_variable = { 
-						name = toggled_prov_merchant_dat_t
-						target = prev
+				}
+				ordered_in_list = { 
+					variable = array_toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						remove_list_variable = { 
+							name = array_toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
 				}
 			}
-			ordered_in_list = { 
-				variable = array_toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					remove_list_variable = { 
-						name = array_toggled_prov_merchant_dat_t
-						target = prev
-					}
-				}
+			else = { 
+				remove_variable = info_dat_merchant_out_val_1_fiber
 			}
 			set_global_variable = { 
 				name = array_get_max_t
@@ -9214,29 +9508,38 @@ toggle_prov_merchant_dat = {
 			remove_global_variable = array_get_max_t
 			remove_global_variable = array_get_max_tt
 			remove_variable = array_get_max_t
-			ordered_in_list = { 
-				variable = toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					set_variable = { 
-						name = info_dat_merchant_out_scope_2_fiber
-						value = prev
+			if = { 
+				limit = { 
+					has_variable = info_dat_merchant_out_val_2_fiber
+					var:info_dat_merchant_out_val_2_fiber > 0
+				}
+				ordered_in_list = { 
+					variable = toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						set_variable = { 
+							name = info_dat_merchant_out_scope_2_fiber
+							value = prev
+						}
+						remove_list_variable = { 
+							name = toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
-					remove_list_variable = { 
-						name = toggled_prov_merchant_dat_t
-						target = prev
+				}
+				ordered_in_list = { 
+					variable = array_toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						remove_list_variable = { 
+							name = array_toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
 				}
 			}
-			ordered_in_list = { 
-				variable = array_toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					remove_list_variable = { 
-						name = array_toggled_prov_merchant_dat_t
-						target = prev
-					}
-				}
+			else = { 
+				remove_variable = info_dat_merchant_out_val_2_fiber
 			}
 			set_global_variable = { 
 				name = array_get_max_t
@@ -9289,29 +9592,38 @@ toggle_prov_merchant_dat = {
 			remove_global_variable = array_get_max_t
 			remove_global_variable = array_get_max_tt
 			remove_variable = array_get_max_t
-			ordered_in_list = { 
-				variable = toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					set_variable = { 
-						name = info_dat_merchant_out_scope_3_fiber
-						value = prev
+			if = { 
+				limit = { 
+					has_variable = info_dat_merchant_out_val_3_fiber
+					var:info_dat_merchant_out_val_3_fiber > 0
+				}
+				ordered_in_list = { 
+					variable = toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						set_variable = { 
+							name = info_dat_merchant_out_scope_3_fiber
+							value = prev
+						}
+						remove_list_variable = { 
+							name = toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
-					remove_list_variable = { 
-						name = toggled_prov_merchant_dat_t
-						target = prev
+				}
+				ordered_in_list = { 
+					variable = array_toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						remove_list_variable = { 
+							name = array_toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
 				}
 			}
-			ordered_in_list = { 
-				variable = array_toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					remove_list_variable = { 
-						name = array_toggled_prov_merchant_dat_t
-						target = prev
-					}
-				}
+			else = { 
+				remove_variable = info_dat_merchant_out_val_3_fiber
 			}
 			set_global_variable = { 
 				name = array_get_max_t
@@ -9364,29 +9676,38 @@ toggle_prov_merchant_dat = {
 			remove_global_variable = array_get_max_t
 			remove_global_variable = array_get_max_tt
 			remove_variable = array_get_max_t
-			ordered_in_list = { 
-				variable = toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					set_variable = { 
-						name = info_dat_merchant_out_scope_4_fiber
-						value = prev
+			if = { 
+				limit = { 
+					has_variable = info_dat_merchant_out_val_4_fiber
+					var:info_dat_merchant_out_val_4_fiber > 0
+				}
+				ordered_in_list = { 
+					variable = toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						set_variable = { 
+							name = info_dat_merchant_out_scope_4_fiber
+							value = prev
+						}
+						remove_list_variable = { 
+							name = toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
-					remove_list_variable = { 
-						name = toggled_prov_merchant_dat_t
-						target = prev
+				}
+				ordered_in_list = { 
+					variable = array_toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						remove_list_variable = { 
+							name = array_toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
 				}
 			}
-			ordered_in_list = { 
-				variable = array_toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					remove_list_variable = { 
-						name = array_toggled_prov_merchant_dat_t
-						target = prev
-					}
-				}
+			else = { 
+				remove_variable = info_dat_merchant_out_val_4_fiber
 			}
 			set_global_variable = { 
 				name = array_get_min_t
@@ -9784,6 +10105,7 @@ toggle_prov_merchant_dat = {
 				}
 			}
 			remove_global_variable = toggled_prov_merchant_dat_t
+			clear_variable_list = array_toggled_prov_merchant_dat_t
 			remove_variable = toggled_prov_merchant_dat_t
 			every_in_list = { 
 				variable = trade_dat_timber
@@ -9854,29 +10176,38 @@ toggle_prov_merchant_dat = {
 			remove_global_variable = array_get_max_t
 			remove_global_variable = array_get_max_tt
 			remove_variable = array_get_max_t
-			ordered_in_list = { 
-				variable = toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					set_variable = { 
-						name = info_dat_merchant_out_scope_0_timber
-						value = prev
+			if = { 
+				limit = { 
+					has_variable = info_dat_merchant_out_val_0_timber
+					var:info_dat_merchant_out_val_0_timber > 0
+				}
+				ordered_in_list = { 
+					variable = toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						set_variable = { 
+							name = info_dat_merchant_out_scope_0_timber
+							value = prev
+						}
+						remove_list_variable = { 
+							name = toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
-					remove_list_variable = { 
-						name = toggled_prov_merchant_dat_t
-						target = prev
+				}
+				ordered_in_list = { 
+					variable = array_toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						remove_list_variable = { 
+							name = array_toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
 				}
 			}
-			ordered_in_list = { 
-				variable = array_toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					remove_list_variable = { 
-						name = array_toggled_prov_merchant_dat_t
-						target = prev
-					}
-				}
+			else = { 
+				remove_variable = info_dat_merchant_out_val_0_timber
 			}
 			set_global_variable = { 
 				name = array_get_max_t
@@ -9929,29 +10260,38 @@ toggle_prov_merchant_dat = {
 			remove_global_variable = array_get_max_t
 			remove_global_variable = array_get_max_tt
 			remove_variable = array_get_max_t
-			ordered_in_list = { 
-				variable = toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					set_variable = { 
-						name = info_dat_merchant_out_scope_1_timber
-						value = prev
+			if = { 
+				limit = { 
+					has_variable = info_dat_merchant_out_val_1_timber
+					var:info_dat_merchant_out_val_1_timber > 0
+				}
+				ordered_in_list = { 
+					variable = toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						set_variable = { 
+							name = info_dat_merchant_out_scope_1_timber
+							value = prev
+						}
+						remove_list_variable = { 
+							name = toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
-					remove_list_variable = { 
-						name = toggled_prov_merchant_dat_t
-						target = prev
+				}
+				ordered_in_list = { 
+					variable = array_toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						remove_list_variable = { 
+							name = array_toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
 				}
 			}
-			ordered_in_list = { 
-				variable = array_toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					remove_list_variable = { 
-						name = array_toggled_prov_merchant_dat_t
-						target = prev
-					}
-				}
+			else = { 
+				remove_variable = info_dat_merchant_out_val_1_timber
 			}
 			set_global_variable = { 
 				name = array_get_max_t
@@ -10004,29 +10344,38 @@ toggle_prov_merchant_dat = {
 			remove_global_variable = array_get_max_t
 			remove_global_variable = array_get_max_tt
 			remove_variable = array_get_max_t
-			ordered_in_list = { 
-				variable = toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					set_variable = { 
-						name = info_dat_merchant_out_scope_2_timber
-						value = prev
+			if = { 
+				limit = { 
+					has_variable = info_dat_merchant_out_val_2_timber
+					var:info_dat_merchant_out_val_2_timber > 0
+				}
+				ordered_in_list = { 
+					variable = toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						set_variable = { 
+							name = info_dat_merchant_out_scope_2_timber
+							value = prev
+						}
+						remove_list_variable = { 
+							name = toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
-					remove_list_variable = { 
-						name = toggled_prov_merchant_dat_t
-						target = prev
+				}
+				ordered_in_list = { 
+					variable = array_toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						remove_list_variable = { 
+							name = array_toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
 				}
 			}
-			ordered_in_list = { 
-				variable = array_toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					remove_list_variable = { 
-						name = array_toggled_prov_merchant_dat_t
-						target = prev
-					}
-				}
+			else = { 
+				remove_variable = info_dat_merchant_out_val_2_timber
 			}
 			set_global_variable = { 
 				name = array_get_max_t
@@ -10079,29 +10428,38 @@ toggle_prov_merchant_dat = {
 			remove_global_variable = array_get_max_t
 			remove_global_variable = array_get_max_tt
 			remove_variable = array_get_max_t
-			ordered_in_list = { 
-				variable = toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					set_variable = { 
-						name = info_dat_merchant_out_scope_3_timber
-						value = prev
+			if = { 
+				limit = { 
+					has_variable = info_dat_merchant_out_val_3_timber
+					var:info_dat_merchant_out_val_3_timber > 0
+				}
+				ordered_in_list = { 
+					variable = toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						set_variable = { 
+							name = info_dat_merchant_out_scope_3_timber
+							value = prev
+						}
+						remove_list_variable = { 
+							name = toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
-					remove_list_variable = { 
-						name = toggled_prov_merchant_dat_t
-						target = prev
+				}
+				ordered_in_list = { 
+					variable = array_toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						remove_list_variable = { 
+							name = array_toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
 				}
 			}
-			ordered_in_list = { 
-				variable = array_toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					remove_list_variable = { 
-						name = array_toggled_prov_merchant_dat_t
-						target = prev
-					}
-				}
+			else = { 
+				remove_variable = info_dat_merchant_out_val_3_timber
 			}
 			set_global_variable = { 
 				name = array_get_max_t
@@ -10154,29 +10512,38 @@ toggle_prov_merchant_dat = {
 			remove_global_variable = array_get_max_t
 			remove_global_variable = array_get_max_tt
 			remove_variable = array_get_max_t
-			ordered_in_list = { 
-				variable = toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					set_variable = { 
-						name = info_dat_merchant_out_scope_4_timber
-						value = prev
+			if = { 
+				limit = { 
+					has_variable = info_dat_merchant_out_val_4_timber
+					var:info_dat_merchant_out_val_4_timber > 0
+				}
+				ordered_in_list = { 
+					variable = toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						set_variable = { 
+							name = info_dat_merchant_out_scope_4_timber
+							value = prev
+						}
+						remove_list_variable = { 
+							name = toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
-					remove_list_variable = { 
-						name = toggled_prov_merchant_dat_t
-						target = prev
+				}
+				ordered_in_list = { 
+					variable = array_toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						remove_list_variable = { 
+							name = array_toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
 				}
 			}
-			ordered_in_list = { 
-				variable = array_toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					remove_list_variable = { 
-						name = array_toggled_prov_merchant_dat_t
-						target = prev
-					}
-				}
+			else = { 
+				remove_variable = info_dat_merchant_out_val_4_timber
 			}
 			set_global_variable = { 
 				name = array_get_min_t
@@ -10574,6 +10941,7 @@ toggle_prov_merchant_dat = {
 				}
 			}
 			remove_global_variable = toggled_prov_merchant_dat_t
+			clear_variable_list = array_toggled_prov_merchant_dat_t
 			remove_variable = toggled_prov_merchant_dat_t
 			every_in_list = { 
 				variable = trade_dat_metal
@@ -10644,29 +11012,38 @@ toggle_prov_merchant_dat = {
 			remove_global_variable = array_get_max_t
 			remove_global_variable = array_get_max_tt
 			remove_variable = array_get_max_t
-			ordered_in_list = { 
-				variable = toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					set_variable = { 
-						name = info_dat_merchant_out_scope_0_metal
-						value = prev
+			if = { 
+				limit = { 
+					has_variable = info_dat_merchant_out_val_0_metal
+					var:info_dat_merchant_out_val_0_metal > 0
+				}
+				ordered_in_list = { 
+					variable = toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						set_variable = { 
+							name = info_dat_merchant_out_scope_0_metal
+							value = prev
+						}
+						remove_list_variable = { 
+							name = toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
-					remove_list_variable = { 
-						name = toggled_prov_merchant_dat_t
-						target = prev
+				}
+				ordered_in_list = { 
+					variable = array_toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						remove_list_variable = { 
+							name = array_toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
 				}
 			}
-			ordered_in_list = { 
-				variable = array_toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					remove_list_variable = { 
-						name = array_toggled_prov_merchant_dat_t
-						target = prev
-					}
-				}
+			else = { 
+				remove_variable = info_dat_merchant_out_val_0_metal
 			}
 			set_global_variable = { 
 				name = array_get_max_t
@@ -10719,29 +11096,38 @@ toggle_prov_merchant_dat = {
 			remove_global_variable = array_get_max_t
 			remove_global_variable = array_get_max_tt
 			remove_variable = array_get_max_t
-			ordered_in_list = { 
-				variable = toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					set_variable = { 
-						name = info_dat_merchant_out_scope_1_metal
-						value = prev
+			if = { 
+				limit = { 
+					has_variable = info_dat_merchant_out_val_1_metal
+					var:info_dat_merchant_out_val_1_metal > 0
+				}
+				ordered_in_list = { 
+					variable = toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						set_variable = { 
+							name = info_dat_merchant_out_scope_1_metal
+							value = prev
+						}
+						remove_list_variable = { 
+							name = toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
-					remove_list_variable = { 
-						name = toggled_prov_merchant_dat_t
-						target = prev
+				}
+				ordered_in_list = { 
+					variable = array_toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						remove_list_variable = { 
+							name = array_toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
 				}
 			}
-			ordered_in_list = { 
-				variable = array_toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					remove_list_variable = { 
-						name = array_toggled_prov_merchant_dat_t
-						target = prev
-					}
-				}
+			else = { 
+				remove_variable = info_dat_merchant_out_val_1_metal
 			}
 			set_global_variable = { 
 				name = array_get_max_t
@@ -10794,29 +11180,38 @@ toggle_prov_merchant_dat = {
 			remove_global_variable = array_get_max_t
 			remove_global_variable = array_get_max_tt
 			remove_variable = array_get_max_t
-			ordered_in_list = { 
-				variable = toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					set_variable = { 
-						name = info_dat_merchant_out_scope_2_metal
-						value = prev
+			if = { 
+				limit = { 
+					has_variable = info_dat_merchant_out_val_2_metal
+					var:info_dat_merchant_out_val_2_metal > 0
+				}
+				ordered_in_list = { 
+					variable = toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						set_variable = { 
+							name = info_dat_merchant_out_scope_2_metal
+							value = prev
+						}
+						remove_list_variable = { 
+							name = toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
-					remove_list_variable = { 
-						name = toggled_prov_merchant_dat_t
-						target = prev
+				}
+				ordered_in_list = { 
+					variable = array_toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						remove_list_variable = { 
+							name = array_toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
 				}
 			}
-			ordered_in_list = { 
-				variable = array_toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					remove_list_variable = { 
-						name = array_toggled_prov_merchant_dat_t
-						target = prev
-					}
-				}
+			else = { 
+				remove_variable = info_dat_merchant_out_val_2_metal
 			}
 			set_global_variable = { 
 				name = array_get_max_t
@@ -10869,29 +11264,38 @@ toggle_prov_merchant_dat = {
 			remove_global_variable = array_get_max_t
 			remove_global_variable = array_get_max_tt
 			remove_variable = array_get_max_t
-			ordered_in_list = { 
-				variable = toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					set_variable = { 
-						name = info_dat_merchant_out_scope_3_metal
-						value = prev
+			if = { 
+				limit = { 
+					has_variable = info_dat_merchant_out_val_3_metal
+					var:info_dat_merchant_out_val_3_metal > 0
+				}
+				ordered_in_list = { 
+					variable = toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						set_variable = { 
+							name = info_dat_merchant_out_scope_3_metal
+							value = prev
+						}
+						remove_list_variable = { 
+							name = toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
-					remove_list_variable = { 
-						name = toggled_prov_merchant_dat_t
-						target = prev
+				}
+				ordered_in_list = { 
+					variable = array_toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						remove_list_variable = { 
+							name = array_toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
 				}
 			}
-			ordered_in_list = { 
-				variable = array_toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					remove_list_variable = { 
-						name = array_toggled_prov_merchant_dat_t
-						target = prev
-					}
-				}
+			else = { 
+				remove_variable = info_dat_merchant_out_val_3_metal
 			}
 			set_global_variable = { 
 				name = array_get_max_t
@@ -10944,29 +11348,38 @@ toggle_prov_merchant_dat = {
 			remove_global_variable = array_get_max_t
 			remove_global_variable = array_get_max_tt
 			remove_variable = array_get_max_t
-			ordered_in_list = { 
-				variable = toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					set_variable = { 
-						name = info_dat_merchant_out_scope_4_metal
-						value = prev
+			if = { 
+				limit = { 
+					has_variable = info_dat_merchant_out_val_4_metal
+					var:info_dat_merchant_out_val_4_metal > 0
+				}
+				ordered_in_list = { 
+					variable = toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						set_variable = { 
+							name = info_dat_merchant_out_scope_4_metal
+							value = prev
+						}
+						remove_list_variable = { 
+							name = toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
-					remove_list_variable = { 
-						name = toggled_prov_merchant_dat_t
-						target = prev
+				}
+				ordered_in_list = { 
+					variable = array_toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						remove_list_variable = { 
+							name = array_toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
 				}
 			}
-			ordered_in_list = { 
-				variable = array_toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					remove_list_variable = { 
-						name = array_toggled_prov_merchant_dat_t
-						target = prev
-					}
-				}
+			else = { 
+				remove_variable = info_dat_merchant_out_val_4_metal
 			}
 			set_global_variable = { 
 				name = array_get_min_t
@@ -11364,6 +11777,7 @@ toggle_prov_merchant_dat = {
 				}
 			}
 			remove_global_variable = toggled_prov_merchant_dat_t
+			clear_variable_list = array_toggled_prov_merchant_dat_t
 			remove_variable = toggled_prov_merchant_dat_t
 			every_in_list = { 
 				variable = trade_dat_exotics_w
@@ -11434,29 +11848,38 @@ toggle_prov_merchant_dat = {
 			remove_global_variable = array_get_max_t
 			remove_global_variable = array_get_max_tt
 			remove_variable = array_get_max_t
-			ordered_in_list = { 
-				variable = toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					set_variable = { 
-						name = info_dat_merchant_out_scope_0_exotics_w
-						value = prev
+			if = { 
+				limit = { 
+					has_variable = info_dat_merchant_out_val_0_exotics_w
+					var:info_dat_merchant_out_val_0_exotics_w > 0
+				}
+				ordered_in_list = { 
+					variable = toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						set_variable = { 
+							name = info_dat_merchant_out_scope_0_exotics_w
+							value = prev
+						}
+						remove_list_variable = { 
+							name = toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
-					remove_list_variable = { 
-						name = toggled_prov_merchant_dat_t
-						target = prev
+				}
+				ordered_in_list = { 
+					variable = array_toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						remove_list_variable = { 
+							name = array_toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
 				}
 			}
-			ordered_in_list = { 
-				variable = array_toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					remove_list_variable = { 
-						name = array_toggled_prov_merchant_dat_t
-						target = prev
-					}
-				}
+			else = { 
+				remove_variable = info_dat_merchant_out_val_0_exotics_w
 			}
 			set_global_variable = { 
 				name = array_get_max_t
@@ -11509,29 +11932,38 @@ toggle_prov_merchant_dat = {
 			remove_global_variable = array_get_max_t
 			remove_global_variable = array_get_max_tt
 			remove_variable = array_get_max_t
-			ordered_in_list = { 
-				variable = toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					set_variable = { 
-						name = info_dat_merchant_out_scope_1_exotics_w
-						value = prev
+			if = { 
+				limit = { 
+					has_variable = info_dat_merchant_out_val_1_exotics_w
+					var:info_dat_merchant_out_val_1_exotics_w > 0
+				}
+				ordered_in_list = { 
+					variable = toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						set_variable = { 
+							name = info_dat_merchant_out_scope_1_exotics_w
+							value = prev
+						}
+						remove_list_variable = { 
+							name = toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
-					remove_list_variable = { 
-						name = toggled_prov_merchant_dat_t
-						target = prev
+				}
+				ordered_in_list = { 
+					variable = array_toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						remove_list_variable = { 
+							name = array_toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
 				}
 			}
-			ordered_in_list = { 
-				variable = array_toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					remove_list_variable = { 
-						name = array_toggled_prov_merchant_dat_t
-						target = prev
-					}
-				}
+			else = { 
+				remove_variable = info_dat_merchant_out_val_1_exotics_w
 			}
 			set_global_variable = { 
 				name = array_get_max_t
@@ -11584,29 +12016,38 @@ toggle_prov_merchant_dat = {
 			remove_global_variable = array_get_max_t
 			remove_global_variable = array_get_max_tt
 			remove_variable = array_get_max_t
-			ordered_in_list = { 
-				variable = toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					set_variable = { 
-						name = info_dat_merchant_out_scope_2_exotics_w
-						value = prev
+			if = { 
+				limit = { 
+					has_variable = info_dat_merchant_out_val_2_exotics_w
+					var:info_dat_merchant_out_val_2_exotics_w > 0
+				}
+				ordered_in_list = { 
+					variable = toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						set_variable = { 
+							name = info_dat_merchant_out_scope_2_exotics_w
+							value = prev
+						}
+						remove_list_variable = { 
+							name = toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
-					remove_list_variable = { 
-						name = toggled_prov_merchant_dat_t
-						target = prev
+				}
+				ordered_in_list = { 
+					variable = array_toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						remove_list_variable = { 
+							name = array_toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
 				}
 			}
-			ordered_in_list = { 
-				variable = array_toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					remove_list_variable = { 
-						name = array_toggled_prov_merchant_dat_t
-						target = prev
-					}
-				}
+			else = { 
+				remove_variable = info_dat_merchant_out_val_2_exotics_w
 			}
 			set_global_variable = { 
 				name = array_get_max_t
@@ -11659,29 +12100,38 @@ toggle_prov_merchant_dat = {
 			remove_global_variable = array_get_max_t
 			remove_global_variable = array_get_max_tt
 			remove_variable = array_get_max_t
-			ordered_in_list = { 
-				variable = toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					set_variable = { 
-						name = info_dat_merchant_out_scope_3_exotics_w
-						value = prev
+			if = { 
+				limit = { 
+					has_variable = info_dat_merchant_out_val_3_exotics_w
+					var:info_dat_merchant_out_val_3_exotics_w > 0
+				}
+				ordered_in_list = { 
+					variable = toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						set_variable = { 
+							name = info_dat_merchant_out_scope_3_exotics_w
+							value = prev
+						}
+						remove_list_variable = { 
+							name = toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
-					remove_list_variable = { 
-						name = toggled_prov_merchant_dat_t
-						target = prev
+				}
+				ordered_in_list = { 
+					variable = array_toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						remove_list_variable = { 
+							name = array_toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
 				}
 			}
-			ordered_in_list = { 
-				variable = array_toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					remove_list_variable = { 
-						name = array_toggled_prov_merchant_dat_t
-						target = prev
-					}
-				}
+			else = { 
+				remove_variable = info_dat_merchant_out_val_3_exotics_w
 			}
 			set_global_variable = { 
 				name = array_get_max_t
@@ -11734,29 +12184,38 @@ toggle_prov_merchant_dat = {
 			remove_global_variable = array_get_max_t
 			remove_global_variable = array_get_max_tt
 			remove_variable = array_get_max_t
-			ordered_in_list = { 
-				variable = toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					set_variable = { 
-						name = info_dat_merchant_out_scope_4_exotics_w
-						value = prev
+			if = { 
+				limit = { 
+					has_variable = info_dat_merchant_out_val_4_exotics_w
+					var:info_dat_merchant_out_val_4_exotics_w > 0
+				}
+				ordered_in_list = { 
+					variable = toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						set_variable = { 
+							name = info_dat_merchant_out_scope_4_exotics_w
+							value = prev
+						}
+						remove_list_variable = { 
+							name = toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
-					remove_list_variable = { 
-						name = toggled_prov_merchant_dat_t
-						target = prev
+				}
+				ordered_in_list = { 
+					variable = array_toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						remove_list_variable = { 
+							name = array_toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
 				}
 			}
-			ordered_in_list = { 
-				variable = array_toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					remove_list_variable = { 
-						name = array_toggled_prov_merchant_dat_t
-						target = prev
-					}
-				}
+			else = { 
+				remove_variable = info_dat_merchant_out_val_4_exotics_w
 			}
 			set_global_variable = { 
 				name = array_get_min_t
@@ -12154,6 +12613,7 @@ toggle_prov_merchant_dat = {
 				}
 			}
 			remove_global_variable = toggled_prov_merchant_dat_t
+			clear_variable_list = array_toggled_prov_merchant_dat_t
 			remove_variable = toggled_prov_merchant_dat_t
 			every_in_list = { 
 				variable = trade_dat_exotics_e
@@ -12224,29 +12684,38 @@ toggle_prov_merchant_dat = {
 			remove_global_variable = array_get_max_t
 			remove_global_variable = array_get_max_tt
 			remove_variable = array_get_max_t
-			ordered_in_list = { 
-				variable = toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					set_variable = { 
-						name = info_dat_merchant_out_scope_0_exotics_e
-						value = prev
+			if = { 
+				limit = { 
+					has_variable = info_dat_merchant_out_val_0_exotics_e
+					var:info_dat_merchant_out_val_0_exotics_e > 0
+				}
+				ordered_in_list = { 
+					variable = toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						set_variable = { 
+							name = info_dat_merchant_out_scope_0_exotics_e
+							value = prev
+						}
+						remove_list_variable = { 
+							name = toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
-					remove_list_variable = { 
-						name = toggled_prov_merchant_dat_t
-						target = prev
+				}
+				ordered_in_list = { 
+					variable = array_toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						remove_list_variable = { 
+							name = array_toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
 				}
 			}
-			ordered_in_list = { 
-				variable = array_toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					remove_list_variable = { 
-						name = array_toggled_prov_merchant_dat_t
-						target = prev
-					}
-				}
+			else = { 
+				remove_variable = info_dat_merchant_out_val_0_exotics_e
 			}
 			set_global_variable = { 
 				name = array_get_max_t
@@ -12299,29 +12768,38 @@ toggle_prov_merchant_dat = {
 			remove_global_variable = array_get_max_t
 			remove_global_variable = array_get_max_tt
 			remove_variable = array_get_max_t
-			ordered_in_list = { 
-				variable = toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					set_variable = { 
-						name = info_dat_merchant_out_scope_1_exotics_e
-						value = prev
+			if = { 
+				limit = { 
+					has_variable = info_dat_merchant_out_val_1_exotics_e
+					var:info_dat_merchant_out_val_1_exotics_e > 0
+				}
+				ordered_in_list = { 
+					variable = toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						set_variable = { 
+							name = info_dat_merchant_out_scope_1_exotics_e
+							value = prev
+						}
+						remove_list_variable = { 
+							name = toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
-					remove_list_variable = { 
-						name = toggled_prov_merchant_dat_t
-						target = prev
+				}
+				ordered_in_list = { 
+					variable = array_toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						remove_list_variable = { 
+							name = array_toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
 				}
 			}
-			ordered_in_list = { 
-				variable = array_toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					remove_list_variable = { 
-						name = array_toggled_prov_merchant_dat_t
-						target = prev
-					}
-				}
+			else = { 
+				remove_variable = info_dat_merchant_out_val_1_exotics_e
 			}
 			set_global_variable = { 
 				name = array_get_max_t
@@ -12374,29 +12852,38 @@ toggle_prov_merchant_dat = {
 			remove_global_variable = array_get_max_t
 			remove_global_variable = array_get_max_tt
 			remove_variable = array_get_max_t
-			ordered_in_list = { 
-				variable = toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					set_variable = { 
-						name = info_dat_merchant_out_scope_2_exotics_e
-						value = prev
+			if = { 
+				limit = { 
+					has_variable = info_dat_merchant_out_val_2_exotics_e
+					var:info_dat_merchant_out_val_2_exotics_e > 0
+				}
+				ordered_in_list = { 
+					variable = toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						set_variable = { 
+							name = info_dat_merchant_out_scope_2_exotics_e
+							value = prev
+						}
+						remove_list_variable = { 
+							name = toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
-					remove_list_variable = { 
-						name = toggled_prov_merchant_dat_t
-						target = prev
+				}
+				ordered_in_list = { 
+					variable = array_toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						remove_list_variable = { 
+							name = array_toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
 				}
 			}
-			ordered_in_list = { 
-				variable = array_toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					remove_list_variable = { 
-						name = array_toggled_prov_merchant_dat_t
-						target = prev
-					}
-				}
+			else = { 
+				remove_variable = info_dat_merchant_out_val_2_exotics_e
 			}
 			set_global_variable = { 
 				name = array_get_max_t
@@ -12449,29 +12936,38 @@ toggle_prov_merchant_dat = {
 			remove_global_variable = array_get_max_t
 			remove_global_variable = array_get_max_tt
 			remove_variable = array_get_max_t
-			ordered_in_list = { 
-				variable = toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					set_variable = { 
-						name = info_dat_merchant_out_scope_3_exotics_e
-						value = prev
+			if = { 
+				limit = { 
+					has_variable = info_dat_merchant_out_val_3_exotics_e
+					var:info_dat_merchant_out_val_3_exotics_e > 0
+				}
+				ordered_in_list = { 
+					variable = toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						set_variable = { 
+							name = info_dat_merchant_out_scope_3_exotics_e
+							value = prev
+						}
+						remove_list_variable = { 
+							name = toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
-					remove_list_variable = { 
-						name = toggled_prov_merchant_dat_t
-						target = prev
+				}
+				ordered_in_list = { 
+					variable = array_toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						remove_list_variable = { 
+							name = array_toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
 				}
 			}
-			ordered_in_list = { 
-				variable = array_toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					remove_list_variable = { 
-						name = array_toggled_prov_merchant_dat_t
-						target = prev
-					}
-				}
+			else = { 
+				remove_variable = info_dat_merchant_out_val_3_exotics_e
 			}
 			set_global_variable = { 
 				name = array_get_max_t
@@ -12524,29 +13020,38 @@ toggle_prov_merchant_dat = {
 			remove_global_variable = array_get_max_t
 			remove_global_variable = array_get_max_tt
 			remove_variable = array_get_max_t
-			ordered_in_list = { 
-				variable = toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					set_variable = { 
-						name = info_dat_merchant_out_scope_4_exotics_e
-						value = prev
+			if = { 
+				limit = { 
+					has_variable = info_dat_merchant_out_val_4_exotics_e
+					var:info_dat_merchant_out_val_4_exotics_e > 0
+				}
+				ordered_in_list = { 
+					variable = toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						set_variable = { 
+							name = info_dat_merchant_out_scope_4_exotics_e
+							value = prev
+						}
+						remove_list_variable = { 
+							name = toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
-					remove_list_variable = { 
-						name = toggled_prov_merchant_dat_t
-						target = prev
+				}
+				ordered_in_list = { 
+					variable = array_toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						remove_list_variable = { 
+							name = array_toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
 				}
 			}
-			ordered_in_list = { 
-				variable = array_toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					remove_list_variable = { 
-						name = array_toggled_prov_merchant_dat_t
-						target = prev
-					}
-				}
+			else = { 
+				remove_variable = info_dat_merchant_out_val_4_exotics_e
 			}
 			set_global_variable = { 
 				name = array_get_min_t
@@ -12944,6 +13449,7 @@ toggle_prov_merchant_dat = {
 				}
 			}
 			remove_global_variable = toggled_prov_merchant_dat_t
+			clear_variable_list = array_toggled_prov_merchant_dat_t
 			remove_variable = toggled_prov_merchant_dat_t
 			every_in_list = { 
 				variable = trade_dat_exotics_g
@@ -13014,29 +13520,38 @@ toggle_prov_merchant_dat = {
 			remove_global_variable = array_get_max_t
 			remove_global_variable = array_get_max_tt
 			remove_variable = array_get_max_t
-			ordered_in_list = { 
-				variable = toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					set_variable = { 
-						name = info_dat_merchant_out_scope_0_exotics_g
-						value = prev
+			if = { 
+				limit = { 
+					has_variable = info_dat_merchant_out_val_0_exotics_g
+					var:info_dat_merchant_out_val_0_exotics_g > 0
+				}
+				ordered_in_list = { 
+					variable = toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						set_variable = { 
+							name = info_dat_merchant_out_scope_0_exotics_g
+							value = prev
+						}
+						remove_list_variable = { 
+							name = toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
-					remove_list_variable = { 
-						name = toggled_prov_merchant_dat_t
-						target = prev
+				}
+				ordered_in_list = { 
+					variable = array_toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						remove_list_variable = { 
+							name = array_toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
 				}
 			}
-			ordered_in_list = { 
-				variable = array_toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					remove_list_variable = { 
-						name = array_toggled_prov_merchant_dat_t
-						target = prev
-					}
-				}
+			else = { 
+				remove_variable = info_dat_merchant_out_val_0_exotics_g
 			}
 			set_global_variable = { 
 				name = array_get_max_t
@@ -13089,29 +13604,38 @@ toggle_prov_merchant_dat = {
 			remove_global_variable = array_get_max_t
 			remove_global_variable = array_get_max_tt
 			remove_variable = array_get_max_t
-			ordered_in_list = { 
-				variable = toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					set_variable = { 
-						name = info_dat_merchant_out_scope_1_exotics_g
-						value = prev
+			if = { 
+				limit = { 
+					has_variable = info_dat_merchant_out_val_1_exotics_g
+					var:info_dat_merchant_out_val_1_exotics_g > 0
+				}
+				ordered_in_list = { 
+					variable = toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						set_variable = { 
+							name = info_dat_merchant_out_scope_1_exotics_g
+							value = prev
+						}
+						remove_list_variable = { 
+							name = toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
-					remove_list_variable = { 
-						name = toggled_prov_merchant_dat_t
-						target = prev
+				}
+				ordered_in_list = { 
+					variable = array_toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						remove_list_variable = { 
+							name = array_toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
 				}
 			}
-			ordered_in_list = { 
-				variable = array_toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					remove_list_variable = { 
-						name = array_toggled_prov_merchant_dat_t
-						target = prev
-					}
-				}
+			else = { 
+				remove_variable = info_dat_merchant_out_val_1_exotics_g
 			}
 			set_global_variable = { 
 				name = array_get_max_t
@@ -13164,29 +13688,38 @@ toggle_prov_merchant_dat = {
 			remove_global_variable = array_get_max_t
 			remove_global_variable = array_get_max_tt
 			remove_variable = array_get_max_t
-			ordered_in_list = { 
-				variable = toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					set_variable = { 
-						name = info_dat_merchant_out_scope_2_exotics_g
-						value = prev
+			if = { 
+				limit = { 
+					has_variable = info_dat_merchant_out_val_2_exotics_g
+					var:info_dat_merchant_out_val_2_exotics_g > 0
+				}
+				ordered_in_list = { 
+					variable = toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						set_variable = { 
+							name = info_dat_merchant_out_scope_2_exotics_g
+							value = prev
+						}
+						remove_list_variable = { 
+							name = toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
-					remove_list_variable = { 
-						name = toggled_prov_merchant_dat_t
-						target = prev
+				}
+				ordered_in_list = { 
+					variable = array_toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						remove_list_variable = { 
+							name = array_toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
 				}
 			}
-			ordered_in_list = { 
-				variable = array_toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					remove_list_variable = { 
-						name = array_toggled_prov_merchant_dat_t
-						target = prev
-					}
-				}
+			else = { 
+				remove_variable = info_dat_merchant_out_val_2_exotics_g
 			}
 			set_global_variable = { 
 				name = array_get_max_t
@@ -13239,29 +13772,38 @@ toggle_prov_merchant_dat = {
 			remove_global_variable = array_get_max_t
 			remove_global_variable = array_get_max_tt
 			remove_variable = array_get_max_t
-			ordered_in_list = { 
-				variable = toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					set_variable = { 
-						name = info_dat_merchant_out_scope_3_exotics_g
-						value = prev
+			if = { 
+				limit = { 
+					has_variable = info_dat_merchant_out_val_3_exotics_g
+					var:info_dat_merchant_out_val_3_exotics_g > 0
+				}
+				ordered_in_list = { 
+					variable = toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						set_variable = { 
+							name = info_dat_merchant_out_scope_3_exotics_g
+							value = prev
+						}
+						remove_list_variable = { 
+							name = toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
-					remove_list_variable = { 
-						name = toggled_prov_merchant_dat_t
-						target = prev
+				}
+				ordered_in_list = { 
+					variable = array_toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						remove_list_variable = { 
+							name = array_toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
 				}
 			}
-			ordered_in_list = { 
-				variable = array_toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					remove_list_variable = { 
-						name = array_toggled_prov_merchant_dat_t
-						target = prev
-					}
-				}
+			else = { 
+				remove_variable = info_dat_merchant_out_val_3_exotics_g
 			}
 			set_global_variable = { 
 				name = array_get_max_t
@@ -13314,29 +13856,38 @@ toggle_prov_merchant_dat = {
 			remove_global_variable = array_get_max_t
 			remove_global_variable = array_get_max_tt
 			remove_variable = array_get_max_t
-			ordered_in_list = { 
-				variable = toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					set_variable = { 
-						name = info_dat_merchant_out_scope_4_exotics_g
-						value = prev
+			if = { 
+				limit = { 
+					has_variable = info_dat_merchant_out_val_4_exotics_g
+					var:info_dat_merchant_out_val_4_exotics_g > 0
+				}
+				ordered_in_list = { 
+					variable = toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						set_variable = { 
+							name = info_dat_merchant_out_scope_4_exotics_g
+							value = prev
+						}
+						remove_list_variable = { 
+							name = toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
-					remove_list_variable = { 
-						name = toggled_prov_merchant_dat_t
-						target = prev
+				}
+				ordered_in_list = { 
+					variable = array_toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						remove_list_variable = { 
+							name = array_toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
 				}
 			}
-			ordered_in_list = { 
-				variable = array_toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					remove_list_variable = { 
-						name = array_toggled_prov_merchant_dat_t
-						target = prev
-					}
-				}
+			else = { 
+				remove_variable = info_dat_merchant_out_val_4_exotics_g
 			}
 			set_global_variable = { 
 				name = array_get_min_t
@@ -13734,6 +14285,7 @@ toggle_prov_merchant_dat = {
 				}
 			}
 			remove_global_variable = toggled_prov_merchant_dat_t
+			clear_variable_list = array_toggled_prov_merchant_dat_t
 			remove_variable = toggled_prov_merchant_dat_t
 			every_in_list = { 
 				variable = trade_dat_textile
@@ -13804,29 +14356,38 @@ toggle_prov_merchant_dat = {
 			remove_global_variable = array_get_max_t
 			remove_global_variable = array_get_max_tt
 			remove_variable = array_get_max_t
-			ordered_in_list = { 
-				variable = toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					set_variable = { 
-						name = info_dat_merchant_out_scope_0_textile
-						value = prev
+			if = { 
+				limit = { 
+					has_variable = info_dat_merchant_out_val_0_textile
+					var:info_dat_merchant_out_val_0_textile > 0
+				}
+				ordered_in_list = { 
+					variable = toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						set_variable = { 
+							name = info_dat_merchant_out_scope_0_textile
+							value = prev
+						}
+						remove_list_variable = { 
+							name = toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
-					remove_list_variable = { 
-						name = toggled_prov_merchant_dat_t
-						target = prev
+				}
+				ordered_in_list = { 
+					variable = array_toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						remove_list_variable = { 
+							name = array_toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
 				}
 			}
-			ordered_in_list = { 
-				variable = array_toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					remove_list_variable = { 
-						name = array_toggled_prov_merchant_dat_t
-						target = prev
-					}
-				}
+			else = { 
+				remove_variable = info_dat_merchant_out_val_0_textile
 			}
 			set_global_variable = { 
 				name = array_get_max_t
@@ -13879,29 +14440,38 @@ toggle_prov_merchant_dat = {
 			remove_global_variable = array_get_max_t
 			remove_global_variable = array_get_max_tt
 			remove_variable = array_get_max_t
-			ordered_in_list = { 
-				variable = toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					set_variable = { 
-						name = info_dat_merchant_out_scope_1_textile
-						value = prev
+			if = { 
+				limit = { 
+					has_variable = info_dat_merchant_out_val_1_textile
+					var:info_dat_merchant_out_val_1_textile > 0
+				}
+				ordered_in_list = { 
+					variable = toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						set_variable = { 
+							name = info_dat_merchant_out_scope_1_textile
+							value = prev
+						}
+						remove_list_variable = { 
+							name = toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
-					remove_list_variable = { 
-						name = toggled_prov_merchant_dat_t
-						target = prev
+				}
+				ordered_in_list = { 
+					variable = array_toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						remove_list_variable = { 
+							name = array_toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
 				}
 			}
-			ordered_in_list = { 
-				variable = array_toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					remove_list_variable = { 
-						name = array_toggled_prov_merchant_dat_t
-						target = prev
-					}
-				}
+			else = { 
+				remove_variable = info_dat_merchant_out_val_1_textile
 			}
 			set_global_variable = { 
 				name = array_get_max_t
@@ -13954,29 +14524,38 @@ toggle_prov_merchant_dat = {
 			remove_global_variable = array_get_max_t
 			remove_global_variable = array_get_max_tt
 			remove_variable = array_get_max_t
-			ordered_in_list = { 
-				variable = toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					set_variable = { 
-						name = info_dat_merchant_out_scope_2_textile
-						value = prev
+			if = { 
+				limit = { 
+					has_variable = info_dat_merchant_out_val_2_textile
+					var:info_dat_merchant_out_val_2_textile > 0
+				}
+				ordered_in_list = { 
+					variable = toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						set_variable = { 
+							name = info_dat_merchant_out_scope_2_textile
+							value = prev
+						}
+						remove_list_variable = { 
+							name = toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
-					remove_list_variable = { 
-						name = toggled_prov_merchant_dat_t
-						target = prev
+				}
+				ordered_in_list = { 
+					variable = array_toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						remove_list_variable = { 
+							name = array_toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
 				}
 			}
-			ordered_in_list = { 
-				variable = array_toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					remove_list_variable = { 
-						name = array_toggled_prov_merchant_dat_t
-						target = prev
-					}
-				}
+			else = { 
+				remove_variable = info_dat_merchant_out_val_2_textile
 			}
 			set_global_variable = { 
 				name = array_get_max_t
@@ -14029,29 +14608,38 @@ toggle_prov_merchant_dat = {
 			remove_global_variable = array_get_max_t
 			remove_global_variable = array_get_max_tt
 			remove_variable = array_get_max_t
-			ordered_in_list = { 
-				variable = toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					set_variable = { 
-						name = info_dat_merchant_out_scope_3_textile
-						value = prev
+			if = { 
+				limit = { 
+					has_variable = info_dat_merchant_out_val_3_textile
+					var:info_dat_merchant_out_val_3_textile > 0
+				}
+				ordered_in_list = { 
+					variable = toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						set_variable = { 
+							name = info_dat_merchant_out_scope_3_textile
+							value = prev
+						}
+						remove_list_variable = { 
+							name = toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
-					remove_list_variable = { 
-						name = toggled_prov_merchant_dat_t
-						target = prev
+				}
+				ordered_in_list = { 
+					variable = array_toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						remove_list_variable = { 
+							name = array_toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
 				}
 			}
-			ordered_in_list = { 
-				variable = array_toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					remove_list_variable = { 
-						name = array_toggled_prov_merchant_dat_t
-						target = prev
-					}
-				}
+			else = { 
+				remove_variable = info_dat_merchant_out_val_3_textile
 			}
 			set_global_variable = { 
 				name = array_get_max_t
@@ -14104,29 +14692,38 @@ toggle_prov_merchant_dat = {
 			remove_global_variable = array_get_max_t
 			remove_global_variable = array_get_max_tt
 			remove_variable = array_get_max_t
-			ordered_in_list = { 
-				variable = toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					set_variable = { 
-						name = info_dat_merchant_out_scope_4_textile
-						value = prev
+			if = { 
+				limit = { 
+					has_variable = info_dat_merchant_out_val_4_textile
+					var:info_dat_merchant_out_val_4_textile > 0
+				}
+				ordered_in_list = { 
+					variable = toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						set_variable = { 
+							name = info_dat_merchant_out_scope_4_textile
+							value = prev
+						}
+						remove_list_variable = { 
+							name = toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
-					remove_list_variable = { 
-						name = toggled_prov_merchant_dat_t
-						target = prev
+				}
+				ordered_in_list = { 
+					variable = array_toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						remove_list_variable = { 
+							name = array_toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
 				}
 			}
-			ordered_in_list = { 
-				variable = array_toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					remove_list_variable = { 
-						name = array_toggled_prov_merchant_dat_t
-						target = prev
-					}
-				}
+			else = { 
+				remove_variable = info_dat_merchant_out_val_4_textile
 			}
 			set_global_variable = { 
 				name = array_get_min_t
@@ -14524,6 +15121,7 @@ toggle_prov_merchant_dat = {
 				}
 			}
 			remove_global_variable = toggled_prov_merchant_dat_t
+			clear_variable_list = array_toggled_prov_merchant_dat_t
 			remove_variable = toggled_prov_merchant_dat_t
 			every_in_list = { 
 				variable = trade_dat_pottery
@@ -14594,29 +15192,38 @@ toggle_prov_merchant_dat = {
 			remove_global_variable = array_get_max_t
 			remove_global_variable = array_get_max_tt
 			remove_variable = array_get_max_t
-			ordered_in_list = { 
-				variable = toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					set_variable = { 
-						name = info_dat_merchant_out_scope_0_pottery
-						value = prev
+			if = { 
+				limit = { 
+					has_variable = info_dat_merchant_out_val_0_pottery
+					var:info_dat_merchant_out_val_0_pottery > 0
+				}
+				ordered_in_list = { 
+					variable = toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						set_variable = { 
+							name = info_dat_merchant_out_scope_0_pottery
+							value = prev
+						}
+						remove_list_variable = { 
+							name = toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
-					remove_list_variable = { 
-						name = toggled_prov_merchant_dat_t
-						target = prev
+				}
+				ordered_in_list = { 
+					variable = array_toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						remove_list_variable = { 
+							name = array_toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
 				}
 			}
-			ordered_in_list = { 
-				variable = array_toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					remove_list_variable = { 
-						name = array_toggled_prov_merchant_dat_t
-						target = prev
-					}
-				}
+			else = { 
+				remove_variable = info_dat_merchant_out_val_0_pottery
 			}
 			set_global_variable = { 
 				name = array_get_max_t
@@ -14669,29 +15276,38 @@ toggle_prov_merchant_dat = {
 			remove_global_variable = array_get_max_t
 			remove_global_variable = array_get_max_tt
 			remove_variable = array_get_max_t
-			ordered_in_list = { 
-				variable = toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					set_variable = { 
-						name = info_dat_merchant_out_scope_1_pottery
-						value = prev
+			if = { 
+				limit = { 
+					has_variable = info_dat_merchant_out_val_1_pottery
+					var:info_dat_merchant_out_val_1_pottery > 0
+				}
+				ordered_in_list = { 
+					variable = toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						set_variable = { 
+							name = info_dat_merchant_out_scope_1_pottery
+							value = prev
+						}
+						remove_list_variable = { 
+							name = toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
-					remove_list_variable = { 
-						name = toggled_prov_merchant_dat_t
-						target = prev
+				}
+				ordered_in_list = { 
+					variable = array_toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						remove_list_variable = { 
+							name = array_toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
 				}
 			}
-			ordered_in_list = { 
-				variable = array_toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					remove_list_variable = { 
-						name = array_toggled_prov_merchant_dat_t
-						target = prev
-					}
-				}
+			else = { 
+				remove_variable = info_dat_merchant_out_val_1_pottery
 			}
 			set_global_variable = { 
 				name = array_get_max_t
@@ -14744,29 +15360,38 @@ toggle_prov_merchant_dat = {
 			remove_global_variable = array_get_max_t
 			remove_global_variable = array_get_max_tt
 			remove_variable = array_get_max_t
-			ordered_in_list = { 
-				variable = toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					set_variable = { 
-						name = info_dat_merchant_out_scope_2_pottery
-						value = prev
+			if = { 
+				limit = { 
+					has_variable = info_dat_merchant_out_val_2_pottery
+					var:info_dat_merchant_out_val_2_pottery > 0
+				}
+				ordered_in_list = { 
+					variable = toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						set_variable = { 
+							name = info_dat_merchant_out_scope_2_pottery
+							value = prev
+						}
+						remove_list_variable = { 
+							name = toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
-					remove_list_variable = { 
-						name = toggled_prov_merchant_dat_t
-						target = prev
+				}
+				ordered_in_list = { 
+					variable = array_toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						remove_list_variable = { 
+							name = array_toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
 				}
 			}
-			ordered_in_list = { 
-				variable = array_toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					remove_list_variable = { 
-						name = array_toggled_prov_merchant_dat_t
-						target = prev
-					}
-				}
+			else = { 
+				remove_variable = info_dat_merchant_out_val_2_pottery
 			}
 			set_global_variable = { 
 				name = array_get_max_t
@@ -14819,29 +15444,38 @@ toggle_prov_merchant_dat = {
 			remove_global_variable = array_get_max_t
 			remove_global_variable = array_get_max_tt
 			remove_variable = array_get_max_t
-			ordered_in_list = { 
-				variable = toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					set_variable = { 
-						name = info_dat_merchant_out_scope_3_pottery
-						value = prev
+			if = { 
+				limit = { 
+					has_variable = info_dat_merchant_out_val_3_pottery
+					var:info_dat_merchant_out_val_3_pottery > 0
+				}
+				ordered_in_list = { 
+					variable = toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						set_variable = { 
+							name = info_dat_merchant_out_scope_3_pottery
+							value = prev
+						}
+						remove_list_variable = { 
+							name = toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
-					remove_list_variable = { 
-						name = toggled_prov_merchant_dat_t
-						target = prev
+				}
+				ordered_in_list = { 
+					variable = array_toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						remove_list_variable = { 
+							name = array_toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
 				}
 			}
-			ordered_in_list = { 
-				variable = array_toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					remove_list_variable = { 
-						name = array_toggled_prov_merchant_dat_t
-						target = prev
-					}
-				}
+			else = { 
+				remove_variable = info_dat_merchant_out_val_3_pottery
 			}
 			set_global_variable = { 
 				name = array_get_max_t
@@ -14894,29 +15528,38 @@ toggle_prov_merchant_dat = {
 			remove_global_variable = array_get_max_t
 			remove_global_variable = array_get_max_tt
 			remove_variable = array_get_max_t
-			ordered_in_list = { 
-				variable = toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					set_variable = { 
-						name = info_dat_merchant_out_scope_4_pottery
-						value = prev
+			if = { 
+				limit = { 
+					has_variable = info_dat_merchant_out_val_4_pottery
+					var:info_dat_merchant_out_val_4_pottery > 0
+				}
+				ordered_in_list = { 
+					variable = toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						set_variable = { 
+							name = info_dat_merchant_out_scope_4_pottery
+							value = prev
+						}
+						remove_list_variable = { 
+							name = toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
-					remove_list_variable = { 
-						name = toggled_prov_merchant_dat_t
-						target = prev
+				}
+				ordered_in_list = { 
+					variable = array_toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						remove_list_variable = { 
+							name = array_toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
 				}
 			}
-			ordered_in_list = { 
-				variable = array_toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					remove_list_variable = { 
-						name = array_toggled_prov_merchant_dat_t
-						target = prev
-					}
-				}
+			else = { 
+				remove_variable = info_dat_merchant_out_val_4_pottery
 			}
 			set_global_variable = { 
 				name = array_get_min_t
@@ -15314,6 +15957,7 @@ toggle_prov_merchant_dat = {
 				}
 			}
 			remove_global_variable = toggled_prov_merchant_dat_t
+			clear_variable_list = array_toggled_prov_merchant_dat_t
 			remove_variable = toggled_prov_merchant_dat_t
 			every_in_list = { 
 				variable = trade_dat_tools
@@ -15384,29 +16028,38 @@ toggle_prov_merchant_dat = {
 			remove_global_variable = array_get_max_t
 			remove_global_variable = array_get_max_tt
 			remove_variable = array_get_max_t
-			ordered_in_list = { 
-				variable = toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					set_variable = { 
-						name = info_dat_merchant_out_scope_0_tools
-						value = prev
+			if = { 
+				limit = { 
+					has_variable = info_dat_merchant_out_val_0_tools
+					var:info_dat_merchant_out_val_0_tools > 0
+				}
+				ordered_in_list = { 
+					variable = toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						set_variable = { 
+							name = info_dat_merchant_out_scope_0_tools
+							value = prev
+						}
+						remove_list_variable = { 
+							name = toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
-					remove_list_variable = { 
-						name = toggled_prov_merchant_dat_t
-						target = prev
+				}
+				ordered_in_list = { 
+					variable = array_toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						remove_list_variable = { 
+							name = array_toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
 				}
 			}
-			ordered_in_list = { 
-				variable = array_toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					remove_list_variable = { 
-						name = array_toggled_prov_merchant_dat_t
-						target = prev
-					}
-				}
+			else = { 
+				remove_variable = info_dat_merchant_out_val_0_tools
 			}
 			set_global_variable = { 
 				name = array_get_max_t
@@ -15459,29 +16112,38 @@ toggle_prov_merchant_dat = {
 			remove_global_variable = array_get_max_t
 			remove_global_variable = array_get_max_tt
 			remove_variable = array_get_max_t
-			ordered_in_list = { 
-				variable = toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					set_variable = { 
-						name = info_dat_merchant_out_scope_1_tools
-						value = prev
+			if = { 
+				limit = { 
+					has_variable = info_dat_merchant_out_val_1_tools
+					var:info_dat_merchant_out_val_1_tools > 0
+				}
+				ordered_in_list = { 
+					variable = toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						set_variable = { 
+							name = info_dat_merchant_out_scope_1_tools
+							value = prev
+						}
+						remove_list_variable = { 
+							name = toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
-					remove_list_variable = { 
-						name = toggled_prov_merchant_dat_t
-						target = prev
+				}
+				ordered_in_list = { 
+					variable = array_toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						remove_list_variable = { 
+							name = array_toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
 				}
 			}
-			ordered_in_list = { 
-				variable = array_toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					remove_list_variable = { 
-						name = array_toggled_prov_merchant_dat_t
-						target = prev
-					}
-				}
+			else = { 
+				remove_variable = info_dat_merchant_out_val_1_tools
 			}
 			set_global_variable = { 
 				name = array_get_max_t
@@ -15534,29 +16196,38 @@ toggle_prov_merchant_dat = {
 			remove_global_variable = array_get_max_t
 			remove_global_variable = array_get_max_tt
 			remove_variable = array_get_max_t
-			ordered_in_list = { 
-				variable = toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					set_variable = { 
-						name = info_dat_merchant_out_scope_2_tools
-						value = prev
+			if = { 
+				limit = { 
+					has_variable = info_dat_merchant_out_val_2_tools
+					var:info_dat_merchant_out_val_2_tools > 0
+				}
+				ordered_in_list = { 
+					variable = toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						set_variable = { 
+							name = info_dat_merchant_out_scope_2_tools
+							value = prev
+						}
+						remove_list_variable = { 
+							name = toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
-					remove_list_variable = { 
-						name = toggled_prov_merchant_dat_t
-						target = prev
+				}
+				ordered_in_list = { 
+					variable = array_toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						remove_list_variable = { 
+							name = array_toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
 				}
 			}
-			ordered_in_list = { 
-				variable = array_toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					remove_list_variable = { 
-						name = array_toggled_prov_merchant_dat_t
-						target = prev
-					}
-				}
+			else = { 
+				remove_variable = info_dat_merchant_out_val_2_tools
 			}
 			set_global_variable = { 
 				name = array_get_max_t
@@ -15609,29 +16280,38 @@ toggle_prov_merchant_dat = {
 			remove_global_variable = array_get_max_t
 			remove_global_variable = array_get_max_tt
 			remove_variable = array_get_max_t
-			ordered_in_list = { 
-				variable = toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					set_variable = { 
-						name = info_dat_merchant_out_scope_3_tools
-						value = prev
+			if = { 
+				limit = { 
+					has_variable = info_dat_merchant_out_val_3_tools
+					var:info_dat_merchant_out_val_3_tools > 0
+				}
+				ordered_in_list = { 
+					variable = toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						set_variable = { 
+							name = info_dat_merchant_out_scope_3_tools
+							value = prev
+						}
+						remove_list_variable = { 
+							name = toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
-					remove_list_variable = { 
-						name = toggled_prov_merchant_dat_t
-						target = prev
+				}
+				ordered_in_list = { 
+					variable = array_toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						remove_list_variable = { 
+							name = array_toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
 				}
 			}
-			ordered_in_list = { 
-				variable = array_toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					remove_list_variable = { 
-						name = array_toggled_prov_merchant_dat_t
-						target = prev
-					}
-				}
+			else = { 
+				remove_variable = info_dat_merchant_out_val_3_tools
 			}
 			set_global_variable = { 
 				name = array_get_max_t
@@ -15684,29 +16364,38 @@ toggle_prov_merchant_dat = {
 			remove_global_variable = array_get_max_t
 			remove_global_variable = array_get_max_tt
 			remove_variable = array_get_max_t
-			ordered_in_list = { 
-				variable = toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					set_variable = { 
-						name = info_dat_merchant_out_scope_4_tools
-						value = prev
+			if = { 
+				limit = { 
+					has_variable = info_dat_merchant_out_val_4_tools
+					var:info_dat_merchant_out_val_4_tools > 0
+				}
+				ordered_in_list = { 
+					variable = toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						set_variable = { 
+							name = info_dat_merchant_out_scope_4_tools
+							value = prev
+						}
+						remove_list_variable = { 
+							name = toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
-					remove_list_variable = { 
-						name = toggled_prov_merchant_dat_t
-						target = prev
+				}
+				ordered_in_list = { 
+					variable = array_toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						remove_list_variable = { 
+							name = array_toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
 				}
 			}
-			ordered_in_list = { 
-				variable = array_toggled_prov_merchant_dat_t
-				position = global_var:toggled_prov_merchant_dat_t.compare_value
-				prev = { 
-					remove_list_variable = { 
-						name = array_toggled_prov_merchant_dat_t
-						target = prev
-					}
-				}
+			else = { 
+				remove_variable = info_dat_merchant_out_val_4_tools
 			}
 			set_global_variable = { 
 				name = array_get_min_t
@@ -16104,11 +16793,12 @@ toggle_prov_merchant_dat = {
 				}
 			}
 			remove_global_variable = toggled_prov_merchant_dat_t
+			clear_variable_list = array_toggled_prov_merchant_dat_t
 			remove_variable = toggled_prov_merchant_dat_t
 		}
 	}
 }
-close_prov_merchant = { 
+close_prov_merchant_dat = { 
 	scope = province
 	is_shown = { 
 		always = yes
@@ -16620,10 +17310,7 @@ toggle_county_dat = {
 			remove_variable = info_dat_county_in_val_2_tools
 			remove_variable = info_dat_county_in_scope_2_tools
 		}
-		else_if = { 
-			limit = { 
-				has_variable = trade_county
-			}
+		else = { 
 			set_variable = { 
 				name = toggled_county_dat
 				value = 1
@@ -23861,7 +24548,7 @@ toggle_county_dat = {
 		}
 	}
 }
-close_county = { 
+close_county_dat = { 
 	scope = province
 	is_shown = { 
 		always = yes

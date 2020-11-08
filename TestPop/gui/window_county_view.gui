@@ -3158,7 +3158,7 @@ window = {
 		size = { 500 1000 }
 		position = { 400 -400 }
 		movable = yes
-		visible = "[EqualTo_CFixedPoint('(CFixedPoint)1', Province.MakeScope.Var('toggled_prov_merchant_dat').GetValue)]"
+		visible = "[EqualTo_CFixedPoint('(CFixedPoint)1', Province.MakeScope.Var('toggled_county_dat').GetValue)]"
 		
 		background = {
 			texture = "gfx/interface/component_tiles/tile_window_background_subwindow.dds"
@@ -3928,7 +3928,7 @@ window = {
 						}
 					}
 					button_icon = {
-						name = "toggle_county_trade"
+						name = "toggle_county_dat"
 						datacontext = "[GetScriptedGui( 'toggle_county_dat' )]"
 						onclick = "[ScriptedGui.Execute( GuiScope.SetRoot( HoldingView.GetProvince.GetCounty.GetCapital.MakeScope ).End )]"
 						size = { 25 25 }
