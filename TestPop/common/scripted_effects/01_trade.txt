@@ -841,16 +841,17 @@ trade_dat_trade = {
 										this = global_var:trade_do_trade_select
 									}
 									remove_global_variable = trade_do_trade_tt
+									
+									prev = {
+										remove_list_variable = { name = trade_dat_&goods& target = prev }
+										array_change = { name = trade_dat_&goods& ind = global_var:trade_do_trade_t subtract = var:trade_do_trade_t dec = 10 }
+										add_to_variable_list = { name = trade_dat_&goods& target = prev }
+									}
 								}
 								else = {
 									change_global_variable = { name = trade_do_trade_t add = 1 }
 								}
 							}
-							
-							remove_list_variable = { name = trade_dat_&goods& target = prev }
-							
-							array_change = { name = trade_dat_&goods& ind = global_var:trade_do_trade_t subtract = var:trade_do_trade_t dec = 10 }
-							add_to_variable_list = { name = trade_dat_&goods& target = prev }
 							
 							prev = {
 								set_global_variable = { name = trade_do_trade_t value = 0 }
@@ -869,16 +870,17 @@ trade_dat_trade = {
 											this = scope:trade_do_trade_select
 										}
 										remove_global_variable = trade_do_trade_tt
+										
+										prev = {
+											remove_list_variable = { name = trade_dat_&goods& target = prev }
+											array_change = { name = trade_dat_&goods& ind = global_var:trade_do_trade_t add = scope:trade_do_trade_select.var:trade_do_trade_t dec = 10 }
+											add_to_variable_list = { name = trade_dat_&goods& target = prev }
+										}
 									}
 									else = {
 										change_global_variable = { name = trade_do_trade_t add = 1 }
 									}
 								}
-								
-								remove_list_variable = { name = trade_dat_&goods& target = prev }
-								
-								array_change = { name = trade_dat_&goods& ind = global_var:trade_do_trade_t add = scope:trade_do_trade_select.var:trade_do_trade_t dec = 10 }
-								add_to_variable_list = { name = trade_dat_&goods& target = prev }
 							}
 						}
 						else = {

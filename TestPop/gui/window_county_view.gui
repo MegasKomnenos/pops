@@ -54,7 +54,7 @@ window = {
 		on_start = "[GetScriptedGui( 'close_prov_build' ).Execute( GuiScope.SetRoot( Province.MakeScope ).End )]"
 		on_start = "[GetScriptedGui( 'close_prov_merchant' ).Execute( GuiScope.SetRoot( Province.MakeScope ).End )]"
 		on_start = "[GetScriptedGui( 'close_prov_merchant_dat' ).Execute( GuiScope.SetRoot( Province.MakeScope ).End )]"
-		on_start = "[GetScriptedGui( 'close_county_dat' ).Execute( GuiScope.SetRoot( Province.MakeScope ).End )]"
+		on_start = "[GetScriptedGui( 'close_county_dat' ).Execute( GuiScope.SetRoot( HoldingView.GetProvince.GetCounty.GetCapital.MakeScope ).End )]"
 		
 		using = Animation_FadeOut_Standard
 		using = Sound_WindowHide_Standard
@@ -3158,7 +3158,7 @@ window = {
 		size = { 500 1000 }
 		position = { 400 -400 }
 		movable = yes
-		visible = "[EqualTo_CFixedPoint('(CFixedPoint)1', Province.MakeScope.Var('toggled_county_dat').GetValue)]"
+		visible = "[EqualTo_CFixedPoint('(CFixedPoint)1', County.GetCapital.MakeScope.Var('toggled_county_dat').GetValue)]"
 		
 		background = {
 			texture = "gfx/interface/component_tiles/tile_window_background_subwindow.dds"
@@ -3180,7 +3180,7 @@ window = {
 			blockoverride "button_close"
 			{
 				datacontext = "[GetScriptedGui( 'close_county_dat' )]"
-				onclick = "[ScriptedGui.Execute( GuiScope.SetRoot( Province.MakeScope ).End )]"
+				onclick = "[ScriptedGui.Execute( GuiScope.SetRoot( County.GetCapital.MakeScope ).End )]"
 			}
 		}
 		

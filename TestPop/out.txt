@@ -15092,6 +15092,83 @@ while = {
 								this = global_var:trade_do_trade_select
 							}
 							remove_global_variable = trade_do_trade_tt
+							prev = { 
+								remove_list_variable = { 
+									name = trade_dat_food
+									target = prev
+								}
+								set_global_variable = { 
+									name = array_change_t
+									value = global_var:trade_do_trade_t
+								}
+								ordered_in_list = { 
+									variable = array_trade_dat_food
+									position = global_var:array_change_t
+									prev = { 
+										set_variable = { 
+											name = array_change_t
+											value = prev
+										}
+										change_variable = { 
+											name = array_change_t
+											divide = 10
+										}
+										change_variable = { 
+											name = array_change_t
+											subtract = var:trade_do_trade_t
+										}
+										remove_list_variable = { 
+											name = array_trade_dat_food
+											target = prev
+										}
+										set_variable = { 
+											name = array_add_t
+											value = var:array_change_t
+										}
+										change_variable = { 
+											name = array_add_t
+											multiply = 10
+										}
+										if = { 
+											limit = { 
+												NOT = { 
+													has_variable_list = array_trade_dat_food
+												}
+											}
+											add_to_variable_list = { 
+												name = array_trade_dat_food
+												target = var:array_add_t
+											}
+										}
+										else = { 
+											while = { 
+												limit = { 
+													is_target_in_variable_list = { 
+														name = array_trade_dat_food
+														target = var:array_add_t
+													}
+												}
+												count = 10
+												change_variable = { 
+													name = array_add_t
+													add = 0.001
+												}
+											}
+											add_to_variable_list = { 
+												name = array_trade_dat_food
+												target = var:array_add_t
+											}
+										}
+										remove_variable = array_add_t
+									}
+								}
+								remove_global_variable = array_change_t
+								remove_variable = array_change_t
+								add_to_variable_list = { 
+									name = trade_dat_food
+									target = prev
+								}
+							}
 						}
 						else = { 
 							change_global_variable = { 
@@ -15099,81 +15176,6 @@ while = {
 								add = 1
 							}
 						}
-					}
-					remove_list_variable = { 
-						name = trade_dat_food
-						target = prev
-					}
-					set_global_variable = { 
-						name = array_change_t
-						value = global_var:trade_do_trade_t
-					}
-					ordered_in_list = { 
-						variable = array_trade_dat_food
-						position = global_var:array_change_t
-						prev = { 
-							set_variable = { 
-								name = array_change_t
-								value = prev
-							}
-							change_variable = { 
-								name = array_change_t
-								divide = 10
-							}
-							change_variable = { 
-								name = array_change_t
-								subtract = var:trade_do_trade_t
-							}
-							remove_list_variable = { 
-								name = array_trade_dat_food
-								target = prev
-							}
-							set_variable = { 
-								name = array_add_t
-								value = var:array_change_t
-							}
-							change_variable = { 
-								name = array_add_t
-								multiply = 10
-							}
-							if = { 
-								limit = { 
-									NOT = { 
-										has_variable_list = array_trade_dat_food
-									}
-								}
-								add_to_variable_list = { 
-									name = array_trade_dat_food
-									target = var:array_add_t
-								}
-							}
-							else = { 
-								while = { 
-									limit = { 
-										is_target_in_variable_list = { 
-											name = array_trade_dat_food
-											target = var:array_add_t
-										}
-									}
-									count = 10
-									change_variable = { 
-										name = array_add_t
-										add = 0.001
-									}
-								}
-								add_to_variable_list = { 
-									name = array_trade_dat_food
-									target = var:array_add_t
-								}
-							}
-							remove_variable = array_add_t
-						}
-					}
-					remove_global_variable = array_change_t
-					remove_variable = array_change_t
-					add_to_variable_list = { 
-						name = trade_dat_food
-						target = prev
 					}
 					prev = { 
 						set_global_variable = { 
@@ -15194,6 +15196,83 @@ while = {
 									this = scope:trade_do_trade_select
 								}
 								remove_global_variable = trade_do_trade_tt
+								prev = { 
+									remove_list_variable = { 
+										name = trade_dat_food
+										target = prev
+									}
+									set_global_variable = { 
+										name = array_change_t
+										value = global_var:trade_do_trade_t
+									}
+									ordered_in_list = { 
+										variable = array_trade_dat_food
+										position = global_var:array_change_t
+										prev = { 
+											set_variable = { 
+												name = array_change_t
+												value = prev
+											}
+											change_variable = { 
+												name = array_change_t
+												divide = 10
+											}
+											change_variable = { 
+												name = array_change_t
+												add = scope:trade_do_trade_select.var:trade_do_trade_t
+											}
+											remove_list_variable = { 
+												name = array_trade_dat_food
+												target = prev
+											}
+											set_variable = { 
+												name = array_add_t
+												value = var:array_change_t
+											}
+											change_variable = { 
+												name = array_add_t
+												multiply = 10
+											}
+											if = { 
+												limit = { 
+													NOT = { 
+														has_variable_list = array_trade_dat_food
+													}
+												}
+												add_to_variable_list = { 
+													name = array_trade_dat_food
+													target = var:array_add_t
+												}
+											}
+											else = { 
+												while = { 
+													limit = { 
+														is_target_in_variable_list = { 
+															name = array_trade_dat_food
+															target = var:array_add_t
+														}
+													}
+													count = 10
+													change_variable = { 
+														name = array_add_t
+														add = 0.001
+													}
+												}
+												add_to_variable_list = { 
+													name = array_trade_dat_food
+													target = var:array_add_t
+												}
+											}
+											remove_variable = array_add_t
+										}
+									}
+									remove_global_variable = array_change_t
+									remove_variable = array_change_t
+									add_to_variable_list = { 
+										name = trade_dat_food
+										target = prev
+									}
+								}
 							}
 							else = { 
 								change_global_variable = { 
@@ -15201,81 +15280,6 @@ while = {
 									add = 1
 								}
 							}
-						}
-						remove_list_variable = { 
-							name = trade_dat_food
-							target = prev
-						}
-						set_global_variable = { 
-							name = array_change_t
-							value = global_var:trade_do_trade_t
-						}
-						ordered_in_list = { 
-							variable = array_trade_dat_food
-							position = global_var:array_change_t
-							prev = { 
-								set_variable = { 
-									name = array_change_t
-									value = prev
-								}
-								change_variable = { 
-									name = array_change_t
-									divide = 10
-								}
-								change_variable = { 
-									name = array_change_t
-									add = scope:trade_do_trade_select.var:trade_do_trade_t
-								}
-								remove_list_variable = { 
-									name = array_trade_dat_food
-									target = prev
-								}
-								set_variable = { 
-									name = array_add_t
-									value = var:array_change_t
-								}
-								change_variable = { 
-									name = array_add_t
-									multiply = 10
-								}
-								if = { 
-									limit = { 
-										NOT = { 
-											has_variable_list = array_trade_dat_food
-										}
-									}
-									add_to_variable_list = { 
-										name = array_trade_dat_food
-										target = var:array_add_t
-									}
-								}
-								else = { 
-									while = { 
-										limit = { 
-											is_target_in_variable_list = { 
-												name = array_trade_dat_food
-												target = var:array_add_t
-											}
-										}
-										count = 10
-										change_variable = { 
-											name = array_add_t
-											add = 0.001
-										}
-									}
-									add_to_variable_list = { 
-										name = array_trade_dat_food
-										target = var:array_add_t
-									}
-								}
-								remove_variable = array_add_t
-							}
-						}
-						remove_global_variable = array_change_t
-						remove_variable = array_change_t
-						add_to_variable_list = { 
-							name = trade_dat_food
-							target = prev
 						}
 					}
 				}
@@ -15433,6 +15437,83 @@ while = {
 								this = global_var:trade_do_trade_select
 							}
 							remove_global_variable = trade_do_trade_tt
+							prev = { 
+								remove_list_variable = { 
+									name = trade_dat_cereal
+									target = prev
+								}
+								set_global_variable = { 
+									name = array_change_t
+									value = global_var:trade_do_trade_t
+								}
+								ordered_in_list = { 
+									variable = array_trade_dat_cereal
+									position = global_var:array_change_t
+									prev = { 
+										set_variable = { 
+											name = array_change_t
+											value = prev
+										}
+										change_variable = { 
+											name = array_change_t
+											divide = 10
+										}
+										change_variable = { 
+											name = array_change_t
+											subtract = var:trade_do_trade_t
+										}
+										remove_list_variable = { 
+											name = array_trade_dat_cereal
+											target = prev
+										}
+										set_variable = { 
+											name = array_add_t
+											value = var:array_change_t
+										}
+										change_variable = { 
+											name = array_add_t
+											multiply = 10
+										}
+										if = { 
+											limit = { 
+												NOT = { 
+													has_variable_list = array_trade_dat_cereal
+												}
+											}
+											add_to_variable_list = { 
+												name = array_trade_dat_cereal
+												target = var:array_add_t
+											}
+										}
+										else = { 
+											while = { 
+												limit = { 
+													is_target_in_variable_list = { 
+														name = array_trade_dat_cereal
+														target = var:array_add_t
+													}
+												}
+												count = 10
+												change_variable = { 
+													name = array_add_t
+													add = 0.001
+												}
+											}
+											add_to_variable_list = { 
+												name = array_trade_dat_cereal
+												target = var:array_add_t
+											}
+										}
+										remove_variable = array_add_t
+									}
+								}
+								remove_global_variable = array_change_t
+								remove_variable = array_change_t
+								add_to_variable_list = { 
+									name = trade_dat_cereal
+									target = prev
+								}
+							}
 						}
 						else = { 
 							change_global_variable = { 
@@ -15440,81 +15521,6 @@ while = {
 								add = 1
 							}
 						}
-					}
-					remove_list_variable = { 
-						name = trade_dat_cereal
-						target = prev
-					}
-					set_global_variable = { 
-						name = array_change_t
-						value = global_var:trade_do_trade_t
-					}
-					ordered_in_list = { 
-						variable = array_trade_dat_cereal
-						position = global_var:array_change_t
-						prev = { 
-							set_variable = { 
-								name = array_change_t
-								value = prev
-							}
-							change_variable = { 
-								name = array_change_t
-								divide = 10
-							}
-							change_variable = { 
-								name = array_change_t
-								subtract = var:trade_do_trade_t
-							}
-							remove_list_variable = { 
-								name = array_trade_dat_cereal
-								target = prev
-							}
-							set_variable = { 
-								name = array_add_t
-								value = var:array_change_t
-							}
-							change_variable = { 
-								name = array_add_t
-								multiply = 10
-							}
-							if = { 
-								limit = { 
-									NOT = { 
-										has_variable_list = array_trade_dat_cereal
-									}
-								}
-								add_to_variable_list = { 
-									name = array_trade_dat_cereal
-									target = var:array_add_t
-								}
-							}
-							else = { 
-								while = { 
-									limit = { 
-										is_target_in_variable_list = { 
-											name = array_trade_dat_cereal
-											target = var:array_add_t
-										}
-									}
-									count = 10
-									change_variable = { 
-										name = array_add_t
-										add = 0.001
-									}
-								}
-								add_to_variable_list = { 
-									name = array_trade_dat_cereal
-									target = var:array_add_t
-								}
-							}
-							remove_variable = array_add_t
-						}
-					}
-					remove_global_variable = array_change_t
-					remove_variable = array_change_t
-					add_to_variable_list = { 
-						name = trade_dat_cereal
-						target = prev
 					}
 					prev = { 
 						set_global_variable = { 
@@ -15535,6 +15541,83 @@ while = {
 									this = scope:trade_do_trade_select
 								}
 								remove_global_variable = trade_do_trade_tt
+								prev = { 
+									remove_list_variable = { 
+										name = trade_dat_cereal
+										target = prev
+									}
+									set_global_variable = { 
+										name = array_change_t
+										value = global_var:trade_do_trade_t
+									}
+									ordered_in_list = { 
+										variable = array_trade_dat_cereal
+										position = global_var:array_change_t
+										prev = { 
+											set_variable = { 
+												name = array_change_t
+												value = prev
+											}
+											change_variable = { 
+												name = array_change_t
+												divide = 10
+											}
+											change_variable = { 
+												name = array_change_t
+												add = scope:trade_do_trade_select.var:trade_do_trade_t
+											}
+											remove_list_variable = { 
+												name = array_trade_dat_cereal
+												target = prev
+											}
+											set_variable = { 
+												name = array_add_t
+												value = var:array_change_t
+											}
+											change_variable = { 
+												name = array_add_t
+												multiply = 10
+											}
+											if = { 
+												limit = { 
+													NOT = { 
+														has_variable_list = array_trade_dat_cereal
+													}
+												}
+												add_to_variable_list = { 
+													name = array_trade_dat_cereal
+													target = var:array_add_t
+												}
+											}
+											else = { 
+												while = { 
+													limit = { 
+														is_target_in_variable_list = { 
+															name = array_trade_dat_cereal
+															target = var:array_add_t
+														}
+													}
+													count = 10
+													change_variable = { 
+														name = array_add_t
+														add = 0.001
+													}
+												}
+												add_to_variable_list = { 
+													name = array_trade_dat_cereal
+													target = var:array_add_t
+												}
+											}
+											remove_variable = array_add_t
+										}
+									}
+									remove_global_variable = array_change_t
+									remove_variable = array_change_t
+									add_to_variable_list = { 
+										name = trade_dat_cereal
+										target = prev
+									}
+								}
 							}
 							else = { 
 								change_global_variable = { 
@@ -15542,81 +15625,6 @@ while = {
 									add = 1
 								}
 							}
-						}
-						remove_list_variable = { 
-							name = trade_dat_cereal
-							target = prev
-						}
-						set_global_variable = { 
-							name = array_change_t
-							value = global_var:trade_do_trade_t
-						}
-						ordered_in_list = { 
-							variable = array_trade_dat_cereal
-							position = global_var:array_change_t
-							prev = { 
-								set_variable = { 
-									name = array_change_t
-									value = prev
-								}
-								change_variable = { 
-									name = array_change_t
-									divide = 10
-								}
-								change_variable = { 
-									name = array_change_t
-									add = scope:trade_do_trade_select.var:trade_do_trade_t
-								}
-								remove_list_variable = { 
-									name = array_trade_dat_cereal
-									target = prev
-								}
-								set_variable = { 
-									name = array_add_t
-									value = var:array_change_t
-								}
-								change_variable = { 
-									name = array_add_t
-									multiply = 10
-								}
-								if = { 
-									limit = { 
-										NOT = { 
-											has_variable_list = array_trade_dat_cereal
-										}
-									}
-									add_to_variable_list = { 
-										name = array_trade_dat_cereal
-										target = var:array_add_t
-									}
-								}
-								else = { 
-									while = { 
-										limit = { 
-											is_target_in_variable_list = { 
-												name = array_trade_dat_cereal
-												target = var:array_add_t
-											}
-										}
-										count = 10
-										change_variable = { 
-											name = array_add_t
-											add = 0.001
-										}
-									}
-									add_to_variable_list = { 
-										name = array_trade_dat_cereal
-										target = var:array_add_t
-									}
-								}
-								remove_variable = array_add_t
-							}
-						}
-						remove_global_variable = array_change_t
-						remove_variable = array_change_t
-						add_to_variable_list = { 
-							name = trade_dat_cereal
-							target = prev
 						}
 					}
 				}
@@ -15774,6 +15782,83 @@ while = {
 								this = global_var:trade_do_trade_select
 							}
 							remove_global_variable = trade_do_trade_tt
+							prev = { 
+								remove_list_variable = { 
+									name = trade_dat_salted
+									target = prev
+								}
+								set_global_variable = { 
+									name = array_change_t
+									value = global_var:trade_do_trade_t
+								}
+								ordered_in_list = { 
+									variable = array_trade_dat_salted
+									position = global_var:array_change_t
+									prev = { 
+										set_variable = { 
+											name = array_change_t
+											value = prev
+										}
+										change_variable = { 
+											name = array_change_t
+											divide = 10
+										}
+										change_variable = { 
+											name = array_change_t
+											subtract = var:trade_do_trade_t
+										}
+										remove_list_variable = { 
+											name = array_trade_dat_salted
+											target = prev
+										}
+										set_variable = { 
+											name = array_add_t
+											value = var:array_change_t
+										}
+										change_variable = { 
+											name = array_add_t
+											multiply = 10
+										}
+										if = { 
+											limit = { 
+												NOT = { 
+													has_variable_list = array_trade_dat_salted
+												}
+											}
+											add_to_variable_list = { 
+												name = array_trade_dat_salted
+												target = var:array_add_t
+											}
+										}
+										else = { 
+											while = { 
+												limit = { 
+													is_target_in_variable_list = { 
+														name = array_trade_dat_salted
+														target = var:array_add_t
+													}
+												}
+												count = 10
+												change_variable = { 
+													name = array_add_t
+													add = 0.001
+												}
+											}
+											add_to_variable_list = { 
+												name = array_trade_dat_salted
+												target = var:array_add_t
+											}
+										}
+										remove_variable = array_add_t
+									}
+								}
+								remove_global_variable = array_change_t
+								remove_variable = array_change_t
+								add_to_variable_list = { 
+									name = trade_dat_salted
+									target = prev
+								}
+							}
 						}
 						else = { 
 							change_global_variable = { 
@@ -15781,81 +15866,6 @@ while = {
 								add = 1
 							}
 						}
-					}
-					remove_list_variable = { 
-						name = trade_dat_salted
-						target = prev
-					}
-					set_global_variable = { 
-						name = array_change_t
-						value = global_var:trade_do_trade_t
-					}
-					ordered_in_list = { 
-						variable = array_trade_dat_salted
-						position = global_var:array_change_t
-						prev = { 
-							set_variable = { 
-								name = array_change_t
-								value = prev
-							}
-							change_variable = { 
-								name = array_change_t
-								divide = 10
-							}
-							change_variable = { 
-								name = array_change_t
-								subtract = var:trade_do_trade_t
-							}
-							remove_list_variable = { 
-								name = array_trade_dat_salted
-								target = prev
-							}
-							set_variable = { 
-								name = array_add_t
-								value = var:array_change_t
-							}
-							change_variable = { 
-								name = array_add_t
-								multiply = 10
-							}
-							if = { 
-								limit = { 
-									NOT = { 
-										has_variable_list = array_trade_dat_salted
-									}
-								}
-								add_to_variable_list = { 
-									name = array_trade_dat_salted
-									target = var:array_add_t
-								}
-							}
-							else = { 
-								while = { 
-									limit = { 
-										is_target_in_variable_list = { 
-											name = array_trade_dat_salted
-											target = var:array_add_t
-										}
-									}
-									count = 10
-									change_variable = { 
-										name = array_add_t
-										add = 0.001
-									}
-								}
-								add_to_variable_list = { 
-									name = array_trade_dat_salted
-									target = var:array_add_t
-								}
-							}
-							remove_variable = array_add_t
-						}
-					}
-					remove_global_variable = array_change_t
-					remove_variable = array_change_t
-					add_to_variable_list = { 
-						name = trade_dat_salted
-						target = prev
 					}
 					prev = { 
 						set_global_variable = { 
@@ -15876,6 +15886,83 @@ while = {
 									this = scope:trade_do_trade_select
 								}
 								remove_global_variable = trade_do_trade_tt
+								prev = { 
+									remove_list_variable = { 
+										name = trade_dat_salted
+										target = prev
+									}
+									set_global_variable = { 
+										name = array_change_t
+										value = global_var:trade_do_trade_t
+									}
+									ordered_in_list = { 
+										variable = array_trade_dat_salted
+										position = global_var:array_change_t
+										prev = { 
+											set_variable = { 
+												name = array_change_t
+												value = prev
+											}
+											change_variable = { 
+												name = array_change_t
+												divide = 10
+											}
+											change_variable = { 
+												name = array_change_t
+												add = scope:trade_do_trade_select.var:trade_do_trade_t
+											}
+											remove_list_variable = { 
+												name = array_trade_dat_salted
+												target = prev
+											}
+											set_variable = { 
+												name = array_add_t
+												value = var:array_change_t
+											}
+											change_variable = { 
+												name = array_add_t
+												multiply = 10
+											}
+											if = { 
+												limit = { 
+													NOT = { 
+														has_variable_list = array_trade_dat_salted
+													}
+												}
+												add_to_variable_list = { 
+													name = array_trade_dat_salted
+													target = var:array_add_t
+												}
+											}
+											else = { 
+												while = { 
+													limit = { 
+														is_target_in_variable_list = { 
+															name = array_trade_dat_salted
+															target = var:array_add_t
+														}
+													}
+													count = 10
+													change_variable = { 
+														name = array_add_t
+														add = 0.001
+													}
+												}
+												add_to_variable_list = { 
+													name = array_trade_dat_salted
+													target = var:array_add_t
+												}
+											}
+											remove_variable = array_add_t
+										}
+									}
+									remove_global_variable = array_change_t
+									remove_variable = array_change_t
+									add_to_variable_list = { 
+										name = trade_dat_salted
+										target = prev
+									}
+								}
 							}
 							else = { 
 								change_global_variable = { 
@@ -15883,81 +15970,6 @@ while = {
 									add = 1
 								}
 							}
-						}
-						remove_list_variable = { 
-							name = trade_dat_salted
-							target = prev
-						}
-						set_global_variable = { 
-							name = array_change_t
-							value = global_var:trade_do_trade_t
-						}
-						ordered_in_list = { 
-							variable = array_trade_dat_salted
-							position = global_var:array_change_t
-							prev = { 
-								set_variable = { 
-									name = array_change_t
-									value = prev
-								}
-								change_variable = { 
-									name = array_change_t
-									divide = 10
-								}
-								change_variable = { 
-									name = array_change_t
-									add = scope:trade_do_trade_select.var:trade_do_trade_t
-								}
-								remove_list_variable = { 
-									name = array_trade_dat_salted
-									target = prev
-								}
-								set_variable = { 
-									name = array_add_t
-									value = var:array_change_t
-								}
-								change_variable = { 
-									name = array_add_t
-									multiply = 10
-								}
-								if = { 
-									limit = { 
-										NOT = { 
-											has_variable_list = array_trade_dat_salted
-										}
-									}
-									add_to_variable_list = { 
-										name = array_trade_dat_salted
-										target = var:array_add_t
-									}
-								}
-								else = { 
-									while = { 
-										limit = { 
-											is_target_in_variable_list = { 
-												name = array_trade_dat_salted
-												target = var:array_add_t
-											}
-										}
-										count = 10
-										change_variable = { 
-											name = array_add_t
-											add = 0.001
-										}
-									}
-									add_to_variable_list = { 
-										name = array_trade_dat_salted
-										target = var:array_add_t
-									}
-								}
-								remove_variable = array_add_t
-							}
-						}
-						remove_global_variable = array_change_t
-						remove_variable = array_change_t
-						add_to_variable_list = { 
-							name = trade_dat_salted
-							target = prev
 						}
 					}
 				}
@@ -16115,6 +16127,83 @@ while = {
 								this = global_var:trade_do_trade_select
 							}
 							remove_global_variable = trade_do_trade_tt
+							prev = { 
+								remove_list_variable = { 
+									name = trade_dat_salt
+									target = prev
+								}
+								set_global_variable = { 
+									name = array_change_t
+									value = global_var:trade_do_trade_t
+								}
+								ordered_in_list = { 
+									variable = array_trade_dat_salt
+									position = global_var:array_change_t
+									prev = { 
+										set_variable = { 
+											name = array_change_t
+											value = prev
+										}
+										change_variable = { 
+											name = array_change_t
+											divide = 10
+										}
+										change_variable = { 
+											name = array_change_t
+											subtract = var:trade_do_trade_t
+										}
+										remove_list_variable = { 
+											name = array_trade_dat_salt
+											target = prev
+										}
+										set_variable = { 
+											name = array_add_t
+											value = var:array_change_t
+										}
+										change_variable = { 
+											name = array_add_t
+											multiply = 10
+										}
+										if = { 
+											limit = { 
+												NOT = { 
+													has_variable_list = array_trade_dat_salt
+												}
+											}
+											add_to_variable_list = { 
+												name = array_trade_dat_salt
+												target = var:array_add_t
+											}
+										}
+										else = { 
+											while = { 
+												limit = { 
+													is_target_in_variable_list = { 
+														name = array_trade_dat_salt
+														target = var:array_add_t
+													}
+												}
+												count = 10
+												change_variable = { 
+													name = array_add_t
+													add = 0.001
+												}
+											}
+											add_to_variable_list = { 
+												name = array_trade_dat_salt
+												target = var:array_add_t
+											}
+										}
+										remove_variable = array_add_t
+									}
+								}
+								remove_global_variable = array_change_t
+								remove_variable = array_change_t
+								add_to_variable_list = { 
+									name = trade_dat_salt
+									target = prev
+								}
+							}
 						}
 						else = { 
 							change_global_variable = { 
@@ -16122,81 +16211,6 @@ while = {
 								add = 1
 							}
 						}
-					}
-					remove_list_variable = { 
-						name = trade_dat_salt
-						target = prev
-					}
-					set_global_variable = { 
-						name = array_change_t
-						value = global_var:trade_do_trade_t
-					}
-					ordered_in_list = { 
-						variable = array_trade_dat_salt
-						position = global_var:array_change_t
-						prev = { 
-							set_variable = { 
-								name = array_change_t
-								value = prev
-							}
-							change_variable = { 
-								name = array_change_t
-								divide = 10
-							}
-							change_variable = { 
-								name = array_change_t
-								subtract = var:trade_do_trade_t
-							}
-							remove_list_variable = { 
-								name = array_trade_dat_salt
-								target = prev
-							}
-							set_variable = { 
-								name = array_add_t
-								value = var:array_change_t
-							}
-							change_variable = { 
-								name = array_add_t
-								multiply = 10
-							}
-							if = { 
-								limit = { 
-									NOT = { 
-										has_variable_list = array_trade_dat_salt
-									}
-								}
-								add_to_variable_list = { 
-									name = array_trade_dat_salt
-									target = var:array_add_t
-								}
-							}
-							else = { 
-								while = { 
-									limit = { 
-										is_target_in_variable_list = { 
-											name = array_trade_dat_salt
-											target = var:array_add_t
-										}
-									}
-									count = 10
-									change_variable = { 
-										name = array_add_t
-										add = 0.001
-									}
-								}
-								add_to_variable_list = { 
-									name = array_trade_dat_salt
-									target = var:array_add_t
-								}
-							}
-							remove_variable = array_add_t
-						}
-					}
-					remove_global_variable = array_change_t
-					remove_variable = array_change_t
-					add_to_variable_list = { 
-						name = trade_dat_salt
-						target = prev
 					}
 					prev = { 
 						set_global_variable = { 
@@ -16217,6 +16231,83 @@ while = {
 									this = scope:trade_do_trade_select
 								}
 								remove_global_variable = trade_do_trade_tt
+								prev = { 
+									remove_list_variable = { 
+										name = trade_dat_salt
+										target = prev
+									}
+									set_global_variable = { 
+										name = array_change_t
+										value = global_var:trade_do_trade_t
+									}
+									ordered_in_list = { 
+										variable = array_trade_dat_salt
+										position = global_var:array_change_t
+										prev = { 
+											set_variable = { 
+												name = array_change_t
+												value = prev
+											}
+											change_variable = { 
+												name = array_change_t
+												divide = 10
+											}
+											change_variable = { 
+												name = array_change_t
+												add = scope:trade_do_trade_select.var:trade_do_trade_t
+											}
+											remove_list_variable = { 
+												name = array_trade_dat_salt
+												target = prev
+											}
+											set_variable = { 
+												name = array_add_t
+												value = var:array_change_t
+											}
+											change_variable = { 
+												name = array_add_t
+												multiply = 10
+											}
+											if = { 
+												limit = { 
+													NOT = { 
+														has_variable_list = array_trade_dat_salt
+													}
+												}
+												add_to_variable_list = { 
+													name = array_trade_dat_salt
+													target = var:array_add_t
+												}
+											}
+											else = { 
+												while = { 
+													limit = { 
+														is_target_in_variable_list = { 
+															name = array_trade_dat_salt
+															target = var:array_add_t
+														}
+													}
+													count = 10
+													change_variable = { 
+														name = array_add_t
+														add = 0.001
+													}
+												}
+												add_to_variable_list = { 
+													name = array_trade_dat_salt
+													target = var:array_add_t
+												}
+											}
+											remove_variable = array_add_t
+										}
+									}
+									remove_global_variable = array_change_t
+									remove_variable = array_change_t
+									add_to_variable_list = { 
+										name = trade_dat_salt
+										target = prev
+									}
+								}
 							}
 							else = { 
 								change_global_variable = { 
@@ -16224,81 +16315,6 @@ while = {
 									add = 1
 								}
 							}
-						}
-						remove_list_variable = { 
-							name = trade_dat_salt
-							target = prev
-						}
-						set_global_variable = { 
-							name = array_change_t
-							value = global_var:trade_do_trade_t
-						}
-						ordered_in_list = { 
-							variable = array_trade_dat_salt
-							position = global_var:array_change_t
-							prev = { 
-								set_variable = { 
-									name = array_change_t
-									value = prev
-								}
-								change_variable = { 
-									name = array_change_t
-									divide = 10
-								}
-								change_variable = { 
-									name = array_change_t
-									add = scope:trade_do_trade_select.var:trade_do_trade_t
-								}
-								remove_list_variable = { 
-									name = array_trade_dat_salt
-									target = prev
-								}
-								set_variable = { 
-									name = array_add_t
-									value = var:array_change_t
-								}
-								change_variable = { 
-									name = array_add_t
-									multiply = 10
-								}
-								if = { 
-									limit = { 
-										NOT = { 
-											has_variable_list = array_trade_dat_salt
-										}
-									}
-									add_to_variable_list = { 
-										name = array_trade_dat_salt
-										target = var:array_add_t
-									}
-								}
-								else = { 
-									while = { 
-										limit = { 
-											is_target_in_variable_list = { 
-												name = array_trade_dat_salt
-												target = var:array_add_t
-											}
-										}
-										count = 10
-										change_variable = { 
-											name = array_add_t
-											add = 0.001
-										}
-									}
-									add_to_variable_list = { 
-										name = array_trade_dat_salt
-										target = var:array_add_t
-									}
-								}
-								remove_variable = array_add_t
-							}
-						}
-						remove_global_variable = array_change_t
-						remove_variable = array_change_t
-						add_to_variable_list = { 
-							name = trade_dat_salt
-							target = prev
 						}
 					}
 				}
@@ -16456,6 +16472,83 @@ while = {
 								this = global_var:trade_do_trade_select
 							}
 							remove_global_variable = trade_do_trade_tt
+							prev = { 
+								remove_list_variable = { 
+									name = trade_dat_mud
+									target = prev
+								}
+								set_global_variable = { 
+									name = array_change_t
+									value = global_var:trade_do_trade_t
+								}
+								ordered_in_list = { 
+									variable = array_trade_dat_mud
+									position = global_var:array_change_t
+									prev = { 
+										set_variable = { 
+											name = array_change_t
+											value = prev
+										}
+										change_variable = { 
+											name = array_change_t
+											divide = 10
+										}
+										change_variable = { 
+											name = array_change_t
+											subtract = var:trade_do_trade_t
+										}
+										remove_list_variable = { 
+											name = array_trade_dat_mud
+											target = prev
+										}
+										set_variable = { 
+											name = array_add_t
+											value = var:array_change_t
+										}
+										change_variable = { 
+											name = array_add_t
+											multiply = 10
+										}
+										if = { 
+											limit = { 
+												NOT = { 
+													has_variable_list = array_trade_dat_mud
+												}
+											}
+											add_to_variable_list = { 
+												name = array_trade_dat_mud
+												target = var:array_add_t
+											}
+										}
+										else = { 
+											while = { 
+												limit = { 
+													is_target_in_variable_list = { 
+														name = array_trade_dat_mud
+														target = var:array_add_t
+													}
+												}
+												count = 10
+												change_variable = { 
+													name = array_add_t
+													add = 0.001
+												}
+											}
+											add_to_variable_list = { 
+												name = array_trade_dat_mud
+												target = var:array_add_t
+											}
+										}
+										remove_variable = array_add_t
+									}
+								}
+								remove_global_variable = array_change_t
+								remove_variable = array_change_t
+								add_to_variable_list = { 
+									name = trade_dat_mud
+									target = prev
+								}
+							}
 						}
 						else = { 
 							change_global_variable = { 
@@ -16463,81 +16556,6 @@ while = {
 								add = 1
 							}
 						}
-					}
-					remove_list_variable = { 
-						name = trade_dat_mud
-						target = prev
-					}
-					set_global_variable = { 
-						name = array_change_t
-						value = global_var:trade_do_trade_t
-					}
-					ordered_in_list = { 
-						variable = array_trade_dat_mud
-						position = global_var:array_change_t
-						prev = { 
-							set_variable = { 
-								name = array_change_t
-								value = prev
-							}
-							change_variable = { 
-								name = array_change_t
-								divide = 10
-							}
-							change_variable = { 
-								name = array_change_t
-								subtract = var:trade_do_trade_t
-							}
-							remove_list_variable = { 
-								name = array_trade_dat_mud
-								target = prev
-							}
-							set_variable = { 
-								name = array_add_t
-								value = var:array_change_t
-							}
-							change_variable = { 
-								name = array_add_t
-								multiply = 10
-							}
-							if = { 
-								limit = { 
-									NOT = { 
-										has_variable_list = array_trade_dat_mud
-									}
-								}
-								add_to_variable_list = { 
-									name = array_trade_dat_mud
-									target = var:array_add_t
-								}
-							}
-							else = { 
-								while = { 
-									limit = { 
-										is_target_in_variable_list = { 
-											name = array_trade_dat_mud
-											target = var:array_add_t
-										}
-									}
-									count = 10
-									change_variable = { 
-										name = array_add_t
-										add = 0.001
-									}
-								}
-								add_to_variable_list = { 
-									name = array_trade_dat_mud
-									target = var:array_add_t
-								}
-							}
-							remove_variable = array_add_t
-						}
-					}
-					remove_global_variable = array_change_t
-					remove_variable = array_change_t
-					add_to_variable_list = { 
-						name = trade_dat_mud
-						target = prev
 					}
 					prev = { 
 						set_global_variable = { 
@@ -16558,6 +16576,83 @@ while = {
 									this = scope:trade_do_trade_select
 								}
 								remove_global_variable = trade_do_trade_tt
+								prev = { 
+									remove_list_variable = { 
+										name = trade_dat_mud
+										target = prev
+									}
+									set_global_variable = { 
+										name = array_change_t
+										value = global_var:trade_do_trade_t
+									}
+									ordered_in_list = { 
+										variable = array_trade_dat_mud
+										position = global_var:array_change_t
+										prev = { 
+											set_variable = { 
+												name = array_change_t
+												value = prev
+											}
+											change_variable = { 
+												name = array_change_t
+												divide = 10
+											}
+											change_variable = { 
+												name = array_change_t
+												add = scope:trade_do_trade_select.var:trade_do_trade_t
+											}
+											remove_list_variable = { 
+												name = array_trade_dat_mud
+												target = prev
+											}
+											set_variable = { 
+												name = array_add_t
+												value = var:array_change_t
+											}
+											change_variable = { 
+												name = array_add_t
+												multiply = 10
+											}
+											if = { 
+												limit = { 
+													NOT = { 
+														has_variable_list = array_trade_dat_mud
+													}
+												}
+												add_to_variable_list = { 
+													name = array_trade_dat_mud
+													target = var:array_add_t
+												}
+											}
+											else = { 
+												while = { 
+													limit = { 
+														is_target_in_variable_list = { 
+															name = array_trade_dat_mud
+															target = var:array_add_t
+														}
+													}
+													count = 10
+													change_variable = { 
+														name = array_add_t
+														add = 0.001
+													}
+												}
+												add_to_variable_list = { 
+													name = array_trade_dat_mud
+													target = var:array_add_t
+												}
+											}
+											remove_variable = array_add_t
+										}
+									}
+									remove_global_variable = array_change_t
+									remove_variable = array_change_t
+									add_to_variable_list = { 
+										name = trade_dat_mud
+										target = prev
+									}
+								}
 							}
 							else = { 
 								change_global_variable = { 
@@ -16565,81 +16660,6 @@ while = {
 									add = 1
 								}
 							}
-						}
-						remove_list_variable = { 
-							name = trade_dat_mud
-							target = prev
-						}
-						set_global_variable = { 
-							name = array_change_t
-							value = global_var:trade_do_trade_t
-						}
-						ordered_in_list = { 
-							variable = array_trade_dat_mud
-							position = global_var:array_change_t
-							prev = { 
-								set_variable = { 
-									name = array_change_t
-									value = prev
-								}
-								change_variable = { 
-									name = array_change_t
-									divide = 10
-								}
-								change_variable = { 
-									name = array_change_t
-									add = scope:trade_do_trade_select.var:trade_do_trade_t
-								}
-								remove_list_variable = { 
-									name = array_trade_dat_mud
-									target = prev
-								}
-								set_variable = { 
-									name = array_add_t
-									value = var:array_change_t
-								}
-								change_variable = { 
-									name = array_add_t
-									multiply = 10
-								}
-								if = { 
-									limit = { 
-										NOT = { 
-											has_variable_list = array_trade_dat_mud
-										}
-									}
-									add_to_variable_list = { 
-										name = array_trade_dat_mud
-										target = var:array_add_t
-									}
-								}
-								else = { 
-									while = { 
-										limit = { 
-											is_target_in_variable_list = { 
-												name = array_trade_dat_mud
-												target = var:array_add_t
-											}
-										}
-										count = 10
-										change_variable = { 
-											name = array_add_t
-											add = 0.001
-										}
-									}
-									add_to_variable_list = { 
-										name = array_trade_dat_mud
-										target = var:array_add_t
-									}
-								}
-								remove_variable = array_add_t
-							}
-						}
-						remove_global_variable = array_change_t
-						remove_variable = array_change_t
-						add_to_variable_list = { 
-							name = trade_dat_mud
-							target = prev
 						}
 					}
 				}
@@ -16797,6 +16817,83 @@ while = {
 								this = global_var:trade_do_trade_select
 							}
 							remove_global_variable = trade_do_trade_tt
+							prev = { 
+								remove_list_variable = { 
+									name = trade_dat_fuel
+									target = prev
+								}
+								set_global_variable = { 
+									name = array_change_t
+									value = global_var:trade_do_trade_t
+								}
+								ordered_in_list = { 
+									variable = array_trade_dat_fuel
+									position = global_var:array_change_t
+									prev = { 
+										set_variable = { 
+											name = array_change_t
+											value = prev
+										}
+										change_variable = { 
+											name = array_change_t
+											divide = 10
+										}
+										change_variable = { 
+											name = array_change_t
+											subtract = var:trade_do_trade_t
+										}
+										remove_list_variable = { 
+											name = array_trade_dat_fuel
+											target = prev
+										}
+										set_variable = { 
+											name = array_add_t
+											value = var:array_change_t
+										}
+										change_variable = { 
+											name = array_add_t
+											multiply = 10
+										}
+										if = { 
+											limit = { 
+												NOT = { 
+													has_variable_list = array_trade_dat_fuel
+												}
+											}
+											add_to_variable_list = { 
+												name = array_trade_dat_fuel
+												target = var:array_add_t
+											}
+										}
+										else = { 
+											while = { 
+												limit = { 
+													is_target_in_variable_list = { 
+														name = array_trade_dat_fuel
+														target = var:array_add_t
+													}
+												}
+												count = 10
+												change_variable = { 
+													name = array_add_t
+													add = 0.001
+												}
+											}
+											add_to_variable_list = { 
+												name = array_trade_dat_fuel
+												target = var:array_add_t
+											}
+										}
+										remove_variable = array_add_t
+									}
+								}
+								remove_global_variable = array_change_t
+								remove_variable = array_change_t
+								add_to_variable_list = { 
+									name = trade_dat_fuel
+									target = prev
+								}
+							}
 						}
 						else = { 
 							change_global_variable = { 
@@ -16804,81 +16901,6 @@ while = {
 								add = 1
 							}
 						}
-					}
-					remove_list_variable = { 
-						name = trade_dat_fuel
-						target = prev
-					}
-					set_global_variable = { 
-						name = array_change_t
-						value = global_var:trade_do_trade_t
-					}
-					ordered_in_list = { 
-						variable = array_trade_dat_fuel
-						position = global_var:array_change_t
-						prev = { 
-							set_variable = { 
-								name = array_change_t
-								value = prev
-							}
-							change_variable = { 
-								name = array_change_t
-								divide = 10
-							}
-							change_variable = { 
-								name = array_change_t
-								subtract = var:trade_do_trade_t
-							}
-							remove_list_variable = { 
-								name = array_trade_dat_fuel
-								target = prev
-							}
-							set_variable = { 
-								name = array_add_t
-								value = var:array_change_t
-							}
-							change_variable = { 
-								name = array_add_t
-								multiply = 10
-							}
-							if = { 
-								limit = { 
-									NOT = { 
-										has_variable_list = array_trade_dat_fuel
-									}
-								}
-								add_to_variable_list = { 
-									name = array_trade_dat_fuel
-									target = var:array_add_t
-								}
-							}
-							else = { 
-								while = { 
-									limit = { 
-										is_target_in_variable_list = { 
-											name = array_trade_dat_fuel
-											target = var:array_add_t
-										}
-									}
-									count = 10
-									change_variable = { 
-										name = array_add_t
-										add = 0.001
-									}
-								}
-								add_to_variable_list = { 
-									name = array_trade_dat_fuel
-									target = var:array_add_t
-								}
-							}
-							remove_variable = array_add_t
-						}
-					}
-					remove_global_variable = array_change_t
-					remove_variable = array_change_t
-					add_to_variable_list = { 
-						name = trade_dat_fuel
-						target = prev
 					}
 					prev = { 
 						set_global_variable = { 
@@ -16899,6 +16921,83 @@ while = {
 									this = scope:trade_do_trade_select
 								}
 								remove_global_variable = trade_do_trade_tt
+								prev = { 
+									remove_list_variable = { 
+										name = trade_dat_fuel
+										target = prev
+									}
+									set_global_variable = { 
+										name = array_change_t
+										value = global_var:trade_do_trade_t
+									}
+									ordered_in_list = { 
+										variable = array_trade_dat_fuel
+										position = global_var:array_change_t
+										prev = { 
+											set_variable = { 
+												name = array_change_t
+												value = prev
+											}
+											change_variable = { 
+												name = array_change_t
+												divide = 10
+											}
+											change_variable = { 
+												name = array_change_t
+												add = scope:trade_do_trade_select.var:trade_do_trade_t
+											}
+											remove_list_variable = { 
+												name = array_trade_dat_fuel
+												target = prev
+											}
+											set_variable = { 
+												name = array_add_t
+												value = var:array_change_t
+											}
+											change_variable = { 
+												name = array_add_t
+												multiply = 10
+											}
+											if = { 
+												limit = { 
+													NOT = { 
+														has_variable_list = array_trade_dat_fuel
+													}
+												}
+												add_to_variable_list = { 
+													name = array_trade_dat_fuel
+													target = var:array_add_t
+												}
+											}
+											else = { 
+												while = { 
+													limit = { 
+														is_target_in_variable_list = { 
+															name = array_trade_dat_fuel
+															target = var:array_add_t
+														}
+													}
+													count = 10
+													change_variable = { 
+														name = array_add_t
+														add = 0.001
+													}
+												}
+												add_to_variable_list = { 
+													name = array_trade_dat_fuel
+													target = var:array_add_t
+												}
+											}
+											remove_variable = array_add_t
+										}
+									}
+									remove_global_variable = array_change_t
+									remove_variable = array_change_t
+									add_to_variable_list = { 
+										name = trade_dat_fuel
+										target = prev
+									}
+								}
 							}
 							else = { 
 								change_global_variable = { 
@@ -16906,81 +17005,6 @@ while = {
 									add = 1
 								}
 							}
-						}
-						remove_list_variable = { 
-							name = trade_dat_fuel
-							target = prev
-						}
-						set_global_variable = { 
-							name = array_change_t
-							value = global_var:trade_do_trade_t
-						}
-						ordered_in_list = { 
-							variable = array_trade_dat_fuel
-							position = global_var:array_change_t
-							prev = { 
-								set_variable = { 
-									name = array_change_t
-									value = prev
-								}
-								change_variable = { 
-									name = array_change_t
-									divide = 10
-								}
-								change_variable = { 
-									name = array_change_t
-									add = scope:trade_do_trade_select.var:trade_do_trade_t
-								}
-								remove_list_variable = { 
-									name = array_trade_dat_fuel
-									target = prev
-								}
-								set_variable = { 
-									name = array_add_t
-									value = var:array_change_t
-								}
-								change_variable = { 
-									name = array_add_t
-									multiply = 10
-								}
-								if = { 
-									limit = { 
-										NOT = { 
-											has_variable_list = array_trade_dat_fuel
-										}
-									}
-									add_to_variable_list = { 
-										name = array_trade_dat_fuel
-										target = var:array_add_t
-									}
-								}
-								else = { 
-									while = { 
-										limit = { 
-											is_target_in_variable_list = { 
-												name = array_trade_dat_fuel
-												target = var:array_add_t
-											}
-										}
-										count = 10
-										change_variable = { 
-											name = array_add_t
-											add = 0.001
-										}
-									}
-									add_to_variable_list = { 
-										name = array_trade_dat_fuel
-										target = var:array_add_t
-									}
-								}
-								remove_variable = array_add_t
-							}
-						}
-						remove_global_variable = array_change_t
-						remove_variable = array_change_t
-						add_to_variable_list = { 
-							name = trade_dat_fuel
-							target = prev
 						}
 					}
 				}
@@ -17138,6 +17162,83 @@ while = {
 								this = global_var:trade_do_trade_select
 							}
 							remove_global_variable = trade_do_trade_tt
+							prev = { 
+								remove_list_variable = { 
+									name = trade_dat_fiber
+									target = prev
+								}
+								set_global_variable = { 
+									name = array_change_t
+									value = global_var:trade_do_trade_t
+								}
+								ordered_in_list = { 
+									variable = array_trade_dat_fiber
+									position = global_var:array_change_t
+									prev = { 
+										set_variable = { 
+											name = array_change_t
+											value = prev
+										}
+										change_variable = { 
+											name = array_change_t
+											divide = 10
+										}
+										change_variable = { 
+											name = array_change_t
+											subtract = var:trade_do_trade_t
+										}
+										remove_list_variable = { 
+											name = array_trade_dat_fiber
+											target = prev
+										}
+										set_variable = { 
+											name = array_add_t
+											value = var:array_change_t
+										}
+										change_variable = { 
+											name = array_add_t
+											multiply = 10
+										}
+										if = { 
+											limit = { 
+												NOT = { 
+													has_variable_list = array_trade_dat_fiber
+												}
+											}
+											add_to_variable_list = { 
+												name = array_trade_dat_fiber
+												target = var:array_add_t
+											}
+										}
+										else = { 
+											while = { 
+												limit = { 
+													is_target_in_variable_list = { 
+														name = array_trade_dat_fiber
+														target = var:array_add_t
+													}
+												}
+												count = 10
+												change_variable = { 
+													name = array_add_t
+													add = 0.001
+												}
+											}
+											add_to_variable_list = { 
+												name = array_trade_dat_fiber
+												target = var:array_add_t
+											}
+										}
+										remove_variable = array_add_t
+									}
+								}
+								remove_global_variable = array_change_t
+								remove_variable = array_change_t
+								add_to_variable_list = { 
+									name = trade_dat_fiber
+									target = prev
+								}
+							}
 						}
 						else = { 
 							change_global_variable = { 
@@ -17145,81 +17246,6 @@ while = {
 								add = 1
 							}
 						}
-					}
-					remove_list_variable = { 
-						name = trade_dat_fiber
-						target = prev
-					}
-					set_global_variable = { 
-						name = array_change_t
-						value = global_var:trade_do_trade_t
-					}
-					ordered_in_list = { 
-						variable = array_trade_dat_fiber
-						position = global_var:array_change_t
-						prev = { 
-							set_variable = { 
-								name = array_change_t
-								value = prev
-							}
-							change_variable = { 
-								name = array_change_t
-								divide = 10
-							}
-							change_variable = { 
-								name = array_change_t
-								subtract = var:trade_do_trade_t
-							}
-							remove_list_variable = { 
-								name = array_trade_dat_fiber
-								target = prev
-							}
-							set_variable = { 
-								name = array_add_t
-								value = var:array_change_t
-							}
-							change_variable = { 
-								name = array_add_t
-								multiply = 10
-							}
-							if = { 
-								limit = { 
-									NOT = { 
-										has_variable_list = array_trade_dat_fiber
-									}
-								}
-								add_to_variable_list = { 
-									name = array_trade_dat_fiber
-									target = var:array_add_t
-								}
-							}
-							else = { 
-								while = { 
-									limit = { 
-										is_target_in_variable_list = { 
-											name = array_trade_dat_fiber
-											target = var:array_add_t
-										}
-									}
-									count = 10
-									change_variable = { 
-										name = array_add_t
-										add = 0.001
-									}
-								}
-								add_to_variable_list = { 
-									name = array_trade_dat_fiber
-									target = var:array_add_t
-								}
-							}
-							remove_variable = array_add_t
-						}
-					}
-					remove_global_variable = array_change_t
-					remove_variable = array_change_t
-					add_to_variable_list = { 
-						name = trade_dat_fiber
-						target = prev
 					}
 					prev = { 
 						set_global_variable = { 
@@ -17240,6 +17266,83 @@ while = {
 									this = scope:trade_do_trade_select
 								}
 								remove_global_variable = trade_do_trade_tt
+								prev = { 
+									remove_list_variable = { 
+										name = trade_dat_fiber
+										target = prev
+									}
+									set_global_variable = { 
+										name = array_change_t
+										value = global_var:trade_do_trade_t
+									}
+									ordered_in_list = { 
+										variable = array_trade_dat_fiber
+										position = global_var:array_change_t
+										prev = { 
+											set_variable = { 
+												name = array_change_t
+												value = prev
+											}
+											change_variable = { 
+												name = array_change_t
+												divide = 10
+											}
+											change_variable = { 
+												name = array_change_t
+												add = scope:trade_do_trade_select.var:trade_do_trade_t
+											}
+											remove_list_variable = { 
+												name = array_trade_dat_fiber
+												target = prev
+											}
+											set_variable = { 
+												name = array_add_t
+												value = var:array_change_t
+											}
+											change_variable = { 
+												name = array_add_t
+												multiply = 10
+											}
+											if = { 
+												limit = { 
+													NOT = { 
+														has_variable_list = array_trade_dat_fiber
+													}
+												}
+												add_to_variable_list = { 
+													name = array_trade_dat_fiber
+													target = var:array_add_t
+												}
+											}
+											else = { 
+												while = { 
+													limit = { 
+														is_target_in_variable_list = { 
+															name = array_trade_dat_fiber
+															target = var:array_add_t
+														}
+													}
+													count = 10
+													change_variable = { 
+														name = array_add_t
+														add = 0.001
+													}
+												}
+												add_to_variable_list = { 
+													name = array_trade_dat_fiber
+													target = var:array_add_t
+												}
+											}
+											remove_variable = array_add_t
+										}
+									}
+									remove_global_variable = array_change_t
+									remove_variable = array_change_t
+									add_to_variable_list = { 
+										name = trade_dat_fiber
+										target = prev
+									}
+								}
 							}
 							else = { 
 								change_global_variable = { 
@@ -17247,81 +17350,6 @@ while = {
 									add = 1
 								}
 							}
-						}
-						remove_list_variable = { 
-							name = trade_dat_fiber
-							target = prev
-						}
-						set_global_variable = { 
-							name = array_change_t
-							value = global_var:trade_do_trade_t
-						}
-						ordered_in_list = { 
-							variable = array_trade_dat_fiber
-							position = global_var:array_change_t
-							prev = { 
-								set_variable = { 
-									name = array_change_t
-									value = prev
-								}
-								change_variable = { 
-									name = array_change_t
-									divide = 10
-								}
-								change_variable = { 
-									name = array_change_t
-									add = scope:trade_do_trade_select.var:trade_do_trade_t
-								}
-								remove_list_variable = { 
-									name = array_trade_dat_fiber
-									target = prev
-								}
-								set_variable = { 
-									name = array_add_t
-									value = var:array_change_t
-								}
-								change_variable = { 
-									name = array_add_t
-									multiply = 10
-								}
-								if = { 
-									limit = { 
-										NOT = { 
-											has_variable_list = array_trade_dat_fiber
-										}
-									}
-									add_to_variable_list = { 
-										name = array_trade_dat_fiber
-										target = var:array_add_t
-									}
-								}
-								else = { 
-									while = { 
-										limit = { 
-											is_target_in_variable_list = { 
-												name = array_trade_dat_fiber
-												target = var:array_add_t
-											}
-										}
-										count = 10
-										change_variable = { 
-											name = array_add_t
-											add = 0.001
-										}
-									}
-									add_to_variable_list = { 
-										name = array_trade_dat_fiber
-										target = var:array_add_t
-									}
-								}
-								remove_variable = array_add_t
-							}
-						}
-						remove_global_variable = array_change_t
-						remove_variable = array_change_t
-						add_to_variable_list = { 
-							name = trade_dat_fiber
-							target = prev
 						}
 					}
 				}
@@ -17479,6 +17507,83 @@ while = {
 								this = global_var:trade_do_trade_select
 							}
 							remove_global_variable = trade_do_trade_tt
+							prev = { 
+								remove_list_variable = { 
+									name = trade_dat_timber
+									target = prev
+								}
+								set_global_variable = { 
+									name = array_change_t
+									value = global_var:trade_do_trade_t
+								}
+								ordered_in_list = { 
+									variable = array_trade_dat_timber
+									position = global_var:array_change_t
+									prev = { 
+										set_variable = { 
+											name = array_change_t
+											value = prev
+										}
+										change_variable = { 
+											name = array_change_t
+											divide = 10
+										}
+										change_variable = { 
+											name = array_change_t
+											subtract = var:trade_do_trade_t
+										}
+										remove_list_variable = { 
+											name = array_trade_dat_timber
+											target = prev
+										}
+										set_variable = { 
+											name = array_add_t
+											value = var:array_change_t
+										}
+										change_variable = { 
+											name = array_add_t
+											multiply = 10
+										}
+										if = { 
+											limit = { 
+												NOT = { 
+													has_variable_list = array_trade_dat_timber
+												}
+											}
+											add_to_variable_list = { 
+												name = array_trade_dat_timber
+												target = var:array_add_t
+											}
+										}
+										else = { 
+											while = { 
+												limit = { 
+													is_target_in_variable_list = { 
+														name = array_trade_dat_timber
+														target = var:array_add_t
+													}
+												}
+												count = 10
+												change_variable = { 
+													name = array_add_t
+													add = 0.001
+												}
+											}
+											add_to_variable_list = { 
+												name = array_trade_dat_timber
+												target = var:array_add_t
+											}
+										}
+										remove_variable = array_add_t
+									}
+								}
+								remove_global_variable = array_change_t
+								remove_variable = array_change_t
+								add_to_variable_list = { 
+									name = trade_dat_timber
+									target = prev
+								}
+							}
 						}
 						else = { 
 							change_global_variable = { 
@@ -17486,81 +17591,6 @@ while = {
 								add = 1
 							}
 						}
-					}
-					remove_list_variable = { 
-						name = trade_dat_timber
-						target = prev
-					}
-					set_global_variable = { 
-						name = array_change_t
-						value = global_var:trade_do_trade_t
-					}
-					ordered_in_list = { 
-						variable = array_trade_dat_timber
-						position = global_var:array_change_t
-						prev = { 
-							set_variable = { 
-								name = array_change_t
-								value = prev
-							}
-							change_variable = { 
-								name = array_change_t
-								divide = 10
-							}
-							change_variable = { 
-								name = array_change_t
-								subtract = var:trade_do_trade_t
-							}
-							remove_list_variable = { 
-								name = array_trade_dat_timber
-								target = prev
-							}
-							set_variable = { 
-								name = array_add_t
-								value = var:array_change_t
-							}
-							change_variable = { 
-								name = array_add_t
-								multiply = 10
-							}
-							if = { 
-								limit = { 
-									NOT = { 
-										has_variable_list = array_trade_dat_timber
-									}
-								}
-								add_to_variable_list = { 
-									name = array_trade_dat_timber
-									target = var:array_add_t
-								}
-							}
-							else = { 
-								while = { 
-									limit = { 
-										is_target_in_variable_list = { 
-											name = array_trade_dat_timber
-											target = var:array_add_t
-										}
-									}
-									count = 10
-									change_variable = { 
-										name = array_add_t
-										add = 0.001
-									}
-								}
-								add_to_variable_list = { 
-									name = array_trade_dat_timber
-									target = var:array_add_t
-								}
-							}
-							remove_variable = array_add_t
-						}
-					}
-					remove_global_variable = array_change_t
-					remove_variable = array_change_t
-					add_to_variable_list = { 
-						name = trade_dat_timber
-						target = prev
 					}
 					prev = { 
 						set_global_variable = { 
@@ -17581,6 +17611,83 @@ while = {
 									this = scope:trade_do_trade_select
 								}
 								remove_global_variable = trade_do_trade_tt
+								prev = { 
+									remove_list_variable = { 
+										name = trade_dat_timber
+										target = prev
+									}
+									set_global_variable = { 
+										name = array_change_t
+										value = global_var:trade_do_trade_t
+									}
+									ordered_in_list = { 
+										variable = array_trade_dat_timber
+										position = global_var:array_change_t
+										prev = { 
+											set_variable = { 
+												name = array_change_t
+												value = prev
+											}
+											change_variable = { 
+												name = array_change_t
+												divide = 10
+											}
+											change_variable = { 
+												name = array_change_t
+												add = scope:trade_do_trade_select.var:trade_do_trade_t
+											}
+											remove_list_variable = { 
+												name = array_trade_dat_timber
+												target = prev
+											}
+											set_variable = { 
+												name = array_add_t
+												value = var:array_change_t
+											}
+											change_variable = { 
+												name = array_add_t
+												multiply = 10
+											}
+											if = { 
+												limit = { 
+													NOT = { 
+														has_variable_list = array_trade_dat_timber
+													}
+												}
+												add_to_variable_list = { 
+													name = array_trade_dat_timber
+													target = var:array_add_t
+												}
+											}
+											else = { 
+												while = { 
+													limit = { 
+														is_target_in_variable_list = { 
+															name = array_trade_dat_timber
+															target = var:array_add_t
+														}
+													}
+													count = 10
+													change_variable = { 
+														name = array_add_t
+														add = 0.001
+													}
+												}
+												add_to_variable_list = { 
+													name = array_trade_dat_timber
+													target = var:array_add_t
+												}
+											}
+											remove_variable = array_add_t
+										}
+									}
+									remove_global_variable = array_change_t
+									remove_variable = array_change_t
+									add_to_variable_list = { 
+										name = trade_dat_timber
+										target = prev
+									}
+								}
 							}
 							else = { 
 								change_global_variable = { 
@@ -17588,81 +17695,6 @@ while = {
 									add = 1
 								}
 							}
-						}
-						remove_list_variable = { 
-							name = trade_dat_timber
-							target = prev
-						}
-						set_global_variable = { 
-							name = array_change_t
-							value = global_var:trade_do_trade_t
-						}
-						ordered_in_list = { 
-							variable = array_trade_dat_timber
-							position = global_var:array_change_t
-							prev = { 
-								set_variable = { 
-									name = array_change_t
-									value = prev
-								}
-								change_variable = { 
-									name = array_change_t
-									divide = 10
-								}
-								change_variable = { 
-									name = array_change_t
-									add = scope:trade_do_trade_select.var:trade_do_trade_t
-								}
-								remove_list_variable = { 
-									name = array_trade_dat_timber
-									target = prev
-								}
-								set_variable = { 
-									name = array_add_t
-									value = var:array_change_t
-								}
-								change_variable = { 
-									name = array_add_t
-									multiply = 10
-								}
-								if = { 
-									limit = { 
-										NOT = { 
-											has_variable_list = array_trade_dat_timber
-										}
-									}
-									add_to_variable_list = { 
-										name = array_trade_dat_timber
-										target = var:array_add_t
-									}
-								}
-								else = { 
-									while = { 
-										limit = { 
-											is_target_in_variable_list = { 
-												name = array_trade_dat_timber
-												target = var:array_add_t
-											}
-										}
-										count = 10
-										change_variable = { 
-											name = array_add_t
-											add = 0.001
-										}
-									}
-									add_to_variable_list = { 
-										name = array_trade_dat_timber
-										target = var:array_add_t
-									}
-								}
-								remove_variable = array_add_t
-							}
-						}
-						remove_global_variable = array_change_t
-						remove_variable = array_change_t
-						add_to_variable_list = { 
-							name = trade_dat_timber
-							target = prev
 						}
 					}
 				}
@@ -17820,6 +17852,83 @@ while = {
 								this = global_var:trade_do_trade_select
 							}
 							remove_global_variable = trade_do_trade_tt
+							prev = { 
+								remove_list_variable = { 
+									name = trade_dat_metal
+									target = prev
+								}
+								set_global_variable = { 
+									name = array_change_t
+									value = global_var:trade_do_trade_t
+								}
+								ordered_in_list = { 
+									variable = array_trade_dat_metal
+									position = global_var:array_change_t
+									prev = { 
+										set_variable = { 
+											name = array_change_t
+											value = prev
+										}
+										change_variable = { 
+											name = array_change_t
+											divide = 10
+										}
+										change_variable = { 
+											name = array_change_t
+											subtract = var:trade_do_trade_t
+										}
+										remove_list_variable = { 
+											name = array_trade_dat_metal
+											target = prev
+										}
+										set_variable = { 
+											name = array_add_t
+											value = var:array_change_t
+										}
+										change_variable = { 
+											name = array_add_t
+											multiply = 10
+										}
+										if = { 
+											limit = { 
+												NOT = { 
+													has_variable_list = array_trade_dat_metal
+												}
+											}
+											add_to_variable_list = { 
+												name = array_trade_dat_metal
+												target = var:array_add_t
+											}
+										}
+										else = { 
+											while = { 
+												limit = { 
+													is_target_in_variable_list = { 
+														name = array_trade_dat_metal
+														target = var:array_add_t
+													}
+												}
+												count = 10
+												change_variable = { 
+													name = array_add_t
+													add = 0.001
+												}
+											}
+											add_to_variable_list = { 
+												name = array_trade_dat_metal
+												target = var:array_add_t
+											}
+										}
+										remove_variable = array_add_t
+									}
+								}
+								remove_global_variable = array_change_t
+								remove_variable = array_change_t
+								add_to_variable_list = { 
+									name = trade_dat_metal
+									target = prev
+								}
+							}
 						}
 						else = { 
 							change_global_variable = { 
@@ -17827,81 +17936,6 @@ while = {
 								add = 1
 							}
 						}
-					}
-					remove_list_variable = { 
-						name = trade_dat_metal
-						target = prev
-					}
-					set_global_variable = { 
-						name = array_change_t
-						value = global_var:trade_do_trade_t
-					}
-					ordered_in_list = { 
-						variable = array_trade_dat_metal
-						position = global_var:array_change_t
-						prev = { 
-							set_variable = { 
-								name = array_change_t
-								value = prev
-							}
-							change_variable = { 
-								name = array_change_t
-								divide = 10
-							}
-							change_variable = { 
-								name = array_change_t
-								subtract = var:trade_do_trade_t
-							}
-							remove_list_variable = { 
-								name = array_trade_dat_metal
-								target = prev
-							}
-							set_variable = { 
-								name = array_add_t
-								value = var:array_change_t
-							}
-							change_variable = { 
-								name = array_add_t
-								multiply = 10
-							}
-							if = { 
-								limit = { 
-									NOT = { 
-										has_variable_list = array_trade_dat_metal
-									}
-								}
-								add_to_variable_list = { 
-									name = array_trade_dat_metal
-									target = var:array_add_t
-								}
-							}
-							else = { 
-								while = { 
-									limit = { 
-										is_target_in_variable_list = { 
-											name = array_trade_dat_metal
-											target = var:array_add_t
-										}
-									}
-									count = 10
-									change_variable = { 
-										name = array_add_t
-										add = 0.001
-									}
-								}
-								add_to_variable_list = { 
-									name = array_trade_dat_metal
-									target = var:array_add_t
-								}
-							}
-							remove_variable = array_add_t
-						}
-					}
-					remove_global_variable = array_change_t
-					remove_variable = array_change_t
-					add_to_variable_list = { 
-						name = trade_dat_metal
-						target = prev
 					}
 					prev = { 
 						set_global_variable = { 
@@ -17922,6 +17956,83 @@ while = {
 									this = scope:trade_do_trade_select
 								}
 								remove_global_variable = trade_do_trade_tt
+								prev = { 
+									remove_list_variable = { 
+										name = trade_dat_metal
+										target = prev
+									}
+									set_global_variable = { 
+										name = array_change_t
+										value = global_var:trade_do_trade_t
+									}
+									ordered_in_list = { 
+										variable = array_trade_dat_metal
+										position = global_var:array_change_t
+										prev = { 
+											set_variable = { 
+												name = array_change_t
+												value = prev
+											}
+											change_variable = { 
+												name = array_change_t
+												divide = 10
+											}
+											change_variable = { 
+												name = array_change_t
+												add = scope:trade_do_trade_select.var:trade_do_trade_t
+											}
+											remove_list_variable = { 
+												name = array_trade_dat_metal
+												target = prev
+											}
+											set_variable = { 
+												name = array_add_t
+												value = var:array_change_t
+											}
+											change_variable = { 
+												name = array_add_t
+												multiply = 10
+											}
+											if = { 
+												limit = { 
+													NOT = { 
+														has_variable_list = array_trade_dat_metal
+													}
+												}
+												add_to_variable_list = { 
+													name = array_trade_dat_metal
+													target = var:array_add_t
+												}
+											}
+											else = { 
+												while = { 
+													limit = { 
+														is_target_in_variable_list = { 
+															name = array_trade_dat_metal
+															target = var:array_add_t
+														}
+													}
+													count = 10
+													change_variable = { 
+														name = array_add_t
+														add = 0.001
+													}
+												}
+												add_to_variable_list = { 
+													name = array_trade_dat_metal
+													target = var:array_add_t
+												}
+											}
+											remove_variable = array_add_t
+										}
+									}
+									remove_global_variable = array_change_t
+									remove_variable = array_change_t
+									add_to_variable_list = { 
+										name = trade_dat_metal
+										target = prev
+									}
+								}
 							}
 							else = { 
 								change_global_variable = { 
@@ -17929,81 +18040,6 @@ while = {
 									add = 1
 								}
 							}
-						}
-						remove_list_variable = { 
-							name = trade_dat_metal
-							target = prev
-						}
-						set_global_variable = { 
-							name = array_change_t
-							value = global_var:trade_do_trade_t
-						}
-						ordered_in_list = { 
-							variable = array_trade_dat_metal
-							position = global_var:array_change_t
-							prev = { 
-								set_variable = { 
-									name = array_change_t
-									value = prev
-								}
-								change_variable = { 
-									name = array_change_t
-									divide = 10
-								}
-								change_variable = { 
-									name = array_change_t
-									add = scope:trade_do_trade_select.var:trade_do_trade_t
-								}
-								remove_list_variable = { 
-									name = array_trade_dat_metal
-									target = prev
-								}
-								set_variable = { 
-									name = array_add_t
-									value = var:array_change_t
-								}
-								change_variable = { 
-									name = array_add_t
-									multiply = 10
-								}
-								if = { 
-									limit = { 
-										NOT = { 
-											has_variable_list = array_trade_dat_metal
-										}
-									}
-									add_to_variable_list = { 
-										name = array_trade_dat_metal
-										target = var:array_add_t
-									}
-								}
-								else = { 
-									while = { 
-										limit = { 
-											is_target_in_variable_list = { 
-												name = array_trade_dat_metal
-												target = var:array_add_t
-											}
-										}
-										count = 10
-										change_variable = { 
-											name = array_add_t
-											add = 0.001
-										}
-									}
-									add_to_variable_list = { 
-										name = array_trade_dat_metal
-										target = var:array_add_t
-									}
-								}
-								remove_variable = array_add_t
-							}
-						}
-						remove_global_variable = array_change_t
-						remove_variable = array_change_t
-						add_to_variable_list = { 
-							name = trade_dat_metal
-							target = prev
 						}
 					}
 				}
@@ -18161,6 +18197,83 @@ while = {
 								this = global_var:trade_do_trade_select
 							}
 							remove_global_variable = trade_do_trade_tt
+							prev = { 
+								remove_list_variable = { 
+									name = trade_dat_exotics_w
+									target = prev
+								}
+								set_global_variable = { 
+									name = array_change_t
+									value = global_var:trade_do_trade_t
+								}
+								ordered_in_list = { 
+									variable = array_trade_dat_exotics_w
+									position = global_var:array_change_t
+									prev = { 
+										set_variable = { 
+											name = array_change_t
+											value = prev
+										}
+										change_variable = { 
+											name = array_change_t
+											divide = 10
+										}
+										change_variable = { 
+											name = array_change_t
+											subtract = var:trade_do_trade_t
+										}
+										remove_list_variable = { 
+											name = array_trade_dat_exotics_w
+											target = prev
+										}
+										set_variable = { 
+											name = array_add_t
+											value = var:array_change_t
+										}
+										change_variable = { 
+											name = array_add_t
+											multiply = 10
+										}
+										if = { 
+											limit = { 
+												NOT = { 
+													has_variable_list = array_trade_dat_exotics_w
+												}
+											}
+											add_to_variable_list = { 
+												name = array_trade_dat_exotics_w
+												target = var:array_add_t
+											}
+										}
+										else = { 
+											while = { 
+												limit = { 
+													is_target_in_variable_list = { 
+														name = array_trade_dat_exotics_w
+														target = var:array_add_t
+													}
+												}
+												count = 10
+												change_variable = { 
+													name = array_add_t
+													add = 0.001
+												}
+											}
+											add_to_variable_list = { 
+												name = array_trade_dat_exotics_w
+												target = var:array_add_t
+											}
+										}
+										remove_variable = array_add_t
+									}
+								}
+								remove_global_variable = array_change_t
+								remove_variable = array_change_t
+								add_to_variable_list = { 
+									name = trade_dat_exotics_w
+									target = prev
+								}
+							}
 						}
 						else = { 
 							change_global_variable = { 
@@ -18168,81 +18281,6 @@ while = {
 								add = 1
 							}
 						}
-					}
-					remove_list_variable = { 
-						name = trade_dat_exotics_w
-						target = prev
-					}
-					set_global_variable = { 
-						name = array_change_t
-						value = global_var:trade_do_trade_t
-					}
-					ordered_in_list = { 
-						variable = array_trade_dat_exotics_w
-						position = global_var:array_change_t
-						prev = { 
-							set_variable = { 
-								name = array_change_t
-								value = prev
-							}
-							change_variable = { 
-								name = array_change_t
-								divide = 10
-							}
-							change_variable = { 
-								name = array_change_t
-								subtract = var:trade_do_trade_t
-							}
-							remove_list_variable = { 
-								name = array_trade_dat_exotics_w
-								target = prev
-							}
-							set_variable = { 
-								name = array_add_t
-								value = var:array_change_t
-							}
-							change_variable = { 
-								name = array_add_t
-								multiply = 10
-							}
-							if = { 
-								limit = { 
-									NOT = { 
-										has_variable_list = array_trade_dat_exotics_w
-									}
-								}
-								add_to_variable_list = { 
-									name = array_trade_dat_exotics_w
-									target = var:array_add_t
-								}
-							}
-							else = { 
-								while = { 
-									limit = { 
-										is_target_in_variable_list = { 
-											name = array_trade_dat_exotics_w
-											target = var:array_add_t
-										}
-									}
-									count = 10
-									change_variable = { 
-										name = array_add_t
-										add = 0.001
-									}
-								}
-								add_to_variable_list = { 
-									name = array_trade_dat_exotics_w
-									target = var:array_add_t
-								}
-							}
-							remove_variable = array_add_t
-						}
-					}
-					remove_global_variable = array_change_t
-					remove_variable = array_change_t
-					add_to_variable_list = { 
-						name = trade_dat_exotics_w
-						target = prev
 					}
 					prev = { 
 						set_global_variable = { 
@@ -18263,6 +18301,83 @@ while = {
 									this = scope:trade_do_trade_select
 								}
 								remove_global_variable = trade_do_trade_tt
+								prev = { 
+									remove_list_variable = { 
+										name = trade_dat_exotics_w
+										target = prev
+									}
+									set_global_variable = { 
+										name = array_change_t
+										value = global_var:trade_do_trade_t
+									}
+									ordered_in_list = { 
+										variable = array_trade_dat_exotics_w
+										position = global_var:array_change_t
+										prev = { 
+											set_variable = { 
+												name = array_change_t
+												value = prev
+											}
+											change_variable = { 
+												name = array_change_t
+												divide = 10
+											}
+											change_variable = { 
+												name = array_change_t
+												add = scope:trade_do_trade_select.var:trade_do_trade_t
+											}
+											remove_list_variable = { 
+												name = array_trade_dat_exotics_w
+												target = prev
+											}
+											set_variable = { 
+												name = array_add_t
+												value = var:array_change_t
+											}
+											change_variable = { 
+												name = array_add_t
+												multiply = 10
+											}
+											if = { 
+												limit = { 
+													NOT = { 
+														has_variable_list = array_trade_dat_exotics_w
+													}
+												}
+												add_to_variable_list = { 
+													name = array_trade_dat_exotics_w
+													target = var:array_add_t
+												}
+											}
+											else = { 
+												while = { 
+													limit = { 
+														is_target_in_variable_list = { 
+															name = array_trade_dat_exotics_w
+															target = var:array_add_t
+														}
+													}
+													count = 10
+													change_variable = { 
+														name = array_add_t
+														add = 0.001
+													}
+												}
+												add_to_variable_list = { 
+													name = array_trade_dat_exotics_w
+													target = var:array_add_t
+												}
+											}
+											remove_variable = array_add_t
+										}
+									}
+									remove_global_variable = array_change_t
+									remove_variable = array_change_t
+									add_to_variable_list = { 
+										name = trade_dat_exotics_w
+										target = prev
+									}
+								}
 							}
 							else = { 
 								change_global_variable = { 
@@ -18270,81 +18385,6 @@ while = {
 									add = 1
 								}
 							}
-						}
-						remove_list_variable = { 
-							name = trade_dat_exotics_w
-							target = prev
-						}
-						set_global_variable = { 
-							name = array_change_t
-							value = global_var:trade_do_trade_t
-						}
-						ordered_in_list = { 
-							variable = array_trade_dat_exotics_w
-							position = global_var:array_change_t
-							prev = { 
-								set_variable = { 
-									name = array_change_t
-									value = prev
-								}
-								change_variable = { 
-									name = array_change_t
-									divide = 10
-								}
-								change_variable = { 
-									name = array_change_t
-									add = scope:trade_do_trade_select.var:trade_do_trade_t
-								}
-								remove_list_variable = { 
-									name = array_trade_dat_exotics_w
-									target = prev
-								}
-								set_variable = { 
-									name = array_add_t
-									value = var:array_change_t
-								}
-								change_variable = { 
-									name = array_add_t
-									multiply = 10
-								}
-								if = { 
-									limit = { 
-										NOT = { 
-											has_variable_list = array_trade_dat_exotics_w
-										}
-									}
-									add_to_variable_list = { 
-										name = array_trade_dat_exotics_w
-										target = var:array_add_t
-									}
-								}
-								else = { 
-									while = { 
-										limit = { 
-											is_target_in_variable_list = { 
-												name = array_trade_dat_exotics_w
-												target = var:array_add_t
-											}
-										}
-										count = 10
-										change_variable = { 
-											name = array_add_t
-											add = 0.001
-										}
-									}
-									add_to_variable_list = { 
-										name = array_trade_dat_exotics_w
-										target = var:array_add_t
-									}
-								}
-								remove_variable = array_add_t
-							}
-						}
-						remove_global_variable = array_change_t
-						remove_variable = array_change_t
-						add_to_variable_list = { 
-							name = trade_dat_exotics_w
-							target = prev
 						}
 					}
 				}
@@ -18502,6 +18542,83 @@ while = {
 								this = global_var:trade_do_trade_select
 							}
 							remove_global_variable = trade_do_trade_tt
+							prev = { 
+								remove_list_variable = { 
+									name = trade_dat_exotics_e
+									target = prev
+								}
+								set_global_variable = { 
+									name = array_change_t
+									value = global_var:trade_do_trade_t
+								}
+								ordered_in_list = { 
+									variable = array_trade_dat_exotics_e
+									position = global_var:array_change_t
+									prev = { 
+										set_variable = { 
+											name = array_change_t
+											value = prev
+										}
+										change_variable = { 
+											name = array_change_t
+											divide = 10
+										}
+										change_variable = { 
+											name = array_change_t
+											subtract = var:trade_do_trade_t
+										}
+										remove_list_variable = { 
+											name = array_trade_dat_exotics_e
+											target = prev
+										}
+										set_variable = { 
+											name = array_add_t
+											value = var:array_change_t
+										}
+										change_variable = { 
+											name = array_add_t
+											multiply = 10
+										}
+										if = { 
+											limit = { 
+												NOT = { 
+													has_variable_list = array_trade_dat_exotics_e
+												}
+											}
+											add_to_variable_list = { 
+												name = array_trade_dat_exotics_e
+												target = var:array_add_t
+											}
+										}
+										else = { 
+											while = { 
+												limit = { 
+													is_target_in_variable_list = { 
+														name = array_trade_dat_exotics_e
+														target = var:array_add_t
+													}
+												}
+												count = 10
+												change_variable = { 
+													name = array_add_t
+													add = 0.001
+												}
+											}
+											add_to_variable_list = { 
+												name = array_trade_dat_exotics_e
+												target = var:array_add_t
+											}
+										}
+										remove_variable = array_add_t
+									}
+								}
+								remove_global_variable = array_change_t
+								remove_variable = array_change_t
+								add_to_variable_list = { 
+									name = trade_dat_exotics_e
+									target = prev
+								}
+							}
 						}
 						else = { 
 							change_global_variable = { 
@@ -18509,81 +18626,6 @@ while = {
 								add = 1
 							}
 						}
-					}
-					remove_list_variable = { 
-						name = trade_dat_exotics_e
-						target = prev
-					}
-					set_global_variable = { 
-						name = array_change_t
-						value = global_var:trade_do_trade_t
-					}
-					ordered_in_list = { 
-						variable = array_trade_dat_exotics_e
-						position = global_var:array_change_t
-						prev = { 
-							set_variable = { 
-								name = array_change_t
-								value = prev
-							}
-							change_variable = { 
-								name = array_change_t
-								divide = 10
-							}
-							change_variable = { 
-								name = array_change_t
-								subtract = var:trade_do_trade_t
-							}
-							remove_list_variable = { 
-								name = array_trade_dat_exotics_e
-								target = prev
-							}
-							set_variable = { 
-								name = array_add_t
-								value = var:array_change_t
-							}
-							change_variable = { 
-								name = array_add_t
-								multiply = 10
-							}
-							if = { 
-								limit = { 
-									NOT = { 
-										has_variable_list = array_trade_dat_exotics_e
-									}
-								}
-								add_to_variable_list = { 
-									name = array_trade_dat_exotics_e
-									target = var:array_add_t
-								}
-							}
-							else = { 
-								while = { 
-									limit = { 
-										is_target_in_variable_list = { 
-											name = array_trade_dat_exotics_e
-											target = var:array_add_t
-										}
-									}
-									count = 10
-									change_variable = { 
-										name = array_add_t
-										add = 0.001
-									}
-								}
-								add_to_variable_list = { 
-									name = array_trade_dat_exotics_e
-									target = var:array_add_t
-								}
-							}
-							remove_variable = array_add_t
-						}
-					}
-					remove_global_variable = array_change_t
-					remove_variable = array_change_t
-					add_to_variable_list = { 
-						name = trade_dat_exotics_e
-						target = prev
 					}
 					prev = { 
 						set_global_variable = { 
@@ -18604,6 +18646,83 @@ while = {
 									this = scope:trade_do_trade_select
 								}
 								remove_global_variable = trade_do_trade_tt
+								prev = { 
+									remove_list_variable = { 
+										name = trade_dat_exotics_e
+										target = prev
+									}
+									set_global_variable = { 
+										name = array_change_t
+										value = global_var:trade_do_trade_t
+									}
+									ordered_in_list = { 
+										variable = array_trade_dat_exotics_e
+										position = global_var:array_change_t
+										prev = { 
+											set_variable = { 
+												name = array_change_t
+												value = prev
+											}
+											change_variable = { 
+												name = array_change_t
+												divide = 10
+											}
+											change_variable = { 
+												name = array_change_t
+												add = scope:trade_do_trade_select.var:trade_do_trade_t
+											}
+											remove_list_variable = { 
+												name = array_trade_dat_exotics_e
+												target = prev
+											}
+											set_variable = { 
+												name = array_add_t
+												value = var:array_change_t
+											}
+											change_variable = { 
+												name = array_add_t
+												multiply = 10
+											}
+											if = { 
+												limit = { 
+													NOT = { 
+														has_variable_list = array_trade_dat_exotics_e
+													}
+												}
+												add_to_variable_list = { 
+													name = array_trade_dat_exotics_e
+													target = var:array_add_t
+												}
+											}
+											else = { 
+												while = { 
+													limit = { 
+														is_target_in_variable_list = { 
+															name = array_trade_dat_exotics_e
+															target = var:array_add_t
+														}
+													}
+													count = 10
+													change_variable = { 
+														name = array_add_t
+														add = 0.001
+													}
+												}
+												add_to_variable_list = { 
+													name = array_trade_dat_exotics_e
+													target = var:array_add_t
+												}
+											}
+											remove_variable = array_add_t
+										}
+									}
+									remove_global_variable = array_change_t
+									remove_variable = array_change_t
+									add_to_variable_list = { 
+										name = trade_dat_exotics_e
+										target = prev
+									}
+								}
 							}
 							else = { 
 								change_global_variable = { 
@@ -18611,81 +18730,6 @@ while = {
 									add = 1
 								}
 							}
-						}
-						remove_list_variable = { 
-							name = trade_dat_exotics_e
-							target = prev
-						}
-						set_global_variable = { 
-							name = array_change_t
-							value = global_var:trade_do_trade_t
-						}
-						ordered_in_list = { 
-							variable = array_trade_dat_exotics_e
-							position = global_var:array_change_t
-							prev = { 
-								set_variable = { 
-									name = array_change_t
-									value = prev
-								}
-								change_variable = { 
-									name = array_change_t
-									divide = 10
-								}
-								change_variable = { 
-									name = array_change_t
-									add = scope:trade_do_trade_select.var:trade_do_trade_t
-								}
-								remove_list_variable = { 
-									name = array_trade_dat_exotics_e
-									target = prev
-								}
-								set_variable = { 
-									name = array_add_t
-									value = var:array_change_t
-								}
-								change_variable = { 
-									name = array_add_t
-									multiply = 10
-								}
-								if = { 
-									limit = { 
-										NOT = { 
-											has_variable_list = array_trade_dat_exotics_e
-										}
-									}
-									add_to_variable_list = { 
-										name = array_trade_dat_exotics_e
-										target = var:array_add_t
-									}
-								}
-								else = { 
-									while = { 
-										limit = { 
-											is_target_in_variable_list = { 
-												name = array_trade_dat_exotics_e
-												target = var:array_add_t
-											}
-										}
-										count = 10
-										change_variable = { 
-											name = array_add_t
-											add = 0.001
-										}
-									}
-									add_to_variable_list = { 
-										name = array_trade_dat_exotics_e
-										target = var:array_add_t
-									}
-								}
-								remove_variable = array_add_t
-							}
-						}
-						remove_global_variable = array_change_t
-						remove_variable = array_change_t
-						add_to_variable_list = { 
-							name = trade_dat_exotics_e
-							target = prev
 						}
 					}
 				}
@@ -18843,6 +18887,83 @@ while = {
 								this = global_var:trade_do_trade_select
 							}
 							remove_global_variable = trade_do_trade_tt
+							prev = { 
+								remove_list_variable = { 
+									name = trade_dat_exotics_g
+									target = prev
+								}
+								set_global_variable = { 
+									name = array_change_t
+									value = global_var:trade_do_trade_t
+								}
+								ordered_in_list = { 
+									variable = array_trade_dat_exotics_g
+									position = global_var:array_change_t
+									prev = { 
+										set_variable = { 
+											name = array_change_t
+											value = prev
+										}
+										change_variable = { 
+											name = array_change_t
+											divide = 10
+										}
+										change_variable = { 
+											name = array_change_t
+											subtract = var:trade_do_trade_t
+										}
+										remove_list_variable = { 
+											name = array_trade_dat_exotics_g
+											target = prev
+										}
+										set_variable = { 
+											name = array_add_t
+											value = var:array_change_t
+										}
+										change_variable = { 
+											name = array_add_t
+											multiply = 10
+										}
+										if = { 
+											limit = { 
+												NOT = { 
+													has_variable_list = array_trade_dat_exotics_g
+												}
+											}
+											add_to_variable_list = { 
+												name = array_trade_dat_exotics_g
+												target = var:array_add_t
+											}
+										}
+										else = { 
+											while = { 
+												limit = { 
+													is_target_in_variable_list = { 
+														name = array_trade_dat_exotics_g
+														target = var:array_add_t
+													}
+												}
+												count = 10
+												change_variable = { 
+													name = array_add_t
+													add = 0.001
+												}
+											}
+											add_to_variable_list = { 
+												name = array_trade_dat_exotics_g
+												target = var:array_add_t
+											}
+										}
+										remove_variable = array_add_t
+									}
+								}
+								remove_global_variable = array_change_t
+								remove_variable = array_change_t
+								add_to_variable_list = { 
+									name = trade_dat_exotics_g
+									target = prev
+								}
+							}
 						}
 						else = { 
 							change_global_variable = { 
@@ -18850,81 +18971,6 @@ while = {
 								add = 1
 							}
 						}
-					}
-					remove_list_variable = { 
-						name = trade_dat_exotics_g
-						target = prev
-					}
-					set_global_variable = { 
-						name = array_change_t
-						value = global_var:trade_do_trade_t
-					}
-					ordered_in_list = { 
-						variable = array_trade_dat_exotics_g
-						position = global_var:array_change_t
-						prev = { 
-							set_variable = { 
-								name = array_change_t
-								value = prev
-							}
-							change_variable = { 
-								name = array_change_t
-								divide = 10
-							}
-							change_variable = { 
-								name = array_change_t
-								subtract = var:trade_do_trade_t
-							}
-							remove_list_variable = { 
-								name = array_trade_dat_exotics_g
-								target = prev
-							}
-							set_variable = { 
-								name = array_add_t
-								value = var:array_change_t
-							}
-							change_variable = { 
-								name = array_add_t
-								multiply = 10
-							}
-							if = { 
-								limit = { 
-									NOT = { 
-										has_variable_list = array_trade_dat_exotics_g
-									}
-								}
-								add_to_variable_list = { 
-									name = array_trade_dat_exotics_g
-									target = var:array_add_t
-								}
-							}
-							else = { 
-								while = { 
-									limit = { 
-										is_target_in_variable_list = { 
-											name = array_trade_dat_exotics_g
-											target = var:array_add_t
-										}
-									}
-									count = 10
-									change_variable = { 
-										name = array_add_t
-										add = 0.001
-									}
-								}
-								add_to_variable_list = { 
-									name = array_trade_dat_exotics_g
-									target = var:array_add_t
-								}
-							}
-							remove_variable = array_add_t
-						}
-					}
-					remove_global_variable = array_change_t
-					remove_variable = array_change_t
-					add_to_variable_list = { 
-						name = trade_dat_exotics_g
-						target = prev
 					}
 					prev = { 
 						set_global_variable = { 
@@ -18945,6 +18991,83 @@ while = {
 									this = scope:trade_do_trade_select
 								}
 								remove_global_variable = trade_do_trade_tt
+								prev = { 
+									remove_list_variable = { 
+										name = trade_dat_exotics_g
+										target = prev
+									}
+									set_global_variable = { 
+										name = array_change_t
+										value = global_var:trade_do_trade_t
+									}
+									ordered_in_list = { 
+										variable = array_trade_dat_exotics_g
+										position = global_var:array_change_t
+										prev = { 
+											set_variable = { 
+												name = array_change_t
+												value = prev
+											}
+											change_variable = { 
+												name = array_change_t
+												divide = 10
+											}
+											change_variable = { 
+												name = array_change_t
+												add = scope:trade_do_trade_select.var:trade_do_trade_t
+											}
+											remove_list_variable = { 
+												name = array_trade_dat_exotics_g
+												target = prev
+											}
+											set_variable = { 
+												name = array_add_t
+												value = var:array_change_t
+											}
+											change_variable = { 
+												name = array_add_t
+												multiply = 10
+											}
+											if = { 
+												limit = { 
+													NOT = { 
+														has_variable_list = array_trade_dat_exotics_g
+													}
+												}
+												add_to_variable_list = { 
+													name = array_trade_dat_exotics_g
+													target = var:array_add_t
+												}
+											}
+											else = { 
+												while = { 
+													limit = { 
+														is_target_in_variable_list = { 
+															name = array_trade_dat_exotics_g
+															target = var:array_add_t
+														}
+													}
+													count = 10
+													change_variable = { 
+														name = array_add_t
+														add = 0.001
+													}
+												}
+												add_to_variable_list = { 
+													name = array_trade_dat_exotics_g
+													target = var:array_add_t
+												}
+											}
+											remove_variable = array_add_t
+										}
+									}
+									remove_global_variable = array_change_t
+									remove_variable = array_change_t
+									add_to_variable_list = { 
+										name = trade_dat_exotics_g
+										target = prev
+									}
+								}
 							}
 							else = { 
 								change_global_variable = { 
@@ -18952,81 +19075,6 @@ while = {
 									add = 1
 								}
 							}
-						}
-						remove_list_variable = { 
-							name = trade_dat_exotics_g
-							target = prev
-						}
-						set_global_variable = { 
-							name = array_change_t
-							value = global_var:trade_do_trade_t
-						}
-						ordered_in_list = { 
-							variable = array_trade_dat_exotics_g
-							position = global_var:array_change_t
-							prev = { 
-								set_variable = { 
-									name = array_change_t
-									value = prev
-								}
-								change_variable = { 
-									name = array_change_t
-									divide = 10
-								}
-								change_variable = { 
-									name = array_change_t
-									add = scope:trade_do_trade_select.var:trade_do_trade_t
-								}
-								remove_list_variable = { 
-									name = array_trade_dat_exotics_g
-									target = prev
-								}
-								set_variable = { 
-									name = array_add_t
-									value = var:array_change_t
-								}
-								change_variable = { 
-									name = array_add_t
-									multiply = 10
-								}
-								if = { 
-									limit = { 
-										NOT = { 
-											has_variable_list = array_trade_dat_exotics_g
-										}
-									}
-									add_to_variable_list = { 
-										name = array_trade_dat_exotics_g
-										target = var:array_add_t
-									}
-								}
-								else = { 
-									while = { 
-										limit = { 
-											is_target_in_variable_list = { 
-												name = array_trade_dat_exotics_g
-												target = var:array_add_t
-											}
-										}
-										count = 10
-										change_variable = { 
-											name = array_add_t
-											add = 0.001
-										}
-									}
-									add_to_variable_list = { 
-										name = array_trade_dat_exotics_g
-										target = var:array_add_t
-									}
-								}
-								remove_variable = array_add_t
-							}
-						}
-						remove_global_variable = array_change_t
-						remove_variable = array_change_t
-						add_to_variable_list = { 
-							name = trade_dat_exotics_g
-							target = prev
 						}
 					}
 				}
@@ -19184,6 +19232,83 @@ while = {
 								this = global_var:trade_do_trade_select
 							}
 							remove_global_variable = trade_do_trade_tt
+							prev = { 
+								remove_list_variable = { 
+									name = trade_dat_textile
+									target = prev
+								}
+								set_global_variable = { 
+									name = array_change_t
+									value = global_var:trade_do_trade_t
+								}
+								ordered_in_list = { 
+									variable = array_trade_dat_textile
+									position = global_var:array_change_t
+									prev = { 
+										set_variable = { 
+											name = array_change_t
+											value = prev
+										}
+										change_variable = { 
+											name = array_change_t
+											divide = 10
+										}
+										change_variable = { 
+											name = array_change_t
+											subtract = var:trade_do_trade_t
+										}
+										remove_list_variable = { 
+											name = array_trade_dat_textile
+											target = prev
+										}
+										set_variable = { 
+											name = array_add_t
+											value = var:array_change_t
+										}
+										change_variable = { 
+											name = array_add_t
+											multiply = 10
+										}
+										if = { 
+											limit = { 
+												NOT = { 
+													has_variable_list = array_trade_dat_textile
+												}
+											}
+											add_to_variable_list = { 
+												name = array_trade_dat_textile
+												target = var:array_add_t
+											}
+										}
+										else = { 
+											while = { 
+												limit = { 
+													is_target_in_variable_list = { 
+														name = array_trade_dat_textile
+														target = var:array_add_t
+													}
+												}
+												count = 10
+												change_variable = { 
+													name = array_add_t
+													add = 0.001
+												}
+											}
+											add_to_variable_list = { 
+												name = array_trade_dat_textile
+												target = var:array_add_t
+											}
+										}
+										remove_variable = array_add_t
+									}
+								}
+								remove_global_variable = array_change_t
+								remove_variable = array_change_t
+								add_to_variable_list = { 
+									name = trade_dat_textile
+									target = prev
+								}
+							}
 						}
 						else = { 
 							change_global_variable = { 
@@ -19191,81 +19316,6 @@ while = {
 								add = 1
 							}
 						}
-					}
-					remove_list_variable = { 
-						name = trade_dat_textile
-						target = prev
-					}
-					set_global_variable = { 
-						name = array_change_t
-						value = global_var:trade_do_trade_t
-					}
-					ordered_in_list = { 
-						variable = array_trade_dat_textile
-						position = global_var:array_change_t
-						prev = { 
-							set_variable = { 
-								name = array_change_t
-								value = prev
-							}
-							change_variable = { 
-								name = array_change_t
-								divide = 10
-							}
-							change_variable = { 
-								name = array_change_t
-								subtract = var:trade_do_trade_t
-							}
-							remove_list_variable = { 
-								name = array_trade_dat_textile
-								target = prev
-							}
-							set_variable = { 
-								name = array_add_t
-								value = var:array_change_t
-							}
-							change_variable = { 
-								name = array_add_t
-								multiply = 10
-							}
-							if = { 
-								limit = { 
-									NOT = { 
-										has_variable_list = array_trade_dat_textile
-									}
-								}
-								add_to_variable_list = { 
-									name = array_trade_dat_textile
-									target = var:array_add_t
-								}
-							}
-							else = { 
-								while = { 
-									limit = { 
-										is_target_in_variable_list = { 
-											name = array_trade_dat_textile
-											target = var:array_add_t
-										}
-									}
-									count = 10
-									change_variable = { 
-										name = array_add_t
-										add = 0.001
-									}
-								}
-								add_to_variable_list = { 
-									name = array_trade_dat_textile
-									target = var:array_add_t
-								}
-							}
-							remove_variable = array_add_t
-						}
-					}
-					remove_global_variable = array_change_t
-					remove_variable = array_change_t
-					add_to_variable_list = { 
-						name = trade_dat_textile
-						target = prev
 					}
 					prev = { 
 						set_global_variable = { 
@@ -19286,6 +19336,83 @@ while = {
 									this = scope:trade_do_trade_select
 								}
 								remove_global_variable = trade_do_trade_tt
+								prev = { 
+									remove_list_variable = { 
+										name = trade_dat_textile
+										target = prev
+									}
+									set_global_variable = { 
+										name = array_change_t
+										value = global_var:trade_do_trade_t
+									}
+									ordered_in_list = { 
+										variable = array_trade_dat_textile
+										position = global_var:array_change_t
+										prev = { 
+											set_variable = { 
+												name = array_change_t
+												value = prev
+											}
+											change_variable = { 
+												name = array_change_t
+												divide = 10
+											}
+											change_variable = { 
+												name = array_change_t
+												add = scope:trade_do_trade_select.var:trade_do_trade_t
+											}
+											remove_list_variable = { 
+												name = array_trade_dat_textile
+												target = prev
+											}
+											set_variable = { 
+												name = array_add_t
+												value = var:array_change_t
+											}
+											change_variable = { 
+												name = array_add_t
+												multiply = 10
+											}
+											if = { 
+												limit = { 
+													NOT = { 
+														has_variable_list = array_trade_dat_textile
+													}
+												}
+												add_to_variable_list = { 
+													name = array_trade_dat_textile
+													target = var:array_add_t
+												}
+											}
+											else = { 
+												while = { 
+													limit = { 
+														is_target_in_variable_list = { 
+															name = array_trade_dat_textile
+															target = var:array_add_t
+														}
+													}
+													count = 10
+													change_variable = { 
+														name = array_add_t
+														add = 0.001
+													}
+												}
+												add_to_variable_list = { 
+													name = array_trade_dat_textile
+													target = var:array_add_t
+												}
+											}
+											remove_variable = array_add_t
+										}
+									}
+									remove_global_variable = array_change_t
+									remove_variable = array_change_t
+									add_to_variable_list = { 
+										name = trade_dat_textile
+										target = prev
+									}
+								}
 							}
 							else = { 
 								change_global_variable = { 
@@ -19293,81 +19420,6 @@ while = {
 									add = 1
 								}
 							}
-						}
-						remove_list_variable = { 
-							name = trade_dat_textile
-							target = prev
-						}
-						set_global_variable = { 
-							name = array_change_t
-							value = global_var:trade_do_trade_t
-						}
-						ordered_in_list = { 
-							variable = array_trade_dat_textile
-							position = global_var:array_change_t
-							prev = { 
-								set_variable = { 
-									name = array_change_t
-									value = prev
-								}
-								change_variable = { 
-									name = array_change_t
-									divide = 10
-								}
-								change_variable = { 
-									name = array_change_t
-									add = scope:trade_do_trade_select.var:trade_do_trade_t
-								}
-								remove_list_variable = { 
-									name = array_trade_dat_textile
-									target = prev
-								}
-								set_variable = { 
-									name = array_add_t
-									value = var:array_change_t
-								}
-								change_variable = { 
-									name = array_add_t
-									multiply = 10
-								}
-								if = { 
-									limit = { 
-										NOT = { 
-											has_variable_list = array_trade_dat_textile
-										}
-									}
-									add_to_variable_list = { 
-										name = array_trade_dat_textile
-										target = var:array_add_t
-									}
-								}
-								else = { 
-									while = { 
-										limit = { 
-											is_target_in_variable_list = { 
-												name = array_trade_dat_textile
-												target = var:array_add_t
-											}
-										}
-										count = 10
-										change_variable = { 
-											name = array_add_t
-											add = 0.001
-										}
-									}
-									add_to_variable_list = { 
-										name = array_trade_dat_textile
-										target = var:array_add_t
-									}
-								}
-								remove_variable = array_add_t
-							}
-						}
-						remove_global_variable = array_change_t
-						remove_variable = array_change_t
-						add_to_variable_list = { 
-							name = trade_dat_textile
-							target = prev
 						}
 					}
 				}
@@ -19525,6 +19577,83 @@ while = {
 								this = global_var:trade_do_trade_select
 							}
 							remove_global_variable = trade_do_trade_tt
+							prev = { 
+								remove_list_variable = { 
+									name = trade_dat_pottery
+									target = prev
+								}
+								set_global_variable = { 
+									name = array_change_t
+									value = global_var:trade_do_trade_t
+								}
+								ordered_in_list = { 
+									variable = array_trade_dat_pottery
+									position = global_var:array_change_t
+									prev = { 
+										set_variable = { 
+											name = array_change_t
+											value = prev
+										}
+										change_variable = { 
+											name = array_change_t
+											divide = 10
+										}
+										change_variable = { 
+											name = array_change_t
+											subtract = var:trade_do_trade_t
+										}
+										remove_list_variable = { 
+											name = array_trade_dat_pottery
+											target = prev
+										}
+										set_variable = { 
+											name = array_add_t
+											value = var:array_change_t
+										}
+										change_variable = { 
+											name = array_add_t
+											multiply = 10
+										}
+										if = { 
+											limit = { 
+												NOT = { 
+													has_variable_list = array_trade_dat_pottery
+												}
+											}
+											add_to_variable_list = { 
+												name = array_trade_dat_pottery
+												target = var:array_add_t
+											}
+										}
+										else = { 
+											while = { 
+												limit = { 
+													is_target_in_variable_list = { 
+														name = array_trade_dat_pottery
+														target = var:array_add_t
+													}
+												}
+												count = 10
+												change_variable = { 
+													name = array_add_t
+													add = 0.001
+												}
+											}
+											add_to_variable_list = { 
+												name = array_trade_dat_pottery
+												target = var:array_add_t
+											}
+										}
+										remove_variable = array_add_t
+									}
+								}
+								remove_global_variable = array_change_t
+								remove_variable = array_change_t
+								add_to_variable_list = { 
+									name = trade_dat_pottery
+									target = prev
+								}
+							}
 						}
 						else = { 
 							change_global_variable = { 
@@ -19532,81 +19661,6 @@ while = {
 								add = 1
 							}
 						}
-					}
-					remove_list_variable = { 
-						name = trade_dat_pottery
-						target = prev
-					}
-					set_global_variable = { 
-						name = array_change_t
-						value = global_var:trade_do_trade_t
-					}
-					ordered_in_list = { 
-						variable = array_trade_dat_pottery
-						position = global_var:array_change_t
-						prev = { 
-							set_variable = { 
-								name = array_change_t
-								value = prev
-							}
-							change_variable = { 
-								name = array_change_t
-								divide = 10
-							}
-							change_variable = { 
-								name = array_change_t
-								subtract = var:trade_do_trade_t
-							}
-							remove_list_variable = { 
-								name = array_trade_dat_pottery
-								target = prev
-							}
-							set_variable = { 
-								name = array_add_t
-								value = var:array_change_t
-							}
-							change_variable = { 
-								name = array_add_t
-								multiply = 10
-							}
-							if = { 
-								limit = { 
-									NOT = { 
-										has_variable_list = array_trade_dat_pottery
-									}
-								}
-								add_to_variable_list = { 
-									name = array_trade_dat_pottery
-									target = var:array_add_t
-								}
-							}
-							else = { 
-								while = { 
-									limit = { 
-										is_target_in_variable_list = { 
-											name = array_trade_dat_pottery
-											target = var:array_add_t
-										}
-									}
-									count = 10
-									change_variable = { 
-										name = array_add_t
-										add = 0.001
-									}
-								}
-								add_to_variable_list = { 
-									name = array_trade_dat_pottery
-									target = var:array_add_t
-								}
-							}
-							remove_variable = array_add_t
-						}
-					}
-					remove_global_variable = array_change_t
-					remove_variable = array_change_t
-					add_to_variable_list = { 
-						name = trade_dat_pottery
-						target = prev
 					}
 					prev = { 
 						set_global_variable = { 
@@ -19627,6 +19681,83 @@ while = {
 									this = scope:trade_do_trade_select
 								}
 								remove_global_variable = trade_do_trade_tt
+								prev = { 
+									remove_list_variable = { 
+										name = trade_dat_pottery
+										target = prev
+									}
+									set_global_variable = { 
+										name = array_change_t
+										value = global_var:trade_do_trade_t
+									}
+									ordered_in_list = { 
+										variable = array_trade_dat_pottery
+										position = global_var:array_change_t
+										prev = { 
+											set_variable = { 
+												name = array_change_t
+												value = prev
+											}
+											change_variable = { 
+												name = array_change_t
+												divide = 10
+											}
+											change_variable = { 
+												name = array_change_t
+												add = scope:trade_do_trade_select.var:trade_do_trade_t
+											}
+											remove_list_variable = { 
+												name = array_trade_dat_pottery
+												target = prev
+											}
+											set_variable = { 
+												name = array_add_t
+												value = var:array_change_t
+											}
+											change_variable = { 
+												name = array_add_t
+												multiply = 10
+											}
+											if = { 
+												limit = { 
+													NOT = { 
+														has_variable_list = array_trade_dat_pottery
+													}
+												}
+												add_to_variable_list = { 
+													name = array_trade_dat_pottery
+													target = var:array_add_t
+												}
+											}
+											else = { 
+												while = { 
+													limit = { 
+														is_target_in_variable_list = { 
+															name = array_trade_dat_pottery
+															target = var:array_add_t
+														}
+													}
+													count = 10
+													change_variable = { 
+														name = array_add_t
+														add = 0.001
+													}
+												}
+												add_to_variable_list = { 
+													name = array_trade_dat_pottery
+													target = var:array_add_t
+												}
+											}
+											remove_variable = array_add_t
+										}
+									}
+									remove_global_variable = array_change_t
+									remove_variable = array_change_t
+									add_to_variable_list = { 
+										name = trade_dat_pottery
+										target = prev
+									}
+								}
 							}
 							else = { 
 								change_global_variable = { 
@@ -19634,81 +19765,6 @@ while = {
 									add = 1
 								}
 							}
-						}
-						remove_list_variable = { 
-							name = trade_dat_pottery
-							target = prev
-						}
-						set_global_variable = { 
-							name = array_change_t
-							value = global_var:trade_do_trade_t
-						}
-						ordered_in_list = { 
-							variable = array_trade_dat_pottery
-							position = global_var:array_change_t
-							prev = { 
-								set_variable = { 
-									name = array_change_t
-									value = prev
-								}
-								change_variable = { 
-									name = array_change_t
-									divide = 10
-								}
-								change_variable = { 
-									name = array_change_t
-									add = scope:trade_do_trade_select.var:trade_do_trade_t
-								}
-								remove_list_variable = { 
-									name = array_trade_dat_pottery
-									target = prev
-								}
-								set_variable = { 
-									name = array_add_t
-									value = var:array_change_t
-								}
-								change_variable = { 
-									name = array_add_t
-									multiply = 10
-								}
-								if = { 
-									limit = { 
-										NOT = { 
-											has_variable_list = array_trade_dat_pottery
-										}
-									}
-									add_to_variable_list = { 
-										name = array_trade_dat_pottery
-										target = var:array_add_t
-									}
-								}
-								else = { 
-									while = { 
-										limit = { 
-											is_target_in_variable_list = { 
-												name = array_trade_dat_pottery
-												target = var:array_add_t
-											}
-										}
-										count = 10
-										change_variable = { 
-											name = array_add_t
-											add = 0.001
-										}
-									}
-									add_to_variable_list = { 
-										name = array_trade_dat_pottery
-										target = var:array_add_t
-									}
-								}
-								remove_variable = array_add_t
-							}
-						}
-						remove_global_variable = array_change_t
-						remove_variable = array_change_t
-						add_to_variable_list = { 
-							name = trade_dat_pottery
-							target = prev
 						}
 					}
 				}
@@ -19866,6 +19922,83 @@ while = {
 								this = global_var:trade_do_trade_select
 							}
 							remove_global_variable = trade_do_trade_tt
+							prev = { 
+								remove_list_variable = { 
+									name = trade_dat_tools
+									target = prev
+								}
+								set_global_variable = { 
+									name = array_change_t
+									value = global_var:trade_do_trade_t
+								}
+								ordered_in_list = { 
+									variable = array_trade_dat_tools
+									position = global_var:array_change_t
+									prev = { 
+										set_variable = { 
+											name = array_change_t
+											value = prev
+										}
+										change_variable = { 
+											name = array_change_t
+											divide = 10
+										}
+										change_variable = { 
+											name = array_change_t
+											subtract = var:trade_do_trade_t
+										}
+										remove_list_variable = { 
+											name = array_trade_dat_tools
+											target = prev
+										}
+										set_variable = { 
+											name = array_add_t
+											value = var:array_change_t
+										}
+										change_variable = { 
+											name = array_add_t
+											multiply = 10
+										}
+										if = { 
+											limit = { 
+												NOT = { 
+													has_variable_list = array_trade_dat_tools
+												}
+											}
+											add_to_variable_list = { 
+												name = array_trade_dat_tools
+												target = var:array_add_t
+											}
+										}
+										else = { 
+											while = { 
+												limit = { 
+													is_target_in_variable_list = { 
+														name = array_trade_dat_tools
+														target = var:array_add_t
+													}
+												}
+												count = 10
+												change_variable = { 
+													name = array_add_t
+													add = 0.001
+												}
+											}
+											add_to_variable_list = { 
+												name = array_trade_dat_tools
+												target = var:array_add_t
+											}
+										}
+										remove_variable = array_add_t
+									}
+								}
+								remove_global_variable = array_change_t
+								remove_variable = array_change_t
+								add_to_variable_list = { 
+									name = trade_dat_tools
+									target = prev
+								}
+							}
 						}
 						else = { 
 							change_global_variable = { 
@@ -19873,81 +20006,6 @@ while = {
 								add = 1
 							}
 						}
-					}
-					remove_list_variable = { 
-						name = trade_dat_tools
-						target = prev
-					}
-					set_global_variable = { 
-						name = array_change_t
-						value = global_var:trade_do_trade_t
-					}
-					ordered_in_list = { 
-						variable = array_trade_dat_tools
-						position = global_var:array_change_t
-						prev = { 
-							set_variable = { 
-								name = array_change_t
-								value = prev
-							}
-							change_variable = { 
-								name = array_change_t
-								divide = 10
-							}
-							change_variable = { 
-								name = array_change_t
-								subtract = var:trade_do_trade_t
-							}
-							remove_list_variable = { 
-								name = array_trade_dat_tools
-								target = prev
-							}
-							set_variable = { 
-								name = array_add_t
-								value = var:array_change_t
-							}
-							change_variable = { 
-								name = array_add_t
-								multiply = 10
-							}
-							if = { 
-								limit = { 
-									NOT = { 
-										has_variable_list = array_trade_dat_tools
-									}
-								}
-								add_to_variable_list = { 
-									name = array_trade_dat_tools
-									target = var:array_add_t
-								}
-							}
-							else = { 
-								while = { 
-									limit = { 
-										is_target_in_variable_list = { 
-											name = array_trade_dat_tools
-											target = var:array_add_t
-										}
-									}
-									count = 10
-									change_variable = { 
-										name = array_add_t
-										add = 0.001
-									}
-								}
-								add_to_variable_list = { 
-									name = array_trade_dat_tools
-									target = var:array_add_t
-								}
-							}
-							remove_variable = array_add_t
-						}
-					}
-					remove_global_variable = array_change_t
-					remove_variable = array_change_t
-					add_to_variable_list = { 
-						name = trade_dat_tools
-						target = prev
 					}
 					prev = { 
 						set_global_variable = { 
@@ -19968,6 +20026,83 @@ while = {
 									this = scope:trade_do_trade_select
 								}
 								remove_global_variable = trade_do_trade_tt
+								prev = { 
+									remove_list_variable = { 
+										name = trade_dat_tools
+										target = prev
+									}
+									set_global_variable = { 
+										name = array_change_t
+										value = global_var:trade_do_trade_t
+									}
+									ordered_in_list = { 
+										variable = array_trade_dat_tools
+										position = global_var:array_change_t
+										prev = { 
+											set_variable = { 
+												name = array_change_t
+												value = prev
+											}
+											change_variable = { 
+												name = array_change_t
+												divide = 10
+											}
+											change_variable = { 
+												name = array_change_t
+												add = scope:trade_do_trade_select.var:trade_do_trade_t
+											}
+											remove_list_variable = { 
+												name = array_trade_dat_tools
+												target = prev
+											}
+											set_variable = { 
+												name = array_add_t
+												value = var:array_change_t
+											}
+											change_variable = { 
+												name = array_add_t
+												multiply = 10
+											}
+											if = { 
+												limit = { 
+													NOT = { 
+														has_variable_list = array_trade_dat_tools
+													}
+												}
+												add_to_variable_list = { 
+													name = array_trade_dat_tools
+													target = var:array_add_t
+												}
+											}
+											else = { 
+												while = { 
+													limit = { 
+														is_target_in_variable_list = { 
+															name = array_trade_dat_tools
+															target = var:array_add_t
+														}
+													}
+													count = 10
+													change_variable = { 
+														name = array_add_t
+														add = 0.001
+													}
+												}
+												add_to_variable_list = { 
+													name = array_trade_dat_tools
+													target = var:array_add_t
+												}
+											}
+											remove_variable = array_add_t
+										}
+									}
+									remove_global_variable = array_change_t
+									remove_variable = array_change_t
+									add_to_variable_list = { 
+										name = trade_dat_tools
+										target = prev
+									}
+								}
 							}
 							else = { 
 								change_global_variable = { 
@@ -19975,81 +20110,6 @@ while = {
 									add = 1
 								}
 							}
-						}
-						remove_list_variable = { 
-							name = trade_dat_tools
-							target = prev
-						}
-						set_global_variable = { 
-							name = array_change_t
-							value = global_var:trade_do_trade_t
-						}
-						ordered_in_list = { 
-							variable = array_trade_dat_tools
-							position = global_var:array_change_t
-							prev = { 
-								set_variable = { 
-									name = array_change_t
-									value = prev
-								}
-								change_variable = { 
-									name = array_change_t
-									divide = 10
-								}
-								change_variable = { 
-									name = array_change_t
-									add = scope:trade_do_trade_select.var:trade_do_trade_t
-								}
-								remove_list_variable = { 
-									name = array_trade_dat_tools
-									target = prev
-								}
-								set_variable = { 
-									name = array_add_t
-									value = var:array_change_t
-								}
-								change_variable = { 
-									name = array_add_t
-									multiply = 10
-								}
-								if = { 
-									limit = { 
-										NOT = { 
-											has_variable_list = array_trade_dat_tools
-										}
-									}
-									add_to_variable_list = { 
-										name = array_trade_dat_tools
-										target = var:array_add_t
-									}
-								}
-								else = { 
-									while = { 
-										limit = { 
-											is_target_in_variable_list = { 
-												name = array_trade_dat_tools
-												target = var:array_add_t
-											}
-										}
-										count = 10
-										change_variable = { 
-											name = array_add_t
-											add = 0.001
-										}
-									}
-									add_to_variable_list = { 
-										name = array_trade_dat_tools
-										target = var:array_add_t
-									}
-								}
-								remove_variable = array_add_t
-							}
-						}
-						remove_global_variable = array_change_t
-						remove_variable = array_change_t
-						add_to_variable_list = { 
-							name = trade_dat_tools
-							target = prev
 						}
 					}
 				}
