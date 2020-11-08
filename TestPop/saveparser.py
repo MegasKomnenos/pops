@@ -268,7 +268,7 @@ if __name__ == '__main__':
             if data:
                 if data[0] == 'value':
                     if int(data[1]) / 1000 > 210000:
-                        return '%s = { name = %s %s = 0 }\n' % (form[0], name, form[1])
+                        return '%s = { name = %s %s = %s }\n' % (form[0], name, form[1], round((int(data[1]) - 18446744073709551616) / 1000, 3))
                     else:
                         return '%s = { name = %s %s = %s }\n' % (form[0], name, form[1], round(int(data[1]) / 1000, 3))
                 elif data[0] == 'prov':
@@ -280,7 +280,7 @@ if __name__ == '__main__':
                 else:
                     return ''
             else:
-                return '%s = { name = %s }\n' % (form[0], name)
+                return '%s = { name = %s %s = 0 }\n' % (form[0], name, form[1])
         
         with open('events\\save_data.txt', 'w', encoding='utf-8-sig') as ff:
             out = ['namespace = save_data\n\n']
