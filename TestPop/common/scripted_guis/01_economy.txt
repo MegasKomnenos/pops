@@ -4255,21 +4255,24 @@ toggle_prov_merchant_dat = {
 				name = toggled_prov_merchant_dat
 				value = 1
 			}
-			every_in_list = { 
-				variable = trade_dat_food
-				prev = { 
-					add_to_variable_list = { 
-						name = toggled_prov_merchant_dat_t
-						target = prev
+			save_temporary_scope_as = toggle_prov_merchant_dat_t
+			var:trade_merchant = { 
+				every_in_list = { 
+					variable = trade_dat_food
+					scope:toggle_prov_merchant_dat_t = { 
+						add_to_variable_list = { 
+							name = toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
 				}
-			}
-			every_in_list = { 
-				variable = array_trade_dat_food
-				prev = { 
-					add_to_variable_list = { 
-						name = array_toggled_prov_merchant_dat_t
-						target = prev
+				every_in_list = { 
+					variable = array_trade_dat_food
+					scope:toggle_prov_merchant_dat_t = { 
+						add_to_variable_list = { 
+							name = array_toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
 				}
 			}
@@ -4315,7 +4318,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_out_val_0_food
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -4399,7 +4402,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_out_val_1_food
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -4483,7 +4486,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_out_val_2_food
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -4567,7 +4570,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_out_val_3_food
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -4651,7 +4654,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_out_val_4_food
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -4735,7 +4738,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_in_val_0_food
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -4814,7 +4817,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_in_val_1_food
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -4893,7 +4896,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_in_val_2_food
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -4972,7 +4975,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_in_val_3_food
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -5051,7 +5054,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_in_val_4_food
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -5089,23 +5092,25 @@ toggle_prov_merchant_dat = {
 				}
 			}
 			remove_global_variable = toggled_prov_merchant_dat_t
+			clear_variable_list = toggled_prov_merchant_dat_t
 			clear_variable_list = array_toggled_prov_merchant_dat_t
-			remove_variable = toggled_prov_merchant_dat_t
-			every_in_list = { 
-				variable = trade_dat_cereal
-				prev = { 
-					add_to_variable_list = { 
-						name = toggled_prov_merchant_dat_t
-						target = prev
+			var:trade_merchant = { 
+				every_in_list = { 
+					variable = trade_dat_cereal
+					scope:toggle_prov_merchant_dat_t = { 
+						add_to_variable_list = { 
+							name = toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
 				}
-			}
-			every_in_list = { 
-				variable = array_trade_dat_cereal
-				prev = { 
-					add_to_variable_list = { 
-						name = array_toggled_prov_merchant_dat_t
-						target = prev
+				every_in_list = { 
+					variable = array_trade_dat_cereal
+					scope:toggle_prov_merchant_dat_t = { 
+						add_to_variable_list = { 
+							name = array_toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
 				}
 			}
@@ -5151,7 +5156,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_out_val_0_cereal
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -5235,7 +5240,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_out_val_1_cereal
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -5319,7 +5324,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_out_val_2_cereal
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -5403,7 +5408,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_out_val_3_cereal
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -5487,7 +5492,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_out_val_4_cereal
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -5571,7 +5576,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_in_val_0_cereal
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -5650,7 +5655,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_in_val_1_cereal
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -5729,7 +5734,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_in_val_2_cereal
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -5808,7 +5813,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_in_val_3_cereal
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -5887,7 +5892,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_in_val_4_cereal
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -5925,23 +5930,25 @@ toggle_prov_merchant_dat = {
 				}
 			}
 			remove_global_variable = toggled_prov_merchant_dat_t
+			clear_variable_list = toggled_prov_merchant_dat_t
 			clear_variable_list = array_toggled_prov_merchant_dat_t
-			remove_variable = toggled_prov_merchant_dat_t
-			every_in_list = { 
-				variable = trade_dat_salted
-				prev = { 
-					add_to_variable_list = { 
-						name = toggled_prov_merchant_dat_t
-						target = prev
+			var:trade_merchant = { 
+				every_in_list = { 
+					variable = trade_dat_salted
+					scope:toggle_prov_merchant_dat_t = { 
+						add_to_variable_list = { 
+							name = toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
 				}
-			}
-			every_in_list = { 
-				variable = array_trade_dat_salted
-				prev = { 
-					add_to_variable_list = { 
-						name = array_toggled_prov_merchant_dat_t
-						target = prev
+				every_in_list = { 
+					variable = array_trade_dat_salted
+					scope:toggle_prov_merchant_dat_t = { 
+						add_to_variable_list = { 
+							name = array_toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
 				}
 			}
@@ -5987,7 +5994,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_out_val_0_salted
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -6071,7 +6078,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_out_val_1_salted
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -6155,7 +6162,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_out_val_2_salted
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -6239,7 +6246,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_out_val_3_salted
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -6323,7 +6330,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_out_val_4_salted
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -6407,7 +6414,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_in_val_0_salted
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -6486,7 +6493,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_in_val_1_salted
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -6565,7 +6572,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_in_val_2_salted
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -6644,7 +6651,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_in_val_3_salted
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -6723,7 +6730,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_in_val_4_salted
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -6761,23 +6768,25 @@ toggle_prov_merchant_dat = {
 				}
 			}
 			remove_global_variable = toggled_prov_merchant_dat_t
+			clear_variable_list = toggled_prov_merchant_dat_t
 			clear_variable_list = array_toggled_prov_merchant_dat_t
-			remove_variable = toggled_prov_merchant_dat_t
-			every_in_list = { 
-				variable = trade_dat_salt
-				prev = { 
-					add_to_variable_list = { 
-						name = toggled_prov_merchant_dat_t
-						target = prev
+			var:trade_merchant = { 
+				every_in_list = { 
+					variable = trade_dat_salt
+					scope:toggle_prov_merchant_dat_t = { 
+						add_to_variable_list = { 
+							name = toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
 				}
-			}
-			every_in_list = { 
-				variable = array_trade_dat_salt
-				prev = { 
-					add_to_variable_list = { 
-						name = array_toggled_prov_merchant_dat_t
-						target = prev
+				every_in_list = { 
+					variable = array_trade_dat_salt
+					scope:toggle_prov_merchant_dat_t = { 
+						add_to_variable_list = { 
+							name = array_toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
 				}
 			}
@@ -6823,7 +6832,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_out_val_0_salt
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -6907,7 +6916,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_out_val_1_salt
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -6991,7 +7000,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_out_val_2_salt
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -7075,7 +7084,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_out_val_3_salt
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -7159,7 +7168,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_out_val_4_salt
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -7243,7 +7252,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_in_val_0_salt
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -7322,7 +7331,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_in_val_1_salt
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -7401,7 +7410,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_in_val_2_salt
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -7480,7 +7489,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_in_val_3_salt
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -7559,7 +7568,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_in_val_4_salt
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -7597,23 +7606,25 @@ toggle_prov_merchant_dat = {
 				}
 			}
 			remove_global_variable = toggled_prov_merchant_dat_t
+			clear_variable_list = toggled_prov_merchant_dat_t
 			clear_variable_list = array_toggled_prov_merchant_dat_t
-			remove_variable = toggled_prov_merchant_dat_t
-			every_in_list = { 
-				variable = trade_dat_mud
-				prev = { 
-					add_to_variable_list = { 
-						name = toggled_prov_merchant_dat_t
-						target = prev
+			var:trade_merchant = { 
+				every_in_list = { 
+					variable = trade_dat_mud
+					scope:toggle_prov_merchant_dat_t = { 
+						add_to_variable_list = { 
+							name = toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
 				}
-			}
-			every_in_list = { 
-				variable = array_trade_dat_mud
-				prev = { 
-					add_to_variable_list = { 
-						name = array_toggled_prov_merchant_dat_t
-						target = prev
+				every_in_list = { 
+					variable = array_trade_dat_mud
+					scope:toggle_prov_merchant_dat_t = { 
+						add_to_variable_list = { 
+							name = array_toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
 				}
 			}
@@ -7659,7 +7670,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_out_val_0_mud
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -7743,7 +7754,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_out_val_1_mud
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -7827,7 +7838,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_out_val_2_mud
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -7911,7 +7922,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_out_val_3_mud
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -7995,7 +8006,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_out_val_4_mud
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -8079,7 +8090,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_in_val_0_mud
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -8158,7 +8169,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_in_val_1_mud
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -8237,7 +8248,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_in_val_2_mud
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -8316,7 +8327,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_in_val_3_mud
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -8395,7 +8406,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_in_val_4_mud
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -8433,23 +8444,25 @@ toggle_prov_merchant_dat = {
 				}
 			}
 			remove_global_variable = toggled_prov_merchant_dat_t
+			clear_variable_list = toggled_prov_merchant_dat_t
 			clear_variable_list = array_toggled_prov_merchant_dat_t
-			remove_variable = toggled_prov_merchant_dat_t
-			every_in_list = { 
-				variable = trade_dat_fuel
-				prev = { 
-					add_to_variable_list = { 
-						name = toggled_prov_merchant_dat_t
-						target = prev
+			var:trade_merchant = { 
+				every_in_list = { 
+					variable = trade_dat_fuel
+					scope:toggle_prov_merchant_dat_t = { 
+						add_to_variable_list = { 
+							name = toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
 				}
-			}
-			every_in_list = { 
-				variable = array_trade_dat_fuel
-				prev = { 
-					add_to_variable_list = { 
-						name = array_toggled_prov_merchant_dat_t
-						target = prev
+				every_in_list = { 
+					variable = array_trade_dat_fuel
+					scope:toggle_prov_merchant_dat_t = { 
+						add_to_variable_list = { 
+							name = array_toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
 				}
 			}
@@ -8495,7 +8508,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_out_val_0_fuel
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -8579,7 +8592,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_out_val_1_fuel
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -8663,7 +8676,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_out_val_2_fuel
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -8747,7 +8760,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_out_val_3_fuel
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -8831,7 +8844,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_out_val_4_fuel
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -8915,7 +8928,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_in_val_0_fuel
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -8994,7 +9007,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_in_val_1_fuel
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -9073,7 +9086,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_in_val_2_fuel
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -9152,7 +9165,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_in_val_3_fuel
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -9231,7 +9244,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_in_val_4_fuel
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -9269,23 +9282,25 @@ toggle_prov_merchant_dat = {
 				}
 			}
 			remove_global_variable = toggled_prov_merchant_dat_t
+			clear_variable_list = toggled_prov_merchant_dat_t
 			clear_variable_list = array_toggled_prov_merchant_dat_t
-			remove_variable = toggled_prov_merchant_dat_t
-			every_in_list = { 
-				variable = trade_dat_fiber
-				prev = { 
-					add_to_variable_list = { 
-						name = toggled_prov_merchant_dat_t
-						target = prev
+			var:trade_merchant = { 
+				every_in_list = { 
+					variable = trade_dat_fiber
+					scope:toggle_prov_merchant_dat_t = { 
+						add_to_variable_list = { 
+							name = toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
 				}
-			}
-			every_in_list = { 
-				variable = array_trade_dat_fiber
-				prev = { 
-					add_to_variable_list = { 
-						name = array_toggled_prov_merchant_dat_t
-						target = prev
+				every_in_list = { 
+					variable = array_trade_dat_fiber
+					scope:toggle_prov_merchant_dat_t = { 
+						add_to_variable_list = { 
+							name = array_toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
 				}
 			}
@@ -9331,7 +9346,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_out_val_0_fiber
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -9415,7 +9430,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_out_val_1_fiber
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -9499,7 +9514,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_out_val_2_fiber
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -9583,7 +9598,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_out_val_3_fiber
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -9667,7 +9682,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_out_val_4_fiber
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -9751,7 +9766,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_in_val_0_fiber
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -9830,7 +9845,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_in_val_1_fiber
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -9909,7 +9924,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_in_val_2_fiber
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -9988,7 +10003,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_in_val_3_fiber
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -10067,7 +10082,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_in_val_4_fiber
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -10105,23 +10120,25 @@ toggle_prov_merchant_dat = {
 				}
 			}
 			remove_global_variable = toggled_prov_merchant_dat_t
+			clear_variable_list = toggled_prov_merchant_dat_t
 			clear_variable_list = array_toggled_prov_merchant_dat_t
-			remove_variable = toggled_prov_merchant_dat_t
-			every_in_list = { 
-				variable = trade_dat_timber
-				prev = { 
-					add_to_variable_list = { 
-						name = toggled_prov_merchant_dat_t
-						target = prev
+			var:trade_merchant = { 
+				every_in_list = { 
+					variable = trade_dat_timber
+					scope:toggle_prov_merchant_dat_t = { 
+						add_to_variable_list = { 
+							name = toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
 				}
-			}
-			every_in_list = { 
-				variable = array_trade_dat_timber
-				prev = { 
-					add_to_variable_list = { 
-						name = array_toggled_prov_merchant_dat_t
-						target = prev
+				every_in_list = { 
+					variable = array_trade_dat_timber
+					scope:toggle_prov_merchant_dat_t = { 
+						add_to_variable_list = { 
+							name = array_toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
 				}
 			}
@@ -10167,7 +10184,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_out_val_0_timber
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -10251,7 +10268,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_out_val_1_timber
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -10335,7 +10352,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_out_val_2_timber
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -10419,7 +10436,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_out_val_3_timber
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -10503,7 +10520,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_out_val_4_timber
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -10587,7 +10604,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_in_val_0_timber
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -10666,7 +10683,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_in_val_1_timber
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -10745,7 +10762,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_in_val_2_timber
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -10824,7 +10841,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_in_val_3_timber
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -10903,7 +10920,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_in_val_4_timber
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -10941,23 +10958,25 @@ toggle_prov_merchant_dat = {
 				}
 			}
 			remove_global_variable = toggled_prov_merchant_dat_t
+			clear_variable_list = toggled_prov_merchant_dat_t
 			clear_variable_list = array_toggled_prov_merchant_dat_t
-			remove_variable = toggled_prov_merchant_dat_t
-			every_in_list = { 
-				variable = trade_dat_metal
-				prev = { 
-					add_to_variable_list = { 
-						name = toggled_prov_merchant_dat_t
-						target = prev
+			var:trade_merchant = { 
+				every_in_list = { 
+					variable = trade_dat_metal
+					scope:toggle_prov_merchant_dat_t = { 
+						add_to_variable_list = { 
+							name = toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
 				}
-			}
-			every_in_list = { 
-				variable = array_trade_dat_metal
-				prev = { 
-					add_to_variable_list = { 
-						name = array_toggled_prov_merchant_dat_t
-						target = prev
+				every_in_list = { 
+					variable = array_trade_dat_metal
+					scope:toggle_prov_merchant_dat_t = { 
+						add_to_variable_list = { 
+							name = array_toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
 				}
 			}
@@ -11003,7 +11022,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_out_val_0_metal
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -11087,7 +11106,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_out_val_1_metal
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -11171,7 +11190,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_out_val_2_metal
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -11255,7 +11274,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_out_val_3_metal
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -11339,7 +11358,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_out_val_4_metal
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -11423,7 +11442,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_in_val_0_metal
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -11502,7 +11521,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_in_val_1_metal
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -11581,7 +11600,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_in_val_2_metal
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -11660,7 +11679,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_in_val_3_metal
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -11739,7 +11758,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_in_val_4_metal
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -11777,23 +11796,25 @@ toggle_prov_merchant_dat = {
 				}
 			}
 			remove_global_variable = toggled_prov_merchant_dat_t
+			clear_variable_list = toggled_prov_merchant_dat_t
 			clear_variable_list = array_toggled_prov_merchant_dat_t
-			remove_variable = toggled_prov_merchant_dat_t
-			every_in_list = { 
-				variable = trade_dat_exotics_w
-				prev = { 
-					add_to_variable_list = { 
-						name = toggled_prov_merchant_dat_t
-						target = prev
+			var:trade_merchant = { 
+				every_in_list = { 
+					variable = trade_dat_exotics_w
+					scope:toggle_prov_merchant_dat_t = { 
+						add_to_variable_list = { 
+							name = toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
 				}
-			}
-			every_in_list = { 
-				variable = array_trade_dat_exotics_w
-				prev = { 
-					add_to_variable_list = { 
-						name = array_toggled_prov_merchant_dat_t
-						target = prev
+				every_in_list = { 
+					variable = array_trade_dat_exotics_w
+					scope:toggle_prov_merchant_dat_t = { 
+						add_to_variable_list = { 
+							name = array_toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
 				}
 			}
@@ -11839,7 +11860,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_out_val_0_exotics_w
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -11923,7 +11944,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_out_val_1_exotics_w
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -12007,7 +12028,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_out_val_2_exotics_w
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -12091,7 +12112,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_out_val_3_exotics_w
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -12175,7 +12196,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_out_val_4_exotics_w
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -12259,7 +12280,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_in_val_0_exotics_w
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -12338,7 +12359,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_in_val_1_exotics_w
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -12417,7 +12438,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_in_val_2_exotics_w
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -12496,7 +12517,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_in_val_3_exotics_w
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -12575,7 +12596,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_in_val_4_exotics_w
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -12613,23 +12634,25 @@ toggle_prov_merchant_dat = {
 				}
 			}
 			remove_global_variable = toggled_prov_merchant_dat_t
+			clear_variable_list = toggled_prov_merchant_dat_t
 			clear_variable_list = array_toggled_prov_merchant_dat_t
-			remove_variable = toggled_prov_merchant_dat_t
-			every_in_list = { 
-				variable = trade_dat_exotics_e
-				prev = { 
-					add_to_variable_list = { 
-						name = toggled_prov_merchant_dat_t
-						target = prev
+			var:trade_merchant = { 
+				every_in_list = { 
+					variable = trade_dat_exotics_e
+					scope:toggle_prov_merchant_dat_t = { 
+						add_to_variable_list = { 
+							name = toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
 				}
-			}
-			every_in_list = { 
-				variable = array_trade_dat_exotics_e
-				prev = { 
-					add_to_variable_list = { 
-						name = array_toggled_prov_merchant_dat_t
-						target = prev
+				every_in_list = { 
+					variable = array_trade_dat_exotics_e
+					scope:toggle_prov_merchant_dat_t = { 
+						add_to_variable_list = { 
+							name = array_toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
 				}
 			}
@@ -12675,7 +12698,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_out_val_0_exotics_e
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -12759,7 +12782,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_out_val_1_exotics_e
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -12843,7 +12866,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_out_val_2_exotics_e
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -12927,7 +12950,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_out_val_3_exotics_e
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -13011,7 +13034,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_out_val_4_exotics_e
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -13095,7 +13118,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_in_val_0_exotics_e
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -13174,7 +13197,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_in_val_1_exotics_e
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -13253,7 +13276,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_in_val_2_exotics_e
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -13332,7 +13355,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_in_val_3_exotics_e
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -13411,7 +13434,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_in_val_4_exotics_e
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -13449,23 +13472,25 @@ toggle_prov_merchant_dat = {
 				}
 			}
 			remove_global_variable = toggled_prov_merchant_dat_t
+			clear_variable_list = toggled_prov_merchant_dat_t
 			clear_variable_list = array_toggled_prov_merchant_dat_t
-			remove_variable = toggled_prov_merchant_dat_t
-			every_in_list = { 
-				variable = trade_dat_exotics_g
-				prev = { 
-					add_to_variable_list = { 
-						name = toggled_prov_merchant_dat_t
-						target = prev
+			var:trade_merchant = { 
+				every_in_list = { 
+					variable = trade_dat_exotics_g
+					scope:toggle_prov_merchant_dat_t = { 
+						add_to_variable_list = { 
+							name = toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
 				}
-			}
-			every_in_list = { 
-				variable = array_trade_dat_exotics_g
-				prev = { 
-					add_to_variable_list = { 
-						name = array_toggled_prov_merchant_dat_t
-						target = prev
+				every_in_list = { 
+					variable = array_trade_dat_exotics_g
+					scope:toggle_prov_merchant_dat_t = { 
+						add_to_variable_list = { 
+							name = array_toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
 				}
 			}
@@ -13511,7 +13536,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_out_val_0_exotics_g
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -13595,7 +13620,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_out_val_1_exotics_g
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -13679,7 +13704,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_out_val_2_exotics_g
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -13763,7 +13788,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_out_val_3_exotics_g
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -13847,7 +13872,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_out_val_4_exotics_g
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -13931,7 +13956,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_in_val_0_exotics_g
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -14010,7 +14035,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_in_val_1_exotics_g
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -14089,7 +14114,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_in_val_2_exotics_g
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -14168,7 +14193,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_in_val_3_exotics_g
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -14247,7 +14272,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_in_val_4_exotics_g
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -14285,23 +14310,25 @@ toggle_prov_merchant_dat = {
 				}
 			}
 			remove_global_variable = toggled_prov_merchant_dat_t
+			clear_variable_list = toggled_prov_merchant_dat_t
 			clear_variable_list = array_toggled_prov_merchant_dat_t
-			remove_variable = toggled_prov_merchant_dat_t
-			every_in_list = { 
-				variable = trade_dat_textile
-				prev = { 
-					add_to_variable_list = { 
-						name = toggled_prov_merchant_dat_t
-						target = prev
+			var:trade_merchant = { 
+				every_in_list = { 
+					variable = trade_dat_textile
+					scope:toggle_prov_merchant_dat_t = { 
+						add_to_variable_list = { 
+							name = toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
 				}
-			}
-			every_in_list = { 
-				variable = array_trade_dat_textile
-				prev = { 
-					add_to_variable_list = { 
-						name = array_toggled_prov_merchant_dat_t
-						target = prev
+				every_in_list = { 
+					variable = array_trade_dat_textile
+					scope:toggle_prov_merchant_dat_t = { 
+						add_to_variable_list = { 
+							name = array_toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
 				}
 			}
@@ -14347,7 +14374,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_out_val_0_textile
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -14431,7 +14458,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_out_val_1_textile
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -14515,7 +14542,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_out_val_2_textile
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -14599,7 +14626,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_out_val_3_textile
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -14683,7 +14710,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_out_val_4_textile
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -14767,7 +14794,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_in_val_0_textile
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -14846,7 +14873,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_in_val_1_textile
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -14925,7 +14952,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_in_val_2_textile
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -15004,7 +15031,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_in_val_3_textile
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -15083,7 +15110,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_in_val_4_textile
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -15121,23 +15148,25 @@ toggle_prov_merchant_dat = {
 				}
 			}
 			remove_global_variable = toggled_prov_merchant_dat_t
+			clear_variable_list = toggled_prov_merchant_dat_t
 			clear_variable_list = array_toggled_prov_merchant_dat_t
-			remove_variable = toggled_prov_merchant_dat_t
-			every_in_list = { 
-				variable = trade_dat_pottery
-				prev = { 
-					add_to_variable_list = { 
-						name = toggled_prov_merchant_dat_t
-						target = prev
+			var:trade_merchant = { 
+				every_in_list = { 
+					variable = trade_dat_pottery
+					scope:toggle_prov_merchant_dat_t = { 
+						add_to_variable_list = { 
+							name = toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
 				}
-			}
-			every_in_list = { 
-				variable = array_trade_dat_pottery
-				prev = { 
-					add_to_variable_list = { 
-						name = array_toggled_prov_merchant_dat_t
-						target = prev
+				every_in_list = { 
+					variable = array_trade_dat_pottery
+					scope:toggle_prov_merchant_dat_t = { 
+						add_to_variable_list = { 
+							name = array_toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
 				}
 			}
@@ -15183,7 +15212,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_out_val_0_pottery
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -15267,7 +15296,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_out_val_1_pottery
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -15351,7 +15380,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_out_val_2_pottery
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -15435,7 +15464,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_out_val_3_pottery
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -15519,7 +15548,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_out_val_4_pottery
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -15603,7 +15632,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_in_val_0_pottery
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -15682,7 +15711,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_in_val_1_pottery
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -15761,7 +15790,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_in_val_2_pottery
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -15840,7 +15869,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_in_val_3_pottery
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -15919,7 +15948,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_in_val_4_pottery
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -15957,23 +15986,25 @@ toggle_prov_merchant_dat = {
 				}
 			}
 			remove_global_variable = toggled_prov_merchant_dat_t
+			clear_variable_list = toggled_prov_merchant_dat_t
 			clear_variable_list = array_toggled_prov_merchant_dat_t
-			remove_variable = toggled_prov_merchant_dat_t
-			every_in_list = { 
-				variable = trade_dat_tools
-				prev = { 
-					add_to_variable_list = { 
-						name = toggled_prov_merchant_dat_t
-						target = prev
+			var:trade_merchant = { 
+				every_in_list = { 
+					variable = trade_dat_tools
+					scope:toggle_prov_merchant_dat_t = { 
+						add_to_variable_list = { 
+							name = toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
 				}
-			}
-			every_in_list = { 
-				variable = array_trade_dat_tools
-				prev = { 
-					add_to_variable_list = { 
-						name = array_toggled_prov_merchant_dat_t
-						target = prev
+				every_in_list = { 
+					variable = array_trade_dat_tools
+					scope:toggle_prov_merchant_dat_t = { 
+						add_to_variable_list = { 
+							name = array_toggled_prov_merchant_dat_t
+							target = prev
+						}
 					}
 				}
 			}
@@ -16019,7 +16050,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_out_val_0_tools
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -16103,7 +16134,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_out_val_1_tools
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -16187,7 +16218,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_out_val_2_tools
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -16271,7 +16302,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_out_val_3_tools
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -16355,7 +16386,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_out_val_4_tools
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -16439,7 +16470,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_in_val_0_tools
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -16518,7 +16549,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_in_val_1_tools
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -16597,7 +16628,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_in_val_2_tools
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -16676,7 +16707,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_in_val_3_tools
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -16755,7 +16786,7 @@ toggle_prov_merchant_dat = {
 			}
 			change_variable = { 
 				name = info_dat_merchant_in_val_4_tools
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_prov_merchant_dat_t
@@ -16793,8 +16824,8 @@ toggle_prov_merchant_dat = {
 				}
 			}
 			remove_global_variable = toggled_prov_merchant_dat_t
+			clear_variable_list = toggled_prov_merchant_dat_t
 			clear_variable_list = array_toggled_prov_merchant_dat_t
-			remove_variable = toggled_prov_merchant_dat_t
 		}
 	}
 }
@@ -17315,21 +17346,24 @@ toggle_county_dat = {
 				name = toggled_county_dat
 				value = 1
 			}
-			every_in_list = { 
-				variable = trade_dat_food
-				prev = { 
-					add_to_variable_list = { 
-						name = toggled_county_dat_t
-						target = prev
+			save_temporary_scope_as = toggle_county_dat
+			county = { 
+				every_in_list = { 
+					variable = trade_dat_food
+					scope:toggle_county_dat = { 
+						add_to_variable_list = { 
+							name = toggled_county_dat_t
+							target = prev
+						}
 					}
 				}
-			}
-			every_in_list = { 
-				variable = array_trade_dat_food
-				prev = { 
-					add_to_variable_list = { 
-						name = array_toggled_county_dat_t
-						target = prev
+				every_in_list = { 
+					variable = array_trade_dat_food
+					scope:toggle_county_dat = { 
+						add_to_variable_list = { 
+							name = array_toggled_county_dat_t
+							target = prev
+						}
 					}
 				}
 			}
@@ -17375,7 +17409,7 @@ toggle_county_dat = {
 			}
 			change_variable = { 
 				name = info_dat_county_out_val_0_food
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_county_dat_t
@@ -17384,29 +17418,38 @@ toggle_county_dat = {
 			remove_global_variable = array_get_max_t
 			remove_global_variable = array_get_max_tt
 			remove_variable = array_get_max_t
-			ordered_in_list = { 
-				variable = toggled_county_dat_t
-				position = global_var:toggled_county_dat_t.compare_value
-				prev = { 
-					set_variable = { 
-						name = info_dat_county_out_scope_0_food
-						value = prev.var:trade_location
+			if = { 
+				limit = { 
+					has_variable = info_dat_county_out_val_0_food
+					var:info_dat_county_out_val_0_food > 0
+				}
+				ordered_in_list = { 
+					variable = toggled_county_dat_t
+					position = global_var:toggled_county_dat_t.compare_value
+					prev = { 
+						set_variable = { 
+							name = info_dat_county_out_scope_0_food
+							value = prev
+						}
+						remove_list_variable = { 
+							name = toggled_county_dat_t
+							target = prev
+						}
 					}
-					remove_list_variable = { 
-						name = toggled_county_dat_t
-						target = prev
+				}
+				ordered_in_list = { 
+					variable = array_toggled_county_dat_t
+					position = global_var:toggled_county_dat_t.compare_value
+					prev = { 
+						remove_list_variable = { 
+							name = array_toggled_county_dat_t
+							target = prev
+						}
 					}
 				}
 			}
-			ordered_in_list = { 
-				variable = array_toggled_county_dat_t
-				position = global_var:toggled_county_dat_t.compare_value
-				prev = { 
-					remove_list_variable = { 
-						name = array_toggled_county_dat_t
-						target = prev
-					}
-				}
+			else = { 
+				remove_variable = info_dat_county_out_val_0_food
 			}
 			set_global_variable = { 
 				name = array_get_max_t
@@ -17450,7 +17493,7 @@ toggle_county_dat = {
 			}
 			change_variable = { 
 				name = info_dat_county_out_val_1_food
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_county_dat_t
@@ -17459,29 +17502,38 @@ toggle_county_dat = {
 			remove_global_variable = array_get_max_t
 			remove_global_variable = array_get_max_tt
 			remove_variable = array_get_max_t
-			ordered_in_list = { 
-				variable = toggled_county_dat_t
-				position = global_var:toggled_county_dat_t.compare_value
-				prev = { 
-					set_variable = { 
-						name = info_dat_county_out_scope_1_food
-						value = prev.var:trade_location
+			if = { 
+				limit = { 
+					has_variable = info_dat_county_out_val_1_food
+					var:info_dat_county_out_val_1_food > 0
+				}
+				ordered_in_list = { 
+					variable = toggled_county_dat_t
+					position = global_var:toggled_county_dat_t.compare_value
+					prev = { 
+						set_variable = { 
+							name = info_dat_county_out_scope_1_food
+							value = prev
+						}
+						remove_list_variable = { 
+							name = toggled_county_dat_t
+							target = prev
+						}
 					}
-					remove_list_variable = { 
-						name = toggled_county_dat_t
-						target = prev
+				}
+				ordered_in_list = { 
+					variable = array_toggled_county_dat_t
+					position = global_var:toggled_county_dat_t.compare_value
+					prev = { 
+						remove_list_variable = { 
+							name = array_toggled_county_dat_t
+							target = prev
+						}
 					}
 				}
 			}
-			ordered_in_list = { 
-				variable = array_toggled_county_dat_t
-				position = global_var:toggled_county_dat_t.compare_value
-				prev = { 
-					remove_list_variable = { 
-						name = array_toggled_county_dat_t
-						target = prev
-					}
-				}
+			else = { 
+				remove_variable = info_dat_county_out_val_1_food
 			}
 			set_global_variable = { 
 				name = array_get_max_t
@@ -17525,7 +17577,7 @@ toggle_county_dat = {
 			}
 			change_variable = { 
 				name = info_dat_county_out_val_2_food
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_county_dat_t
@@ -17534,29 +17586,38 @@ toggle_county_dat = {
 			remove_global_variable = array_get_max_t
 			remove_global_variable = array_get_max_tt
 			remove_variable = array_get_max_t
-			ordered_in_list = { 
-				variable = toggled_county_dat_t
-				position = global_var:toggled_county_dat_t.compare_value
-				prev = { 
-					set_variable = { 
-						name = info_dat_county_out_scope_2_food
-						value = prev.var:trade_location
+			if = { 
+				limit = { 
+					has_variable = info_dat_county_out_val_2_food
+					var:info_dat_county_out_val_2_food > 0
+				}
+				ordered_in_list = { 
+					variable = toggled_county_dat_t
+					position = global_var:toggled_county_dat_t.compare_value
+					prev = { 
+						set_variable = { 
+							name = info_dat_county_out_scope_2_food
+							value = prev
+						}
+						remove_list_variable = { 
+							name = toggled_county_dat_t
+							target = prev
+						}
 					}
-					remove_list_variable = { 
-						name = toggled_county_dat_t
-						target = prev
+				}
+				ordered_in_list = { 
+					variable = array_toggled_county_dat_t
+					position = global_var:toggled_county_dat_t.compare_value
+					prev = { 
+						remove_list_variable = { 
+							name = array_toggled_county_dat_t
+							target = prev
+						}
 					}
 				}
 			}
-			ordered_in_list = { 
-				variable = array_toggled_county_dat_t
-				position = global_var:toggled_county_dat_t.compare_value
-				prev = { 
-					remove_list_variable = { 
-						name = array_toggled_county_dat_t
-						target = prev
-					}
-				}
+			else = { 
+				remove_variable = info_dat_county_out_val_2_food
 			}
 			set_global_variable = { 
 				name = array_get_min_t
@@ -17600,7 +17661,7 @@ toggle_county_dat = {
 			}
 			change_variable = { 
 				name = info_dat_county_in_val_0_food
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_county_dat_t
@@ -17619,7 +17680,7 @@ toggle_county_dat = {
 				prev = { 
 					set_variable = { 
 						name = info_dat_county_in_scope_0_food
-						value = prev.var:trade_location
+						value = prev
 					}
 					remove_list_variable = { 
 						name = toggled_county_dat_t
@@ -17679,7 +17740,7 @@ toggle_county_dat = {
 			}
 			change_variable = { 
 				name = info_dat_county_in_val_1_food
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_county_dat_t
@@ -17698,7 +17759,7 @@ toggle_county_dat = {
 				prev = { 
 					set_variable = { 
 						name = info_dat_county_in_scope_1_food
-						value = prev.var:trade_location
+						value = prev
 					}
 					remove_list_variable = { 
 						name = toggled_county_dat_t
@@ -17758,7 +17819,7 @@ toggle_county_dat = {
 			}
 			change_variable = { 
 				name = info_dat_county_in_val_2_food
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_county_dat_t
@@ -17777,7 +17838,7 @@ toggle_county_dat = {
 				prev = { 
 					set_variable = { 
 						name = info_dat_county_in_scope_2_food
-						value = prev.var:trade_location
+						value = prev
 					}
 					remove_list_variable = { 
 						name = toggled_county_dat_t
@@ -17796,22 +17857,25 @@ toggle_county_dat = {
 				}
 			}
 			remove_global_variable = toggled_county_dat_t
-			remove_variable = toggled_county_dat_t
-			every_in_list = { 
-				variable = trade_dat_cereal
-				prev = { 
-					add_to_variable_list = { 
-						name = toggled_county_dat_t
-						target = prev
+			clear_variable_list = toggled_county_dat_t
+			clear_variable_list = array_toggled_county_dat_t
+			county = { 
+				every_in_list = { 
+					variable = trade_dat_cereal
+					scope:toggle_county_dat = { 
+						add_to_variable_list = { 
+							name = toggled_county_dat_t
+							target = prev
+						}
 					}
 				}
-			}
-			every_in_list = { 
-				variable = array_trade_dat_cereal
-				prev = { 
-					add_to_variable_list = { 
-						name = array_toggled_county_dat_t
-						target = prev
+				every_in_list = { 
+					variable = array_trade_dat_cereal
+					scope:toggle_county_dat = { 
+						add_to_variable_list = { 
+							name = array_toggled_county_dat_t
+							target = prev
+						}
 					}
 				}
 			}
@@ -17857,7 +17921,7 @@ toggle_county_dat = {
 			}
 			change_variable = { 
 				name = info_dat_county_out_val_0_cereal
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_county_dat_t
@@ -17866,29 +17930,38 @@ toggle_county_dat = {
 			remove_global_variable = array_get_max_t
 			remove_global_variable = array_get_max_tt
 			remove_variable = array_get_max_t
-			ordered_in_list = { 
-				variable = toggled_county_dat_t
-				position = global_var:toggled_county_dat_t.compare_value
-				prev = { 
-					set_variable = { 
-						name = info_dat_county_out_scope_0_cereal
-						value = prev.var:trade_location
+			if = { 
+				limit = { 
+					has_variable = info_dat_county_out_val_0_cereal
+					var:info_dat_county_out_val_0_cereal > 0
+				}
+				ordered_in_list = { 
+					variable = toggled_county_dat_t
+					position = global_var:toggled_county_dat_t.compare_value
+					prev = { 
+						set_variable = { 
+							name = info_dat_county_out_scope_0_cereal
+							value = prev
+						}
+						remove_list_variable = { 
+							name = toggled_county_dat_t
+							target = prev
+						}
 					}
-					remove_list_variable = { 
-						name = toggled_county_dat_t
-						target = prev
+				}
+				ordered_in_list = { 
+					variable = array_toggled_county_dat_t
+					position = global_var:toggled_county_dat_t.compare_value
+					prev = { 
+						remove_list_variable = { 
+							name = array_toggled_county_dat_t
+							target = prev
+						}
 					}
 				}
 			}
-			ordered_in_list = { 
-				variable = array_toggled_county_dat_t
-				position = global_var:toggled_county_dat_t.compare_value
-				prev = { 
-					remove_list_variable = { 
-						name = array_toggled_county_dat_t
-						target = prev
-					}
-				}
+			else = { 
+				remove_variable = info_dat_county_out_val_0_cereal
 			}
 			set_global_variable = { 
 				name = array_get_max_t
@@ -17932,7 +18005,7 @@ toggle_county_dat = {
 			}
 			change_variable = { 
 				name = info_dat_county_out_val_1_cereal
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_county_dat_t
@@ -17941,29 +18014,38 @@ toggle_county_dat = {
 			remove_global_variable = array_get_max_t
 			remove_global_variable = array_get_max_tt
 			remove_variable = array_get_max_t
-			ordered_in_list = { 
-				variable = toggled_county_dat_t
-				position = global_var:toggled_county_dat_t.compare_value
-				prev = { 
-					set_variable = { 
-						name = info_dat_county_out_scope_1_cereal
-						value = prev.var:trade_location
+			if = { 
+				limit = { 
+					has_variable = info_dat_county_out_val_1_cereal
+					var:info_dat_county_out_val_1_cereal > 0
+				}
+				ordered_in_list = { 
+					variable = toggled_county_dat_t
+					position = global_var:toggled_county_dat_t.compare_value
+					prev = { 
+						set_variable = { 
+							name = info_dat_county_out_scope_1_cereal
+							value = prev
+						}
+						remove_list_variable = { 
+							name = toggled_county_dat_t
+							target = prev
+						}
 					}
-					remove_list_variable = { 
-						name = toggled_county_dat_t
-						target = prev
+				}
+				ordered_in_list = { 
+					variable = array_toggled_county_dat_t
+					position = global_var:toggled_county_dat_t.compare_value
+					prev = { 
+						remove_list_variable = { 
+							name = array_toggled_county_dat_t
+							target = prev
+						}
 					}
 				}
 			}
-			ordered_in_list = { 
-				variable = array_toggled_county_dat_t
-				position = global_var:toggled_county_dat_t.compare_value
-				prev = { 
-					remove_list_variable = { 
-						name = array_toggled_county_dat_t
-						target = prev
-					}
-				}
+			else = { 
+				remove_variable = info_dat_county_out_val_1_cereal
 			}
 			set_global_variable = { 
 				name = array_get_max_t
@@ -18007,7 +18089,7 @@ toggle_county_dat = {
 			}
 			change_variable = { 
 				name = info_dat_county_out_val_2_cereal
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_county_dat_t
@@ -18016,29 +18098,38 @@ toggle_county_dat = {
 			remove_global_variable = array_get_max_t
 			remove_global_variable = array_get_max_tt
 			remove_variable = array_get_max_t
-			ordered_in_list = { 
-				variable = toggled_county_dat_t
-				position = global_var:toggled_county_dat_t.compare_value
-				prev = { 
-					set_variable = { 
-						name = info_dat_county_out_scope_2_cereal
-						value = prev.var:trade_location
+			if = { 
+				limit = { 
+					has_variable = info_dat_county_out_val_2_cereal
+					var:info_dat_county_out_val_2_cereal > 0
+				}
+				ordered_in_list = { 
+					variable = toggled_county_dat_t
+					position = global_var:toggled_county_dat_t.compare_value
+					prev = { 
+						set_variable = { 
+							name = info_dat_county_out_scope_2_cereal
+							value = prev
+						}
+						remove_list_variable = { 
+							name = toggled_county_dat_t
+							target = prev
+						}
 					}
-					remove_list_variable = { 
-						name = toggled_county_dat_t
-						target = prev
+				}
+				ordered_in_list = { 
+					variable = array_toggled_county_dat_t
+					position = global_var:toggled_county_dat_t.compare_value
+					prev = { 
+						remove_list_variable = { 
+							name = array_toggled_county_dat_t
+							target = prev
+						}
 					}
 				}
 			}
-			ordered_in_list = { 
-				variable = array_toggled_county_dat_t
-				position = global_var:toggled_county_dat_t.compare_value
-				prev = { 
-					remove_list_variable = { 
-						name = array_toggled_county_dat_t
-						target = prev
-					}
-				}
+			else = { 
+				remove_variable = info_dat_county_out_val_2_cereal
 			}
 			set_global_variable = { 
 				name = array_get_min_t
@@ -18082,7 +18173,7 @@ toggle_county_dat = {
 			}
 			change_variable = { 
 				name = info_dat_county_in_val_0_cereal
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_county_dat_t
@@ -18101,7 +18192,7 @@ toggle_county_dat = {
 				prev = { 
 					set_variable = { 
 						name = info_dat_county_in_scope_0_cereal
-						value = prev.var:trade_location
+						value = prev
 					}
 					remove_list_variable = { 
 						name = toggled_county_dat_t
@@ -18161,7 +18252,7 @@ toggle_county_dat = {
 			}
 			change_variable = { 
 				name = info_dat_county_in_val_1_cereal
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_county_dat_t
@@ -18180,7 +18271,7 @@ toggle_county_dat = {
 				prev = { 
 					set_variable = { 
 						name = info_dat_county_in_scope_1_cereal
-						value = prev.var:trade_location
+						value = prev
 					}
 					remove_list_variable = { 
 						name = toggled_county_dat_t
@@ -18240,7 +18331,7 @@ toggle_county_dat = {
 			}
 			change_variable = { 
 				name = info_dat_county_in_val_2_cereal
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_county_dat_t
@@ -18259,7 +18350,7 @@ toggle_county_dat = {
 				prev = { 
 					set_variable = { 
 						name = info_dat_county_in_scope_2_cereal
-						value = prev.var:trade_location
+						value = prev
 					}
 					remove_list_variable = { 
 						name = toggled_county_dat_t
@@ -18278,22 +18369,25 @@ toggle_county_dat = {
 				}
 			}
 			remove_global_variable = toggled_county_dat_t
-			remove_variable = toggled_county_dat_t
-			every_in_list = { 
-				variable = trade_dat_salted
-				prev = { 
-					add_to_variable_list = { 
-						name = toggled_county_dat_t
-						target = prev
+			clear_variable_list = toggled_county_dat_t
+			clear_variable_list = array_toggled_county_dat_t
+			county = { 
+				every_in_list = { 
+					variable = trade_dat_salted
+					scope:toggle_county_dat = { 
+						add_to_variable_list = { 
+							name = toggled_county_dat_t
+							target = prev
+						}
 					}
 				}
-			}
-			every_in_list = { 
-				variable = array_trade_dat_salted
-				prev = { 
-					add_to_variable_list = { 
-						name = array_toggled_county_dat_t
-						target = prev
+				every_in_list = { 
+					variable = array_trade_dat_salted
+					scope:toggle_county_dat = { 
+						add_to_variable_list = { 
+							name = array_toggled_county_dat_t
+							target = prev
+						}
 					}
 				}
 			}
@@ -18339,7 +18433,7 @@ toggle_county_dat = {
 			}
 			change_variable = { 
 				name = info_dat_county_out_val_0_salted
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_county_dat_t
@@ -18348,29 +18442,38 @@ toggle_county_dat = {
 			remove_global_variable = array_get_max_t
 			remove_global_variable = array_get_max_tt
 			remove_variable = array_get_max_t
-			ordered_in_list = { 
-				variable = toggled_county_dat_t
-				position = global_var:toggled_county_dat_t.compare_value
-				prev = { 
-					set_variable = { 
-						name = info_dat_county_out_scope_0_salted
-						value = prev.var:trade_location
+			if = { 
+				limit = { 
+					has_variable = info_dat_county_out_val_0_salted
+					var:info_dat_county_out_val_0_salted > 0
+				}
+				ordered_in_list = { 
+					variable = toggled_county_dat_t
+					position = global_var:toggled_county_dat_t.compare_value
+					prev = { 
+						set_variable = { 
+							name = info_dat_county_out_scope_0_salted
+							value = prev
+						}
+						remove_list_variable = { 
+							name = toggled_county_dat_t
+							target = prev
+						}
 					}
-					remove_list_variable = { 
-						name = toggled_county_dat_t
-						target = prev
+				}
+				ordered_in_list = { 
+					variable = array_toggled_county_dat_t
+					position = global_var:toggled_county_dat_t.compare_value
+					prev = { 
+						remove_list_variable = { 
+							name = array_toggled_county_dat_t
+							target = prev
+						}
 					}
 				}
 			}
-			ordered_in_list = { 
-				variable = array_toggled_county_dat_t
-				position = global_var:toggled_county_dat_t.compare_value
-				prev = { 
-					remove_list_variable = { 
-						name = array_toggled_county_dat_t
-						target = prev
-					}
-				}
+			else = { 
+				remove_variable = info_dat_county_out_val_0_salted
 			}
 			set_global_variable = { 
 				name = array_get_max_t
@@ -18414,7 +18517,7 @@ toggle_county_dat = {
 			}
 			change_variable = { 
 				name = info_dat_county_out_val_1_salted
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_county_dat_t
@@ -18423,29 +18526,38 @@ toggle_county_dat = {
 			remove_global_variable = array_get_max_t
 			remove_global_variable = array_get_max_tt
 			remove_variable = array_get_max_t
-			ordered_in_list = { 
-				variable = toggled_county_dat_t
-				position = global_var:toggled_county_dat_t.compare_value
-				prev = { 
-					set_variable = { 
-						name = info_dat_county_out_scope_1_salted
-						value = prev.var:trade_location
+			if = { 
+				limit = { 
+					has_variable = info_dat_county_out_val_1_salted
+					var:info_dat_county_out_val_1_salted > 0
+				}
+				ordered_in_list = { 
+					variable = toggled_county_dat_t
+					position = global_var:toggled_county_dat_t.compare_value
+					prev = { 
+						set_variable = { 
+							name = info_dat_county_out_scope_1_salted
+							value = prev
+						}
+						remove_list_variable = { 
+							name = toggled_county_dat_t
+							target = prev
+						}
 					}
-					remove_list_variable = { 
-						name = toggled_county_dat_t
-						target = prev
+				}
+				ordered_in_list = { 
+					variable = array_toggled_county_dat_t
+					position = global_var:toggled_county_dat_t.compare_value
+					prev = { 
+						remove_list_variable = { 
+							name = array_toggled_county_dat_t
+							target = prev
+						}
 					}
 				}
 			}
-			ordered_in_list = { 
-				variable = array_toggled_county_dat_t
-				position = global_var:toggled_county_dat_t.compare_value
-				prev = { 
-					remove_list_variable = { 
-						name = array_toggled_county_dat_t
-						target = prev
-					}
-				}
+			else = { 
+				remove_variable = info_dat_county_out_val_1_salted
 			}
 			set_global_variable = { 
 				name = array_get_max_t
@@ -18489,7 +18601,7 @@ toggle_county_dat = {
 			}
 			change_variable = { 
 				name = info_dat_county_out_val_2_salted
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_county_dat_t
@@ -18498,29 +18610,38 @@ toggle_county_dat = {
 			remove_global_variable = array_get_max_t
 			remove_global_variable = array_get_max_tt
 			remove_variable = array_get_max_t
-			ordered_in_list = { 
-				variable = toggled_county_dat_t
-				position = global_var:toggled_county_dat_t.compare_value
-				prev = { 
-					set_variable = { 
-						name = info_dat_county_out_scope_2_salted
-						value = prev.var:trade_location
+			if = { 
+				limit = { 
+					has_variable = info_dat_county_out_val_2_salted
+					var:info_dat_county_out_val_2_salted > 0
+				}
+				ordered_in_list = { 
+					variable = toggled_county_dat_t
+					position = global_var:toggled_county_dat_t.compare_value
+					prev = { 
+						set_variable = { 
+							name = info_dat_county_out_scope_2_salted
+							value = prev
+						}
+						remove_list_variable = { 
+							name = toggled_county_dat_t
+							target = prev
+						}
 					}
-					remove_list_variable = { 
-						name = toggled_county_dat_t
-						target = prev
+				}
+				ordered_in_list = { 
+					variable = array_toggled_county_dat_t
+					position = global_var:toggled_county_dat_t.compare_value
+					prev = { 
+						remove_list_variable = { 
+							name = array_toggled_county_dat_t
+							target = prev
+						}
 					}
 				}
 			}
-			ordered_in_list = { 
-				variable = array_toggled_county_dat_t
-				position = global_var:toggled_county_dat_t.compare_value
-				prev = { 
-					remove_list_variable = { 
-						name = array_toggled_county_dat_t
-						target = prev
-					}
-				}
+			else = { 
+				remove_variable = info_dat_county_out_val_2_salted
 			}
 			set_global_variable = { 
 				name = array_get_min_t
@@ -18564,7 +18685,7 @@ toggle_county_dat = {
 			}
 			change_variable = { 
 				name = info_dat_county_in_val_0_salted
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_county_dat_t
@@ -18583,7 +18704,7 @@ toggle_county_dat = {
 				prev = { 
 					set_variable = { 
 						name = info_dat_county_in_scope_0_salted
-						value = prev.var:trade_location
+						value = prev
 					}
 					remove_list_variable = { 
 						name = toggled_county_dat_t
@@ -18643,7 +18764,7 @@ toggle_county_dat = {
 			}
 			change_variable = { 
 				name = info_dat_county_in_val_1_salted
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_county_dat_t
@@ -18662,7 +18783,7 @@ toggle_county_dat = {
 				prev = { 
 					set_variable = { 
 						name = info_dat_county_in_scope_1_salted
-						value = prev.var:trade_location
+						value = prev
 					}
 					remove_list_variable = { 
 						name = toggled_county_dat_t
@@ -18722,7 +18843,7 @@ toggle_county_dat = {
 			}
 			change_variable = { 
 				name = info_dat_county_in_val_2_salted
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_county_dat_t
@@ -18741,7 +18862,7 @@ toggle_county_dat = {
 				prev = { 
 					set_variable = { 
 						name = info_dat_county_in_scope_2_salted
-						value = prev.var:trade_location
+						value = prev
 					}
 					remove_list_variable = { 
 						name = toggled_county_dat_t
@@ -18760,22 +18881,25 @@ toggle_county_dat = {
 				}
 			}
 			remove_global_variable = toggled_county_dat_t
-			remove_variable = toggled_county_dat_t
-			every_in_list = { 
-				variable = trade_dat_salt
-				prev = { 
-					add_to_variable_list = { 
-						name = toggled_county_dat_t
-						target = prev
+			clear_variable_list = toggled_county_dat_t
+			clear_variable_list = array_toggled_county_dat_t
+			county = { 
+				every_in_list = { 
+					variable = trade_dat_salt
+					scope:toggle_county_dat = { 
+						add_to_variable_list = { 
+							name = toggled_county_dat_t
+							target = prev
+						}
 					}
 				}
-			}
-			every_in_list = { 
-				variable = array_trade_dat_salt
-				prev = { 
-					add_to_variable_list = { 
-						name = array_toggled_county_dat_t
-						target = prev
+				every_in_list = { 
+					variable = array_trade_dat_salt
+					scope:toggle_county_dat = { 
+						add_to_variable_list = { 
+							name = array_toggled_county_dat_t
+							target = prev
+						}
 					}
 				}
 			}
@@ -18821,7 +18945,7 @@ toggle_county_dat = {
 			}
 			change_variable = { 
 				name = info_dat_county_out_val_0_salt
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_county_dat_t
@@ -18830,29 +18954,38 @@ toggle_county_dat = {
 			remove_global_variable = array_get_max_t
 			remove_global_variable = array_get_max_tt
 			remove_variable = array_get_max_t
-			ordered_in_list = { 
-				variable = toggled_county_dat_t
-				position = global_var:toggled_county_dat_t.compare_value
-				prev = { 
-					set_variable = { 
-						name = info_dat_county_out_scope_0_salt
-						value = prev.var:trade_location
+			if = { 
+				limit = { 
+					has_variable = info_dat_county_out_val_0_salt
+					var:info_dat_county_out_val_0_salt > 0
+				}
+				ordered_in_list = { 
+					variable = toggled_county_dat_t
+					position = global_var:toggled_county_dat_t.compare_value
+					prev = { 
+						set_variable = { 
+							name = info_dat_county_out_scope_0_salt
+							value = prev
+						}
+						remove_list_variable = { 
+							name = toggled_county_dat_t
+							target = prev
+						}
 					}
-					remove_list_variable = { 
-						name = toggled_county_dat_t
-						target = prev
+				}
+				ordered_in_list = { 
+					variable = array_toggled_county_dat_t
+					position = global_var:toggled_county_dat_t.compare_value
+					prev = { 
+						remove_list_variable = { 
+							name = array_toggled_county_dat_t
+							target = prev
+						}
 					}
 				}
 			}
-			ordered_in_list = { 
-				variable = array_toggled_county_dat_t
-				position = global_var:toggled_county_dat_t.compare_value
-				prev = { 
-					remove_list_variable = { 
-						name = array_toggled_county_dat_t
-						target = prev
-					}
-				}
+			else = { 
+				remove_variable = info_dat_county_out_val_0_salt
 			}
 			set_global_variable = { 
 				name = array_get_max_t
@@ -18896,7 +19029,7 @@ toggle_county_dat = {
 			}
 			change_variable = { 
 				name = info_dat_county_out_val_1_salt
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_county_dat_t
@@ -18905,29 +19038,38 @@ toggle_county_dat = {
 			remove_global_variable = array_get_max_t
 			remove_global_variable = array_get_max_tt
 			remove_variable = array_get_max_t
-			ordered_in_list = { 
-				variable = toggled_county_dat_t
-				position = global_var:toggled_county_dat_t.compare_value
-				prev = { 
-					set_variable = { 
-						name = info_dat_county_out_scope_1_salt
-						value = prev.var:trade_location
+			if = { 
+				limit = { 
+					has_variable = info_dat_county_out_val_1_salt
+					var:info_dat_county_out_val_1_salt > 0
+				}
+				ordered_in_list = { 
+					variable = toggled_county_dat_t
+					position = global_var:toggled_county_dat_t.compare_value
+					prev = { 
+						set_variable = { 
+							name = info_dat_county_out_scope_1_salt
+							value = prev
+						}
+						remove_list_variable = { 
+							name = toggled_county_dat_t
+							target = prev
+						}
 					}
-					remove_list_variable = { 
-						name = toggled_county_dat_t
-						target = prev
+				}
+				ordered_in_list = { 
+					variable = array_toggled_county_dat_t
+					position = global_var:toggled_county_dat_t.compare_value
+					prev = { 
+						remove_list_variable = { 
+							name = array_toggled_county_dat_t
+							target = prev
+						}
 					}
 				}
 			}
-			ordered_in_list = { 
-				variable = array_toggled_county_dat_t
-				position = global_var:toggled_county_dat_t.compare_value
-				prev = { 
-					remove_list_variable = { 
-						name = array_toggled_county_dat_t
-						target = prev
-					}
-				}
+			else = { 
+				remove_variable = info_dat_county_out_val_1_salt
 			}
 			set_global_variable = { 
 				name = array_get_max_t
@@ -18971,7 +19113,7 @@ toggle_county_dat = {
 			}
 			change_variable = { 
 				name = info_dat_county_out_val_2_salt
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_county_dat_t
@@ -18980,29 +19122,38 @@ toggle_county_dat = {
 			remove_global_variable = array_get_max_t
 			remove_global_variable = array_get_max_tt
 			remove_variable = array_get_max_t
-			ordered_in_list = { 
-				variable = toggled_county_dat_t
-				position = global_var:toggled_county_dat_t.compare_value
-				prev = { 
-					set_variable = { 
-						name = info_dat_county_out_scope_2_salt
-						value = prev.var:trade_location
+			if = { 
+				limit = { 
+					has_variable = info_dat_county_out_val_2_salt
+					var:info_dat_county_out_val_2_salt > 0
+				}
+				ordered_in_list = { 
+					variable = toggled_county_dat_t
+					position = global_var:toggled_county_dat_t.compare_value
+					prev = { 
+						set_variable = { 
+							name = info_dat_county_out_scope_2_salt
+							value = prev
+						}
+						remove_list_variable = { 
+							name = toggled_county_dat_t
+							target = prev
+						}
 					}
-					remove_list_variable = { 
-						name = toggled_county_dat_t
-						target = prev
+				}
+				ordered_in_list = { 
+					variable = array_toggled_county_dat_t
+					position = global_var:toggled_county_dat_t.compare_value
+					prev = { 
+						remove_list_variable = { 
+							name = array_toggled_county_dat_t
+							target = prev
+						}
 					}
 				}
 			}
-			ordered_in_list = { 
-				variable = array_toggled_county_dat_t
-				position = global_var:toggled_county_dat_t.compare_value
-				prev = { 
-					remove_list_variable = { 
-						name = array_toggled_county_dat_t
-						target = prev
-					}
-				}
+			else = { 
+				remove_variable = info_dat_county_out_val_2_salt
 			}
 			set_global_variable = { 
 				name = array_get_min_t
@@ -19046,7 +19197,7 @@ toggle_county_dat = {
 			}
 			change_variable = { 
 				name = info_dat_county_in_val_0_salt
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_county_dat_t
@@ -19065,7 +19216,7 @@ toggle_county_dat = {
 				prev = { 
 					set_variable = { 
 						name = info_dat_county_in_scope_0_salt
-						value = prev.var:trade_location
+						value = prev
 					}
 					remove_list_variable = { 
 						name = toggled_county_dat_t
@@ -19125,7 +19276,7 @@ toggle_county_dat = {
 			}
 			change_variable = { 
 				name = info_dat_county_in_val_1_salt
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_county_dat_t
@@ -19144,7 +19295,7 @@ toggle_county_dat = {
 				prev = { 
 					set_variable = { 
 						name = info_dat_county_in_scope_1_salt
-						value = prev.var:trade_location
+						value = prev
 					}
 					remove_list_variable = { 
 						name = toggled_county_dat_t
@@ -19204,7 +19355,7 @@ toggle_county_dat = {
 			}
 			change_variable = { 
 				name = info_dat_county_in_val_2_salt
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_county_dat_t
@@ -19223,7 +19374,7 @@ toggle_county_dat = {
 				prev = { 
 					set_variable = { 
 						name = info_dat_county_in_scope_2_salt
-						value = prev.var:trade_location
+						value = prev
 					}
 					remove_list_variable = { 
 						name = toggled_county_dat_t
@@ -19242,22 +19393,25 @@ toggle_county_dat = {
 				}
 			}
 			remove_global_variable = toggled_county_dat_t
-			remove_variable = toggled_county_dat_t
-			every_in_list = { 
-				variable = trade_dat_mud
-				prev = { 
-					add_to_variable_list = { 
-						name = toggled_county_dat_t
-						target = prev
+			clear_variable_list = toggled_county_dat_t
+			clear_variable_list = array_toggled_county_dat_t
+			county = { 
+				every_in_list = { 
+					variable = trade_dat_mud
+					scope:toggle_county_dat = { 
+						add_to_variable_list = { 
+							name = toggled_county_dat_t
+							target = prev
+						}
 					}
 				}
-			}
-			every_in_list = { 
-				variable = array_trade_dat_mud
-				prev = { 
-					add_to_variable_list = { 
-						name = array_toggled_county_dat_t
-						target = prev
+				every_in_list = { 
+					variable = array_trade_dat_mud
+					scope:toggle_county_dat = { 
+						add_to_variable_list = { 
+							name = array_toggled_county_dat_t
+							target = prev
+						}
 					}
 				}
 			}
@@ -19303,7 +19457,7 @@ toggle_county_dat = {
 			}
 			change_variable = { 
 				name = info_dat_county_out_val_0_mud
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_county_dat_t
@@ -19312,29 +19466,38 @@ toggle_county_dat = {
 			remove_global_variable = array_get_max_t
 			remove_global_variable = array_get_max_tt
 			remove_variable = array_get_max_t
-			ordered_in_list = { 
-				variable = toggled_county_dat_t
-				position = global_var:toggled_county_dat_t.compare_value
-				prev = { 
-					set_variable = { 
-						name = info_dat_county_out_scope_0_mud
-						value = prev.var:trade_location
+			if = { 
+				limit = { 
+					has_variable = info_dat_county_out_val_0_mud
+					var:info_dat_county_out_val_0_mud > 0
+				}
+				ordered_in_list = { 
+					variable = toggled_county_dat_t
+					position = global_var:toggled_county_dat_t.compare_value
+					prev = { 
+						set_variable = { 
+							name = info_dat_county_out_scope_0_mud
+							value = prev
+						}
+						remove_list_variable = { 
+							name = toggled_county_dat_t
+							target = prev
+						}
 					}
-					remove_list_variable = { 
-						name = toggled_county_dat_t
-						target = prev
+				}
+				ordered_in_list = { 
+					variable = array_toggled_county_dat_t
+					position = global_var:toggled_county_dat_t.compare_value
+					prev = { 
+						remove_list_variable = { 
+							name = array_toggled_county_dat_t
+							target = prev
+						}
 					}
 				}
 			}
-			ordered_in_list = { 
-				variable = array_toggled_county_dat_t
-				position = global_var:toggled_county_dat_t.compare_value
-				prev = { 
-					remove_list_variable = { 
-						name = array_toggled_county_dat_t
-						target = prev
-					}
-				}
+			else = { 
+				remove_variable = info_dat_county_out_val_0_mud
 			}
 			set_global_variable = { 
 				name = array_get_max_t
@@ -19378,7 +19541,7 @@ toggle_county_dat = {
 			}
 			change_variable = { 
 				name = info_dat_county_out_val_1_mud
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_county_dat_t
@@ -19387,29 +19550,38 @@ toggle_county_dat = {
 			remove_global_variable = array_get_max_t
 			remove_global_variable = array_get_max_tt
 			remove_variable = array_get_max_t
-			ordered_in_list = { 
-				variable = toggled_county_dat_t
-				position = global_var:toggled_county_dat_t.compare_value
-				prev = { 
-					set_variable = { 
-						name = info_dat_county_out_scope_1_mud
-						value = prev.var:trade_location
+			if = { 
+				limit = { 
+					has_variable = info_dat_county_out_val_1_mud
+					var:info_dat_county_out_val_1_mud > 0
+				}
+				ordered_in_list = { 
+					variable = toggled_county_dat_t
+					position = global_var:toggled_county_dat_t.compare_value
+					prev = { 
+						set_variable = { 
+							name = info_dat_county_out_scope_1_mud
+							value = prev
+						}
+						remove_list_variable = { 
+							name = toggled_county_dat_t
+							target = prev
+						}
 					}
-					remove_list_variable = { 
-						name = toggled_county_dat_t
-						target = prev
+				}
+				ordered_in_list = { 
+					variable = array_toggled_county_dat_t
+					position = global_var:toggled_county_dat_t.compare_value
+					prev = { 
+						remove_list_variable = { 
+							name = array_toggled_county_dat_t
+							target = prev
+						}
 					}
 				}
 			}
-			ordered_in_list = { 
-				variable = array_toggled_county_dat_t
-				position = global_var:toggled_county_dat_t.compare_value
-				prev = { 
-					remove_list_variable = { 
-						name = array_toggled_county_dat_t
-						target = prev
-					}
-				}
+			else = { 
+				remove_variable = info_dat_county_out_val_1_mud
 			}
 			set_global_variable = { 
 				name = array_get_max_t
@@ -19453,7 +19625,7 @@ toggle_county_dat = {
 			}
 			change_variable = { 
 				name = info_dat_county_out_val_2_mud
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_county_dat_t
@@ -19462,29 +19634,38 @@ toggle_county_dat = {
 			remove_global_variable = array_get_max_t
 			remove_global_variable = array_get_max_tt
 			remove_variable = array_get_max_t
-			ordered_in_list = { 
-				variable = toggled_county_dat_t
-				position = global_var:toggled_county_dat_t.compare_value
-				prev = { 
-					set_variable = { 
-						name = info_dat_county_out_scope_2_mud
-						value = prev.var:trade_location
+			if = { 
+				limit = { 
+					has_variable = info_dat_county_out_val_2_mud
+					var:info_dat_county_out_val_2_mud > 0
+				}
+				ordered_in_list = { 
+					variable = toggled_county_dat_t
+					position = global_var:toggled_county_dat_t.compare_value
+					prev = { 
+						set_variable = { 
+							name = info_dat_county_out_scope_2_mud
+							value = prev
+						}
+						remove_list_variable = { 
+							name = toggled_county_dat_t
+							target = prev
+						}
 					}
-					remove_list_variable = { 
-						name = toggled_county_dat_t
-						target = prev
+				}
+				ordered_in_list = { 
+					variable = array_toggled_county_dat_t
+					position = global_var:toggled_county_dat_t.compare_value
+					prev = { 
+						remove_list_variable = { 
+							name = array_toggled_county_dat_t
+							target = prev
+						}
 					}
 				}
 			}
-			ordered_in_list = { 
-				variable = array_toggled_county_dat_t
-				position = global_var:toggled_county_dat_t.compare_value
-				prev = { 
-					remove_list_variable = { 
-						name = array_toggled_county_dat_t
-						target = prev
-					}
-				}
+			else = { 
+				remove_variable = info_dat_county_out_val_2_mud
 			}
 			set_global_variable = { 
 				name = array_get_min_t
@@ -19528,7 +19709,7 @@ toggle_county_dat = {
 			}
 			change_variable = { 
 				name = info_dat_county_in_val_0_mud
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_county_dat_t
@@ -19547,7 +19728,7 @@ toggle_county_dat = {
 				prev = { 
 					set_variable = { 
 						name = info_dat_county_in_scope_0_mud
-						value = prev.var:trade_location
+						value = prev
 					}
 					remove_list_variable = { 
 						name = toggled_county_dat_t
@@ -19607,7 +19788,7 @@ toggle_county_dat = {
 			}
 			change_variable = { 
 				name = info_dat_county_in_val_1_mud
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_county_dat_t
@@ -19626,7 +19807,7 @@ toggle_county_dat = {
 				prev = { 
 					set_variable = { 
 						name = info_dat_county_in_scope_1_mud
-						value = prev.var:trade_location
+						value = prev
 					}
 					remove_list_variable = { 
 						name = toggled_county_dat_t
@@ -19686,7 +19867,7 @@ toggle_county_dat = {
 			}
 			change_variable = { 
 				name = info_dat_county_in_val_2_mud
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_county_dat_t
@@ -19705,7 +19886,7 @@ toggle_county_dat = {
 				prev = { 
 					set_variable = { 
 						name = info_dat_county_in_scope_2_mud
-						value = prev.var:trade_location
+						value = prev
 					}
 					remove_list_variable = { 
 						name = toggled_county_dat_t
@@ -19724,22 +19905,25 @@ toggle_county_dat = {
 				}
 			}
 			remove_global_variable = toggled_county_dat_t
-			remove_variable = toggled_county_dat_t
-			every_in_list = { 
-				variable = trade_dat_fuel
-				prev = { 
-					add_to_variable_list = { 
-						name = toggled_county_dat_t
-						target = prev
+			clear_variable_list = toggled_county_dat_t
+			clear_variable_list = array_toggled_county_dat_t
+			county = { 
+				every_in_list = { 
+					variable = trade_dat_fuel
+					scope:toggle_county_dat = { 
+						add_to_variable_list = { 
+							name = toggled_county_dat_t
+							target = prev
+						}
 					}
 				}
-			}
-			every_in_list = { 
-				variable = array_trade_dat_fuel
-				prev = { 
-					add_to_variable_list = { 
-						name = array_toggled_county_dat_t
-						target = prev
+				every_in_list = { 
+					variable = array_trade_dat_fuel
+					scope:toggle_county_dat = { 
+						add_to_variable_list = { 
+							name = array_toggled_county_dat_t
+							target = prev
+						}
 					}
 				}
 			}
@@ -19785,7 +19969,7 @@ toggle_county_dat = {
 			}
 			change_variable = { 
 				name = info_dat_county_out_val_0_fuel
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_county_dat_t
@@ -19794,29 +19978,38 @@ toggle_county_dat = {
 			remove_global_variable = array_get_max_t
 			remove_global_variable = array_get_max_tt
 			remove_variable = array_get_max_t
-			ordered_in_list = { 
-				variable = toggled_county_dat_t
-				position = global_var:toggled_county_dat_t.compare_value
-				prev = { 
-					set_variable = { 
-						name = info_dat_county_out_scope_0_fuel
-						value = prev.var:trade_location
+			if = { 
+				limit = { 
+					has_variable = info_dat_county_out_val_0_fuel
+					var:info_dat_county_out_val_0_fuel > 0
+				}
+				ordered_in_list = { 
+					variable = toggled_county_dat_t
+					position = global_var:toggled_county_dat_t.compare_value
+					prev = { 
+						set_variable = { 
+							name = info_dat_county_out_scope_0_fuel
+							value = prev
+						}
+						remove_list_variable = { 
+							name = toggled_county_dat_t
+							target = prev
+						}
 					}
-					remove_list_variable = { 
-						name = toggled_county_dat_t
-						target = prev
+				}
+				ordered_in_list = { 
+					variable = array_toggled_county_dat_t
+					position = global_var:toggled_county_dat_t.compare_value
+					prev = { 
+						remove_list_variable = { 
+							name = array_toggled_county_dat_t
+							target = prev
+						}
 					}
 				}
 			}
-			ordered_in_list = { 
-				variable = array_toggled_county_dat_t
-				position = global_var:toggled_county_dat_t.compare_value
-				prev = { 
-					remove_list_variable = { 
-						name = array_toggled_county_dat_t
-						target = prev
-					}
-				}
+			else = { 
+				remove_variable = info_dat_county_out_val_0_fuel
 			}
 			set_global_variable = { 
 				name = array_get_max_t
@@ -19860,7 +20053,7 @@ toggle_county_dat = {
 			}
 			change_variable = { 
 				name = info_dat_county_out_val_1_fuel
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_county_dat_t
@@ -19869,29 +20062,38 @@ toggle_county_dat = {
 			remove_global_variable = array_get_max_t
 			remove_global_variable = array_get_max_tt
 			remove_variable = array_get_max_t
-			ordered_in_list = { 
-				variable = toggled_county_dat_t
-				position = global_var:toggled_county_dat_t.compare_value
-				prev = { 
-					set_variable = { 
-						name = info_dat_county_out_scope_1_fuel
-						value = prev.var:trade_location
+			if = { 
+				limit = { 
+					has_variable = info_dat_county_out_val_1_fuel
+					var:info_dat_county_out_val_1_fuel > 0
+				}
+				ordered_in_list = { 
+					variable = toggled_county_dat_t
+					position = global_var:toggled_county_dat_t.compare_value
+					prev = { 
+						set_variable = { 
+							name = info_dat_county_out_scope_1_fuel
+							value = prev
+						}
+						remove_list_variable = { 
+							name = toggled_county_dat_t
+							target = prev
+						}
 					}
-					remove_list_variable = { 
-						name = toggled_county_dat_t
-						target = prev
+				}
+				ordered_in_list = { 
+					variable = array_toggled_county_dat_t
+					position = global_var:toggled_county_dat_t.compare_value
+					prev = { 
+						remove_list_variable = { 
+							name = array_toggled_county_dat_t
+							target = prev
+						}
 					}
 				}
 			}
-			ordered_in_list = { 
-				variable = array_toggled_county_dat_t
-				position = global_var:toggled_county_dat_t.compare_value
-				prev = { 
-					remove_list_variable = { 
-						name = array_toggled_county_dat_t
-						target = prev
-					}
-				}
+			else = { 
+				remove_variable = info_dat_county_out_val_1_fuel
 			}
 			set_global_variable = { 
 				name = array_get_max_t
@@ -19935,7 +20137,7 @@ toggle_county_dat = {
 			}
 			change_variable = { 
 				name = info_dat_county_out_val_2_fuel
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_county_dat_t
@@ -19944,29 +20146,38 @@ toggle_county_dat = {
 			remove_global_variable = array_get_max_t
 			remove_global_variable = array_get_max_tt
 			remove_variable = array_get_max_t
-			ordered_in_list = { 
-				variable = toggled_county_dat_t
-				position = global_var:toggled_county_dat_t.compare_value
-				prev = { 
-					set_variable = { 
-						name = info_dat_county_out_scope_2_fuel
-						value = prev.var:trade_location
+			if = { 
+				limit = { 
+					has_variable = info_dat_county_out_val_2_fuel
+					var:info_dat_county_out_val_2_fuel > 0
+				}
+				ordered_in_list = { 
+					variable = toggled_county_dat_t
+					position = global_var:toggled_county_dat_t.compare_value
+					prev = { 
+						set_variable = { 
+							name = info_dat_county_out_scope_2_fuel
+							value = prev
+						}
+						remove_list_variable = { 
+							name = toggled_county_dat_t
+							target = prev
+						}
 					}
-					remove_list_variable = { 
-						name = toggled_county_dat_t
-						target = prev
+				}
+				ordered_in_list = { 
+					variable = array_toggled_county_dat_t
+					position = global_var:toggled_county_dat_t.compare_value
+					prev = { 
+						remove_list_variable = { 
+							name = array_toggled_county_dat_t
+							target = prev
+						}
 					}
 				}
 			}
-			ordered_in_list = { 
-				variable = array_toggled_county_dat_t
-				position = global_var:toggled_county_dat_t.compare_value
-				prev = { 
-					remove_list_variable = { 
-						name = array_toggled_county_dat_t
-						target = prev
-					}
-				}
+			else = { 
+				remove_variable = info_dat_county_out_val_2_fuel
 			}
 			set_global_variable = { 
 				name = array_get_min_t
@@ -20010,7 +20221,7 @@ toggle_county_dat = {
 			}
 			change_variable = { 
 				name = info_dat_county_in_val_0_fuel
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_county_dat_t
@@ -20029,7 +20240,7 @@ toggle_county_dat = {
 				prev = { 
 					set_variable = { 
 						name = info_dat_county_in_scope_0_fuel
-						value = prev.var:trade_location
+						value = prev
 					}
 					remove_list_variable = { 
 						name = toggled_county_dat_t
@@ -20089,7 +20300,7 @@ toggle_county_dat = {
 			}
 			change_variable = { 
 				name = info_dat_county_in_val_1_fuel
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_county_dat_t
@@ -20108,7 +20319,7 @@ toggle_county_dat = {
 				prev = { 
 					set_variable = { 
 						name = info_dat_county_in_scope_1_fuel
-						value = prev.var:trade_location
+						value = prev
 					}
 					remove_list_variable = { 
 						name = toggled_county_dat_t
@@ -20168,7 +20379,7 @@ toggle_county_dat = {
 			}
 			change_variable = { 
 				name = info_dat_county_in_val_2_fuel
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_county_dat_t
@@ -20187,7 +20398,7 @@ toggle_county_dat = {
 				prev = { 
 					set_variable = { 
 						name = info_dat_county_in_scope_2_fuel
-						value = prev.var:trade_location
+						value = prev
 					}
 					remove_list_variable = { 
 						name = toggled_county_dat_t
@@ -20206,22 +20417,25 @@ toggle_county_dat = {
 				}
 			}
 			remove_global_variable = toggled_county_dat_t
-			remove_variable = toggled_county_dat_t
-			every_in_list = { 
-				variable = trade_dat_fiber
-				prev = { 
-					add_to_variable_list = { 
-						name = toggled_county_dat_t
-						target = prev
+			clear_variable_list = toggled_county_dat_t
+			clear_variable_list = array_toggled_county_dat_t
+			county = { 
+				every_in_list = { 
+					variable = trade_dat_fiber
+					scope:toggle_county_dat = { 
+						add_to_variable_list = { 
+							name = toggled_county_dat_t
+							target = prev
+						}
 					}
 				}
-			}
-			every_in_list = { 
-				variable = array_trade_dat_fiber
-				prev = { 
-					add_to_variable_list = { 
-						name = array_toggled_county_dat_t
-						target = prev
+				every_in_list = { 
+					variable = array_trade_dat_fiber
+					scope:toggle_county_dat = { 
+						add_to_variable_list = { 
+							name = array_toggled_county_dat_t
+							target = prev
+						}
 					}
 				}
 			}
@@ -20267,7 +20481,7 @@ toggle_county_dat = {
 			}
 			change_variable = { 
 				name = info_dat_county_out_val_0_fiber
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_county_dat_t
@@ -20276,29 +20490,38 @@ toggle_county_dat = {
 			remove_global_variable = array_get_max_t
 			remove_global_variable = array_get_max_tt
 			remove_variable = array_get_max_t
-			ordered_in_list = { 
-				variable = toggled_county_dat_t
-				position = global_var:toggled_county_dat_t.compare_value
-				prev = { 
-					set_variable = { 
-						name = info_dat_county_out_scope_0_fiber
-						value = prev.var:trade_location
+			if = { 
+				limit = { 
+					has_variable = info_dat_county_out_val_0_fiber
+					var:info_dat_county_out_val_0_fiber > 0
+				}
+				ordered_in_list = { 
+					variable = toggled_county_dat_t
+					position = global_var:toggled_county_dat_t.compare_value
+					prev = { 
+						set_variable = { 
+							name = info_dat_county_out_scope_0_fiber
+							value = prev
+						}
+						remove_list_variable = { 
+							name = toggled_county_dat_t
+							target = prev
+						}
 					}
-					remove_list_variable = { 
-						name = toggled_county_dat_t
-						target = prev
+				}
+				ordered_in_list = { 
+					variable = array_toggled_county_dat_t
+					position = global_var:toggled_county_dat_t.compare_value
+					prev = { 
+						remove_list_variable = { 
+							name = array_toggled_county_dat_t
+							target = prev
+						}
 					}
 				}
 			}
-			ordered_in_list = { 
-				variable = array_toggled_county_dat_t
-				position = global_var:toggled_county_dat_t.compare_value
-				prev = { 
-					remove_list_variable = { 
-						name = array_toggled_county_dat_t
-						target = prev
-					}
-				}
+			else = { 
+				remove_variable = info_dat_county_out_val_0_fiber
 			}
 			set_global_variable = { 
 				name = array_get_max_t
@@ -20342,7 +20565,7 @@ toggle_county_dat = {
 			}
 			change_variable = { 
 				name = info_dat_county_out_val_1_fiber
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_county_dat_t
@@ -20351,29 +20574,38 @@ toggle_county_dat = {
 			remove_global_variable = array_get_max_t
 			remove_global_variable = array_get_max_tt
 			remove_variable = array_get_max_t
-			ordered_in_list = { 
-				variable = toggled_county_dat_t
-				position = global_var:toggled_county_dat_t.compare_value
-				prev = { 
-					set_variable = { 
-						name = info_dat_county_out_scope_1_fiber
-						value = prev.var:trade_location
+			if = { 
+				limit = { 
+					has_variable = info_dat_county_out_val_1_fiber
+					var:info_dat_county_out_val_1_fiber > 0
+				}
+				ordered_in_list = { 
+					variable = toggled_county_dat_t
+					position = global_var:toggled_county_dat_t.compare_value
+					prev = { 
+						set_variable = { 
+							name = info_dat_county_out_scope_1_fiber
+							value = prev
+						}
+						remove_list_variable = { 
+							name = toggled_county_dat_t
+							target = prev
+						}
 					}
-					remove_list_variable = { 
-						name = toggled_county_dat_t
-						target = prev
+				}
+				ordered_in_list = { 
+					variable = array_toggled_county_dat_t
+					position = global_var:toggled_county_dat_t.compare_value
+					prev = { 
+						remove_list_variable = { 
+							name = array_toggled_county_dat_t
+							target = prev
+						}
 					}
 				}
 			}
-			ordered_in_list = { 
-				variable = array_toggled_county_dat_t
-				position = global_var:toggled_county_dat_t.compare_value
-				prev = { 
-					remove_list_variable = { 
-						name = array_toggled_county_dat_t
-						target = prev
-					}
-				}
+			else = { 
+				remove_variable = info_dat_county_out_val_1_fiber
 			}
 			set_global_variable = { 
 				name = array_get_max_t
@@ -20417,7 +20649,7 @@ toggle_county_dat = {
 			}
 			change_variable = { 
 				name = info_dat_county_out_val_2_fiber
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_county_dat_t
@@ -20426,29 +20658,38 @@ toggle_county_dat = {
 			remove_global_variable = array_get_max_t
 			remove_global_variable = array_get_max_tt
 			remove_variable = array_get_max_t
-			ordered_in_list = { 
-				variable = toggled_county_dat_t
-				position = global_var:toggled_county_dat_t.compare_value
-				prev = { 
-					set_variable = { 
-						name = info_dat_county_out_scope_2_fiber
-						value = prev.var:trade_location
+			if = { 
+				limit = { 
+					has_variable = info_dat_county_out_val_2_fiber
+					var:info_dat_county_out_val_2_fiber > 0
+				}
+				ordered_in_list = { 
+					variable = toggled_county_dat_t
+					position = global_var:toggled_county_dat_t.compare_value
+					prev = { 
+						set_variable = { 
+							name = info_dat_county_out_scope_2_fiber
+							value = prev
+						}
+						remove_list_variable = { 
+							name = toggled_county_dat_t
+							target = prev
+						}
 					}
-					remove_list_variable = { 
-						name = toggled_county_dat_t
-						target = prev
+				}
+				ordered_in_list = { 
+					variable = array_toggled_county_dat_t
+					position = global_var:toggled_county_dat_t.compare_value
+					prev = { 
+						remove_list_variable = { 
+							name = array_toggled_county_dat_t
+							target = prev
+						}
 					}
 				}
 			}
-			ordered_in_list = { 
-				variable = array_toggled_county_dat_t
-				position = global_var:toggled_county_dat_t.compare_value
-				prev = { 
-					remove_list_variable = { 
-						name = array_toggled_county_dat_t
-						target = prev
-					}
-				}
+			else = { 
+				remove_variable = info_dat_county_out_val_2_fiber
 			}
 			set_global_variable = { 
 				name = array_get_min_t
@@ -20492,7 +20733,7 @@ toggle_county_dat = {
 			}
 			change_variable = { 
 				name = info_dat_county_in_val_0_fiber
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_county_dat_t
@@ -20511,7 +20752,7 @@ toggle_county_dat = {
 				prev = { 
 					set_variable = { 
 						name = info_dat_county_in_scope_0_fiber
-						value = prev.var:trade_location
+						value = prev
 					}
 					remove_list_variable = { 
 						name = toggled_county_dat_t
@@ -20571,7 +20812,7 @@ toggle_county_dat = {
 			}
 			change_variable = { 
 				name = info_dat_county_in_val_1_fiber
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_county_dat_t
@@ -20590,7 +20831,7 @@ toggle_county_dat = {
 				prev = { 
 					set_variable = { 
 						name = info_dat_county_in_scope_1_fiber
-						value = prev.var:trade_location
+						value = prev
 					}
 					remove_list_variable = { 
 						name = toggled_county_dat_t
@@ -20650,7 +20891,7 @@ toggle_county_dat = {
 			}
 			change_variable = { 
 				name = info_dat_county_in_val_2_fiber
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_county_dat_t
@@ -20669,7 +20910,7 @@ toggle_county_dat = {
 				prev = { 
 					set_variable = { 
 						name = info_dat_county_in_scope_2_fiber
-						value = prev.var:trade_location
+						value = prev
 					}
 					remove_list_variable = { 
 						name = toggled_county_dat_t
@@ -20688,22 +20929,25 @@ toggle_county_dat = {
 				}
 			}
 			remove_global_variable = toggled_county_dat_t
-			remove_variable = toggled_county_dat_t
-			every_in_list = { 
-				variable = trade_dat_timber
-				prev = { 
-					add_to_variable_list = { 
-						name = toggled_county_dat_t
-						target = prev
+			clear_variable_list = toggled_county_dat_t
+			clear_variable_list = array_toggled_county_dat_t
+			county = { 
+				every_in_list = { 
+					variable = trade_dat_timber
+					scope:toggle_county_dat = { 
+						add_to_variable_list = { 
+							name = toggled_county_dat_t
+							target = prev
+						}
 					}
 				}
-			}
-			every_in_list = { 
-				variable = array_trade_dat_timber
-				prev = { 
-					add_to_variable_list = { 
-						name = array_toggled_county_dat_t
-						target = prev
+				every_in_list = { 
+					variable = array_trade_dat_timber
+					scope:toggle_county_dat = { 
+						add_to_variable_list = { 
+							name = array_toggled_county_dat_t
+							target = prev
+						}
 					}
 				}
 			}
@@ -20749,7 +20993,7 @@ toggle_county_dat = {
 			}
 			change_variable = { 
 				name = info_dat_county_out_val_0_timber
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_county_dat_t
@@ -20758,29 +21002,38 @@ toggle_county_dat = {
 			remove_global_variable = array_get_max_t
 			remove_global_variable = array_get_max_tt
 			remove_variable = array_get_max_t
-			ordered_in_list = { 
-				variable = toggled_county_dat_t
-				position = global_var:toggled_county_dat_t.compare_value
-				prev = { 
-					set_variable = { 
-						name = info_dat_county_out_scope_0_timber
-						value = prev.var:trade_location
+			if = { 
+				limit = { 
+					has_variable = info_dat_county_out_val_0_timber
+					var:info_dat_county_out_val_0_timber > 0
+				}
+				ordered_in_list = { 
+					variable = toggled_county_dat_t
+					position = global_var:toggled_county_dat_t.compare_value
+					prev = { 
+						set_variable = { 
+							name = info_dat_county_out_scope_0_timber
+							value = prev
+						}
+						remove_list_variable = { 
+							name = toggled_county_dat_t
+							target = prev
+						}
 					}
-					remove_list_variable = { 
-						name = toggled_county_dat_t
-						target = prev
+				}
+				ordered_in_list = { 
+					variable = array_toggled_county_dat_t
+					position = global_var:toggled_county_dat_t.compare_value
+					prev = { 
+						remove_list_variable = { 
+							name = array_toggled_county_dat_t
+							target = prev
+						}
 					}
 				}
 			}
-			ordered_in_list = { 
-				variable = array_toggled_county_dat_t
-				position = global_var:toggled_county_dat_t.compare_value
-				prev = { 
-					remove_list_variable = { 
-						name = array_toggled_county_dat_t
-						target = prev
-					}
-				}
+			else = { 
+				remove_variable = info_dat_county_out_val_0_timber
 			}
 			set_global_variable = { 
 				name = array_get_max_t
@@ -20824,7 +21077,7 @@ toggle_county_dat = {
 			}
 			change_variable = { 
 				name = info_dat_county_out_val_1_timber
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_county_dat_t
@@ -20833,29 +21086,38 @@ toggle_county_dat = {
 			remove_global_variable = array_get_max_t
 			remove_global_variable = array_get_max_tt
 			remove_variable = array_get_max_t
-			ordered_in_list = { 
-				variable = toggled_county_dat_t
-				position = global_var:toggled_county_dat_t.compare_value
-				prev = { 
-					set_variable = { 
-						name = info_dat_county_out_scope_1_timber
-						value = prev.var:trade_location
+			if = { 
+				limit = { 
+					has_variable = info_dat_county_out_val_1_timber
+					var:info_dat_county_out_val_1_timber > 0
+				}
+				ordered_in_list = { 
+					variable = toggled_county_dat_t
+					position = global_var:toggled_county_dat_t.compare_value
+					prev = { 
+						set_variable = { 
+							name = info_dat_county_out_scope_1_timber
+							value = prev
+						}
+						remove_list_variable = { 
+							name = toggled_county_dat_t
+							target = prev
+						}
 					}
-					remove_list_variable = { 
-						name = toggled_county_dat_t
-						target = prev
+				}
+				ordered_in_list = { 
+					variable = array_toggled_county_dat_t
+					position = global_var:toggled_county_dat_t.compare_value
+					prev = { 
+						remove_list_variable = { 
+							name = array_toggled_county_dat_t
+							target = prev
+						}
 					}
 				}
 			}
-			ordered_in_list = { 
-				variable = array_toggled_county_dat_t
-				position = global_var:toggled_county_dat_t.compare_value
-				prev = { 
-					remove_list_variable = { 
-						name = array_toggled_county_dat_t
-						target = prev
-					}
-				}
+			else = { 
+				remove_variable = info_dat_county_out_val_1_timber
 			}
 			set_global_variable = { 
 				name = array_get_max_t
@@ -20899,7 +21161,7 @@ toggle_county_dat = {
 			}
 			change_variable = { 
 				name = info_dat_county_out_val_2_timber
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_county_dat_t
@@ -20908,29 +21170,38 @@ toggle_county_dat = {
 			remove_global_variable = array_get_max_t
 			remove_global_variable = array_get_max_tt
 			remove_variable = array_get_max_t
-			ordered_in_list = { 
-				variable = toggled_county_dat_t
-				position = global_var:toggled_county_dat_t.compare_value
-				prev = { 
-					set_variable = { 
-						name = info_dat_county_out_scope_2_timber
-						value = prev.var:trade_location
+			if = { 
+				limit = { 
+					has_variable = info_dat_county_out_val_2_timber
+					var:info_dat_county_out_val_2_timber > 0
+				}
+				ordered_in_list = { 
+					variable = toggled_county_dat_t
+					position = global_var:toggled_county_dat_t.compare_value
+					prev = { 
+						set_variable = { 
+							name = info_dat_county_out_scope_2_timber
+							value = prev
+						}
+						remove_list_variable = { 
+							name = toggled_county_dat_t
+							target = prev
+						}
 					}
-					remove_list_variable = { 
-						name = toggled_county_dat_t
-						target = prev
+				}
+				ordered_in_list = { 
+					variable = array_toggled_county_dat_t
+					position = global_var:toggled_county_dat_t.compare_value
+					prev = { 
+						remove_list_variable = { 
+							name = array_toggled_county_dat_t
+							target = prev
+						}
 					}
 				}
 			}
-			ordered_in_list = { 
-				variable = array_toggled_county_dat_t
-				position = global_var:toggled_county_dat_t.compare_value
-				prev = { 
-					remove_list_variable = { 
-						name = array_toggled_county_dat_t
-						target = prev
-					}
-				}
+			else = { 
+				remove_variable = info_dat_county_out_val_2_timber
 			}
 			set_global_variable = { 
 				name = array_get_min_t
@@ -20974,7 +21245,7 @@ toggle_county_dat = {
 			}
 			change_variable = { 
 				name = info_dat_county_in_val_0_timber
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_county_dat_t
@@ -20993,7 +21264,7 @@ toggle_county_dat = {
 				prev = { 
 					set_variable = { 
 						name = info_dat_county_in_scope_0_timber
-						value = prev.var:trade_location
+						value = prev
 					}
 					remove_list_variable = { 
 						name = toggled_county_dat_t
@@ -21053,7 +21324,7 @@ toggle_county_dat = {
 			}
 			change_variable = { 
 				name = info_dat_county_in_val_1_timber
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_county_dat_t
@@ -21072,7 +21343,7 @@ toggle_county_dat = {
 				prev = { 
 					set_variable = { 
 						name = info_dat_county_in_scope_1_timber
-						value = prev.var:trade_location
+						value = prev
 					}
 					remove_list_variable = { 
 						name = toggled_county_dat_t
@@ -21132,7 +21403,7 @@ toggle_county_dat = {
 			}
 			change_variable = { 
 				name = info_dat_county_in_val_2_timber
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_county_dat_t
@@ -21151,7 +21422,7 @@ toggle_county_dat = {
 				prev = { 
 					set_variable = { 
 						name = info_dat_county_in_scope_2_timber
-						value = prev.var:trade_location
+						value = prev
 					}
 					remove_list_variable = { 
 						name = toggled_county_dat_t
@@ -21170,22 +21441,25 @@ toggle_county_dat = {
 				}
 			}
 			remove_global_variable = toggled_county_dat_t
-			remove_variable = toggled_county_dat_t
-			every_in_list = { 
-				variable = trade_dat_metal
-				prev = { 
-					add_to_variable_list = { 
-						name = toggled_county_dat_t
-						target = prev
+			clear_variable_list = toggled_county_dat_t
+			clear_variable_list = array_toggled_county_dat_t
+			county = { 
+				every_in_list = { 
+					variable = trade_dat_metal
+					scope:toggle_county_dat = { 
+						add_to_variable_list = { 
+							name = toggled_county_dat_t
+							target = prev
+						}
 					}
 				}
-			}
-			every_in_list = { 
-				variable = array_trade_dat_metal
-				prev = { 
-					add_to_variable_list = { 
-						name = array_toggled_county_dat_t
-						target = prev
+				every_in_list = { 
+					variable = array_trade_dat_metal
+					scope:toggle_county_dat = { 
+						add_to_variable_list = { 
+							name = array_toggled_county_dat_t
+							target = prev
+						}
 					}
 				}
 			}
@@ -21231,7 +21505,7 @@ toggle_county_dat = {
 			}
 			change_variable = { 
 				name = info_dat_county_out_val_0_metal
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_county_dat_t
@@ -21240,29 +21514,38 @@ toggle_county_dat = {
 			remove_global_variable = array_get_max_t
 			remove_global_variable = array_get_max_tt
 			remove_variable = array_get_max_t
-			ordered_in_list = { 
-				variable = toggled_county_dat_t
-				position = global_var:toggled_county_dat_t.compare_value
-				prev = { 
-					set_variable = { 
-						name = info_dat_county_out_scope_0_metal
-						value = prev.var:trade_location
+			if = { 
+				limit = { 
+					has_variable = info_dat_county_out_val_0_metal
+					var:info_dat_county_out_val_0_metal > 0
+				}
+				ordered_in_list = { 
+					variable = toggled_county_dat_t
+					position = global_var:toggled_county_dat_t.compare_value
+					prev = { 
+						set_variable = { 
+							name = info_dat_county_out_scope_0_metal
+							value = prev
+						}
+						remove_list_variable = { 
+							name = toggled_county_dat_t
+							target = prev
+						}
 					}
-					remove_list_variable = { 
-						name = toggled_county_dat_t
-						target = prev
+				}
+				ordered_in_list = { 
+					variable = array_toggled_county_dat_t
+					position = global_var:toggled_county_dat_t.compare_value
+					prev = { 
+						remove_list_variable = { 
+							name = array_toggled_county_dat_t
+							target = prev
+						}
 					}
 				}
 			}
-			ordered_in_list = { 
-				variable = array_toggled_county_dat_t
-				position = global_var:toggled_county_dat_t.compare_value
-				prev = { 
-					remove_list_variable = { 
-						name = array_toggled_county_dat_t
-						target = prev
-					}
-				}
+			else = { 
+				remove_variable = info_dat_county_out_val_0_metal
 			}
 			set_global_variable = { 
 				name = array_get_max_t
@@ -21306,7 +21589,7 @@ toggle_county_dat = {
 			}
 			change_variable = { 
 				name = info_dat_county_out_val_1_metal
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_county_dat_t
@@ -21315,29 +21598,38 @@ toggle_county_dat = {
 			remove_global_variable = array_get_max_t
 			remove_global_variable = array_get_max_tt
 			remove_variable = array_get_max_t
-			ordered_in_list = { 
-				variable = toggled_county_dat_t
-				position = global_var:toggled_county_dat_t.compare_value
-				prev = { 
-					set_variable = { 
-						name = info_dat_county_out_scope_1_metal
-						value = prev.var:trade_location
+			if = { 
+				limit = { 
+					has_variable = info_dat_county_out_val_1_metal
+					var:info_dat_county_out_val_1_metal > 0
+				}
+				ordered_in_list = { 
+					variable = toggled_county_dat_t
+					position = global_var:toggled_county_dat_t.compare_value
+					prev = { 
+						set_variable = { 
+							name = info_dat_county_out_scope_1_metal
+							value = prev
+						}
+						remove_list_variable = { 
+							name = toggled_county_dat_t
+							target = prev
+						}
 					}
-					remove_list_variable = { 
-						name = toggled_county_dat_t
-						target = prev
+				}
+				ordered_in_list = { 
+					variable = array_toggled_county_dat_t
+					position = global_var:toggled_county_dat_t.compare_value
+					prev = { 
+						remove_list_variable = { 
+							name = array_toggled_county_dat_t
+							target = prev
+						}
 					}
 				}
 			}
-			ordered_in_list = { 
-				variable = array_toggled_county_dat_t
-				position = global_var:toggled_county_dat_t.compare_value
-				prev = { 
-					remove_list_variable = { 
-						name = array_toggled_county_dat_t
-						target = prev
-					}
-				}
+			else = { 
+				remove_variable = info_dat_county_out_val_1_metal
 			}
 			set_global_variable = { 
 				name = array_get_max_t
@@ -21381,7 +21673,7 @@ toggle_county_dat = {
 			}
 			change_variable = { 
 				name = info_dat_county_out_val_2_metal
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_county_dat_t
@@ -21390,29 +21682,38 @@ toggle_county_dat = {
 			remove_global_variable = array_get_max_t
 			remove_global_variable = array_get_max_tt
 			remove_variable = array_get_max_t
-			ordered_in_list = { 
-				variable = toggled_county_dat_t
-				position = global_var:toggled_county_dat_t.compare_value
-				prev = { 
-					set_variable = { 
-						name = info_dat_county_out_scope_2_metal
-						value = prev.var:trade_location
+			if = { 
+				limit = { 
+					has_variable = info_dat_county_out_val_2_metal
+					var:info_dat_county_out_val_2_metal > 0
+				}
+				ordered_in_list = { 
+					variable = toggled_county_dat_t
+					position = global_var:toggled_county_dat_t.compare_value
+					prev = { 
+						set_variable = { 
+							name = info_dat_county_out_scope_2_metal
+							value = prev
+						}
+						remove_list_variable = { 
+							name = toggled_county_dat_t
+							target = prev
+						}
 					}
-					remove_list_variable = { 
-						name = toggled_county_dat_t
-						target = prev
+				}
+				ordered_in_list = { 
+					variable = array_toggled_county_dat_t
+					position = global_var:toggled_county_dat_t.compare_value
+					prev = { 
+						remove_list_variable = { 
+							name = array_toggled_county_dat_t
+							target = prev
+						}
 					}
 				}
 			}
-			ordered_in_list = { 
-				variable = array_toggled_county_dat_t
-				position = global_var:toggled_county_dat_t.compare_value
-				prev = { 
-					remove_list_variable = { 
-						name = array_toggled_county_dat_t
-						target = prev
-					}
-				}
+			else = { 
+				remove_variable = info_dat_county_out_val_2_metal
 			}
 			set_global_variable = { 
 				name = array_get_min_t
@@ -21456,7 +21757,7 @@ toggle_county_dat = {
 			}
 			change_variable = { 
 				name = info_dat_county_in_val_0_metal
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_county_dat_t
@@ -21475,7 +21776,7 @@ toggle_county_dat = {
 				prev = { 
 					set_variable = { 
 						name = info_dat_county_in_scope_0_metal
-						value = prev.var:trade_location
+						value = prev
 					}
 					remove_list_variable = { 
 						name = toggled_county_dat_t
@@ -21535,7 +21836,7 @@ toggle_county_dat = {
 			}
 			change_variable = { 
 				name = info_dat_county_in_val_1_metal
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_county_dat_t
@@ -21554,7 +21855,7 @@ toggle_county_dat = {
 				prev = { 
 					set_variable = { 
 						name = info_dat_county_in_scope_1_metal
-						value = prev.var:trade_location
+						value = prev
 					}
 					remove_list_variable = { 
 						name = toggled_county_dat_t
@@ -21614,7 +21915,7 @@ toggle_county_dat = {
 			}
 			change_variable = { 
 				name = info_dat_county_in_val_2_metal
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_county_dat_t
@@ -21633,7 +21934,7 @@ toggle_county_dat = {
 				prev = { 
 					set_variable = { 
 						name = info_dat_county_in_scope_2_metal
-						value = prev.var:trade_location
+						value = prev
 					}
 					remove_list_variable = { 
 						name = toggled_county_dat_t
@@ -21652,22 +21953,25 @@ toggle_county_dat = {
 				}
 			}
 			remove_global_variable = toggled_county_dat_t
-			remove_variable = toggled_county_dat_t
-			every_in_list = { 
-				variable = trade_dat_exotics_w
-				prev = { 
-					add_to_variable_list = { 
-						name = toggled_county_dat_t
-						target = prev
+			clear_variable_list = toggled_county_dat_t
+			clear_variable_list = array_toggled_county_dat_t
+			county = { 
+				every_in_list = { 
+					variable = trade_dat_exotics_w
+					scope:toggle_county_dat = { 
+						add_to_variable_list = { 
+							name = toggled_county_dat_t
+							target = prev
+						}
 					}
 				}
-			}
-			every_in_list = { 
-				variable = array_trade_dat_exotics_w
-				prev = { 
-					add_to_variable_list = { 
-						name = array_toggled_county_dat_t
-						target = prev
+				every_in_list = { 
+					variable = array_trade_dat_exotics_w
+					scope:toggle_county_dat = { 
+						add_to_variable_list = { 
+							name = array_toggled_county_dat_t
+							target = prev
+						}
 					}
 				}
 			}
@@ -21713,7 +22017,7 @@ toggle_county_dat = {
 			}
 			change_variable = { 
 				name = info_dat_county_out_val_0_exotics_w
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_county_dat_t
@@ -21722,29 +22026,38 @@ toggle_county_dat = {
 			remove_global_variable = array_get_max_t
 			remove_global_variable = array_get_max_tt
 			remove_variable = array_get_max_t
-			ordered_in_list = { 
-				variable = toggled_county_dat_t
-				position = global_var:toggled_county_dat_t.compare_value
-				prev = { 
-					set_variable = { 
-						name = info_dat_county_out_scope_0_exotics_w
-						value = prev.var:trade_location
+			if = { 
+				limit = { 
+					has_variable = info_dat_county_out_val_0_exotics_w
+					var:info_dat_county_out_val_0_exotics_w > 0
+				}
+				ordered_in_list = { 
+					variable = toggled_county_dat_t
+					position = global_var:toggled_county_dat_t.compare_value
+					prev = { 
+						set_variable = { 
+							name = info_dat_county_out_scope_0_exotics_w
+							value = prev
+						}
+						remove_list_variable = { 
+							name = toggled_county_dat_t
+							target = prev
+						}
 					}
-					remove_list_variable = { 
-						name = toggled_county_dat_t
-						target = prev
+				}
+				ordered_in_list = { 
+					variable = array_toggled_county_dat_t
+					position = global_var:toggled_county_dat_t.compare_value
+					prev = { 
+						remove_list_variable = { 
+							name = array_toggled_county_dat_t
+							target = prev
+						}
 					}
 				}
 			}
-			ordered_in_list = { 
-				variable = array_toggled_county_dat_t
-				position = global_var:toggled_county_dat_t.compare_value
-				prev = { 
-					remove_list_variable = { 
-						name = array_toggled_county_dat_t
-						target = prev
-					}
-				}
+			else = { 
+				remove_variable = info_dat_county_out_val_0_exotics_w
 			}
 			set_global_variable = { 
 				name = array_get_max_t
@@ -21788,7 +22101,7 @@ toggle_county_dat = {
 			}
 			change_variable = { 
 				name = info_dat_county_out_val_1_exotics_w
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_county_dat_t
@@ -21797,29 +22110,38 @@ toggle_county_dat = {
 			remove_global_variable = array_get_max_t
 			remove_global_variable = array_get_max_tt
 			remove_variable = array_get_max_t
-			ordered_in_list = { 
-				variable = toggled_county_dat_t
-				position = global_var:toggled_county_dat_t.compare_value
-				prev = { 
-					set_variable = { 
-						name = info_dat_county_out_scope_1_exotics_w
-						value = prev.var:trade_location
+			if = { 
+				limit = { 
+					has_variable = info_dat_county_out_val_1_exotics_w
+					var:info_dat_county_out_val_1_exotics_w > 0
+				}
+				ordered_in_list = { 
+					variable = toggled_county_dat_t
+					position = global_var:toggled_county_dat_t.compare_value
+					prev = { 
+						set_variable = { 
+							name = info_dat_county_out_scope_1_exotics_w
+							value = prev
+						}
+						remove_list_variable = { 
+							name = toggled_county_dat_t
+							target = prev
+						}
 					}
-					remove_list_variable = { 
-						name = toggled_county_dat_t
-						target = prev
+				}
+				ordered_in_list = { 
+					variable = array_toggled_county_dat_t
+					position = global_var:toggled_county_dat_t.compare_value
+					prev = { 
+						remove_list_variable = { 
+							name = array_toggled_county_dat_t
+							target = prev
+						}
 					}
 				}
 			}
-			ordered_in_list = { 
-				variable = array_toggled_county_dat_t
-				position = global_var:toggled_county_dat_t.compare_value
-				prev = { 
-					remove_list_variable = { 
-						name = array_toggled_county_dat_t
-						target = prev
-					}
-				}
+			else = { 
+				remove_variable = info_dat_county_out_val_1_exotics_w
 			}
 			set_global_variable = { 
 				name = array_get_max_t
@@ -21863,7 +22185,7 @@ toggle_county_dat = {
 			}
 			change_variable = { 
 				name = info_dat_county_out_val_2_exotics_w
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_county_dat_t
@@ -21872,29 +22194,38 @@ toggle_county_dat = {
 			remove_global_variable = array_get_max_t
 			remove_global_variable = array_get_max_tt
 			remove_variable = array_get_max_t
-			ordered_in_list = { 
-				variable = toggled_county_dat_t
-				position = global_var:toggled_county_dat_t.compare_value
-				prev = { 
-					set_variable = { 
-						name = info_dat_county_out_scope_2_exotics_w
-						value = prev.var:trade_location
+			if = { 
+				limit = { 
+					has_variable = info_dat_county_out_val_2_exotics_w
+					var:info_dat_county_out_val_2_exotics_w > 0
+				}
+				ordered_in_list = { 
+					variable = toggled_county_dat_t
+					position = global_var:toggled_county_dat_t.compare_value
+					prev = { 
+						set_variable = { 
+							name = info_dat_county_out_scope_2_exotics_w
+							value = prev
+						}
+						remove_list_variable = { 
+							name = toggled_county_dat_t
+							target = prev
+						}
 					}
-					remove_list_variable = { 
-						name = toggled_county_dat_t
-						target = prev
+				}
+				ordered_in_list = { 
+					variable = array_toggled_county_dat_t
+					position = global_var:toggled_county_dat_t.compare_value
+					prev = { 
+						remove_list_variable = { 
+							name = array_toggled_county_dat_t
+							target = prev
+						}
 					}
 				}
 			}
-			ordered_in_list = { 
-				variable = array_toggled_county_dat_t
-				position = global_var:toggled_county_dat_t.compare_value
-				prev = { 
-					remove_list_variable = { 
-						name = array_toggled_county_dat_t
-						target = prev
-					}
-				}
+			else = { 
+				remove_variable = info_dat_county_out_val_2_exotics_w
 			}
 			set_global_variable = { 
 				name = array_get_min_t
@@ -21938,7 +22269,7 @@ toggle_county_dat = {
 			}
 			change_variable = { 
 				name = info_dat_county_in_val_0_exotics_w
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_county_dat_t
@@ -21957,7 +22288,7 @@ toggle_county_dat = {
 				prev = { 
 					set_variable = { 
 						name = info_dat_county_in_scope_0_exotics_w
-						value = prev.var:trade_location
+						value = prev
 					}
 					remove_list_variable = { 
 						name = toggled_county_dat_t
@@ -22017,7 +22348,7 @@ toggle_county_dat = {
 			}
 			change_variable = { 
 				name = info_dat_county_in_val_1_exotics_w
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_county_dat_t
@@ -22036,7 +22367,7 @@ toggle_county_dat = {
 				prev = { 
 					set_variable = { 
 						name = info_dat_county_in_scope_1_exotics_w
-						value = prev.var:trade_location
+						value = prev
 					}
 					remove_list_variable = { 
 						name = toggled_county_dat_t
@@ -22096,7 +22427,7 @@ toggle_county_dat = {
 			}
 			change_variable = { 
 				name = info_dat_county_in_val_2_exotics_w
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_county_dat_t
@@ -22115,7 +22446,7 @@ toggle_county_dat = {
 				prev = { 
 					set_variable = { 
 						name = info_dat_county_in_scope_2_exotics_w
-						value = prev.var:trade_location
+						value = prev
 					}
 					remove_list_variable = { 
 						name = toggled_county_dat_t
@@ -22134,22 +22465,25 @@ toggle_county_dat = {
 				}
 			}
 			remove_global_variable = toggled_county_dat_t
-			remove_variable = toggled_county_dat_t
-			every_in_list = { 
-				variable = trade_dat_exotics_e
-				prev = { 
-					add_to_variable_list = { 
-						name = toggled_county_dat_t
-						target = prev
+			clear_variable_list = toggled_county_dat_t
+			clear_variable_list = array_toggled_county_dat_t
+			county = { 
+				every_in_list = { 
+					variable = trade_dat_exotics_e
+					scope:toggle_county_dat = { 
+						add_to_variable_list = { 
+							name = toggled_county_dat_t
+							target = prev
+						}
 					}
 				}
-			}
-			every_in_list = { 
-				variable = array_trade_dat_exotics_e
-				prev = { 
-					add_to_variable_list = { 
-						name = array_toggled_county_dat_t
-						target = prev
+				every_in_list = { 
+					variable = array_trade_dat_exotics_e
+					scope:toggle_county_dat = { 
+						add_to_variable_list = { 
+							name = array_toggled_county_dat_t
+							target = prev
+						}
 					}
 				}
 			}
@@ -22195,7 +22529,7 @@ toggle_county_dat = {
 			}
 			change_variable = { 
 				name = info_dat_county_out_val_0_exotics_e
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_county_dat_t
@@ -22204,29 +22538,38 @@ toggle_county_dat = {
 			remove_global_variable = array_get_max_t
 			remove_global_variable = array_get_max_tt
 			remove_variable = array_get_max_t
-			ordered_in_list = { 
-				variable = toggled_county_dat_t
-				position = global_var:toggled_county_dat_t.compare_value
-				prev = { 
-					set_variable = { 
-						name = info_dat_county_out_scope_0_exotics_e
-						value = prev.var:trade_location
+			if = { 
+				limit = { 
+					has_variable = info_dat_county_out_val_0_exotics_e
+					var:info_dat_county_out_val_0_exotics_e > 0
+				}
+				ordered_in_list = { 
+					variable = toggled_county_dat_t
+					position = global_var:toggled_county_dat_t.compare_value
+					prev = { 
+						set_variable = { 
+							name = info_dat_county_out_scope_0_exotics_e
+							value = prev
+						}
+						remove_list_variable = { 
+							name = toggled_county_dat_t
+							target = prev
+						}
 					}
-					remove_list_variable = { 
-						name = toggled_county_dat_t
-						target = prev
+				}
+				ordered_in_list = { 
+					variable = array_toggled_county_dat_t
+					position = global_var:toggled_county_dat_t.compare_value
+					prev = { 
+						remove_list_variable = { 
+							name = array_toggled_county_dat_t
+							target = prev
+						}
 					}
 				}
 			}
-			ordered_in_list = { 
-				variable = array_toggled_county_dat_t
-				position = global_var:toggled_county_dat_t.compare_value
-				prev = { 
-					remove_list_variable = { 
-						name = array_toggled_county_dat_t
-						target = prev
-					}
-				}
+			else = { 
+				remove_variable = info_dat_county_out_val_0_exotics_e
 			}
 			set_global_variable = { 
 				name = array_get_max_t
@@ -22270,7 +22613,7 @@ toggle_county_dat = {
 			}
 			change_variable = { 
 				name = info_dat_county_out_val_1_exotics_e
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_county_dat_t
@@ -22279,29 +22622,38 @@ toggle_county_dat = {
 			remove_global_variable = array_get_max_t
 			remove_global_variable = array_get_max_tt
 			remove_variable = array_get_max_t
-			ordered_in_list = { 
-				variable = toggled_county_dat_t
-				position = global_var:toggled_county_dat_t.compare_value
-				prev = { 
-					set_variable = { 
-						name = info_dat_county_out_scope_1_exotics_e
-						value = prev.var:trade_location
+			if = { 
+				limit = { 
+					has_variable = info_dat_county_out_val_1_exotics_e
+					var:info_dat_county_out_val_1_exotics_e > 0
+				}
+				ordered_in_list = { 
+					variable = toggled_county_dat_t
+					position = global_var:toggled_county_dat_t.compare_value
+					prev = { 
+						set_variable = { 
+							name = info_dat_county_out_scope_1_exotics_e
+							value = prev
+						}
+						remove_list_variable = { 
+							name = toggled_county_dat_t
+							target = prev
+						}
 					}
-					remove_list_variable = { 
-						name = toggled_county_dat_t
-						target = prev
+				}
+				ordered_in_list = { 
+					variable = array_toggled_county_dat_t
+					position = global_var:toggled_county_dat_t.compare_value
+					prev = { 
+						remove_list_variable = { 
+							name = array_toggled_county_dat_t
+							target = prev
+						}
 					}
 				}
 			}
-			ordered_in_list = { 
-				variable = array_toggled_county_dat_t
-				position = global_var:toggled_county_dat_t.compare_value
-				prev = { 
-					remove_list_variable = { 
-						name = array_toggled_county_dat_t
-						target = prev
-					}
-				}
+			else = { 
+				remove_variable = info_dat_county_out_val_1_exotics_e
 			}
 			set_global_variable = { 
 				name = array_get_max_t
@@ -22345,7 +22697,7 @@ toggle_county_dat = {
 			}
 			change_variable = { 
 				name = info_dat_county_out_val_2_exotics_e
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_county_dat_t
@@ -22354,29 +22706,38 @@ toggle_county_dat = {
 			remove_global_variable = array_get_max_t
 			remove_global_variable = array_get_max_tt
 			remove_variable = array_get_max_t
-			ordered_in_list = { 
-				variable = toggled_county_dat_t
-				position = global_var:toggled_county_dat_t.compare_value
-				prev = { 
-					set_variable = { 
-						name = info_dat_county_out_scope_2_exotics_e
-						value = prev.var:trade_location
+			if = { 
+				limit = { 
+					has_variable = info_dat_county_out_val_2_exotics_e
+					var:info_dat_county_out_val_2_exotics_e > 0
+				}
+				ordered_in_list = { 
+					variable = toggled_county_dat_t
+					position = global_var:toggled_county_dat_t.compare_value
+					prev = { 
+						set_variable = { 
+							name = info_dat_county_out_scope_2_exotics_e
+							value = prev
+						}
+						remove_list_variable = { 
+							name = toggled_county_dat_t
+							target = prev
+						}
 					}
-					remove_list_variable = { 
-						name = toggled_county_dat_t
-						target = prev
+				}
+				ordered_in_list = { 
+					variable = array_toggled_county_dat_t
+					position = global_var:toggled_county_dat_t.compare_value
+					prev = { 
+						remove_list_variable = { 
+							name = array_toggled_county_dat_t
+							target = prev
+						}
 					}
 				}
 			}
-			ordered_in_list = { 
-				variable = array_toggled_county_dat_t
-				position = global_var:toggled_county_dat_t.compare_value
-				prev = { 
-					remove_list_variable = { 
-						name = array_toggled_county_dat_t
-						target = prev
-					}
-				}
+			else = { 
+				remove_variable = info_dat_county_out_val_2_exotics_e
 			}
 			set_global_variable = { 
 				name = array_get_min_t
@@ -22420,7 +22781,7 @@ toggle_county_dat = {
 			}
 			change_variable = { 
 				name = info_dat_county_in_val_0_exotics_e
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_county_dat_t
@@ -22439,7 +22800,7 @@ toggle_county_dat = {
 				prev = { 
 					set_variable = { 
 						name = info_dat_county_in_scope_0_exotics_e
-						value = prev.var:trade_location
+						value = prev
 					}
 					remove_list_variable = { 
 						name = toggled_county_dat_t
@@ -22499,7 +22860,7 @@ toggle_county_dat = {
 			}
 			change_variable = { 
 				name = info_dat_county_in_val_1_exotics_e
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_county_dat_t
@@ -22518,7 +22879,7 @@ toggle_county_dat = {
 				prev = { 
 					set_variable = { 
 						name = info_dat_county_in_scope_1_exotics_e
-						value = prev.var:trade_location
+						value = prev
 					}
 					remove_list_variable = { 
 						name = toggled_county_dat_t
@@ -22578,7 +22939,7 @@ toggle_county_dat = {
 			}
 			change_variable = { 
 				name = info_dat_county_in_val_2_exotics_e
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_county_dat_t
@@ -22597,7 +22958,7 @@ toggle_county_dat = {
 				prev = { 
 					set_variable = { 
 						name = info_dat_county_in_scope_2_exotics_e
-						value = prev.var:trade_location
+						value = prev
 					}
 					remove_list_variable = { 
 						name = toggled_county_dat_t
@@ -22616,22 +22977,25 @@ toggle_county_dat = {
 				}
 			}
 			remove_global_variable = toggled_county_dat_t
-			remove_variable = toggled_county_dat_t
-			every_in_list = { 
-				variable = trade_dat_exotics_g
-				prev = { 
-					add_to_variable_list = { 
-						name = toggled_county_dat_t
-						target = prev
+			clear_variable_list = toggled_county_dat_t
+			clear_variable_list = array_toggled_county_dat_t
+			county = { 
+				every_in_list = { 
+					variable = trade_dat_exotics_g
+					scope:toggle_county_dat = { 
+						add_to_variable_list = { 
+							name = toggled_county_dat_t
+							target = prev
+						}
 					}
 				}
-			}
-			every_in_list = { 
-				variable = array_trade_dat_exotics_g
-				prev = { 
-					add_to_variable_list = { 
-						name = array_toggled_county_dat_t
-						target = prev
+				every_in_list = { 
+					variable = array_trade_dat_exotics_g
+					scope:toggle_county_dat = { 
+						add_to_variable_list = { 
+							name = array_toggled_county_dat_t
+							target = prev
+						}
 					}
 				}
 			}
@@ -22677,7 +23041,7 @@ toggle_county_dat = {
 			}
 			change_variable = { 
 				name = info_dat_county_out_val_0_exotics_g
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_county_dat_t
@@ -22686,29 +23050,38 @@ toggle_county_dat = {
 			remove_global_variable = array_get_max_t
 			remove_global_variable = array_get_max_tt
 			remove_variable = array_get_max_t
-			ordered_in_list = { 
-				variable = toggled_county_dat_t
-				position = global_var:toggled_county_dat_t.compare_value
-				prev = { 
-					set_variable = { 
-						name = info_dat_county_out_scope_0_exotics_g
-						value = prev.var:trade_location
+			if = { 
+				limit = { 
+					has_variable = info_dat_county_out_val_0_exotics_g
+					var:info_dat_county_out_val_0_exotics_g > 0
+				}
+				ordered_in_list = { 
+					variable = toggled_county_dat_t
+					position = global_var:toggled_county_dat_t.compare_value
+					prev = { 
+						set_variable = { 
+							name = info_dat_county_out_scope_0_exotics_g
+							value = prev
+						}
+						remove_list_variable = { 
+							name = toggled_county_dat_t
+							target = prev
+						}
 					}
-					remove_list_variable = { 
-						name = toggled_county_dat_t
-						target = prev
+				}
+				ordered_in_list = { 
+					variable = array_toggled_county_dat_t
+					position = global_var:toggled_county_dat_t.compare_value
+					prev = { 
+						remove_list_variable = { 
+							name = array_toggled_county_dat_t
+							target = prev
+						}
 					}
 				}
 			}
-			ordered_in_list = { 
-				variable = array_toggled_county_dat_t
-				position = global_var:toggled_county_dat_t.compare_value
-				prev = { 
-					remove_list_variable = { 
-						name = array_toggled_county_dat_t
-						target = prev
-					}
-				}
+			else = { 
+				remove_variable = info_dat_county_out_val_0_exotics_g
 			}
 			set_global_variable = { 
 				name = array_get_max_t
@@ -22752,7 +23125,7 @@ toggle_county_dat = {
 			}
 			change_variable = { 
 				name = info_dat_county_out_val_1_exotics_g
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_county_dat_t
@@ -22761,29 +23134,38 @@ toggle_county_dat = {
 			remove_global_variable = array_get_max_t
 			remove_global_variable = array_get_max_tt
 			remove_variable = array_get_max_t
-			ordered_in_list = { 
-				variable = toggled_county_dat_t
-				position = global_var:toggled_county_dat_t.compare_value
-				prev = { 
-					set_variable = { 
-						name = info_dat_county_out_scope_1_exotics_g
-						value = prev.var:trade_location
+			if = { 
+				limit = { 
+					has_variable = info_dat_county_out_val_1_exotics_g
+					var:info_dat_county_out_val_1_exotics_g > 0
+				}
+				ordered_in_list = { 
+					variable = toggled_county_dat_t
+					position = global_var:toggled_county_dat_t.compare_value
+					prev = { 
+						set_variable = { 
+							name = info_dat_county_out_scope_1_exotics_g
+							value = prev
+						}
+						remove_list_variable = { 
+							name = toggled_county_dat_t
+							target = prev
+						}
 					}
-					remove_list_variable = { 
-						name = toggled_county_dat_t
-						target = prev
+				}
+				ordered_in_list = { 
+					variable = array_toggled_county_dat_t
+					position = global_var:toggled_county_dat_t.compare_value
+					prev = { 
+						remove_list_variable = { 
+							name = array_toggled_county_dat_t
+							target = prev
+						}
 					}
 				}
 			}
-			ordered_in_list = { 
-				variable = array_toggled_county_dat_t
-				position = global_var:toggled_county_dat_t.compare_value
-				prev = { 
-					remove_list_variable = { 
-						name = array_toggled_county_dat_t
-						target = prev
-					}
-				}
+			else = { 
+				remove_variable = info_dat_county_out_val_1_exotics_g
 			}
 			set_global_variable = { 
 				name = array_get_max_t
@@ -22827,7 +23209,7 @@ toggle_county_dat = {
 			}
 			change_variable = { 
 				name = info_dat_county_out_val_2_exotics_g
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_county_dat_t
@@ -22836,29 +23218,38 @@ toggle_county_dat = {
 			remove_global_variable = array_get_max_t
 			remove_global_variable = array_get_max_tt
 			remove_variable = array_get_max_t
-			ordered_in_list = { 
-				variable = toggled_county_dat_t
-				position = global_var:toggled_county_dat_t.compare_value
-				prev = { 
-					set_variable = { 
-						name = info_dat_county_out_scope_2_exotics_g
-						value = prev.var:trade_location
+			if = { 
+				limit = { 
+					has_variable = info_dat_county_out_val_2_exotics_g
+					var:info_dat_county_out_val_2_exotics_g > 0
+				}
+				ordered_in_list = { 
+					variable = toggled_county_dat_t
+					position = global_var:toggled_county_dat_t.compare_value
+					prev = { 
+						set_variable = { 
+							name = info_dat_county_out_scope_2_exotics_g
+							value = prev
+						}
+						remove_list_variable = { 
+							name = toggled_county_dat_t
+							target = prev
+						}
 					}
-					remove_list_variable = { 
-						name = toggled_county_dat_t
-						target = prev
+				}
+				ordered_in_list = { 
+					variable = array_toggled_county_dat_t
+					position = global_var:toggled_county_dat_t.compare_value
+					prev = { 
+						remove_list_variable = { 
+							name = array_toggled_county_dat_t
+							target = prev
+						}
 					}
 				}
 			}
-			ordered_in_list = { 
-				variable = array_toggled_county_dat_t
-				position = global_var:toggled_county_dat_t.compare_value
-				prev = { 
-					remove_list_variable = { 
-						name = array_toggled_county_dat_t
-						target = prev
-					}
-				}
+			else = { 
+				remove_variable = info_dat_county_out_val_2_exotics_g
 			}
 			set_global_variable = { 
 				name = array_get_min_t
@@ -22902,7 +23293,7 @@ toggle_county_dat = {
 			}
 			change_variable = { 
 				name = info_dat_county_in_val_0_exotics_g
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_county_dat_t
@@ -22921,7 +23312,7 @@ toggle_county_dat = {
 				prev = { 
 					set_variable = { 
 						name = info_dat_county_in_scope_0_exotics_g
-						value = prev.var:trade_location
+						value = prev
 					}
 					remove_list_variable = { 
 						name = toggled_county_dat_t
@@ -22981,7 +23372,7 @@ toggle_county_dat = {
 			}
 			change_variable = { 
 				name = info_dat_county_in_val_1_exotics_g
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_county_dat_t
@@ -23000,7 +23391,7 @@ toggle_county_dat = {
 				prev = { 
 					set_variable = { 
 						name = info_dat_county_in_scope_1_exotics_g
-						value = prev.var:trade_location
+						value = prev
 					}
 					remove_list_variable = { 
 						name = toggled_county_dat_t
@@ -23060,7 +23451,7 @@ toggle_county_dat = {
 			}
 			change_variable = { 
 				name = info_dat_county_in_val_2_exotics_g
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_county_dat_t
@@ -23079,7 +23470,7 @@ toggle_county_dat = {
 				prev = { 
 					set_variable = { 
 						name = info_dat_county_in_scope_2_exotics_g
-						value = prev.var:trade_location
+						value = prev
 					}
 					remove_list_variable = { 
 						name = toggled_county_dat_t
@@ -23098,22 +23489,25 @@ toggle_county_dat = {
 				}
 			}
 			remove_global_variable = toggled_county_dat_t
-			remove_variable = toggled_county_dat_t
-			every_in_list = { 
-				variable = trade_dat_textile
-				prev = { 
-					add_to_variable_list = { 
-						name = toggled_county_dat_t
-						target = prev
+			clear_variable_list = toggled_county_dat_t
+			clear_variable_list = array_toggled_county_dat_t
+			county = { 
+				every_in_list = { 
+					variable = trade_dat_textile
+					scope:toggle_county_dat = { 
+						add_to_variable_list = { 
+							name = toggled_county_dat_t
+							target = prev
+						}
 					}
 				}
-			}
-			every_in_list = { 
-				variable = array_trade_dat_textile
-				prev = { 
-					add_to_variable_list = { 
-						name = array_toggled_county_dat_t
-						target = prev
+				every_in_list = { 
+					variable = array_trade_dat_textile
+					scope:toggle_county_dat = { 
+						add_to_variable_list = { 
+							name = array_toggled_county_dat_t
+							target = prev
+						}
 					}
 				}
 			}
@@ -23159,7 +23553,7 @@ toggle_county_dat = {
 			}
 			change_variable = { 
 				name = info_dat_county_out_val_0_textile
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_county_dat_t
@@ -23168,29 +23562,38 @@ toggle_county_dat = {
 			remove_global_variable = array_get_max_t
 			remove_global_variable = array_get_max_tt
 			remove_variable = array_get_max_t
-			ordered_in_list = { 
-				variable = toggled_county_dat_t
-				position = global_var:toggled_county_dat_t.compare_value
-				prev = { 
-					set_variable = { 
-						name = info_dat_county_out_scope_0_textile
-						value = prev.var:trade_location
+			if = { 
+				limit = { 
+					has_variable = info_dat_county_out_val_0_textile
+					var:info_dat_county_out_val_0_textile > 0
+				}
+				ordered_in_list = { 
+					variable = toggled_county_dat_t
+					position = global_var:toggled_county_dat_t.compare_value
+					prev = { 
+						set_variable = { 
+							name = info_dat_county_out_scope_0_textile
+							value = prev
+						}
+						remove_list_variable = { 
+							name = toggled_county_dat_t
+							target = prev
+						}
 					}
-					remove_list_variable = { 
-						name = toggled_county_dat_t
-						target = prev
+				}
+				ordered_in_list = { 
+					variable = array_toggled_county_dat_t
+					position = global_var:toggled_county_dat_t.compare_value
+					prev = { 
+						remove_list_variable = { 
+							name = array_toggled_county_dat_t
+							target = prev
+						}
 					}
 				}
 			}
-			ordered_in_list = { 
-				variable = array_toggled_county_dat_t
-				position = global_var:toggled_county_dat_t.compare_value
-				prev = { 
-					remove_list_variable = { 
-						name = array_toggled_county_dat_t
-						target = prev
-					}
-				}
+			else = { 
+				remove_variable = info_dat_county_out_val_0_textile
 			}
 			set_global_variable = { 
 				name = array_get_max_t
@@ -23234,7 +23637,7 @@ toggle_county_dat = {
 			}
 			change_variable = { 
 				name = info_dat_county_out_val_1_textile
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_county_dat_t
@@ -23243,29 +23646,38 @@ toggle_county_dat = {
 			remove_global_variable = array_get_max_t
 			remove_global_variable = array_get_max_tt
 			remove_variable = array_get_max_t
-			ordered_in_list = { 
-				variable = toggled_county_dat_t
-				position = global_var:toggled_county_dat_t.compare_value
-				prev = { 
-					set_variable = { 
-						name = info_dat_county_out_scope_1_textile
-						value = prev.var:trade_location
+			if = { 
+				limit = { 
+					has_variable = info_dat_county_out_val_1_textile
+					var:info_dat_county_out_val_1_textile > 0
+				}
+				ordered_in_list = { 
+					variable = toggled_county_dat_t
+					position = global_var:toggled_county_dat_t.compare_value
+					prev = { 
+						set_variable = { 
+							name = info_dat_county_out_scope_1_textile
+							value = prev
+						}
+						remove_list_variable = { 
+							name = toggled_county_dat_t
+							target = prev
+						}
 					}
-					remove_list_variable = { 
-						name = toggled_county_dat_t
-						target = prev
+				}
+				ordered_in_list = { 
+					variable = array_toggled_county_dat_t
+					position = global_var:toggled_county_dat_t.compare_value
+					prev = { 
+						remove_list_variable = { 
+							name = array_toggled_county_dat_t
+							target = prev
+						}
 					}
 				}
 			}
-			ordered_in_list = { 
-				variable = array_toggled_county_dat_t
-				position = global_var:toggled_county_dat_t.compare_value
-				prev = { 
-					remove_list_variable = { 
-						name = array_toggled_county_dat_t
-						target = prev
-					}
-				}
+			else = { 
+				remove_variable = info_dat_county_out_val_1_textile
 			}
 			set_global_variable = { 
 				name = array_get_max_t
@@ -23309,7 +23721,7 @@ toggle_county_dat = {
 			}
 			change_variable = { 
 				name = info_dat_county_out_val_2_textile
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_county_dat_t
@@ -23318,29 +23730,38 @@ toggle_county_dat = {
 			remove_global_variable = array_get_max_t
 			remove_global_variable = array_get_max_tt
 			remove_variable = array_get_max_t
-			ordered_in_list = { 
-				variable = toggled_county_dat_t
-				position = global_var:toggled_county_dat_t.compare_value
-				prev = { 
-					set_variable = { 
-						name = info_dat_county_out_scope_2_textile
-						value = prev.var:trade_location
+			if = { 
+				limit = { 
+					has_variable = info_dat_county_out_val_2_textile
+					var:info_dat_county_out_val_2_textile > 0
+				}
+				ordered_in_list = { 
+					variable = toggled_county_dat_t
+					position = global_var:toggled_county_dat_t.compare_value
+					prev = { 
+						set_variable = { 
+							name = info_dat_county_out_scope_2_textile
+							value = prev
+						}
+						remove_list_variable = { 
+							name = toggled_county_dat_t
+							target = prev
+						}
 					}
-					remove_list_variable = { 
-						name = toggled_county_dat_t
-						target = prev
+				}
+				ordered_in_list = { 
+					variable = array_toggled_county_dat_t
+					position = global_var:toggled_county_dat_t.compare_value
+					prev = { 
+						remove_list_variable = { 
+							name = array_toggled_county_dat_t
+							target = prev
+						}
 					}
 				}
 			}
-			ordered_in_list = { 
-				variable = array_toggled_county_dat_t
-				position = global_var:toggled_county_dat_t.compare_value
-				prev = { 
-					remove_list_variable = { 
-						name = array_toggled_county_dat_t
-						target = prev
-					}
-				}
+			else = { 
+				remove_variable = info_dat_county_out_val_2_textile
 			}
 			set_global_variable = { 
 				name = array_get_min_t
@@ -23384,7 +23805,7 @@ toggle_county_dat = {
 			}
 			change_variable = { 
 				name = info_dat_county_in_val_0_textile
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_county_dat_t
@@ -23403,7 +23824,7 @@ toggle_county_dat = {
 				prev = { 
 					set_variable = { 
 						name = info_dat_county_in_scope_0_textile
-						value = prev.var:trade_location
+						value = prev
 					}
 					remove_list_variable = { 
 						name = toggled_county_dat_t
@@ -23463,7 +23884,7 @@ toggle_county_dat = {
 			}
 			change_variable = { 
 				name = info_dat_county_in_val_1_textile
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_county_dat_t
@@ -23482,7 +23903,7 @@ toggle_county_dat = {
 				prev = { 
 					set_variable = { 
 						name = info_dat_county_in_scope_1_textile
-						value = prev.var:trade_location
+						value = prev
 					}
 					remove_list_variable = { 
 						name = toggled_county_dat_t
@@ -23542,7 +23963,7 @@ toggle_county_dat = {
 			}
 			change_variable = { 
 				name = info_dat_county_in_val_2_textile
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_county_dat_t
@@ -23561,7 +23982,7 @@ toggle_county_dat = {
 				prev = { 
 					set_variable = { 
 						name = info_dat_county_in_scope_2_textile
-						value = prev.var:trade_location
+						value = prev
 					}
 					remove_list_variable = { 
 						name = toggled_county_dat_t
@@ -23580,22 +24001,25 @@ toggle_county_dat = {
 				}
 			}
 			remove_global_variable = toggled_county_dat_t
-			remove_variable = toggled_county_dat_t
-			every_in_list = { 
-				variable = trade_dat_pottery
-				prev = { 
-					add_to_variable_list = { 
-						name = toggled_county_dat_t
-						target = prev
+			clear_variable_list = toggled_county_dat_t
+			clear_variable_list = array_toggled_county_dat_t
+			county = { 
+				every_in_list = { 
+					variable = trade_dat_pottery
+					scope:toggle_county_dat = { 
+						add_to_variable_list = { 
+							name = toggled_county_dat_t
+							target = prev
+						}
 					}
 				}
-			}
-			every_in_list = { 
-				variable = array_trade_dat_pottery
-				prev = { 
-					add_to_variable_list = { 
-						name = array_toggled_county_dat_t
-						target = prev
+				every_in_list = { 
+					variable = array_trade_dat_pottery
+					scope:toggle_county_dat = { 
+						add_to_variable_list = { 
+							name = array_toggled_county_dat_t
+							target = prev
+						}
 					}
 				}
 			}
@@ -23641,7 +24065,7 @@ toggle_county_dat = {
 			}
 			change_variable = { 
 				name = info_dat_county_out_val_0_pottery
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_county_dat_t
@@ -23650,29 +24074,38 @@ toggle_county_dat = {
 			remove_global_variable = array_get_max_t
 			remove_global_variable = array_get_max_tt
 			remove_variable = array_get_max_t
-			ordered_in_list = { 
-				variable = toggled_county_dat_t
-				position = global_var:toggled_county_dat_t.compare_value
-				prev = { 
-					set_variable = { 
-						name = info_dat_county_out_scope_0_pottery
-						value = prev.var:trade_location
+			if = { 
+				limit = { 
+					has_variable = info_dat_county_out_val_0_pottery
+					var:info_dat_county_out_val_0_pottery > 0
+				}
+				ordered_in_list = { 
+					variable = toggled_county_dat_t
+					position = global_var:toggled_county_dat_t.compare_value
+					prev = { 
+						set_variable = { 
+							name = info_dat_county_out_scope_0_pottery
+							value = prev
+						}
+						remove_list_variable = { 
+							name = toggled_county_dat_t
+							target = prev
+						}
 					}
-					remove_list_variable = { 
-						name = toggled_county_dat_t
-						target = prev
+				}
+				ordered_in_list = { 
+					variable = array_toggled_county_dat_t
+					position = global_var:toggled_county_dat_t.compare_value
+					prev = { 
+						remove_list_variable = { 
+							name = array_toggled_county_dat_t
+							target = prev
+						}
 					}
 				}
 			}
-			ordered_in_list = { 
-				variable = array_toggled_county_dat_t
-				position = global_var:toggled_county_dat_t.compare_value
-				prev = { 
-					remove_list_variable = { 
-						name = array_toggled_county_dat_t
-						target = prev
-					}
-				}
+			else = { 
+				remove_variable = info_dat_county_out_val_0_pottery
 			}
 			set_global_variable = { 
 				name = array_get_max_t
@@ -23716,7 +24149,7 @@ toggle_county_dat = {
 			}
 			change_variable = { 
 				name = info_dat_county_out_val_1_pottery
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_county_dat_t
@@ -23725,29 +24158,38 @@ toggle_county_dat = {
 			remove_global_variable = array_get_max_t
 			remove_global_variable = array_get_max_tt
 			remove_variable = array_get_max_t
-			ordered_in_list = { 
-				variable = toggled_county_dat_t
-				position = global_var:toggled_county_dat_t.compare_value
-				prev = { 
-					set_variable = { 
-						name = info_dat_county_out_scope_1_pottery
-						value = prev.var:trade_location
+			if = { 
+				limit = { 
+					has_variable = info_dat_county_out_val_1_pottery
+					var:info_dat_county_out_val_1_pottery > 0
+				}
+				ordered_in_list = { 
+					variable = toggled_county_dat_t
+					position = global_var:toggled_county_dat_t.compare_value
+					prev = { 
+						set_variable = { 
+							name = info_dat_county_out_scope_1_pottery
+							value = prev
+						}
+						remove_list_variable = { 
+							name = toggled_county_dat_t
+							target = prev
+						}
 					}
-					remove_list_variable = { 
-						name = toggled_county_dat_t
-						target = prev
+				}
+				ordered_in_list = { 
+					variable = array_toggled_county_dat_t
+					position = global_var:toggled_county_dat_t.compare_value
+					prev = { 
+						remove_list_variable = { 
+							name = array_toggled_county_dat_t
+							target = prev
+						}
 					}
 				}
 			}
-			ordered_in_list = { 
-				variable = array_toggled_county_dat_t
-				position = global_var:toggled_county_dat_t.compare_value
-				prev = { 
-					remove_list_variable = { 
-						name = array_toggled_county_dat_t
-						target = prev
-					}
-				}
+			else = { 
+				remove_variable = info_dat_county_out_val_1_pottery
 			}
 			set_global_variable = { 
 				name = array_get_max_t
@@ -23791,7 +24233,7 @@ toggle_county_dat = {
 			}
 			change_variable = { 
 				name = info_dat_county_out_val_2_pottery
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_county_dat_t
@@ -23800,29 +24242,38 @@ toggle_county_dat = {
 			remove_global_variable = array_get_max_t
 			remove_global_variable = array_get_max_tt
 			remove_variable = array_get_max_t
-			ordered_in_list = { 
-				variable = toggled_county_dat_t
-				position = global_var:toggled_county_dat_t.compare_value
-				prev = { 
-					set_variable = { 
-						name = info_dat_county_out_scope_2_pottery
-						value = prev.var:trade_location
+			if = { 
+				limit = { 
+					has_variable = info_dat_county_out_val_2_pottery
+					var:info_dat_county_out_val_2_pottery > 0
+				}
+				ordered_in_list = { 
+					variable = toggled_county_dat_t
+					position = global_var:toggled_county_dat_t.compare_value
+					prev = { 
+						set_variable = { 
+							name = info_dat_county_out_scope_2_pottery
+							value = prev
+						}
+						remove_list_variable = { 
+							name = toggled_county_dat_t
+							target = prev
+						}
 					}
-					remove_list_variable = { 
-						name = toggled_county_dat_t
-						target = prev
+				}
+				ordered_in_list = { 
+					variable = array_toggled_county_dat_t
+					position = global_var:toggled_county_dat_t.compare_value
+					prev = { 
+						remove_list_variable = { 
+							name = array_toggled_county_dat_t
+							target = prev
+						}
 					}
 				}
 			}
-			ordered_in_list = { 
-				variable = array_toggled_county_dat_t
-				position = global_var:toggled_county_dat_t.compare_value
-				prev = { 
-					remove_list_variable = { 
-						name = array_toggled_county_dat_t
-						target = prev
-					}
-				}
+			else = { 
+				remove_variable = info_dat_county_out_val_2_pottery
 			}
 			set_global_variable = { 
 				name = array_get_min_t
@@ -23866,7 +24317,7 @@ toggle_county_dat = {
 			}
 			change_variable = { 
 				name = info_dat_county_in_val_0_pottery
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_county_dat_t
@@ -23885,7 +24336,7 @@ toggle_county_dat = {
 				prev = { 
 					set_variable = { 
 						name = info_dat_county_in_scope_0_pottery
-						value = prev.var:trade_location
+						value = prev
 					}
 					remove_list_variable = { 
 						name = toggled_county_dat_t
@@ -23945,7 +24396,7 @@ toggle_county_dat = {
 			}
 			change_variable = { 
 				name = info_dat_county_in_val_1_pottery
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_county_dat_t
@@ -23964,7 +24415,7 @@ toggle_county_dat = {
 				prev = { 
 					set_variable = { 
 						name = info_dat_county_in_scope_1_pottery
-						value = prev.var:trade_location
+						value = prev
 					}
 					remove_list_variable = { 
 						name = toggled_county_dat_t
@@ -24024,7 +24475,7 @@ toggle_county_dat = {
 			}
 			change_variable = { 
 				name = info_dat_county_in_val_2_pottery
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_county_dat_t
@@ -24043,7 +24494,7 @@ toggle_county_dat = {
 				prev = { 
 					set_variable = { 
 						name = info_dat_county_in_scope_2_pottery
-						value = prev.var:trade_location
+						value = prev
 					}
 					remove_list_variable = { 
 						name = toggled_county_dat_t
@@ -24062,22 +24513,25 @@ toggle_county_dat = {
 				}
 			}
 			remove_global_variable = toggled_county_dat_t
-			remove_variable = toggled_county_dat_t
-			every_in_list = { 
-				variable = trade_dat_tools
-				prev = { 
-					add_to_variable_list = { 
-						name = toggled_county_dat_t
-						target = prev
+			clear_variable_list = toggled_county_dat_t
+			clear_variable_list = array_toggled_county_dat_t
+			county = { 
+				every_in_list = { 
+					variable = trade_dat_tools
+					scope:toggle_county_dat = { 
+						add_to_variable_list = { 
+							name = toggled_county_dat_t
+							target = prev
+						}
 					}
 				}
-			}
-			every_in_list = { 
-				variable = array_trade_dat_tools
-				prev = { 
-					add_to_variable_list = { 
-						name = array_toggled_county_dat_t
-						target = prev
+				every_in_list = { 
+					variable = array_trade_dat_tools
+					scope:toggle_county_dat = { 
+						add_to_variable_list = { 
+							name = array_toggled_county_dat_t
+							target = prev
+						}
 					}
 				}
 			}
@@ -24123,7 +24577,7 @@ toggle_county_dat = {
 			}
 			change_variable = { 
 				name = info_dat_county_out_val_0_tools
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_county_dat_t
@@ -24132,29 +24586,38 @@ toggle_county_dat = {
 			remove_global_variable = array_get_max_t
 			remove_global_variable = array_get_max_tt
 			remove_variable = array_get_max_t
-			ordered_in_list = { 
-				variable = toggled_county_dat_t
-				position = global_var:toggled_county_dat_t.compare_value
-				prev = { 
-					set_variable = { 
-						name = info_dat_county_out_scope_0_tools
-						value = prev.var:trade_location
+			if = { 
+				limit = { 
+					has_variable = info_dat_county_out_val_0_tools
+					var:info_dat_county_out_val_0_tools > 0
+				}
+				ordered_in_list = { 
+					variable = toggled_county_dat_t
+					position = global_var:toggled_county_dat_t.compare_value
+					prev = { 
+						set_variable = { 
+							name = info_dat_county_out_scope_0_tools
+							value = prev
+						}
+						remove_list_variable = { 
+							name = toggled_county_dat_t
+							target = prev
+						}
 					}
-					remove_list_variable = { 
-						name = toggled_county_dat_t
-						target = prev
+				}
+				ordered_in_list = { 
+					variable = array_toggled_county_dat_t
+					position = global_var:toggled_county_dat_t.compare_value
+					prev = { 
+						remove_list_variable = { 
+							name = array_toggled_county_dat_t
+							target = prev
+						}
 					}
 				}
 			}
-			ordered_in_list = { 
-				variable = array_toggled_county_dat_t
-				position = global_var:toggled_county_dat_t.compare_value
-				prev = { 
-					remove_list_variable = { 
-						name = array_toggled_county_dat_t
-						target = prev
-					}
-				}
+			else = { 
+				remove_variable = info_dat_county_out_val_0_tools
 			}
 			set_global_variable = { 
 				name = array_get_max_t
@@ -24198,7 +24661,7 @@ toggle_county_dat = {
 			}
 			change_variable = { 
 				name = info_dat_county_out_val_1_tools
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_county_dat_t
@@ -24207,29 +24670,38 @@ toggle_county_dat = {
 			remove_global_variable = array_get_max_t
 			remove_global_variable = array_get_max_tt
 			remove_variable = array_get_max_t
-			ordered_in_list = { 
-				variable = toggled_county_dat_t
-				position = global_var:toggled_county_dat_t.compare_value
-				prev = { 
-					set_variable = { 
-						name = info_dat_county_out_scope_1_tools
-						value = prev.var:trade_location
+			if = { 
+				limit = { 
+					has_variable = info_dat_county_out_val_1_tools
+					var:info_dat_county_out_val_1_tools > 0
+				}
+				ordered_in_list = { 
+					variable = toggled_county_dat_t
+					position = global_var:toggled_county_dat_t.compare_value
+					prev = { 
+						set_variable = { 
+							name = info_dat_county_out_scope_1_tools
+							value = prev
+						}
+						remove_list_variable = { 
+							name = toggled_county_dat_t
+							target = prev
+						}
 					}
-					remove_list_variable = { 
-						name = toggled_county_dat_t
-						target = prev
+				}
+				ordered_in_list = { 
+					variable = array_toggled_county_dat_t
+					position = global_var:toggled_county_dat_t.compare_value
+					prev = { 
+						remove_list_variable = { 
+							name = array_toggled_county_dat_t
+							target = prev
+						}
 					}
 				}
 			}
-			ordered_in_list = { 
-				variable = array_toggled_county_dat_t
-				position = global_var:toggled_county_dat_t.compare_value
-				prev = { 
-					remove_list_variable = { 
-						name = array_toggled_county_dat_t
-						target = prev
-					}
-				}
+			else = { 
+				remove_variable = info_dat_county_out_val_1_tools
 			}
 			set_global_variable = { 
 				name = array_get_max_t
@@ -24273,7 +24745,7 @@ toggle_county_dat = {
 			}
 			change_variable = { 
 				name = info_dat_county_out_val_2_tools
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_county_dat_t
@@ -24282,29 +24754,38 @@ toggle_county_dat = {
 			remove_global_variable = array_get_max_t
 			remove_global_variable = array_get_max_tt
 			remove_variable = array_get_max_t
-			ordered_in_list = { 
-				variable = toggled_county_dat_t
-				position = global_var:toggled_county_dat_t.compare_value
-				prev = { 
-					set_variable = { 
-						name = info_dat_county_out_scope_2_tools
-						value = prev.var:trade_location
+			if = { 
+				limit = { 
+					has_variable = info_dat_county_out_val_2_tools
+					var:info_dat_county_out_val_2_tools > 0
+				}
+				ordered_in_list = { 
+					variable = toggled_county_dat_t
+					position = global_var:toggled_county_dat_t.compare_value
+					prev = { 
+						set_variable = { 
+							name = info_dat_county_out_scope_2_tools
+							value = prev
+						}
+						remove_list_variable = { 
+							name = toggled_county_dat_t
+							target = prev
+						}
 					}
-					remove_list_variable = { 
-						name = toggled_county_dat_t
-						target = prev
+				}
+				ordered_in_list = { 
+					variable = array_toggled_county_dat_t
+					position = global_var:toggled_county_dat_t.compare_value
+					prev = { 
+						remove_list_variable = { 
+							name = array_toggled_county_dat_t
+							target = prev
+						}
 					}
 				}
 			}
-			ordered_in_list = { 
-				variable = array_toggled_county_dat_t
-				position = global_var:toggled_county_dat_t.compare_value
-				prev = { 
-					remove_list_variable = { 
-						name = array_toggled_county_dat_t
-						target = prev
-					}
-				}
+			else = { 
+				remove_variable = info_dat_county_out_val_2_tools
 			}
 			set_global_variable = { 
 				name = array_get_min_t
@@ -24348,7 +24829,7 @@ toggle_county_dat = {
 			}
 			change_variable = { 
 				name = info_dat_county_in_val_0_tools
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_county_dat_t
@@ -24367,7 +24848,7 @@ toggle_county_dat = {
 				prev = { 
 					set_variable = { 
 						name = info_dat_county_in_scope_0_tools
-						value = prev.var:trade_location
+						value = prev
 					}
 					remove_list_variable = { 
 						name = toggled_county_dat_t
@@ -24427,7 +24908,7 @@ toggle_county_dat = {
 			}
 			change_variable = { 
 				name = info_dat_county_in_val_1_tools
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_county_dat_t
@@ -24446,7 +24927,7 @@ toggle_county_dat = {
 				prev = { 
 					set_variable = { 
 						name = info_dat_county_in_scope_1_tools
-						value = prev.var:trade_location
+						value = prev
 					}
 					remove_list_variable = { 
 						name = toggled_county_dat_t
@@ -24506,7 +24987,7 @@ toggle_county_dat = {
 			}
 			change_variable = { 
 				name = info_dat_county_in_val_2_tools
-				divide = 100
+				divide = 10
 			}
 			set_global_variable = { 
 				name = toggled_county_dat_t
@@ -24525,7 +25006,7 @@ toggle_county_dat = {
 				prev = { 
 					set_variable = { 
 						name = info_dat_county_in_scope_2_tools
-						value = prev.var:trade_location
+						value = prev
 					}
 					remove_list_variable = { 
 						name = toggled_county_dat_t
@@ -24544,7 +25025,8 @@ toggle_county_dat = {
 				}
 			}
 			remove_global_variable = toggled_county_dat_t
-			remove_variable = toggled_county_dat_t
+			clear_variable_list = toggled_county_dat_t
+			clear_variable_list = array_toggled_county_dat_t
 		}
 	}
 }
