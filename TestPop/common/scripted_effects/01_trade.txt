@@ -882,7 +882,7 @@ trade_do_trade = {
 						
 						ordered_in_list = {
 							variable = array_trade_dat_&goods&
-							position = global_var:trade_do_trade_t
+							position = global_var:trade_do_trade_t.compare_value
 							
 							prev = {
 								change_variable = { name = trade_do_trade_t subtract = prev }
@@ -916,7 +916,7 @@ trade_do_trade = {
 							
 							ordered_in_list = {
 								variable = array_trade_dat_&goods&
-								position = global_var:trade_do_trade_t
+								position = global_var:trade_do_trade_t.compare_value
 								
 								prev = {
 									remove_list_variable = { name = array_trade_dat_&goods& target = prev }
