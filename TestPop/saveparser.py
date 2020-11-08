@@ -171,6 +171,7 @@ if __name__ == '__main__':
         print('Parsing Titles')
         
         titles = dict()
+        id_to_title = dict()
         
         start = t.find('\nlanded_titles={')
         end = t.find('\ndynasties={', start)
@@ -186,6 +187,8 @@ if __name__ == '__main__':
 
             if name[:2] != 'c_':
                 continue
+
+            id_to_title[title[0]] = name
 
             titles[name] = (dict(), dict())
 
@@ -356,7 +359,10 @@ if __name__ == '__main__':
 
                                 for n, vs in chars[data[1]][1].items():
                                     for v in vs:
-                                        outout.append(helper(('\t\t\t\tadd_to_variable_list', 'target'), n, v))
+                                        if '_dat_' in n and v[0] == 'lt':
+                                            outout.append(helper(('\t\t\t\tadd_to_variable_list', 'target'), n, ('lt', id_to_title[v[1]])))
+                                        else:
+                                            outout.append(helper(('\t\t\t\tadd_to_variable_list', 'target'), n, v))
                                         
                                 outout.append('\t\t\t}\n')
                         else:
@@ -383,6 +389,10 @@ if __name__ == '__main__':
 
                 for n, d in data[0].items():
                     outout.append(helper(('\t\t\tset_variable', 'value'), n, d))
+                for n, vs in data[1].items():
+                    if '_dat_' in n:
+                        for v in vs:
+                            outout.append(helper(('\t\t\tadd_to_variable_list', 'target'), n, v))
 
                 outout.append('\t\t}\n')
 
