@@ -267,7 +267,7 @@ if __name__ == '__main__':
         create_character = '\t\tcreate_character = { save_temporary_scope_as = save_data_t gender = male trait = character_not_1 employer = global_var:arhat faith = global_var:arhat.faith culture = global_var:arhat.culture dynasty = none }\n'
         character_data = '\t\tscope:save_data_t = {\n%s\n\t\t}\n'
         
-        def helper(form, name, data):
+        def helper(form, name, data, id_to_title):
             if data:
                 if data[0] == 'value':
                     if int(data[1]) / 1000 > 210000:
@@ -279,7 +279,7 @@ if __name__ == '__main__':
                 elif data[0] == 'boolean':
                     return '%s = { name = %s }\n' % (form[0], name)
                 elif data[0] == 'lt':
-                    return '%s = { name = %s %s = title:%s }\n' % (form[0], name, form[1], data[1])
+                    return '%s = { name = %s %s = title:%s }\n' % (form[0], name, form[1], id_to_title[data[1]])
                 else:
                     return ''
             else:
@@ -295,7 +295,7 @@ if __name__ == '__main__':
             for name, data in glob_vars.items():
                 if data[0] == 'char' and data[1] in chars:
                     outout.append(create_character)
-                    outout.append(character_data % ''.join([helper(('\t\t\tset_variable', 'value'), n, d) for n, d in chars[data[1]][0].items()]))
+                    outout.append(character_data % ''.join([helper(('\t\t\tset_variable', 'value'), n, d, id_to_title) for n, d in chars[data[1]][0].items()]))
                     outout.append('\t\tset_global_variable = { name = %s value = scope:save_data_t }\n' % name)
 
                     if ('char', data[1]) in glob_lsts['prod_templates']:
@@ -307,7 +307,7 @@ if __name__ == '__main__':
                     elif ('char', data[1]) in glob_lsts['build_templates']:
                         outout.append('\t\tadd_to_global_variable_list = { name = build_templates target = scope:save_data_t }\n')
                 else:
-                    outout.append(helper(('\t\tset_global_variable', 'value'), name, data))
+                    outout.append(helper(('\t\tset_global_variable', 'value'), name, data, id_to_title))
 
             out.append(event % (1, ''.join(outout), nxt % 2))
 
@@ -339,7 +339,7 @@ if __name__ == '__main__':
                             outout.append('\t')
                             outout.append(create_character)
                             outout.append('\t')
-                            outout.append(character_data % ''.join([helper(('\t\t\t\tset_variable', 'value'), n, d) for n, d in chars[data[1]][0].items()]))
+                            outout.append(character_data % ''.join([helper(('\t\t\t\tset_variable', 'value'), n, d, id_to_title) for n, d in chars[data[1]][0].items()]))
 
                             if 'prod_slot' in name:
                                 outout.append('\t\t\tadd_to_global_variable_list = { name = prod_instances target = scope:save_data_t }\n')
@@ -359,18 +359,15 @@ if __name__ == '__main__':
 
                                 for n, vs in chars[data[1]][1].items():
                                     for v in vs:
-                                        if '_dat_' in n and v[0] == 'lt':
-                                            outout.append(helper(('\t\t\t\tadd_to_variable_list', 'target'), n, ('lt', id_to_title[v[1]])))
-                                        else:
-                                            outout.append(helper(('\t\t\t\tadd_to_variable_list', 'target'), n, v))
+                                        outout.append(helper(('\t\t\t\tadd_to_variable_list', 'target'), n, v, id_to_title))
                                         
                                 outout.append('\t\t\t}\n')
                         else:
-                            outout.append(helper(('\t\t\tset_variable', 'value'), name, data))
+                            outout.append(helper(('\t\t\tset_variable', 'value'), name, data, id_to_title))
                     for name, data in prov[1].items():
                         if name != 'prod_instances' and name != 'build_slots':
                             for var in data:
-                                outout.append(helper(('\t\t\tadd_to_variable_list', 'target'), name, var))
+                                outout.append(helper(('\t\t\tadd_to_variable_list', 'target'), name, var, id_to_title))
 
                     outout.append('\t\t}\n')
                     
@@ -388,11 +385,11 @@ if __name__ == '__main__':
                 outout.append('\t\ttitle:%s = {\n' % name)
 
                 for n, d in data[0].items():
-                    outout.append(helper(('\t\t\tset_variable', 'value'), n, d))
+                    outout.append(helper(('\t\t\tset_variable', 'value'), n, d, id_to_title))
                 for n, vs in data[1].items():
                     if '_dat_' in n:
                         for v in vs:
-                            outout.append(helper(('\t\t\tadd_to_variable_list', 'target'), n, v))
+                            outout.append(helper(('\t\t\tadd_to_variable_list', 'target'), n, v, id_to_title))
 
                 outout.append('\t\t}\n')
 
