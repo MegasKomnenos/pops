@@ -228,6 +228,9 @@ trade_do_trade = {
 			is_valid_prov = yes
 		}
 		^^goods^
+			clear_variable_list = trade_dat_&goods&
+			array_clear = { name = trade_dat_&goods& }
+			
 			set_variable = { name = trade_sply_&goods& value = 0 }
 			set_variable = { name = trade_dmnd_&goods& value = 0 }
 		^
@@ -850,6 +853,8 @@ trade_do_trade = {
 						change_variable = { name = trade_do_trade_t subtract = var:trade_sell_&goods& }
 					}
 					
+					change_variable = { name = trade_do_trade_t multiply = 100 }
+					
 					save_temporary_scope_as = trade_do_trade_select
 					
 					if = {
@@ -926,6 +931,8 @@ trade_do_trade = {
 						
 						remove_global_variable = trade_do_trade_t
 					}
+					
+					change_variable = { name = trade_do_trade_t divide = 100 }
 					
 					prev = {
 						add_to_variable_list = { name = trade_dat_&goods& target = prev }
