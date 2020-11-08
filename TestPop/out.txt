@@ -22,68 +22,68 @@
 	}
 	if = { 
 		limit = { 
-			has_variable = trade_sply_$good$
-			has_variable = trade_dmnd_$good$
-			var:trade_sply_$good$ > 0
-			var:trade_dmnd_$good$ > 0
+			has_variable = trade_sply_food
+			has_variable = trade_dmnd_food
+			var:trade_sply_food > 0
+			var:trade_dmnd_food > 0
 		}
 		if = { 
 			limit = { 
-				var:trade_sply_$good$ = { 
-					compare_value >= prev.var:trade_dmnd_$good$
+				var:trade_sply_food = { 
+					compare_value >= prev.var:trade_dmnd_food
 				}
 			}
 			set_variable = { 
-				name = trade_in_$good$
-				value = var:trade_dmnd_$good$
+				name = trade_in_food
+				value = var:trade_dmnd_food
 			}
 			set_variable = { 
-				name = trade_out_$good$
-				value = var:trade_dmnd_$good$
+				name = trade_out_food
+				value = var:trade_dmnd_food
 			}
 		}
 		else = { 
 			set_variable = { 
-				name = trade_in_$good$
-				value = var:trade_sply_$good$
+				name = trade_in_food
+				value = var:trade_sply_food
 			}
 			set_variable = { 
-				name = trade_out_$good$
-				value = var:trade_sply_$good$
+				name = trade_out_food
+				value = var:trade_sply_food
 			}
 		}
 		set_variable = { 
-			name = trade_earn_$good$
-			value = var:trade_out_$good$
+			name = trade_earn_food
+			value = var:trade_out_food
 		}
 		set_variable = { 
-			name = trade_pay_$good$
-			value = var:trade_in_$good$
+			name = trade_pay_food
+			value = var:trade_in_food
 		}
 		change_variable = { 
-			name = trade_earn_$good$
-			multiply = var:trade_price_$good$
+			name = trade_earn_food
+			multiply = var:trade_price_food
 		}
 		change_variable = { 
-			name = trade_pay_$good$
-			multiply = var:trade_price_$good$
+			name = trade_pay_food
+			multiply = var:trade_price_food
 		}
 	}
 	else = { 
 		set_variable = { 
-			name = trade_in_$good$
+			name = trade_in_food
 			value = 0
 		}
 		set_variable = { 
-			name = trade_out_$good$
+			name = trade_out_food
 			value = 0
 		}
 		set_variable = { 
-			name = trade_earn_$good$
+			name = trade_earn_food
 			value = 0
 		}
 		set_variable = { 
-			name = trade_pay_$good$
+			name = trade_pay_food
 			value = 0
 		}
 	}
@@ -107,68 +107,68 @@
 	}
 	if = { 
 		limit = { 
-			has_variable = trade_sply_$good$
-			has_variable = trade_dmnd_$good$
-			var:trade_sply_$good$ > 0
-			var:trade_dmnd_$good$ > 0
+			has_variable = trade_sply_cereal
+			has_variable = trade_dmnd_cereal
+			var:trade_sply_cereal > 0
+			var:trade_dmnd_cereal > 0
 		}
 		if = { 
 			limit = { 
-				var:trade_sply_$good$ = { 
-					compare_value >= prev.var:trade_dmnd_$good$
+				var:trade_sply_cereal = { 
+					compare_value >= prev.var:trade_dmnd_cereal
 				}
 			}
 			set_variable = { 
-				name = trade_in_$good$
-				value = var:trade_dmnd_$good$
+				name = trade_in_cereal
+				value = var:trade_dmnd_cereal
 			}
 			set_variable = { 
-				name = trade_out_$good$
-				value = var:trade_dmnd_$good$
+				name = trade_out_cereal
+				value = var:trade_dmnd_cereal
 			}
 		}
 		else = { 
 			set_variable = { 
-				name = trade_in_$good$
-				value = var:trade_sply_$good$
+				name = trade_in_cereal
+				value = var:trade_sply_cereal
 			}
 			set_variable = { 
-				name = trade_out_$good$
-				value = var:trade_sply_$good$
+				name = trade_out_cereal
+				value = var:trade_sply_cereal
 			}
 		}
 		set_variable = { 
-			name = trade_earn_$good$
-			value = var:trade_out_$good$
+			name = trade_earn_cereal
+			value = var:trade_out_cereal
 		}
 		set_variable = { 
-			name = trade_pay_$good$
-			value = var:trade_in_$good$
+			name = trade_pay_cereal
+			value = var:trade_in_cereal
 		}
 		change_variable = { 
-			name = trade_earn_$good$
-			multiply = var:trade_price_$good$
+			name = trade_earn_cereal
+			multiply = var:trade_price_cereal
 		}
 		change_variable = { 
-			name = trade_pay_$good$
-			multiply = var:trade_price_$good$
+			name = trade_pay_cereal
+			multiply = var:trade_price_cereal
 		}
 	}
 	else = { 
 		set_variable = { 
-			name = trade_in_$good$
+			name = trade_in_cereal
 			value = 0
 		}
 		set_variable = { 
-			name = trade_out_$good$
+			name = trade_out_cereal
 			value = 0
 		}
 		set_variable = { 
-			name = trade_earn_$good$
+			name = trade_earn_cereal
 			value = 0
 		}
 		set_variable = { 
-			name = trade_pay_$good$
+			name = trade_pay_cereal
 			value = 0
 		}
 	}
@@ -192,68 +192,68 @@
 	}
 	if = { 
 		limit = { 
-			has_variable = trade_sply_$good$
-			has_variable = trade_dmnd_$good$
-			var:trade_sply_$good$ > 0
-			var:trade_dmnd_$good$ > 0
+			has_variable = trade_sply_salted
+			has_variable = trade_dmnd_salted
+			var:trade_sply_salted > 0
+			var:trade_dmnd_salted > 0
 		}
 		if = { 
 			limit = { 
-				var:trade_sply_$good$ = { 
-					compare_value >= prev.var:trade_dmnd_$good$
+				var:trade_sply_salted = { 
+					compare_value >= prev.var:trade_dmnd_salted
 				}
 			}
 			set_variable = { 
-				name = trade_in_$good$
-				value = var:trade_dmnd_$good$
+				name = trade_in_salted
+				value = var:trade_dmnd_salted
 			}
 			set_variable = { 
-				name = trade_out_$good$
-				value = var:trade_dmnd_$good$
+				name = trade_out_salted
+				value = var:trade_dmnd_salted
 			}
 		}
 		else = { 
 			set_variable = { 
-				name = trade_in_$good$
-				value = var:trade_sply_$good$
+				name = trade_in_salted
+				value = var:trade_sply_salted
 			}
 			set_variable = { 
-				name = trade_out_$good$
-				value = var:trade_sply_$good$
+				name = trade_out_salted
+				value = var:trade_sply_salted
 			}
 		}
 		set_variable = { 
-			name = trade_earn_$good$
-			value = var:trade_out_$good$
+			name = trade_earn_salted
+			value = var:trade_out_salted
 		}
 		set_variable = { 
-			name = trade_pay_$good$
-			value = var:trade_in_$good$
+			name = trade_pay_salted
+			value = var:trade_in_salted
 		}
 		change_variable = { 
-			name = trade_earn_$good$
-			multiply = var:trade_price_$good$
+			name = trade_earn_salted
+			multiply = var:trade_price_salted
 		}
 		change_variable = { 
-			name = trade_pay_$good$
-			multiply = var:trade_price_$good$
+			name = trade_pay_salted
+			multiply = var:trade_price_salted
 		}
 	}
 	else = { 
 		set_variable = { 
-			name = trade_in_$good$
+			name = trade_in_salted
 			value = 0
 		}
 		set_variable = { 
-			name = trade_out_$good$
+			name = trade_out_salted
 			value = 0
 		}
 		set_variable = { 
-			name = trade_earn_$good$
+			name = trade_earn_salted
 			value = 0
 		}
 		set_variable = { 
-			name = trade_pay_$good$
+			name = trade_pay_salted
 			value = 0
 		}
 	}
@@ -277,68 +277,68 @@
 	}
 	if = { 
 		limit = { 
-			has_variable = trade_sply_$good$
-			has_variable = trade_dmnd_$good$
-			var:trade_sply_$good$ > 0
-			var:trade_dmnd_$good$ > 0
+			has_variable = trade_sply_salt
+			has_variable = trade_dmnd_salt
+			var:trade_sply_salt > 0
+			var:trade_dmnd_salt > 0
 		}
 		if = { 
 			limit = { 
-				var:trade_sply_$good$ = { 
-					compare_value >= prev.var:trade_dmnd_$good$
+				var:trade_sply_salt = { 
+					compare_value >= prev.var:trade_dmnd_salt
 				}
 			}
 			set_variable = { 
-				name = trade_in_$good$
-				value = var:trade_dmnd_$good$
+				name = trade_in_salt
+				value = var:trade_dmnd_salt
 			}
 			set_variable = { 
-				name = trade_out_$good$
-				value = var:trade_dmnd_$good$
+				name = trade_out_salt
+				value = var:trade_dmnd_salt
 			}
 		}
 		else = { 
 			set_variable = { 
-				name = trade_in_$good$
-				value = var:trade_sply_$good$
+				name = trade_in_salt
+				value = var:trade_sply_salt
 			}
 			set_variable = { 
-				name = trade_out_$good$
-				value = var:trade_sply_$good$
+				name = trade_out_salt
+				value = var:trade_sply_salt
 			}
 		}
 		set_variable = { 
-			name = trade_earn_$good$
-			value = var:trade_out_$good$
+			name = trade_earn_salt
+			value = var:trade_out_salt
 		}
 		set_variable = { 
-			name = trade_pay_$good$
-			value = var:trade_in_$good$
+			name = trade_pay_salt
+			value = var:trade_in_salt
 		}
 		change_variable = { 
-			name = trade_earn_$good$
-			multiply = var:trade_price_$good$
+			name = trade_earn_salt
+			multiply = var:trade_price_salt
 		}
 		change_variable = { 
-			name = trade_pay_$good$
-			multiply = var:trade_price_$good$
+			name = trade_pay_salt
+			multiply = var:trade_price_salt
 		}
 	}
 	else = { 
 		set_variable = { 
-			name = trade_in_$good$
+			name = trade_in_salt
 			value = 0
 		}
 		set_variable = { 
-			name = trade_out_$good$
+			name = trade_out_salt
 			value = 0
 		}
 		set_variable = { 
-			name = trade_earn_$good$
+			name = trade_earn_salt
 			value = 0
 		}
 		set_variable = { 
-			name = trade_pay_$good$
+			name = trade_pay_salt
 			value = 0
 		}
 	}
@@ -362,68 +362,68 @@
 	}
 	if = { 
 		limit = { 
-			has_variable = trade_sply_$good$
-			has_variable = trade_dmnd_$good$
-			var:trade_sply_$good$ > 0
-			var:trade_dmnd_$good$ > 0
+			has_variable = trade_sply_mud
+			has_variable = trade_dmnd_mud
+			var:trade_sply_mud > 0
+			var:trade_dmnd_mud > 0
 		}
 		if = { 
 			limit = { 
-				var:trade_sply_$good$ = { 
-					compare_value >= prev.var:trade_dmnd_$good$
+				var:trade_sply_mud = { 
+					compare_value >= prev.var:trade_dmnd_mud
 				}
 			}
 			set_variable = { 
-				name = trade_in_$good$
-				value = var:trade_dmnd_$good$
+				name = trade_in_mud
+				value = var:trade_dmnd_mud
 			}
 			set_variable = { 
-				name = trade_out_$good$
-				value = var:trade_dmnd_$good$
+				name = trade_out_mud
+				value = var:trade_dmnd_mud
 			}
 		}
 		else = { 
 			set_variable = { 
-				name = trade_in_$good$
-				value = var:trade_sply_$good$
+				name = trade_in_mud
+				value = var:trade_sply_mud
 			}
 			set_variable = { 
-				name = trade_out_$good$
-				value = var:trade_sply_$good$
+				name = trade_out_mud
+				value = var:trade_sply_mud
 			}
 		}
 		set_variable = { 
-			name = trade_earn_$good$
-			value = var:trade_out_$good$
+			name = trade_earn_mud
+			value = var:trade_out_mud
 		}
 		set_variable = { 
-			name = trade_pay_$good$
-			value = var:trade_in_$good$
+			name = trade_pay_mud
+			value = var:trade_in_mud
 		}
 		change_variable = { 
-			name = trade_earn_$good$
-			multiply = var:trade_price_$good$
+			name = trade_earn_mud
+			multiply = var:trade_price_mud
 		}
 		change_variable = { 
-			name = trade_pay_$good$
-			multiply = var:trade_price_$good$
+			name = trade_pay_mud
+			multiply = var:trade_price_mud
 		}
 	}
 	else = { 
 		set_variable = { 
-			name = trade_in_$good$
+			name = trade_in_mud
 			value = 0
 		}
 		set_variable = { 
-			name = trade_out_$good$
+			name = trade_out_mud
 			value = 0
 		}
 		set_variable = { 
-			name = trade_earn_$good$
+			name = trade_earn_mud
 			value = 0
 		}
 		set_variable = { 
-			name = trade_pay_$good$
+			name = trade_pay_mud
 			value = 0
 		}
 	}
@@ -447,68 +447,68 @@
 	}
 	if = { 
 		limit = { 
-			has_variable = trade_sply_$good$
-			has_variable = trade_dmnd_$good$
-			var:trade_sply_$good$ > 0
-			var:trade_dmnd_$good$ > 0
+			has_variable = trade_sply_fuel
+			has_variable = trade_dmnd_fuel
+			var:trade_sply_fuel > 0
+			var:trade_dmnd_fuel > 0
 		}
 		if = { 
 			limit = { 
-				var:trade_sply_$good$ = { 
-					compare_value >= prev.var:trade_dmnd_$good$
+				var:trade_sply_fuel = { 
+					compare_value >= prev.var:trade_dmnd_fuel
 				}
 			}
 			set_variable = { 
-				name = trade_in_$good$
-				value = var:trade_dmnd_$good$
+				name = trade_in_fuel
+				value = var:trade_dmnd_fuel
 			}
 			set_variable = { 
-				name = trade_out_$good$
-				value = var:trade_dmnd_$good$
+				name = trade_out_fuel
+				value = var:trade_dmnd_fuel
 			}
 		}
 		else = { 
 			set_variable = { 
-				name = trade_in_$good$
-				value = var:trade_sply_$good$
+				name = trade_in_fuel
+				value = var:trade_sply_fuel
 			}
 			set_variable = { 
-				name = trade_out_$good$
-				value = var:trade_sply_$good$
+				name = trade_out_fuel
+				value = var:trade_sply_fuel
 			}
 		}
 		set_variable = { 
-			name = trade_earn_$good$
-			value = var:trade_out_$good$
+			name = trade_earn_fuel
+			value = var:trade_out_fuel
 		}
 		set_variable = { 
-			name = trade_pay_$good$
-			value = var:trade_in_$good$
+			name = trade_pay_fuel
+			value = var:trade_in_fuel
 		}
 		change_variable = { 
-			name = trade_earn_$good$
-			multiply = var:trade_price_$good$
+			name = trade_earn_fuel
+			multiply = var:trade_price_fuel
 		}
 		change_variable = { 
-			name = trade_pay_$good$
-			multiply = var:trade_price_$good$
+			name = trade_pay_fuel
+			multiply = var:trade_price_fuel
 		}
 	}
 	else = { 
 		set_variable = { 
-			name = trade_in_$good$
+			name = trade_in_fuel
 			value = 0
 		}
 		set_variable = { 
-			name = trade_out_$good$
+			name = trade_out_fuel
 			value = 0
 		}
 		set_variable = { 
-			name = trade_earn_$good$
+			name = trade_earn_fuel
 			value = 0
 		}
 		set_variable = { 
-			name = trade_pay_$good$
+			name = trade_pay_fuel
 			value = 0
 		}
 	}
@@ -532,68 +532,68 @@
 	}
 	if = { 
 		limit = { 
-			has_variable = trade_sply_$good$
-			has_variable = trade_dmnd_$good$
-			var:trade_sply_$good$ > 0
-			var:trade_dmnd_$good$ > 0
+			has_variable = trade_sply_fiber
+			has_variable = trade_dmnd_fiber
+			var:trade_sply_fiber > 0
+			var:trade_dmnd_fiber > 0
 		}
 		if = { 
 			limit = { 
-				var:trade_sply_$good$ = { 
-					compare_value >= prev.var:trade_dmnd_$good$
+				var:trade_sply_fiber = { 
+					compare_value >= prev.var:trade_dmnd_fiber
 				}
 			}
 			set_variable = { 
-				name = trade_in_$good$
-				value = var:trade_dmnd_$good$
+				name = trade_in_fiber
+				value = var:trade_dmnd_fiber
 			}
 			set_variable = { 
-				name = trade_out_$good$
-				value = var:trade_dmnd_$good$
+				name = trade_out_fiber
+				value = var:trade_dmnd_fiber
 			}
 		}
 		else = { 
 			set_variable = { 
-				name = trade_in_$good$
-				value = var:trade_sply_$good$
+				name = trade_in_fiber
+				value = var:trade_sply_fiber
 			}
 			set_variable = { 
-				name = trade_out_$good$
-				value = var:trade_sply_$good$
+				name = trade_out_fiber
+				value = var:trade_sply_fiber
 			}
 		}
 		set_variable = { 
-			name = trade_earn_$good$
-			value = var:trade_out_$good$
+			name = trade_earn_fiber
+			value = var:trade_out_fiber
 		}
 		set_variable = { 
-			name = trade_pay_$good$
-			value = var:trade_in_$good$
+			name = trade_pay_fiber
+			value = var:trade_in_fiber
 		}
 		change_variable = { 
-			name = trade_earn_$good$
-			multiply = var:trade_price_$good$
+			name = trade_earn_fiber
+			multiply = var:trade_price_fiber
 		}
 		change_variable = { 
-			name = trade_pay_$good$
-			multiply = var:trade_price_$good$
+			name = trade_pay_fiber
+			multiply = var:trade_price_fiber
 		}
 	}
 	else = { 
 		set_variable = { 
-			name = trade_in_$good$
+			name = trade_in_fiber
 			value = 0
 		}
 		set_variable = { 
-			name = trade_out_$good$
+			name = trade_out_fiber
 			value = 0
 		}
 		set_variable = { 
-			name = trade_earn_$good$
+			name = trade_earn_fiber
 			value = 0
 		}
 		set_variable = { 
-			name = trade_pay_$good$
+			name = trade_pay_fiber
 			value = 0
 		}
 	}
@@ -617,68 +617,68 @@
 	}
 	if = { 
 		limit = { 
-			has_variable = trade_sply_$good$
-			has_variable = trade_dmnd_$good$
-			var:trade_sply_$good$ > 0
-			var:trade_dmnd_$good$ > 0
+			has_variable = trade_sply_timber
+			has_variable = trade_dmnd_timber
+			var:trade_sply_timber > 0
+			var:trade_dmnd_timber > 0
 		}
 		if = { 
 			limit = { 
-				var:trade_sply_$good$ = { 
-					compare_value >= prev.var:trade_dmnd_$good$
+				var:trade_sply_timber = { 
+					compare_value >= prev.var:trade_dmnd_timber
 				}
 			}
 			set_variable = { 
-				name = trade_in_$good$
-				value = var:trade_dmnd_$good$
+				name = trade_in_timber
+				value = var:trade_dmnd_timber
 			}
 			set_variable = { 
-				name = trade_out_$good$
-				value = var:trade_dmnd_$good$
+				name = trade_out_timber
+				value = var:trade_dmnd_timber
 			}
 		}
 		else = { 
 			set_variable = { 
-				name = trade_in_$good$
-				value = var:trade_sply_$good$
+				name = trade_in_timber
+				value = var:trade_sply_timber
 			}
 			set_variable = { 
-				name = trade_out_$good$
-				value = var:trade_sply_$good$
+				name = trade_out_timber
+				value = var:trade_sply_timber
 			}
 		}
 		set_variable = { 
-			name = trade_earn_$good$
-			value = var:trade_out_$good$
+			name = trade_earn_timber
+			value = var:trade_out_timber
 		}
 		set_variable = { 
-			name = trade_pay_$good$
-			value = var:trade_in_$good$
+			name = trade_pay_timber
+			value = var:trade_in_timber
 		}
 		change_variable = { 
-			name = trade_earn_$good$
-			multiply = var:trade_price_$good$
+			name = trade_earn_timber
+			multiply = var:trade_price_timber
 		}
 		change_variable = { 
-			name = trade_pay_$good$
-			multiply = var:trade_price_$good$
+			name = trade_pay_timber
+			multiply = var:trade_price_timber
 		}
 	}
 	else = { 
 		set_variable = { 
-			name = trade_in_$good$
+			name = trade_in_timber
 			value = 0
 		}
 		set_variable = { 
-			name = trade_out_$good$
+			name = trade_out_timber
 			value = 0
 		}
 		set_variable = { 
-			name = trade_earn_$good$
+			name = trade_earn_timber
 			value = 0
 		}
 		set_variable = { 
-			name = trade_pay_$good$
+			name = trade_pay_timber
 			value = 0
 		}
 	}
@@ -702,68 +702,68 @@
 	}
 	if = { 
 		limit = { 
-			has_variable = trade_sply_$good$
-			has_variable = trade_dmnd_$good$
-			var:trade_sply_$good$ > 0
-			var:trade_dmnd_$good$ > 0
+			has_variable = trade_sply_metal
+			has_variable = trade_dmnd_metal
+			var:trade_sply_metal > 0
+			var:trade_dmnd_metal > 0
 		}
 		if = { 
 			limit = { 
-				var:trade_sply_$good$ = { 
-					compare_value >= prev.var:trade_dmnd_$good$
+				var:trade_sply_metal = { 
+					compare_value >= prev.var:trade_dmnd_metal
 				}
 			}
 			set_variable = { 
-				name = trade_in_$good$
-				value = var:trade_dmnd_$good$
+				name = trade_in_metal
+				value = var:trade_dmnd_metal
 			}
 			set_variable = { 
-				name = trade_out_$good$
-				value = var:trade_dmnd_$good$
+				name = trade_out_metal
+				value = var:trade_dmnd_metal
 			}
 		}
 		else = { 
 			set_variable = { 
-				name = trade_in_$good$
-				value = var:trade_sply_$good$
+				name = trade_in_metal
+				value = var:trade_sply_metal
 			}
 			set_variable = { 
-				name = trade_out_$good$
-				value = var:trade_sply_$good$
+				name = trade_out_metal
+				value = var:trade_sply_metal
 			}
 		}
 		set_variable = { 
-			name = trade_earn_$good$
-			value = var:trade_out_$good$
+			name = trade_earn_metal
+			value = var:trade_out_metal
 		}
 		set_variable = { 
-			name = trade_pay_$good$
-			value = var:trade_in_$good$
+			name = trade_pay_metal
+			value = var:trade_in_metal
 		}
 		change_variable = { 
-			name = trade_earn_$good$
-			multiply = var:trade_price_$good$
+			name = trade_earn_metal
+			multiply = var:trade_price_metal
 		}
 		change_variable = { 
-			name = trade_pay_$good$
-			multiply = var:trade_price_$good$
+			name = trade_pay_metal
+			multiply = var:trade_price_metal
 		}
 	}
 	else = { 
 		set_variable = { 
-			name = trade_in_$good$
+			name = trade_in_metal
 			value = 0
 		}
 		set_variable = { 
-			name = trade_out_$good$
+			name = trade_out_metal
 			value = 0
 		}
 		set_variable = { 
-			name = trade_earn_$good$
+			name = trade_earn_metal
 			value = 0
 		}
 		set_variable = { 
-			name = trade_pay_$good$
+			name = trade_pay_metal
 			value = 0
 		}
 	}
@@ -787,68 +787,68 @@
 	}
 	if = { 
 		limit = { 
-			has_variable = trade_sply_$good$
-			has_variable = trade_dmnd_$good$
-			var:trade_sply_$good$ > 0
-			var:trade_dmnd_$good$ > 0
+			has_variable = trade_sply_exotics_w
+			has_variable = trade_dmnd_exotics_w
+			var:trade_sply_exotics_w > 0
+			var:trade_dmnd_exotics_w > 0
 		}
 		if = { 
 			limit = { 
-				var:trade_sply_$good$ = { 
-					compare_value >= prev.var:trade_dmnd_$good$
+				var:trade_sply_exotics_w = { 
+					compare_value >= prev.var:trade_dmnd_exotics_w
 				}
 			}
 			set_variable = { 
-				name = trade_in_$good$
-				value = var:trade_dmnd_$good$
+				name = trade_in_exotics_w
+				value = var:trade_dmnd_exotics_w
 			}
 			set_variable = { 
-				name = trade_out_$good$
-				value = var:trade_dmnd_$good$
+				name = trade_out_exotics_w
+				value = var:trade_dmnd_exotics_w
 			}
 		}
 		else = { 
 			set_variable = { 
-				name = trade_in_$good$
-				value = var:trade_sply_$good$
+				name = trade_in_exotics_w
+				value = var:trade_sply_exotics_w
 			}
 			set_variable = { 
-				name = trade_out_$good$
-				value = var:trade_sply_$good$
+				name = trade_out_exotics_w
+				value = var:trade_sply_exotics_w
 			}
 		}
 		set_variable = { 
-			name = trade_earn_$good$
-			value = var:trade_out_$good$
+			name = trade_earn_exotics_w
+			value = var:trade_out_exotics_w
 		}
 		set_variable = { 
-			name = trade_pay_$good$
-			value = var:trade_in_$good$
+			name = trade_pay_exotics_w
+			value = var:trade_in_exotics_w
 		}
 		change_variable = { 
-			name = trade_earn_$good$
-			multiply = var:trade_price_$good$
+			name = trade_earn_exotics_w
+			multiply = var:trade_price_exotics_w
 		}
 		change_variable = { 
-			name = trade_pay_$good$
-			multiply = var:trade_price_$good$
+			name = trade_pay_exotics_w
+			multiply = var:trade_price_exotics_w
 		}
 	}
 	else = { 
 		set_variable = { 
-			name = trade_in_$good$
+			name = trade_in_exotics_w
 			value = 0
 		}
 		set_variable = { 
-			name = trade_out_$good$
+			name = trade_out_exotics_w
 			value = 0
 		}
 		set_variable = { 
-			name = trade_earn_$good$
+			name = trade_earn_exotics_w
 			value = 0
 		}
 		set_variable = { 
-			name = trade_pay_$good$
+			name = trade_pay_exotics_w
 			value = 0
 		}
 	}
@@ -872,68 +872,68 @@
 	}
 	if = { 
 		limit = { 
-			has_variable = trade_sply_$good$
-			has_variable = trade_dmnd_$good$
-			var:trade_sply_$good$ > 0
-			var:trade_dmnd_$good$ > 0
+			has_variable = trade_sply_exotics_e
+			has_variable = trade_dmnd_exotics_e
+			var:trade_sply_exotics_e > 0
+			var:trade_dmnd_exotics_e > 0
 		}
 		if = { 
 			limit = { 
-				var:trade_sply_$good$ = { 
-					compare_value >= prev.var:trade_dmnd_$good$
+				var:trade_sply_exotics_e = { 
+					compare_value >= prev.var:trade_dmnd_exotics_e
 				}
 			}
 			set_variable = { 
-				name = trade_in_$good$
-				value = var:trade_dmnd_$good$
+				name = trade_in_exotics_e
+				value = var:trade_dmnd_exotics_e
 			}
 			set_variable = { 
-				name = trade_out_$good$
-				value = var:trade_dmnd_$good$
+				name = trade_out_exotics_e
+				value = var:trade_dmnd_exotics_e
 			}
 		}
 		else = { 
 			set_variable = { 
-				name = trade_in_$good$
-				value = var:trade_sply_$good$
+				name = trade_in_exotics_e
+				value = var:trade_sply_exotics_e
 			}
 			set_variable = { 
-				name = trade_out_$good$
-				value = var:trade_sply_$good$
+				name = trade_out_exotics_e
+				value = var:trade_sply_exotics_e
 			}
 		}
 		set_variable = { 
-			name = trade_earn_$good$
-			value = var:trade_out_$good$
+			name = trade_earn_exotics_e
+			value = var:trade_out_exotics_e
 		}
 		set_variable = { 
-			name = trade_pay_$good$
-			value = var:trade_in_$good$
+			name = trade_pay_exotics_e
+			value = var:trade_in_exotics_e
 		}
 		change_variable = { 
-			name = trade_earn_$good$
-			multiply = var:trade_price_$good$
+			name = trade_earn_exotics_e
+			multiply = var:trade_price_exotics_e
 		}
 		change_variable = { 
-			name = trade_pay_$good$
-			multiply = var:trade_price_$good$
+			name = trade_pay_exotics_e
+			multiply = var:trade_price_exotics_e
 		}
 	}
 	else = { 
 		set_variable = { 
-			name = trade_in_$good$
+			name = trade_in_exotics_e
 			value = 0
 		}
 		set_variable = { 
-			name = trade_out_$good$
+			name = trade_out_exotics_e
 			value = 0
 		}
 		set_variable = { 
-			name = trade_earn_$good$
+			name = trade_earn_exotics_e
 			value = 0
 		}
 		set_variable = { 
-			name = trade_pay_$good$
+			name = trade_pay_exotics_e
 			value = 0
 		}
 	}
@@ -957,68 +957,68 @@
 	}
 	if = { 
 		limit = { 
-			has_variable = trade_sply_$good$
-			has_variable = trade_dmnd_$good$
-			var:trade_sply_$good$ > 0
-			var:trade_dmnd_$good$ > 0
+			has_variable = trade_sply_exotics_g
+			has_variable = trade_dmnd_exotics_g
+			var:trade_sply_exotics_g > 0
+			var:trade_dmnd_exotics_g > 0
 		}
 		if = { 
 			limit = { 
-				var:trade_sply_$good$ = { 
-					compare_value >= prev.var:trade_dmnd_$good$
+				var:trade_sply_exotics_g = { 
+					compare_value >= prev.var:trade_dmnd_exotics_g
 				}
 			}
 			set_variable = { 
-				name = trade_in_$good$
-				value = var:trade_dmnd_$good$
+				name = trade_in_exotics_g
+				value = var:trade_dmnd_exotics_g
 			}
 			set_variable = { 
-				name = trade_out_$good$
-				value = var:trade_dmnd_$good$
+				name = trade_out_exotics_g
+				value = var:trade_dmnd_exotics_g
 			}
 		}
 		else = { 
 			set_variable = { 
-				name = trade_in_$good$
-				value = var:trade_sply_$good$
+				name = trade_in_exotics_g
+				value = var:trade_sply_exotics_g
 			}
 			set_variable = { 
-				name = trade_out_$good$
-				value = var:trade_sply_$good$
+				name = trade_out_exotics_g
+				value = var:trade_sply_exotics_g
 			}
 		}
 		set_variable = { 
-			name = trade_earn_$good$
-			value = var:trade_out_$good$
+			name = trade_earn_exotics_g
+			value = var:trade_out_exotics_g
 		}
 		set_variable = { 
-			name = trade_pay_$good$
-			value = var:trade_in_$good$
+			name = trade_pay_exotics_g
+			value = var:trade_in_exotics_g
 		}
 		change_variable = { 
-			name = trade_earn_$good$
-			multiply = var:trade_price_$good$
+			name = trade_earn_exotics_g
+			multiply = var:trade_price_exotics_g
 		}
 		change_variable = { 
-			name = trade_pay_$good$
-			multiply = var:trade_price_$good$
+			name = trade_pay_exotics_g
+			multiply = var:trade_price_exotics_g
 		}
 	}
 	else = { 
 		set_variable = { 
-			name = trade_in_$good$
+			name = trade_in_exotics_g
 			value = 0
 		}
 		set_variable = { 
-			name = trade_out_$good$
+			name = trade_out_exotics_g
 			value = 0
 		}
 		set_variable = { 
-			name = trade_earn_$good$
+			name = trade_earn_exotics_g
 			value = 0
 		}
 		set_variable = { 
-			name = trade_pay_$good$
+			name = trade_pay_exotics_g
 			value = 0
 		}
 	}
@@ -1042,68 +1042,68 @@
 	}
 	if = { 
 		limit = { 
-			has_variable = trade_sply_$good$
-			has_variable = trade_dmnd_$good$
-			var:trade_sply_$good$ > 0
-			var:trade_dmnd_$good$ > 0
+			has_variable = trade_sply_textile
+			has_variable = trade_dmnd_textile
+			var:trade_sply_textile > 0
+			var:trade_dmnd_textile > 0
 		}
 		if = { 
 			limit = { 
-				var:trade_sply_$good$ = { 
-					compare_value >= prev.var:trade_dmnd_$good$
+				var:trade_sply_textile = { 
+					compare_value >= prev.var:trade_dmnd_textile
 				}
 			}
 			set_variable = { 
-				name = trade_in_$good$
-				value = var:trade_dmnd_$good$
+				name = trade_in_textile
+				value = var:trade_dmnd_textile
 			}
 			set_variable = { 
-				name = trade_out_$good$
-				value = var:trade_dmnd_$good$
+				name = trade_out_textile
+				value = var:trade_dmnd_textile
 			}
 		}
 		else = { 
 			set_variable = { 
-				name = trade_in_$good$
-				value = var:trade_sply_$good$
+				name = trade_in_textile
+				value = var:trade_sply_textile
 			}
 			set_variable = { 
-				name = trade_out_$good$
-				value = var:trade_sply_$good$
+				name = trade_out_textile
+				value = var:trade_sply_textile
 			}
 		}
 		set_variable = { 
-			name = trade_earn_$good$
-			value = var:trade_out_$good$
+			name = trade_earn_textile
+			value = var:trade_out_textile
 		}
 		set_variable = { 
-			name = trade_pay_$good$
-			value = var:trade_in_$good$
+			name = trade_pay_textile
+			value = var:trade_in_textile
 		}
 		change_variable = { 
-			name = trade_earn_$good$
-			multiply = var:trade_price_$good$
+			name = trade_earn_textile
+			multiply = var:trade_price_textile
 		}
 		change_variable = { 
-			name = trade_pay_$good$
-			multiply = var:trade_price_$good$
+			name = trade_pay_textile
+			multiply = var:trade_price_textile
 		}
 	}
 	else = { 
 		set_variable = { 
-			name = trade_in_$good$
+			name = trade_in_textile
 			value = 0
 		}
 		set_variable = { 
-			name = trade_out_$good$
+			name = trade_out_textile
 			value = 0
 		}
 		set_variable = { 
-			name = trade_earn_$good$
+			name = trade_earn_textile
 			value = 0
 		}
 		set_variable = { 
-			name = trade_pay_$good$
+			name = trade_pay_textile
 			value = 0
 		}
 	}
@@ -1127,68 +1127,68 @@
 	}
 	if = { 
 		limit = { 
-			has_variable = trade_sply_$good$
-			has_variable = trade_dmnd_$good$
-			var:trade_sply_$good$ > 0
-			var:trade_dmnd_$good$ > 0
+			has_variable = trade_sply_pottery
+			has_variable = trade_dmnd_pottery
+			var:trade_sply_pottery > 0
+			var:trade_dmnd_pottery > 0
 		}
 		if = { 
 			limit = { 
-				var:trade_sply_$good$ = { 
-					compare_value >= prev.var:trade_dmnd_$good$
+				var:trade_sply_pottery = { 
+					compare_value >= prev.var:trade_dmnd_pottery
 				}
 			}
 			set_variable = { 
-				name = trade_in_$good$
-				value = var:trade_dmnd_$good$
+				name = trade_in_pottery
+				value = var:trade_dmnd_pottery
 			}
 			set_variable = { 
-				name = trade_out_$good$
-				value = var:trade_dmnd_$good$
+				name = trade_out_pottery
+				value = var:trade_dmnd_pottery
 			}
 		}
 		else = { 
 			set_variable = { 
-				name = trade_in_$good$
-				value = var:trade_sply_$good$
+				name = trade_in_pottery
+				value = var:trade_sply_pottery
 			}
 			set_variable = { 
-				name = trade_out_$good$
-				value = var:trade_sply_$good$
+				name = trade_out_pottery
+				value = var:trade_sply_pottery
 			}
 		}
 		set_variable = { 
-			name = trade_earn_$good$
-			value = var:trade_out_$good$
+			name = trade_earn_pottery
+			value = var:trade_out_pottery
 		}
 		set_variable = { 
-			name = trade_pay_$good$
-			value = var:trade_in_$good$
+			name = trade_pay_pottery
+			value = var:trade_in_pottery
 		}
 		change_variable = { 
-			name = trade_earn_$good$
-			multiply = var:trade_price_$good$
+			name = trade_earn_pottery
+			multiply = var:trade_price_pottery
 		}
 		change_variable = { 
-			name = trade_pay_$good$
-			multiply = var:trade_price_$good$
+			name = trade_pay_pottery
+			multiply = var:trade_price_pottery
 		}
 	}
 	else = { 
 		set_variable = { 
-			name = trade_in_$good$
+			name = trade_in_pottery
 			value = 0
 		}
 		set_variable = { 
-			name = trade_out_$good$
+			name = trade_out_pottery
 			value = 0
 		}
 		set_variable = { 
-			name = trade_earn_$good$
+			name = trade_earn_pottery
 			value = 0
 		}
 		set_variable = { 
-			name = trade_pay_$good$
+			name = trade_pay_pottery
 			value = 0
 		}
 	}
@@ -1212,68 +1212,68 @@
 	}
 	if = { 
 		limit = { 
-			has_variable = trade_sply_$good$
-			has_variable = trade_dmnd_$good$
-			var:trade_sply_$good$ > 0
-			var:trade_dmnd_$good$ > 0
+			has_variable = trade_sply_tools
+			has_variable = trade_dmnd_tools
+			var:trade_sply_tools > 0
+			var:trade_dmnd_tools > 0
 		}
 		if = { 
 			limit = { 
-				var:trade_sply_$good$ = { 
-					compare_value >= prev.var:trade_dmnd_$good$
+				var:trade_sply_tools = { 
+					compare_value >= prev.var:trade_dmnd_tools
 				}
 			}
 			set_variable = { 
-				name = trade_in_$good$
-				value = var:trade_dmnd_$good$
+				name = trade_in_tools
+				value = var:trade_dmnd_tools
 			}
 			set_variable = { 
-				name = trade_out_$good$
-				value = var:trade_dmnd_$good$
+				name = trade_out_tools
+				value = var:trade_dmnd_tools
 			}
 		}
 		else = { 
 			set_variable = { 
-				name = trade_in_$good$
-				value = var:trade_sply_$good$
+				name = trade_in_tools
+				value = var:trade_sply_tools
 			}
 			set_variable = { 
-				name = trade_out_$good$
-				value = var:trade_sply_$good$
+				name = trade_out_tools
+				value = var:trade_sply_tools
 			}
 		}
 		set_variable = { 
-			name = trade_earn_$good$
-			value = var:trade_out_$good$
+			name = trade_earn_tools
+			value = var:trade_out_tools
 		}
 		set_variable = { 
-			name = trade_pay_$good$
-			value = var:trade_in_$good$
+			name = trade_pay_tools
+			value = var:trade_in_tools
 		}
 		change_variable = { 
-			name = trade_earn_$good$
-			multiply = var:trade_price_$good$
+			name = trade_earn_tools
+			multiply = var:trade_price_tools
 		}
 		change_variable = { 
-			name = trade_pay_$good$
-			multiply = var:trade_price_$good$
+			name = trade_pay_tools
+			multiply = var:trade_price_tools
 		}
 	}
 	else = { 
 		set_variable = { 
-			name = trade_in_$good$
+			name = trade_in_tools
 			value = 0
 		}
 		set_variable = { 
-			name = trade_out_$good$
+			name = trade_out_tools
 			value = 0
 		}
 		set_variable = { 
-			name = trade_earn_$good$
+			name = trade_earn_tools
 			value = 0
 		}
 		set_variable = { 
-			name = trade_pay_$good$
+			name = trade_pay_tools
 			value = 0
 		}
 	}
