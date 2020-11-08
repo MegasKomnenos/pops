@@ -1,7 +1,7 @@
 ﻿# Parameters: name, value
 array_add = {
 	set_variable = { name = array_add_t value = $value$ }
-	change_variable = { name = array_add_t multiply = 10 }
+	change_variable = { name = array_add_t multiply = $dec$ }
 	
 	if = {
 		limit = {
@@ -40,7 +40,7 @@ array_get = {
 		}
 	}
 	
-	change_variable = { name = $return$ divide = 10 }
+	change_variable = { name = $return$ divide = $dec$ }
 	
 	remove_global_variable = array_get_t
 }
@@ -71,7 +71,7 @@ array_get_max = {
 	}
 	
 	set_variable = { name = $return_val$ value = var:array_get_max_t }
-	change_variable = { name = $return_val$ divide = 10 }
+	change_variable = { name = $return_val$ divide = $dec$ }
 	set_global_variable = { name = $return_ind$ value = global_var:array_get_max_tt }
 	
 	remove_global_variable = array_get_max_t
@@ -105,7 +105,7 @@ array_get_min = {
 	}
 	
 	set_variable = { name = $return_val$ value = var:array_get_min_t }
-	change_variable = { name = $return_val$ divide = 10 }
+	change_variable = { name = $return_val$ divide = $dec$ }
 	set_global_variable = { name = $return_ind$ value = global_var:array_get_min_tt }
 	
 	remove_global_variable = array_get_min_t

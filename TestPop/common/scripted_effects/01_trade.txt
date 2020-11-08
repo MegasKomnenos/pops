@@ -126,14 +126,14 @@ trade_set_range = {
 			prev = {
 				add_to_variable_list = { name = trade_core target = prev }
 				
-				array_add = { name = trade_core value = prev.var:trade_set_range_dist }
+				array_add = { name = trade_core value = prev.var:trade_set_range_dist dec = 10 }
 			}
 		}
 		else = {
 			prev = {
 				add_to_variable_list = { name = trade_periph target = prev }
 				
-				array_add = { name = trade_periph value = prev.var:trade_set_range_dist }
+				array_add = { name = trade_periph value = prev.var:trade_set_range_dist dec = 10 }
 			}
 		}
 		
@@ -406,7 +406,7 @@ trade_do_trade = {
 				add_to_global_variable_list = { name = trade_do_trade_list target = this }
 				
 				prev = {
-					array_get = { name = trade_core value = global_var:trade_do_trade_t return = trade_do_trade_t }
+					array_get = { name = trade_core value = global_var:trade_do_trade_t return = trade_do_trade_t dec = 10 }
 				}
 				
 				set_variable = { name = trade_do_trade_dist value = prev.var:trade_do_trade_t }
@@ -432,7 +432,7 @@ trade_do_trade = {
 						}
 					}
 					prev = {
-						array_get = { name = trade_periph value = global_var:trade_do_trade_t return = trade_do_trade_t }
+						array_get = { name = trade_periph value = global_var:trade_do_trade_t return = trade_do_trade_t dec = 10 }
 					}
 					
 					every_county_province = {
@@ -825,12 +825,12 @@ trade_do_trade = {
 							AND = {
 								has_variable = trade_buy_&goods&
 								
-								var:trade_buy_&goods& > 0
+								var:trade_buy_&goods& > 0.1
 							}
 							AND = {
 								has_variable = trade_sell_&goods&
 								
-								var:trade_sell_&goods& > 0
+								var:trade_sell_&goods& > 0.1
 							}
 						}
 					}
@@ -842,7 +842,7 @@ trade_do_trade = {
 						limit = {
 							has_variable = trade_buy_&goods&
 								
-							var:trade_buy_&goods& > 0
+							var:trade_buy_&goods& > 0.1
 						}
 						change_variable = { name = trade_do_trade_t add = var:trade_buy_&goods& }
 					}
@@ -929,13 +929,13 @@ trade_do_trade = {
 					
 					prev = {
 						add_to_variable_list = { name = trade_dat_&goods& target = prev }
-						array_add = { name = trade_dat_&goods& value = prev.var:trade_do_trade_t }
+						array_add = { name = trade_dat_&goods& value = prev.var:trade_do_trade_t dec = 100 }
 					}
 					
 					change_variable = { name = trade_do_trade_t multiply = -1 }
 					
 					add_to_variable_list = { name = trade_dat_&goods& target = prev }
-					array_add = { name = trade_dat_&goods& value = var:trade_do_trade_t }
+					array_add = { name = trade_dat_&goods& value = var:trade_do_trade_t dec = 100 }
 				}
 			^
 				
@@ -982,13 +982,14 @@ trade_do_trade = {
 					name = trade_do_trade_t 
 					return_val = trade_do_trade_t
 					return_ind = trade_do_trade_tt
+					dec = 100
 				}
 				
 				if = {
 					limit = {
 						var:trade_do_trade_t > 0
 					}
-					array_add = { name = trade_dat_&goods& value = var:trade_do_trade_t }
+					array_add = { name = trade_dat_&goods& value = var:trade_do_trade_t dec = 100 }
 					
 					ordered_in_list = {
 						variable = trade_do_trade_t
@@ -1015,13 +1016,14 @@ trade_do_trade = {
 					name = trade_do_trade_t 
 					return_val = trade_do_trade_t
 					return_ind = trade_do_trade_tt
+					dec = 100
 				}
 				
 				if = {
 					limit = {
 						var:trade_do_trade_t < 0
 					}
-					array_add = { name = trade_dat_&goods& value = var:trade_do_trade_t }
+					array_add = { name = trade_dat_&goods& value = var:trade_do_trade_t dec = 100 }
 					
 					ordered_in_list = {
 						variable = trade_do_trade_t
@@ -1091,13 +1093,14 @@ trade_do_trade = {
 					name = trade_do_trade_t 
 					return_val = trade_do_trade_t
 					return_ind = trade_do_trade_tt
+					dec = 100
 				}
 				
 				if = {
 					limit = {
 						var:trade_do_trade_t > 0
 					}
-					array_add = { name = trade_dat_&goods& value = var:trade_do_trade_t }
+					array_add = { name = trade_dat_&goods& value = var:trade_do_trade_t dec = 100 }
 					
 					ordered_in_list = {
 						variable = trade_do_trade_t
@@ -1136,13 +1139,14 @@ trade_do_trade = {
 					name = trade_do_trade_t 
 					return_val = trade_do_trade_t
 					return_ind = trade_do_trade_tt
+					dec = 100
 				}
 				
 				if = {
 					limit = {
 						var:trade_do_trade_t < 0
 					}
-					array_add = { name = trade_dat_&goods& value = var:trade_do_trade_t }
+					array_add = { name = trade_dat_&goods& value = var:trade_do_trade_t dec = 100 }
 					
 					ordered_in_list = {
 						variable = trade_do_trade_t
