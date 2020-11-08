@@ -882,13 +882,15 @@ trade_dat_trade = {
 							}
 						}
 						else = {
-							array_add = { name = trade_dat_&goods& value = var:trade_do_trade_t dec = 10 }
-							add_to_variable_list = { name = trade_dat_&goods& target = prev }
-							
 							prev = {
 								array_add = { name = trade_dat_&goods& value = scope:trade_do_trade_select.var:trade_do_trade_t dec = 10 }
 								add_to_variable_list = { name = trade_dat_&goods& target = prev }
 							}
+							
+							change_variable = { name = trade_do_trade_t multiply = -1 }
+							
+							array_add = { name = trade_dat_&goods& value = var:trade_do_trade_t dec = 10 }
+							add_to_variable_list = { name = trade_dat_&goods& target = prev }
 						}
 					}
 				^
@@ -942,6 +944,8 @@ trade_dat_trade = {
 				
 				if = {
 					limit = {
+						has_variable = trade_do_trade_t
+						
 						var:trade_do_trade_t > 0
 					}
 					array_add = { name = trade_dat_&goods& value = var:trade_do_trade_t dec = 10 }
@@ -976,6 +980,8 @@ trade_dat_trade = {
 				
 				if = {
 					limit = {
+						has_variable = trade_do_trade_t
+						
 						var:trade_do_trade_t < 0
 					}
 					array_add = { name = trade_dat_&goods& value = var:trade_do_trade_t dec = 10 }
@@ -1062,6 +1068,8 @@ trade_dat_trade = {
 				
 				if = {
 					limit = {
+						has_variable = trade_do_trade_t
+						
 						var:trade_do_trade_t > 0
 					}
 					array_add = { name = trade_dat_&goods& value = var:trade_do_trade_t dec = 10 }
@@ -1108,6 +1116,8 @@ trade_dat_trade = {
 				
 				if = {
 					limit = {
+						has_variable = trade_do_trade_t
+						
 						var:trade_do_trade_t < 0
 					}
 					array_add = { name = trade_dat_&goods& value = var:trade_do_trade_t dec = 10 }

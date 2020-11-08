@@ -15280,49 +15280,6 @@ while = {
 					}
 				}
 				else = { 
-					set_variable = { 
-						name = array_add_t
-						value = var:trade_do_trade_t
-					}
-					change_variable = { 
-						name = array_add_t
-						multiply = 10
-					}
-					if = { 
-						limit = { 
-							NOT = { 
-								has_variable_list = array_trade_dat_food
-							}
-						}
-						add_to_variable_list = { 
-							name = array_trade_dat_food
-							target = var:array_add_t
-						}
-					}
-					else = { 
-						while = { 
-							limit = { 
-								is_target_in_variable_list = { 
-									name = array_trade_dat_food
-									target = var:array_add_t
-								}
-							}
-							count = 10
-							change_variable = { 
-								name = array_add_t
-								add = 0.001
-							}
-						}
-						add_to_variable_list = { 
-							name = array_trade_dat_food
-							target = var:array_add_t
-						}
-					}
-					remove_variable = array_add_t
-					add_to_variable_list = { 
-						name = trade_dat_food
-						target = prev
-					}
 					prev = { 
 						set_variable = { 
 							name = array_add_t
@@ -15367,6 +15324,53 @@ while = {
 							name = trade_dat_food
 							target = prev
 						}
+					}
+					change_variable = { 
+						name = trade_do_trade_t
+						multiply = -1
+					}
+					set_variable = { 
+						name = array_add_t
+						value = var:trade_do_trade_t
+					}
+					change_variable = { 
+						name = array_add_t
+						multiply = 10
+					}
+					if = { 
+						limit = { 
+							NOT = { 
+								has_variable_list = array_trade_dat_food
+							}
+						}
+						add_to_variable_list = { 
+							name = array_trade_dat_food
+							target = var:array_add_t
+						}
+					}
+					else = { 
+						while = { 
+							limit = { 
+								is_target_in_variable_list = { 
+									name = array_trade_dat_food
+									target = var:array_add_t
+								}
+							}
+							count = 10
+							change_variable = { 
+								name = array_add_t
+								add = 0.001
+							}
+						}
+						add_to_variable_list = { 
+							name = array_trade_dat_food
+							target = var:array_add_t
+						}
+					}
+					remove_variable = array_add_t
+					add_to_variable_list = { 
+						name = trade_dat_food
+						target = prev
 					}
 				}
 			}
@@ -15617,49 +15621,6 @@ while = {
 					}
 				}
 				else = { 
-					set_variable = { 
-						name = array_add_t
-						value = var:trade_do_trade_t
-					}
-					change_variable = { 
-						name = array_add_t
-						multiply = 10
-					}
-					if = { 
-						limit = { 
-							NOT = { 
-								has_variable_list = array_trade_dat_cereal
-							}
-						}
-						add_to_variable_list = { 
-							name = array_trade_dat_cereal
-							target = var:array_add_t
-						}
-					}
-					else = { 
-						while = { 
-							limit = { 
-								is_target_in_variable_list = { 
-									name = array_trade_dat_cereal
-									target = var:array_add_t
-								}
-							}
-							count = 10
-							change_variable = { 
-								name = array_add_t
-								add = 0.001
-							}
-						}
-						add_to_variable_list = { 
-							name = array_trade_dat_cereal
-							target = var:array_add_t
-						}
-					}
-					remove_variable = array_add_t
-					add_to_variable_list = { 
-						name = trade_dat_cereal
-						target = prev
-					}
 					prev = { 
 						set_variable = { 
 							name = array_add_t
@@ -15704,6 +15665,53 @@ while = {
 							name = trade_dat_cereal
 							target = prev
 						}
+					}
+					change_variable = { 
+						name = trade_do_trade_t
+						multiply = -1
+					}
+					set_variable = { 
+						name = array_add_t
+						value = var:trade_do_trade_t
+					}
+					change_variable = { 
+						name = array_add_t
+						multiply = 10
+					}
+					if = { 
+						limit = { 
+							NOT = { 
+								has_variable_list = array_trade_dat_cereal
+							}
+						}
+						add_to_variable_list = { 
+							name = array_trade_dat_cereal
+							target = var:array_add_t
+						}
+					}
+					else = { 
+						while = { 
+							limit = { 
+								is_target_in_variable_list = { 
+									name = array_trade_dat_cereal
+									target = var:array_add_t
+								}
+							}
+							count = 10
+							change_variable = { 
+								name = array_add_t
+								add = 0.001
+							}
+						}
+						add_to_variable_list = { 
+							name = array_trade_dat_cereal
+							target = var:array_add_t
+						}
+					}
+					remove_variable = array_add_t
+					add_to_variable_list = { 
+						name = trade_dat_cereal
+						target = prev
 					}
 				}
 			}
@@ -15954,49 +15962,6 @@ while = {
 					}
 				}
 				else = { 
-					set_variable = { 
-						name = array_add_t
-						value = var:trade_do_trade_t
-					}
-					change_variable = { 
-						name = array_add_t
-						multiply = 10
-					}
-					if = { 
-						limit = { 
-							NOT = { 
-								has_variable_list = array_trade_dat_salted
-							}
-						}
-						add_to_variable_list = { 
-							name = array_trade_dat_salted
-							target = var:array_add_t
-						}
-					}
-					else = { 
-						while = { 
-							limit = { 
-								is_target_in_variable_list = { 
-									name = array_trade_dat_salted
-									target = var:array_add_t
-								}
-							}
-							count = 10
-							change_variable = { 
-								name = array_add_t
-								add = 0.001
-							}
-						}
-						add_to_variable_list = { 
-							name = array_trade_dat_salted
-							target = var:array_add_t
-						}
-					}
-					remove_variable = array_add_t
-					add_to_variable_list = { 
-						name = trade_dat_salted
-						target = prev
-					}
 					prev = { 
 						set_variable = { 
 							name = array_add_t
@@ -16041,6 +16006,53 @@ while = {
 							name = trade_dat_salted
 							target = prev
 						}
+					}
+					change_variable = { 
+						name = trade_do_trade_t
+						multiply = -1
+					}
+					set_variable = { 
+						name = array_add_t
+						value = var:trade_do_trade_t
+					}
+					change_variable = { 
+						name = array_add_t
+						multiply = 10
+					}
+					if = { 
+						limit = { 
+							NOT = { 
+								has_variable_list = array_trade_dat_salted
+							}
+						}
+						add_to_variable_list = { 
+							name = array_trade_dat_salted
+							target = var:array_add_t
+						}
+					}
+					else = { 
+						while = { 
+							limit = { 
+								is_target_in_variable_list = { 
+									name = array_trade_dat_salted
+									target = var:array_add_t
+								}
+							}
+							count = 10
+							change_variable = { 
+								name = array_add_t
+								add = 0.001
+							}
+						}
+						add_to_variable_list = { 
+							name = array_trade_dat_salted
+							target = var:array_add_t
+						}
+					}
+					remove_variable = array_add_t
+					add_to_variable_list = { 
+						name = trade_dat_salted
+						target = prev
 					}
 				}
 			}
@@ -16291,49 +16303,6 @@ while = {
 					}
 				}
 				else = { 
-					set_variable = { 
-						name = array_add_t
-						value = var:trade_do_trade_t
-					}
-					change_variable = { 
-						name = array_add_t
-						multiply = 10
-					}
-					if = { 
-						limit = { 
-							NOT = { 
-								has_variable_list = array_trade_dat_salt
-							}
-						}
-						add_to_variable_list = { 
-							name = array_trade_dat_salt
-							target = var:array_add_t
-						}
-					}
-					else = { 
-						while = { 
-							limit = { 
-								is_target_in_variable_list = { 
-									name = array_trade_dat_salt
-									target = var:array_add_t
-								}
-							}
-							count = 10
-							change_variable = { 
-								name = array_add_t
-								add = 0.001
-							}
-						}
-						add_to_variable_list = { 
-							name = array_trade_dat_salt
-							target = var:array_add_t
-						}
-					}
-					remove_variable = array_add_t
-					add_to_variable_list = { 
-						name = trade_dat_salt
-						target = prev
-					}
 					prev = { 
 						set_variable = { 
 							name = array_add_t
@@ -16378,6 +16347,53 @@ while = {
 							name = trade_dat_salt
 							target = prev
 						}
+					}
+					change_variable = { 
+						name = trade_do_trade_t
+						multiply = -1
+					}
+					set_variable = { 
+						name = array_add_t
+						value = var:trade_do_trade_t
+					}
+					change_variable = { 
+						name = array_add_t
+						multiply = 10
+					}
+					if = { 
+						limit = { 
+							NOT = { 
+								has_variable_list = array_trade_dat_salt
+							}
+						}
+						add_to_variable_list = { 
+							name = array_trade_dat_salt
+							target = var:array_add_t
+						}
+					}
+					else = { 
+						while = { 
+							limit = { 
+								is_target_in_variable_list = { 
+									name = array_trade_dat_salt
+									target = var:array_add_t
+								}
+							}
+							count = 10
+							change_variable = { 
+								name = array_add_t
+								add = 0.001
+							}
+						}
+						add_to_variable_list = { 
+							name = array_trade_dat_salt
+							target = var:array_add_t
+						}
+					}
+					remove_variable = array_add_t
+					add_to_variable_list = { 
+						name = trade_dat_salt
+						target = prev
 					}
 				}
 			}
@@ -16628,49 +16644,6 @@ while = {
 					}
 				}
 				else = { 
-					set_variable = { 
-						name = array_add_t
-						value = var:trade_do_trade_t
-					}
-					change_variable = { 
-						name = array_add_t
-						multiply = 10
-					}
-					if = { 
-						limit = { 
-							NOT = { 
-								has_variable_list = array_trade_dat_mud
-							}
-						}
-						add_to_variable_list = { 
-							name = array_trade_dat_mud
-							target = var:array_add_t
-						}
-					}
-					else = { 
-						while = { 
-							limit = { 
-								is_target_in_variable_list = { 
-									name = array_trade_dat_mud
-									target = var:array_add_t
-								}
-							}
-							count = 10
-							change_variable = { 
-								name = array_add_t
-								add = 0.001
-							}
-						}
-						add_to_variable_list = { 
-							name = array_trade_dat_mud
-							target = var:array_add_t
-						}
-					}
-					remove_variable = array_add_t
-					add_to_variable_list = { 
-						name = trade_dat_mud
-						target = prev
-					}
 					prev = { 
 						set_variable = { 
 							name = array_add_t
@@ -16715,6 +16688,53 @@ while = {
 							name = trade_dat_mud
 							target = prev
 						}
+					}
+					change_variable = { 
+						name = trade_do_trade_t
+						multiply = -1
+					}
+					set_variable = { 
+						name = array_add_t
+						value = var:trade_do_trade_t
+					}
+					change_variable = { 
+						name = array_add_t
+						multiply = 10
+					}
+					if = { 
+						limit = { 
+							NOT = { 
+								has_variable_list = array_trade_dat_mud
+							}
+						}
+						add_to_variable_list = { 
+							name = array_trade_dat_mud
+							target = var:array_add_t
+						}
+					}
+					else = { 
+						while = { 
+							limit = { 
+								is_target_in_variable_list = { 
+									name = array_trade_dat_mud
+									target = var:array_add_t
+								}
+							}
+							count = 10
+							change_variable = { 
+								name = array_add_t
+								add = 0.001
+							}
+						}
+						add_to_variable_list = { 
+							name = array_trade_dat_mud
+							target = var:array_add_t
+						}
+					}
+					remove_variable = array_add_t
+					add_to_variable_list = { 
+						name = trade_dat_mud
+						target = prev
 					}
 				}
 			}
@@ -16965,49 +16985,6 @@ while = {
 					}
 				}
 				else = { 
-					set_variable = { 
-						name = array_add_t
-						value = var:trade_do_trade_t
-					}
-					change_variable = { 
-						name = array_add_t
-						multiply = 10
-					}
-					if = { 
-						limit = { 
-							NOT = { 
-								has_variable_list = array_trade_dat_fuel
-							}
-						}
-						add_to_variable_list = { 
-							name = array_trade_dat_fuel
-							target = var:array_add_t
-						}
-					}
-					else = { 
-						while = { 
-							limit = { 
-								is_target_in_variable_list = { 
-									name = array_trade_dat_fuel
-									target = var:array_add_t
-								}
-							}
-							count = 10
-							change_variable = { 
-								name = array_add_t
-								add = 0.001
-							}
-						}
-						add_to_variable_list = { 
-							name = array_trade_dat_fuel
-							target = var:array_add_t
-						}
-					}
-					remove_variable = array_add_t
-					add_to_variable_list = { 
-						name = trade_dat_fuel
-						target = prev
-					}
 					prev = { 
 						set_variable = { 
 							name = array_add_t
@@ -17052,6 +17029,53 @@ while = {
 							name = trade_dat_fuel
 							target = prev
 						}
+					}
+					change_variable = { 
+						name = trade_do_trade_t
+						multiply = -1
+					}
+					set_variable = { 
+						name = array_add_t
+						value = var:trade_do_trade_t
+					}
+					change_variable = { 
+						name = array_add_t
+						multiply = 10
+					}
+					if = { 
+						limit = { 
+							NOT = { 
+								has_variable_list = array_trade_dat_fuel
+							}
+						}
+						add_to_variable_list = { 
+							name = array_trade_dat_fuel
+							target = var:array_add_t
+						}
+					}
+					else = { 
+						while = { 
+							limit = { 
+								is_target_in_variable_list = { 
+									name = array_trade_dat_fuel
+									target = var:array_add_t
+								}
+							}
+							count = 10
+							change_variable = { 
+								name = array_add_t
+								add = 0.001
+							}
+						}
+						add_to_variable_list = { 
+							name = array_trade_dat_fuel
+							target = var:array_add_t
+						}
+					}
+					remove_variable = array_add_t
+					add_to_variable_list = { 
+						name = trade_dat_fuel
+						target = prev
 					}
 				}
 			}
@@ -17302,49 +17326,6 @@ while = {
 					}
 				}
 				else = { 
-					set_variable = { 
-						name = array_add_t
-						value = var:trade_do_trade_t
-					}
-					change_variable = { 
-						name = array_add_t
-						multiply = 10
-					}
-					if = { 
-						limit = { 
-							NOT = { 
-								has_variable_list = array_trade_dat_fiber
-							}
-						}
-						add_to_variable_list = { 
-							name = array_trade_dat_fiber
-							target = var:array_add_t
-						}
-					}
-					else = { 
-						while = { 
-							limit = { 
-								is_target_in_variable_list = { 
-									name = array_trade_dat_fiber
-									target = var:array_add_t
-								}
-							}
-							count = 10
-							change_variable = { 
-								name = array_add_t
-								add = 0.001
-							}
-						}
-						add_to_variable_list = { 
-							name = array_trade_dat_fiber
-							target = var:array_add_t
-						}
-					}
-					remove_variable = array_add_t
-					add_to_variable_list = { 
-						name = trade_dat_fiber
-						target = prev
-					}
 					prev = { 
 						set_variable = { 
 							name = array_add_t
@@ -17389,6 +17370,53 @@ while = {
 							name = trade_dat_fiber
 							target = prev
 						}
+					}
+					change_variable = { 
+						name = trade_do_trade_t
+						multiply = -1
+					}
+					set_variable = { 
+						name = array_add_t
+						value = var:trade_do_trade_t
+					}
+					change_variable = { 
+						name = array_add_t
+						multiply = 10
+					}
+					if = { 
+						limit = { 
+							NOT = { 
+								has_variable_list = array_trade_dat_fiber
+							}
+						}
+						add_to_variable_list = { 
+							name = array_trade_dat_fiber
+							target = var:array_add_t
+						}
+					}
+					else = { 
+						while = { 
+							limit = { 
+								is_target_in_variable_list = { 
+									name = array_trade_dat_fiber
+									target = var:array_add_t
+								}
+							}
+							count = 10
+							change_variable = { 
+								name = array_add_t
+								add = 0.001
+							}
+						}
+						add_to_variable_list = { 
+							name = array_trade_dat_fiber
+							target = var:array_add_t
+						}
+					}
+					remove_variable = array_add_t
+					add_to_variable_list = { 
+						name = trade_dat_fiber
+						target = prev
 					}
 				}
 			}
@@ -17639,49 +17667,6 @@ while = {
 					}
 				}
 				else = { 
-					set_variable = { 
-						name = array_add_t
-						value = var:trade_do_trade_t
-					}
-					change_variable = { 
-						name = array_add_t
-						multiply = 10
-					}
-					if = { 
-						limit = { 
-							NOT = { 
-								has_variable_list = array_trade_dat_timber
-							}
-						}
-						add_to_variable_list = { 
-							name = array_trade_dat_timber
-							target = var:array_add_t
-						}
-					}
-					else = { 
-						while = { 
-							limit = { 
-								is_target_in_variable_list = { 
-									name = array_trade_dat_timber
-									target = var:array_add_t
-								}
-							}
-							count = 10
-							change_variable = { 
-								name = array_add_t
-								add = 0.001
-							}
-						}
-						add_to_variable_list = { 
-							name = array_trade_dat_timber
-							target = var:array_add_t
-						}
-					}
-					remove_variable = array_add_t
-					add_to_variable_list = { 
-						name = trade_dat_timber
-						target = prev
-					}
 					prev = { 
 						set_variable = { 
 							name = array_add_t
@@ -17726,6 +17711,53 @@ while = {
 							name = trade_dat_timber
 							target = prev
 						}
+					}
+					change_variable = { 
+						name = trade_do_trade_t
+						multiply = -1
+					}
+					set_variable = { 
+						name = array_add_t
+						value = var:trade_do_trade_t
+					}
+					change_variable = { 
+						name = array_add_t
+						multiply = 10
+					}
+					if = { 
+						limit = { 
+							NOT = { 
+								has_variable_list = array_trade_dat_timber
+							}
+						}
+						add_to_variable_list = { 
+							name = array_trade_dat_timber
+							target = var:array_add_t
+						}
+					}
+					else = { 
+						while = { 
+							limit = { 
+								is_target_in_variable_list = { 
+									name = array_trade_dat_timber
+									target = var:array_add_t
+								}
+							}
+							count = 10
+							change_variable = { 
+								name = array_add_t
+								add = 0.001
+							}
+						}
+						add_to_variable_list = { 
+							name = array_trade_dat_timber
+							target = var:array_add_t
+						}
+					}
+					remove_variable = array_add_t
+					add_to_variable_list = { 
+						name = trade_dat_timber
+						target = prev
 					}
 				}
 			}
@@ -17976,49 +18008,6 @@ while = {
 					}
 				}
 				else = { 
-					set_variable = { 
-						name = array_add_t
-						value = var:trade_do_trade_t
-					}
-					change_variable = { 
-						name = array_add_t
-						multiply = 10
-					}
-					if = { 
-						limit = { 
-							NOT = { 
-								has_variable_list = array_trade_dat_metal
-							}
-						}
-						add_to_variable_list = { 
-							name = array_trade_dat_metal
-							target = var:array_add_t
-						}
-					}
-					else = { 
-						while = { 
-							limit = { 
-								is_target_in_variable_list = { 
-									name = array_trade_dat_metal
-									target = var:array_add_t
-								}
-							}
-							count = 10
-							change_variable = { 
-								name = array_add_t
-								add = 0.001
-							}
-						}
-						add_to_variable_list = { 
-							name = array_trade_dat_metal
-							target = var:array_add_t
-						}
-					}
-					remove_variable = array_add_t
-					add_to_variable_list = { 
-						name = trade_dat_metal
-						target = prev
-					}
 					prev = { 
 						set_variable = { 
 							name = array_add_t
@@ -18063,6 +18052,53 @@ while = {
 							name = trade_dat_metal
 							target = prev
 						}
+					}
+					change_variable = { 
+						name = trade_do_trade_t
+						multiply = -1
+					}
+					set_variable = { 
+						name = array_add_t
+						value = var:trade_do_trade_t
+					}
+					change_variable = { 
+						name = array_add_t
+						multiply = 10
+					}
+					if = { 
+						limit = { 
+							NOT = { 
+								has_variable_list = array_trade_dat_metal
+							}
+						}
+						add_to_variable_list = { 
+							name = array_trade_dat_metal
+							target = var:array_add_t
+						}
+					}
+					else = { 
+						while = { 
+							limit = { 
+								is_target_in_variable_list = { 
+									name = array_trade_dat_metal
+									target = var:array_add_t
+								}
+							}
+							count = 10
+							change_variable = { 
+								name = array_add_t
+								add = 0.001
+							}
+						}
+						add_to_variable_list = { 
+							name = array_trade_dat_metal
+							target = var:array_add_t
+						}
+					}
+					remove_variable = array_add_t
+					add_to_variable_list = { 
+						name = trade_dat_metal
+						target = prev
 					}
 				}
 			}
@@ -18313,49 +18349,6 @@ while = {
 					}
 				}
 				else = { 
-					set_variable = { 
-						name = array_add_t
-						value = var:trade_do_trade_t
-					}
-					change_variable = { 
-						name = array_add_t
-						multiply = 10
-					}
-					if = { 
-						limit = { 
-							NOT = { 
-								has_variable_list = array_trade_dat_exotics_w
-							}
-						}
-						add_to_variable_list = { 
-							name = array_trade_dat_exotics_w
-							target = var:array_add_t
-						}
-					}
-					else = { 
-						while = { 
-							limit = { 
-								is_target_in_variable_list = { 
-									name = array_trade_dat_exotics_w
-									target = var:array_add_t
-								}
-							}
-							count = 10
-							change_variable = { 
-								name = array_add_t
-								add = 0.001
-							}
-						}
-						add_to_variable_list = { 
-							name = array_trade_dat_exotics_w
-							target = var:array_add_t
-						}
-					}
-					remove_variable = array_add_t
-					add_to_variable_list = { 
-						name = trade_dat_exotics_w
-						target = prev
-					}
 					prev = { 
 						set_variable = { 
 							name = array_add_t
@@ -18400,6 +18393,53 @@ while = {
 							name = trade_dat_exotics_w
 							target = prev
 						}
+					}
+					change_variable = { 
+						name = trade_do_trade_t
+						multiply = -1
+					}
+					set_variable = { 
+						name = array_add_t
+						value = var:trade_do_trade_t
+					}
+					change_variable = { 
+						name = array_add_t
+						multiply = 10
+					}
+					if = { 
+						limit = { 
+							NOT = { 
+								has_variable_list = array_trade_dat_exotics_w
+							}
+						}
+						add_to_variable_list = { 
+							name = array_trade_dat_exotics_w
+							target = var:array_add_t
+						}
+					}
+					else = { 
+						while = { 
+							limit = { 
+								is_target_in_variable_list = { 
+									name = array_trade_dat_exotics_w
+									target = var:array_add_t
+								}
+							}
+							count = 10
+							change_variable = { 
+								name = array_add_t
+								add = 0.001
+							}
+						}
+						add_to_variable_list = { 
+							name = array_trade_dat_exotics_w
+							target = var:array_add_t
+						}
+					}
+					remove_variable = array_add_t
+					add_to_variable_list = { 
+						name = trade_dat_exotics_w
+						target = prev
 					}
 				}
 			}
@@ -18650,49 +18690,6 @@ while = {
 					}
 				}
 				else = { 
-					set_variable = { 
-						name = array_add_t
-						value = var:trade_do_trade_t
-					}
-					change_variable = { 
-						name = array_add_t
-						multiply = 10
-					}
-					if = { 
-						limit = { 
-							NOT = { 
-								has_variable_list = array_trade_dat_exotics_e
-							}
-						}
-						add_to_variable_list = { 
-							name = array_trade_dat_exotics_e
-							target = var:array_add_t
-						}
-					}
-					else = { 
-						while = { 
-							limit = { 
-								is_target_in_variable_list = { 
-									name = array_trade_dat_exotics_e
-									target = var:array_add_t
-								}
-							}
-							count = 10
-							change_variable = { 
-								name = array_add_t
-								add = 0.001
-							}
-						}
-						add_to_variable_list = { 
-							name = array_trade_dat_exotics_e
-							target = var:array_add_t
-						}
-					}
-					remove_variable = array_add_t
-					add_to_variable_list = { 
-						name = trade_dat_exotics_e
-						target = prev
-					}
 					prev = { 
 						set_variable = { 
 							name = array_add_t
@@ -18737,6 +18734,53 @@ while = {
 							name = trade_dat_exotics_e
 							target = prev
 						}
+					}
+					change_variable = { 
+						name = trade_do_trade_t
+						multiply = -1
+					}
+					set_variable = { 
+						name = array_add_t
+						value = var:trade_do_trade_t
+					}
+					change_variable = { 
+						name = array_add_t
+						multiply = 10
+					}
+					if = { 
+						limit = { 
+							NOT = { 
+								has_variable_list = array_trade_dat_exotics_e
+							}
+						}
+						add_to_variable_list = { 
+							name = array_trade_dat_exotics_e
+							target = var:array_add_t
+						}
+					}
+					else = { 
+						while = { 
+							limit = { 
+								is_target_in_variable_list = { 
+									name = array_trade_dat_exotics_e
+									target = var:array_add_t
+								}
+							}
+							count = 10
+							change_variable = { 
+								name = array_add_t
+								add = 0.001
+							}
+						}
+						add_to_variable_list = { 
+							name = array_trade_dat_exotics_e
+							target = var:array_add_t
+						}
+					}
+					remove_variable = array_add_t
+					add_to_variable_list = { 
+						name = trade_dat_exotics_e
+						target = prev
 					}
 				}
 			}
@@ -18987,49 +19031,6 @@ while = {
 					}
 				}
 				else = { 
-					set_variable = { 
-						name = array_add_t
-						value = var:trade_do_trade_t
-					}
-					change_variable = { 
-						name = array_add_t
-						multiply = 10
-					}
-					if = { 
-						limit = { 
-							NOT = { 
-								has_variable_list = array_trade_dat_exotics_g
-							}
-						}
-						add_to_variable_list = { 
-							name = array_trade_dat_exotics_g
-							target = var:array_add_t
-						}
-					}
-					else = { 
-						while = { 
-							limit = { 
-								is_target_in_variable_list = { 
-									name = array_trade_dat_exotics_g
-									target = var:array_add_t
-								}
-							}
-							count = 10
-							change_variable = { 
-								name = array_add_t
-								add = 0.001
-							}
-						}
-						add_to_variable_list = { 
-							name = array_trade_dat_exotics_g
-							target = var:array_add_t
-						}
-					}
-					remove_variable = array_add_t
-					add_to_variable_list = { 
-						name = trade_dat_exotics_g
-						target = prev
-					}
 					prev = { 
 						set_variable = { 
 							name = array_add_t
@@ -19074,6 +19075,53 @@ while = {
 							name = trade_dat_exotics_g
 							target = prev
 						}
+					}
+					change_variable = { 
+						name = trade_do_trade_t
+						multiply = -1
+					}
+					set_variable = { 
+						name = array_add_t
+						value = var:trade_do_trade_t
+					}
+					change_variable = { 
+						name = array_add_t
+						multiply = 10
+					}
+					if = { 
+						limit = { 
+							NOT = { 
+								has_variable_list = array_trade_dat_exotics_g
+							}
+						}
+						add_to_variable_list = { 
+							name = array_trade_dat_exotics_g
+							target = var:array_add_t
+						}
+					}
+					else = { 
+						while = { 
+							limit = { 
+								is_target_in_variable_list = { 
+									name = array_trade_dat_exotics_g
+									target = var:array_add_t
+								}
+							}
+							count = 10
+							change_variable = { 
+								name = array_add_t
+								add = 0.001
+							}
+						}
+						add_to_variable_list = { 
+							name = array_trade_dat_exotics_g
+							target = var:array_add_t
+						}
+					}
+					remove_variable = array_add_t
+					add_to_variable_list = { 
+						name = trade_dat_exotics_g
+						target = prev
 					}
 				}
 			}
@@ -19324,49 +19372,6 @@ while = {
 					}
 				}
 				else = { 
-					set_variable = { 
-						name = array_add_t
-						value = var:trade_do_trade_t
-					}
-					change_variable = { 
-						name = array_add_t
-						multiply = 10
-					}
-					if = { 
-						limit = { 
-							NOT = { 
-								has_variable_list = array_trade_dat_textile
-							}
-						}
-						add_to_variable_list = { 
-							name = array_trade_dat_textile
-							target = var:array_add_t
-						}
-					}
-					else = { 
-						while = { 
-							limit = { 
-								is_target_in_variable_list = { 
-									name = array_trade_dat_textile
-									target = var:array_add_t
-								}
-							}
-							count = 10
-							change_variable = { 
-								name = array_add_t
-								add = 0.001
-							}
-						}
-						add_to_variable_list = { 
-							name = array_trade_dat_textile
-							target = var:array_add_t
-						}
-					}
-					remove_variable = array_add_t
-					add_to_variable_list = { 
-						name = trade_dat_textile
-						target = prev
-					}
 					prev = { 
 						set_variable = { 
 							name = array_add_t
@@ -19411,6 +19416,53 @@ while = {
 							name = trade_dat_textile
 							target = prev
 						}
+					}
+					change_variable = { 
+						name = trade_do_trade_t
+						multiply = -1
+					}
+					set_variable = { 
+						name = array_add_t
+						value = var:trade_do_trade_t
+					}
+					change_variable = { 
+						name = array_add_t
+						multiply = 10
+					}
+					if = { 
+						limit = { 
+							NOT = { 
+								has_variable_list = array_trade_dat_textile
+							}
+						}
+						add_to_variable_list = { 
+							name = array_trade_dat_textile
+							target = var:array_add_t
+						}
+					}
+					else = { 
+						while = { 
+							limit = { 
+								is_target_in_variable_list = { 
+									name = array_trade_dat_textile
+									target = var:array_add_t
+								}
+							}
+							count = 10
+							change_variable = { 
+								name = array_add_t
+								add = 0.001
+							}
+						}
+						add_to_variable_list = { 
+							name = array_trade_dat_textile
+							target = var:array_add_t
+						}
+					}
+					remove_variable = array_add_t
+					add_to_variable_list = { 
+						name = trade_dat_textile
+						target = prev
 					}
 				}
 			}
@@ -19661,49 +19713,6 @@ while = {
 					}
 				}
 				else = { 
-					set_variable = { 
-						name = array_add_t
-						value = var:trade_do_trade_t
-					}
-					change_variable = { 
-						name = array_add_t
-						multiply = 10
-					}
-					if = { 
-						limit = { 
-							NOT = { 
-								has_variable_list = array_trade_dat_pottery
-							}
-						}
-						add_to_variable_list = { 
-							name = array_trade_dat_pottery
-							target = var:array_add_t
-						}
-					}
-					else = { 
-						while = { 
-							limit = { 
-								is_target_in_variable_list = { 
-									name = array_trade_dat_pottery
-									target = var:array_add_t
-								}
-							}
-							count = 10
-							change_variable = { 
-								name = array_add_t
-								add = 0.001
-							}
-						}
-						add_to_variable_list = { 
-							name = array_trade_dat_pottery
-							target = var:array_add_t
-						}
-					}
-					remove_variable = array_add_t
-					add_to_variable_list = { 
-						name = trade_dat_pottery
-						target = prev
-					}
 					prev = { 
 						set_variable = { 
 							name = array_add_t
@@ -19748,6 +19757,53 @@ while = {
 							name = trade_dat_pottery
 							target = prev
 						}
+					}
+					change_variable = { 
+						name = trade_do_trade_t
+						multiply = -1
+					}
+					set_variable = { 
+						name = array_add_t
+						value = var:trade_do_trade_t
+					}
+					change_variable = { 
+						name = array_add_t
+						multiply = 10
+					}
+					if = { 
+						limit = { 
+							NOT = { 
+								has_variable_list = array_trade_dat_pottery
+							}
+						}
+						add_to_variable_list = { 
+							name = array_trade_dat_pottery
+							target = var:array_add_t
+						}
+					}
+					else = { 
+						while = { 
+							limit = { 
+								is_target_in_variable_list = { 
+									name = array_trade_dat_pottery
+									target = var:array_add_t
+								}
+							}
+							count = 10
+							change_variable = { 
+								name = array_add_t
+								add = 0.001
+							}
+						}
+						add_to_variable_list = { 
+							name = array_trade_dat_pottery
+							target = var:array_add_t
+						}
+					}
+					remove_variable = array_add_t
+					add_to_variable_list = { 
+						name = trade_dat_pottery
+						target = prev
 					}
 				}
 			}
@@ -19998,49 +20054,6 @@ while = {
 					}
 				}
 				else = { 
-					set_variable = { 
-						name = array_add_t
-						value = var:trade_do_trade_t
-					}
-					change_variable = { 
-						name = array_add_t
-						multiply = 10
-					}
-					if = { 
-						limit = { 
-							NOT = { 
-								has_variable_list = array_trade_dat_tools
-							}
-						}
-						add_to_variable_list = { 
-							name = array_trade_dat_tools
-							target = var:array_add_t
-						}
-					}
-					else = { 
-						while = { 
-							limit = { 
-								is_target_in_variable_list = { 
-									name = array_trade_dat_tools
-									target = var:array_add_t
-								}
-							}
-							count = 10
-							change_variable = { 
-								name = array_add_t
-								add = 0.001
-							}
-						}
-						add_to_variable_list = { 
-							name = array_trade_dat_tools
-							target = var:array_add_t
-						}
-					}
-					remove_variable = array_add_t
-					add_to_variable_list = { 
-						name = trade_dat_tools
-						target = prev
-					}
 					prev = { 
 						set_variable = { 
 							name = array_add_t
@@ -20085,6 +20098,53 @@ while = {
 							name = trade_dat_tools
 							target = prev
 						}
+					}
+					change_variable = { 
+						name = trade_do_trade_t
+						multiply = -1
+					}
+					set_variable = { 
+						name = array_add_t
+						value = var:trade_do_trade_t
+					}
+					change_variable = { 
+						name = array_add_t
+						multiply = 10
+					}
+					if = { 
+						limit = { 
+							NOT = { 
+								has_variable_list = array_trade_dat_tools
+							}
+						}
+						add_to_variable_list = { 
+							name = array_trade_dat_tools
+							target = var:array_add_t
+						}
+					}
+					else = { 
+						while = { 
+							limit = { 
+								is_target_in_variable_list = { 
+									name = array_trade_dat_tools
+									target = var:array_add_t
+								}
+							}
+							count = 10
+							change_variable = { 
+								name = array_add_t
+								add = 0.001
+							}
+						}
+						add_to_variable_list = { 
+							name = array_trade_dat_tools
+							target = var:array_add_t
+						}
+					}
+					remove_variable = array_add_t
+					add_to_variable_list = { 
+						name = trade_dat_tools
+						target = prev
 					}
 				}
 			}
@@ -21258,6 +21318,7 @@ every_county = {
 	remove_variable = array_get_max_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t > 0
 		}
 		set_variable = { 
@@ -21377,6 +21438,7 @@ every_county = {
 	remove_variable = array_get_max_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t > 0
 		}
 		set_variable = { 
@@ -21496,6 +21558,7 @@ every_county = {
 	remove_variable = array_get_max_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t > 0
 		}
 		set_variable = { 
@@ -21615,6 +21678,7 @@ every_county = {
 	remove_variable = array_get_min_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t < 0
 		}
 		set_variable = { 
@@ -21734,6 +21798,7 @@ every_county = {
 	remove_variable = array_get_min_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t < 0
 		}
 		set_variable = { 
@@ -21853,6 +21918,7 @@ every_county = {
 	remove_variable = array_get_min_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t < 0
 		}
 		set_variable = { 
@@ -22023,6 +22089,7 @@ every_county = {
 	remove_variable = array_get_max_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t > 0
 		}
 		set_variable = { 
@@ -22142,6 +22209,7 @@ every_county = {
 	remove_variable = array_get_max_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t > 0
 		}
 		set_variable = { 
@@ -22261,6 +22329,7 @@ every_county = {
 	remove_variable = array_get_max_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t > 0
 		}
 		set_variable = { 
@@ -22380,6 +22449,7 @@ every_county = {
 	remove_variable = array_get_min_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t < 0
 		}
 		set_variable = { 
@@ -22499,6 +22569,7 @@ every_county = {
 	remove_variable = array_get_min_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t < 0
 		}
 		set_variable = { 
@@ -22618,6 +22689,7 @@ every_county = {
 	remove_variable = array_get_min_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t < 0
 		}
 		set_variable = { 
@@ -22788,6 +22860,7 @@ every_county = {
 	remove_variable = array_get_max_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t > 0
 		}
 		set_variable = { 
@@ -22907,6 +22980,7 @@ every_county = {
 	remove_variable = array_get_max_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t > 0
 		}
 		set_variable = { 
@@ -23026,6 +23100,7 @@ every_county = {
 	remove_variable = array_get_max_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t > 0
 		}
 		set_variable = { 
@@ -23145,6 +23220,7 @@ every_county = {
 	remove_variable = array_get_min_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t < 0
 		}
 		set_variable = { 
@@ -23264,6 +23340,7 @@ every_county = {
 	remove_variable = array_get_min_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t < 0
 		}
 		set_variable = { 
@@ -23383,6 +23460,7 @@ every_county = {
 	remove_variable = array_get_min_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t < 0
 		}
 		set_variable = { 
@@ -23553,6 +23631,7 @@ every_county = {
 	remove_variable = array_get_max_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t > 0
 		}
 		set_variable = { 
@@ -23672,6 +23751,7 @@ every_county = {
 	remove_variable = array_get_max_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t > 0
 		}
 		set_variable = { 
@@ -23791,6 +23871,7 @@ every_county = {
 	remove_variable = array_get_max_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t > 0
 		}
 		set_variable = { 
@@ -23910,6 +23991,7 @@ every_county = {
 	remove_variable = array_get_min_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t < 0
 		}
 		set_variable = { 
@@ -24029,6 +24111,7 @@ every_county = {
 	remove_variable = array_get_min_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t < 0
 		}
 		set_variable = { 
@@ -24148,6 +24231,7 @@ every_county = {
 	remove_variable = array_get_min_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t < 0
 		}
 		set_variable = { 
@@ -24318,6 +24402,7 @@ every_county = {
 	remove_variable = array_get_max_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t > 0
 		}
 		set_variable = { 
@@ -24437,6 +24522,7 @@ every_county = {
 	remove_variable = array_get_max_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t > 0
 		}
 		set_variable = { 
@@ -24556,6 +24642,7 @@ every_county = {
 	remove_variable = array_get_max_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t > 0
 		}
 		set_variable = { 
@@ -24675,6 +24762,7 @@ every_county = {
 	remove_variable = array_get_min_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t < 0
 		}
 		set_variable = { 
@@ -24794,6 +24882,7 @@ every_county = {
 	remove_variable = array_get_min_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t < 0
 		}
 		set_variable = { 
@@ -24913,6 +25002,7 @@ every_county = {
 	remove_variable = array_get_min_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t < 0
 		}
 		set_variable = { 
@@ -25083,6 +25173,7 @@ every_county = {
 	remove_variable = array_get_max_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t > 0
 		}
 		set_variable = { 
@@ -25202,6 +25293,7 @@ every_county = {
 	remove_variable = array_get_max_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t > 0
 		}
 		set_variable = { 
@@ -25321,6 +25413,7 @@ every_county = {
 	remove_variable = array_get_max_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t > 0
 		}
 		set_variable = { 
@@ -25440,6 +25533,7 @@ every_county = {
 	remove_variable = array_get_min_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t < 0
 		}
 		set_variable = { 
@@ -25559,6 +25653,7 @@ every_county = {
 	remove_variable = array_get_min_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t < 0
 		}
 		set_variable = { 
@@ -25678,6 +25773,7 @@ every_county = {
 	remove_variable = array_get_min_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t < 0
 		}
 		set_variable = { 
@@ -25848,6 +25944,7 @@ every_county = {
 	remove_variable = array_get_max_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t > 0
 		}
 		set_variable = { 
@@ -25967,6 +26064,7 @@ every_county = {
 	remove_variable = array_get_max_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t > 0
 		}
 		set_variable = { 
@@ -26086,6 +26184,7 @@ every_county = {
 	remove_variable = array_get_max_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t > 0
 		}
 		set_variable = { 
@@ -26205,6 +26304,7 @@ every_county = {
 	remove_variable = array_get_min_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t < 0
 		}
 		set_variable = { 
@@ -26324,6 +26424,7 @@ every_county = {
 	remove_variable = array_get_min_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t < 0
 		}
 		set_variable = { 
@@ -26443,6 +26544,7 @@ every_county = {
 	remove_variable = array_get_min_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t < 0
 		}
 		set_variable = { 
@@ -26613,6 +26715,7 @@ every_county = {
 	remove_variable = array_get_max_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t > 0
 		}
 		set_variable = { 
@@ -26732,6 +26835,7 @@ every_county = {
 	remove_variable = array_get_max_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t > 0
 		}
 		set_variable = { 
@@ -26851,6 +26955,7 @@ every_county = {
 	remove_variable = array_get_max_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t > 0
 		}
 		set_variable = { 
@@ -26970,6 +27075,7 @@ every_county = {
 	remove_variable = array_get_min_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t < 0
 		}
 		set_variable = { 
@@ -27089,6 +27195,7 @@ every_county = {
 	remove_variable = array_get_min_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t < 0
 		}
 		set_variable = { 
@@ -27208,6 +27315,7 @@ every_county = {
 	remove_variable = array_get_min_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t < 0
 		}
 		set_variable = { 
@@ -27378,6 +27486,7 @@ every_county = {
 	remove_variable = array_get_max_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t > 0
 		}
 		set_variable = { 
@@ -27497,6 +27606,7 @@ every_county = {
 	remove_variable = array_get_max_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t > 0
 		}
 		set_variable = { 
@@ -27616,6 +27726,7 @@ every_county = {
 	remove_variable = array_get_max_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t > 0
 		}
 		set_variable = { 
@@ -27735,6 +27846,7 @@ every_county = {
 	remove_variable = array_get_min_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t < 0
 		}
 		set_variable = { 
@@ -27854,6 +27966,7 @@ every_county = {
 	remove_variable = array_get_min_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t < 0
 		}
 		set_variable = { 
@@ -27973,6 +28086,7 @@ every_county = {
 	remove_variable = array_get_min_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t < 0
 		}
 		set_variable = { 
@@ -28143,6 +28257,7 @@ every_county = {
 	remove_variable = array_get_max_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t > 0
 		}
 		set_variable = { 
@@ -28262,6 +28377,7 @@ every_county = {
 	remove_variable = array_get_max_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t > 0
 		}
 		set_variable = { 
@@ -28381,6 +28497,7 @@ every_county = {
 	remove_variable = array_get_max_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t > 0
 		}
 		set_variable = { 
@@ -28500,6 +28617,7 @@ every_county = {
 	remove_variable = array_get_min_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t < 0
 		}
 		set_variable = { 
@@ -28619,6 +28737,7 @@ every_county = {
 	remove_variable = array_get_min_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t < 0
 		}
 		set_variable = { 
@@ -28738,6 +28857,7 @@ every_county = {
 	remove_variable = array_get_min_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t < 0
 		}
 		set_variable = { 
@@ -28908,6 +29028,7 @@ every_county = {
 	remove_variable = array_get_max_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t > 0
 		}
 		set_variable = { 
@@ -29027,6 +29148,7 @@ every_county = {
 	remove_variable = array_get_max_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t > 0
 		}
 		set_variable = { 
@@ -29146,6 +29268,7 @@ every_county = {
 	remove_variable = array_get_max_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t > 0
 		}
 		set_variable = { 
@@ -29265,6 +29388,7 @@ every_county = {
 	remove_variable = array_get_min_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t < 0
 		}
 		set_variable = { 
@@ -29384,6 +29508,7 @@ every_county = {
 	remove_variable = array_get_min_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t < 0
 		}
 		set_variable = { 
@@ -29503,6 +29628,7 @@ every_county = {
 	remove_variable = array_get_min_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t < 0
 		}
 		set_variable = { 
@@ -29673,6 +29799,7 @@ every_county = {
 	remove_variable = array_get_max_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t > 0
 		}
 		set_variable = { 
@@ -29792,6 +29919,7 @@ every_county = {
 	remove_variable = array_get_max_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t > 0
 		}
 		set_variable = { 
@@ -29911,6 +30039,7 @@ every_county = {
 	remove_variable = array_get_max_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t > 0
 		}
 		set_variable = { 
@@ -30030,6 +30159,7 @@ every_county = {
 	remove_variable = array_get_min_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t < 0
 		}
 		set_variable = { 
@@ -30149,6 +30279,7 @@ every_county = {
 	remove_variable = array_get_min_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t < 0
 		}
 		set_variable = { 
@@ -30268,6 +30399,7 @@ every_county = {
 	remove_variable = array_get_min_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t < 0
 		}
 		set_variable = { 
@@ -30438,6 +30570,7 @@ every_county = {
 	remove_variable = array_get_max_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t > 0
 		}
 		set_variable = { 
@@ -30557,6 +30690,7 @@ every_county = {
 	remove_variable = array_get_max_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t > 0
 		}
 		set_variable = { 
@@ -30676,6 +30810,7 @@ every_county = {
 	remove_variable = array_get_max_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t > 0
 		}
 		set_variable = { 
@@ -30795,6 +30930,7 @@ every_county = {
 	remove_variable = array_get_min_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t < 0
 		}
 		set_variable = { 
@@ -30914,6 +31050,7 @@ every_county = {
 	remove_variable = array_get_min_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t < 0
 		}
 		set_variable = { 
@@ -31033,6 +31170,7 @@ every_county = {
 	remove_variable = array_get_min_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t < 0
 		}
 		set_variable = { 
@@ -31203,6 +31341,7 @@ every_county = {
 	remove_variable = array_get_max_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t > 0
 		}
 		set_variable = { 
@@ -31322,6 +31461,7 @@ every_county = {
 	remove_variable = array_get_max_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t > 0
 		}
 		set_variable = { 
@@ -31441,6 +31581,7 @@ every_county = {
 	remove_variable = array_get_max_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t > 0
 		}
 		set_variable = { 
@@ -31560,6 +31701,7 @@ every_county = {
 	remove_variable = array_get_min_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t < 0
 		}
 		set_variable = { 
@@ -31679,6 +31821,7 @@ every_county = {
 	remove_variable = array_get_min_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t < 0
 		}
 		set_variable = { 
@@ -31798,6 +31941,7 @@ every_county = {
 	remove_variable = array_get_min_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t < 0
 		}
 		set_variable = { 
@@ -31968,6 +32112,7 @@ every_county = {
 	remove_variable = array_get_max_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t > 0
 		}
 		set_variable = { 
@@ -32087,6 +32232,7 @@ every_county = {
 	remove_variable = array_get_max_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t > 0
 		}
 		set_variable = { 
@@ -32206,6 +32352,7 @@ every_county = {
 	remove_variable = array_get_max_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t > 0
 		}
 		set_variable = { 
@@ -32325,6 +32472,7 @@ every_county = {
 	remove_variable = array_get_min_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t < 0
 		}
 		set_variable = { 
@@ -32444,6 +32592,7 @@ every_county = {
 	remove_variable = array_get_min_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t < 0
 		}
 		set_variable = { 
@@ -32563,6 +32712,7 @@ every_county = {
 	remove_variable = array_get_min_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t < 0
 		}
 		set_variable = { 
@@ -32740,6 +32890,7 @@ every_in_global_list = {
 	remove_variable = array_get_max_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t > 0
 		}
 		set_variable = { 
@@ -32876,6 +33027,7 @@ every_in_global_list = {
 	remove_variable = array_get_max_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t > 0
 		}
 		set_variable = { 
@@ -33012,6 +33164,7 @@ every_in_global_list = {
 	remove_variable = array_get_max_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t > 0
 		}
 		set_variable = { 
@@ -33148,6 +33301,7 @@ every_in_global_list = {
 	remove_variable = array_get_max_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t > 0
 		}
 		set_variable = { 
@@ -33284,6 +33438,7 @@ every_in_global_list = {
 	remove_variable = array_get_max_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t > 0
 		}
 		set_variable = { 
@@ -33420,6 +33575,7 @@ every_in_global_list = {
 	remove_variable = array_get_min_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t < 0
 		}
 		set_variable = { 
@@ -33556,6 +33712,7 @@ every_in_global_list = {
 	remove_variable = array_get_min_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t < 0
 		}
 		set_variable = { 
@@ -33692,6 +33849,7 @@ every_in_global_list = {
 	remove_variable = array_get_min_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t < 0
 		}
 		set_variable = { 
@@ -33828,6 +33986,7 @@ every_in_global_list = {
 	remove_variable = array_get_min_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t < 0
 		}
 		set_variable = { 
@@ -33964,6 +34123,7 @@ every_in_global_list = {
 	remove_variable = array_get_min_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t < 0
 		}
 		set_variable = { 
@@ -34151,6 +34311,7 @@ every_in_global_list = {
 	remove_variable = array_get_max_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t > 0
 		}
 		set_variable = { 
@@ -34287,6 +34448,7 @@ every_in_global_list = {
 	remove_variable = array_get_max_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t > 0
 		}
 		set_variable = { 
@@ -34423,6 +34585,7 @@ every_in_global_list = {
 	remove_variable = array_get_max_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t > 0
 		}
 		set_variable = { 
@@ -34559,6 +34722,7 @@ every_in_global_list = {
 	remove_variable = array_get_max_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t > 0
 		}
 		set_variable = { 
@@ -34695,6 +34859,7 @@ every_in_global_list = {
 	remove_variable = array_get_max_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t > 0
 		}
 		set_variable = { 
@@ -34831,6 +34996,7 @@ every_in_global_list = {
 	remove_variable = array_get_min_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t < 0
 		}
 		set_variable = { 
@@ -34967,6 +35133,7 @@ every_in_global_list = {
 	remove_variable = array_get_min_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t < 0
 		}
 		set_variable = { 
@@ -35103,6 +35270,7 @@ every_in_global_list = {
 	remove_variable = array_get_min_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t < 0
 		}
 		set_variable = { 
@@ -35239,6 +35407,7 @@ every_in_global_list = {
 	remove_variable = array_get_min_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t < 0
 		}
 		set_variable = { 
@@ -35375,6 +35544,7 @@ every_in_global_list = {
 	remove_variable = array_get_min_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t < 0
 		}
 		set_variable = { 
@@ -35562,6 +35732,7 @@ every_in_global_list = {
 	remove_variable = array_get_max_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t > 0
 		}
 		set_variable = { 
@@ -35698,6 +35869,7 @@ every_in_global_list = {
 	remove_variable = array_get_max_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t > 0
 		}
 		set_variable = { 
@@ -35834,6 +36006,7 @@ every_in_global_list = {
 	remove_variable = array_get_max_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t > 0
 		}
 		set_variable = { 
@@ -35970,6 +36143,7 @@ every_in_global_list = {
 	remove_variable = array_get_max_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t > 0
 		}
 		set_variable = { 
@@ -36106,6 +36280,7 @@ every_in_global_list = {
 	remove_variable = array_get_max_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t > 0
 		}
 		set_variable = { 
@@ -36242,6 +36417,7 @@ every_in_global_list = {
 	remove_variable = array_get_min_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t < 0
 		}
 		set_variable = { 
@@ -36378,6 +36554,7 @@ every_in_global_list = {
 	remove_variable = array_get_min_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t < 0
 		}
 		set_variable = { 
@@ -36514,6 +36691,7 @@ every_in_global_list = {
 	remove_variable = array_get_min_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t < 0
 		}
 		set_variable = { 
@@ -36650,6 +36828,7 @@ every_in_global_list = {
 	remove_variable = array_get_min_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t < 0
 		}
 		set_variable = { 
@@ -36786,6 +36965,7 @@ every_in_global_list = {
 	remove_variable = array_get_min_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t < 0
 		}
 		set_variable = { 
@@ -36973,6 +37153,7 @@ every_in_global_list = {
 	remove_variable = array_get_max_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t > 0
 		}
 		set_variable = { 
@@ -37109,6 +37290,7 @@ every_in_global_list = {
 	remove_variable = array_get_max_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t > 0
 		}
 		set_variable = { 
@@ -37245,6 +37427,7 @@ every_in_global_list = {
 	remove_variable = array_get_max_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t > 0
 		}
 		set_variable = { 
@@ -37381,6 +37564,7 @@ every_in_global_list = {
 	remove_variable = array_get_max_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t > 0
 		}
 		set_variable = { 
@@ -37517,6 +37701,7 @@ every_in_global_list = {
 	remove_variable = array_get_max_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t > 0
 		}
 		set_variable = { 
@@ -37653,6 +37838,7 @@ every_in_global_list = {
 	remove_variable = array_get_min_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t < 0
 		}
 		set_variable = { 
@@ -37789,6 +37975,7 @@ every_in_global_list = {
 	remove_variable = array_get_min_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t < 0
 		}
 		set_variable = { 
@@ -37925,6 +38112,7 @@ every_in_global_list = {
 	remove_variable = array_get_min_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t < 0
 		}
 		set_variable = { 
@@ -38061,6 +38249,7 @@ every_in_global_list = {
 	remove_variable = array_get_min_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t < 0
 		}
 		set_variable = { 
@@ -38197,6 +38386,7 @@ every_in_global_list = {
 	remove_variable = array_get_min_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t < 0
 		}
 		set_variable = { 
@@ -38384,6 +38574,7 @@ every_in_global_list = {
 	remove_variable = array_get_max_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t > 0
 		}
 		set_variable = { 
@@ -38520,6 +38711,7 @@ every_in_global_list = {
 	remove_variable = array_get_max_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t > 0
 		}
 		set_variable = { 
@@ -38656,6 +38848,7 @@ every_in_global_list = {
 	remove_variable = array_get_max_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t > 0
 		}
 		set_variable = { 
@@ -38792,6 +38985,7 @@ every_in_global_list = {
 	remove_variable = array_get_max_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t > 0
 		}
 		set_variable = { 
@@ -38928,6 +39122,7 @@ every_in_global_list = {
 	remove_variable = array_get_max_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t > 0
 		}
 		set_variable = { 
@@ -39064,6 +39259,7 @@ every_in_global_list = {
 	remove_variable = array_get_min_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t < 0
 		}
 		set_variable = { 
@@ -39200,6 +39396,7 @@ every_in_global_list = {
 	remove_variable = array_get_min_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t < 0
 		}
 		set_variable = { 
@@ -39336,6 +39533,7 @@ every_in_global_list = {
 	remove_variable = array_get_min_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t < 0
 		}
 		set_variable = { 
@@ -39472,6 +39670,7 @@ every_in_global_list = {
 	remove_variable = array_get_min_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t < 0
 		}
 		set_variable = { 
@@ -39608,6 +39807,7 @@ every_in_global_list = {
 	remove_variable = array_get_min_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t < 0
 		}
 		set_variable = { 
@@ -39795,6 +39995,7 @@ every_in_global_list = {
 	remove_variable = array_get_max_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t > 0
 		}
 		set_variable = { 
@@ -39931,6 +40132,7 @@ every_in_global_list = {
 	remove_variable = array_get_max_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t > 0
 		}
 		set_variable = { 
@@ -40067,6 +40269,7 @@ every_in_global_list = {
 	remove_variable = array_get_max_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t > 0
 		}
 		set_variable = { 
@@ -40203,6 +40406,7 @@ every_in_global_list = {
 	remove_variable = array_get_max_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t > 0
 		}
 		set_variable = { 
@@ -40339,6 +40543,7 @@ every_in_global_list = {
 	remove_variable = array_get_max_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t > 0
 		}
 		set_variable = { 
@@ -40475,6 +40680,7 @@ every_in_global_list = {
 	remove_variable = array_get_min_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t < 0
 		}
 		set_variable = { 
@@ -40611,6 +40817,7 @@ every_in_global_list = {
 	remove_variable = array_get_min_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t < 0
 		}
 		set_variable = { 
@@ -40747,6 +40954,7 @@ every_in_global_list = {
 	remove_variable = array_get_min_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t < 0
 		}
 		set_variable = { 
@@ -40883,6 +41091,7 @@ every_in_global_list = {
 	remove_variable = array_get_min_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t < 0
 		}
 		set_variable = { 
@@ -41019,6 +41228,7 @@ every_in_global_list = {
 	remove_variable = array_get_min_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t < 0
 		}
 		set_variable = { 
@@ -41206,6 +41416,7 @@ every_in_global_list = {
 	remove_variable = array_get_max_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t > 0
 		}
 		set_variable = { 
@@ -41342,6 +41553,7 @@ every_in_global_list = {
 	remove_variable = array_get_max_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t > 0
 		}
 		set_variable = { 
@@ -41478,6 +41690,7 @@ every_in_global_list = {
 	remove_variable = array_get_max_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t > 0
 		}
 		set_variable = { 
@@ -41614,6 +41827,7 @@ every_in_global_list = {
 	remove_variable = array_get_max_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t > 0
 		}
 		set_variable = { 
@@ -41750,6 +41964,7 @@ every_in_global_list = {
 	remove_variable = array_get_max_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t > 0
 		}
 		set_variable = { 
@@ -41886,6 +42101,7 @@ every_in_global_list = {
 	remove_variable = array_get_min_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t < 0
 		}
 		set_variable = { 
@@ -42022,6 +42238,7 @@ every_in_global_list = {
 	remove_variable = array_get_min_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t < 0
 		}
 		set_variable = { 
@@ -42158,6 +42375,7 @@ every_in_global_list = {
 	remove_variable = array_get_min_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t < 0
 		}
 		set_variable = { 
@@ -42294,6 +42512,7 @@ every_in_global_list = {
 	remove_variable = array_get_min_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t < 0
 		}
 		set_variable = { 
@@ -42430,6 +42649,7 @@ every_in_global_list = {
 	remove_variable = array_get_min_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t < 0
 		}
 		set_variable = { 
@@ -42617,6 +42837,7 @@ every_in_global_list = {
 	remove_variable = array_get_max_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t > 0
 		}
 		set_variable = { 
@@ -42753,6 +42974,7 @@ every_in_global_list = {
 	remove_variable = array_get_max_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t > 0
 		}
 		set_variable = { 
@@ -42889,6 +43111,7 @@ every_in_global_list = {
 	remove_variable = array_get_max_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t > 0
 		}
 		set_variable = { 
@@ -43025,6 +43248,7 @@ every_in_global_list = {
 	remove_variable = array_get_max_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t > 0
 		}
 		set_variable = { 
@@ -43161,6 +43385,7 @@ every_in_global_list = {
 	remove_variable = array_get_max_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t > 0
 		}
 		set_variable = { 
@@ -43297,6 +43522,7 @@ every_in_global_list = {
 	remove_variable = array_get_min_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t < 0
 		}
 		set_variable = { 
@@ -43433,6 +43659,7 @@ every_in_global_list = {
 	remove_variable = array_get_min_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t < 0
 		}
 		set_variable = { 
@@ -43569,6 +43796,7 @@ every_in_global_list = {
 	remove_variable = array_get_min_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t < 0
 		}
 		set_variable = { 
@@ -43705,6 +43933,7 @@ every_in_global_list = {
 	remove_variable = array_get_min_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t < 0
 		}
 		set_variable = { 
@@ -43841,6 +44070,7 @@ every_in_global_list = {
 	remove_variable = array_get_min_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t < 0
 		}
 		set_variable = { 
@@ -44028,6 +44258,7 @@ every_in_global_list = {
 	remove_variable = array_get_max_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t > 0
 		}
 		set_variable = { 
@@ -44164,6 +44395,7 @@ every_in_global_list = {
 	remove_variable = array_get_max_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t > 0
 		}
 		set_variable = { 
@@ -44300,6 +44532,7 @@ every_in_global_list = {
 	remove_variable = array_get_max_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t > 0
 		}
 		set_variable = { 
@@ -44436,6 +44669,7 @@ every_in_global_list = {
 	remove_variable = array_get_max_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t > 0
 		}
 		set_variable = { 
@@ -44572,6 +44806,7 @@ every_in_global_list = {
 	remove_variable = array_get_max_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t > 0
 		}
 		set_variable = { 
@@ -44708,6 +44943,7 @@ every_in_global_list = {
 	remove_variable = array_get_min_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t < 0
 		}
 		set_variable = { 
@@ -44844,6 +45080,7 @@ every_in_global_list = {
 	remove_variable = array_get_min_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t < 0
 		}
 		set_variable = { 
@@ -44980,6 +45217,7 @@ every_in_global_list = {
 	remove_variable = array_get_min_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t < 0
 		}
 		set_variable = { 
@@ -45116,6 +45354,7 @@ every_in_global_list = {
 	remove_variable = array_get_min_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t < 0
 		}
 		set_variable = { 
@@ -45252,6 +45491,7 @@ every_in_global_list = {
 	remove_variable = array_get_min_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t < 0
 		}
 		set_variable = { 
@@ -45439,6 +45679,7 @@ every_in_global_list = {
 	remove_variable = array_get_max_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t > 0
 		}
 		set_variable = { 
@@ -45575,6 +45816,7 @@ every_in_global_list = {
 	remove_variable = array_get_max_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t > 0
 		}
 		set_variable = { 
@@ -45711,6 +45953,7 @@ every_in_global_list = {
 	remove_variable = array_get_max_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t > 0
 		}
 		set_variable = { 
@@ -45847,6 +46090,7 @@ every_in_global_list = {
 	remove_variable = array_get_max_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t > 0
 		}
 		set_variable = { 
@@ -45983,6 +46227,7 @@ every_in_global_list = {
 	remove_variable = array_get_max_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t > 0
 		}
 		set_variable = { 
@@ -46119,6 +46364,7 @@ every_in_global_list = {
 	remove_variable = array_get_min_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t < 0
 		}
 		set_variable = { 
@@ -46255,6 +46501,7 @@ every_in_global_list = {
 	remove_variable = array_get_min_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t < 0
 		}
 		set_variable = { 
@@ -46391,6 +46638,7 @@ every_in_global_list = {
 	remove_variable = array_get_min_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t < 0
 		}
 		set_variable = { 
@@ -46527,6 +46775,7 @@ every_in_global_list = {
 	remove_variable = array_get_min_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t < 0
 		}
 		set_variable = { 
@@ -46663,6 +46912,7 @@ every_in_global_list = {
 	remove_variable = array_get_min_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t < 0
 		}
 		set_variable = { 
@@ -46850,6 +47100,7 @@ every_in_global_list = {
 	remove_variable = array_get_max_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t > 0
 		}
 		set_variable = { 
@@ -46986,6 +47237,7 @@ every_in_global_list = {
 	remove_variable = array_get_max_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t > 0
 		}
 		set_variable = { 
@@ -47122,6 +47374,7 @@ every_in_global_list = {
 	remove_variable = array_get_max_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t > 0
 		}
 		set_variable = { 
@@ -47258,6 +47511,7 @@ every_in_global_list = {
 	remove_variable = array_get_max_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t > 0
 		}
 		set_variable = { 
@@ -47394,6 +47648,7 @@ every_in_global_list = {
 	remove_variable = array_get_max_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t > 0
 		}
 		set_variable = { 
@@ -47530,6 +47785,7 @@ every_in_global_list = {
 	remove_variable = array_get_min_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t < 0
 		}
 		set_variable = { 
@@ -47666,6 +47922,7 @@ every_in_global_list = {
 	remove_variable = array_get_min_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t < 0
 		}
 		set_variable = { 
@@ -47802,6 +48059,7 @@ every_in_global_list = {
 	remove_variable = array_get_min_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t < 0
 		}
 		set_variable = { 
@@ -47938,6 +48196,7 @@ every_in_global_list = {
 	remove_variable = array_get_min_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t < 0
 		}
 		set_variable = { 
@@ -48074,6 +48333,7 @@ every_in_global_list = {
 	remove_variable = array_get_min_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t < 0
 		}
 		set_variable = { 
@@ -48261,6 +48521,7 @@ every_in_global_list = {
 	remove_variable = array_get_max_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t > 0
 		}
 		set_variable = { 
@@ -48397,6 +48658,7 @@ every_in_global_list = {
 	remove_variable = array_get_max_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t > 0
 		}
 		set_variable = { 
@@ -48533,6 +48795,7 @@ every_in_global_list = {
 	remove_variable = array_get_max_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t > 0
 		}
 		set_variable = { 
@@ -48669,6 +48932,7 @@ every_in_global_list = {
 	remove_variable = array_get_max_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t > 0
 		}
 		set_variable = { 
@@ -48805,6 +49069,7 @@ every_in_global_list = {
 	remove_variable = array_get_max_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t > 0
 		}
 		set_variable = { 
@@ -48941,6 +49206,7 @@ every_in_global_list = {
 	remove_variable = array_get_min_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t < 0
 		}
 		set_variable = { 
@@ -49077,6 +49343,7 @@ every_in_global_list = {
 	remove_variable = array_get_min_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t < 0
 		}
 		set_variable = { 
@@ -49213,6 +49480,7 @@ every_in_global_list = {
 	remove_variable = array_get_min_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t < 0
 		}
 		set_variable = { 
@@ -49349,6 +49617,7 @@ every_in_global_list = {
 	remove_variable = array_get_min_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t < 0
 		}
 		set_variable = { 
@@ -49485,6 +49754,7 @@ every_in_global_list = {
 	remove_variable = array_get_min_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t < 0
 		}
 		set_variable = { 
@@ -49672,6 +49942,7 @@ every_in_global_list = {
 	remove_variable = array_get_max_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t > 0
 		}
 		set_variable = { 
@@ -49808,6 +50079,7 @@ every_in_global_list = {
 	remove_variable = array_get_max_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t > 0
 		}
 		set_variable = { 
@@ -49944,6 +50216,7 @@ every_in_global_list = {
 	remove_variable = array_get_max_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t > 0
 		}
 		set_variable = { 
@@ -50080,6 +50353,7 @@ every_in_global_list = {
 	remove_variable = array_get_max_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t > 0
 		}
 		set_variable = { 
@@ -50216,6 +50490,7 @@ every_in_global_list = {
 	remove_variable = array_get_max_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t > 0
 		}
 		set_variable = { 
@@ -50352,6 +50627,7 @@ every_in_global_list = {
 	remove_variable = array_get_min_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t < 0
 		}
 		set_variable = { 
@@ -50488,6 +50764,7 @@ every_in_global_list = {
 	remove_variable = array_get_min_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t < 0
 		}
 		set_variable = { 
@@ -50624,6 +50901,7 @@ every_in_global_list = {
 	remove_variable = array_get_min_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t < 0
 		}
 		set_variable = { 
@@ -50760,6 +51038,7 @@ every_in_global_list = {
 	remove_variable = array_get_min_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t < 0
 		}
 		set_variable = { 
@@ -50896,6 +51175,7 @@ every_in_global_list = {
 	remove_variable = array_get_min_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t < 0
 		}
 		set_variable = { 
@@ -51083,6 +51363,7 @@ every_in_global_list = {
 	remove_variable = array_get_max_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t > 0
 		}
 		set_variable = { 
@@ -51219,6 +51500,7 @@ every_in_global_list = {
 	remove_variable = array_get_max_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t > 0
 		}
 		set_variable = { 
@@ -51355,6 +51637,7 @@ every_in_global_list = {
 	remove_variable = array_get_max_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t > 0
 		}
 		set_variable = { 
@@ -51491,6 +51774,7 @@ every_in_global_list = {
 	remove_variable = array_get_max_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t > 0
 		}
 		set_variable = { 
@@ -51627,6 +51911,7 @@ every_in_global_list = {
 	remove_variable = array_get_max_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t > 0
 		}
 		set_variable = { 
@@ -51763,6 +52048,7 @@ every_in_global_list = {
 	remove_variable = array_get_min_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t < 0
 		}
 		set_variable = { 
@@ -51899,6 +52185,7 @@ every_in_global_list = {
 	remove_variable = array_get_min_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t < 0
 		}
 		set_variable = { 
@@ -52035,6 +52322,7 @@ every_in_global_list = {
 	remove_variable = array_get_min_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t < 0
 		}
 		set_variable = { 
@@ -52171,6 +52459,7 @@ every_in_global_list = {
 	remove_variable = array_get_min_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t < 0
 		}
 		set_variable = { 
@@ -52307,6 +52596,7 @@ every_in_global_list = {
 	remove_variable = array_get_min_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t < 0
 		}
 		set_variable = { 
@@ -52494,6 +52784,7 @@ every_in_global_list = {
 	remove_variable = array_get_max_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t > 0
 		}
 		set_variable = { 
@@ -52630,6 +52921,7 @@ every_in_global_list = {
 	remove_variable = array_get_max_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t > 0
 		}
 		set_variable = { 
@@ -52766,6 +53058,7 @@ every_in_global_list = {
 	remove_variable = array_get_max_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t > 0
 		}
 		set_variable = { 
@@ -52902,6 +53195,7 @@ every_in_global_list = {
 	remove_variable = array_get_max_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t > 0
 		}
 		set_variable = { 
@@ -53038,6 +53332,7 @@ every_in_global_list = {
 	remove_variable = array_get_max_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t > 0
 		}
 		set_variable = { 
@@ -53174,6 +53469,7 @@ every_in_global_list = {
 	remove_variable = array_get_min_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t < 0
 		}
 		set_variable = { 
@@ -53310,6 +53606,7 @@ every_in_global_list = {
 	remove_variable = array_get_min_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t < 0
 		}
 		set_variable = { 
@@ -53446,6 +53743,7 @@ every_in_global_list = {
 	remove_variable = array_get_min_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t < 0
 		}
 		set_variable = { 
@@ -53582,6 +53880,7 @@ every_in_global_list = {
 	remove_variable = array_get_min_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t < 0
 		}
 		set_variable = { 
@@ -53718,6 +54017,7 @@ every_in_global_list = {
 	remove_variable = array_get_min_t
 	if = { 
 		limit = { 
+			has_variable = trade_do_trade_t
 			var:trade_do_trade_t < 0
 		}
 		set_variable = { 
