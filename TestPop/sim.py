@@ -390,7 +390,7 @@ sim_run.02 = {
 				limit = {
 					OR = {
 						NOT = {
-							has_global_var = trade_link_refresh
+							has_global_variable = trade_link_refresh
 						}
 						
 						global_var:trade_link_refresh = 0
