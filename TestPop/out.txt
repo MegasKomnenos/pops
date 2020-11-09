@@ -11256,7 +11256,7 @@ every_in_global_list = {
 		}
 		change_variable = { 
 			name = trade_set_link_t
-			divide = -30
+			divide = -40
 		}
 		change_variable = { 
 			name = trade_set_link_t
@@ -11366,7 +11366,7 @@ every_in_global_list = {
 					}
 					change_variable = { 
 						name = trade_set_link_ttt
-						divide = -30
+						divide = -40
 					}
 					change_variable = { 
 						name = trade_set_link_ttt
@@ -47247,46 +47247,6 @@ every_in_global_list = {
 	remove_variable = trade_update_price_t
 }
 debug_log = "End trade_update_price"
-debug_log = "Start trade_set_range"
-every_in_global_list = { 
-	variable = trade_merchants
-	if = { 
-		limit = { 
-			var:trade_power = { 
-				OR = { 
-					compare_value >= prev.var:trade_refresh_up
-					compare_value <= prev.var:trade_refresh_down
-				}
-			}
-		}
-		set_variable = { 
-			name = trade_refresh_up
-			value = var:trade_power
-		}
-		set_variable = { 
-			name = trade_refresh_down
-			value = var:trade_power
-		}
-		change_variable = { 
-			name = trade_refresh_up
-			multiply = 1.25
-		}
-		change_variable = { 
-			name = trade_refresh_down
-			multiply = 0.8
-		}
-		change_variable = { 
-			name = trade_refresh_up
-			add = 2
-		}
-		change_variable = { 
-			name = trade_refresh_down
-			subtract = 2
-		}
-		trade_set_range = yes
-	}
-}
-debug_log = "End trade_set_range"
 debug_log = "Start build_update_project"
 if = { 
 	limit = { 
