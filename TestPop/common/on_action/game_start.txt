@@ -169,8 +169,20 @@ on_game_start = {
 # Like on_game_start, except it is called once the host (or player, in single player) exits the lobby. Good for anything where you need to know who the players are, or what the game rules are
 on_game_start_after_lobby = {
 	effect = {
-		trigger_event = {
-			id = save_data.01
+		# Set always = yes when running a sim
+		# Set always = no if otherwise
+		if = {
+			limit = {
+				always = no
+			}
+			trigger_event = {
+				id = sim_run.01
+			}
+		}
+		else = {
+			trigger_event = {
+				id = save_data.01
+			}
 		}
 		
 		### GAME RULE: VIEW ON SAME-SEX RELATIONS
