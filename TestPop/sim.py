@@ -395,148 +395,11 @@ sim_run.02 = {
 				change_variable = { name = pop_wealth subtract = var:pop_pay_serf }
 			}
 
-			debug_log = "Logging Start"
-
-			set_variable = { name = t_disp value = 0 }
-
-			every_province = {
-				limit = {
-					is_valid_prov = yes
-				}
-				prev = {
-					set_variable = { name = t_disp_t value = prev.var:pop_wealth }
-					change_variable = { name = t_disp_t divide = 100 }
-					change_variable = { name = t_disp add = var:t_disp_t }
-				}
-			}
-			every_in_global_list = {
-				variable = trade_merchants
+			global_var:arhat = {
+				set_variable = { name = t_disp value = global_var:sim_i }
 				
-				prev = {
-					set_variable = { name = t_disp_t value = prev.var:trade_wealth }
-					change_variable = { name = t_disp_t divide = 100 }
-					change_variable = { name = t_disp add = var:t_disp_t }
-				}
-			}
-
-			debug_log = "Total Wealth: [THIS.Var('t_disp').GetValue]"
-
-			set_variable = { name = t_disp_s value = 0 }
-
-			every_province = {
-				limit = {
-					is_valid_prov = yes
-				}
-				prev = {
-					set_variable = { name = t_disp_t value = prev.var:pop_total }
-					change_variable = { name = t_disp_t divide = 100 }
-					change_variable = { name = t_disp_s add = var:t_disp_t }
-				}
-			}
-
-			set_variable = { name = t_disp value = 0 }
-
-			every_province = {
-				limit = {
-					is_valid_prov = yes
-				}
-				prev = {
-					set_variable = { name = t_disp_t value = prev.var:pop_calorie }
-					change_variable = { name = t_disp_t multiply = prev.var:pop_total }
-					change_variable = { name = t_disp_t divide = 100 }
-					change_variable = { name = t_disp add = var:t_disp_t }
-				}
-			}
-
-			change_variable = { name = t_disp divide = var:t_disp_s }
-
-			debug_log = "Average Calorie: [THIS.Var('t_disp').GetValue]"
-
-			set_variable = { name = t_disp value = 0 }
-
-			every_province = {
-				limit = {
-					is_valid_prov = yes
-				}
-				prev = {
-					set_variable = { name = t_disp_t value = prev.var:pop_nutrient }
-					change_variable = { name = t_disp_t multiply = prev.var:pop_total }
-					change_variable = { name = t_disp_t divide = 100 }
-					change_variable = { name = t_disp add = var:t_disp_t }
-				}
-			}
-
-			change_variable = { name = t_disp divide = var:t_disp_s }
-
-			debug_log = "Average Nutrient: [THIS.Var('t_disp').GetValue]"
-
-			set_variable = { name = t_disp value = 0 }
-
-			every_province = {
-				limit = {
-					is_valid_prov = yes
-				}
-				prev = {
-					set_variable = { name = t_disp_t value = prev.var:pop_comfort }
-					change_variable = { name = t_disp_t multiply = prev.var:pop_total }
-					change_variable = { name = t_disp_t divide = 100 }
-					change_variable = { name = t_disp add = var:t_disp_t }
-				}
-			}
-
-			change_variable = { name = t_disp divide = var:t_disp_s }
-
-			debug_log = "Average Comfort: [THIS.Var('t_disp').GetValue]"
-
-			set_variable = { name = t_disp value = 0 }
-
-			every_province = {
-				limit = {
-					is_valid_prov = yes
-				}
-				prev = {
-					set_variable = { name = t_disp_t value = prev.var:pop_luxury }
-					change_variable = { name = t_disp_t multiply = prev.var:pop_total }
-					change_variable = { name = t_disp_t divide = 100 }
-					change_variable = { name = t_disp add = var:t_disp_t }
-				}
-			}
-
-			change_variable = { name = t_disp divide = var:t_disp_s }
-
-			debug_log = "Average Luxury: [THIS.Var('t_disp').GetValue]"
-			
-			set_variable = { name = t_disp value = 0 }
-
-			every_province = {
-				limit = {
-					is_valid_prov = yes
-				}
-				prev = {
-					set_variable = { name = t_disp_t value = prev.var:forest_base }
-					change_variable = { name = t_disp_t divide = 1000 }
-					change_variable = { name = t_disp add = var:t_disp_t }
-				}
-			}
-
-			debug_log = "Total Forest: [THIS.Var('t_disp').GetValue]"
-			
-			set_variable = { name = t_disp value = 0 }
-
-			every_province = {
-				limit = {
-					is_valid_prov = yes
-				}
-				prev = {
-					set_variable = { name = t_disp_t value = prev.var:forest_total }
-					change_variable = { name = t_disp_t divide = 1000 }
-					change_variable = { name = t_disp add = var:t_disp_t }
-				}
-			}
-
-			debug_log = "Effective Forest: [THIS.Var('t_disp').GetValue]"
-
-			^^goods^
+				debug_log = "Logging Start: [THIS.Var('t_disp').GetValue]"
+				
 				set_variable = { name = t_disp value = 0 }
 
 				every_province = {
@@ -544,98 +407,244 @@ sim_run.02 = {
 						is_valid_prov = yes
 					}
 					prev = {
-						set_variable = { name = t_disp_t value = prev.county.var:trade_price_&goods& }
-						change_variable = { name = t_disp_t multiply = prev.var:pop_total }
-						change_variable = { name = t_disp_t divide = 100 }
-						change_variable = { name = t_disp add = var:t_disp_t }
-					}
-				}
-				
-				change_variable = { name = t_disp divide = var:t_disp_s }
-				
-				debug_log = "Average &goods& Price: [THIS.Var('t_disp').GetValue]"
-				
-				set_variable = { name = t_disp value = 0 }
-
-				every_province = {
-					limit = {
-						is_valid_prov = yes
-						
-						has_variable = prod_has_&goods&
-					}
-					prev = {
-						set_variable = { name = t_disp_t value = prev.var:prod_has_&goods& }
+						set_variable = { name = t_disp_t value = prev.var:pop_wealth }
 						change_variable = { name = t_disp_t divide = 100 }
 						change_variable = { name = t_disp add = var:t_disp_t }
 					}
 				}
 				every_in_global_list = {
-					limit = {
-						has_variable = trade_has_&goods&
-					}
 					variable = trade_merchants
+					
 					prev = {
-						set_variable = { name = t_disp_t value = prev.var:trade_has_&goods& }
+						set_variable = { name = t_disp_t value = prev.var:trade_wealth }
 						change_variable = { name = t_disp_t divide = 100 }
 						change_variable = { name = t_disp add = var:t_disp_t }
 					}
 				}
-				
-				debug_log = "Total &goods& Stockpile: [THIS.Var('t_disp').GetValue]"
-				
-				set_variable = { name = t_disp value = 0 }
 
-				every_county = {
+				debug_log = "Total Wealth: [THIS.Var('t_disp').GetValue]"
+
+				set_variable = { name = t_disp_s value = 0 }
+
+				every_province = {
 					limit = {
 						is_valid_prov = yes
-						
-						has_variable = trade_sum_sply_&goods&
 					}
 					prev = {
-						set_variable = { name = t_disp_t value = prev.var:trade_sum_sply_&goods& }
-						change_variable = { name = t_disp_t divide = 400 }
-						change_variable = { name = t_disp add = var:t_disp_t }
+						set_variable = { name = t_disp_t value = prev.var:pop_total }
+						change_variable = { name = t_disp_t divide = 100 }
+						change_variable = { name = t_disp_s add = var:t_disp_t }
 					}
 				}
-				
-				debug_log = "Total &goods& Supply: [THIS.Var('t_disp').GetValue]"
-				
+
 				set_variable = { name = t_disp value = 0 }
 
-				every_county = {
+				every_province = {
 					limit = {
 						is_valid_prov = yes
-						
-						has_variable = trade_dmnd_&goods&
 					}
 					prev = {
-						set_variable = { name = t_disp_t value = prev.var:trade_dmnd_&goods& }
+						set_variable = { name = t_disp_t value = prev.var:pop_calorie }
+						change_variable = { name = t_disp_t multiply = prev.var:pop_total }
 						change_variable = { name = t_disp_t divide = 100 }
 						change_variable = { name = t_disp add = var:t_disp_t }
 					}
 				}
-				
-				debug_log = "Total &goods& Demand: [THIS.Var('t_disp').GetValue]"
+
+				change_variable = { name = t_disp divide = var:t_disp_s }
+
+				debug_log = "Average Calorie: [THIS.Var('t_disp').GetValue]"
+
+				set_variable = { name = t_disp value = 0 }
+
+				every_province = {
+					limit = {
+						is_valid_prov = yes
+					}
+					prev = {
+						set_variable = { name = t_disp_t value = prev.var:pop_nutrient }
+						change_variable = { name = t_disp_t multiply = prev.var:pop_total }
+						change_variable = { name = t_disp_t divide = 100 }
+						change_variable = { name = t_disp add = var:t_disp_t }
+					}
+				}
+
+				change_variable = { name = t_disp divide = var:t_disp_s }
+
+				debug_log = "Average Nutrient: [THIS.Var('t_disp').GetValue]"
+
+				set_variable = { name = t_disp value = 0 }
+
+				every_province = {
+					limit = {
+						is_valid_prov = yes
+					}
+					prev = {
+						set_variable = { name = t_disp_t value = prev.var:pop_comfort }
+						change_variable = { name = t_disp_t multiply = prev.var:pop_total }
+						change_variable = { name = t_disp_t divide = 100 }
+						change_variable = { name = t_disp add = var:t_disp_t }
+					}
+				}
+
+				change_variable = { name = t_disp divide = var:t_disp_s }
+
+				debug_log = "Average Comfort: [THIS.Var('t_disp').GetValue]"
+
+				set_variable = { name = t_disp value = 0 }
+
+				every_province = {
+					limit = {
+						is_valid_prov = yes
+					}
+					prev = {
+						set_variable = { name = t_disp_t value = prev.var:pop_luxury }
+						change_variable = { name = t_disp_t multiply = prev.var:pop_total }
+						change_variable = { name = t_disp_t divide = 100 }
+						change_variable = { name = t_disp add = var:t_disp_t }
+					}
+				}
+
+				change_variable = { name = t_disp divide = var:t_disp_s }
+
+				debug_log = "Average Luxury: [THIS.Var('t_disp').GetValue]"
 				
 				set_variable = { name = t_disp value = 0 }
 
 				every_province = {
 					limit = {
 						is_valid_prov = yes
-						
-						has_variable = prod_earn_&goods&
 					}
 					prev = {
-						set_variable = { name = t_disp_t value = prev.var:prod_earn_&goods& }
-						change_variable = { name = t_disp_t divide = 100 }
+						set_variable = { name = t_disp_t value = prev.var:forest_base }
+						change_variable = { name = t_disp_t divide = 1000 }
 						change_variable = { name = t_disp add = var:t_disp_t }
 					}
 				}
-				
-				debug_log = "Total &goods& Revenue: [THIS.Var('t_disp').GetValue]"
-			^
 
-			debug_log = "Logging End"
+				debug_log = "Total Forest: [THIS.Var('t_disp').GetValue]"
+				
+				set_variable = { name = t_disp value = 0 }
+
+				every_province = {
+					limit = {
+						is_valid_prov = yes
+					}
+					prev = {
+						set_variable = { name = t_disp_t value = prev.var:forest_total }
+						change_variable = { name = t_disp_t divide = 1000 }
+						change_variable = { name = t_disp add = var:t_disp_t }
+					}
+				}
+
+				debug_log = "Effective Forest: [THIS.Var('t_disp').GetValue]"
+
+				^^goods^
+					set_variable = { name = t_disp value = 0 }
+
+					every_province = {
+						limit = {
+							is_valid_prov = yes
+						}
+						prev = {
+							set_variable = { name = t_disp_t value = prev.county.var:trade_price_&goods& }
+							change_variable = { name = t_disp_t multiply = prev.var:pop_total }
+							change_variable = { name = t_disp_t divide = 100 }
+							change_variable = { name = t_disp add = var:t_disp_t }
+						}
+					}
+					
+					change_variable = { name = t_disp divide = var:t_disp_s }
+					
+					debug_log = "Average &goods& Price: [THIS.Var('t_disp').GetValue]"
+					
+					set_variable = { name = t_disp value = 0 }
+
+					every_province = {
+						limit = {
+							is_valid_prov = yes
+							
+							has_variable = prod_has_&goods&
+						}
+						prev = {
+							set_variable = { name = t_disp_t value = prev.var:prod_has_&goods& }
+							change_variable = { name = t_disp_t divide = 100 }
+							change_variable = { name = t_disp add = var:t_disp_t }
+						}
+					}
+					every_in_global_list = {
+						limit = {
+							has_variable = trade_has_&goods&
+						}
+						variable = trade_merchants
+						prev = {
+							set_variable = { name = t_disp_t value = prev.var:trade_has_&goods& }
+							change_variable = { name = t_disp_t divide = 100 }
+							change_variable = { name = t_disp add = var:t_disp_t }
+						}
+					}
+					
+					debug_log = "Total &goods& Stockpile: [THIS.Var('t_disp').GetValue]"
+					
+					set_variable = { name = t_disp value = 0 }
+
+					every_county = {
+						limit = {
+							is_valid_prov = yes
+							
+							has_variable = trade_sum_sply_&goods&
+						}
+						prev = {
+							set_variable = { name = t_disp_t value = prev.var:trade_sum_sply_&goods& }
+							change_variable = { name = t_disp_t divide = 400 }
+							change_variable = { name = t_disp add = var:t_disp_t }
+						}
+					}
+					
+					debug_log = "Total &goods& Supply: [THIS.Var('t_disp').GetValue]"
+					
+					set_variable = { name = t_disp value = 0 }
+
+					every_county = {
+						limit = {
+							is_valid_prov = yes
+							
+							has_variable = trade_dmnd_&goods&
+						}
+						prev = {
+							set_variable = { name = t_disp_t value = prev.var:trade_dmnd_&goods& }
+							change_variable = { name = t_disp_t divide = 100 }
+							change_variable = { name = t_disp add = var:t_disp_t }
+						}
+					}
+					
+					debug_log = "Total &goods& Demand: [THIS.Var('t_disp').GetValue]"
+					
+					set_variable = { name = t_disp value = 0 }
+
+					every_province = {
+						limit = {
+							is_valid_prov = yes
+							
+							has_variable = prod_earn_&goods&
+						}
+						prev = {
+							set_variable = { name = t_disp_t value = prev.var:prod_earn_&goods& }
+							change_variable = { name = t_disp_t divide = 100 }
+							change_variable = { name = t_disp add = var:t_disp_t }
+						}
+					}
+					
+					debug_log = "Total &goods& Revenue: [THIS.Var('t_disp').GetValue]"
+				^
+
+				set_variable = { name = t_disp value = global_var:sim_i }
+				
+				debug_log = "Logging End: [THIS.Var('t_disp').GetValue]"
+				
+				remove_variable = t_disp
+				remove_variable = t_disp_t
+			}
 		}
 		
 		remove_global_variable = sim_i
