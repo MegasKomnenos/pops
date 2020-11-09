@@ -677,8 +677,6 @@ sim_run.02 = {
 			debug_log = "Logging End"
 		}
 		
-		trade_dat_trade = yes
-		
 		remove_global_variable = sim_i
 	}
 	

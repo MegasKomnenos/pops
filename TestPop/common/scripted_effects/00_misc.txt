@@ -109,6 +109,37 @@ slot_remove = {
 	else_if = { limit = { has_variable = $name$_29 var:$name$_29 = $target$ } remove_variable = $name$_29 }
 }
 
+eff_binary = {
+	if = {
+		limit = {
+			has_variable = $name$
+			
+			var:$name$ >= $value$
+		}
+		$eff$ = $value$
+		
+		change_variable = { name = $name$ subtract = $value$ }
+	}
+}
+
+eff_binary_0_8 = {
+	eff_binary = { name = $name$ eff = $eff$ value = 128 }
+	eff_binary = { name = $name$ eff = $eff$ value = 64 }
+	eff_binary = { name = $name$ eff = $eff$ value = 32 }
+	eff_binary = { name = $name$ eff = $eff$ value = 16 }
+	eff_binary = { name = $name$ eff = $eff$ value = 8 }
+	eff_binary = { name = $name$ eff = $eff$ value = 4 }
+	eff_binary = { name = $name$ eff = $eff$ value = 2 }
+	eff_binary = { name = $name$ eff = $eff$ value = 1 }
+}
+eff_binary_0_12 = {
+	eff_binary = { name = $name$ eff = $eff$ value = 2048 }
+	eff_binary = { name = $name$ eff = $eff$ value = 1024 }
+	eff_binary = { name = $name$ eff = $eff$ value = 512 }
+	eff_binary = { name = $name$ eff = $eff$ value = 256 }
+	eff_binary_0_8 = { name = $name$ eff = $eff$ }
+}
+
 mod_assign = {
 	if = {
 		limit = {
