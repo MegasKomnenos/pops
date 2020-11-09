@@ -30,22 +30,53 @@ array_add = {
 array_change = {
 	set_global_variable = { name = array_change_t value = $ind$ }
 	
-	ordered_in_list = {
-		variable = array_$name$
-		position = global_var:array_change_t
-		
-		prev = {
-			set_variable = { name = array_change_t value = prev }
-			change_variable = { name = array_change_t divide = $dec$ }
+	if = {
+		limit = {
+			OR = {
+				NOT = {
+					has_global_variable = array_change_t
+				}
+				
+				global_var:array_change_t = 0
+			}
+		}
+		ordered_in_list = {
+			variable = array_$name$
+			position = 0
 			
-			[[add] change_variable = { name = array_change_t add = $add$ } ]
-			[[subtract] change_variable = { name = array_change_t subtract = $subtract$ } ]
-			[[multiply] change_variable = { name = array_change_t multiply = $multiply$ } ]
-			[[divide] change_variable = { name = array_change_t divide = $divide$ } ]
+			prev = {
+				set_variable = { name = array_change_t value = prev }
+				change_variable = { name = array_change_t divide = $dec$ }
+				
+				[[add] change_variable = { name = array_change_t add = $add$ } ]
+				[[subtract] change_variable = { name = array_change_t subtract = $subtract$ } ]
+				[[multiply] change_variable = { name = array_change_t multiply = $multiply$ } ]
+				[[divide] change_variable = { name = array_change_t divide = $divide$ } ]
+				
+				remove_list_variable = { name = array_$name$ target = prev }
+				
+				array_add = { name = $name$ value = var:array_change_t dec = $dec$ }
+			}
+		}
+	}
+	else = {
+		ordered_in_list = {
+			variable = array_$name$
+			position = global_var:array_change_t.compare_value
 			
-			remove_list_variable = { name = array_$name$ target = prev }
-			
-			array_add = { name = $name$ value = var:array_change_t dec = $dec$ }
+			prev = {
+				set_variable = { name = array_change_t value = prev }
+				change_variable = { name = array_change_t divide = $dec$ }
+				
+				[[add] change_variable = { name = array_change_t add = $add$ } ]
+				[[subtract] change_variable = { name = array_change_t subtract = $subtract$ } ]
+				[[multiply] change_variable = { name = array_change_t multiply = $multiply$ } ]
+				[[divide] change_variable = { name = array_change_t divide = $divide$ } ]
+				
+				remove_list_variable = { name = array_$name$ target = prev }
+				
+				array_add = { name = $name$ value = var:array_change_t dec = $dec$ }
+			}
 		}
 	}
 	
@@ -57,12 +88,33 @@ array_change = {
 array_get = {
 	set_global_variable = { name = array_get_t value = $value$ }
 	
-	ordered_in_list = {
-		variable = array_$name$
-		position = global_var:array_get_t.compare_value
-		
-		prev = {
-			set_variable = { name = $return$ value = prev }
+	if = {
+		limit = {
+			OR = {
+				NOT = {
+					has_global_variable = array_get_t
+				}
+				
+				global_var:array_get_t = 0
+			}
+		}
+		ordered_in_list = {
+			variable = array_$name$
+			position = 0
+			
+			prev = {
+				set_variable = { name = $return$ value = prev }
+			}
+		}
+	}
+	else = {
+		ordered_in_list = {
+			variable = array_$name$
+			position = global_var:array_get_t.compare_value
+			
+			prev = {
+				set_variable = { name = $return$ value = prev }
+			}
 		}
 	}
 	
