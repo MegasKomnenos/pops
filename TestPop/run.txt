@@ -19,6 +19,11 @@ every_province = {
 }
 
 debug_log = "End pop_update_demand"
+debug_log = "Start trade_set_link"
+
+trade_set_link = yes
+
+debug_log = "End trade_set_link"
 debug_log = "Start trade_do_trade"
 
 trade_do_trade = yes
@@ -39,34 +44,6 @@ debug_log = "Start trade_update_price"
 trade_update_price = yes
 
 debug_log = "End trade_update_price"
-debug_log = "Start trade_set_range"
-
-every_in_global_list = {
-	variable = trade_merchants
-	
-	if = {
-		limit = {
-			var:trade_power = {
-				OR = {
-					compare_value >= prev.var:trade_refresh_up
-					compare_value <= prev.var:trade_refresh_down
-				}
-			}
-		}
-		set_variable = { name = trade_refresh_up value = var:trade_power }
-		set_variable = { name = trade_refresh_down value = var:trade_power }
-		
-		change_variable = { name = trade_refresh_up multiply = 1.25 }
-		change_variable = { name = trade_refresh_down multiply = 0.8 }
-
-		change_variable = { name = trade_refresh_up add = 2 }
-		change_variable = { name = trade_refresh_down subtract = 2 }
-		
-		trade_set_range = yes
-	}
-}
-
-debug_log = "End trade_set_range"
 debug_log = "Start build_update_project"
 
 if = {
