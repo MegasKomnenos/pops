@@ -1,0 +1,148 @@
+﻿namespace = census
+
+census.01 = {
+	type = empty
+	hidden = yes
+	
+	immediate = {
+		modi_refresh = yes
+	}
+	
+	option = {
+	}
+}
+
+census.02 = {
+	type = empty
+	hidden = yes
+	
+	immediate = {
+		prod_update_instances = yes
+	}
+	
+	option = {
+	}
+}
+
+census.03 = {
+	type = empty
+	hidden = yes
+	
+	immediate = {
+		forest_main = yes
+	}
+	
+	option = {
+	}
+}
+
+census.04 = {
+	type = empty
+	hidden = yes
+	
+	immediate = {
+		every_province = {
+			limit = {
+				is_valid_prov = yes
+			}
+			pop_update_demand = yes
+		}
+	}
+	
+	option = {
+	}
+}
+
+census.05 = {
+	type = empty
+	hidden = yes
+	
+	immediate = {
+		if = {
+			limit = {
+				OR = {
+					NOT = {
+						has_global_variable = trade_link_refresh
+					}
+					
+					global_var:trade_link_refresh = 0
+				}
+			}
+			set_global_variable = { name = trade_link_refresh value = 10 }
+			
+			trade_set_link = yes
+		}
+		else = {
+			change_global_variable = { name = trade_link_refresh subtract = 1 }
+		}
+	}
+	
+	option = {
+	}
+}
+
+census.06 = {
+	type = empty
+	hidden = yes
+	
+	immediate = {
+		trade_do_trade = yes
+	}
+	
+	option = {
+	}
+}
+
+census.07 = {
+	type = empty
+	hidden = yes
+	
+	immediate = {
+		trade_resolve_trade = yes
+		trade_update_merchant = yes
+		trade_update_price = yes
+	}
+	
+	option = {
+	}
+}
+
+census.08 = {
+	type = empty
+	hidden = yes
+	
+	immediate = {
+		if = {
+			limit = {
+				has_global_variable_list = build_slots_active
+					
+				global_variable_list_size = { name = build_slots_active value >= 1}
+			}
+			every_in_global_list = {
+				variable = build_slots_active
+				
+				build_update_project = yes
+			}
+		}
+	}
+	
+	option = {
+	}
+}
+
+census.09 = {
+	type = empty
+	hidden = yes
+	
+	immediate = {
+		every_province = {
+			limit = {
+				is_valid_prov = yes
+			}
+			pop_resolve_demand = yes
+		}
+	}
+	
+	option = {
+	}
+}

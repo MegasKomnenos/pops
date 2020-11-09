@@ -297,9 +297,8 @@ sim_run.02 = {
 			
 			change_global_variable = { name = sim_i add = 1 }
 			
-			modi_refresh = yes
-			
-			prod_update_instances = yes
+			trigger_event = { id = census.01 }
+			trigger_event = { id = census.02 }
 			
 			if = {
 				limit = {
@@ -335,7 +334,7 @@ sim_run.02 = {
 				}
 			}
 			
-			forest_main = yes
+			trigger_event = { id = census.03 }
 			
 			every_province = {
 				limit = {
@@ -378,56 +377,18 @@ sim_run.02 = {
 					set_variable = { name = pasture_potential value = 0 }
 				}
 			}
-
-			every_province = {
-				limit = {
-					is_valid_prov = yes
-				}
-				pop_update_demand = yes
-			}
-
-			if = {
-				limit = {
-					OR = {
-						NOT = {
-							has_global_variable = trade_link_refresh
-						}
-						
-						global_var:trade_link_refresh = 0
-					}
-				}
-				set_global_variable = { name = trade_link_refresh value = 10 }
-				
-				trade_set_link = yes
-			}
-			else = {
-				change_global_variable = { name = trade_link_refresh subtract = 1 }
-			}
-
-			trade_do_trade = yes
-			trade_resolve_trade = yes
-			trade_update_merchant = yes
-			trade_update_price = yes
 			
-			if = {
-				limit = {
-					has_global_variable_list = build_slots_active
-						
-					global_variable_list_size = { name = build_slots_active value >= 1}
-				}
-				every_in_global_list = {
-					variable = build_slots_active
-					
-					build_update_project = yes
-				}
-			}
+			trigger_event = { id = census.04 }
+			trigger_event = { id = census.05 }
+			trigger_event = { id = census.06 }
+			trigger_event = { id = census.07 }
+			trigger_event = { id = census.08 }
+			trigger_event = { id = census.09 }
 
 			every_province = {
 				limit = {
 					is_valid_prov = yes
 				}
-				pop_resolve_demand = yes
-				
 				change_variable = { name = pop_wealth add = var:pop_earn_free } 
 				change_variable = { name = pop_wealth add = var:pop_earn_serf }
 				change_variable = { name = pop_wealth subtract = var:pop_pay_free }

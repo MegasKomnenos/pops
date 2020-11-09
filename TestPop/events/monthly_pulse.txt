@@ -5,6 +5,14 @@ monthly_pulse.01 = {
 	hidden = yes
 	
 	immediate = {
+		trigger_event = { id = census.01 }
+		trigger_event = { id = census.02 days = 2 }
+		trigger_event = { id = census.03 days = 4 }
+		trigger_event = { id = census.04 days = 6 }
+		trigger_event = { id = census.06 days = 8 }
+		trigger_event = { id = census.07 days = 10 }
+		trigger_event = { id = census.08 days = 12 }
+		trigger_event = { id = census.09 days = 14 }
 	}
 	
 	option = {
@@ -15,6 +23,17 @@ monthly_pulse.02 = {
 	hidden = yes
 	
 	immediate = {
+		every_province = {
+			limit = {
+				is_valid_prov = yes
+			}
+			change_variable = { name = pop_wealth add = var:pop_earn_free } 
+			change_variable = { name = pop_wealth add = var:pop_earn_serf }
+			change_variable = { name = pop_wealth subtract = var:pop_pay_free }
+			change_variable = { name = pop_wealth subtract = var:pop_pay_serf }
+		}
+		
+		trigger_event = { id = census.05 }
 	}
 	
 	option = {
