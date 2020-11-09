@@ -655,8 +655,6 @@ trade_dat_trade = {
 				change_global_variable = { name = trade_do_trade_t add = 1 }
 			}
 			
-			set_variable = { name = trade_do_trade_select }
-			
 			set_global_variable = { name = trade_do_trade_t value = 0 }
 			
 			every_in_list = {
@@ -681,8 +679,6 @@ trade_dat_trade = {
 				
 				change_global_variable = { name = trade_do_trade_t add = 1 }
 			}
-			
-			remove_variable = trade_do_trade_select
 			
 			every_in_global_list = {
 				variable = trade_do_trade_list
@@ -1642,49 +1638,32 @@ trade_do_trade = {
 				change_global_variable = { name = trade_do_trade_t add = 1 }
 			}
 			
-			set_variable = { name = trade_do_trade_select }
+			set_global_variable = { name = trade_do_trade_t value = 0 }
 			
 			set_global_variable = { name = trade_do_trade_t value = 0 }
 			
 			every_in_list = {
-				variable = trade_periph
+				variable = trade_link
 				
 				if = {
 					limit = {
-						any_county_province = {
-							has_variable = trade_merchant
-							
-							NOT = {
-								var:trade_merchant = global_var:trade_do_trade_select
-							}
-						}
+						has_variable = trade_merchant
 					}
 					prev = {
-						array_get = { name = trade_periph value = global_var:trade_do_trade_t return = trade_do_trade_t dec = 10 }
+						array_get = { name = trade_link value = global_var:trade_do_trade_t return = trade_do_trade_t dec = 10 }
 					}
 					
-					every_county_province = {
-						limit = {
-							has_variable = trade_merchant
-							
-							NOT = {
-								var:trade_merchant = global_var:trade_do_trade_select
-							}
-						}
-						var:trade_merchant = {
-							add_to_global_variable_list = { name = trade_do_trade_list target = this }
-							
-							set_variable = { name = trade_do_trade_dist value = global_var:trade_do_trade_select.var:trade_do_trade_t }
-							change_variable = { name = trade_do_trade_dist divide = 2 }
-							change_variable = { name = trade_do_trade_dist add = 200 }
-						}
+					var:trade_merchant = {
+						add_to_global_variable_list = { name = trade_do_trade_list target = this }
+						
+						set_variable = { name = trade_do_trade_dist value = global_var:trade_do_trade_select.var:trade_do_trade_t }
+						change_variable = { name = trade_do_trade_dist divide = 4 }
+						change_variable = { name = trade_do_trade_dist add = 300 }
 					}
 				}
 				
 				change_global_variable = { name = trade_do_trade_t add = 1 }
 			}
-			
-			remove_variable = trade_do_trade_select
 			
 			every_in_global_list = {
 				variable = trade_do_trade_list
