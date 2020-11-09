@@ -36,15 +36,6 @@
 		set_variable = { name = trade_retire value = 0.5 }
 		set_variable = { name = trade_luxury value = 0.5 }
 		set_variable = { name = trade_invest value = 1.5 }
-		
-		set_variable = { name = trade_refresh_up value = var:trade_power }
-		set_variable = { name = trade_refresh_down value = var:trade_power }
-		
-		change_variable = { name = trade_refresh_up multiply = 1.25 }
-		change_variable = { name = trade_refresh_down multiply = 0.8 }
-		
-		change_variable = { name = trade_refresh_up add = 2 }
-		change_variable = { name = trade_refresh_down subtract = 2 }
 	}
 	
 	remove_variable = trade_new_merchant_t
@@ -61,34 +52,342 @@ trade_pop_merchant = {
 	death = natural
 }
 
-trade_set_range = {
-	clear_variable_list = trade_core
-	clear_variable_list = trade_periph
-	
-	array_clear = { name = trade_core }
-	array_clear = { name = trade_periph }
-	
-	set_global_variable = { name = trade_set_range_t value = 400 }
-	
-	if = {
-		limit = {
-			var:trade_power >= 240
-		}
-		set_global_variable = { name = trade_set_range_tt value = 3000 }
-	}
-	else = {
-		set_global_variable = { name = trade_set_range_tt value = var:trade_power }
-		change_global_variable = { name = trade_set_range_tt multiply = 10 }
-		change_global_variable = { name = trade_set_range_tt add = 200 }
-		change_global_variable = { name = trade_set_range_tt add = global_var:trade_set_range_t }
+trade_set_link = {
+	every_in_global_list = {
+		variable = trade_merchants
+		
+		clear_variable_list = trade_link
+		array_clear = { name = trade_link }
+		
+		add_to_global_variable_list = { name = trade_set_link_t target = var:trade_location }
 	}
 	
 	travel_distance_dijkstra_opti = {
+		start_list = trade_set_link_t
+		start_list_global = yes
+		max = 5000
+		return_dist = trade_set_link_dist
+		return_prev = trade_set_link_prev
+		return_list = trade_set_link_list
+	}
+	
+	set_global_variable = { name = trade_set_link_loop }
+	
+	while = {
+		limit = {
+			has_global_variable = trade_set_link_loop
+		}
+		count = 10000
+		
+		remove_global_variable = trade_set_link_loop
+		
+		every_in_global_list = {
+			limit = {
+				var:trade_set_link_prev = {
+					has_variable = trade_merchant
+				}
+				
+				NOT = {
+					has_variable = trade_set_link_checked
+				}
+			}
+			variable = trade_set_link_list
+			
+			set_variable = { name = trade_set_link_checked }
+			
+			every_in_list = {
+				limit = {
+					has_variable = trade_set_link_prev
+					
+					var:trade_set_link_prev = prev
+				}
+				variable = prov_neighb
+				
+				set_global_variable = { name = trade_set_link_loop }
+				
+				set_variable = { name = trade_set_link_prev value = prev.var:trade_set_link_prev }
+			}
+			every_in_list = {
+				limit = {
+					has_variable = trade_set_link_prev
+					
+					var:trade_set_link_prev = prev
+				}
+				variable = prov_port
+				
+				set_global_variable = { name = trade_set_link_loop }
+				
+				set_variable = { name = trade_set_link_prev value = prev.var:trade_set_link_prev }
+			}
+		}
+	}
+	
+	every_in_global_list = {
+		variable = trade_merchants
+		
+		every_in_global_list = {
+			limit = {
+				has_variable = trade_set_link_prev
+				
+				var:trade_set_link_prev = prev.var:trade_location
+			}
+			variable = trade_set_link_list
+			
+			every_in_list = {
+				limit = {
+					has_variable = trade_set_link_prev
+					
+					NOT = {
+						var:trade_set_link_prev = prev.var:trade_set_link_prev
+					}
+				}
+				variable = prov_neighb
+				
+				set_global_variable = { name = trade_set_link_t value = var:trade_set_link_dist }
+				change_global_variable = { name = trade_set_link_t add = prev.var:trade_set_link_dist }
+				
+				var:trade_set_link_prev.var:trade_merchant = {
+					if = {
+						limit = {
+							OR = {
+								NOT = {
+									has_variable = trade_set_link_t
+								}
+								
+								var:trade_set_link_t = {
+									compare_value > global_var:trade_set_link_t
+								}
+							}
+						}
+						set_variable = { name = trade_set_link_t value = global_var:trade_set_link_t }
+					}
+				}
+			}
+			every_in_list = {
+				limit = {
+					has_variable = trade_set_link_prev
+					
+					NOT = {
+						var:trade_set_link_prev = prev.var:trade_set_link_prev
+					}
+				}
+				variable = prov_port
+				
+				set_global_variable = { name = trade_set_link_t value = var:trade_set_link_dist }
+				change_global_variable = { name = trade_set_link_t add = prev.var:trade_set_link_dist }
+				
+				var:trade_set_link_prev.var:trade_merchant = {
+					if = {
+						limit = {
+							OR = {
+								NOT = {
+									has_variable = trade_set_link_t
+								}
+								
+								var:trade_set_link_t = {
+									compare_value > global_var:trade_set_link_t
+								}
+							}
+						}
+						set_variable = { name = trade_set_link_t value = global_var:trade_set_link_t }
+					}
+				}
+			}
+		}
+		
+		every_in_global_list = {
+			limit = {
+				has_variable = trade_set_link_t
+			}
+			variable = trade_merchants
+			
+			if = {
+				limit = {
+					NOT = {
+						this = prev
+					}
+				}
+				prev = {
+					add_to_variable_list = { name = trade_link target = prev.var:trade_location }
+					array_add = { name = trade_link value = prev.var:trade_set_link_t dec = 10 }
+				}
+			}
+			
+			remove_variable = trade_set_link_t
+		}
+	}
+	
+	every_in_global_list = {
+		variable = trade_merchants
+		
+		set_variable = { name = trade_set_link_t value = 0 }
+		
+		every_in_list = {
+			variable = trade_link
+			
+			prev = {
+				array_get = { name = trade_link value = var:trade_set_link_t return = trade_set_link_tt dec = 10 }
+				
+				change_variable = { name = trade_set_link_t add = 1 }
+			}
+			
+			set_variable = { name = trade_set_link_tt value = prev.var:trade_set_link_tt }
+			
+			set_variable = { name = trade_set_link_t value = var:trade_set_link_tt }
+			change_variable = { name = trade_set_link_t divide = -50 }
+			change_variable = { name = trade_set_link_t add = prev.var:trade_power }
+			change_variable = { name = trade_set_link_t subtract = var:trade_merchant.var:trade_power }
+		}
+		
+		save_temporary_scope_as = trade_set_link_t
+		
+		set_global_variable = { name = trade_set_link_loop }
+		
+		while = {
+			limit = {
+				has_global_variable = trade_set_link_loop
+			}
+			remove_global_variable = trade_set_link_loop
+			
+			every_in_list = {
+				limit = {
+					has_variable = trade_set_link_t
+					
+					var:trade_set_link_t > 0
+				}
+				variable = trade_link
+				
+				set_global_variable = { name = trade_set_link_loop }
+				
+				var:trade_merchant = {
+					set_variable = { name = trade_set_link_t value = prev.var:trade_set_link_t }
+					set_variable = { name = trade_set_link_tt value = prev.var:trade_set_link_tt }
+					set_variable = { name = trade_set_link_ttt value = 0 }
+		
+					every_in_list = {
+						limit = {
+							NOT = {
+								this.var:trade_merchant = scope:trade_set_link_t
+							}
+						}
+						variable = trade_link
+						
+						
+						prev = {
+							array_get = { name = trade_link value = var:trade_set_link_ttt return = trade_set_link_tttt dec = 10 }
+							
+							change_variable = { name = trade_set_link_ttt add = 1 }
+						}
+						
+						set_variable = { name = trade_set_link_tttt value = prev.var:trade_set_link_tt }
+						change_variable = { name = trade_set_link_tttt add = prev.var:trade_set_link_tttt }
+						
+						set_variable = { name = trade_set_link_ttt value = prev.var:trade_set_link_tttt }
+						change_variable = { name = trade_set_link_ttt divide = -50 }
+						change_variable = { name = trade_set_link_ttt add = prev.var:trade_set_link_t }
+						change_variable = { name = trade_set_link_ttt subtract = var:trade_merchant.var:trade_power }
+						
+						if = {
+							limit = {
+								NOT = {
+									has_variable = trade_set_link_tt
+								}
+							}
+							set_variable = { name = trade_set_link_t value = var:trade_set_link_ttt }
+							set_variable = { name = trade_set_link_tt value = var:trade_set_link_tttt }
+							
+							scope:trade_set_link_t = {
+								add_to_variable_list = { name = trade_link target = prev }
+								array_add = { name = trade_link value = prev.var:trade_set_link_tt dec = 10 }
+							}
+						}
+						else_if = {
+							limit = {
+								var:trade_set_link_tt = {
+									compare_value > prev.var:trade_set_link_tttt
+								}
+							}
+							set_variable = { name = trade_set_link_t value = var:trade_set_link_ttt }
+							set_variable = { name = trade_set_link_tt value = var:trade_set_link_tttt }
+							
+							save_temporary_scope_as = trade_set_link_tt
+							
+							scope:trade_set_link_t = {
+								set_global_variable = { name = trade_set_link_t value = 0 }
+								
+								every_in_list = {
+									variable = trade_link
+									
+									if = {
+										limit = {
+											this = scope:trade_set_link_tt
+										}
+										prev = {
+											remove_list_variable = { name = trade_link target = prev }
+											
+											ordered_in_list = {
+												variable = array_trade_link
+												position = global_var:trade_set_link_t.compare_value
+												
+												prev = {
+													remove_list_variable = { name = array_trade_link target = prev }
+												}
+											}
+										}
+									}
+									else = {
+										change_global_variable = { name = trade_set_link_t add = 1 }
+									}
+								}
+								
+								add_to_variable_list = { name = trade_link target = prev }
+								array_add = { name = trade_link value = prev.var:trade_set_link_tt dec = 10 }
+							}
+						}
+					}
+				}
+				
+				set_variable = { name = trade_set_link_t value = -1 }
+			}
+		}
+	}
+	
+	every_in_global_list = {
+		variable = trade_merchants
+		
+		remove_variable = trade_set_link_t
+		remove_variable = trade_set_link_tt
+		remove_variable = trade_set_link_ttt
+		remove_variable = trade_set_link_tttt
+	}
+	every_in_global_list = {
+		variable = trade_set_link_list
+		
+		remove_variable = trade_set_link_checked
+		remove_variable = trade_set_link_dist
+		remove_variable = trade_set_link_prev
+		
+		remove_variable = trade_set_link_t
+		remove_variable = trade_set_link_tt
+		remove_variable = trade_set_link_ttt
+		remove_variable = trade_set_link_tttt
+	}
+	
+	clear_global_variable_list = trade_set_link_list
+	clear_global_variable_list = trade_set_link_t
+	remove_global_variable = trade_set_link_t
+}
+
+trade_set_core = {
+	clear_variable_list = trade_core
+	array_clear = { name = trade_core }
+	
+	travel_distance_dijkstra_opti = {
 		start = var:trade_location
-		max = global_var:trade_set_range_tt
-		return_dist = trade_set_range_dist
-		return_prev = trade_set_range_prev
-		return_list = trade_set_range_list
+		max = 400
+		return_dist = trade_set_core_dist
+		return_prev = trade_set_core_prev
+		return_list = trade_set_core_list
 	}
 	
 	every_county = {
@@ -96,55 +395,37 @@ trade_set_range = {
 			is_valid_prov = yes
 					
 			any_county_province = {
-				has_variable = trade_set_range_dist
+				has_variable = trade_set_core_dist
 			}
 		}
 		ordered_county_province = {
 			limit = {
-				has_variable = trade_set_range_dist
+				has_variable = trade_set_core_dist
 			}
 			order_by = trade_do_trade_order_value_2
 			position = 0
 			
 			prev = {
-				set_variable = { name = trade_set_range_dist value = prev.var:trade_set_range_dist }
+				set_variable = { name = trade_set_core_dist value = prev.var:trade_set_core_dist }
 			}
 		}
 
-		if = {
-			limit = {
-				var:trade_set_range_dist = {
-					compare_value <= global_var:trade_set_range_t
-				}
-			}
-			prev = {
-				add_to_variable_list = { name = trade_core target = prev }
-				
-				array_add = { name = trade_core value = prev.var:trade_set_range_dist dec = 10 }
-			}
-		}
-		else = {
-			prev = {
-				add_to_variable_list = { name = trade_periph target = prev }
-				
-				array_add = { name = trade_periph value = prev.var:trade_set_range_dist dec = 10 }
-			}
+		prev = {
+			add_to_variable_list = { name = trade_core target = prev }
+			array_add = { name = trade_core value = prev.var:trade_set_core_dist dec = 10 }
 		}
 		
-		remove_variable = trade_set_range_dist
+		remove_variable = trade_set_core_dist
 	}
 	
 	every_in_global_list = {
-		variable = trade_set_range_list
+		variable = trade_set_core_list
 		
-		remove_variable = trade_set_range_dist
-		remove_variable = trade_set_range_prev
+		remove_variable = trade_set_core_dist
+		remove_variable = trade_set_core_prev
 	}
 	
-	remove_global_variable = trade_set_range_t
-	remove_global_variable = trade_set_range_tt
-	
-	clear_global_variable_list = trade_set_range_list
+	clear_global_variable_list = trade_set_core_list
 }
 
 trade_do_trade_helper_3 = {
@@ -379,37 +660,22 @@ trade_dat_trade = {
 			set_global_variable = { name = trade_do_trade_t value = 0 }
 			
 			every_in_list = {
-				variable = trade_periph
+				variable = trade_link
 				
 				if = {
 					limit = {
-						any_county_province = {
-							has_variable = trade_merchant
-							
-							NOT = {
-								var:trade_merchant = global_var:trade_do_trade_select
-							}
-						}
+						has_variable = trade_merchant
 					}
 					prev = {
-						array_get = { name = trade_periph value = global_var:trade_do_trade_t return = trade_do_trade_t dec = 10 }
+						array_get = { name = trade_link value = global_var:trade_do_trade_t return = trade_do_trade_t dec = 10 }
 					}
 					
-					every_county_province = {
-						limit = {
-							has_variable = trade_merchant
-							
-							NOT = {
-								var:trade_merchant = global_var:trade_do_trade_select
-							}
-						}
-						var:trade_merchant = {
-							add_to_global_variable_list = { name = trade_do_trade_list target = this }
-							
-							set_variable = { name = trade_do_trade_dist value = global_var:trade_do_trade_select.var:trade_do_trade_t }
-							change_variable = { name = trade_do_trade_dist divide = 5 }
-							change_variable = { name = trade_do_trade_dist add = 400 }
-						}
+					var:trade_merchant = {
+						add_to_global_variable_list = { name = trade_do_trade_list target = this }
+						
+						set_variable = { name = trade_do_trade_dist value = global_var:trade_do_trade_select.var:trade_do_trade_t }
+						change_variable = { name = trade_do_trade_dist divide = 4 }
+						change_variable = { name = trade_do_trade_dist add = 300 }
 					}
 				}
 				

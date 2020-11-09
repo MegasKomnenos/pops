@@ -303,13 +303,15 @@ travel_distance_dijkstra_opti = {
 		}
 	]
 	
-	$start$ = {
-		set_variable = { name = travel_distance_distance value = 0 }
-		set_variable = { name = travel_distance_prev value = this }
-		
-		add_to_global_variable_list = { name = travel_distance_fray target = this }
-		add_to_global_variable_list = { name = travel_distance_visited target = this }
-	}
+	[[start]
+		$start$ = {
+			set_variable = { name = travel_distance_distance value = 0 }
+			set_variable = { name = travel_distance_prev value = this }
+			
+			add_to_global_variable_list = { name = travel_distance_fray target = this }
+			add_to_global_variable_list = { name = travel_distance_visited target = this }
+		}
+	]
 	
 	while = {
 		limit = {
@@ -432,31 +434,6 @@ travel_distance_dijkstra_opti = {
 					remove_variable = travel_distance_distance_new
 				}
 			}
-		}
-	}
-	
-	every_in_global_list = {
-		variable = travel_distance_visited
-		limit = {
-			var:prov_sea = 2
-		}
-		while = {
-			limit = {
-				var:travel_distance_prev.var:prov_sea = 2
-			}
-			set_variable = { name = travel_distance_prev value = var:travel_distance_prev.var:travel_distance_prev }
-		}
-	}
-	every_in_global_list = {
-		variable = travel_distance_visited
-		limit = {
-			var:prov_sea = 1
-		}
-		while = {
-			limit = {
-				var:travel_distance_prev.var:prov_sea = 2
-			}
-			set_variable = { name = travel_distance_prev value = var:travel_distance_prev.var:travel_distance_prev }
 		}
 	}
 	

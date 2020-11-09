@@ -386,35 +386,28 @@ sim_run.02 = {
 				pop_update_demand = yes
 			}
 
+			if = {
+				limit = {
+					OR = {
+						NOT = {
+							has_global_var = trade_link_refresh
+						}
+						
+						global_var:trade_link_refresh = 0
+					}
+				}
+				set_global_variable = { name = trade_link_refresh value = 10 }
+				
+				trade_set_link = yes
+			}
+			else = {
+				change_global_variable = { name = trade_link_refresh subtract = 1 }
+			}
+
 			trade_do_trade = yes
 			trade_resolve_trade = yes
 			trade_update_merchant = yes
 			trade_update_price = yes
-			
-			every_in_global_list = {
-				variable = trade_merchants
-				
-				if = {
-					limit = {
-						var:trade_power = {
-							OR = {
-								compare_value >= prev.var:trade_refresh_up
-								compare_value <= prev.var:trade_refresh_down
-							}
-						}
-					}
-					set_variable = { name = trade_refresh_up value = var:trade_power }
-					set_variable = { name = trade_refresh_down value = var:trade_power }
-					
-					change_variable = { name = trade_refresh_up multiply = 1.25 }
-					change_variable = { name = trade_refresh_down multiply = 0.8 }
-
-					change_variable = { name = trade_refresh_up add = 2 }
-					change_variable = { name = trade_refresh_down subtract = 2 }
-					
-					trade_set_range = yes
-				}
-			}
 			
 			if = {
 				limit = {
