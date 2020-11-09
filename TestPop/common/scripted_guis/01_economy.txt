@@ -25227,3 +25227,3135 @@ close_county_dat = {
 		}
 	}
 }
+toggle_prov_merchant_link = { 
+	scope = province
+	is_shown = { 
+		always = yes
+	}
+	is_valid = { 
+		always = yes
+	}
+	effect = { 
+		if = { 
+			limit = { 
+				has_variable = toggled_prov_merchant_link
+			}
+			remove_variable = toggled_prov_merchant_link
+			remove_variable = info_dat_merchant_link_scope_0
+			remove_variable = info_dat_merchant_link_val_0
+			remove_variable = info_dat_merchant_link_scope_1
+			remove_variable = info_dat_merchant_link_val_1
+			remove_variable = info_dat_merchant_link_scope_2
+			remove_variable = info_dat_merchant_link_val_2
+			remove_variable = info_dat_merchant_link_scope_3
+			remove_variable = info_dat_merchant_link_val_3
+			remove_variable = info_dat_merchant_link_scope_4
+			remove_variable = info_dat_merchant_link_val_4
+			remove_variable = info_dat_merchant_link_scope_5
+			remove_variable = info_dat_merchant_link_val_5
+			remove_variable = info_dat_merchant_link_scope_6
+			remove_variable = info_dat_merchant_link_val_6
+			remove_variable = info_dat_merchant_link_scope_7
+			remove_variable = info_dat_merchant_link_val_7
+			remove_variable = info_dat_merchant_link_scope_8
+			remove_variable = info_dat_merchant_link_val_8
+			remove_variable = info_dat_merchant_link_scope_9
+			remove_variable = info_dat_merchant_link_val_9
+			remove_variable = info_dat_merchant_link_scope_10
+			remove_variable = info_dat_merchant_link_val_10
+			remove_variable = info_dat_merchant_link_scope_11
+			remove_variable = info_dat_merchant_link_val_11
+			remove_variable = info_dat_merchant_link_scope_12
+			remove_variable = info_dat_merchant_link_val_12
+			remove_variable = info_dat_merchant_link_scope_13
+			remove_variable = info_dat_merchant_link_val_13
+			remove_variable = info_dat_merchant_link_scope_14
+			remove_variable = info_dat_merchant_link_val_14
+			remove_variable = info_dat_merchant_link_scope_15
+			remove_variable = info_dat_merchant_link_val_15
+			remove_variable = info_dat_merchant_link_scope_16
+			remove_variable = info_dat_merchant_link_val_16
+			remove_variable = info_dat_merchant_link_scope_17
+			remove_variable = info_dat_merchant_link_val_17
+			remove_variable = info_dat_merchant_link_scope_18
+			remove_variable = info_dat_merchant_link_val_18
+			remove_variable = info_dat_merchant_link_scope_19
+			remove_variable = info_dat_merchant_link_val_19
+		}
+		else_if = { 
+			limit = { 
+				has_variable = trade_merchant
+			}
+			set_variable = { 
+				name = toggled_prov_merchant_link
+				value = 0
+			}
+			save_temporary_scope_as = toggle_prov_merchant_link_t
+			var:trade_merchant = { 
+				every_in_list = { 
+					variable = trade_link
+					scope:toggle_prov_merchant_link_t = { 
+						add_to_variable_list = { 
+							name = toggle_prov_merchant_link_t
+							target = prev
+						}
+					}
+				}
+				every_in_list = { 
+					variable = array_trade_link
+					scope:toggle_prov_merchant_link_t = { 
+						add_to_variable_list = { 
+							name = array_toggle_prov_merchant_link_t
+							target = prev
+						}
+					}
+				}
+			}
+			if = { 
+				limit = { 
+					variable_list_size = { 
+						name = toggle_prov_merchant_link_t
+						value > 0
+					}
+				}
+				change_variable = { 
+					name = toggled_prov_merchant_link
+					add = 1
+				}
+				ordered_in_list = { 
+					variable = toggle_prov_merchant_link_t
+					position = 0
+					prev = { 
+						set_variable = { 
+							name = info_dat_merchant_link_scope_0
+							value = prev
+						}
+					}
+				}
+				set_global_variable = { 
+					name = array_get_t
+					value = 0
+				}
+				if = { 
+					limit = { 
+						OR = { 
+							NOT = { 
+								has_global_variable = array_get_t
+							}
+							global_var:array_get_t = 0
+						}
+					}
+					ordered_in_list = { 
+						variable = array_toggle_prov_merchant_link_t
+						position = 0
+						prev = { 
+							set_variable = { 
+								name = info_dat_merchant_link_val_0
+								value = prev
+							}
+						}
+					}
+				}
+				else = { 
+					ordered_in_list = { 
+						variable = array_toggle_prov_merchant_link_t
+						position = global_var:array_get_t.compare_value
+						prev = { 
+							set_variable = { 
+								name = info_dat_merchant_link_val_0
+								value = prev
+							}
+						}
+					}
+				}
+				change_variable = { 
+					name = info_dat_merchant_link_val_0
+					divide = 10
+				}
+				remove_global_variable = array_get_t
+				change_variable = { 
+					name = info_dat_merchant_link_val_0
+					divide = 20000
+				}
+				change_variable = { 
+					name = info_dat_merchant_link_val_0
+					multiply = 100
+				}
+			}
+			if = { 
+				limit = { 
+					variable_list_size = { 
+						name = toggle_prov_merchant_link_t
+						value > 1
+					}
+				}
+				change_variable = { 
+					name = toggled_prov_merchant_link
+					add = 1
+				}
+				ordered_in_list = { 
+					variable = toggle_prov_merchant_link_t
+					position = 1
+					prev = { 
+						set_variable = { 
+							name = info_dat_merchant_link_scope_1
+							value = prev
+						}
+					}
+				}
+				set_global_variable = { 
+					name = array_get_t
+					value = 1
+				}
+				if = { 
+					limit = { 
+						OR = { 
+							NOT = { 
+								has_global_variable = array_get_t
+							}
+							global_var:array_get_t = 0
+						}
+					}
+					ordered_in_list = { 
+						variable = array_toggle_prov_merchant_link_t
+						position = 0
+						prev = { 
+							set_variable = { 
+								name = info_dat_merchant_link_val_1
+								value = prev
+							}
+						}
+					}
+				}
+				else = { 
+					ordered_in_list = { 
+						variable = array_toggle_prov_merchant_link_t
+						position = global_var:array_get_t.compare_value
+						prev = { 
+							set_variable = { 
+								name = info_dat_merchant_link_val_1
+								value = prev
+							}
+						}
+					}
+				}
+				change_variable = { 
+					name = info_dat_merchant_link_val_1
+					divide = 10
+				}
+				remove_global_variable = array_get_t
+				change_variable = { 
+					name = info_dat_merchant_link_val_1
+					divide = 20000
+				}
+				change_variable = { 
+					name = info_dat_merchant_link_val_1
+					multiply = 100
+				}
+			}
+			if = { 
+				limit = { 
+					variable_list_size = { 
+						name = toggle_prov_merchant_link_t
+						value > 2
+					}
+				}
+				change_variable = { 
+					name = toggled_prov_merchant_link
+					add = 1
+				}
+				ordered_in_list = { 
+					variable = toggle_prov_merchant_link_t
+					position = 2
+					prev = { 
+						set_variable = { 
+							name = info_dat_merchant_link_scope_2
+							value = prev
+						}
+					}
+				}
+				set_global_variable = { 
+					name = array_get_t
+					value = 2
+				}
+				if = { 
+					limit = { 
+						OR = { 
+							NOT = { 
+								has_global_variable = array_get_t
+							}
+							global_var:array_get_t = 0
+						}
+					}
+					ordered_in_list = { 
+						variable = array_toggle_prov_merchant_link_t
+						position = 0
+						prev = { 
+							set_variable = { 
+								name = info_dat_merchant_link_val_2
+								value = prev
+							}
+						}
+					}
+				}
+				else = { 
+					ordered_in_list = { 
+						variable = array_toggle_prov_merchant_link_t
+						position = global_var:array_get_t.compare_value
+						prev = { 
+							set_variable = { 
+								name = info_dat_merchant_link_val_2
+								value = prev
+							}
+						}
+					}
+				}
+				change_variable = { 
+					name = info_dat_merchant_link_val_2
+					divide = 10
+				}
+				remove_global_variable = array_get_t
+				change_variable = { 
+					name = info_dat_merchant_link_val_2
+					divide = 20000
+				}
+				change_variable = { 
+					name = info_dat_merchant_link_val_2
+					multiply = 100
+				}
+			}
+			if = { 
+				limit = { 
+					variable_list_size = { 
+						name = toggle_prov_merchant_link_t
+						value > 3
+					}
+				}
+				change_variable = { 
+					name = toggled_prov_merchant_link
+					add = 1
+				}
+				ordered_in_list = { 
+					variable = toggle_prov_merchant_link_t
+					position = 3
+					prev = { 
+						set_variable = { 
+							name = info_dat_merchant_link_scope_3
+							value = prev
+						}
+					}
+				}
+				set_global_variable = { 
+					name = array_get_t
+					value = 3
+				}
+				if = { 
+					limit = { 
+						OR = { 
+							NOT = { 
+								has_global_variable = array_get_t
+							}
+							global_var:array_get_t = 0
+						}
+					}
+					ordered_in_list = { 
+						variable = array_toggle_prov_merchant_link_t
+						position = 0
+						prev = { 
+							set_variable = { 
+								name = info_dat_merchant_link_val_3
+								value = prev
+							}
+						}
+					}
+				}
+				else = { 
+					ordered_in_list = { 
+						variable = array_toggle_prov_merchant_link_t
+						position = global_var:array_get_t.compare_value
+						prev = { 
+							set_variable = { 
+								name = info_dat_merchant_link_val_3
+								value = prev
+							}
+						}
+					}
+				}
+				change_variable = { 
+					name = info_dat_merchant_link_val_3
+					divide = 10
+				}
+				remove_global_variable = array_get_t
+				change_variable = { 
+					name = info_dat_merchant_link_val_3
+					divide = 20000
+				}
+				change_variable = { 
+					name = info_dat_merchant_link_val_3
+					multiply = 100
+				}
+			}
+			if = { 
+				limit = { 
+					variable_list_size = { 
+						name = toggle_prov_merchant_link_t
+						value > 4
+					}
+				}
+				change_variable = { 
+					name = toggled_prov_merchant_link
+					add = 1
+				}
+				ordered_in_list = { 
+					variable = toggle_prov_merchant_link_t
+					position = 4
+					prev = { 
+						set_variable = { 
+							name = info_dat_merchant_link_scope_4
+							value = prev
+						}
+					}
+				}
+				set_global_variable = { 
+					name = array_get_t
+					value = 4
+				}
+				if = { 
+					limit = { 
+						OR = { 
+							NOT = { 
+								has_global_variable = array_get_t
+							}
+							global_var:array_get_t = 0
+						}
+					}
+					ordered_in_list = { 
+						variable = array_toggle_prov_merchant_link_t
+						position = 0
+						prev = { 
+							set_variable = { 
+								name = info_dat_merchant_link_val_4
+								value = prev
+							}
+						}
+					}
+				}
+				else = { 
+					ordered_in_list = { 
+						variable = array_toggle_prov_merchant_link_t
+						position = global_var:array_get_t.compare_value
+						prev = { 
+							set_variable = { 
+								name = info_dat_merchant_link_val_4
+								value = prev
+							}
+						}
+					}
+				}
+				change_variable = { 
+					name = info_dat_merchant_link_val_4
+					divide = 10
+				}
+				remove_global_variable = array_get_t
+				change_variable = { 
+					name = info_dat_merchant_link_val_4
+					divide = 20000
+				}
+				change_variable = { 
+					name = info_dat_merchant_link_val_4
+					multiply = 100
+				}
+			}
+			if = { 
+				limit = { 
+					variable_list_size = { 
+						name = toggle_prov_merchant_link_t
+						value > 5
+					}
+				}
+				change_variable = { 
+					name = toggled_prov_merchant_link
+					add = 1
+				}
+				ordered_in_list = { 
+					variable = toggle_prov_merchant_link_t
+					position = 5
+					prev = { 
+						set_variable = { 
+							name = info_dat_merchant_link_scope_5
+							value = prev
+						}
+					}
+				}
+				set_global_variable = { 
+					name = array_get_t
+					value = 5
+				}
+				if = { 
+					limit = { 
+						OR = { 
+							NOT = { 
+								has_global_variable = array_get_t
+							}
+							global_var:array_get_t = 0
+						}
+					}
+					ordered_in_list = { 
+						variable = array_toggle_prov_merchant_link_t
+						position = 0
+						prev = { 
+							set_variable = { 
+								name = info_dat_merchant_link_val_5
+								value = prev
+							}
+						}
+					}
+				}
+				else = { 
+					ordered_in_list = { 
+						variable = array_toggle_prov_merchant_link_t
+						position = global_var:array_get_t.compare_value
+						prev = { 
+							set_variable = { 
+								name = info_dat_merchant_link_val_5
+								value = prev
+							}
+						}
+					}
+				}
+				change_variable = { 
+					name = info_dat_merchant_link_val_5
+					divide = 10
+				}
+				remove_global_variable = array_get_t
+				change_variable = { 
+					name = info_dat_merchant_link_val_5
+					divide = 20000
+				}
+				change_variable = { 
+					name = info_dat_merchant_link_val_5
+					multiply = 100
+				}
+			}
+			if = { 
+				limit = { 
+					variable_list_size = { 
+						name = toggle_prov_merchant_link_t
+						value > 6
+					}
+				}
+				change_variable = { 
+					name = toggled_prov_merchant_link
+					add = 1
+				}
+				ordered_in_list = { 
+					variable = toggle_prov_merchant_link_t
+					position = 6
+					prev = { 
+						set_variable = { 
+							name = info_dat_merchant_link_scope_6
+							value = prev
+						}
+					}
+				}
+				set_global_variable = { 
+					name = array_get_t
+					value = 6
+				}
+				if = { 
+					limit = { 
+						OR = { 
+							NOT = { 
+								has_global_variable = array_get_t
+							}
+							global_var:array_get_t = 0
+						}
+					}
+					ordered_in_list = { 
+						variable = array_toggle_prov_merchant_link_t
+						position = 0
+						prev = { 
+							set_variable = { 
+								name = info_dat_merchant_link_val_6
+								value = prev
+							}
+						}
+					}
+				}
+				else = { 
+					ordered_in_list = { 
+						variable = array_toggle_prov_merchant_link_t
+						position = global_var:array_get_t.compare_value
+						prev = { 
+							set_variable = { 
+								name = info_dat_merchant_link_val_6
+								value = prev
+							}
+						}
+					}
+				}
+				change_variable = { 
+					name = info_dat_merchant_link_val_6
+					divide = 10
+				}
+				remove_global_variable = array_get_t
+				change_variable = { 
+					name = info_dat_merchant_link_val_6
+					divide = 20000
+				}
+				change_variable = { 
+					name = info_dat_merchant_link_val_6
+					multiply = 100
+				}
+			}
+			if = { 
+				limit = { 
+					variable_list_size = { 
+						name = toggle_prov_merchant_link_t
+						value > 7
+					}
+				}
+				change_variable = { 
+					name = toggled_prov_merchant_link
+					add = 1
+				}
+				ordered_in_list = { 
+					variable = toggle_prov_merchant_link_t
+					position = 7
+					prev = { 
+						set_variable = { 
+							name = info_dat_merchant_link_scope_7
+							value = prev
+						}
+					}
+				}
+				set_global_variable = { 
+					name = array_get_t
+					value = 7
+				}
+				if = { 
+					limit = { 
+						OR = { 
+							NOT = { 
+								has_global_variable = array_get_t
+							}
+							global_var:array_get_t = 0
+						}
+					}
+					ordered_in_list = { 
+						variable = array_toggle_prov_merchant_link_t
+						position = 0
+						prev = { 
+							set_variable = { 
+								name = info_dat_merchant_link_val_7
+								value = prev
+							}
+						}
+					}
+				}
+				else = { 
+					ordered_in_list = { 
+						variable = array_toggle_prov_merchant_link_t
+						position = global_var:array_get_t.compare_value
+						prev = { 
+							set_variable = { 
+								name = info_dat_merchant_link_val_7
+								value = prev
+							}
+						}
+					}
+				}
+				change_variable = { 
+					name = info_dat_merchant_link_val_7
+					divide = 10
+				}
+				remove_global_variable = array_get_t
+				change_variable = { 
+					name = info_dat_merchant_link_val_7
+					divide = 20000
+				}
+				change_variable = { 
+					name = info_dat_merchant_link_val_7
+					multiply = 100
+				}
+			}
+			if = { 
+				limit = { 
+					variable_list_size = { 
+						name = toggle_prov_merchant_link_t
+						value > 8
+					}
+				}
+				change_variable = { 
+					name = toggled_prov_merchant_link
+					add = 1
+				}
+				ordered_in_list = { 
+					variable = toggle_prov_merchant_link_t
+					position = 8
+					prev = { 
+						set_variable = { 
+							name = info_dat_merchant_link_scope_8
+							value = prev
+						}
+					}
+				}
+				set_global_variable = { 
+					name = array_get_t
+					value = 8
+				}
+				if = { 
+					limit = { 
+						OR = { 
+							NOT = { 
+								has_global_variable = array_get_t
+							}
+							global_var:array_get_t = 0
+						}
+					}
+					ordered_in_list = { 
+						variable = array_toggle_prov_merchant_link_t
+						position = 0
+						prev = { 
+							set_variable = { 
+								name = info_dat_merchant_link_val_8
+								value = prev
+							}
+						}
+					}
+				}
+				else = { 
+					ordered_in_list = { 
+						variable = array_toggle_prov_merchant_link_t
+						position = global_var:array_get_t.compare_value
+						prev = { 
+							set_variable = { 
+								name = info_dat_merchant_link_val_8
+								value = prev
+							}
+						}
+					}
+				}
+				change_variable = { 
+					name = info_dat_merchant_link_val_8
+					divide = 10
+				}
+				remove_global_variable = array_get_t
+				change_variable = { 
+					name = info_dat_merchant_link_val_8
+					divide = 20000
+				}
+				change_variable = { 
+					name = info_dat_merchant_link_val_8
+					multiply = 100
+				}
+			}
+			if = { 
+				limit = { 
+					variable_list_size = { 
+						name = toggle_prov_merchant_link_t
+						value > 9
+					}
+				}
+				change_variable = { 
+					name = toggled_prov_merchant_link
+					add = 1
+				}
+				ordered_in_list = { 
+					variable = toggle_prov_merchant_link_t
+					position = 9
+					prev = { 
+						set_variable = { 
+							name = info_dat_merchant_link_scope_9
+							value = prev
+						}
+					}
+				}
+				set_global_variable = { 
+					name = array_get_t
+					value = 9
+				}
+				if = { 
+					limit = { 
+						OR = { 
+							NOT = { 
+								has_global_variable = array_get_t
+							}
+							global_var:array_get_t = 0
+						}
+					}
+					ordered_in_list = { 
+						variable = array_toggle_prov_merchant_link_t
+						position = 0
+						prev = { 
+							set_variable = { 
+								name = info_dat_merchant_link_val_9
+								value = prev
+							}
+						}
+					}
+				}
+				else = { 
+					ordered_in_list = { 
+						variable = array_toggle_prov_merchant_link_t
+						position = global_var:array_get_t.compare_value
+						prev = { 
+							set_variable = { 
+								name = info_dat_merchant_link_val_9
+								value = prev
+							}
+						}
+					}
+				}
+				change_variable = { 
+					name = info_dat_merchant_link_val_9
+					divide = 10
+				}
+				remove_global_variable = array_get_t
+				change_variable = { 
+					name = info_dat_merchant_link_val_9
+					divide = 20000
+				}
+				change_variable = { 
+					name = info_dat_merchant_link_val_9
+					multiply = 100
+				}
+			}
+			if = { 
+				limit = { 
+					variable_list_size = { 
+						name = toggle_prov_merchant_link_t
+						value > 10
+					}
+				}
+				change_variable = { 
+					name = toggled_prov_merchant_link
+					add = 1
+				}
+				ordered_in_list = { 
+					variable = toggle_prov_merchant_link_t
+					position = 10
+					prev = { 
+						set_variable = { 
+							name = info_dat_merchant_link_scope_10
+							value = prev
+						}
+					}
+				}
+				set_global_variable = { 
+					name = array_get_t
+					value = 10
+				}
+				if = { 
+					limit = { 
+						OR = { 
+							NOT = { 
+								has_global_variable = array_get_t
+							}
+							global_var:array_get_t = 0
+						}
+					}
+					ordered_in_list = { 
+						variable = array_toggle_prov_merchant_link_t
+						position = 0
+						prev = { 
+							set_variable = { 
+								name = info_dat_merchant_link_val_10
+								value = prev
+							}
+						}
+					}
+				}
+				else = { 
+					ordered_in_list = { 
+						variable = array_toggle_prov_merchant_link_t
+						position = global_var:array_get_t.compare_value
+						prev = { 
+							set_variable = { 
+								name = info_dat_merchant_link_val_10
+								value = prev
+							}
+						}
+					}
+				}
+				change_variable = { 
+					name = info_dat_merchant_link_val_10
+					divide = 10
+				}
+				remove_global_variable = array_get_t
+				change_variable = { 
+					name = info_dat_merchant_link_val_10
+					divide = 20000
+				}
+				change_variable = { 
+					name = info_dat_merchant_link_val_10
+					multiply = 100
+				}
+			}
+			if = { 
+				limit = { 
+					variable_list_size = { 
+						name = toggle_prov_merchant_link_t
+						value > 11
+					}
+				}
+				change_variable = { 
+					name = toggled_prov_merchant_link
+					add = 1
+				}
+				ordered_in_list = { 
+					variable = toggle_prov_merchant_link_t
+					position = 11
+					prev = { 
+						set_variable = { 
+							name = info_dat_merchant_link_scope_11
+							value = prev
+						}
+					}
+				}
+				set_global_variable = { 
+					name = array_get_t
+					value = 11
+				}
+				if = { 
+					limit = { 
+						OR = { 
+							NOT = { 
+								has_global_variable = array_get_t
+							}
+							global_var:array_get_t = 0
+						}
+					}
+					ordered_in_list = { 
+						variable = array_toggle_prov_merchant_link_t
+						position = 0
+						prev = { 
+							set_variable = { 
+								name = info_dat_merchant_link_val_11
+								value = prev
+							}
+						}
+					}
+				}
+				else = { 
+					ordered_in_list = { 
+						variable = array_toggle_prov_merchant_link_t
+						position = global_var:array_get_t.compare_value
+						prev = { 
+							set_variable = { 
+								name = info_dat_merchant_link_val_11
+								value = prev
+							}
+						}
+					}
+				}
+				change_variable = { 
+					name = info_dat_merchant_link_val_11
+					divide = 10
+				}
+				remove_global_variable = array_get_t
+				change_variable = { 
+					name = info_dat_merchant_link_val_11
+					divide = 20000
+				}
+				change_variable = { 
+					name = info_dat_merchant_link_val_11
+					multiply = 100
+				}
+			}
+			if = { 
+				limit = { 
+					variable_list_size = { 
+						name = toggle_prov_merchant_link_t
+						value > 12
+					}
+				}
+				change_variable = { 
+					name = toggled_prov_merchant_link
+					add = 1
+				}
+				ordered_in_list = { 
+					variable = toggle_prov_merchant_link_t
+					position = 12
+					prev = { 
+						set_variable = { 
+							name = info_dat_merchant_link_scope_12
+							value = prev
+						}
+					}
+				}
+				set_global_variable = { 
+					name = array_get_t
+					value = 12
+				}
+				if = { 
+					limit = { 
+						OR = { 
+							NOT = { 
+								has_global_variable = array_get_t
+							}
+							global_var:array_get_t = 0
+						}
+					}
+					ordered_in_list = { 
+						variable = array_toggle_prov_merchant_link_t
+						position = 0
+						prev = { 
+							set_variable = { 
+								name = info_dat_merchant_link_val_12
+								value = prev
+							}
+						}
+					}
+				}
+				else = { 
+					ordered_in_list = { 
+						variable = array_toggle_prov_merchant_link_t
+						position = global_var:array_get_t.compare_value
+						prev = { 
+							set_variable = { 
+								name = info_dat_merchant_link_val_12
+								value = prev
+							}
+						}
+					}
+				}
+				change_variable = { 
+					name = info_dat_merchant_link_val_12
+					divide = 10
+				}
+				remove_global_variable = array_get_t
+				change_variable = { 
+					name = info_dat_merchant_link_val_12
+					divide = 20000
+				}
+				change_variable = { 
+					name = info_dat_merchant_link_val_12
+					multiply = 100
+				}
+			}
+			if = { 
+				limit = { 
+					variable_list_size = { 
+						name = toggle_prov_merchant_link_t
+						value > 13
+					}
+				}
+				change_variable = { 
+					name = toggled_prov_merchant_link
+					add = 1
+				}
+				ordered_in_list = { 
+					variable = toggle_prov_merchant_link_t
+					position = 13
+					prev = { 
+						set_variable = { 
+							name = info_dat_merchant_link_scope_13
+							value = prev
+						}
+					}
+				}
+				set_global_variable = { 
+					name = array_get_t
+					value = 13
+				}
+				if = { 
+					limit = { 
+						OR = { 
+							NOT = { 
+								has_global_variable = array_get_t
+							}
+							global_var:array_get_t = 0
+						}
+					}
+					ordered_in_list = { 
+						variable = array_toggle_prov_merchant_link_t
+						position = 0
+						prev = { 
+							set_variable = { 
+								name = info_dat_merchant_link_val_13
+								value = prev
+							}
+						}
+					}
+				}
+				else = { 
+					ordered_in_list = { 
+						variable = array_toggle_prov_merchant_link_t
+						position = global_var:array_get_t.compare_value
+						prev = { 
+							set_variable = { 
+								name = info_dat_merchant_link_val_13
+								value = prev
+							}
+						}
+					}
+				}
+				change_variable = { 
+					name = info_dat_merchant_link_val_13
+					divide = 10
+				}
+				remove_global_variable = array_get_t
+				change_variable = { 
+					name = info_dat_merchant_link_val_13
+					divide = 20000
+				}
+				change_variable = { 
+					name = info_dat_merchant_link_val_13
+					multiply = 100
+				}
+			}
+			if = { 
+				limit = { 
+					variable_list_size = { 
+						name = toggle_prov_merchant_link_t
+						value > 14
+					}
+				}
+				change_variable = { 
+					name = toggled_prov_merchant_link
+					add = 1
+				}
+				ordered_in_list = { 
+					variable = toggle_prov_merchant_link_t
+					position = 14
+					prev = { 
+						set_variable = { 
+							name = info_dat_merchant_link_scope_14
+							value = prev
+						}
+					}
+				}
+				set_global_variable = { 
+					name = array_get_t
+					value = 14
+				}
+				if = { 
+					limit = { 
+						OR = { 
+							NOT = { 
+								has_global_variable = array_get_t
+							}
+							global_var:array_get_t = 0
+						}
+					}
+					ordered_in_list = { 
+						variable = array_toggle_prov_merchant_link_t
+						position = 0
+						prev = { 
+							set_variable = { 
+								name = info_dat_merchant_link_val_14
+								value = prev
+							}
+						}
+					}
+				}
+				else = { 
+					ordered_in_list = { 
+						variable = array_toggle_prov_merchant_link_t
+						position = global_var:array_get_t.compare_value
+						prev = { 
+							set_variable = { 
+								name = info_dat_merchant_link_val_14
+								value = prev
+							}
+						}
+					}
+				}
+				change_variable = { 
+					name = info_dat_merchant_link_val_14
+					divide = 10
+				}
+				remove_global_variable = array_get_t
+				change_variable = { 
+					name = info_dat_merchant_link_val_14
+					divide = 20000
+				}
+				change_variable = { 
+					name = info_dat_merchant_link_val_14
+					multiply = 100
+				}
+			}
+			if = { 
+				limit = { 
+					variable_list_size = { 
+						name = toggle_prov_merchant_link_t
+						value > 15
+					}
+				}
+				change_variable = { 
+					name = toggled_prov_merchant_link
+					add = 1
+				}
+				ordered_in_list = { 
+					variable = toggle_prov_merchant_link_t
+					position = 15
+					prev = { 
+						set_variable = { 
+							name = info_dat_merchant_link_scope_15
+							value = prev
+						}
+					}
+				}
+				set_global_variable = { 
+					name = array_get_t
+					value = 15
+				}
+				if = { 
+					limit = { 
+						OR = { 
+							NOT = { 
+								has_global_variable = array_get_t
+							}
+							global_var:array_get_t = 0
+						}
+					}
+					ordered_in_list = { 
+						variable = array_toggle_prov_merchant_link_t
+						position = 0
+						prev = { 
+							set_variable = { 
+								name = info_dat_merchant_link_val_15
+								value = prev
+							}
+						}
+					}
+				}
+				else = { 
+					ordered_in_list = { 
+						variable = array_toggle_prov_merchant_link_t
+						position = global_var:array_get_t.compare_value
+						prev = { 
+							set_variable = { 
+								name = info_dat_merchant_link_val_15
+								value = prev
+							}
+						}
+					}
+				}
+				change_variable = { 
+					name = info_dat_merchant_link_val_15
+					divide = 10
+				}
+				remove_global_variable = array_get_t
+				change_variable = { 
+					name = info_dat_merchant_link_val_15
+					divide = 20000
+				}
+				change_variable = { 
+					name = info_dat_merchant_link_val_15
+					multiply = 100
+				}
+			}
+			if = { 
+				limit = { 
+					variable_list_size = { 
+						name = toggle_prov_merchant_link_t
+						value > 16
+					}
+				}
+				change_variable = { 
+					name = toggled_prov_merchant_link
+					add = 1
+				}
+				ordered_in_list = { 
+					variable = toggle_prov_merchant_link_t
+					position = 16
+					prev = { 
+						set_variable = { 
+							name = info_dat_merchant_link_scope_16
+							value = prev
+						}
+					}
+				}
+				set_global_variable = { 
+					name = array_get_t
+					value = 16
+				}
+				if = { 
+					limit = { 
+						OR = { 
+							NOT = { 
+								has_global_variable = array_get_t
+							}
+							global_var:array_get_t = 0
+						}
+					}
+					ordered_in_list = { 
+						variable = array_toggle_prov_merchant_link_t
+						position = 0
+						prev = { 
+							set_variable = { 
+								name = info_dat_merchant_link_val_16
+								value = prev
+							}
+						}
+					}
+				}
+				else = { 
+					ordered_in_list = { 
+						variable = array_toggle_prov_merchant_link_t
+						position = global_var:array_get_t.compare_value
+						prev = { 
+							set_variable = { 
+								name = info_dat_merchant_link_val_16
+								value = prev
+							}
+						}
+					}
+				}
+				change_variable = { 
+					name = info_dat_merchant_link_val_16
+					divide = 10
+				}
+				remove_global_variable = array_get_t
+				change_variable = { 
+					name = info_dat_merchant_link_val_16
+					divide = 20000
+				}
+				change_variable = { 
+					name = info_dat_merchant_link_val_16
+					multiply = 100
+				}
+			}
+			if = { 
+				limit = { 
+					variable_list_size = { 
+						name = toggle_prov_merchant_link_t
+						value > 17
+					}
+				}
+				change_variable = { 
+					name = toggled_prov_merchant_link
+					add = 1
+				}
+				ordered_in_list = { 
+					variable = toggle_prov_merchant_link_t
+					position = 17
+					prev = { 
+						set_variable = { 
+							name = info_dat_merchant_link_scope_17
+							value = prev
+						}
+					}
+				}
+				set_global_variable = { 
+					name = array_get_t
+					value = 17
+				}
+				if = { 
+					limit = { 
+						OR = { 
+							NOT = { 
+								has_global_variable = array_get_t
+							}
+							global_var:array_get_t = 0
+						}
+					}
+					ordered_in_list = { 
+						variable = array_toggle_prov_merchant_link_t
+						position = 0
+						prev = { 
+							set_variable = { 
+								name = info_dat_merchant_link_val_17
+								value = prev
+							}
+						}
+					}
+				}
+				else = { 
+					ordered_in_list = { 
+						variable = array_toggle_prov_merchant_link_t
+						position = global_var:array_get_t.compare_value
+						prev = { 
+							set_variable = { 
+								name = info_dat_merchant_link_val_17
+								value = prev
+							}
+						}
+					}
+				}
+				change_variable = { 
+					name = info_dat_merchant_link_val_17
+					divide = 10
+				}
+				remove_global_variable = array_get_t
+				change_variable = { 
+					name = info_dat_merchant_link_val_17
+					divide = 20000
+				}
+				change_variable = { 
+					name = info_dat_merchant_link_val_17
+					multiply = 100
+				}
+			}
+			if = { 
+				limit = { 
+					variable_list_size = { 
+						name = toggle_prov_merchant_link_t
+						value > 18
+					}
+				}
+				change_variable = { 
+					name = toggled_prov_merchant_link
+					add = 1
+				}
+				ordered_in_list = { 
+					variable = toggle_prov_merchant_link_t
+					position = 18
+					prev = { 
+						set_variable = { 
+							name = info_dat_merchant_link_scope_18
+							value = prev
+						}
+					}
+				}
+				set_global_variable = { 
+					name = array_get_t
+					value = 18
+				}
+				if = { 
+					limit = { 
+						OR = { 
+							NOT = { 
+								has_global_variable = array_get_t
+							}
+							global_var:array_get_t = 0
+						}
+					}
+					ordered_in_list = { 
+						variable = array_toggle_prov_merchant_link_t
+						position = 0
+						prev = { 
+							set_variable = { 
+								name = info_dat_merchant_link_val_18
+								value = prev
+							}
+						}
+					}
+				}
+				else = { 
+					ordered_in_list = { 
+						variable = array_toggle_prov_merchant_link_t
+						position = global_var:array_get_t.compare_value
+						prev = { 
+							set_variable = { 
+								name = info_dat_merchant_link_val_18
+								value = prev
+							}
+						}
+					}
+				}
+				change_variable = { 
+					name = info_dat_merchant_link_val_18
+					divide = 10
+				}
+				remove_global_variable = array_get_t
+				change_variable = { 
+					name = info_dat_merchant_link_val_18
+					divide = 20000
+				}
+				change_variable = { 
+					name = info_dat_merchant_link_val_18
+					multiply = 100
+				}
+			}
+			if = { 
+				limit = { 
+					variable_list_size = { 
+						name = toggle_prov_merchant_link_t
+						value > 19
+					}
+				}
+				change_variable = { 
+					name = toggled_prov_merchant_link
+					add = 1
+				}
+				ordered_in_list = { 
+					variable = toggle_prov_merchant_link_t
+					position = 19
+					prev = { 
+						set_variable = { 
+							name = info_dat_merchant_link_scope_19
+							value = prev
+						}
+					}
+				}
+				set_global_variable = { 
+					name = array_get_t
+					value = 19
+				}
+				if = { 
+					limit = { 
+						OR = { 
+							NOT = { 
+								has_global_variable = array_get_t
+							}
+							global_var:array_get_t = 0
+						}
+					}
+					ordered_in_list = { 
+						variable = array_toggle_prov_merchant_link_t
+						position = 0
+						prev = { 
+							set_variable = { 
+								name = info_dat_merchant_link_val_19
+								value = prev
+							}
+						}
+					}
+				}
+				else = { 
+					ordered_in_list = { 
+						variable = array_toggle_prov_merchant_link_t
+						position = global_var:array_get_t.compare_value
+						prev = { 
+							set_variable = { 
+								name = info_dat_merchant_link_val_19
+								value = prev
+							}
+						}
+					}
+				}
+				change_variable = { 
+					name = info_dat_merchant_link_val_19
+					divide = 10
+				}
+				remove_global_variable = array_get_t
+				change_variable = { 
+					name = info_dat_merchant_link_val_19
+					divide = 20000
+				}
+				change_variable = { 
+					name = info_dat_merchant_link_val_19
+					multiply = 100
+				}
+			}
+			clear_variable_list = toggle_prov_merchant_link_t
+			clear_variable_list = array_toggle_prov_merchant_link_t
+		}
+	}
+}
+close_prov_merchant_link = { 
+	scope = province
+	is_shown = { 
+		always = yes
+	}
+	is_valid = { 
+		always = yes
+	}
+	effect = { 
+		if = { 
+			limit = { 
+				has_variable = toggled_prov_merchant_link
+			}
+			remove_variable = toggled_prov_merchant_link
+			remove_variable = info_dat_merchant_link_scope_0
+			remove_variable = info_dat_merchant_link_val_0
+			remove_variable = info_dat_merchant_link_scope_1
+			remove_variable = info_dat_merchant_link_val_1
+			remove_variable = info_dat_merchant_link_scope_2
+			remove_variable = info_dat_merchant_link_val_2
+			remove_variable = info_dat_merchant_link_scope_3
+			remove_variable = info_dat_merchant_link_val_3
+			remove_variable = info_dat_merchant_link_scope_4
+			remove_variable = info_dat_merchant_link_val_4
+			remove_variable = info_dat_merchant_link_scope_5
+			remove_variable = info_dat_merchant_link_val_5
+			remove_variable = info_dat_merchant_link_scope_6
+			remove_variable = info_dat_merchant_link_val_6
+			remove_variable = info_dat_merchant_link_scope_7
+			remove_variable = info_dat_merchant_link_val_7
+			remove_variable = info_dat_merchant_link_scope_8
+			remove_variable = info_dat_merchant_link_val_8
+			remove_variable = info_dat_merchant_link_scope_9
+			remove_variable = info_dat_merchant_link_val_9
+			remove_variable = info_dat_merchant_link_scope_10
+			remove_variable = info_dat_merchant_link_val_10
+			remove_variable = info_dat_merchant_link_scope_11
+			remove_variable = info_dat_merchant_link_val_11
+			remove_variable = info_dat_merchant_link_scope_12
+			remove_variable = info_dat_merchant_link_val_12
+			remove_variable = info_dat_merchant_link_scope_13
+			remove_variable = info_dat_merchant_link_val_13
+			remove_variable = info_dat_merchant_link_scope_14
+			remove_variable = info_dat_merchant_link_val_14
+			remove_variable = info_dat_merchant_link_scope_15
+			remove_variable = info_dat_merchant_link_val_15
+			remove_variable = info_dat_merchant_link_scope_16
+			remove_variable = info_dat_merchant_link_val_16
+			remove_variable = info_dat_merchant_link_scope_17
+			remove_variable = info_dat_merchant_link_val_17
+			remove_variable = info_dat_merchant_link_scope_18
+			remove_variable = info_dat_merchant_link_val_18
+			remove_variable = info_dat_merchant_link_scope_19
+			remove_variable = info_dat_merchant_link_val_19
+		}
+	}
+}
+toggle_prov_merchant_core = { 
+	scope = province
+	is_shown = { 
+		always = yes
+	}
+	is_valid = { 
+		always = yes
+	}
+	effect = { 
+		if = { 
+			limit = { 
+				has_variable = toggled_prov_merchant_core
+			}
+			remove_variable = toggled_prov_merchant_core
+			remove_variable = info_dat_merchant_core_scope_0
+			remove_variable = info_dat_merchant_core_val_0
+			remove_variable = info_dat_merchant_core_scope_1
+			remove_variable = info_dat_merchant_core_val_1
+			remove_variable = info_dat_merchant_core_scope_2
+			remove_variable = info_dat_merchant_core_val_2
+			remove_variable = info_dat_merchant_core_scope_3
+			remove_variable = info_dat_merchant_core_val_3
+			remove_variable = info_dat_merchant_core_scope_4
+			remove_variable = info_dat_merchant_core_val_4
+			remove_variable = info_dat_merchant_core_scope_5
+			remove_variable = info_dat_merchant_core_val_5
+			remove_variable = info_dat_merchant_core_scope_6
+			remove_variable = info_dat_merchant_core_val_6
+			remove_variable = info_dat_merchant_core_scope_7
+			remove_variable = info_dat_merchant_core_val_7
+			remove_variable = info_dat_merchant_core_scope_8
+			remove_variable = info_dat_merchant_core_val_8
+			remove_variable = info_dat_merchant_core_scope_9
+			remove_variable = info_dat_merchant_core_val_9
+			remove_variable = info_dat_merchant_core_scope_10
+			remove_variable = info_dat_merchant_core_val_10
+			remove_variable = info_dat_merchant_core_scope_11
+			remove_variable = info_dat_merchant_core_val_11
+			remove_variable = info_dat_merchant_core_scope_12
+			remove_variable = info_dat_merchant_core_val_12
+			remove_variable = info_dat_merchant_core_scope_13
+			remove_variable = info_dat_merchant_core_val_13
+			remove_variable = info_dat_merchant_core_scope_14
+			remove_variable = info_dat_merchant_core_val_14
+			remove_variable = info_dat_merchant_core_scope_15
+			remove_variable = info_dat_merchant_core_val_15
+			remove_variable = info_dat_merchant_core_scope_16
+			remove_variable = info_dat_merchant_core_val_16
+			remove_variable = info_dat_merchant_core_scope_17
+			remove_variable = info_dat_merchant_core_val_17
+			remove_variable = info_dat_merchant_core_scope_18
+			remove_variable = info_dat_merchant_core_val_18
+			remove_variable = info_dat_merchant_core_scope_19
+			remove_variable = info_dat_merchant_core_val_19
+		}
+		else_if = { 
+			limit = { 
+				has_variable = trade_merchant
+			}
+			set_variable = { 
+				name = toggled_prov_merchant_core
+				value = 0
+			}
+			save_temporary_scope_as = toggle_prov_merchant_core_t
+			var:trade_merchant = { 
+				every_in_list = { 
+					variable = trade_core
+					scope:toggle_prov_merchant_core_t = { 
+						add_to_variable_list = { 
+							name = toggle_prov_merchant_core_t
+							target = prev
+						}
+					}
+				}
+				every_in_list = { 
+					variable = array_trade_core
+					scope:toggle_prov_merchant_core_t = { 
+						add_to_variable_list = { 
+							name = array_toggle_prov_merchant_core_t
+							target = prev
+						}
+					}
+				}
+			}
+			if = { 
+				limit = { 
+					variable_list_size = { 
+						name = toggle_prov_merchant_core_t
+						value > 0
+					}
+				}
+				change_variable = { 
+					name = toggled_prov_merchant_core
+					add = 1
+				}
+				ordered_in_list = { 
+					variable = toggle_prov_merchant_core_t
+					position = 0
+					prev = { 
+						set_variable = { 
+							name = info_dat_merchant_core_scope_0
+							value = prev
+						}
+					}
+				}
+				set_global_variable = { 
+					name = array_get_t
+					value = 0
+				}
+				if = { 
+					limit = { 
+						OR = { 
+							NOT = { 
+								has_global_variable = array_get_t
+							}
+							global_var:array_get_t = 0
+						}
+					}
+					ordered_in_list = { 
+						variable = array_toggle_prov_merchant_core_t
+						position = 0
+						prev = { 
+							set_variable = { 
+								name = info_dat_merchant_core_val_0
+								value = prev
+							}
+						}
+					}
+				}
+				else = { 
+					ordered_in_list = { 
+						variable = array_toggle_prov_merchant_core_t
+						position = global_var:array_get_t.compare_value
+						prev = { 
+							set_variable = { 
+								name = info_dat_merchant_core_val_0
+								value = prev
+							}
+						}
+					}
+				}
+				change_variable = { 
+					name = info_dat_merchant_core_val_0
+					divide = 10
+				}
+				remove_global_variable = array_get_t
+				change_variable = { 
+					name = info_dat_merchant_core_val_0
+					divide = 20000
+				}
+				change_variable = { 
+					name = info_dat_merchant_core_val_0
+					multiply = 100
+				}
+			}
+			if = { 
+				limit = { 
+					variable_list_size = { 
+						name = toggle_prov_merchant_core_t
+						value > 1
+					}
+				}
+				change_variable = { 
+					name = toggled_prov_merchant_core
+					add = 1
+				}
+				ordered_in_list = { 
+					variable = toggle_prov_merchant_core_t
+					position = 1
+					prev = { 
+						set_variable = { 
+							name = info_dat_merchant_core_scope_1
+							value = prev
+						}
+					}
+				}
+				set_global_variable = { 
+					name = array_get_t
+					value = 1
+				}
+				if = { 
+					limit = { 
+						OR = { 
+							NOT = { 
+								has_global_variable = array_get_t
+							}
+							global_var:array_get_t = 0
+						}
+					}
+					ordered_in_list = { 
+						variable = array_toggle_prov_merchant_core_t
+						position = 0
+						prev = { 
+							set_variable = { 
+								name = info_dat_merchant_core_val_1
+								value = prev
+							}
+						}
+					}
+				}
+				else = { 
+					ordered_in_list = { 
+						variable = array_toggle_prov_merchant_core_t
+						position = global_var:array_get_t.compare_value
+						prev = { 
+							set_variable = { 
+								name = info_dat_merchant_core_val_1
+								value = prev
+							}
+						}
+					}
+				}
+				change_variable = { 
+					name = info_dat_merchant_core_val_1
+					divide = 10
+				}
+				remove_global_variable = array_get_t
+				change_variable = { 
+					name = info_dat_merchant_core_val_1
+					divide = 20000
+				}
+				change_variable = { 
+					name = info_dat_merchant_core_val_1
+					multiply = 100
+				}
+			}
+			if = { 
+				limit = { 
+					variable_list_size = { 
+						name = toggle_prov_merchant_core_t
+						value > 2
+					}
+				}
+				change_variable = { 
+					name = toggled_prov_merchant_core
+					add = 1
+				}
+				ordered_in_list = { 
+					variable = toggle_prov_merchant_core_t
+					position = 2
+					prev = { 
+						set_variable = { 
+							name = info_dat_merchant_core_scope_2
+							value = prev
+						}
+					}
+				}
+				set_global_variable = { 
+					name = array_get_t
+					value = 2
+				}
+				if = { 
+					limit = { 
+						OR = { 
+							NOT = { 
+								has_global_variable = array_get_t
+							}
+							global_var:array_get_t = 0
+						}
+					}
+					ordered_in_list = { 
+						variable = array_toggle_prov_merchant_core_t
+						position = 0
+						prev = { 
+							set_variable = { 
+								name = info_dat_merchant_core_val_2
+								value = prev
+							}
+						}
+					}
+				}
+				else = { 
+					ordered_in_list = { 
+						variable = array_toggle_prov_merchant_core_t
+						position = global_var:array_get_t.compare_value
+						prev = { 
+							set_variable = { 
+								name = info_dat_merchant_core_val_2
+								value = prev
+							}
+						}
+					}
+				}
+				change_variable = { 
+					name = info_dat_merchant_core_val_2
+					divide = 10
+				}
+				remove_global_variable = array_get_t
+				change_variable = { 
+					name = info_dat_merchant_core_val_2
+					divide = 20000
+				}
+				change_variable = { 
+					name = info_dat_merchant_core_val_2
+					multiply = 100
+				}
+			}
+			if = { 
+				limit = { 
+					variable_list_size = { 
+						name = toggle_prov_merchant_core_t
+						value > 3
+					}
+				}
+				change_variable = { 
+					name = toggled_prov_merchant_core
+					add = 1
+				}
+				ordered_in_list = { 
+					variable = toggle_prov_merchant_core_t
+					position = 3
+					prev = { 
+						set_variable = { 
+							name = info_dat_merchant_core_scope_3
+							value = prev
+						}
+					}
+				}
+				set_global_variable = { 
+					name = array_get_t
+					value = 3
+				}
+				if = { 
+					limit = { 
+						OR = { 
+							NOT = { 
+								has_global_variable = array_get_t
+							}
+							global_var:array_get_t = 0
+						}
+					}
+					ordered_in_list = { 
+						variable = array_toggle_prov_merchant_core_t
+						position = 0
+						prev = { 
+							set_variable = { 
+								name = info_dat_merchant_core_val_3
+								value = prev
+							}
+						}
+					}
+				}
+				else = { 
+					ordered_in_list = { 
+						variable = array_toggle_prov_merchant_core_t
+						position = global_var:array_get_t.compare_value
+						prev = { 
+							set_variable = { 
+								name = info_dat_merchant_core_val_3
+								value = prev
+							}
+						}
+					}
+				}
+				change_variable = { 
+					name = info_dat_merchant_core_val_3
+					divide = 10
+				}
+				remove_global_variable = array_get_t
+				change_variable = { 
+					name = info_dat_merchant_core_val_3
+					divide = 20000
+				}
+				change_variable = { 
+					name = info_dat_merchant_core_val_3
+					multiply = 100
+				}
+			}
+			if = { 
+				limit = { 
+					variable_list_size = { 
+						name = toggle_prov_merchant_core_t
+						value > 4
+					}
+				}
+				change_variable = { 
+					name = toggled_prov_merchant_core
+					add = 1
+				}
+				ordered_in_list = { 
+					variable = toggle_prov_merchant_core_t
+					position = 4
+					prev = { 
+						set_variable = { 
+							name = info_dat_merchant_core_scope_4
+							value = prev
+						}
+					}
+				}
+				set_global_variable = { 
+					name = array_get_t
+					value = 4
+				}
+				if = { 
+					limit = { 
+						OR = { 
+							NOT = { 
+								has_global_variable = array_get_t
+							}
+							global_var:array_get_t = 0
+						}
+					}
+					ordered_in_list = { 
+						variable = array_toggle_prov_merchant_core_t
+						position = 0
+						prev = { 
+							set_variable = { 
+								name = info_dat_merchant_core_val_4
+								value = prev
+							}
+						}
+					}
+				}
+				else = { 
+					ordered_in_list = { 
+						variable = array_toggle_prov_merchant_core_t
+						position = global_var:array_get_t.compare_value
+						prev = { 
+							set_variable = { 
+								name = info_dat_merchant_core_val_4
+								value = prev
+							}
+						}
+					}
+				}
+				change_variable = { 
+					name = info_dat_merchant_core_val_4
+					divide = 10
+				}
+				remove_global_variable = array_get_t
+				change_variable = { 
+					name = info_dat_merchant_core_val_4
+					divide = 20000
+				}
+				change_variable = { 
+					name = info_dat_merchant_core_val_4
+					multiply = 100
+				}
+			}
+			if = { 
+				limit = { 
+					variable_list_size = { 
+						name = toggle_prov_merchant_core_t
+						value > 5
+					}
+				}
+				change_variable = { 
+					name = toggled_prov_merchant_core
+					add = 1
+				}
+				ordered_in_list = { 
+					variable = toggle_prov_merchant_core_t
+					position = 5
+					prev = { 
+						set_variable = { 
+							name = info_dat_merchant_core_scope_5
+							value = prev
+						}
+					}
+				}
+				set_global_variable = { 
+					name = array_get_t
+					value = 5
+				}
+				if = { 
+					limit = { 
+						OR = { 
+							NOT = { 
+								has_global_variable = array_get_t
+							}
+							global_var:array_get_t = 0
+						}
+					}
+					ordered_in_list = { 
+						variable = array_toggle_prov_merchant_core_t
+						position = 0
+						prev = { 
+							set_variable = { 
+								name = info_dat_merchant_core_val_5
+								value = prev
+							}
+						}
+					}
+				}
+				else = { 
+					ordered_in_list = { 
+						variable = array_toggle_prov_merchant_core_t
+						position = global_var:array_get_t.compare_value
+						prev = { 
+							set_variable = { 
+								name = info_dat_merchant_core_val_5
+								value = prev
+							}
+						}
+					}
+				}
+				change_variable = { 
+					name = info_dat_merchant_core_val_5
+					divide = 10
+				}
+				remove_global_variable = array_get_t
+				change_variable = { 
+					name = info_dat_merchant_core_val_5
+					divide = 20000
+				}
+				change_variable = { 
+					name = info_dat_merchant_core_val_5
+					multiply = 100
+				}
+			}
+			if = { 
+				limit = { 
+					variable_list_size = { 
+						name = toggle_prov_merchant_core_t
+						value > 6
+					}
+				}
+				change_variable = { 
+					name = toggled_prov_merchant_core
+					add = 1
+				}
+				ordered_in_list = { 
+					variable = toggle_prov_merchant_core_t
+					position = 6
+					prev = { 
+						set_variable = { 
+							name = info_dat_merchant_core_scope_6
+							value = prev
+						}
+					}
+				}
+				set_global_variable = { 
+					name = array_get_t
+					value = 6
+				}
+				if = { 
+					limit = { 
+						OR = { 
+							NOT = { 
+								has_global_variable = array_get_t
+							}
+							global_var:array_get_t = 0
+						}
+					}
+					ordered_in_list = { 
+						variable = array_toggle_prov_merchant_core_t
+						position = 0
+						prev = { 
+							set_variable = { 
+								name = info_dat_merchant_core_val_6
+								value = prev
+							}
+						}
+					}
+				}
+				else = { 
+					ordered_in_list = { 
+						variable = array_toggle_prov_merchant_core_t
+						position = global_var:array_get_t.compare_value
+						prev = { 
+							set_variable = { 
+								name = info_dat_merchant_core_val_6
+								value = prev
+							}
+						}
+					}
+				}
+				change_variable = { 
+					name = info_dat_merchant_core_val_6
+					divide = 10
+				}
+				remove_global_variable = array_get_t
+				change_variable = { 
+					name = info_dat_merchant_core_val_6
+					divide = 20000
+				}
+				change_variable = { 
+					name = info_dat_merchant_core_val_6
+					multiply = 100
+				}
+			}
+			if = { 
+				limit = { 
+					variable_list_size = { 
+						name = toggle_prov_merchant_core_t
+						value > 7
+					}
+				}
+				change_variable = { 
+					name = toggled_prov_merchant_core
+					add = 1
+				}
+				ordered_in_list = { 
+					variable = toggle_prov_merchant_core_t
+					position = 7
+					prev = { 
+						set_variable = { 
+							name = info_dat_merchant_core_scope_7
+							value = prev
+						}
+					}
+				}
+				set_global_variable = { 
+					name = array_get_t
+					value = 7
+				}
+				if = { 
+					limit = { 
+						OR = { 
+							NOT = { 
+								has_global_variable = array_get_t
+							}
+							global_var:array_get_t = 0
+						}
+					}
+					ordered_in_list = { 
+						variable = array_toggle_prov_merchant_core_t
+						position = 0
+						prev = { 
+							set_variable = { 
+								name = info_dat_merchant_core_val_7
+								value = prev
+							}
+						}
+					}
+				}
+				else = { 
+					ordered_in_list = { 
+						variable = array_toggle_prov_merchant_core_t
+						position = global_var:array_get_t.compare_value
+						prev = { 
+							set_variable = { 
+								name = info_dat_merchant_core_val_7
+								value = prev
+							}
+						}
+					}
+				}
+				change_variable = { 
+					name = info_dat_merchant_core_val_7
+					divide = 10
+				}
+				remove_global_variable = array_get_t
+				change_variable = { 
+					name = info_dat_merchant_core_val_7
+					divide = 20000
+				}
+				change_variable = { 
+					name = info_dat_merchant_core_val_7
+					multiply = 100
+				}
+			}
+			if = { 
+				limit = { 
+					variable_list_size = { 
+						name = toggle_prov_merchant_core_t
+						value > 8
+					}
+				}
+				change_variable = { 
+					name = toggled_prov_merchant_core
+					add = 1
+				}
+				ordered_in_list = { 
+					variable = toggle_prov_merchant_core_t
+					position = 8
+					prev = { 
+						set_variable = { 
+							name = info_dat_merchant_core_scope_8
+							value = prev
+						}
+					}
+				}
+				set_global_variable = { 
+					name = array_get_t
+					value = 8
+				}
+				if = { 
+					limit = { 
+						OR = { 
+							NOT = { 
+								has_global_variable = array_get_t
+							}
+							global_var:array_get_t = 0
+						}
+					}
+					ordered_in_list = { 
+						variable = array_toggle_prov_merchant_core_t
+						position = 0
+						prev = { 
+							set_variable = { 
+								name = info_dat_merchant_core_val_8
+								value = prev
+							}
+						}
+					}
+				}
+				else = { 
+					ordered_in_list = { 
+						variable = array_toggle_prov_merchant_core_t
+						position = global_var:array_get_t.compare_value
+						prev = { 
+							set_variable = { 
+								name = info_dat_merchant_core_val_8
+								value = prev
+							}
+						}
+					}
+				}
+				change_variable = { 
+					name = info_dat_merchant_core_val_8
+					divide = 10
+				}
+				remove_global_variable = array_get_t
+				change_variable = { 
+					name = info_dat_merchant_core_val_8
+					divide = 20000
+				}
+				change_variable = { 
+					name = info_dat_merchant_core_val_8
+					multiply = 100
+				}
+			}
+			if = { 
+				limit = { 
+					variable_list_size = { 
+						name = toggle_prov_merchant_core_t
+						value > 9
+					}
+				}
+				change_variable = { 
+					name = toggled_prov_merchant_core
+					add = 1
+				}
+				ordered_in_list = { 
+					variable = toggle_prov_merchant_core_t
+					position = 9
+					prev = { 
+						set_variable = { 
+							name = info_dat_merchant_core_scope_9
+							value = prev
+						}
+					}
+				}
+				set_global_variable = { 
+					name = array_get_t
+					value = 9
+				}
+				if = { 
+					limit = { 
+						OR = { 
+							NOT = { 
+								has_global_variable = array_get_t
+							}
+							global_var:array_get_t = 0
+						}
+					}
+					ordered_in_list = { 
+						variable = array_toggle_prov_merchant_core_t
+						position = 0
+						prev = { 
+							set_variable = { 
+								name = info_dat_merchant_core_val_9
+								value = prev
+							}
+						}
+					}
+				}
+				else = { 
+					ordered_in_list = { 
+						variable = array_toggle_prov_merchant_core_t
+						position = global_var:array_get_t.compare_value
+						prev = { 
+							set_variable = { 
+								name = info_dat_merchant_core_val_9
+								value = prev
+							}
+						}
+					}
+				}
+				change_variable = { 
+					name = info_dat_merchant_core_val_9
+					divide = 10
+				}
+				remove_global_variable = array_get_t
+				change_variable = { 
+					name = info_dat_merchant_core_val_9
+					divide = 20000
+				}
+				change_variable = { 
+					name = info_dat_merchant_core_val_9
+					multiply = 100
+				}
+			}
+			if = { 
+				limit = { 
+					variable_list_size = { 
+						name = toggle_prov_merchant_core_t
+						value > 10
+					}
+				}
+				change_variable = { 
+					name = toggled_prov_merchant_core
+					add = 1
+				}
+				ordered_in_list = { 
+					variable = toggle_prov_merchant_core_t
+					position = 10
+					prev = { 
+						set_variable = { 
+							name = info_dat_merchant_core_scope_10
+							value = prev
+						}
+					}
+				}
+				set_global_variable = { 
+					name = array_get_t
+					value = 10
+				}
+				if = { 
+					limit = { 
+						OR = { 
+							NOT = { 
+								has_global_variable = array_get_t
+							}
+							global_var:array_get_t = 0
+						}
+					}
+					ordered_in_list = { 
+						variable = array_toggle_prov_merchant_core_t
+						position = 0
+						prev = { 
+							set_variable = { 
+								name = info_dat_merchant_core_val_10
+								value = prev
+							}
+						}
+					}
+				}
+				else = { 
+					ordered_in_list = { 
+						variable = array_toggle_prov_merchant_core_t
+						position = global_var:array_get_t.compare_value
+						prev = { 
+							set_variable = { 
+								name = info_dat_merchant_core_val_10
+								value = prev
+							}
+						}
+					}
+				}
+				change_variable = { 
+					name = info_dat_merchant_core_val_10
+					divide = 10
+				}
+				remove_global_variable = array_get_t
+				change_variable = { 
+					name = info_dat_merchant_core_val_10
+					divide = 20000
+				}
+				change_variable = { 
+					name = info_dat_merchant_core_val_10
+					multiply = 100
+				}
+			}
+			if = { 
+				limit = { 
+					variable_list_size = { 
+						name = toggle_prov_merchant_core_t
+						value > 11
+					}
+				}
+				change_variable = { 
+					name = toggled_prov_merchant_core
+					add = 1
+				}
+				ordered_in_list = { 
+					variable = toggle_prov_merchant_core_t
+					position = 11
+					prev = { 
+						set_variable = { 
+							name = info_dat_merchant_core_scope_11
+							value = prev
+						}
+					}
+				}
+				set_global_variable = { 
+					name = array_get_t
+					value = 11
+				}
+				if = { 
+					limit = { 
+						OR = { 
+							NOT = { 
+								has_global_variable = array_get_t
+							}
+							global_var:array_get_t = 0
+						}
+					}
+					ordered_in_list = { 
+						variable = array_toggle_prov_merchant_core_t
+						position = 0
+						prev = { 
+							set_variable = { 
+								name = info_dat_merchant_core_val_11
+								value = prev
+							}
+						}
+					}
+				}
+				else = { 
+					ordered_in_list = { 
+						variable = array_toggle_prov_merchant_core_t
+						position = global_var:array_get_t.compare_value
+						prev = { 
+							set_variable = { 
+								name = info_dat_merchant_core_val_11
+								value = prev
+							}
+						}
+					}
+				}
+				change_variable = { 
+					name = info_dat_merchant_core_val_11
+					divide = 10
+				}
+				remove_global_variable = array_get_t
+				change_variable = { 
+					name = info_dat_merchant_core_val_11
+					divide = 20000
+				}
+				change_variable = { 
+					name = info_dat_merchant_core_val_11
+					multiply = 100
+				}
+			}
+			if = { 
+				limit = { 
+					variable_list_size = { 
+						name = toggle_prov_merchant_core_t
+						value > 12
+					}
+				}
+				change_variable = { 
+					name = toggled_prov_merchant_core
+					add = 1
+				}
+				ordered_in_list = { 
+					variable = toggle_prov_merchant_core_t
+					position = 12
+					prev = { 
+						set_variable = { 
+							name = info_dat_merchant_core_scope_12
+							value = prev
+						}
+					}
+				}
+				set_global_variable = { 
+					name = array_get_t
+					value = 12
+				}
+				if = { 
+					limit = { 
+						OR = { 
+							NOT = { 
+								has_global_variable = array_get_t
+							}
+							global_var:array_get_t = 0
+						}
+					}
+					ordered_in_list = { 
+						variable = array_toggle_prov_merchant_core_t
+						position = 0
+						prev = { 
+							set_variable = { 
+								name = info_dat_merchant_core_val_12
+								value = prev
+							}
+						}
+					}
+				}
+				else = { 
+					ordered_in_list = { 
+						variable = array_toggle_prov_merchant_core_t
+						position = global_var:array_get_t.compare_value
+						prev = { 
+							set_variable = { 
+								name = info_dat_merchant_core_val_12
+								value = prev
+							}
+						}
+					}
+				}
+				change_variable = { 
+					name = info_dat_merchant_core_val_12
+					divide = 10
+				}
+				remove_global_variable = array_get_t
+				change_variable = { 
+					name = info_dat_merchant_core_val_12
+					divide = 20000
+				}
+				change_variable = { 
+					name = info_dat_merchant_core_val_12
+					multiply = 100
+				}
+			}
+			if = { 
+				limit = { 
+					variable_list_size = { 
+						name = toggle_prov_merchant_core_t
+						value > 13
+					}
+				}
+				change_variable = { 
+					name = toggled_prov_merchant_core
+					add = 1
+				}
+				ordered_in_list = { 
+					variable = toggle_prov_merchant_core_t
+					position = 13
+					prev = { 
+						set_variable = { 
+							name = info_dat_merchant_core_scope_13
+							value = prev
+						}
+					}
+				}
+				set_global_variable = { 
+					name = array_get_t
+					value = 13
+				}
+				if = { 
+					limit = { 
+						OR = { 
+							NOT = { 
+								has_global_variable = array_get_t
+							}
+							global_var:array_get_t = 0
+						}
+					}
+					ordered_in_list = { 
+						variable = array_toggle_prov_merchant_core_t
+						position = 0
+						prev = { 
+							set_variable = { 
+								name = info_dat_merchant_core_val_13
+								value = prev
+							}
+						}
+					}
+				}
+				else = { 
+					ordered_in_list = { 
+						variable = array_toggle_prov_merchant_core_t
+						position = global_var:array_get_t.compare_value
+						prev = { 
+							set_variable = { 
+								name = info_dat_merchant_core_val_13
+								value = prev
+							}
+						}
+					}
+				}
+				change_variable = { 
+					name = info_dat_merchant_core_val_13
+					divide = 10
+				}
+				remove_global_variable = array_get_t
+				change_variable = { 
+					name = info_dat_merchant_core_val_13
+					divide = 20000
+				}
+				change_variable = { 
+					name = info_dat_merchant_core_val_13
+					multiply = 100
+				}
+			}
+			if = { 
+				limit = { 
+					variable_list_size = { 
+						name = toggle_prov_merchant_core_t
+						value > 14
+					}
+				}
+				change_variable = { 
+					name = toggled_prov_merchant_core
+					add = 1
+				}
+				ordered_in_list = { 
+					variable = toggle_prov_merchant_core_t
+					position = 14
+					prev = { 
+						set_variable = { 
+							name = info_dat_merchant_core_scope_14
+							value = prev
+						}
+					}
+				}
+				set_global_variable = { 
+					name = array_get_t
+					value = 14
+				}
+				if = { 
+					limit = { 
+						OR = { 
+							NOT = { 
+								has_global_variable = array_get_t
+							}
+							global_var:array_get_t = 0
+						}
+					}
+					ordered_in_list = { 
+						variable = array_toggle_prov_merchant_core_t
+						position = 0
+						prev = { 
+							set_variable = { 
+								name = info_dat_merchant_core_val_14
+								value = prev
+							}
+						}
+					}
+				}
+				else = { 
+					ordered_in_list = { 
+						variable = array_toggle_prov_merchant_core_t
+						position = global_var:array_get_t.compare_value
+						prev = { 
+							set_variable = { 
+								name = info_dat_merchant_core_val_14
+								value = prev
+							}
+						}
+					}
+				}
+				change_variable = { 
+					name = info_dat_merchant_core_val_14
+					divide = 10
+				}
+				remove_global_variable = array_get_t
+				change_variable = { 
+					name = info_dat_merchant_core_val_14
+					divide = 20000
+				}
+				change_variable = { 
+					name = info_dat_merchant_core_val_14
+					multiply = 100
+				}
+			}
+			if = { 
+				limit = { 
+					variable_list_size = { 
+						name = toggle_prov_merchant_core_t
+						value > 15
+					}
+				}
+				change_variable = { 
+					name = toggled_prov_merchant_core
+					add = 1
+				}
+				ordered_in_list = { 
+					variable = toggle_prov_merchant_core_t
+					position = 15
+					prev = { 
+						set_variable = { 
+							name = info_dat_merchant_core_scope_15
+							value = prev
+						}
+					}
+				}
+				set_global_variable = { 
+					name = array_get_t
+					value = 15
+				}
+				if = { 
+					limit = { 
+						OR = { 
+							NOT = { 
+								has_global_variable = array_get_t
+							}
+							global_var:array_get_t = 0
+						}
+					}
+					ordered_in_list = { 
+						variable = array_toggle_prov_merchant_core_t
+						position = 0
+						prev = { 
+							set_variable = { 
+								name = info_dat_merchant_core_val_15
+								value = prev
+							}
+						}
+					}
+				}
+				else = { 
+					ordered_in_list = { 
+						variable = array_toggle_prov_merchant_core_t
+						position = global_var:array_get_t.compare_value
+						prev = { 
+							set_variable = { 
+								name = info_dat_merchant_core_val_15
+								value = prev
+							}
+						}
+					}
+				}
+				change_variable = { 
+					name = info_dat_merchant_core_val_15
+					divide = 10
+				}
+				remove_global_variable = array_get_t
+				change_variable = { 
+					name = info_dat_merchant_core_val_15
+					divide = 20000
+				}
+				change_variable = { 
+					name = info_dat_merchant_core_val_15
+					multiply = 100
+				}
+			}
+			if = { 
+				limit = { 
+					variable_list_size = { 
+						name = toggle_prov_merchant_core_t
+						value > 16
+					}
+				}
+				change_variable = { 
+					name = toggled_prov_merchant_core
+					add = 1
+				}
+				ordered_in_list = { 
+					variable = toggle_prov_merchant_core_t
+					position = 16
+					prev = { 
+						set_variable = { 
+							name = info_dat_merchant_core_scope_16
+							value = prev
+						}
+					}
+				}
+				set_global_variable = { 
+					name = array_get_t
+					value = 16
+				}
+				if = { 
+					limit = { 
+						OR = { 
+							NOT = { 
+								has_global_variable = array_get_t
+							}
+							global_var:array_get_t = 0
+						}
+					}
+					ordered_in_list = { 
+						variable = array_toggle_prov_merchant_core_t
+						position = 0
+						prev = { 
+							set_variable = { 
+								name = info_dat_merchant_core_val_16
+								value = prev
+							}
+						}
+					}
+				}
+				else = { 
+					ordered_in_list = { 
+						variable = array_toggle_prov_merchant_core_t
+						position = global_var:array_get_t.compare_value
+						prev = { 
+							set_variable = { 
+								name = info_dat_merchant_core_val_16
+								value = prev
+							}
+						}
+					}
+				}
+				change_variable = { 
+					name = info_dat_merchant_core_val_16
+					divide = 10
+				}
+				remove_global_variable = array_get_t
+				change_variable = { 
+					name = info_dat_merchant_core_val_16
+					divide = 20000
+				}
+				change_variable = { 
+					name = info_dat_merchant_core_val_16
+					multiply = 100
+				}
+			}
+			if = { 
+				limit = { 
+					variable_list_size = { 
+						name = toggle_prov_merchant_core_t
+						value > 17
+					}
+				}
+				change_variable = { 
+					name = toggled_prov_merchant_core
+					add = 1
+				}
+				ordered_in_list = { 
+					variable = toggle_prov_merchant_core_t
+					position = 17
+					prev = { 
+						set_variable = { 
+							name = info_dat_merchant_core_scope_17
+							value = prev
+						}
+					}
+				}
+				set_global_variable = { 
+					name = array_get_t
+					value = 17
+				}
+				if = { 
+					limit = { 
+						OR = { 
+							NOT = { 
+								has_global_variable = array_get_t
+							}
+							global_var:array_get_t = 0
+						}
+					}
+					ordered_in_list = { 
+						variable = array_toggle_prov_merchant_core_t
+						position = 0
+						prev = { 
+							set_variable = { 
+								name = info_dat_merchant_core_val_17
+								value = prev
+							}
+						}
+					}
+				}
+				else = { 
+					ordered_in_list = { 
+						variable = array_toggle_prov_merchant_core_t
+						position = global_var:array_get_t.compare_value
+						prev = { 
+							set_variable = { 
+								name = info_dat_merchant_core_val_17
+								value = prev
+							}
+						}
+					}
+				}
+				change_variable = { 
+					name = info_dat_merchant_core_val_17
+					divide = 10
+				}
+				remove_global_variable = array_get_t
+				change_variable = { 
+					name = info_dat_merchant_core_val_17
+					divide = 20000
+				}
+				change_variable = { 
+					name = info_dat_merchant_core_val_17
+					multiply = 100
+				}
+			}
+			if = { 
+				limit = { 
+					variable_list_size = { 
+						name = toggle_prov_merchant_core_t
+						value > 18
+					}
+				}
+				change_variable = { 
+					name = toggled_prov_merchant_core
+					add = 1
+				}
+				ordered_in_list = { 
+					variable = toggle_prov_merchant_core_t
+					position = 18
+					prev = { 
+						set_variable = { 
+							name = info_dat_merchant_core_scope_18
+							value = prev
+						}
+					}
+				}
+				set_global_variable = { 
+					name = array_get_t
+					value = 18
+				}
+				if = { 
+					limit = { 
+						OR = { 
+							NOT = { 
+								has_global_variable = array_get_t
+							}
+							global_var:array_get_t = 0
+						}
+					}
+					ordered_in_list = { 
+						variable = array_toggle_prov_merchant_core_t
+						position = 0
+						prev = { 
+							set_variable = { 
+								name = info_dat_merchant_core_val_18
+								value = prev
+							}
+						}
+					}
+				}
+				else = { 
+					ordered_in_list = { 
+						variable = array_toggle_prov_merchant_core_t
+						position = global_var:array_get_t.compare_value
+						prev = { 
+							set_variable = { 
+								name = info_dat_merchant_core_val_18
+								value = prev
+							}
+						}
+					}
+				}
+				change_variable = { 
+					name = info_dat_merchant_core_val_18
+					divide = 10
+				}
+				remove_global_variable = array_get_t
+				change_variable = { 
+					name = info_dat_merchant_core_val_18
+					divide = 20000
+				}
+				change_variable = { 
+					name = info_dat_merchant_core_val_18
+					multiply = 100
+				}
+			}
+			if = { 
+				limit = { 
+					variable_list_size = { 
+						name = toggle_prov_merchant_core_t
+						value > 19
+					}
+				}
+				change_variable = { 
+					name = toggled_prov_merchant_core
+					add = 1
+				}
+				ordered_in_list = { 
+					variable = toggle_prov_merchant_core_t
+					position = 19
+					prev = { 
+						set_variable = { 
+							name = info_dat_merchant_core_scope_19
+							value = prev
+						}
+					}
+				}
+				set_global_variable = { 
+					name = array_get_t
+					value = 19
+				}
+				if = { 
+					limit = { 
+						OR = { 
+							NOT = { 
+								has_global_variable = array_get_t
+							}
+							global_var:array_get_t = 0
+						}
+					}
+					ordered_in_list = { 
+						variable = array_toggle_prov_merchant_core_t
+						position = 0
+						prev = { 
+							set_variable = { 
+								name = info_dat_merchant_core_val_19
+								value = prev
+							}
+						}
+					}
+				}
+				else = { 
+					ordered_in_list = { 
+						variable = array_toggle_prov_merchant_core_t
+						position = global_var:array_get_t.compare_value
+						prev = { 
+							set_variable = { 
+								name = info_dat_merchant_core_val_19
+								value = prev
+							}
+						}
+					}
+				}
+				change_variable = { 
+					name = info_dat_merchant_core_val_19
+					divide = 10
+				}
+				remove_global_variable = array_get_t
+				change_variable = { 
+					name = info_dat_merchant_core_val_19
+					divide = 20000
+				}
+				change_variable = { 
+					name = info_dat_merchant_core_val_19
+					multiply = 100
+				}
+			}
+			clear_variable_list = toggle_prov_merchant_core_t
+			clear_variable_list = array_toggle_prov_merchant_core_t
+		}
+	}
+}
+close_prov_merchant_core = { 
+	scope = province
+	is_shown = { 
+		always = yes
+	}
+	is_valid = { 
+		always = yes
+	}
+	effect = { 
+		if = { 
+			limit = { 
+				has_variable = toggled_prov_merchant_core
+			}
+			remove_variable = toggled_prov_merchant_core
+			remove_variable = info_dat_merchant_core_scope_0
+			remove_variable = info_dat_merchant_core_val_0
+			remove_variable = info_dat_merchant_core_scope_1
+			remove_variable = info_dat_merchant_core_val_1
+			remove_variable = info_dat_merchant_core_scope_2
+			remove_variable = info_dat_merchant_core_val_2
+			remove_variable = info_dat_merchant_core_scope_3
+			remove_variable = info_dat_merchant_core_val_3
+			remove_variable = info_dat_merchant_core_scope_4
+			remove_variable = info_dat_merchant_core_val_4
+			remove_variable = info_dat_merchant_core_scope_5
+			remove_variable = info_dat_merchant_core_val_5
+			remove_variable = info_dat_merchant_core_scope_6
+			remove_variable = info_dat_merchant_core_val_6
+			remove_variable = info_dat_merchant_core_scope_7
+			remove_variable = info_dat_merchant_core_val_7
+			remove_variable = info_dat_merchant_core_scope_8
+			remove_variable = info_dat_merchant_core_val_8
+			remove_variable = info_dat_merchant_core_scope_9
+			remove_variable = info_dat_merchant_core_val_9
+			remove_variable = info_dat_merchant_core_scope_10
+			remove_variable = info_dat_merchant_core_val_10
+			remove_variable = info_dat_merchant_core_scope_11
+			remove_variable = info_dat_merchant_core_val_11
+			remove_variable = info_dat_merchant_core_scope_12
+			remove_variable = info_dat_merchant_core_val_12
+			remove_variable = info_dat_merchant_core_scope_13
+			remove_variable = info_dat_merchant_core_val_13
+			remove_variable = info_dat_merchant_core_scope_14
+			remove_variable = info_dat_merchant_core_val_14
+			remove_variable = info_dat_merchant_core_scope_15
+			remove_variable = info_dat_merchant_core_val_15
+			remove_variable = info_dat_merchant_core_scope_16
+			remove_variable = info_dat_merchant_core_val_16
+			remove_variable = info_dat_merchant_core_scope_17
+			remove_variable = info_dat_merchant_core_val_17
+			remove_variable = info_dat_merchant_core_scope_18
+			remove_variable = info_dat_merchant_core_val_18
+			remove_variable = info_dat_merchant_core_scope_19
+			remove_variable = info_dat_merchant_core_val_19
+		}
+	}
+}

@@ -55,6 +55,8 @@ window = {
 		on_start = "[GetScriptedGui( 'close_prov_merchant' ).Execute( GuiScope.SetRoot( Province.MakeScope ).End )]"
 		on_start = "[GetScriptedGui( 'close_prov_merchant_dat' ).Execute( GuiScope.SetRoot( Province.MakeScope ).End )]"
 		on_start = "[GetScriptedGui( 'close_county_dat' ).Execute( GuiScope.SetRoot( HoldingView.GetProvince.GetCounty.GetCapital.MakeScope ).End )]"
+		on_start = "[GetScriptedGui( 'close_prov_merchant_link' ).Execute( GuiScope.SetRoot( Province.MakeScope ).End )]"
+		on_start = "[GetScriptedGui( 'close_prov_merchant_core' ).Execute( GuiScope.SetRoot( Province.MakeScope ).End )]"
 		
 		using = Animation_FadeOut_Standard
 		using = Sound_WindowHide_Standard
@@ -3984,6 +3986,404 @@ window = {
 			}
 		}
 	}
+	
+	window = {
+		parentanchor = top|right
+		size = { 500 1000 }
+		position = { 400 -400 }
+		movable = yes
+		visible = "[GreaterThanOrEqualTo_CFixedPoint(Province.MakeScope.Var('toggled_prov_merchant_link').GetValue, '(CFixedPoint)1')]"
+		
+		background = {
+			texture = "gfx/interface/component_tiles/tile_window_background_subwindow.dds"
+			spriteType = Corneredtiled
+			spriteborder = { 18 18 }
+			texture_density = 2
+			
+			modify_texture = {
+				name = "overlay"
+				texture = "gfx/interface/component_overlay/overlay_effect.dds"
+				spriteType = Corneredstretched
+				spriteborder = { 0 0 }
+				blend_mode = overlay
+			}
+		}
+		
+		buttons_window_control = {
+			parentanchor = top|right
+			blockoverride "button_close"
+			{
+				datacontext = "[GetScriptedGui( 'close_prov_merchant_link' )]"
+				onclick = "[ScriptedGui.Execute( GuiScope.SetRoot( Province.MakeScope ).End )]"
+			}
+		}
+		
+		vbox = {
+			margin_left = 20
+			margin_bottom = 15
+			margin_top = 10
+			layoutpolicy_vertical = expanding
+			
+			text_single = {
+				parentanchor = left
+				visible = "[GreaterThan_CFixedPoint(Province.MakeScope.Var('toggled_prov_merchant_link').GetValue, '(CFixedPoint)0')]"
+				text = "Has Link of [Province.MakeScope.Var('info_dat_merchant_link_val_0').GetValue] Days with Merchants in [Province.MakeScope.Var('info_dat_merchant_link_scope_0').GetProvince.GetName]"
+				using = Font_Size_Small
+				layoutpolicy_horizontal = expanding
+			}
+
+			text_single = {
+				parentanchor = left
+				visible = "[GreaterThan_CFixedPoint(Province.MakeScope.Var('toggled_prov_merchant_link').GetValue, '(CFixedPoint)1')]"
+				text = "Has Link of [Province.MakeScope.Var('info_dat_merchant_link_val_1').GetValue] Days with Merchants in [Province.MakeScope.Var('info_dat_merchant_link_scope_1').GetProvince.GetName]"
+				using = Font_Size_Small
+				layoutpolicy_horizontal = expanding
+			}
+
+			text_single = {
+				parentanchor = left
+				visible = "[GreaterThan_CFixedPoint(Province.MakeScope.Var('toggled_prov_merchant_link').GetValue, '(CFixedPoint)2')]"
+				text = "Has Link of [Province.MakeScope.Var('info_dat_merchant_link_val_2').GetValue] Days with Merchants in [Province.MakeScope.Var('info_dat_merchant_link_scope_2').GetProvince.GetName]"
+				using = Font_Size_Small
+				layoutpolicy_horizontal = expanding
+			}
+
+			text_single = {
+				parentanchor = left
+				visible = "[GreaterThan_CFixedPoint(Province.MakeScope.Var('toggled_prov_merchant_link').GetValue, '(CFixedPoint)3')]"
+				text = "Has Link of [Province.MakeScope.Var('info_dat_merchant_link_val_3').GetValue] Days with Merchants in [Province.MakeScope.Var('info_dat_merchant_link_scope_3').GetProvince.GetName]"
+				using = Font_Size_Small
+				layoutpolicy_horizontal = expanding
+			}
+
+			text_single = {
+				parentanchor = left
+				visible = "[GreaterThan_CFixedPoint(Province.MakeScope.Var('toggled_prov_merchant_link').GetValue, '(CFixedPoint)4')]"
+				text = "Has Link of [Province.MakeScope.Var('info_dat_merchant_link_val_4').GetValue] Days with Merchants in [Province.MakeScope.Var('info_dat_merchant_link_scope_4').GetProvince.GetName]"
+				using = Font_Size_Small
+				layoutpolicy_horizontal = expanding
+			}
+
+			text_single = {
+				parentanchor = left
+				visible = "[GreaterThan_CFixedPoint(Province.MakeScope.Var('toggled_prov_merchant_link').GetValue, '(CFixedPoint)5')]"
+				text = "Has Link of [Province.MakeScope.Var('info_dat_merchant_link_val_5').GetValue] Days with Merchants in [Province.MakeScope.Var('info_dat_merchant_link_scope_5').GetProvince.GetName]"
+				using = Font_Size_Small
+				layoutpolicy_horizontal = expanding
+			}
+
+			text_single = {
+				parentanchor = left
+				visible = "[GreaterThan_CFixedPoint(Province.MakeScope.Var('toggled_prov_merchant_link').GetValue, '(CFixedPoint)6')]"
+				text = "Has Link of [Province.MakeScope.Var('info_dat_merchant_link_val_6').GetValue] Days with Merchants in [Province.MakeScope.Var('info_dat_merchant_link_scope_6').GetProvince.GetName]"
+				using = Font_Size_Small
+				layoutpolicy_horizontal = expanding
+			}
+
+			text_single = {
+				parentanchor = left
+				visible = "[GreaterThan_CFixedPoint(Province.MakeScope.Var('toggled_prov_merchant_link').GetValue, '(CFixedPoint)7')]"
+				text = "Has Link of [Province.MakeScope.Var('info_dat_merchant_link_val_7').GetValue] Days with Merchants in [Province.MakeScope.Var('info_dat_merchant_link_scope_7').GetProvince.GetName]"
+				using = Font_Size_Small
+				layoutpolicy_horizontal = expanding
+			}
+
+			text_single = {
+				parentanchor = left
+				visible = "[GreaterThan_CFixedPoint(Province.MakeScope.Var('toggled_prov_merchant_link').GetValue, '(CFixedPoint)8')]"
+				text = "Has Link of [Province.MakeScope.Var('info_dat_merchant_link_val_8').GetValue] Days with Merchants in [Province.MakeScope.Var('info_dat_merchant_link_scope_8').GetProvince.GetName]"
+				using = Font_Size_Small
+				layoutpolicy_horizontal = expanding
+			}
+
+			text_single = {
+				parentanchor = left
+				visible = "[GreaterThan_CFixedPoint(Province.MakeScope.Var('toggled_prov_merchant_link').GetValue, '(CFixedPoint)9')]"
+				text = "Has Link of [Province.MakeScope.Var('info_dat_merchant_link_val_9').GetValue] Days with Merchants in [Province.MakeScope.Var('info_dat_merchant_link_scope_9').GetProvince.GetName]"
+				using = Font_Size_Small
+				layoutpolicy_horizontal = expanding
+			}
+
+			text_single = {
+				parentanchor = left
+				visible = "[GreaterThan_CFixedPoint(Province.MakeScope.Var('toggled_prov_merchant_link').GetValue, '(CFixedPoint)10')]"
+				text = "Has Link of [Province.MakeScope.Var('info_dat_merchant_link_val_10').GetValue] Days with Merchants in [Province.MakeScope.Var('info_dat_merchant_link_scope_10').GetProvince.GetName]"
+				using = Font_Size_Small
+				layoutpolicy_horizontal = expanding
+			}
+
+			text_single = {
+				parentanchor = left
+				visible = "[GreaterThan_CFixedPoint(Province.MakeScope.Var('toggled_prov_merchant_link').GetValue, '(CFixedPoint)11')]"
+				text = "Has Link of [Province.MakeScope.Var('info_dat_merchant_link_val_11').GetValue] Days with Merchants in [Province.MakeScope.Var('info_dat_merchant_link_scope_11').GetProvince.GetName]"
+				using = Font_Size_Small
+				layoutpolicy_horizontal = expanding
+			}
+
+			text_single = {
+				parentanchor = left
+				visible = "[GreaterThan_CFixedPoint(Province.MakeScope.Var('toggled_prov_merchant_link').GetValue, '(CFixedPoint)12')]"
+				text = "Has Link of [Province.MakeScope.Var('info_dat_merchant_link_val_12').GetValue] Days with Merchants in [Province.MakeScope.Var('info_dat_merchant_link_scope_12').GetProvince.GetName]"
+				using = Font_Size_Small
+				layoutpolicy_horizontal = expanding
+			}
+
+			text_single = {
+				parentanchor = left
+				visible = "[GreaterThan_CFixedPoint(Province.MakeScope.Var('toggled_prov_merchant_link').GetValue, '(CFixedPoint)13')]"
+				text = "Has Link of [Province.MakeScope.Var('info_dat_merchant_link_val_13').GetValue] Days with Merchants in [Province.MakeScope.Var('info_dat_merchant_link_scope_13').GetProvince.GetName]"
+				using = Font_Size_Small
+				layoutpolicy_horizontal = expanding
+			}
+
+			text_single = {
+				parentanchor = left
+				visible = "[GreaterThan_CFixedPoint(Province.MakeScope.Var('toggled_prov_merchant_link').GetValue, '(CFixedPoint)14')]"
+				text = "Has Link of [Province.MakeScope.Var('info_dat_merchant_link_val_14').GetValue] Days with Merchants in [Province.MakeScope.Var('info_dat_merchant_link_scope_14').GetProvince.GetName]"
+				using = Font_Size_Small
+				layoutpolicy_horizontal = expanding
+			}
+
+			text_single = {
+				parentanchor = left
+				visible = "[GreaterThan_CFixedPoint(Province.MakeScope.Var('toggled_prov_merchant_link').GetValue, '(CFixedPoint)15')]"
+				text = "Has Link of [Province.MakeScope.Var('info_dat_merchant_link_val_15').GetValue] Days with Merchants in [Province.MakeScope.Var('info_dat_merchant_link_scope_15').GetProvince.GetName]"
+				using = Font_Size_Small
+				layoutpolicy_horizontal = expanding
+			}
+
+			text_single = {
+				parentanchor = left
+				visible = "[GreaterThan_CFixedPoint(Province.MakeScope.Var('toggled_prov_merchant_link').GetValue, '(CFixedPoint)16')]"
+				text = "Has Link of [Province.MakeScope.Var('info_dat_merchant_link_val_16').GetValue] Days with Merchants in [Province.MakeScope.Var('info_dat_merchant_link_scope_16').GetProvince.GetName]"
+				using = Font_Size_Small
+				layoutpolicy_horizontal = expanding
+			}
+
+			text_single = {
+				parentanchor = left
+				visible = "[GreaterThan_CFixedPoint(Province.MakeScope.Var('toggled_prov_merchant_link').GetValue, '(CFixedPoint)17')]"
+				text = "Has Link of [Province.MakeScope.Var('info_dat_merchant_link_val_17').GetValue] Days with Merchants in [Province.MakeScope.Var('info_dat_merchant_link_scope_17').GetProvince.GetName]"
+				using = Font_Size_Small
+				layoutpolicy_horizontal = expanding
+			}
+
+			text_single = {
+				parentanchor = left
+				visible = "[GreaterThan_CFixedPoint(Province.MakeScope.Var('toggled_prov_merchant_link').GetValue, '(CFixedPoint)18')]"
+				text = "Has Link of [Province.MakeScope.Var('info_dat_merchant_link_val_18').GetValue] Days with Merchants in [Province.MakeScope.Var('info_dat_merchant_link_scope_18').GetProvince.GetName]"
+				using = Font_Size_Small
+				layoutpolicy_horizontal = expanding
+			}
+
+			text_single = {
+				parentanchor = left
+				visible = "[GreaterThan_CFixedPoint(Province.MakeScope.Var('toggled_prov_merchant_link').GetValue, '(CFixedPoint)19')]"
+				text = "Has Link of [Province.MakeScope.Var('info_dat_merchant_link_val_19').GetValue] Days with Merchants in [Province.MakeScope.Var('info_dat_merchant_link_scope_19').GetProvince.GetName]"
+				using = Font_Size_Small
+				layoutpolicy_horizontal = expanding
+			}
+		}
+	}
+	
+	window = {
+		parentanchor = top|right
+		size = { 500 1000 }
+		position = { 400 -400 }
+		movable = yes
+		visible = "[GreaterThanOrEqualTo_CFixedPoint(Province.MakeScope.Var('toggled_prov_merchant_core').GetValue, '(CFixedPoint)1')]"
+		
+		background = {
+			texture = "gfx/interface/component_tiles/tile_window_background_subwindow.dds"
+			spriteType = Corneredtiled
+			spriteborder = { 18 18 }
+			texture_density = 2
+			
+			modify_texture = {
+				name = "overlay"
+				texture = "gfx/interface/component_overlay/overlay_effect.dds"
+				spriteType = Corneredstretched
+				spriteborder = { 0 0 }
+				blend_mode = overlay
+			}
+		}
+		
+		buttons_window_control = {
+			parentanchor = top|right
+			blockoverride "button_close"
+			{
+				datacontext = "[GetScriptedGui( 'close_prov_merchant_core' )]"
+				onclick = "[ScriptedGui.Execute( GuiScope.SetRoot( Province.MakeScope ).End )]"
+			}
+		}
+		
+		vbox = {
+			margin_left = 20
+			margin_bottom = 15
+			margin_top = 10
+			layoutpolicy_vertical = expanding
+			
+			text_single = {
+				parentanchor = left
+				visible = "[GreaterThan_CFixedPoint(Province.MakeScope.Var('toggled_prov_merchant_core').GetValue, '(CFixedPoint)0')]"
+				text = "Has Link of [Province.MakeScope.Var('info_dat_merchant_core_val_0').GetValue] Days with [Province.MakeScope.Var('info_dat_merchant_core_scope_0').GetLandedTitle.GetName]"
+				using = Font_Size_Small
+				layoutpolicy_horizontal = expanding
+			}
+
+			text_single = {
+				parentanchor = left
+				visible = "[GreaterThan_CFixedPoint(Province.MakeScope.Var('toggled_prov_merchant_core').GetValue, '(CFixedPoint)1')]"
+				text = "Has Link of [Province.MakeScope.Var('info_dat_merchant_core_val_1').GetValue] Days with [Province.MakeScope.Var('info_dat_merchant_core_scope_1').GetLandedTitle.GetName]"
+				using = Font_Size_Small
+				layoutpolicy_horizontal = expanding
+			}
+
+			text_single = {
+				parentanchor = left
+				visible = "[GreaterThan_CFixedPoint(Province.MakeScope.Var('toggled_prov_merchant_core').GetValue, '(CFixedPoint)2')]"
+				text = "Has Link of [Province.MakeScope.Var('info_dat_merchant_core_val_2').GetValue] Days with [Province.MakeScope.Var('info_dat_merchant_core_scope_2').GetLandedTitle.GetName]"
+				using = Font_Size_Small
+				layoutpolicy_horizontal = expanding
+			}
+
+			text_single = {
+				parentanchor = left
+				visible = "[GreaterThan_CFixedPoint(Province.MakeScope.Var('toggled_prov_merchant_core').GetValue, '(CFixedPoint)3')]"
+				text = "Has Link of [Province.MakeScope.Var('info_dat_merchant_core_val_3').GetValue] Days with [Province.MakeScope.Var('info_dat_merchant_core_scope_3').GetLandedTitle.GetName]"
+				using = Font_Size_Small
+				layoutpolicy_horizontal = expanding
+			}
+
+			text_single = {
+				parentanchor = left
+				visible = "[GreaterThan_CFixedPoint(Province.MakeScope.Var('toggled_prov_merchant_core').GetValue, '(CFixedPoint)4')]"
+				text = "Has Link of [Province.MakeScope.Var('info_dat_merchant_core_val_4').GetValue] Days with [Province.MakeScope.Var('info_dat_merchant_core_scope_4').GetLandedTitle.GetName]"
+				using = Font_Size_Small
+				layoutpolicy_horizontal = expanding
+			}
+
+			text_single = {
+				parentanchor = left
+				visible = "[GreaterThan_CFixedPoint(Province.MakeScope.Var('toggled_prov_merchant_core').GetValue, '(CFixedPoint)5')]"
+				text = "Has Link of [Province.MakeScope.Var('info_dat_merchant_core_val_5').GetValue] Days with [Province.MakeScope.Var('info_dat_merchant_core_scope_5').GetLandedTitle.GetName]"
+				using = Font_Size_Small
+				layoutpolicy_horizontal = expanding
+			}
+
+			text_single = {
+				parentanchor = left
+				visible = "[GreaterThan_CFixedPoint(Province.MakeScope.Var('toggled_prov_merchant_core').GetValue, '(CFixedPoint)6')]"
+				text = "Has Link of [Province.MakeScope.Var('info_dat_merchant_core_val_6').GetValue] Days with [Province.MakeScope.Var('info_dat_merchant_core_scope_6').GetLandedTitle.GetName]"
+				using = Font_Size_Small
+				layoutpolicy_horizontal = expanding
+			}
+
+			text_single = {
+				parentanchor = left
+				visible = "[GreaterThan_CFixedPoint(Province.MakeScope.Var('toggled_prov_merchant_core').GetValue, '(CFixedPoint)7')]"
+				text = "Has Link of [Province.MakeScope.Var('info_dat_merchant_core_val_7').GetValue] Days with [Province.MakeScope.Var('info_dat_merchant_core_scope_7').GetLandedTitle.GetName]"
+				using = Font_Size_Small
+				layoutpolicy_horizontal = expanding
+			}
+
+			text_single = {
+				parentanchor = left
+				visible = "[GreaterThan_CFixedPoint(Province.MakeScope.Var('toggled_prov_merchant_core').GetValue, '(CFixedPoint)8')]"
+				text = "Has Link of [Province.MakeScope.Var('info_dat_merchant_core_val_8').GetValue] Days with [Province.MakeScope.Var('info_dat_merchant_core_scope_8').GetLandedTitle.GetName]"
+				using = Font_Size_Small
+				layoutpolicy_horizontal = expanding
+			}
+
+			text_single = {
+				parentanchor = left
+				visible = "[GreaterThan_CFixedPoint(Province.MakeScope.Var('toggled_prov_merchant_core').GetValue, '(CFixedPoint)9')]"
+				text = "Has Link of [Province.MakeScope.Var('info_dat_merchant_core_val_9').GetValue] Days with [Province.MakeScope.Var('info_dat_merchant_core_scope_9').GetLandedTitle.GetName]"
+				using = Font_Size_Small
+				layoutpolicy_horizontal = expanding
+			}
+
+			text_single = {
+				parentanchor = left
+				visible = "[GreaterThan_CFixedPoint(Province.MakeScope.Var('toggled_prov_merchant_core').GetValue, '(CFixedPoint)10')]"
+				text = "Has Link of [Province.MakeScope.Var('info_dat_merchant_core_val_10').GetValue] Days with [Province.MakeScope.Var('info_dat_merchant_core_scope_10').GetLandedTitle.GetName]"
+				using = Font_Size_Small
+				layoutpolicy_horizontal = expanding
+			}
+
+			text_single = {
+				parentanchor = left
+				visible = "[GreaterThan_CFixedPoint(Province.MakeScope.Var('toggled_prov_merchant_core').GetValue, '(CFixedPoint)11')]"
+				text = "Has Link of [Province.MakeScope.Var('info_dat_merchant_core_val_11').GetValue] Days with [Province.MakeScope.Var('info_dat_merchant_core_scope_11').GetLandedTitle.GetName]"
+				using = Font_Size_Small
+				layoutpolicy_horizontal = expanding
+			}
+
+			text_single = {
+				parentanchor = left
+				visible = "[GreaterThan_CFixedPoint(Province.MakeScope.Var('toggled_prov_merchant_core').GetValue, '(CFixedPoint)12')]"
+				text = "Has Link of [Province.MakeScope.Var('info_dat_merchant_core_val_12').GetValue] Days with [Province.MakeScope.Var('info_dat_merchant_core_scope_12').GetLandedTitle.GetName]"
+				using = Font_Size_Small
+				layoutpolicy_horizontal = expanding
+			}
+
+			text_single = {
+				parentanchor = left
+				visible = "[GreaterThan_CFixedPoint(Province.MakeScope.Var('toggled_prov_merchant_core').GetValue, '(CFixedPoint)13')]"
+				text = "Has Link of [Province.MakeScope.Var('info_dat_merchant_core_val_13').GetValue] Days with [Province.MakeScope.Var('info_dat_merchant_core_scope_13').GetLandedTitle.GetName]"
+				using = Font_Size_Small
+				layoutpolicy_horizontal = expanding
+			}
+
+			text_single = {
+				parentanchor = left
+				visible = "[GreaterThan_CFixedPoint(Province.MakeScope.Var('toggled_prov_merchant_core').GetValue, '(CFixedPoint)14')]"
+				text = "Has Link of [Province.MakeScope.Var('info_dat_merchant_core_val_14').GetValue] Days with [Province.MakeScope.Var('info_dat_merchant_core_scope_14').GetLandedTitle.GetName]"
+				using = Font_Size_Small
+				layoutpolicy_horizontal = expanding
+			}
+
+			text_single = {
+				parentanchor = left
+				visible = "[GreaterThan_CFixedPoint(Province.MakeScope.Var('toggled_prov_merchant_core').GetValue, '(CFixedPoint)15')]"
+				text = "Has Link of [Province.MakeScope.Var('info_dat_merchant_core_val_15').GetValue] Days with [Province.MakeScope.Var('info_dat_merchant_core_scope_15').GetLandedTitle.GetName]"
+				using = Font_Size_Small
+				layoutpolicy_horizontal = expanding
+			}
+
+			text_single = {
+				parentanchor = left
+				visible = "[GreaterThan_CFixedPoint(Province.MakeScope.Var('toggled_prov_merchant_core').GetValue, '(CFixedPoint)16')]"
+				text = "Has Link of [Province.MakeScope.Var('info_dat_merchant_core_val_16').GetValue] Days with [Province.MakeScope.Var('info_dat_merchant_core_scope_16').GetLandedTitle.GetName]"
+				using = Font_Size_Small
+				layoutpolicy_horizontal = expanding
+			}
+
+			text_single = {
+				parentanchor = left
+				visible = "[GreaterThan_CFixedPoint(Province.MakeScope.Var('toggled_prov_merchant_core').GetValue, '(CFixedPoint)17')]"
+				text = "Has Link of [Province.MakeScope.Var('info_dat_merchant_core_val_17').GetValue] Days with [Province.MakeScope.Var('info_dat_merchant_core_scope_17').GetLandedTitle.GetName]"
+				using = Font_Size_Small
+				layoutpolicy_horizontal = expanding
+			}
+
+			text_single = {
+				parentanchor = left
+				visible = "[GreaterThan_CFixedPoint(Province.MakeScope.Var('toggled_prov_merchant_core').GetValue, '(CFixedPoint)18')]"
+				text = "Has Link of [Province.MakeScope.Var('info_dat_merchant_core_val_18').GetValue] Days with [Province.MakeScope.Var('info_dat_merchant_core_scope_18').GetLandedTitle.GetName]"
+				using = Font_Size_Small
+				layoutpolicy_horizontal = expanding
+			}
+
+			text_single = {
+				parentanchor = left
+				visible = "[GreaterThan_CFixedPoint(Province.MakeScope.Var('toggled_prov_merchant_core').GetValue, '(CFixedPoint)19')]"
+				text = "Has Link of [Province.MakeScope.Var('info_dat_merchant_core_val_19').GetValue] Days with [Province.MakeScope.Var('info_dat_merchant_core_scope_19').GetLandedTitle.GetName]"
+				using = Font_Size_Small
+				layoutpolicy_horizontal = expanding
+			}
+		}
+	}
 
 	vbox = {
 		name = "window_content"
@@ -4941,6 +5341,42 @@ window = {
 						button_icon = {
 							name = "toggle_prov_merchant_dat"
 							datacontext = "[GetScriptedGui( 'toggle_prov_merchant_dat' )]"
+							onclick = "[ScriptedGui.Execute( GuiScope.SetRoot( Province.MakeScope ).End )]"
+							size = { 25 25 }
+							texture = "gfx/interface/buttons/button_round_big.dds"
+
+							background = {
+								texture = "gfx/interface/window_county/building_status_circle.dds"
+								size = { 25 25 }
+								framesize = { 120 120 }
+								using = Master_Button_Modify_Texture
+
+								blockoverride "master_color_frame" {
+									frame = 3
+								}
+							}
+						}
+						button_icon = {
+							name = "toggle_prov_merchant_link"
+							datacontext = "[GetScriptedGui( 'toggle_prov_merchant_link' )]"
+							onclick = "[ScriptedGui.Execute( GuiScope.SetRoot( Province.MakeScope ).End )]"
+							size = { 25 25 }
+							texture = "gfx/interface/buttons/button_round_big.dds"
+
+							background = {
+								texture = "gfx/interface/window_county/building_status_circle.dds"
+								size = { 25 25 }
+								framesize = { 120 120 }
+								using = Master_Button_Modify_Texture
+
+								blockoverride "master_color_frame" {
+									frame = 3
+								}
+							}
+						}
+						button_icon = {
+							name = "toggle_prov_merchant_core"
+							datacontext = "[GetScriptedGui( 'toggle_prov_merchant_core' )]"
 							onclick = "[ScriptedGui.Execute( GuiScope.SetRoot( Province.MakeScope ).End )]"
 							size = { 25 25 }
 							texture = "gfx/interface/buttons/button_round_big.dds"
