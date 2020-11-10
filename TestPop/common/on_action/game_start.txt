@@ -185,6 +185,15 @@ on_game_start_after_lobby = {
 			}
 		}
 		
+		every_province = {
+			while = {
+				limit = {
+					building_slots > 1
+				}
+				add_building_slot = -1
+			}
+		}
+		
 		### GAME RULE: VIEW ON SAME-SEX RELATIONS
 		if = {
 			limit = { has_game_rule = accepted_same_sex_relations }
