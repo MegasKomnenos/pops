@@ -667,8 +667,6 @@ trade_do_trade = {
 		ordered_in_global_list = {
 			limit = {
 				has_variable = trade_power_t
-				
-				var:trade_power_t > 0
 			}
 			variable = trade_merchants
 			order_by = trade_do_trade_order_value_0
@@ -1216,7 +1214,7 @@ trade_do_trade = {
 			remove_global_variable = trade_do_trade_select
 			clear_global_variable_list = trade_do_trade_list
 			
-			set_variable = { name = trade_power_t value = 0 }
+			remove_variable = trade_power_t
 		}
 	}
 	
@@ -1263,7 +1261,6 @@ trade_do_trade = {
 		remove_variable = trade_do_trade_t
 		remove_variable = trade_do_trade_tt
 		remove_variable = trade_do_trade_ttt
-		remove_variable = trade_power_t
 	}
 	
 	remove_global_variable = trade_do_trade_t
