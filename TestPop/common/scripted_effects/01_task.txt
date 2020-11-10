@@ -1,0 +1,429 @@
+﻿task_new_template = {
+	create_character = {
+		save_temporary_scope_as = task_new_template_t
+		gender = male
+		trait = character_not_1
+		employer = global_var:arhat
+		faith = global_var:arhat.faith
+		culture = global_var:arhat.culture
+		dynasty = none
+	}
+
+	set_global_variable = { name = $name$ value = scope:task_new_template_t }
+	add_to_global_variable_list = { name = task_templates target = scope:task_new_template_t }
+	
+	scope:task_new_template_t = {
+		set_variable = { name = task_councillor value = flag:$councillor$ }
+		
+		^^skills^ 
+			[[&skills&_base] set_variable = { name = task_&skills&_base value = $&skills&_base$ } ]
+			[[&skills&_mult] set_variable = { name = task_&skills&_mult value = $&skills&_mult$ } ]
+		^
+	}
+}
+
+task_new_task = {
+	if = {
+		limit = {
+			has_global_variable_list = task_tasks
+				
+			global_variable_list_size = { name = task_tasks value > 0 }
+		}
+		ordered_in_global_list = {
+			variable = task_tasks
+			position = 0
+			
+			save_temporary_scope_as = task_new_task_t
+			
+			remove_list_global_variable = { name = task_tasks target = this }
+		}
+	}
+	else = {
+		create_character = {
+			save_temporary_scope_as = task_new_task_t
+			gender = male
+			trait = character_not_1
+			employer = global_var:arhat
+			faith = global_var:arhat.faith
+			culture = global_var:arhat.culture
+			dynasty = none
+		}
+	}
+	
+	add_to_global_variable_list = { name = task_tasks_active target = scope:task_new_task_t }
+	
+	$owner$ = {
+		add_to_variable_list = { name = task_tasks target = scope:task_new_task_t }
+		
+		scope:task_new_task_t = {
+			set_variable = { name = task_owner value = prev }
+		}
+	}
+	global_var:$template$ = {
+		add_to_variable_list = { name = task_tasks target = scope:task_new_task_t }
+	}
+	scope:task_new_task_t = {
+		set_variable = { name = task_template value = global_var:$template$ }
+		set_variable = { name = task_time_cost value = 0 }
+		set_variable = { name = task_time_in value = 0 }
+		set_variable = { name = task_crpt value = 0 }
+	}
+}
+
+task_pop_task = {
+	remove_list_global_variable = { name = task_tasks_active target = this }
+	add_to_global_variable_list = { name = task_tasks target = this }
+	
+	var:task_owner = {
+		remove_list_variable = { name = task_tasks target = prev }
+	}
+	var:task_template = {
+		remove_list_variable = { name = task_tasks target = prev }
+	}
+	
+	remove_variable = task_owner
+	remove_variable = task_template
+	remove_variable = task_delegate
+	remove_variable = task_time_cost
+	remove_variable = task_time_in
+	remove_variable = task_crpt
+}
+
+task_death_handler = {
+	if = {
+		limit = {
+			has_variable_list = task_tasks
+		}
+		every_in_list = {
+			variable = task_tasks
+			
+			save_temporary_scope_as = task_death_handler_h
+			
+			prev.primary_heir = {
+				if = {
+					limit = {
+						NOT = {
+							any_in_list = {
+								variable = task_tasks
+								
+								var:task_template = scope:task_death_handler_h.var:task_template
+							}
+						}
+					}
+					prev = {
+						set_variable = { name = task_owner value = prev.primary_heir }
+					}
+					
+					add_to_variable_list = { name = task_tasks target = prev }
+				}
+				else = {
+					prev = {
+						task_pop_task = yes
+					}
+				}
+			}
+		}
+	}
+}
+
+task_refresh = {
+	every_ruler = {
+		if = {
+			limit = {
+				task_check_cond_$name$ = yes
+			}
+			if = {
+				limit = {
+					NOT = {
+						any_in_list = {
+							variable = task_tasks
+							
+							var:task_template = global_var:$name$
+						}
+					}
+				}
+				task_new_task = { owner = this template = $name$ }
+			}
+		}
+		else = {
+			every_in_list = {
+				limit = {
+					var:task_template = global_var:$name$
+				}
+				variable = task_tasks
+				
+				task_pop_task = yes
+			}
+		}
+	}
+	
+	global_var:$name$ = {
+		every_in_list = {
+			variable = task_tasks
+			
+			task_set_cost_$name$ = yes
+		}
+	}
+}
+
+task_main = {
+	^^tasks^
+		task_refresh = { name = &tasks& }
+	^
+	
+	every_ruler = {
+		limit = {
+			is_character = yes
+		}
+		set_variable = { name = task_main_t value = 0 }
+		
+		every_councillor = {
+			set_variable = { name = task_main_t value = 0 }
+		}
+		
+		every_in_list = {
+			variable = task_tasks
+			
+			prev = {
+				save_temporary_scope_as = task_main_t
+			}
+			
+			if = {
+				limit = {
+					has_variable = task_delegate
+				}
+				if = {
+					limit = {
+						var:task_template.var:task_councillor = flag:spouse
+					}
+					prev = {
+						primary_spouse = {
+							save_temporary_scope_as = task_main_t
+						}
+					}
+				}
+				^^skills^else_if = {
+					limit = {
+						var:task_template.var:task_councillor = flag:&skills&
+					}
+					prev = {
+						ordered_&skills&_councillor = {
+							position = 0
+							
+							save_temporary_scope_as = task_main_t
+						}
+					}
+				}^
+			}
+			
+			set_variable = { name = task_main_t value = 1 }
+			
+			^^skills^
+				if = {
+					limit = {
+						var:task_template = {
+							has_variable = task_&skills&_mult
+						}
+					}
+					set_variable = { name = task_main_tt value = var:task_template.var:task_&skills&_mult }
+					change_variable = { name = task_main_tt multiply = scope:task_main_t.&skills& }
+					
+					if = {
+						limit = {
+							var:task_template = {
+								has_variable = task_&skills&_base
+							}
+						}
+						change_variable = { name = task_main_tt add = var:task_template.var:task_&skills&_base }
+					}
+					
+					change_variable = { name = task_main_t multiply = var:task_main_tt }
+				}
+			^
+			
+			change_variable = { name = task_main_t add = 0.05 }
+			
+			set_variable = { name = task_main_tt value = var:task_time_cost }
+			change_variable = { name = task_main_tt divide = var:task_main_t }
+			
+			scope:task_main_t = {
+				change_variable = { name = task_main_t add = prev.var:task_main_tt }
+				
+				add_to_variable_list = { name = task_main_t target = prev }
+				add_to_global_variable_list = { name = task_main_t target = this }
+			}
+			
+			remove_variable = task_main_t
+			remove_variable = task_main_tt
+		}
+		
+		every_in_global_list = {
+			variable = task_main_t
+			
+			change_variable = { name = task_main_t divide = 20 }
+		
+			if = {
+				limit = {
+					has_variable = task_main_t
+					
+					var:task_main_t > 1
+				}
+				every_in_list = {
+					variable = task_main_t
+					
+					set_variable = { name = task_time_in value = 100 }
+					change_variable = { name = task_time_in divide = prev.var:task_main_t }
+				}
+			}
+			else = {
+				every_in_list = {
+					variable = task_main_t
+					
+					set_variable = { name = task_time_in value = 100 }
+				}
+			}
+			
+			if = {
+				limit = {
+					this = prev
+				}
+				clear_variable_list = task_main_t
+			}
+			
+			remove_variable = task_main_t
+		}
+		
+		save_temporary_scope_as = task_main_t
+		
+		ordered_in_list = {
+			limit = {
+				var:task_template = global_var:manage_oversight
+			}
+			variable = task_tasks
+			position = 0
+			
+			prev = {
+				set_variable = { name = task_main_t value = 100 }
+				change_variable = { name = task_main_t subtract = prev.var:task_crpt }
+				change_variable = { name = task_main_t multiply = prev.var:task_time_in }
+				change_variable = { name = task_main_t divide = 100 }
+			}
+		}
+		
+		every_in_global_list = {
+			limit = {
+				NOT = {
+					this = prev
+				}
+			}
+			variable = task_main_t
+			
+			export_opinion = { target = prev return = task_main_t }
+			
+			if = {
+				limit = {
+					has_dread_level_towards = {
+						target = prev
+						level = 2
+					}
+				}
+				change_variable = { name = task_main_t add = 200 }
+			}
+			else_if = {
+				limit = {
+					has_dread_level_towards = {
+						target = prev
+						level = 1
+					}
+				}
+				change_variable = { name = task_main_t add = 100 }
+			}
+			
+			if = {
+				limit = {
+					has_variable = task_main_t
+					
+					var:task_main_t > 100
+				}
+				set_variable = { name = task_main_t value = 100 }
+			}
+			
+			change_variable = { name = task_main_t subtract = 100 }
+			change_variable = { name = task_main_t divide = -2 }
+			
+			every_in_list = {
+				variable = task_main_t
+				
+				set_variable = { name = task_main_t value = prev.var:task_main_t }
+				
+				if = {
+					limit = {
+						NOT = {
+							var:task_template = global_var:manage_oversight
+						}
+					}
+					change_variable = { name = task_main_t subtract = scope:task_main_t.var:task_main_t }
+					
+					if = {
+						limit = {
+							OR = {
+								NOT = {
+									has_variable = task_main_t
+								}
+								
+								var:task_main_t < 0
+							}
+						}
+						set_variable = { name = task_main_t value = 0 }
+					}
+				}
+				
+				change_variable = { name = task_main_t subtract = var:task_crpt }
+				change_variable = { name = task_main_t divide = 10 }
+				change_variable = { name = task_crpt add = var:task_main_t }
+				
+				remove_variable = task_main_t
+			}
+			
+			clear_variable_list = task_main_t
+			remove_variable = task_main_t
+		}
+		
+		clear_global_variable_list = task_main_t
+		remove_variable = task_main_t
+	}
+}
+
+task_set_cost_manage_domain = {
+	set_variable = { name = task_time_cost value = var:task_owner.domain_size }
+}
+task_set_cost_manage_realm = {
+	set_variable = { name = task_time_cost value = var:task_owner.vassal_count }
+}
+task_set_cost_manage_logistics = {
+	set_variable = { name = task_time_cost value = 1 }
+}
+task_set_cost_manage_court = {
+	set_variable = { name = task_time_cost value = 1 }
+}
+task_set_cost_manage_stockpile = {
+	set_variable = { name = task_time_cost value = 1 }
+}
+task_set_cost_manage_oversight = {
+	save_temporary_scope_as = task_set_cost_manage_oversight_t
+	
+	set_variable = { name = task_time_cost value = 0.75 }
+	
+	var:task_owner = {
+		every_in_list = {
+			limit = {
+				has_variable = task_delegate
+			}
+			variable = task_tasks
+			
+			scope:task_set_cost_manage_oversight_t = {
+				change_variable = { name = task_time_cost value = 0.25 }
+			}
+		}
+	}
+}

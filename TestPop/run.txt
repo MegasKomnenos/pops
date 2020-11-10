@@ -1,78 +1,50 @@
-debug_log = "Test Start"
-debug_log = "Start prod_update_instances"
-
-prod_update_instances = yes
-
-debug_log = "End prod_update_instances"
-debug_log = "Start forest_main"
-
-forest_main = yes
-
-debug_log = "End forest_main"
-debug_log = "Start pop_update_demand"
-
-every_province = {
-	limit = {
-		is_valid_prov = yes
-	}
-	pop_update_demand = yes
+task_new_template = {
+	name = manage_domain
+	councillor = stewardship
+	stewardship_mult = 0.05
+	stewardship_base = 0.25
+	diplomacy_mult = 0.025
+	diplomacy_base = 0.5
+}
+task_new_template = {
+	name = manage_realm
+	councillor = diplomacy
+	diplomacy_mult = 0.05
+	diplomacy_base = 0.25
+	stewardship_mult = 0.025
+	stewardship_base = 0.5
+}
+task_new_template = {
+	name = manage_logistics
+	councillor = martial
+	martial_mult = 0.05
+	martial_base = 0.25
+	stewardship_mult = 0.025
+	stewardship_base = 0.5
+}
+task_new_template = {
+	name = manage_court
+	councillor = learning
+	learning_mult = 0.05
+	learning_base = 0.25
+	stewardship_mult = 0.025
+	stewardship_base = 0.5
+}
+task_new_template = {
+	name = manage_stockpile
+	councillor = stewardship
+	stewardship_mult = 0.05
+	stewardship_base = 0.25
+	diplomacy_mult = 0.025
+	diplomacy_base = 0.5
+}
+task_new_template = {
+	name = manage_oversight
+	councillor = intrigue
+	intrigue_mult = 0.05
+	intrigue_base = 0.25
+	stewardship_mult = 0.025
+	stewardship_base = 0.5
 }
 
-debug_log = "End pop_update_demand"
-debug_log = "Start trade_set_link"
-
-trade_set_link = yes
-
-debug_log = "End trade_set_link"
-debug_log = "Start trade_do_trade"
-
-trade_do_trade = yes
-
-debug_log = "End trade_do_trade"
-debug_log = "Start trade_resolve_trade"
-
-trade_resolve_trade = yes
-
-debug_log = "End trade_resolve_trade"
-debug_log = "Start trade_update_merchant"
-
-trade_update_merchant = yes
-
-debug_log = "End trade_update_merchant"
-debug_log = "Start trade_update_price"
-
-trade_update_price = yes
-
-debug_log = "End trade_update_price"
-debug_log = "Start build_update_project"
-
-if = {
-	limit = {
-		has_global_variable_list = build_slots_active
-			
-		global_variable_list_size = { name = build_slots_active value >= 1}
-	}
-	every_in_global_list = {
-		variable = build_slots_active
-		
-		build_update_project = yes
-	}
-}
-
-debug_log = "End build_update_project"
-debug_log = "Start pop_resolve_demand"
-
-every_province = {
-	limit = {
-		is_valid_prov = yes
-	}
-	pop_resolve_demand = yes
-	
-	change_variable = { name = pop_wealth add = var:pop_earn_free } 
-	change_variable = { name = pop_wealth add = var:pop_earn_serf }
-	change_variable = { name = pop_wealth subtract = var:pop_pay_free }
-	change_variable = { name = pop_wealth subtract = var:pop_pay_serf }
-}
-
-debug_log = "End pop_resolve_demand"
-debug_log = "Test End"
+task_main = yes

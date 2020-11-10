@@ -1,0 +1,32 @@
+﻿task_check_cond_manage_domain = {
+	domain_size > 0
+}
+task_check_cond_manage_realm = {
+	vassal_count > 0
+}
+task_check_cond_manage_logistics = {
+#	OR = {
+#		has_raised_armies = yes
+#		
+#		number_of_maa_regiments > 0
+#	}
+	always = no
+}
+task_check_cond_manage_court = {
+	always = no
+}
+task_check_cond_manage_stockpile = {
+	always = no
+}
+task_check_cond_manage_oversight = {
+	NOT = {
+		any_in_list = {
+			variable = task_tasks
+			count = all
+			
+			NOT = {
+				has_variable = task_delegate
+			}
+		}
+	}
+}
