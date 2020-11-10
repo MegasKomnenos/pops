@@ -10751,6 +10751,10 @@ while = {
 						name = travel_distance_prev
 						value = global_var:travel_distance_select
 					}
+					set_variable = { 
+						name = travel_distance_prev
+						value = global_var:travel_distance_select.var:trade_distance_prev
+					}
 				}
 				remove_variable = travel_distance_distance_new
 			}
@@ -10978,6 +10982,10 @@ while = {
 						name = travel_distance_prev
 						value = global_var:travel_distance_select
 					}
+					set_variable = { 
+						name = travel_distance_prev
+						value = global_var:travel_distance_select.var:trade_distance_prev
+					}
 				}
 				remove_variable = travel_distance_distance_new
 			}
@@ -11004,58 +11012,6 @@ every_in_global_list = {
 clear_global_variable_list = travel_distance_fray
 clear_global_variable_list = travel_distance_visited
 remove_global_variable = travel_distance_select
-set_global_variable = { 
-	name = trade_set_link_loop
-}
-while = { 
-	limit = { 
-		has_global_variable = trade_set_link_loop
-	}
-	count = 10000
-	remove_global_variable = trade_set_link_loop
-	every_in_global_list = { 
-		limit = { 
-			var:trade_set_link_prev = { 
-				has_variable = trade_merchant
-			}
-			NOT = { 
-				has_variable = trade_set_link_checked
-			}
-		}
-		variable = trade_set_link_list
-		set_variable = { 
-			name = trade_set_link_checked
-		}
-		every_in_list = { 
-			limit = { 
-				has_variable = trade_set_link_prev
-				var:trade_set_link_prev = prev
-			}
-			variable = prov_neighb
-			set_global_variable = { 
-				name = trade_set_link_loop
-			}
-			set_variable = { 
-				name = trade_set_link_prev
-				value = prev.var:trade_set_link_prev
-			}
-		}
-		every_in_list = { 
-			limit = { 
-				has_variable = trade_set_link_prev
-				var:trade_set_link_prev = prev
-			}
-			variable = prov_port
-			set_global_variable = { 
-				name = trade_set_link_loop
-			}
-			set_variable = { 
-				name = trade_set_link_prev
-				value = prev.var:trade_set_link_prev
-			}
-		}
-	}
-}
 every_in_global_list = { 
 	variable = trade_merchants
 	every_in_global_list = { 
@@ -20578,7 +20534,6 @@ while = {
 	ordered_in_global_list = { 
 		limit = { 
 			has_variable = trade_power_t
-			var:trade_power_t > 0
 		}
 		variable = trade_merchants
 		order_by = trade_do_trade_order_value_0
@@ -41698,10 +41653,7 @@ while = {
 		}
 		remove_global_variable = trade_do_trade_select
 		clear_global_variable_list = trade_do_trade_list
-		set_variable = { 
-			name = trade_power_t
-			value = 0
-		}
+		remove_variable = trade_power_t
 	}
 }
 every_county = { 
@@ -41990,7 +41942,6 @@ every_in_global_list = {
 	remove_variable = trade_do_trade_t
 	remove_variable = trade_do_trade_tt
 	remove_variable = trade_do_trade_ttt
-	remove_variable = trade_power_t
 }
 remove_global_variable = trade_do_trade_t
 remove_global_variable = trade_do_trade_tt

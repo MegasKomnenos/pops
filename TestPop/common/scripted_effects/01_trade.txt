@@ -66,60 +66,10 @@ trade_set_link = {
 		start_list = trade_set_link_t
 		start_list_global = yes
 		max = 5000
+		prev_same = yes
 		return_dist = trade_set_link_dist
 		return_prev = trade_set_link_prev
 		return_list = trade_set_link_list
-	}
-	
-	set_global_variable = { name = trade_set_link_loop }
-	
-	while = {
-		limit = {
-			has_global_variable = trade_set_link_loop
-		}
-		count = 10000
-		
-		remove_global_variable = trade_set_link_loop
-		
-		every_in_global_list = {
-			limit = {
-				var:trade_set_link_prev = {
-					has_variable = trade_merchant
-				}
-				
-				NOT = {
-					has_variable = trade_set_link_checked
-				}
-			}
-			variable = trade_set_link_list
-			
-			set_variable = { name = trade_set_link_checked }
-			
-			every_in_list = {
-				limit = {
-					has_variable = trade_set_link_prev
-					
-					var:trade_set_link_prev = prev
-				}
-				variable = prov_neighb
-				
-				set_global_variable = { name = trade_set_link_loop }
-				
-				set_variable = { name = trade_set_link_prev value = prev.var:trade_set_link_prev }
-			}
-			every_in_list = {
-				limit = {
-					has_variable = trade_set_link_prev
-					
-					var:trade_set_link_prev = prev
-				}
-				variable = prov_port
-				
-				set_global_variable = { name = trade_set_link_loop }
-				
-				set_variable = { name = trade_set_link_prev value = prev.var:trade_set_link_prev }
-			}
-		}
 	}
 	
 	every_in_global_list = {

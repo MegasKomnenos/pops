@@ -378,6 +378,7 @@ travel_distance_dijkstra_opti = {
 						
 						set_variable = { name = travel_distance_distance value = var:travel_distance_distance_new }
 						set_variable = { name = travel_distance_prev value = global_var:travel_distance_select }
+						[[prev_same] set_variable = { name = travel_distance_prev value = global_var:travel_distance_select.var:trade_distance_prev } ]
 					}
 					
 					remove_variable = travel_distance_distance_new
@@ -429,6 +430,7 @@ travel_distance_dijkstra_opti = {
 						
 						set_variable = { name = travel_distance_distance value = var:travel_distance_distance_new }
 						set_variable = { name = travel_distance_prev value = global_var:travel_distance_select }
+						[[prev_same] set_variable = { name = travel_distance_prev value = global_var:travel_distance_select.var:trade_distance_prev } ]
 					}
 					
 					remove_variable = travel_distance_distance_new
