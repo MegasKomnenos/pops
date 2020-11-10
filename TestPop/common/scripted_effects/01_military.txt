@@ -1,0 +1,83 @@
+﻿mil_refresh_mp = {
+	set_variable = { name = mil_mp_goal value = var:pop_total }
+	change_variable = { name = mil_mp_goal value = 0.25 }
+	
+	if = {
+		limit = {
+			NOT = {
+				has_variable = mil_mp_cur
+			}
+		}
+		set_variable = { name = mil_mp_cur value = 0 }
+	}
+	
+	set_variable = { name = mil_mp_change value = var:mil_mp_goal }
+	change_variable = { name = mil_mp_change subtract = var:mil_mp_cur }
+	change_variable = { name = mil_mp_change divide = 10 }
+	change_variable = { name = mil_mp_change divide = 12 }
+	
+	change_variable = { name = mil_mp_cur add = var:mil_mp_change }
+}
+mil_refresh_levy = {
+	set_variable = { name = mil_levy_goal value = 1 }
+	change_variable = { name = mil_levy_goal subtract = var:pop_freedom }
+	change_variable = { name = mil_levy_goal multiply = 20 }
+	change_variable = { name = mil_levy_goal multiply = var:mil_mp_cur }
+	change_variable = { name = mil_levy_goal divide = 100 }
+	
+	if = {
+		limit = {
+			NOT = {
+				has_variable = mil_levy_cur
+			}
+		}
+		set_variable = { name = mil_levy_cur value = 0 }
+	}
+	
+	set_variable = { name = mil_levy_change value = var:mil_levy_goal }
+	change_variable = { name = mil_levy_change subtract = var:mil_levy_cur }
+	change_variable = { name = mil_levy_change divide = 5 }
+	change_variable = { name = mil_levy_change divide = 12 }
+	
+	change_variable = { name = mil_levy_cur add = var:mil_levy_change }
+	
+	set_variable = { name = mil_levy_field value = var:mil_levy_cur }
+	change_variable = { name = mil_levy_field multiply = 0.5 }
+	
+	set_variable = { name = mil_levy_garrison value = var:mil_levy_cur }
+	change_variable = { name = mil_levy_garrison subtract = var:mil_levy_field }
+}
+mil_refresh_maa = {
+	set_variable = { name = mil_maa_goal value = var:mil_mp_cur }
+	change_variable = { name = mil_maa_goal subtract = var:mil_levy_unraised }
+	change_variable = { name = mil_maa_goal subtract = var:mil_levy_raised }
+	change_variable = { name = mil_maa_goal multiply = mil_tradition }
+	
+	if = {
+		limit = {
+			NOT = {
+				has_variable = mil_maa_cur
+			}
+		}
+		set_variable = { name = mil_maa_cur value = 0 }
+	}
+	
+	set_variable = { name = mil_maa_change value = var:mil_maa_goal }
+	change_variable = { name = mil_maa_change subtract = var:mil_maa_cur }
+	change_variable = { name = mil_maa_change divide = 10 }
+	change_variable = { name = mil_maa_change divide = 12 }
+	
+	change_variable = { name = mil_maa_cur add = var:mil_maa_change }
+	
+	set_variable = { name = mil_maa_wage value = var:mil_maa_goal }
+	change_variable = { name = mil_maa_wage multiply = 5 }
+	
+	set_variable = { name = mil_refresh_maa_t value = var:mil_maa_goal }
+	change_variable = { name = mil_refresh_maa_t multiply = 0.1 }
+	change_variable = { name = mil_refresh_maa_t add = var:mil_maa_cur }
+	change_variable = { name = mil_refresh_maa_t add = 0.001 }
+	
+	change_variable = { name = mil_maa_wage divide = var:mil_refresh_maa_t }
+	
+	remove_variable = mil_refresh_maa_t
+}
