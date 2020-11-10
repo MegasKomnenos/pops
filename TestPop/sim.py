@@ -274,9 +274,9 @@ sim_run.01 = {
 				}
 				death = natural
 			}
-		}
 
-		init_main = yes
+			init_main = yes
+		}
 	}
 	
 	option = {
@@ -295,107 +295,107 @@ sim_run.02 = {
 		while = {
 			count = 300
 			
-			change_global_variable = { name = sim_i add = 1 }
-			
-			trigger_event = { id = census.01 }
-			trigger_event = { id = census.02 }
-			
-			if = {
-				limit = {
-					global_var:sim_i > 50
-				}
-				every_in_global_list = {
-					limit = {
-						OR = {
-							NOT = {
-								has_variable = prod_size
-							}
-							
-							var:prod_size < 0.1
-						}
-					}
-					variable = prod_instances
-					
-					prod_pop_instance = yes
-				}
-				every_in_global_list = {
-					limit = {
-						OR = {
-							NOT = {
-								has_variable = trade_power
-							}
-							
-							var:trade_power < 10
-						}
-					}
-					variable = trade_merchants	
-					
-					trade_pop_merchant = yes
-				}
-			}
-			
-			trigger_event = { id = census.03 }
-			
-			every_province = {
-				limit = {
-					is_valid_prov = yes
-				}
-				if = {
-					limit = {
-						has_variable = farm_potential
-						
-						var:farm_potential >= 1
-					}
-					set_variable = { name = sim_t value = var:farm_potential }
-					change_variable = { name = sim_t divide = 5 }
-					
-					build_start_project = {
-						name = farm
-						size = var:farm_potential
-						para = var:sim_t
-						owner = 2
-					}
-					
-					set_variable = { name = farm_potential value = 0 }
-				}
-				if = {
-					limit = {
-						has_variable = pasture_potential
-						
-						var:pasture_potential >= 1
-					}
-					set_variable = { name = sim_t value = var:pasture_potential }
-					change_variable = { name = sim_t divide = 5 }
-					
-					build_start_project = {
-						name = pasture
-						size = var:pasture_potential
-						para = var:sim_t
-						owner = 2
-					}
-					
-					set_variable = { name = pasture_potential value = 0 }
-				}
-			}
-			
-			trigger_event = { id = census.04 }
-			trigger_event = { id = census.05 }
-			trigger_event = { id = census.06 }
-			trigger_event = { id = census.07 }
-			trigger_event = { id = census.08 }
-			trigger_event = { id = census.09 }
-
-			every_province = {
-				limit = {
-					is_valid_prov = yes
-				}
-				change_variable = { name = pop_wealth add = var:pop_earn_free } 
-				change_variable = { name = pop_wealth add = var:pop_earn_serf }
-				change_variable = { name = pop_wealth subtract = var:pop_pay_free }
-				change_variable = { name = pop_wealth subtract = var:pop_pay_serf }
-			}
-
 			global_var:arhat = {
+				change_global_variable = { name = sim_i add = 1 }
+				
+				trigger_event = { id = census.01 }
+				trigger_event = { id = census.02 }
+				
+				if = {
+					limit = {
+						global_var:sim_i > 50
+					}
+					every_in_global_list = {
+						limit = {
+							OR = {
+								NOT = {
+									has_variable = prod_size
+								}
+								
+								var:prod_size < 0.1
+							}
+						}
+						variable = prod_instances
+						
+						prod_pop_instance = yes
+					}
+					every_in_global_list = {
+						limit = {
+							OR = {
+								NOT = {
+									has_variable = trade_power
+								}
+								
+								var:trade_power < 10
+							}
+						}
+						variable = trade_merchants	
+						
+						trade_pop_merchant = yes
+					}
+				}
+				
+				trigger_event = { id = census.03 }
+				
+				every_province = {
+					limit = {
+						is_valid_prov = yes
+					}
+					if = {
+						limit = {
+							has_variable = farm_potential
+							
+							var:farm_potential >= 1
+						}
+						set_variable = { name = sim_t value = var:farm_potential }
+						change_variable = { name = sim_t divide = 5 }
+						
+						build_start_project = {
+							name = farm
+							size = var:farm_potential
+							para = var:sim_t
+							owner = 2
+						}
+						
+						set_variable = { name = farm_potential value = 0 }
+					}
+					if = {
+						limit = {
+							has_variable = pasture_potential
+							
+							var:pasture_potential >= 1
+						}
+						set_variable = { name = sim_t value = var:pasture_potential }
+						change_variable = { name = sim_t divide = 5 }
+						
+						build_start_project = {
+							name = pasture
+							size = var:pasture_potential
+							para = var:sim_t
+							owner = 2
+						}
+						
+						set_variable = { name = pasture_potential value = 0 }
+					}
+				}
+				
+				trigger_event = { id = census.04 }
+				trigger_event = { id = census.05 }
+				trigger_event = { id = census.06 }
+				trigger_event = { id = census.07 }
+				trigger_event = { id = census.08 }
+				trigger_event = { id = census.09 }
+
+				every_province = {
+					limit = {
+						is_valid_prov = yes
+					}
+					change_variable = { name = pop_wealth add = var:pop_earn_free } 
+					change_variable = { name = pop_wealth add = var:pop_earn_serf }
+					change_variable = { name = pop_wealth subtract = var:pop_pay_free }
+					change_variable = { name = pop_wealth subtract = var:pop_pay_serf }
+				}
+
 				set_variable = { name = t_disp value = global_var:sim_i }
 				
 				debug_log = "Logging Start: [THIS.Var('t_disp').GetValue]"
