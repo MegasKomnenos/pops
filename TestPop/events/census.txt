@@ -68894,92 +68894,12 @@ census.10 = {
 					name = mil_levy_garrison
 					subtract = var:mil_levy_field
 				}
-				if = { 
-					limit = { 
-						is_city = yes
-					}
-					if = { 
-						limit = { 
-							province_owner = { 
-								is_character = yes
-								is_ruler = yes
-								is_landed = yes
-								has_variable = mil_levy_field
-							}
-						}
-						province_owner = { 
-							change_variable = { 
-								name = mil_levy_field
-								add = prev.var:mil_levy_field
-							}
-						}
-					}
-					else_if = { 
-						limit = { 
-							province_owner.liege = { 
-								has_raised_armies = yes
-							}
-						}
-						province_owner.liege = { 
-							set_variable = { 
-								name = mil_levy_field_t
-								value = prev.var:mil_levy_field
-							}
-							if = { 
-								limit = { 
-									prev.province_owner.vassal_contract_obligation_level:feudal_government_levies = 0
-								}
-								change_variable = { 
-									name = mil_levy_field_t
-									multiply = 0
-								}
-							}
-							else_if = { 
-								limit = { 
-									prev.province_owner.vassal_contract_obligation_level:feudal_government_levies = 1
-								}
-								change_variable = { 
-									name = mil_levy_field_t
-									multiply = 0.1
-								}
-							}
-							else_if = { 
-								limit = { 
-									prev.province_owner.vassal_contract_obligation_level:feudal_government_levies = 2
-								}
-								change_variable = { 
-									name = mil_levy_field_t
-									multiply = 0.25
-								}
-							}
-							else_if = { 
-								limit = { 
-									prev.province_owner.vassal_contract_obligation_level:feudal_government_levies = 3
-								}
-								change_variable = { 
-									name = mil_levy_field_t
-									multiply = 0.35
-								}
-							}
-							else_if = { 
-								limit = { 
-									prev.province_owner.vassal_contract_obligation_level:feudal_government_levies = 4
-								}
-								change_variable = { 
-									name = mil_levy_field_t
-									multiply = 0.5
-								}
-							}
-							change_variable = { 
-								name = mil_levy_field_t
-								divide = 2
-							}
-							change_variable = { 
-								name = mil_levy_field
-								add = var:mil_levy_field_t
-							}
-							remove_variable = mil_levy_field_t
-						}
+			}
+			every_army = { 
+				army_owner = { 
+					change_variable = { 
+						name = mil_levy_field
+						add = prev.army_max_size
 					}
 				}
 			}
@@ -68987,6 +68907,24 @@ census.10 = {
 				limit = { 
 					is_character = yes
 					is_landed = yes
+				}
+				if = { 
+					limit = { 
+						has_variable = mil_levy_field
+						var:mil_levy_field > 0
+					}
+					change_variable = { 
+						name = mil_levy_field
+						multiply = 10
+					}
+					change_variable = { 
+						name = mil_levy_field
+						subtract = number_of_maa_regiments
+					}
+					change_variable = { 
+						name = mil_levy_field
+						divide = 10
+					}
 				}
 				change_variable = { 
 					name = mil_maa
@@ -74000,92 +73938,12 @@ census.12 = {
 				name = mil_levy_garrison
 				subtract = var:mil_levy_field
 			}
-			if = { 
-				limit = { 
-					is_city = yes
-				}
-				if = { 
-					limit = { 
-						province_owner = { 
-							is_character = yes
-							is_ruler = yes
-							is_landed = yes
-							has_variable = mil_levy_field
-						}
-					}
-					province_owner = { 
-						change_variable = { 
-							name = mil_levy_field
-							add = prev.var:mil_levy_field
-						}
-					}
-				}
-				else_if = { 
-					limit = { 
-						province_owner.liege = { 
-							has_raised_armies = yes
-						}
-					}
-					province_owner.liege = { 
-						set_variable = { 
-							name = mil_levy_field_t
-							value = prev.var:mil_levy_field
-						}
-						if = { 
-							limit = { 
-								prev.province_owner.vassal_contract_obligation_level:feudal_government_levies = 0
-							}
-							change_variable = { 
-								name = mil_levy_field_t
-								multiply = 0
-							}
-						}
-						else_if = { 
-							limit = { 
-								prev.province_owner.vassal_contract_obligation_level:feudal_government_levies = 1
-							}
-							change_variable = { 
-								name = mil_levy_field_t
-								multiply = 0.1
-							}
-						}
-						else_if = { 
-							limit = { 
-								prev.province_owner.vassal_contract_obligation_level:feudal_government_levies = 2
-							}
-							change_variable = { 
-								name = mil_levy_field_t
-								multiply = 0.25
-							}
-						}
-						else_if = { 
-							limit = { 
-								prev.province_owner.vassal_contract_obligation_level:feudal_government_levies = 3
-							}
-							change_variable = { 
-								name = mil_levy_field_t
-								multiply = 0.35
-							}
-						}
-						else_if = { 
-							limit = { 
-								prev.province_owner.vassal_contract_obligation_level:feudal_government_levies = 4
-							}
-							change_variable = { 
-								name = mil_levy_field_t
-								multiply = 0.5
-							}
-						}
-						change_variable = { 
-							name = mil_levy_field_t
-							divide = 2
-						}
-						change_variable = { 
-							name = mil_levy_field
-							add = var:mil_levy_field_t
-						}
-						remove_variable = mil_levy_field_t
-					}
+		}
+		every_army = { 
+			army_owner = { 
+				change_variable = { 
+					name = mil_levy_field
+					add = prev.army_max_size
 				}
 			}
 		}
@@ -74093,6 +73951,24 @@ census.12 = {
 			limit = { 
 				is_character = yes
 				is_landed = yes
+			}
+			if = { 
+				limit = { 
+					has_variable = mil_levy_field
+					var:mil_levy_field > 0
+				}
+				change_variable = { 
+					name = mil_levy_field
+					multiply = 10
+				}
+				change_variable = { 
+					name = mil_levy_field
+					subtract = number_of_maa_regiments
+				}
+				change_variable = { 
+					name = mil_levy_field
+					divide = 10
+				}
 			}
 			change_variable = { 
 				name = mil_maa

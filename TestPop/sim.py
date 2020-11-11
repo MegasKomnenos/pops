@@ -666,6 +666,17 @@ sim_run.02 = {
 							change_variable = { name = t_disp add = var:t_disp_t }
 						}
 					}
+					every_ruler = {
+						limit = {
+							is_character = yes
+							is_landed = yes
+						}
+						prev = {
+							set_variable = { name = t_disp_t value = prev.var:trade_dmnd_&goods& }
+							change_variable = { name = t_disp_t divide = 100 }
+							change_variable = { name = t_disp add = var:t_disp_t }
+						}
+					}
 					
 					debug_log = "Total &goods& Demand: [THIS.Var('t_disp').GetValue]"
 					
