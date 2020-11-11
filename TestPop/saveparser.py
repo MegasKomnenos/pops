@@ -367,14 +367,14 @@ if __name__ == '__main__':
                                 outout.append('\t\t\t}\n')
                         else:
                             if 'trade_' in name:
-                                outout.append('\t\t\tprovince_owner = {\n')
+                                outout.append('\t\t\tcounty.holder = {\n')
                                 outout.append(helper(('\t\t\t\tset_variable', 'value'), name, data, id_to_title))
                                 outout.append('\t\t\t}\n')
                             else:
                                 outout.append(helper(('\t\t\tset_variable', 'value'), name, data, id_to_title))
                     for name, data in prov[1].items():
                         if 'trade_dat' in name:
-                            outout.append('\t\t\tprovince_owner = {\n')
+                            outout.append('\t\t\tcounty.holder = {\n')
 
                             for var in data:
                                 outout.append(helper(('\t\t\t\tadd_to_variable_list', 'target'), name, var, id_to_title))
