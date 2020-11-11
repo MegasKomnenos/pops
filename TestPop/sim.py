@@ -441,7 +441,19 @@ sim_run.02 = {
 					change_variable = { name = sim_balance add = var:trade_earn }
 					change_variable = { name = sim_balance subtract = var:trade_pay }
 					
-					eff_binary_1_16 = { name = sim_balance eff = add_gold }
+					if = {
+						limit = {
+							has_variable = sim_balance
+							
+							var:sim_balance > 0
+						}
+						eff_binary_1_16 = { name = sim_balance eff = add_gold }
+					}
+					else = {
+						change_variable = { name = sim_balance multiply = -1 }
+						
+						eff_binary_1_16 = { name = sim_balance eff = add_gold rev = yes }
+					}
 
 					remove_variable = sim_balance
 				}

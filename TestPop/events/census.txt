@@ -7157,6 +7157,20 @@ census.03 = {
 			}
 			if = { 
 				limit = { 
+					OR = { 
+						NOT = { 
+							has_variable = mil_maa_ai_tt
+						}
+						var:mil_maa_ai_tt < 0
+					}
+				}
+				set_variable = { 
+					name = mil_maa_ai_tt
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
 					NOT = { 
 						has_variable = mil_maa
 					}
@@ -7904,6 +7918,720 @@ census.03 = {
 				set_variable = { 
 					name = mil_maa_recruit_armaments
 					value = 0
+				}
+			}
+			set_variable = { 
+				name = mil_maintain_maa_t
+				value = 0
+			}
+			set_variable = { 
+				name = mil_maa_maintain_food
+				value = mil_maa_maintain_food
+			}
+			change_variable = { 
+				name = mil_maa_maintain_food
+				multiply = 10
+			}
+			change_variable = { 
+				name = mil_maa_maintain_food
+				divide = var:trade_price_food
+			}
+			change_variable = { 
+				name = mil_maa_maintain_food
+				multiply = var:mil_maa_maintain_food
+			}
+			change_variable = { 
+				name = mil_maintain_maa_t
+				add = var:mil_maa_maintain_food
+			}
+			set_variable = { 
+				name = mil_maa_maintain_cereal
+				value = mil_maa_maintain_cereal
+			}
+			change_variable = { 
+				name = mil_maa_maintain_cereal
+				multiply = 10
+			}
+			change_variable = { 
+				name = mil_maa_maintain_cereal
+				divide = var:trade_price_cereal
+			}
+			change_variable = { 
+				name = mil_maa_maintain_cereal
+				multiply = var:mil_maa_maintain_cereal
+			}
+			change_variable = { 
+				name = mil_maintain_maa_t
+				add = var:mil_maa_maintain_cereal
+			}
+			set_variable = { 
+				name = mil_maa_maintain_salted
+				value = mil_maa_maintain_salted
+			}
+			change_variable = { 
+				name = mil_maa_maintain_salted
+				multiply = 10
+			}
+			change_variable = { 
+				name = mil_maa_maintain_salted
+				divide = var:trade_price_salted
+			}
+			change_variable = { 
+				name = mil_maa_maintain_salted
+				multiply = var:mil_maa_maintain_salted
+			}
+			change_variable = { 
+				name = mil_maintain_maa_t
+				add = var:mil_maa_maintain_salted
+			}
+			set_variable = { 
+				name = mil_maa_maintain_salt
+				value = mil_maa_maintain_salt
+			}
+			change_variable = { 
+				name = mil_maa_maintain_salt
+				multiply = 10
+			}
+			change_variable = { 
+				name = mil_maa_maintain_salt
+				divide = var:trade_price_salt
+			}
+			change_variable = { 
+				name = mil_maa_maintain_salt
+				multiply = var:mil_maa_maintain_salt
+			}
+			change_variable = { 
+				name = mil_maintain_maa_t
+				add = var:mil_maa_maintain_salt
+			}
+			set_variable = { 
+				name = mil_maa_maintain_mud
+				value = mil_maa_maintain_mud
+			}
+			change_variable = { 
+				name = mil_maa_maintain_mud
+				multiply = 10
+			}
+			change_variable = { 
+				name = mil_maa_maintain_mud
+				divide = var:trade_price_mud
+			}
+			change_variable = { 
+				name = mil_maa_maintain_mud
+				multiply = var:mil_maa_maintain_mud
+			}
+			change_variable = { 
+				name = mil_maintain_maa_t
+				add = var:mil_maa_maintain_mud
+			}
+			set_variable = { 
+				name = mil_maa_maintain_fuel
+				value = mil_maa_maintain_fuel
+			}
+			change_variable = { 
+				name = mil_maa_maintain_fuel
+				multiply = 10
+			}
+			change_variable = { 
+				name = mil_maa_maintain_fuel
+				divide = var:trade_price_fuel
+			}
+			change_variable = { 
+				name = mil_maa_maintain_fuel
+				multiply = var:mil_maa_maintain_fuel
+			}
+			change_variable = { 
+				name = mil_maintain_maa_t
+				add = var:mil_maa_maintain_fuel
+			}
+			set_variable = { 
+				name = mil_maa_maintain_fiber
+				value = mil_maa_maintain_fiber
+			}
+			change_variable = { 
+				name = mil_maa_maintain_fiber
+				multiply = 10
+			}
+			change_variable = { 
+				name = mil_maa_maintain_fiber
+				divide = var:trade_price_fiber
+			}
+			change_variable = { 
+				name = mil_maa_maintain_fiber
+				multiply = var:mil_maa_maintain_fiber
+			}
+			change_variable = { 
+				name = mil_maintain_maa_t
+				add = var:mil_maa_maintain_fiber
+			}
+			set_variable = { 
+				name = mil_maa_maintain_timber
+				value = mil_maa_maintain_timber
+			}
+			change_variable = { 
+				name = mil_maa_maintain_timber
+				multiply = 10
+			}
+			change_variable = { 
+				name = mil_maa_maintain_timber
+				divide = var:trade_price_timber
+			}
+			change_variable = { 
+				name = mil_maa_maintain_timber
+				multiply = var:mil_maa_maintain_timber
+			}
+			change_variable = { 
+				name = mil_maintain_maa_t
+				add = var:mil_maa_maintain_timber
+			}
+			set_variable = { 
+				name = mil_maa_maintain_metal
+				value = mil_maa_maintain_metal
+			}
+			change_variable = { 
+				name = mil_maa_maintain_metal
+				multiply = 10
+			}
+			change_variable = { 
+				name = mil_maa_maintain_metal
+				divide = var:trade_price_metal
+			}
+			change_variable = { 
+				name = mil_maa_maintain_metal
+				multiply = var:mil_maa_maintain_metal
+			}
+			change_variable = { 
+				name = mil_maintain_maa_t
+				add = var:mil_maa_maintain_metal
+			}
+			set_variable = { 
+				name = mil_maa_maintain_exotics_w
+				value = mil_maa_maintain_exotics_w
+			}
+			change_variable = { 
+				name = mil_maa_maintain_exotics_w
+				multiply = 10
+			}
+			change_variable = { 
+				name = mil_maa_maintain_exotics_w
+				divide = var:trade_price_exotics_w
+			}
+			change_variable = { 
+				name = mil_maa_maintain_exotics_w
+				multiply = var:mil_maa_maintain_exotics_w
+			}
+			change_variable = { 
+				name = mil_maintain_maa_t
+				add = var:mil_maa_maintain_exotics_w
+			}
+			set_variable = { 
+				name = mil_maa_maintain_exotics_e
+				value = mil_maa_maintain_exotics_e
+			}
+			change_variable = { 
+				name = mil_maa_maintain_exotics_e
+				multiply = 10
+			}
+			change_variable = { 
+				name = mil_maa_maintain_exotics_e
+				divide = var:trade_price_exotics_e
+			}
+			change_variable = { 
+				name = mil_maa_maintain_exotics_e
+				multiply = var:mil_maa_maintain_exotics_e
+			}
+			change_variable = { 
+				name = mil_maintain_maa_t
+				add = var:mil_maa_maintain_exotics_e
+			}
+			set_variable = { 
+				name = mil_maa_maintain_exotics_g
+				value = mil_maa_maintain_exotics_g
+			}
+			change_variable = { 
+				name = mil_maa_maintain_exotics_g
+				multiply = 10
+			}
+			change_variable = { 
+				name = mil_maa_maintain_exotics_g
+				divide = var:trade_price_exotics_g
+			}
+			change_variable = { 
+				name = mil_maa_maintain_exotics_g
+				multiply = var:mil_maa_maintain_exotics_g
+			}
+			change_variable = { 
+				name = mil_maintain_maa_t
+				add = var:mil_maa_maintain_exotics_g
+			}
+			set_variable = { 
+				name = mil_maa_maintain_textile
+				value = mil_maa_maintain_textile
+			}
+			change_variable = { 
+				name = mil_maa_maintain_textile
+				multiply = 10
+			}
+			change_variable = { 
+				name = mil_maa_maintain_textile
+				divide = var:trade_price_textile
+			}
+			change_variable = { 
+				name = mil_maa_maintain_textile
+				multiply = var:mil_maa_maintain_textile
+			}
+			change_variable = { 
+				name = mil_maintain_maa_t
+				add = var:mil_maa_maintain_textile
+			}
+			set_variable = { 
+				name = mil_maa_maintain_pottery
+				value = mil_maa_maintain_pottery
+			}
+			change_variable = { 
+				name = mil_maa_maintain_pottery
+				multiply = 10
+			}
+			change_variable = { 
+				name = mil_maa_maintain_pottery
+				divide = var:trade_price_pottery
+			}
+			change_variable = { 
+				name = mil_maa_maintain_pottery
+				multiply = var:mil_maa_maintain_pottery
+			}
+			change_variable = { 
+				name = mil_maintain_maa_t
+				add = var:mil_maa_maintain_pottery
+			}
+			set_variable = { 
+				name = mil_maa_maintain_tools
+				value = mil_maa_maintain_tools
+			}
+			change_variable = { 
+				name = mil_maa_maintain_tools
+				multiply = 10
+			}
+			change_variable = { 
+				name = mil_maa_maintain_tools
+				divide = var:trade_price_tools
+			}
+			change_variable = { 
+				name = mil_maa_maintain_tools
+				multiply = var:mil_maa_maintain_tools
+			}
+			change_variable = { 
+				name = mil_maintain_maa_t
+				add = var:mil_maa_maintain_tools
+			}
+			set_variable = { 
+				name = mil_maa_maintain_armaments
+				value = mil_maa_maintain_armaments
+			}
+			change_variable = { 
+				name = mil_maa_maintain_armaments
+				multiply = 10
+			}
+			change_variable = { 
+				name = mil_maa_maintain_armaments
+				divide = var:trade_price_armaments
+			}
+			change_variable = { 
+				name = mil_maa_maintain_armaments
+				multiply = var:mil_maa_maintain_armaments
+			}
+			change_variable = { 
+				name = mil_maintain_maa_t
+				add = var:mil_maa_maintain_armaments
+			}
+			change_variable = { 
+				name = mil_maa_maintain_food
+				multiply = 10
+			}
+			change_variable = { 
+				name = mil_maa_maintain_food
+				divide = var:mil_maintain_maa_t
+			}
+			change_variable = { 
+				name = mil_maa_maintain_food
+				multiply = var:mil_maa
+			}
+			change_variable = { 
+				name = mil_maa_maintain_food
+				divide = 100
+			}
+			change_variable = { 
+				name = mil_maa_maintain_food
+				divide = mil_maa_maintain_food
+			}
+			change_variable = { 
+				name = mil_maa_maintain_cereal
+				multiply = 10
+			}
+			change_variable = { 
+				name = mil_maa_maintain_cereal
+				divide = var:mil_maintain_maa_t
+			}
+			change_variable = { 
+				name = mil_maa_maintain_cereal
+				multiply = var:mil_maa
+			}
+			change_variable = { 
+				name = mil_maa_maintain_cereal
+				divide = 100
+			}
+			change_variable = { 
+				name = mil_maa_maintain_cereal
+				divide = mil_maa_maintain_cereal
+			}
+			change_variable = { 
+				name = mil_maa_maintain_salted
+				multiply = 10
+			}
+			change_variable = { 
+				name = mil_maa_maintain_salted
+				divide = var:mil_maintain_maa_t
+			}
+			change_variable = { 
+				name = mil_maa_maintain_salted
+				multiply = var:mil_maa
+			}
+			change_variable = { 
+				name = mil_maa_maintain_salted
+				divide = 100
+			}
+			change_variable = { 
+				name = mil_maa_maintain_salted
+				divide = mil_maa_maintain_salted
+			}
+			change_variable = { 
+				name = mil_maa_maintain_salt
+				multiply = 10
+			}
+			change_variable = { 
+				name = mil_maa_maintain_salt
+				divide = var:mil_maintain_maa_t
+			}
+			change_variable = { 
+				name = mil_maa_maintain_salt
+				multiply = var:mil_maa
+			}
+			change_variable = { 
+				name = mil_maa_maintain_salt
+				divide = 100
+			}
+			change_variable = { 
+				name = mil_maa_maintain_salt
+				divide = mil_maa_maintain_salt
+			}
+			change_variable = { 
+				name = mil_maa_maintain_mud
+				multiply = 10
+			}
+			change_variable = { 
+				name = mil_maa_maintain_mud
+				divide = var:mil_maintain_maa_t
+			}
+			change_variable = { 
+				name = mil_maa_maintain_mud
+				multiply = var:mil_maa
+			}
+			change_variable = { 
+				name = mil_maa_maintain_mud
+				divide = 100
+			}
+			change_variable = { 
+				name = mil_maa_maintain_mud
+				divide = mil_maa_maintain_mud
+			}
+			change_variable = { 
+				name = mil_maa_maintain_fuel
+				multiply = 10
+			}
+			change_variable = { 
+				name = mil_maa_maintain_fuel
+				divide = var:mil_maintain_maa_t
+			}
+			change_variable = { 
+				name = mil_maa_maintain_fuel
+				multiply = var:mil_maa
+			}
+			change_variable = { 
+				name = mil_maa_maintain_fuel
+				divide = 100
+			}
+			change_variable = { 
+				name = mil_maa_maintain_fuel
+				divide = mil_maa_maintain_fuel
+			}
+			change_variable = { 
+				name = mil_maa_maintain_fiber
+				multiply = 10
+			}
+			change_variable = { 
+				name = mil_maa_maintain_fiber
+				divide = var:mil_maintain_maa_t
+			}
+			change_variable = { 
+				name = mil_maa_maintain_fiber
+				multiply = var:mil_maa
+			}
+			change_variable = { 
+				name = mil_maa_maintain_fiber
+				divide = 100
+			}
+			change_variable = { 
+				name = mil_maa_maintain_fiber
+				divide = mil_maa_maintain_fiber
+			}
+			change_variable = { 
+				name = mil_maa_maintain_timber
+				multiply = 10
+			}
+			change_variable = { 
+				name = mil_maa_maintain_timber
+				divide = var:mil_maintain_maa_t
+			}
+			change_variable = { 
+				name = mil_maa_maintain_timber
+				multiply = var:mil_maa
+			}
+			change_variable = { 
+				name = mil_maa_maintain_timber
+				divide = 100
+			}
+			change_variable = { 
+				name = mil_maa_maintain_timber
+				divide = mil_maa_maintain_timber
+			}
+			change_variable = { 
+				name = mil_maa_maintain_metal
+				multiply = 10
+			}
+			change_variable = { 
+				name = mil_maa_maintain_metal
+				divide = var:mil_maintain_maa_t
+			}
+			change_variable = { 
+				name = mil_maa_maintain_metal
+				multiply = var:mil_maa
+			}
+			change_variable = { 
+				name = mil_maa_maintain_metal
+				divide = 100
+			}
+			change_variable = { 
+				name = mil_maa_maintain_metal
+				divide = mil_maa_maintain_metal
+			}
+			change_variable = { 
+				name = mil_maa_maintain_exotics_w
+				multiply = 10
+			}
+			change_variable = { 
+				name = mil_maa_maintain_exotics_w
+				divide = var:mil_maintain_maa_t
+			}
+			change_variable = { 
+				name = mil_maa_maintain_exotics_w
+				multiply = var:mil_maa
+			}
+			change_variable = { 
+				name = mil_maa_maintain_exotics_w
+				divide = 100
+			}
+			change_variable = { 
+				name = mil_maa_maintain_exotics_w
+				divide = mil_maa_maintain_exotics_w
+			}
+			change_variable = { 
+				name = mil_maa_maintain_exotics_e
+				multiply = 10
+			}
+			change_variable = { 
+				name = mil_maa_maintain_exotics_e
+				divide = var:mil_maintain_maa_t
+			}
+			change_variable = { 
+				name = mil_maa_maintain_exotics_e
+				multiply = var:mil_maa
+			}
+			change_variable = { 
+				name = mil_maa_maintain_exotics_e
+				divide = 100
+			}
+			change_variable = { 
+				name = mil_maa_maintain_exotics_e
+				divide = mil_maa_maintain_exotics_e
+			}
+			change_variable = { 
+				name = mil_maa_maintain_exotics_g
+				multiply = 10
+			}
+			change_variable = { 
+				name = mil_maa_maintain_exotics_g
+				divide = var:mil_maintain_maa_t
+			}
+			change_variable = { 
+				name = mil_maa_maintain_exotics_g
+				multiply = var:mil_maa
+			}
+			change_variable = { 
+				name = mil_maa_maintain_exotics_g
+				divide = 100
+			}
+			change_variable = { 
+				name = mil_maa_maintain_exotics_g
+				divide = mil_maa_maintain_exotics_g
+			}
+			change_variable = { 
+				name = mil_maa_maintain_textile
+				multiply = 10
+			}
+			change_variable = { 
+				name = mil_maa_maintain_textile
+				divide = var:mil_maintain_maa_t
+			}
+			change_variable = { 
+				name = mil_maa_maintain_textile
+				multiply = var:mil_maa
+			}
+			change_variable = { 
+				name = mil_maa_maintain_textile
+				divide = 100
+			}
+			change_variable = { 
+				name = mil_maa_maintain_textile
+				divide = mil_maa_maintain_textile
+			}
+			change_variable = { 
+				name = mil_maa_maintain_pottery
+				multiply = 10
+			}
+			change_variable = { 
+				name = mil_maa_maintain_pottery
+				divide = var:mil_maintain_maa_t
+			}
+			change_variable = { 
+				name = mil_maa_maintain_pottery
+				multiply = var:mil_maa
+			}
+			change_variable = { 
+				name = mil_maa_maintain_pottery
+				divide = 100
+			}
+			change_variable = { 
+				name = mil_maa_maintain_pottery
+				divide = mil_maa_maintain_pottery
+			}
+			change_variable = { 
+				name = mil_maa_maintain_tools
+				multiply = 10
+			}
+			change_variable = { 
+				name = mil_maa_maintain_tools
+				divide = var:mil_maintain_maa_t
+			}
+			change_variable = { 
+				name = mil_maa_maintain_tools
+				multiply = var:mil_maa
+			}
+			change_variable = { 
+				name = mil_maa_maintain_tools
+				divide = 100
+			}
+			change_variable = { 
+				name = mil_maa_maintain_tools
+				divide = mil_maa_maintain_tools
+			}
+			change_variable = { 
+				name = mil_maa_maintain_armaments
+				multiply = 10
+			}
+			change_variable = { 
+				name = mil_maa_maintain_armaments
+				divide = var:mil_maintain_maa_t
+			}
+			change_variable = { 
+				name = mil_maa_maintain_armaments
+				multiply = var:mil_maa
+			}
+			change_variable = { 
+				name = mil_maa_maintain_armaments
+				divide = 100
+			}
+			change_variable = { 
+				name = mil_maa_maintain_armaments
+				divide = mil_maa_maintain_armaments
+			}
+			remove_variable = mil_maintain_maa_t
+			if = { 
+				limit = { 
+					has_raised_armies = yes
+				}
+				change_variable = { 
+					name = mil_maa_maintain_food
+					multiply = 2
+				}
+				change_variable = { 
+					name = mil_maa_maintain_cereal
+					multiply = 2
+				}
+				change_variable = { 
+					name = mil_maa_maintain_salted
+					multiply = 2
+				}
+				change_variable = { 
+					name = mil_maa_maintain_salt
+					multiply = 2
+				}
+				change_variable = { 
+					name = mil_maa_maintain_mud
+					multiply = 2
+				}
+				change_variable = { 
+					name = mil_maa_maintain_fuel
+					multiply = 2
+				}
+				change_variable = { 
+					name = mil_maa_maintain_fiber
+					multiply = 2
+				}
+				change_variable = { 
+					name = mil_maa_maintain_timber
+					multiply = 2
+				}
+				change_variable = { 
+					name = mil_maa_maintain_metal
+					multiply = 2
+				}
+				change_variable = { 
+					name = mil_maa_maintain_exotics_w
+					multiply = 2
+				}
+				change_variable = { 
+					name = mil_maa_maintain_exotics_e
+					multiply = 2
+				}
+				change_variable = { 
+					name = mil_maa_maintain_exotics_g
+					multiply = 2
+				}
+				change_variable = { 
+					name = mil_maa_maintain_textile
+					multiply = 2
+				}
+				change_variable = { 
+					name = mil_maa_maintain_pottery
+					multiply = 2
+				}
+				change_variable = { 
+					name = mil_maa_maintain_tools
+					multiply = 2
+				}
+				change_variable = { 
+					name = mil_maa_maintain_armaments
+					multiply = 2
 				}
 			}
 			remove_variable = mil_maa_ai_t

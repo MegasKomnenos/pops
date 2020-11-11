@@ -198,6 +198,19 @@ mil_maa_ai = {
 		
 		if = {
 			limit = {
+				OR = {
+					NOT = {
+						has_variable = mil_maa_ai_tt
+					}
+					
+					var:mil_maa_ai_tt < 0
+				}
+			}
+			set_variable = { name = mil_maa_ai_tt value = 0 }
+		}
+		
+		if = {
+			limit = {
 				NOT = {
 					has_variable = mil_maa
 				}
@@ -228,6 +241,15 @@ mil_maa_ai = {
 			}
 			
 			^^goods^ set_variable = { name = mil_maa_recruit_&goods& value = 0 } ^
+		}
+		
+		mil_maintain_maa = { size = var:mil_maa }
+		
+		if = {
+			limit = {
+				has_raised_armies = yes
+			}
+			^^goods^ change_variable = { name = mil_maa_maintain_&goods& multiply = 2 } ^
 		}
 		
 		remove_variable = mil_maa_ai_t
