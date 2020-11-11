@@ -81,7 +81,7 @@ mil_maintain_maa = {
 	^
 	
 	^^goods^
-		change_variable = { name = mil_maa_maintain_&goods& multiply = 10 }
+		change_variable = { name = mil_maa_maintain_&goods& multiply = 100 }
 		change_variable = { name = mil_maa_maintain_&goods& divide = var:mil_maintain_maa_t }
 		change_variable = { name = mil_maa_maintain_&goods& multiply = $size$ }
 		change_variable = { name = mil_maa_maintain_&goods& divide = 100 }
@@ -102,7 +102,7 @@ mil_maintain_levy = {
 	^
 	
 	^^goods^
-		change_variable = { name = mil_levy_maintain_&goods& multiply = 10 }
+		change_variable = { name = mil_levy_maintain_&goods& multiply = 100 }
 		change_variable = { name = mil_levy_maintain_&goods& divide = var:mil_maintain_levy_t }
 		change_variable = { name = mil_levy_maintain_&goods& multiply = var:mil_levy_field }
 		change_variable = { name = mil_levy_maintain_&goods& divide = 100 }
@@ -193,7 +193,15 @@ mil_maa_ai = {
 			set_variable = { name = mil_maa_ai_tt value = 0 }
 		}
 		
-		change_variable = { name = mil_maa_ai_tt add = monthly_character_income }
+		if = {
+			limit = {
+				NOT = {
+					has_global_variable = sim_i
+				}
+			}
+			change_variable = { name = mil_maa_ai_tt add = monthly_character_income }
+		}
+		
 		change_variable = { name = mil_maa_ai_tt multiply = 20 }
 		change_variable = { name = mil_maa_ai_tt add = gold }
 		change_variable = { name = mil_maa_ai_tt divide = 100 }
@@ -377,6 +385,8 @@ mil_main = {
 			change_variable = { name = mil_maintain_ttt multiply = mil_maa_maintain_&goods& }
 			change_variable = { name = mil_maintain_tt add = var:mil_maintain_ttt }
 		^
+		
+		remove_variable = mil_maintain_ttt
 		
 		if = {
 			limit = {

@@ -359,7 +359,10 @@ if __name__ == '__main__':
 
                                 for n, vs in chars[data[1]][1].items():
                                     for v in vs:
-                                        outout.append(helper(('\t\t\t\tadd_to_variable_list', 'target'), n, v, id_to_title))
+                                        if v[0] == 'prov':
+                                            outout.append(helper(('\t\t\t\tadd_to_variable_list', 'target'), n, ('prov', '%s.county.holder' % v[1]), id_to_title))
+                                        else:
+                                            outout.append(helper(('\t\t\t\tadd_to_variable_list', 'target'), n, v, id_to_title))
                                         
                                 outout.append('\t\t\t}\n')
                         else:

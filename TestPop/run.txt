@@ -1,50 +1,75 @@
-task_new_template = {
-	name = manage_domain
-	councillor = stewardship
-	stewardship_mult = 0.05
-	stewardship_base = 0.25
-	diplomacy_mult = 0.025
-	diplomacy_base = 0.5
+^^goods^
+	^^range5^
+merchant_out_&range5&_&goods& = { 
+	type = province
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_out_val_&range5&_&goods&
+			var:info_dat_merchant_out_val_&range5&_&goods& > 0
+			var:info_dat_merchant_out_scope_&range5&_&goods& = { 
+				has_variable = trade_merchant
+			}
+		}
+		localization_key = "merchant_out_prov_&range5&_&goods&"
+	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_out_val_&range5&_&goods&
+			var:info_dat_merchant_out_val_&range5&_&goods& > 0
+			var:info_dat_merchant_out_scope_&range5&_&goods& = { 
+				has_variable = is_character
+			}
+		}
+		localization_key = "merchant_out_char_&range5&_&goods&"
+	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_out_val_&range5&_&goods&
+			var:info_dat_merchant_out_val_&range5&_&goods& > 0
+			var:info_dat_merchant_out_scope_&range5&_&goods& = { 
+				NOT = { 
+					has_variable = trade_merchant
+					has_variable = is_character
+				}
+			}
+		}
+		localization_key = "merchant_out_&range5&_&goods&"
+	}
 }
-task_new_template = {
-	name = manage_realm
-	councillor = diplomacy
-	diplomacy_mult = 0.05
-	diplomacy_base = 0.25
-	stewardship_mult = 0.025
-	stewardship_base = 0.5
+merchant_in_&range5&_&goods& = { 
+	type = province
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_in_val_&range5&_&goods&
+			var:info_dat_merchant_in_val_&range5&_&goods& > 0
+			var:info_dat_merchant_in_scope_&range5&_&goods& = { 
+				has_variable = trade_merchant
+			}
+		}
+		localization_key = "merchant_in_prov_&range5&_&goods&"
+	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_in_val_&range5&_&goods&
+			var:info_dat_merchant_in_val_&range5&_&goods& > 0
+			var:info_dat_merchant_in_scope_&range5&_&goods& = { 
+				has_variable = is_character
+			}
+		}
+		localization_key = "merchant_in_char_&range5&_&goods&"
+	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_in_val_&range5&_&goods&
+			var:info_dat_merchant_in_val_&range5&_&goods& > 0
+			var:info_dat_merchant_in_scope_&range5&_&goods& = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_in_&range5&_&goods&"
+	}
 }
-task_new_template = {
-	name = manage_logistics
-	councillor = martial
-	martial_mult = 0.05
-	martial_base = 0.25
-	stewardship_mult = 0.025
-	stewardship_base = 0.5
-}
-task_new_template = {
-	name = manage_court
-	councillor = learning
-	learning_mult = 0.05
-	learning_base = 0.25
-	stewardship_mult = 0.025
-	stewardship_base = 0.5
-}
-task_new_template = {
-	name = manage_stockpile
-	councillor = stewardship
-	stewardship_mult = 0.05
-	stewardship_base = 0.25
-	diplomacy_mult = 0.025
-	diplomacy_base = 0.5
-}
-task_new_template = {
-	name = manage_oversight
-	councillor = intrigue
-	intrigue_mult = 0.05
-	intrigue_base = 0.25
-	stewardship_mult = 0.025
-	stewardship_base = 0.5
-}
-
-task_main = yes
+	^
+^

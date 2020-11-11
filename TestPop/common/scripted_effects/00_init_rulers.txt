@@ -4,6 +4,8 @@
 			is_character = yes
 			is_landed = yes
 		}
+		set_variable = { name = is_character value = 1 }
+		
 		add_gold = -100000
 		
 		eff_binary_1_16 = { name = trade_gold eff = add_gold }
@@ -15,4 +17,11 @@
 		remove_variable = mil_maa
 		remove_variable = mil_maintain
 	}
+	
+	set_global_variable = { name = sim_i value = 1 }
+	
+	mil_main = yes
+	stockpile_ai = yes
+	
+	remove_global_variable = sim_i
 }

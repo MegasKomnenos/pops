@@ -724,7 +724,7 @@ sim_run.02 = {
 				is_character = yes
 				is_landed = yes
 			}
-			remove_variable = sim_income
+			set_variable = { name = sim_income value = 1 }
 			
 			^^goods^
 				every_in_list = {
@@ -758,6 +758,51 @@ sim_run.02 = {
 				clear_variable_list = trade_dat_&goods&
 				array_clear = { name = trade_dat_&goods& }
 			^
+		}
+		
+		every_in_global_list = {
+			variable = trade_merchants
+			
+			^^goods^
+				set_global_variable = { name = sim_t value = 0 }
+				
+				every_in_list = {
+					variable = trade_dat_&goods&
+					
+					if = {
+						limit = {
+							has_variable = sim_income
+						}
+						prev = {
+							remove_list_variable = { name = trade_dat_&goods& target = prev }
+							add_to_variable_list = { name = trade_dat_&goods& target = prev.capital_province }
+							
+							ordered_in_list = {
+								variable = array_trade_dat_&goods&
+								position = global_var:sim_t
+								
+								prev = {
+									remove_list_variable = { name = array_trade_dat_&goods& target = prev }
+									add_to_variable_list = { name = array_trade_dat_&goods& target = prev }
+								}
+							}
+						}
+					}
+					else = {
+						change_global_variable = { name = sim_t add = 1 }
+					}
+				}
+			^
+			
+			remove_global_variable = sim_t
+		}
+		
+		every_ruler = {
+			limit = {
+				is_character = yes
+				is_landed = yes
+			}
+			remove_variable = sim_income
 		}
 		
 		remove_global_variable = sim_i

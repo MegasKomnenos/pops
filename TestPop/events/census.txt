@@ -6675,7 +6675,7 @@ census.03 = {
 			}
 			change_variable = { 
 				name = mil_maa_maintain_food
-				multiply = 10
+				multiply = 100
 			}
 			change_variable = { 
 				name = mil_maa_maintain_food
@@ -6695,7 +6695,7 @@ census.03 = {
 			}
 			change_variable = { 
 				name = mil_maa_maintain_cereal
-				multiply = 10
+				multiply = 100
 			}
 			change_variable = { 
 				name = mil_maa_maintain_cereal
@@ -6715,7 +6715,7 @@ census.03 = {
 			}
 			change_variable = { 
 				name = mil_maa_maintain_salted
-				multiply = 10
+				multiply = 100
 			}
 			change_variable = { 
 				name = mil_maa_maintain_salted
@@ -6735,7 +6735,7 @@ census.03 = {
 			}
 			change_variable = { 
 				name = mil_maa_maintain_salt
-				multiply = 10
+				multiply = 100
 			}
 			change_variable = { 
 				name = mil_maa_maintain_salt
@@ -6755,7 +6755,7 @@ census.03 = {
 			}
 			change_variable = { 
 				name = mil_maa_maintain_mud
-				multiply = 10
+				multiply = 100
 			}
 			change_variable = { 
 				name = mil_maa_maintain_mud
@@ -6775,7 +6775,7 @@ census.03 = {
 			}
 			change_variable = { 
 				name = mil_maa_maintain_fuel
-				multiply = 10
+				multiply = 100
 			}
 			change_variable = { 
 				name = mil_maa_maintain_fuel
@@ -6795,7 +6795,7 @@ census.03 = {
 			}
 			change_variable = { 
 				name = mil_maa_maintain_fiber
-				multiply = 10
+				multiply = 100
 			}
 			change_variable = { 
 				name = mil_maa_maintain_fiber
@@ -6815,7 +6815,7 @@ census.03 = {
 			}
 			change_variable = { 
 				name = mil_maa_maintain_timber
-				multiply = 10
+				multiply = 100
 			}
 			change_variable = { 
 				name = mil_maa_maintain_timber
@@ -6835,7 +6835,7 @@ census.03 = {
 			}
 			change_variable = { 
 				name = mil_maa_maintain_metal
-				multiply = 10
+				multiply = 100
 			}
 			change_variable = { 
 				name = mil_maa_maintain_metal
@@ -6855,7 +6855,7 @@ census.03 = {
 			}
 			change_variable = { 
 				name = mil_maa_maintain_exotics_w
-				multiply = 10
+				multiply = 100
 			}
 			change_variable = { 
 				name = mil_maa_maintain_exotics_w
@@ -6875,7 +6875,7 @@ census.03 = {
 			}
 			change_variable = { 
 				name = mil_maa_maintain_exotics_e
-				multiply = 10
+				multiply = 100
 			}
 			change_variable = { 
 				name = mil_maa_maintain_exotics_e
@@ -6895,7 +6895,7 @@ census.03 = {
 			}
 			change_variable = { 
 				name = mil_maa_maintain_exotics_g
-				multiply = 10
+				multiply = 100
 			}
 			change_variable = { 
 				name = mil_maa_maintain_exotics_g
@@ -6915,7 +6915,7 @@ census.03 = {
 			}
 			change_variable = { 
 				name = mil_maa_maintain_textile
-				multiply = 10
+				multiply = 100
 			}
 			change_variable = { 
 				name = mil_maa_maintain_textile
@@ -6935,7 +6935,7 @@ census.03 = {
 			}
 			change_variable = { 
 				name = mil_maa_maintain_pottery
-				multiply = 10
+				multiply = 100
 			}
 			change_variable = { 
 				name = mil_maa_maintain_pottery
@@ -6955,7 +6955,7 @@ census.03 = {
 			}
 			change_variable = { 
 				name = mil_maa_maintain_tools
-				multiply = 10
+				multiply = 100
 			}
 			change_variable = { 
 				name = mil_maa_maintain_tools
@@ -6975,7 +6975,7 @@ census.03 = {
 			}
 			change_variable = { 
 				name = mil_maa_maintain_armaments
-				multiply = 10
+				multiply = 100
 			}
 			change_variable = { 
 				name = mil_maa_maintain_armaments
@@ -7145,9 +7145,16 @@ census.03 = {
 					value = 0
 				}
 			}
-			change_variable = { 
-				name = mil_maa_ai_tt
-				add = monthly_character_income
+			if = { 
+				limit = { 
+					NOT = { 
+						has_global_variable = sim_i
+					}
+				}
+				change_variable = { 
+					name = mil_maa_ai_tt
+					add = monthly_character_income
+				}
 			}
 			change_variable = { 
 				name = mil_maa_ai_tt
@@ -8256,7 +8263,7 @@ census.03 = {
 			}
 			change_variable = { 
 				name = mil_maa_maintain_food
-				multiply = 10
+				multiply = 100
 			}
 			change_variable = { 
 				name = mil_maa_maintain_food
@@ -8276,7 +8283,7 @@ census.03 = {
 			}
 			change_variable = { 
 				name = mil_maa_maintain_cereal
-				multiply = 10
+				multiply = 100
 			}
 			change_variable = { 
 				name = mil_maa_maintain_cereal
@@ -8296,7 +8303,7 @@ census.03 = {
 			}
 			change_variable = { 
 				name = mil_maa_maintain_salted
-				multiply = 10
+				multiply = 100
 			}
 			change_variable = { 
 				name = mil_maa_maintain_salted
@@ -8316,7 +8323,7 @@ census.03 = {
 			}
 			change_variable = { 
 				name = mil_maa_maintain_salt
-				multiply = 10
+				multiply = 100
 			}
 			change_variable = { 
 				name = mil_maa_maintain_salt
@@ -8336,7 +8343,7 @@ census.03 = {
 			}
 			change_variable = { 
 				name = mil_maa_maintain_mud
-				multiply = 10
+				multiply = 100
 			}
 			change_variable = { 
 				name = mil_maa_maintain_mud
@@ -8356,7 +8363,7 @@ census.03 = {
 			}
 			change_variable = { 
 				name = mil_maa_maintain_fuel
-				multiply = 10
+				multiply = 100
 			}
 			change_variable = { 
 				name = mil_maa_maintain_fuel
@@ -8376,7 +8383,7 @@ census.03 = {
 			}
 			change_variable = { 
 				name = mil_maa_maintain_fiber
-				multiply = 10
+				multiply = 100
 			}
 			change_variable = { 
 				name = mil_maa_maintain_fiber
@@ -8396,7 +8403,7 @@ census.03 = {
 			}
 			change_variable = { 
 				name = mil_maa_maintain_timber
-				multiply = 10
+				multiply = 100
 			}
 			change_variable = { 
 				name = mil_maa_maintain_timber
@@ -8416,7 +8423,7 @@ census.03 = {
 			}
 			change_variable = { 
 				name = mil_maa_maintain_metal
-				multiply = 10
+				multiply = 100
 			}
 			change_variable = { 
 				name = mil_maa_maintain_metal
@@ -8436,7 +8443,7 @@ census.03 = {
 			}
 			change_variable = { 
 				name = mil_maa_maintain_exotics_w
-				multiply = 10
+				multiply = 100
 			}
 			change_variable = { 
 				name = mil_maa_maintain_exotics_w
@@ -8456,7 +8463,7 @@ census.03 = {
 			}
 			change_variable = { 
 				name = mil_maa_maintain_exotics_e
-				multiply = 10
+				multiply = 100
 			}
 			change_variable = { 
 				name = mil_maa_maintain_exotics_e
@@ -8476,7 +8483,7 @@ census.03 = {
 			}
 			change_variable = { 
 				name = mil_maa_maintain_exotics_g
-				multiply = 10
+				multiply = 100
 			}
 			change_variable = { 
 				name = mil_maa_maintain_exotics_g
@@ -8496,7 +8503,7 @@ census.03 = {
 			}
 			change_variable = { 
 				name = mil_maa_maintain_textile
-				multiply = 10
+				multiply = 100
 			}
 			change_variable = { 
 				name = mil_maa_maintain_textile
@@ -8516,7 +8523,7 @@ census.03 = {
 			}
 			change_variable = { 
 				name = mil_maa_maintain_pottery
-				multiply = 10
+				multiply = 100
 			}
 			change_variable = { 
 				name = mil_maa_maintain_pottery
@@ -8536,7 +8543,7 @@ census.03 = {
 			}
 			change_variable = { 
 				name = mil_maa_maintain_tools
-				multiply = 10
+				multiply = 100
 			}
 			change_variable = { 
 				name = mil_maa_maintain_tools
@@ -8556,7 +8563,7 @@ census.03 = {
 			}
 			change_variable = { 
 				name = mil_maa_maintain_armaments
-				multiply = 10
+				multiply = 100
 			}
 			change_variable = { 
 				name = mil_maa_maintain_armaments
@@ -72818,7 +72825,7 @@ census.10 = {
 				}
 				change_variable = { 
 					name = mil_maa_maintain_food
-					multiply = 10
+					multiply = 100
 				}
 				change_variable = { 
 					name = mil_maa_maintain_food
@@ -72838,7 +72845,7 @@ census.10 = {
 				}
 				change_variable = { 
 					name = mil_maa_maintain_cereal
-					multiply = 10
+					multiply = 100
 				}
 				change_variable = { 
 					name = mil_maa_maintain_cereal
@@ -72858,7 +72865,7 @@ census.10 = {
 				}
 				change_variable = { 
 					name = mil_maa_maintain_salted
-					multiply = 10
+					multiply = 100
 				}
 				change_variable = { 
 					name = mil_maa_maintain_salted
@@ -72878,7 +72885,7 @@ census.10 = {
 				}
 				change_variable = { 
 					name = mil_maa_maintain_salt
-					multiply = 10
+					multiply = 100
 				}
 				change_variable = { 
 					name = mil_maa_maintain_salt
@@ -72898,7 +72905,7 @@ census.10 = {
 				}
 				change_variable = { 
 					name = mil_maa_maintain_mud
-					multiply = 10
+					multiply = 100
 				}
 				change_variable = { 
 					name = mil_maa_maintain_mud
@@ -72918,7 +72925,7 @@ census.10 = {
 				}
 				change_variable = { 
 					name = mil_maa_maintain_fuel
-					multiply = 10
+					multiply = 100
 				}
 				change_variable = { 
 					name = mil_maa_maintain_fuel
@@ -72938,7 +72945,7 @@ census.10 = {
 				}
 				change_variable = { 
 					name = mil_maa_maintain_fiber
-					multiply = 10
+					multiply = 100
 				}
 				change_variable = { 
 					name = mil_maa_maintain_fiber
@@ -72958,7 +72965,7 @@ census.10 = {
 				}
 				change_variable = { 
 					name = mil_maa_maintain_timber
-					multiply = 10
+					multiply = 100
 				}
 				change_variable = { 
 					name = mil_maa_maintain_timber
@@ -72978,7 +72985,7 @@ census.10 = {
 				}
 				change_variable = { 
 					name = mil_maa_maintain_metal
-					multiply = 10
+					multiply = 100
 				}
 				change_variable = { 
 					name = mil_maa_maintain_metal
@@ -72998,7 +73005,7 @@ census.10 = {
 				}
 				change_variable = { 
 					name = mil_maa_maintain_exotics_w
-					multiply = 10
+					multiply = 100
 				}
 				change_variable = { 
 					name = mil_maa_maintain_exotics_w
@@ -73018,7 +73025,7 @@ census.10 = {
 				}
 				change_variable = { 
 					name = mil_maa_maintain_exotics_e
-					multiply = 10
+					multiply = 100
 				}
 				change_variable = { 
 					name = mil_maa_maintain_exotics_e
@@ -73038,7 +73045,7 @@ census.10 = {
 				}
 				change_variable = { 
 					name = mil_maa_maintain_exotics_g
-					multiply = 10
+					multiply = 100
 				}
 				change_variable = { 
 					name = mil_maa_maintain_exotics_g
@@ -73058,7 +73065,7 @@ census.10 = {
 				}
 				change_variable = { 
 					name = mil_maa_maintain_textile
-					multiply = 10
+					multiply = 100
 				}
 				change_variable = { 
 					name = mil_maa_maintain_textile
@@ -73078,7 +73085,7 @@ census.10 = {
 				}
 				change_variable = { 
 					name = mil_maa_maintain_pottery
-					multiply = 10
+					multiply = 100
 				}
 				change_variable = { 
 					name = mil_maa_maintain_pottery
@@ -73098,7 +73105,7 @@ census.10 = {
 				}
 				change_variable = { 
 					name = mil_maa_maintain_tools
-					multiply = 10
+					multiply = 100
 				}
 				change_variable = { 
 					name = mil_maa_maintain_tools
@@ -73118,7 +73125,7 @@ census.10 = {
 				}
 				change_variable = { 
 					name = mil_maa_maintain_armaments
-					multiply = 10
+					multiply = 100
 				}
 				change_variable = { 
 					name = mil_maa_maintain_armaments
@@ -73531,7 +73538,7 @@ census.10 = {
 					}
 					change_variable = { 
 						name = mil_levy_maintain_food
-						multiply = 10
+						multiply = 100
 					}
 					change_variable = { 
 						name = mil_levy_maintain_food
@@ -73551,7 +73558,7 @@ census.10 = {
 					}
 					change_variable = { 
 						name = mil_levy_maintain_cereal
-						multiply = 10
+						multiply = 100
 					}
 					change_variable = { 
 						name = mil_levy_maintain_cereal
@@ -73571,7 +73578,7 @@ census.10 = {
 					}
 					change_variable = { 
 						name = mil_levy_maintain_salted
-						multiply = 10
+						multiply = 100
 					}
 					change_variable = { 
 						name = mil_levy_maintain_salted
@@ -73591,7 +73598,7 @@ census.10 = {
 					}
 					change_variable = { 
 						name = mil_levy_maintain_salt
-						multiply = 10
+						multiply = 100
 					}
 					change_variable = { 
 						name = mil_levy_maintain_salt
@@ -73611,7 +73618,7 @@ census.10 = {
 					}
 					change_variable = { 
 						name = mil_levy_maintain_mud
-						multiply = 10
+						multiply = 100
 					}
 					change_variable = { 
 						name = mil_levy_maintain_mud
@@ -73631,7 +73638,7 @@ census.10 = {
 					}
 					change_variable = { 
 						name = mil_levy_maintain_fuel
-						multiply = 10
+						multiply = 100
 					}
 					change_variable = { 
 						name = mil_levy_maintain_fuel
@@ -73651,7 +73658,7 @@ census.10 = {
 					}
 					change_variable = { 
 						name = mil_levy_maintain_fiber
-						multiply = 10
+						multiply = 100
 					}
 					change_variable = { 
 						name = mil_levy_maintain_fiber
@@ -73671,7 +73678,7 @@ census.10 = {
 					}
 					change_variable = { 
 						name = mil_levy_maintain_timber
-						multiply = 10
+						multiply = 100
 					}
 					change_variable = { 
 						name = mil_levy_maintain_timber
@@ -73691,7 +73698,7 @@ census.10 = {
 					}
 					change_variable = { 
 						name = mil_levy_maintain_metal
-						multiply = 10
+						multiply = 100
 					}
 					change_variable = { 
 						name = mil_levy_maintain_metal
@@ -73711,7 +73718,7 @@ census.10 = {
 					}
 					change_variable = { 
 						name = mil_levy_maintain_exotics_w
-						multiply = 10
+						multiply = 100
 					}
 					change_variable = { 
 						name = mil_levy_maintain_exotics_w
@@ -73731,7 +73738,7 @@ census.10 = {
 					}
 					change_variable = { 
 						name = mil_levy_maintain_exotics_e
-						multiply = 10
+						multiply = 100
 					}
 					change_variable = { 
 						name = mil_levy_maintain_exotics_e
@@ -73751,7 +73758,7 @@ census.10 = {
 					}
 					change_variable = { 
 						name = mil_levy_maintain_exotics_g
-						multiply = 10
+						multiply = 100
 					}
 					change_variable = { 
 						name = mil_levy_maintain_exotics_g
@@ -73771,7 +73778,7 @@ census.10 = {
 					}
 					change_variable = { 
 						name = mil_levy_maintain_textile
-						multiply = 10
+						multiply = 100
 					}
 					change_variable = { 
 						name = mil_levy_maintain_textile
@@ -73791,7 +73798,7 @@ census.10 = {
 					}
 					change_variable = { 
 						name = mil_levy_maintain_pottery
-						multiply = 10
+						multiply = 100
 					}
 					change_variable = { 
 						name = mil_levy_maintain_pottery
@@ -73811,7 +73818,7 @@ census.10 = {
 					}
 					change_variable = { 
 						name = mil_levy_maintain_tools
-						multiply = 10
+						multiply = 100
 					}
 					change_variable = { 
 						name = mil_levy_maintain_tools
@@ -73831,7 +73838,7 @@ census.10 = {
 					}
 					change_variable = { 
 						name = mil_levy_maintain_armaments
-						multiply = 10
+						multiply = 100
 					}
 					change_variable = { 
 						name = mil_levy_maintain_armaments
@@ -74693,6 +74700,7 @@ census.10 = {
 					name = mil_maintain_tt
 					add = var:mil_maintain_ttt
 				}
+				remove_variable = mil_maintain_ttt
 				if = { 
 					limit = { 
 						has_variable = mil_maintain_t
@@ -77873,7 +77881,7 @@ census.12 = {
 			}
 			change_variable = { 
 				name = mil_maa_maintain_food
-				multiply = 10
+				multiply = 100
 			}
 			change_variable = { 
 				name = mil_maa_maintain_food
@@ -77893,7 +77901,7 @@ census.12 = {
 			}
 			change_variable = { 
 				name = mil_maa_maintain_cereal
-				multiply = 10
+				multiply = 100
 			}
 			change_variable = { 
 				name = mil_maa_maintain_cereal
@@ -77913,7 +77921,7 @@ census.12 = {
 			}
 			change_variable = { 
 				name = mil_maa_maintain_salted
-				multiply = 10
+				multiply = 100
 			}
 			change_variable = { 
 				name = mil_maa_maintain_salted
@@ -77933,7 +77941,7 @@ census.12 = {
 			}
 			change_variable = { 
 				name = mil_maa_maintain_salt
-				multiply = 10
+				multiply = 100
 			}
 			change_variable = { 
 				name = mil_maa_maintain_salt
@@ -77953,7 +77961,7 @@ census.12 = {
 			}
 			change_variable = { 
 				name = mil_maa_maintain_mud
-				multiply = 10
+				multiply = 100
 			}
 			change_variable = { 
 				name = mil_maa_maintain_mud
@@ -77973,7 +77981,7 @@ census.12 = {
 			}
 			change_variable = { 
 				name = mil_maa_maintain_fuel
-				multiply = 10
+				multiply = 100
 			}
 			change_variable = { 
 				name = mil_maa_maintain_fuel
@@ -77993,7 +78001,7 @@ census.12 = {
 			}
 			change_variable = { 
 				name = mil_maa_maintain_fiber
-				multiply = 10
+				multiply = 100
 			}
 			change_variable = { 
 				name = mil_maa_maintain_fiber
@@ -78013,7 +78021,7 @@ census.12 = {
 			}
 			change_variable = { 
 				name = mil_maa_maintain_timber
-				multiply = 10
+				multiply = 100
 			}
 			change_variable = { 
 				name = mil_maa_maintain_timber
@@ -78033,7 +78041,7 @@ census.12 = {
 			}
 			change_variable = { 
 				name = mil_maa_maintain_metal
-				multiply = 10
+				multiply = 100
 			}
 			change_variable = { 
 				name = mil_maa_maintain_metal
@@ -78053,7 +78061,7 @@ census.12 = {
 			}
 			change_variable = { 
 				name = mil_maa_maintain_exotics_w
-				multiply = 10
+				multiply = 100
 			}
 			change_variable = { 
 				name = mil_maa_maintain_exotics_w
@@ -78073,7 +78081,7 @@ census.12 = {
 			}
 			change_variable = { 
 				name = mil_maa_maintain_exotics_e
-				multiply = 10
+				multiply = 100
 			}
 			change_variable = { 
 				name = mil_maa_maintain_exotics_e
@@ -78093,7 +78101,7 @@ census.12 = {
 			}
 			change_variable = { 
 				name = mil_maa_maintain_exotics_g
-				multiply = 10
+				multiply = 100
 			}
 			change_variable = { 
 				name = mil_maa_maintain_exotics_g
@@ -78113,7 +78121,7 @@ census.12 = {
 			}
 			change_variable = { 
 				name = mil_maa_maintain_textile
-				multiply = 10
+				multiply = 100
 			}
 			change_variable = { 
 				name = mil_maa_maintain_textile
@@ -78133,7 +78141,7 @@ census.12 = {
 			}
 			change_variable = { 
 				name = mil_maa_maintain_pottery
-				multiply = 10
+				multiply = 100
 			}
 			change_variable = { 
 				name = mil_maa_maintain_pottery
@@ -78153,7 +78161,7 @@ census.12 = {
 			}
 			change_variable = { 
 				name = mil_maa_maintain_tools
-				multiply = 10
+				multiply = 100
 			}
 			change_variable = { 
 				name = mil_maa_maintain_tools
@@ -78173,7 +78181,7 @@ census.12 = {
 			}
 			change_variable = { 
 				name = mil_maa_maintain_armaments
-				multiply = 10
+				multiply = 100
 			}
 			change_variable = { 
 				name = mil_maa_maintain_armaments
@@ -78586,7 +78594,7 @@ census.12 = {
 				}
 				change_variable = { 
 					name = mil_levy_maintain_food
-					multiply = 10
+					multiply = 100
 				}
 				change_variable = { 
 					name = mil_levy_maintain_food
@@ -78606,7 +78614,7 @@ census.12 = {
 				}
 				change_variable = { 
 					name = mil_levy_maintain_cereal
-					multiply = 10
+					multiply = 100
 				}
 				change_variable = { 
 					name = mil_levy_maintain_cereal
@@ -78626,7 +78634,7 @@ census.12 = {
 				}
 				change_variable = { 
 					name = mil_levy_maintain_salted
-					multiply = 10
+					multiply = 100
 				}
 				change_variable = { 
 					name = mil_levy_maintain_salted
@@ -78646,7 +78654,7 @@ census.12 = {
 				}
 				change_variable = { 
 					name = mil_levy_maintain_salt
-					multiply = 10
+					multiply = 100
 				}
 				change_variable = { 
 					name = mil_levy_maintain_salt
@@ -78666,7 +78674,7 @@ census.12 = {
 				}
 				change_variable = { 
 					name = mil_levy_maintain_mud
-					multiply = 10
+					multiply = 100
 				}
 				change_variable = { 
 					name = mil_levy_maintain_mud
@@ -78686,7 +78694,7 @@ census.12 = {
 				}
 				change_variable = { 
 					name = mil_levy_maintain_fuel
-					multiply = 10
+					multiply = 100
 				}
 				change_variable = { 
 					name = mil_levy_maintain_fuel
@@ -78706,7 +78714,7 @@ census.12 = {
 				}
 				change_variable = { 
 					name = mil_levy_maintain_fiber
-					multiply = 10
+					multiply = 100
 				}
 				change_variable = { 
 					name = mil_levy_maintain_fiber
@@ -78726,7 +78734,7 @@ census.12 = {
 				}
 				change_variable = { 
 					name = mil_levy_maintain_timber
-					multiply = 10
+					multiply = 100
 				}
 				change_variable = { 
 					name = mil_levy_maintain_timber
@@ -78746,7 +78754,7 @@ census.12 = {
 				}
 				change_variable = { 
 					name = mil_levy_maintain_metal
-					multiply = 10
+					multiply = 100
 				}
 				change_variable = { 
 					name = mil_levy_maintain_metal
@@ -78766,7 +78774,7 @@ census.12 = {
 				}
 				change_variable = { 
 					name = mil_levy_maintain_exotics_w
-					multiply = 10
+					multiply = 100
 				}
 				change_variable = { 
 					name = mil_levy_maintain_exotics_w
@@ -78786,7 +78794,7 @@ census.12 = {
 				}
 				change_variable = { 
 					name = mil_levy_maintain_exotics_e
-					multiply = 10
+					multiply = 100
 				}
 				change_variable = { 
 					name = mil_levy_maintain_exotics_e
@@ -78806,7 +78814,7 @@ census.12 = {
 				}
 				change_variable = { 
 					name = mil_levy_maintain_exotics_g
-					multiply = 10
+					multiply = 100
 				}
 				change_variable = { 
 					name = mil_levy_maintain_exotics_g
@@ -78826,7 +78834,7 @@ census.12 = {
 				}
 				change_variable = { 
 					name = mil_levy_maintain_textile
-					multiply = 10
+					multiply = 100
 				}
 				change_variable = { 
 					name = mil_levy_maintain_textile
@@ -78846,7 +78854,7 @@ census.12 = {
 				}
 				change_variable = { 
 					name = mil_levy_maintain_pottery
-					multiply = 10
+					multiply = 100
 				}
 				change_variable = { 
 					name = mil_levy_maintain_pottery
@@ -78866,7 +78874,7 @@ census.12 = {
 				}
 				change_variable = { 
 					name = mil_levy_maintain_tools
-					multiply = 10
+					multiply = 100
 				}
 				change_variable = { 
 					name = mil_levy_maintain_tools
@@ -78886,7 +78894,7 @@ census.12 = {
 				}
 				change_variable = { 
 					name = mil_levy_maintain_armaments
-					multiply = 10
+					multiply = 100
 				}
 				change_variable = { 
 					name = mil_levy_maintain_armaments
@@ -79748,6 +79756,7 @@ census.12 = {
 				name = mil_maintain_tt
 				add = var:mil_maintain_ttt
 			}
+			remove_variable = mil_maintain_ttt
 			if = { 
 				limit = { 
 					has_variable = mil_maintain_t
