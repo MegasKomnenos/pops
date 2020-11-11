@@ -116,65 +116,53 @@ eff_binary = {
 			
 			var:$name$ >= $value$
 		}
-		if = {
-			limit = {
-				OR = {
-					always = no
-					
-					[[rev] always = $rev$ ]
-				}
-			}
-			$eff$ = -$value$
-		}
-		else = {
-			$eff$ = $value$
-		}
+		$eff$ = $value$
 		
 		change_variable = { name = $name$ subtract = $value$ }
 	}
 }
 
 eff_binary_0_8 = {
-	eff_binary = { name = $name$ eff = $eff$ [[rev] rev = $rev$ ] value = 128 }
-	eff_binary = { name = $name$ eff = $eff$ [[rev] rev = $rev$ ] value = 64 }
-	eff_binary = { name = $name$ eff = $eff$ [[rev] rev = $rev$ ] value = 32 }
-	eff_binary = { name = $name$ eff = $eff$ [[rev] rev = $rev$ ] value = 16 }
-	eff_binary = { name = $name$ eff = $eff$ [[rev] rev = $rev$ ] value = 8 }
-	eff_binary = { name = $name$ eff = $eff$ [[rev] rev = $rev$ ] value = 4 }
-	eff_binary = { name = $name$ eff = $eff$ [[rev] rev = $rev$ ] value = 2 }
-	eff_binary = { name = $name$ eff = $eff$ [[rev] rev = $rev$ ] value = 1 }
+	eff_binary = { name = $name$ eff = $eff$ value = 128 }
+	eff_binary = { name = $name$ eff = $eff$ value = 64 }
+	eff_binary = { name = $name$ eff = $eff$ value = 32 }
+	eff_binary = { name = $name$ eff = $eff$ value = 16 }
+	eff_binary = { name = $name$ eff = $eff$ value = 8 }
+	eff_binary = { name = $name$ eff = $eff$ value = 4 }
+	eff_binary = { name = $name$ eff = $eff$ value = 2 }
+	eff_binary = { name = $name$ eff = $eff$ value = 1 }
 }
 eff_binary_0_12 = {
-	eff_binary = { name = $name$ eff = $eff$ [[rev] rev = $rev$ ] value = 2048 }
-	eff_binary = { name = $name$ eff = $eff$ [[rev] rev = $rev$ ] value = 1024 }
-	eff_binary = { name = $name$ eff = $eff$ [[rev] rev = $rev$ ] value = 512 }
-	eff_binary = { name = $name$ eff = $eff$ [[rev] rev = $rev$ ] value = 256 }
-	eff_binary_0_8 = { name = $name$ eff = $eff$ [[rev] rev = $rev$ ] }
+	eff_binary = { name = $name$ eff = $eff$ value = 2048 }
+	eff_binary = { name = $name$ eff = $eff$ value = 1024 }
+	eff_binary = { name = $name$ eff = $eff$ value = 512 }
+	eff_binary = { name = $name$ eff = $eff$ value = 256 }
+	eff_binary_0_8 = { name = $name$ eff = $eff$ }
 }
 
 eff_binary_1_8 = {
-	eff_binary = { name = $name$ eff = $eff$ [[rev] rev = $rev$ ] value = 12.8 }
-	eff_binary = { name = $name$ eff = $eff$ [[rev] rev = $rev$ ] value = 6.4 }
-	eff_binary = { name = $name$ eff = $eff$ [[rev] rev = $rev$ ] value = 3.2 }
-	eff_binary = { name = $name$ eff = $eff$ [[rev] rev = $rev$ ] value = 1.6 }
-	eff_binary = { name = $name$ eff = $eff$ [[rev] rev = $rev$ ] value = 0.8 }
-	eff_binary = { name = $name$ eff = $eff$ [[rev] rev = $rev$ ] value = 0.4 }
-	eff_binary = { name = $name$ eff = $eff$ [[rev] rev = $rev$ ] value = 0.2 }
-	eff_binary = { name = $name$ eff = $eff$ [[rev] rev = $rev$ ] value = 0.1 }
+	eff_binary = { name = $name$ eff = $eff$ value = 12.8 }
+	eff_binary = { name = $name$ eff = $eff$ value = 6.4 }
+	eff_binary = { name = $name$ eff = $eff$ value = 3.2 }
+	eff_binary = { name = $name$ eff = $eff$ value = 1.6 }
+	eff_binary = { name = $name$ eff = $eff$ value = 0.8 }
+	eff_binary = { name = $name$ eff = $eff$ value = 0.4 }
+	eff_binary = { name = $name$ eff = $eff$ value = 0.2 }
+	eff_binary = { name = $name$ eff = $eff$ value = 0.1 }
 }
 eff_binary_1_12 = {
-	eff_binary = { name = $name$ eff = $eff$ [[rev] rev = $rev$ ] value = 204.8 }
-	eff_binary = { name = $name$ eff = $eff$ [[rev] rev = $rev$ ] value = 102.4 }
-	eff_binary = { name = $name$ eff = $eff$ [[rev] rev = $rev$ ] value = 51.2 }
-	eff_binary = { name = $name$ eff = $eff$ [[rev] rev = $rev$ ] value = 25.6 }
-	eff_binary_1_8 = { name = $name$ eff = $eff$ [[rev] rev = $rev$ ] }
+	eff_binary = { name = $name$ eff = $eff$ value = 204.8 }
+	eff_binary = { name = $name$ eff = $eff$ value = 102.4 }
+	eff_binary = { name = $name$ eff = $eff$ value = 51.2 }
+	eff_binary = { name = $name$ eff = $eff$ value = 25.6 }
+	eff_binary_1_8 = { name = $name$ eff = $eff$ }
 }
 eff_binary_1_16 = {
-	eff_binary = { name = $name$ eff = $eff$ [[rev] rev = $rev$ ] value = 3276.8 }
-	eff_binary = { name = $name$ eff = $eff$ [[rev] rev = $rev$ ] value = 1638.4 }
-	eff_binary = { name = $name$ eff = $eff$ [[rev] rev = $rev$ ] value = 819.2 }
-	eff_binary = { name = $name$ eff = $eff$ [[rev] rev = $rev$ ] value = 409.6 }
-	eff_binary_1_12 = { name = $name$ eff = $eff$ [[rev] rev = $rev$ ] }
+	eff_binary = { name = $name$ eff = $eff$ value = 3276.8 }
+	eff_binary = { name = $name$ eff = $eff$ value = 1638.4 }
+	eff_binary = { name = $name$ eff = $eff$ value = 819.2 }
+	eff_binary = { name = $name$ eff = $eff$ value = 409.6 }
+	eff_binary_1_12 = { name = $name$ eff = $eff$ }
 }
 
 mod_assign = {
