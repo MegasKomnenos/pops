@@ -57,6 +57,7 @@ task_new_task = {
 		
 		scope:task_new_task_t = {
 			set_variable = { name = task_owner value = prev }
+			set_variable = { name = task_worker value = prev }
 		}
 	}
 	global_var:$template$ = {
@@ -82,6 +83,7 @@ task_pop_task = {
 	}
 	
 	remove_variable = task_owner
+	remove_variable = task_worker
 	remove_variable = task_template
 	remove_variable = task_delegate
 	remove_variable = task_time_cost
@@ -126,52 +128,59 @@ task_death_handler = {
 	}
 }
 
-task_refresh = {
+task_main = {
 	every_ruler = {
 		limit = {
 			is_character = yes
 		}
-		if = {
-			limit = {
-				task_check_cond_$name$ = yes
-			}
+		^^tasks_passive^
 			if = {
 				limit = {
-					NOT = {
-						any_in_list = {
-							variable = task_tasks
-							
-							var:task_template = global_var:$name$
+					task_check_cond_&tasks_passive& = yes
+				}
+				if = {
+					limit = {
+						NOT = {
+							any_in_list = {
+								variable = task_tasks
+								
+								var:task_template = global_var:&tasks_passive&
+							}
 						}
 					}
+					task_new_task = { owner = this template = &tasks_passive& }
 				}
-				task_new_task = { owner = this template = $name$ }
 			}
-		}
-		else = {
-			every_in_list = {
-				limit = {
-					var:task_template = global_var:$name$
+			else = {
+				every_in_list = {
+					limit = {
+						var:task_template = global_var:&tasks_passive&
+					}
+					variable = task_tasks
+					
+					task_pop_task = yes
 				}
-				variable = task_tasks
-				
-				task_pop_task = yes
 			}
-		}
+		^
 	}
 	
-	global_var:$name$ = {
-		every_in_list = {
-			variable = task_tasks
-			
-			task_set_cost_$name$ = yes
+	^^tasks_passive^
+		global_var:&tasks_passive& = {
+			every_in_list = {
+				variable = task_tasks
+				
+				task_set_cost_&tasks_passive& = yes
+			}
 		}
-	}
-}
-
-task_main = {
-	^^tasks^
-		task_refresh = { name = &tasks& }
+	^
+	^^tasks_active^
+		global_var:&tasks_active& = {
+			every_in_list = {
+				variable = task_tasks
+				
+				task_set_cost_&tasks_active& = yes
+			}
+		}
 	^
 	
 	every_ruler = {
@@ -189,8 +198,6 @@ task_main = {
 		limit = {
 			is_character = yes
 		}
-		save_temporary_scope_as = task_main_tt
-		
 		every_in_list = {
 			variable = task_tasks
 			
@@ -232,6 +239,8 @@ task_main = {
 				}^
 			}
 			
+			set_variable = { name = task_worker value = scope:task_main_t }
+			
 			set_variable = { name = task_main_t value = 1 }
 			
 			^^skills^
@@ -264,62 +273,41 @@ task_main = {
 			
 			scope:task_main_t = {
 				change_variable = { name = task_main_t add = prev.var:task_main_tt }
-				
-				add_to_variable_list = { name = task_main_t target = prev }
 				add_to_global_variable_list = { name = task_main_t target = this }
-				
-				scope:task_main_tt = {
-					add_to_variable_list = { name = task_main_tt target = prev }
-				}
 			}
 			
 			remove_variable = task_main_t
 			remove_variable = task_main_tt
 		}
 	}
-		
+	
 	every_in_global_list = {
 		variable = task_main_t
 		
 		change_variable = { name = task_main_t divide = 20 }
+	}
 	
-		if = {
-			limit = {
-				has_variable = task_main_t
-				
-				var:task_main_t > 1
-			}
-			every_in_list = {
-				variable = task_main_t
-				
-				set_variable = { name = task_time_in value = 100 }
-				change_variable = { name = task_time_in divide = prev.var:task_main_t }
-			}
-		}
-		else = {
-			every_in_list = {
-				variable = task_main_t
-				
-				set_variable = { name = task_time_in value = 100 }
-			}
-		}
+	every_in_global_list = {
+		variable = task_tasks_active
+		
+		set_variable = { name = task_time_in value = 100 }
 		
 		if = {
 			limit = {
-				this = prev
+				var:task_worker = {
+					has_variable = task_main_t
+				
+					var:task_main_t > 1
+				}
 			}
-			clear_variable_list = task_main_t
+			change_variable = { name = task_time_in divide = var:task_worker.var:task_main_t }
 		}
-		
-		remove_variable = task_main_t
 	}
 	
 	every_ruler = {
 		limit = {
 			is_character = yes
 		}
-		save_temporary_scope_as = task_main_t
-		
 		ordered_in_list = {
 			limit = {
 				var:task_template = global_var:manage_oversight
@@ -334,91 +322,104 @@ task_main = {
 				change_variable = { name = task_main_t divide = 100 }
 			}
 		}
+	}
+	
+	every_in_global_list = {
+		variable = task_tasks_active
 		
-		every_in_list = {
+		if = {
 			limit = {
-				NOT = {
-					this = prev
-				}
+				var:task_owner = var:task_worker
 			}
-			variable = task_main_tt
+			set_variable = { name = task_main_t value = 0 }
+		}
+		else = {
+			var:task_worker = {
+				export_opinion = { target = liege return = task_main_tt }
 			
-			export_opinion = { target = prev return = task_main_t }
-			
-			if = {
-				limit = {
-					has_dread_level_towards = {
-						target = prev
-						level = 2
+				if = {
+					limit = {
+						has_dread_level_towards = {
+							target = liege
+							level = 2
+						}
 					}
+					change_variable = { name = task_main_tt add = 200 }
 				}
-				change_variable = { name = task_main_t add = 200 }
-			}
-			else_if = {
-				limit = {
-					has_dread_level_towards = {
-						target = prev
-						level = 1
+				else_if = {
+					limit = {
+						has_dread_level_towards = {
+							target = liege
+							level = 1
+						}
 					}
+					change_variable = { name = task_main_tt add = 100 }
 				}
-				change_variable = { name = task_main_t add = 100 }
-			}
-			
-			if = {
-				limit = {
-					has_variable = task_main_t
-					
-					var:task_main_t > 100
-				}
-				set_variable = { name = task_main_t value = 100 }
-			}
-			
-			change_variable = { name = task_main_t subtract = 100 }
-			change_variable = { name = task_main_t divide = -2 }
-			
-			every_in_list = {
-				variable = task_main_t
-				
-				set_variable = { name = task_main_t value = prev.var:task_main_t }
 				
 				if = {
 					limit = {
 						NOT = {
-							var:task_template = global_var:manage_oversight
+							prev.var:task_template = global_var:manage_oversight
 						}
 					}
-					change_variable = { name = task_main_t subtract = scope:task_main_t.var:task_main_t }
-					
-					if = {
-						limit = {
-							OR = {
-								NOT = {
-									has_variable = task_main_t
-								}
-								
-								var:task_main_t < 0
-							}
-						}
-						set_variable = { name = task_main_t value = 0 }
-					}
+					change_variable = { name = task_main_tt add = liege.var:task_main_t }
 				}
 				
-				change_variable = { name = task_main_t subtract = var:task_crpt }
-				change_variable = { name = task_main_t divide = 10 }
-				change_variable = { name = task_crpt add = var:task_main_t }
+				if = {
+					limit = {
+						has_variable = task_main_tt
+						
+						var:task_main_tt > 100
+					}
+					set_variable = { name = task_main_tt value = 100 }
+				}
 				
-				remove_variable = task_main_t
+				change_variable = { name = task_main_tt subtract = 100 }
+				change_variable = { name = task_main_tt multiply = var:task_main_tt }
+				change_variable = { name = task_main_tt divide = 400 }
+				
+				prev = {
+					set_variable = { name = task_main_t value = prev.var:task_main_tt }
+				}
+				
+				remove_variable = task_main_tt
 			}
-			
-			clear_variable_list = task_main_t
-			remove_variable = task_main_t
 		}
 		
-		clear_global_variable_list = task_main_t
-		clear_variable_list = task_main_t
-		clear_variable_list = task_main_tt
+		change_variable = { name = task_main_t subtract = var:task_crpt }
+		change_variable = { name = task_main_t divide = 10 }
+		change_variable = { name = task_crpt add = var:task_main_t }
+		
 		remove_variable = task_main_t
 	}
+	
+	every_in_global_list = {
+		variable = task_main_t
+		
+		remove_variable = task_main_t
+		remove_variable = task_main_tt
+	}
+	
+	clear_global_variable_list = task_main_t
+	
+	^^tasks_passive^
+		global_var:&tasks_passive& = {
+			every_in_list = {
+				variable = task_tasks
+				
+				task_do_pulse_&tasks_passive& = yes
+			}
+		}
+	^
+	^^tasks_active^
+		global_var:&tasks_active& = {
+			every_in_list = {
+				variable = task_tasks
+				
+				task_do_pulse_&tasks_active& = yes
+			}
+		}
+	^
 }
 
 task_set_cost_manage_domain = {
@@ -441,7 +442,7 @@ task_set_cost_manage_stockpile = {
 task_set_cost_manage_oversight = {
 	save_temporary_scope_as = task_set_cost_manage_oversight_t
 	
-	set_variable = { name = task_time_cost value = 0.75 }
+	set_variable = { name = task_time_cost value = 0.5 }
 	
 	var:task_owner = {
 		every_in_list = {
@@ -451,8 +452,24 @@ task_set_cost_manage_oversight = {
 			variable = task_tasks
 			
 			scope:task_set_cost_manage_oversight_t = {
-				change_variable = { name = task_time_cost add = 0.25 }
+				change_variable = { name = task_time_cost add = 0.5 }
 			}
 		}
 	}
+}
+
+task_do_pulse_manage_domain = {
+}
+task_do_pulse_manage_realm = {
+}
+task_do_pulse_manage_logistics = {
+}
+task_do_pulse_manage_court = {
+}
+task_do_pulse_manage_stockpile = {
+}
+task_do_pulse_manage_oversight = {
+}
+task_do_pulse_religious_relations = {
+	
 }
