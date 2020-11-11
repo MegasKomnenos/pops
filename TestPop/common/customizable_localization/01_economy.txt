@@ -898,6 +898,66 @@ county_in_2_tools = {
 		localization_key = "county_in_2_tools"
 	}
 }
+county_out_0_armaments = { 
+	type = province
+	text = { 
+		trigger = { 
+			has_variable = info_dat_county_out_val_0_armaments
+			var:info_dat_county_out_val_0_armaments > 0
+		}
+		localization_key = "county_out_0_armaments"
+	}
+}
+county_in_0_armaments = { 
+	type = province
+	text = { 
+		trigger = { 
+			has_variable = info_dat_county_in_val_0_armaments
+			var:info_dat_county_in_val_0_armaments > 0
+		}
+		localization_key = "county_in_0_armaments"
+	}
+}
+county_out_1_armaments = { 
+	type = province
+	text = { 
+		trigger = { 
+			has_variable = info_dat_county_out_val_1_armaments
+			var:info_dat_county_out_val_1_armaments > 0
+		}
+		localization_key = "county_out_1_armaments"
+	}
+}
+county_in_1_armaments = { 
+	type = province
+	text = { 
+		trigger = { 
+			has_variable = info_dat_county_in_val_1_armaments
+			var:info_dat_county_in_val_1_armaments > 0
+		}
+		localization_key = "county_in_1_armaments"
+	}
+}
+county_out_2_armaments = { 
+	type = province
+	text = { 
+		trigger = { 
+			has_variable = info_dat_county_out_val_2_armaments
+			var:info_dat_county_out_val_2_armaments > 0
+		}
+		localization_key = "county_out_2_armaments"
+	}
+}
+county_in_2_armaments = { 
+	type = province
+	text = { 
+		trigger = { 
+			has_variable = info_dat_county_in_val_2_armaments
+			var:info_dat_county_in_val_2_armaments > 0
+		}
+		localization_key = "county_in_2_armaments"
+	}
+}
 
 merchant_out_0_food = { 
 	type = province
@@ -4649,6 +4709,257 @@ merchant_in_4_tools = {
 		localization_key = "merchant_in_4_tools"
 	}
 }
+merchant_out_0_armaments = { 
+	type = province
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_out_val_0_armaments
+			var:info_dat_merchant_out_val_0_armaments > 0
+			var:info_dat_merchant_out_scope_0_armaments = { 
+				has_variable = trade_merchant
+			}
+		}
+		localization_key = "merchant_out_prov_0_armaments"
+	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_out_val_0_armaments
+			var:info_dat_merchant_out_val_0_armaments > 0
+			var:info_dat_merchant_out_scope_0_armaments = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_out_0_armaments"
+	}
+}
+merchant_in_0_armaments = { 
+	type = province
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_in_val_0_armaments
+			var:info_dat_merchant_in_val_0_armaments > 0
+			var:info_dat_merchant_in_scope_0_armaments = { 
+				has_variable = trade_merchant
+			}
+		}
+		localization_key = "merchant_in_prov_0_armaments"
+	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_in_val_0_armaments
+			var:info_dat_merchant_in_val_0_armaments > 0
+			var:info_dat_merchant_in_scope_0_armaments = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_in_0_armaments"
+	}
+}
+merchant_out_1_armaments = { 
+	type = province
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_out_val_1_armaments
+			var:info_dat_merchant_out_val_1_armaments > 0
+			var:info_dat_merchant_out_scope_1_armaments = { 
+				has_variable = trade_merchant
+			}
+		}
+		localization_key = "merchant_out_prov_1_armaments"
+	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_out_val_1_armaments
+			var:info_dat_merchant_out_val_1_armaments > 0
+			var:info_dat_merchant_out_scope_1_armaments = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_out_1_armaments"
+	}
+}
+merchant_in_1_armaments = { 
+	type = province
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_in_val_1_armaments
+			var:info_dat_merchant_in_val_1_armaments > 0
+			var:info_dat_merchant_in_scope_1_armaments = { 
+				has_variable = trade_merchant
+			}
+		}
+		localization_key = "merchant_in_prov_1_armaments"
+	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_in_val_1_armaments
+			var:info_dat_merchant_in_val_1_armaments > 0
+			var:info_dat_merchant_in_scope_1_armaments = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_in_1_armaments"
+	}
+}
+merchant_out_2_armaments = { 
+	type = province
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_out_val_2_armaments
+			var:info_dat_merchant_out_val_2_armaments > 0
+			var:info_dat_merchant_out_scope_2_armaments = { 
+				has_variable = trade_merchant
+			}
+		}
+		localization_key = "merchant_out_prov_2_armaments"
+	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_out_val_2_armaments
+			var:info_dat_merchant_out_val_2_armaments > 0
+			var:info_dat_merchant_out_scope_2_armaments = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_out_2_armaments"
+	}
+}
+merchant_in_2_armaments = { 
+	type = province
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_in_val_2_armaments
+			var:info_dat_merchant_in_val_2_armaments > 0
+			var:info_dat_merchant_in_scope_2_armaments = { 
+				has_variable = trade_merchant
+			}
+		}
+		localization_key = "merchant_in_prov_2_armaments"
+	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_in_val_2_armaments
+			var:info_dat_merchant_in_val_2_armaments > 0
+			var:info_dat_merchant_in_scope_2_armaments = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_in_2_armaments"
+	}
+}
+merchant_out_3_armaments = { 
+	type = province
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_out_val_3_armaments
+			var:info_dat_merchant_out_val_3_armaments > 0
+			var:info_dat_merchant_out_scope_3_armaments = { 
+				has_variable = trade_merchant
+			}
+		}
+		localization_key = "merchant_out_prov_3_armaments"
+	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_out_val_3_armaments
+			var:info_dat_merchant_out_val_3_armaments > 0
+			var:info_dat_merchant_out_scope_3_armaments = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_out_3_armaments"
+	}
+}
+merchant_in_3_armaments = { 
+	type = province
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_in_val_3_armaments
+			var:info_dat_merchant_in_val_3_armaments > 0
+			var:info_dat_merchant_in_scope_3_armaments = { 
+				has_variable = trade_merchant
+			}
+		}
+		localization_key = "merchant_in_prov_3_armaments"
+	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_in_val_3_armaments
+			var:info_dat_merchant_in_val_3_armaments > 0
+			var:info_dat_merchant_in_scope_3_armaments = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_in_3_armaments"
+	}
+}
+merchant_out_4_armaments = { 
+	type = province
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_out_val_4_armaments
+			var:info_dat_merchant_out_val_4_armaments > 0
+			var:info_dat_merchant_out_scope_4_armaments = { 
+				has_variable = trade_merchant
+			}
+		}
+		localization_key = "merchant_out_prov_4_armaments"
+	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_out_val_4_armaments
+			var:info_dat_merchant_out_val_4_armaments > 0
+			var:info_dat_merchant_out_scope_4_armaments = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_out_4_armaments"
+	}
+}
+merchant_in_4_armaments = { 
+	type = province
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_in_val_4_armaments
+			var:info_dat_merchant_in_val_4_armaments > 0
+			var:info_dat_merchant_in_scope_4_armaments = { 
+				has_variable = trade_merchant
+			}
+		}
+		localization_key = "merchant_in_prov_4_armaments"
+	}
+	text = { 
+		trigger = { 
+			has_variable = info_dat_merchant_in_val_4_armaments
+			var:info_dat_merchant_in_val_4_armaments > 0
+			var:info_dat_merchant_in_scope_4_armaments = { 
+				NOT = { 
+					has_variable = trade_merchant
+				}
+			}
+		}
+		localization_key = "merchant_in_4_armaments"
+	}
+}
+
 
 merchant_invest_food = {
 	type = character
@@ -4830,6 +5141,19 @@ merchant_invest_tools = {
 		}
 		
 		localization_key = "merchant_invest_tools"
+	}
+}
+merchant_invest_armaments = {
+	type = character
+	
+	text = {
+		trigger = {
+			has_variable = trade_invest_pay_armaments
+			
+			var:trade_invest_pay_armaments > 0
+		}
+		
+		localization_key = "merchant_invest_armaments"
 	}
 }
 
@@ -5475,6 +5799,26 @@ province_prod_tools = {
 		localization_key = "province_prod_tools_dmnd"
 	}
 }
+province_prod_armaments = {
+	type = character
+
+	text = {
+		trigger = {
+			has_variable = prod_sply_old_armaments
+
+			var:prod_sply_old_armaments > 0
+		}
+		localization_key = "province_prod_armaments_sply"
+	}
+	text = {
+		trigger = {
+			has_variable = prod_dmnd_old_armaments
+
+			var:prod_dmnd_old_armaments > 0
+		}
+		localization_key = "province_prod_armaments_dmnd"
+	}
+}
 
 province_prod_slot = {
 	type = character 
@@ -5689,5 +6033,12 @@ province_prod_name = {
 		}
 		
 		localization_key = "tools"
+	}
+	text = {
+		trigger = {
+			var:prod_template = global_var:armaments
+		}
+		
+		localization_key = "armaments"
 	}
 }

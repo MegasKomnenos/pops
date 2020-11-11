@@ -73,7 +73,7 @@
 		sply_fuel = 0.05
 		sply_timber = 0.05
 		sply_metal = 0.05
-		sply_tools = 0.05
+		sply_armaments = 0.05
 	}
 	prod_new_template = {
 		name = seasalt
@@ -227,6 +227,16 @@
 		labor = 0.5
 		land = 0.5
 		sply_tools = 2
+		dmnd_metal = 0.5
+		dmnd_timber = 0.5
+		dmnd_fuel = 0.5
+	}
+	prod_new_template = {
+		name = armaments
+		land_type = workshop
+		labor = 0.5
+		land = 0.5
+		sply_armaments = 2
 		dmnd_metal = 0.5
 		dmnd_timber = 0.5
 		dmnd_fuel = 0.5
@@ -628,6 +638,10 @@ init_industry = {
 			}
 			prod_new_instance = {
 				template = tools
+				location = scope:init_industry_select
+			}
+			prod_new_instance = {
+				template = armaments
 				location = scope:init_industry_select
 			}
 		}

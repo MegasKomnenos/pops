@@ -174,6 +174,11 @@ window = {
 				text = "Tools Price: [County.GetCapital.MakeScope.Var('info_trade_county_price_tools').GetValue]"
 				using = Font_Size_Small
 			}
+			text_single = {
+				layoutpolicy_horizontal = expanding
+				text = "Armaments Price: [County.GetCapital.MakeScope.Var('info_trade_county_price_armaments').GetValue]"
+				using = Font_Size_Small
+			}
 		}
 	}
 	
@@ -691,36 +696,72 @@ window = {
 				}
 			}
 			
-			vbox = {
+			hbox = {
 				layoutpolicy_horizontal = expanding
 				
-				text_single = {
-					parentanchor = left
-					text = "Tools:"
-					using = Font_Size_Small
+				vbox = {
 					layoutpolicy_horizontal = expanding
+					
+					text_single = {
+						parentanchor = left
+						text = "Tools:"
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						layoutpolicy_horizontal = expanding
+						text = " - Stockpile: [Province.MakeScope.Var('prod_has_tools').GetValue]"
+						using = Font_Size_Small
+					}
+					text_single = {
+						layoutpolicy_horizontal = expanding
+						text = " - Supply: [Province.MakeScope.Var('info_trade_prov_sply_tools').GetValue]"
+						using = Font_Size_Small
+					}
+					text_single = {
+						layoutpolicy_horizontal = expanding
+						text = " - Demand: [Province.MakeScope.Var('info_trade_prov_dmnd_tools').GetValue]"
+						using = Font_Size_Small
+						tooltip = "Pop, Industry, Construction: ([Province.MakeScope.Var('info_trade_prov_dmnd_pop_tools').GetValue], [Province.MakeScope.Var('info_trade_prov_dmnd_prod_tools').GetValue], [Province.MakeScope.Var('info_trade_prov_dmnd_build_tools').GetValue])"
+					}
+					text_single = {
+						layoutpolicy_horizontal = expanding
+						text = " - Demand Met: [Province.MakeScope.Var('info_trade_prov_in_tools').GetValue]"
+						using = Font_Size_Small
+						tooltip = "Pop, Industry, Construction: ([Province.MakeScope.Var('info_trade_prov_in_pop_tools').GetValue], [Province.MakeScope.Var('info_trade_prov_in_prod_tools').GetValue], [Province.MakeScope.Var('info_trade_prov_in_build_tools').GetValue])"
+					}
 				}
-				text_single = {
+				vbox = {
 					layoutpolicy_horizontal = expanding
-					text = " - Stockpile: [Province.MakeScope.Var('prod_has_tools').GetValue]"
-					using = Font_Size_Small
-				}
-				text_single = {
-					layoutpolicy_horizontal = expanding
-					text = " - Supply: [Province.MakeScope.Var('info_trade_prov_sply_tools').GetValue]"
-					using = Font_Size_Small
-				}
-				text_single = {
-					layoutpolicy_horizontal = expanding
-					text = " - Demand: [Province.MakeScope.Var('info_trade_prov_dmnd_tools').GetValue]"
-					using = Font_Size_Small
-					tooltip = "Pop, Industry, Construction: ([Province.MakeScope.Var('info_trade_prov_dmnd_pop_tools').GetValue], [Province.MakeScope.Var('info_trade_prov_dmnd_prod_tools').GetValue], [Province.MakeScope.Var('info_trade_prov_dmnd_build_tools').GetValue])"
-				}
-				text_single = {
-					layoutpolicy_horizontal = expanding
-					text = " - Demand Met: [Province.MakeScope.Var('info_trade_prov_in_tools').GetValue]"
-					using = Font_Size_Small
-					tooltip = "Pop, Industry, Construction: ([Province.MakeScope.Var('info_trade_prov_in_pop_tools').GetValue], [Province.MakeScope.Var('info_trade_prov_in_prod_tools').GetValue], [Province.MakeScope.Var('info_trade_prov_in_build_tools').GetValue])"
+					
+					text_single = {
+						parentanchor = left
+						text = "Armaments:"
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						layoutpolicy_horizontal = expanding
+						text = " - Stockpile: [Province.MakeScope.Var('prod_has_armaments').GetValue]"
+						using = Font_Size_Small
+					}
+					text_single = {
+						layoutpolicy_horizontal = expanding
+						text = " - Supply: [Province.MakeScope.Var('info_trade_prov_sply_armaments').GetValue]"
+						using = Font_Size_Small
+					}
+					text_single = {
+						layoutpolicy_horizontal = expanding
+						text = " - Demand: [Province.MakeScope.Var('info_trade_prov_dmnd_armaments').GetValue]"
+						using = Font_Size_Small
+						tooltip = "Pop, Industry, Construction: ([Province.MakeScope.Var('info_trade_prov_dmnd_pop_armaments').GetValue], [Province.MakeScope.Var('info_trade_prov_dmnd_prod_armaments').GetValue], [Province.MakeScope.Var('info_trade_prov_dmnd_build_armaments').GetValue])"
+					}
+					text_single = {
+						layoutpolicy_horizontal = expanding
+						text = " - Demand Met: [Province.MakeScope.Var('info_trade_prov_in_armaments').GetValue]"
+						using = Font_Size_Small
+						tooltip = "Pop, Industry, Construction: ([Province.MakeScope.Var('info_trade_prov_in_pop_armaments').GetValue], [Province.MakeScope.Var('info_trade_prov_in_prod_armaments').GetValue], [Province.MakeScope.Var('info_trade_prov_in_build_armaments').GetValue])"
+					}
 				}
 			}
 		}
@@ -1600,7 +1641,7 @@ window = {
 						layoutpolicy_horizontal = expanding
 						text = " - Investment Spending: [Province.MakeScope.Var('trade_merchant').Var('trade_invest_pay').GetValue]"
 						using = Font_Size_Small
-						tooltip = "[Province.MakeScope.Var('trade_merchant').GetCharacter.Custom('merchant_invest_food')][Province.MakeScope.Var('trade_merchant').GetCharacter.Custom('merchant_invest_cereal')][Province.MakeScope.Var('trade_merchant').GetCharacter.Custom('merchant_invest_salted')][Province.MakeScope.Var('trade_merchant').GetCharacter.Custom('merchant_invest_salt')][Province.MakeScope.Var('trade_merchant').GetCharacter.Custom('merchant_invest_mud')][Province.MakeScope.Var('trade_merchant').GetCharacter.Custom('merchant_invest_fuel')][Province.MakeScope.Var('trade_merchant').GetCharacter.Custom('merchant_invest_fiber')][Province.MakeScope.Var('trade_merchant').GetCharacter.Custom('merchant_invest_metal')][Province.MakeScope.Var('trade_merchant').GetCharacter.Custom('merchant_invest_exotics_w')][Province.MakeScope.Var('trade_merchant').GetCharacter.Custom('merchant_invest_exotics_e')][Province.MakeScope.Var('trade_merchant').GetCharacter.Custom('merchant_invest_exotics_g')][Province.MakeScope.Var('trade_merchant').GetCharacter.Custom('merchant_invest_textile')][Province.MakeScope.Var('trade_merchant').GetCharacter.Custom('merchant_invest_pottery')][Province.MakeScope.Var('trade_merchant').GetCharacter.Custom('merchant_invest_tools')]"
+						tooltip = "[Province.MakeScope.Var('trade_merchant').GetCharacter.Custom('merchant_invest_food')][Province.MakeScope.Var('trade_merchant').GetCharacter.Custom('merchant_invest_cereal')][Province.MakeScope.Var('trade_merchant').GetCharacter.Custom('merchant_invest_salted')][Province.MakeScope.Var('trade_merchant').GetCharacter.Custom('merchant_invest_salt')][Province.MakeScope.Var('trade_merchant').GetCharacter.Custom('merchant_invest_mud')][Province.MakeScope.Var('trade_merchant').GetCharacter.Custom('merchant_invest_fuel')][Province.MakeScope.Var('trade_merchant').GetCharacter.Custom('merchant_invest_fiber')][Province.MakeScope.Var('trade_merchant').GetCharacter.Custom('merchant_invest_metal')][Province.MakeScope.Var('trade_merchant').GetCharacter.Custom('merchant_invest_exotics_w')][Province.MakeScope.Var('trade_merchant').GetCharacter.Custom('merchant_invest_exotics_e')][Province.MakeScope.Var('trade_merchant').GetCharacter.Custom('merchant_invest_exotics_g')][Province.MakeScope.Var('trade_merchant').GetCharacter.Custom('merchant_invest_textile')][Province.MakeScope.Var('trade_merchant').GetCharacter.Custom('merchant_invest_pottery')][Province.MakeScope.Var('trade_merchant').GetCharacter.Custom('merchant_invest_tools')][Province.MakeScope.Var('trade_merchant').GetCharacter.Custom('merchant_invest_armaments')]"
 					}
 				}
 				vbox = {
@@ -2102,6 +2143,38 @@ window = {
 						text = " - Bid, Bought: [Province.MakeScope.Var('trade_merchant').Var('trade_dmnd_tools').GetValue], [Province.MakeScope.Var('trade_merchant').Var('trade_in_tools').GetValue]"
 						using = Font_Size_Small
 					}
+				}
+			}
+			
+			vbox = {
+				layoutpolicy_horizontal = expanding
+				
+				text_single = {
+					parentanchor = left
+					text = "Armaments:"
+					using = Font_Size_Small
+					layoutpolicy_horizontal = expanding
+				}
+				text_single = {
+					parentanchor = left
+					text = " - Price: [Province.MakeScope.Var('trade_merchant').Var('trade_price_armaments').GetValue]"
+					using = Font_Size_Small
+					layoutpolicy_horizontal = expanding
+				}
+				text_single = {
+					layoutpolicy_horizontal = expanding
+					text = " - Stockpile: [Province.MakeScope.Var('trade_merchant').Var('trade_has_armaments').GetValue]"
+					using = Font_Size_Small
+				}
+				text_single = {
+					layoutpolicy_horizontal = expanding
+					text = " - Offer, Sold: [Province.MakeScope.Var('trade_merchant').Var('trade_sply_armaments').GetValue], [Province.MakeScope.Var('trade_merchant').Var('trade_out_armaments').GetValue]"
+					using = Font_Size_Small
+				}
+				text_single = {
+					layoutpolicy_horizontal = expanding
+					text = " - Bid, Bought: [Province.MakeScope.Var('trade_merchant').Var('trade_dmnd_armaments').GetValue], [Province.MakeScope.Var('trade_merchant').Var('trade_in_armaments').GetValue]"
+					using = Font_Size_Small
 				}
 			}
 		}
@@ -3224,6 +3297,78 @@ window = {
 					}
 				}
 			}
+			hbox = {
+				layoutpolicy_horizontal = expanding
+				
+				vbox = {
+					layoutpolicy_horizontal = expanding
+					
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_out_0_armaments')]"
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_out_1_armaments')]"
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_out_2_armaments')]"
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_out_3_armaments')]"
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_out_4_armaments')]"
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+				}
+				vbox = {
+					layoutpolicy_horizontal = expanding
+					
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_in_0_armaments')]"
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_in_1_armaments')]"
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_in_2_armaments')]"
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_in_3_armaments')]"
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						parentanchor = left
+						text = "[Province.Custom('merchant_in_4_armaments')]"
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+				}
+			}
 		}
 	}
 	
@@ -3979,6 +4124,54 @@ window = {
 					text_single = {
 						parentanchor = left
 						text = "[County.GetCapital.Custom('county_in_2_tools')]"
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+				}
+			}
+			hbox = {
+				layoutpolicy_horizontal = expanding
+				
+				vbox = {
+					layoutpolicy_horizontal = expanding
+					
+					text_single = {
+						parentanchor = left
+						text = "[County.GetCapital.Custom('county_out_0_armaments')]"
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						parentanchor = left
+						text = "[County.GetCapital.Custom('county_out_1_armaments')]"
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						parentanchor = left
+						text = "[County.GetCapital.Custom('county_out_2_armaments')]"
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+				}
+				vbox = {
+					layoutpolicy_horizontal = expanding
+					
+					text_single = {
+						parentanchor = left
+						text = "[County.GetCapital.Custom('county_in_0_armaments')]"
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						parentanchor = left
+						text = "[County.GetCapital.Custom('county_in_1_armaments')]"
+						using = Font_Size_Small
+						layoutpolicy_horizontal = expanding
+					}
+					text_single = {
+						parentanchor = left
+						text = "[County.GetCapital.Custom('county_in_2_armaments')]"
 						using = Font_Size_Small
 						layoutpolicy_horizontal = expanding
 					}
