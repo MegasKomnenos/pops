@@ -464,22 +464,4 @@ init_city = {
 	init_city_helper = { prov = 9627 size = 10 } 	# Thaton
 	init_city_helper = { prov = 9596 size = 10 } 	# Pegu
 	init_city_helper = { prov = 9598 size = 10 } 	# Dagon
-	
-	every_ruler = {
-		limit = {
-			is_character = yes
-			is_landed = yes
-		}
-		capital_province = {
-			if = {
-				limit = {
-					NOT = {
-						has_variable = workshop_total
-					}
-				}
-				change_variable = { name = pop_total add = 1 }
-				set_variable = { name = workshop_total value = 1 }
-			}
-		}
-	}
 }

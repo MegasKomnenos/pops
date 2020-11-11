@@ -49398,6 +49398,144 @@ census.06 = {
 				is_character = yes
 				is_landed = yes
 			}
+			set_variable = { 
+				name = trade_do_trade_t
+				value = var:trade_sply_food
+			}
+			change_variable = { 
+				name = trade_do_trade_t
+				subtract = var:trade_out_food
+			}
+			set_variable = { 
+				name = trade_do_trade_tt
+				value = capital_county.var:trade_dmnd_food
+			}
+			change_variable = { 
+				name = trade_do_trade_tt
+				subtract = capital_county.var:trade_in_food
+			}
+			if = { 
+				limit = { 
+					has_variable = trade_do_trade_t
+					has_variable = trade_do_trade_tt
+					var:trade_do_trade_t > 0
+					var:trade_do_trade_tt > 0
+				}
+				if = { 
+					limit = { 
+						var:trade_do_trade_t = { 
+							compare_value > prev.var:trade_do_trade_tt
+						}
+					}
+					set_variable = { 
+						name = trade_do_trade_t
+						value = var:trade_do_trade_tt
+					}
+				}
+				set_variable = { 
+					name = trade_do_trade_tt
+					value = var:trade_price_food
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					add = capital_county.var:trade_price_food
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					divide = 2
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					multiply = var:trade_do_trade_t
+				}
+				change_variable = { 
+					name = trade_out_food
+					add = var:trade_do_trade_t
+				}
+				change_variable = { 
+					name = trade_earn_food
+					add = var:trade_do_trade_tt
+				}
+				capital_county = { 
+					change_variable = { 
+						name = trade_in_food
+						add = prev.var:trade_do_trade_t
+					}
+					change_variable = { 
+						name = trade_pay_food
+						add = prev.var:trade_do_trade_tt
+					}
+				}
+			}
+			set_variable = { 
+				name = trade_do_trade_t
+				value = var:trade_dmnd_food
+			}
+			change_variable = { 
+				name = trade_do_trade_t
+				subtract = var:trade_in_food
+			}
+			set_variable = { 
+				name = trade_do_trade_tt
+				value = capital_county.var:trade_sply_food
+			}
+			change_variable = { 
+				name = trade_do_trade_tt
+				subtract = capital_county.var:trade_out_food
+			}
+			if = { 
+				limit = { 
+					has_variable = trade_do_trade_t
+					has_variable = trade_do_trade_tt
+					var:trade_do_trade_t > 0
+					var:trade_do_trade_tt > 0
+				}
+				if = { 
+					limit = { 
+						var:trade_do_trade_t = { 
+							compare_value > prev.var:trade_do_trade_tt
+						}
+					}
+					set_variable = { 
+						name = trade_do_trade_t
+						value = var:trade_do_trade_tt
+					}
+				}
+				set_variable = { 
+					name = trade_do_trade_tt
+					value = var:trade_price_food
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					add = capital_county.var:trade_price_food
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					divide = 2
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					multiply = var:trade_do_trade_t
+				}
+				change_variable = { 
+					name = trade_in_food
+					add = var:trade_do_trade_t
+				}
+				change_variable = { 
+					name = trade_pay_food
+					add = var:trade_do_trade_tt
+				}
+				capital_county = { 
+					change_variable = { 
+						name = trade_out_food
+						add = prev.var:trade_do_trade_t
+					}
+					change_variable = { 
+						name = trade_earn_food
+						add = prev.var:trade_do_trade_tt
+					}
+				}
+			}
 			remove_variable = trade_buy_food
 			remove_variable = trade_sell_food
 			remove_variable = trade_point_food
@@ -49407,6 +49545,144 @@ census.06 = {
 			remove_variable = trade_do_trade_t_food
 			remove_variable = trade_do_trade_tt_food
 			remove_variable = trade_do_trade_ttt_food
+			set_variable = { 
+				name = trade_do_trade_t
+				value = var:trade_sply_cereal
+			}
+			change_variable = { 
+				name = trade_do_trade_t
+				subtract = var:trade_out_cereal
+			}
+			set_variable = { 
+				name = trade_do_trade_tt
+				value = capital_county.var:trade_dmnd_cereal
+			}
+			change_variable = { 
+				name = trade_do_trade_tt
+				subtract = capital_county.var:trade_in_cereal
+			}
+			if = { 
+				limit = { 
+					has_variable = trade_do_trade_t
+					has_variable = trade_do_trade_tt
+					var:trade_do_trade_t > 0
+					var:trade_do_trade_tt > 0
+				}
+				if = { 
+					limit = { 
+						var:trade_do_trade_t = { 
+							compare_value > prev.var:trade_do_trade_tt
+						}
+					}
+					set_variable = { 
+						name = trade_do_trade_t
+						value = var:trade_do_trade_tt
+					}
+				}
+				set_variable = { 
+					name = trade_do_trade_tt
+					value = var:trade_price_cereal
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					add = capital_county.var:trade_price_cereal
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					divide = 2
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					multiply = var:trade_do_trade_t
+				}
+				change_variable = { 
+					name = trade_out_cereal
+					add = var:trade_do_trade_t
+				}
+				change_variable = { 
+					name = trade_earn_cereal
+					add = var:trade_do_trade_tt
+				}
+				capital_county = { 
+					change_variable = { 
+						name = trade_in_cereal
+						add = prev.var:trade_do_trade_t
+					}
+					change_variable = { 
+						name = trade_pay_cereal
+						add = prev.var:trade_do_trade_tt
+					}
+				}
+			}
+			set_variable = { 
+				name = trade_do_trade_t
+				value = var:trade_dmnd_cereal
+			}
+			change_variable = { 
+				name = trade_do_trade_t
+				subtract = var:trade_in_cereal
+			}
+			set_variable = { 
+				name = trade_do_trade_tt
+				value = capital_county.var:trade_sply_cereal
+			}
+			change_variable = { 
+				name = trade_do_trade_tt
+				subtract = capital_county.var:trade_out_cereal
+			}
+			if = { 
+				limit = { 
+					has_variable = trade_do_trade_t
+					has_variable = trade_do_trade_tt
+					var:trade_do_trade_t > 0
+					var:trade_do_trade_tt > 0
+				}
+				if = { 
+					limit = { 
+						var:trade_do_trade_t = { 
+							compare_value > prev.var:trade_do_trade_tt
+						}
+					}
+					set_variable = { 
+						name = trade_do_trade_t
+						value = var:trade_do_trade_tt
+					}
+				}
+				set_variable = { 
+					name = trade_do_trade_tt
+					value = var:trade_price_cereal
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					add = capital_county.var:trade_price_cereal
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					divide = 2
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					multiply = var:trade_do_trade_t
+				}
+				change_variable = { 
+					name = trade_in_cereal
+					add = var:trade_do_trade_t
+				}
+				change_variable = { 
+					name = trade_pay_cereal
+					add = var:trade_do_trade_tt
+				}
+				capital_county = { 
+					change_variable = { 
+						name = trade_out_cereal
+						add = prev.var:trade_do_trade_t
+					}
+					change_variable = { 
+						name = trade_earn_cereal
+						add = prev.var:trade_do_trade_tt
+					}
+				}
+			}
 			remove_variable = trade_buy_cereal
 			remove_variable = trade_sell_cereal
 			remove_variable = trade_point_cereal
@@ -49416,6 +49692,144 @@ census.06 = {
 			remove_variable = trade_do_trade_t_cereal
 			remove_variable = trade_do_trade_tt_cereal
 			remove_variable = trade_do_trade_ttt_cereal
+			set_variable = { 
+				name = trade_do_trade_t
+				value = var:trade_sply_salted
+			}
+			change_variable = { 
+				name = trade_do_trade_t
+				subtract = var:trade_out_salted
+			}
+			set_variable = { 
+				name = trade_do_trade_tt
+				value = capital_county.var:trade_dmnd_salted
+			}
+			change_variable = { 
+				name = trade_do_trade_tt
+				subtract = capital_county.var:trade_in_salted
+			}
+			if = { 
+				limit = { 
+					has_variable = trade_do_trade_t
+					has_variable = trade_do_trade_tt
+					var:trade_do_trade_t > 0
+					var:trade_do_trade_tt > 0
+				}
+				if = { 
+					limit = { 
+						var:trade_do_trade_t = { 
+							compare_value > prev.var:trade_do_trade_tt
+						}
+					}
+					set_variable = { 
+						name = trade_do_trade_t
+						value = var:trade_do_trade_tt
+					}
+				}
+				set_variable = { 
+					name = trade_do_trade_tt
+					value = var:trade_price_salted
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					add = capital_county.var:trade_price_salted
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					divide = 2
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					multiply = var:trade_do_trade_t
+				}
+				change_variable = { 
+					name = trade_out_salted
+					add = var:trade_do_trade_t
+				}
+				change_variable = { 
+					name = trade_earn_salted
+					add = var:trade_do_trade_tt
+				}
+				capital_county = { 
+					change_variable = { 
+						name = trade_in_salted
+						add = prev.var:trade_do_trade_t
+					}
+					change_variable = { 
+						name = trade_pay_salted
+						add = prev.var:trade_do_trade_tt
+					}
+				}
+			}
+			set_variable = { 
+				name = trade_do_trade_t
+				value = var:trade_dmnd_salted
+			}
+			change_variable = { 
+				name = trade_do_trade_t
+				subtract = var:trade_in_salted
+			}
+			set_variable = { 
+				name = trade_do_trade_tt
+				value = capital_county.var:trade_sply_salted
+			}
+			change_variable = { 
+				name = trade_do_trade_tt
+				subtract = capital_county.var:trade_out_salted
+			}
+			if = { 
+				limit = { 
+					has_variable = trade_do_trade_t
+					has_variable = trade_do_trade_tt
+					var:trade_do_trade_t > 0
+					var:trade_do_trade_tt > 0
+				}
+				if = { 
+					limit = { 
+						var:trade_do_trade_t = { 
+							compare_value > prev.var:trade_do_trade_tt
+						}
+					}
+					set_variable = { 
+						name = trade_do_trade_t
+						value = var:trade_do_trade_tt
+					}
+				}
+				set_variable = { 
+					name = trade_do_trade_tt
+					value = var:trade_price_salted
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					add = capital_county.var:trade_price_salted
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					divide = 2
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					multiply = var:trade_do_trade_t
+				}
+				change_variable = { 
+					name = trade_in_salted
+					add = var:trade_do_trade_t
+				}
+				change_variable = { 
+					name = trade_pay_salted
+					add = var:trade_do_trade_tt
+				}
+				capital_county = { 
+					change_variable = { 
+						name = trade_out_salted
+						add = prev.var:trade_do_trade_t
+					}
+					change_variable = { 
+						name = trade_earn_salted
+						add = prev.var:trade_do_trade_tt
+					}
+				}
+			}
 			remove_variable = trade_buy_salted
 			remove_variable = trade_sell_salted
 			remove_variable = trade_point_salted
@@ -49425,6 +49839,144 @@ census.06 = {
 			remove_variable = trade_do_trade_t_salted
 			remove_variable = trade_do_trade_tt_salted
 			remove_variable = trade_do_trade_ttt_salted
+			set_variable = { 
+				name = trade_do_trade_t
+				value = var:trade_sply_salt
+			}
+			change_variable = { 
+				name = trade_do_trade_t
+				subtract = var:trade_out_salt
+			}
+			set_variable = { 
+				name = trade_do_trade_tt
+				value = capital_county.var:trade_dmnd_salt
+			}
+			change_variable = { 
+				name = trade_do_trade_tt
+				subtract = capital_county.var:trade_in_salt
+			}
+			if = { 
+				limit = { 
+					has_variable = trade_do_trade_t
+					has_variable = trade_do_trade_tt
+					var:trade_do_trade_t > 0
+					var:trade_do_trade_tt > 0
+				}
+				if = { 
+					limit = { 
+						var:trade_do_trade_t = { 
+							compare_value > prev.var:trade_do_trade_tt
+						}
+					}
+					set_variable = { 
+						name = trade_do_trade_t
+						value = var:trade_do_trade_tt
+					}
+				}
+				set_variable = { 
+					name = trade_do_trade_tt
+					value = var:trade_price_salt
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					add = capital_county.var:trade_price_salt
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					divide = 2
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					multiply = var:trade_do_trade_t
+				}
+				change_variable = { 
+					name = trade_out_salt
+					add = var:trade_do_trade_t
+				}
+				change_variable = { 
+					name = trade_earn_salt
+					add = var:trade_do_trade_tt
+				}
+				capital_county = { 
+					change_variable = { 
+						name = trade_in_salt
+						add = prev.var:trade_do_trade_t
+					}
+					change_variable = { 
+						name = trade_pay_salt
+						add = prev.var:trade_do_trade_tt
+					}
+				}
+			}
+			set_variable = { 
+				name = trade_do_trade_t
+				value = var:trade_dmnd_salt
+			}
+			change_variable = { 
+				name = trade_do_trade_t
+				subtract = var:trade_in_salt
+			}
+			set_variable = { 
+				name = trade_do_trade_tt
+				value = capital_county.var:trade_sply_salt
+			}
+			change_variable = { 
+				name = trade_do_trade_tt
+				subtract = capital_county.var:trade_out_salt
+			}
+			if = { 
+				limit = { 
+					has_variable = trade_do_trade_t
+					has_variable = trade_do_trade_tt
+					var:trade_do_trade_t > 0
+					var:trade_do_trade_tt > 0
+				}
+				if = { 
+					limit = { 
+						var:trade_do_trade_t = { 
+							compare_value > prev.var:trade_do_trade_tt
+						}
+					}
+					set_variable = { 
+						name = trade_do_trade_t
+						value = var:trade_do_trade_tt
+					}
+				}
+				set_variable = { 
+					name = trade_do_trade_tt
+					value = var:trade_price_salt
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					add = capital_county.var:trade_price_salt
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					divide = 2
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					multiply = var:trade_do_trade_t
+				}
+				change_variable = { 
+					name = trade_in_salt
+					add = var:trade_do_trade_t
+				}
+				change_variable = { 
+					name = trade_pay_salt
+					add = var:trade_do_trade_tt
+				}
+				capital_county = { 
+					change_variable = { 
+						name = trade_out_salt
+						add = prev.var:trade_do_trade_t
+					}
+					change_variable = { 
+						name = trade_earn_salt
+						add = prev.var:trade_do_trade_tt
+					}
+				}
+			}
 			remove_variable = trade_buy_salt
 			remove_variable = trade_sell_salt
 			remove_variable = trade_point_salt
@@ -49434,6 +49986,144 @@ census.06 = {
 			remove_variable = trade_do_trade_t_salt
 			remove_variable = trade_do_trade_tt_salt
 			remove_variable = trade_do_trade_ttt_salt
+			set_variable = { 
+				name = trade_do_trade_t
+				value = var:trade_sply_mud
+			}
+			change_variable = { 
+				name = trade_do_trade_t
+				subtract = var:trade_out_mud
+			}
+			set_variable = { 
+				name = trade_do_trade_tt
+				value = capital_county.var:trade_dmnd_mud
+			}
+			change_variable = { 
+				name = trade_do_trade_tt
+				subtract = capital_county.var:trade_in_mud
+			}
+			if = { 
+				limit = { 
+					has_variable = trade_do_trade_t
+					has_variable = trade_do_trade_tt
+					var:trade_do_trade_t > 0
+					var:trade_do_trade_tt > 0
+				}
+				if = { 
+					limit = { 
+						var:trade_do_trade_t = { 
+							compare_value > prev.var:trade_do_trade_tt
+						}
+					}
+					set_variable = { 
+						name = trade_do_trade_t
+						value = var:trade_do_trade_tt
+					}
+				}
+				set_variable = { 
+					name = trade_do_trade_tt
+					value = var:trade_price_mud
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					add = capital_county.var:trade_price_mud
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					divide = 2
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					multiply = var:trade_do_trade_t
+				}
+				change_variable = { 
+					name = trade_out_mud
+					add = var:trade_do_trade_t
+				}
+				change_variable = { 
+					name = trade_earn_mud
+					add = var:trade_do_trade_tt
+				}
+				capital_county = { 
+					change_variable = { 
+						name = trade_in_mud
+						add = prev.var:trade_do_trade_t
+					}
+					change_variable = { 
+						name = trade_pay_mud
+						add = prev.var:trade_do_trade_tt
+					}
+				}
+			}
+			set_variable = { 
+				name = trade_do_trade_t
+				value = var:trade_dmnd_mud
+			}
+			change_variable = { 
+				name = trade_do_trade_t
+				subtract = var:trade_in_mud
+			}
+			set_variable = { 
+				name = trade_do_trade_tt
+				value = capital_county.var:trade_sply_mud
+			}
+			change_variable = { 
+				name = trade_do_trade_tt
+				subtract = capital_county.var:trade_out_mud
+			}
+			if = { 
+				limit = { 
+					has_variable = trade_do_trade_t
+					has_variable = trade_do_trade_tt
+					var:trade_do_trade_t > 0
+					var:trade_do_trade_tt > 0
+				}
+				if = { 
+					limit = { 
+						var:trade_do_trade_t = { 
+							compare_value > prev.var:trade_do_trade_tt
+						}
+					}
+					set_variable = { 
+						name = trade_do_trade_t
+						value = var:trade_do_trade_tt
+					}
+				}
+				set_variable = { 
+					name = trade_do_trade_tt
+					value = var:trade_price_mud
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					add = capital_county.var:trade_price_mud
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					divide = 2
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					multiply = var:trade_do_trade_t
+				}
+				change_variable = { 
+					name = trade_in_mud
+					add = var:trade_do_trade_t
+				}
+				change_variable = { 
+					name = trade_pay_mud
+					add = var:trade_do_trade_tt
+				}
+				capital_county = { 
+					change_variable = { 
+						name = trade_out_mud
+						add = prev.var:trade_do_trade_t
+					}
+					change_variable = { 
+						name = trade_earn_mud
+						add = prev.var:trade_do_trade_tt
+					}
+				}
+			}
 			remove_variable = trade_buy_mud
 			remove_variable = trade_sell_mud
 			remove_variable = trade_point_mud
@@ -49443,6 +50133,144 @@ census.06 = {
 			remove_variable = trade_do_trade_t_mud
 			remove_variable = trade_do_trade_tt_mud
 			remove_variable = trade_do_trade_ttt_mud
+			set_variable = { 
+				name = trade_do_trade_t
+				value = var:trade_sply_fuel
+			}
+			change_variable = { 
+				name = trade_do_trade_t
+				subtract = var:trade_out_fuel
+			}
+			set_variable = { 
+				name = trade_do_trade_tt
+				value = capital_county.var:trade_dmnd_fuel
+			}
+			change_variable = { 
+				name = trade_do_trade_tt
+				subtract = capital_county.var:trade_in_fuel
+			}
+			if = { 
+				limit = { 
+					has_variable = trade_do_trade_t
+					has_variable = trade_do_trade_tt
+					var:trade_do_trade_t > 0
+					var:trade_do_trade_tt > 0
+				}
+				if = { 
+					limit = { 
+						var:trade_do_trade_t = { 
+							compare_value > prev.var:trade_do_trade_tt
+						}
+					}
+					set_variable = { 
+						name = trade_do_trade_t
+						value = var:trade_do_trade_tt
+					}
+				}
+				set_variable = { 
+					name = trade_do_trade_tt
+					value = var:trade_price_fuel
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					add = capital_county.var:trade_price_fuel
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					divide = 2
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					multiply = var:trade_do_trade_t
+				}
+				change_variable = { 
+					name = trade_out_fuel
+					add = var:trade_do_trade_t
+				}
+				change_variable = { 
+					name = trade_earn_fuel
+					add = var:trade_do_trade_tt
+				}
+				capital_county = { 
+					change_variable = { 
+						name = trade_in_fuel
+						add = prev.var:trade_do_trade_t
+					}
+					change_variable = { 
+						name = trade_pay_fuel
+						add = prev.var:trade_do_trade_tt
+					}
+				}
+			}
+			set_variable = { 
+				name = trade_do_trade_t
+				value = var:trade_dmnd_fuel
+			}
+			change_variable = { 
+				name = trade_do_trade_t
+				subtract = var:trade_in_fuel
+			}
+			set_variable = { 
+				name = trade_do_trade_tt
+				value = capital_county.var:trade_sply_fuel
+			}
+			change_variable = { 
+				name = trade_do_trade_tt
+				subtract = capital_county.var:trade_out_fuel
+			}
+			if = { 
+				limit = { 
+					has_variable = trade_do_trade_t
+					has_variable = trade_do_trade_tt
+					var:trade_do_trade_t > 0
+					var:trade_do_trade_tt > 0
+				}
+				if = { 
+					limit = { 
+						var:trade_do_trade_t = { 
+							compare_value > prev.var:trade_do_trade_tt
+						}
+					}
+					set_variable = { 
+						name = trade_do_trade_t
+						value = var:trade_do_trade_tt
+					}
+				}
+				set_variable = { 
+					name = trade_do_trade_tt
+					value = var:trade_price_fuel
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					add = capital_county.var:trade_price_fuel
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					divide = 2
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					multiply = var:trade_do_trade_t
+				}
+				change_variable = { 
+					name = trade_in_fuel
+					add = var:trade_do_trade_t
+				}
+				change_variable = { 
+					name = trade_pay_fuel
+					add = var:trade_do_trade_tt
+				}
+				capital_county = { 
+					change_variable = { 
+						name = trade_out_fuel
+						add = prev.var:trade_do_trade_t
+					}
+					change_variable = { 
+						name = trade_earn_fuel
+						add = prev.var:trade_do_trade_tt
+					}
+				}
+			}
 			remove_variable = trade_buy_fuel
 			remove_variable = trade_sell_fuel
 			remove_variable = trade_point_fuel
@@ -49452,6 +50280,144 @@ census.06 = {
 			remove_variable = trade_do_trade_t_fuel
 			remove_variable = trade_do_trade_tt_fuel
 			remove_variable = trade_do_trade_ttt_fuel
+			set_variable = { 
+				name = trade_do_trade_t
+				value = var:trade_sply_fiber
+			}
+			change_variable = { 
+				name = trade_do_trade_t
+				subtract = var:trade_out_fiber
+			}
+			set_variable = { 
+				name = trade_do_trade_tt
+				value = capital_county.var:trade_dmnd_fiber
+			}
+			change_variable = { 
+				name = trade_do_trade_tt
+				subtract = capital_county.var:trade_in_fiber
+			}
+			if = { 
+				limit = { 
+					has_variable = trade_do_trade_t
+					has_variable = trade_do_trade_tt
+					var:trade_do_trade_t > 0
+					var:trade_do_trade_tt > 0
+				}
+				if = { 
+					limit = { 
+						var:trade_do_trade_t = { 
+							compare_value > prev.var:trade_do_trade_tt
+						}
+					}
+					set_variable = { 
+						name = trade_do_trade_t
+						value = var:trade_do_trade_tt
+					}
+				}
+				set_variable = { 
+					name = trade_do_trade_tt
+					value = var:trade_price_fiber
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					add = capital_county.var:trade_price_fiber
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					divide = 2
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					multiply = var:trade_do_trade_t
+				}
+				change_variable = { 
+					name = trade_out_fiber
+					add = var:trade_do_trade_t
+				}
+				change_variable = { 
+					name = trade_earn_fiber
+					add = var:trade_do_trade_tt
+				}
+				capital_county = { 
+					change_variable = { 
+						name = trade_in_fiber
+						add = prev.var:trade_do_trade_t
+					}
+					change_variable = { 
+						name = trade_pay_fiber
+						add = prev.var:trade_do_trade_tt
+					}
+				}
+			}
+			set_variable = { 
+				name = trade_do_trade_t
+				value = var:trade_dmnd_fiber
+			}
+			change_variable = { 
+				name = trade_do_trade_t
+				subtract = var:trade_in_fiber
+			}
+			set_variable = { 
+				name = trade_do_trade_tt
+				value = capital_county.var:trade_sply_fiber
+			}
+			change_variable = { 
+				name = trade_do_trade_tt
+				subtract = capital_county.var:trade_out_fiber
+			}
+			if = { 
+				limit = { 
+					has_variable = trade_do_trade_t
+					has_variable = trade_do_trade_tt
+					var:trade_do_trade_t > 0
+					var:trade_do_trade_tt > 0
+				}
+				if = { 
+					limit = { 
+						var:trade_do_trade_t = { 
+							compare_value > prev.var:trade_do_trade_tt
+						}
+					}
+					set_variable = { 
+						name = trade_do_trade_t
+						value = var:trade_do_trade_tt
+					}
+				}
+				set_variable = { 
+					name = trade_do_trade_tt
+					value = var:trade_price_fiber
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					add = capital_county.var:trade_price_fiber
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					divide = 2
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					multiply = var:trade_do_trade_t
+				}
+				change_variable = { 
+					name = trade_in_fiber
+					add = var:trade_do_trade_t
+				}
+				change_variable = { 
+					name = trade_pay_fiber
+					add = var:trade_do_trade_tt
+				}
+				capital_county = { 
+					change_variable = { 
+						name = trade_out_fiber
+						add = prev.var:trade_do_trade_t
+					}
+					change_variable = { 
+						name = trade_earn_fiber
+						add = prev.var:trade_do_trade_tt
+					}
+				}
+			}
 			remove_variable = trade_buy_fiber
 			remove_variable = trade_sell_fiber
 			remove_variable = trade_point_fiber
@@ -49461,6 +50427,144 @@ census.06 = {
 			remove_variable = trade_do_trade_t_fiber
 			remove_variable = trade_do_trade_tt_fiber
 			remove_variable = trade_do_trade_ttt_fiber
+			set_variable = { 
+				name = trade_do_trade_t
+				value = var:trade_sply_timber
+			}
+			change_variable = { 
+				name = trade_do_trade_t
+				subtract = var:trade_out_timber
+			}
+			set_variable = { 
+				name = trade_do_trade_tt
+				value = capital_county.var:trade_dmnd_timber
+			}
+			change_variable = { 
+				name = trade_do_trade_tt
+				subtract = capital_county.var:trade_in_timber
+			}
+			if = { 
+				limit = { 
+					has_variable = trade_do_trade_t
+					has_variable = trade_do_trade_tt
+					var:trade_do_trade_t > 0
+					var:trade_do_trade_tt > 0
+				}
+				if = { 
+					limit = { 
+						var:trade_do_trade_t = { 
+							compare_value > prev.var:trade_do_trade_tt
+						}
+					}
+					set_variable = { 
+						name = trade_do_trade_t
+						value = var:trade_do_trade_tt
+					}
+				}
+				set_variable = { 
+					name = trade_do_trade_tt
+					value = var:trade_price_timber
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					add = capital_county.var:trade_price_timber
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					divide = 2
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					multiply = var:trade_do_trade_t
+				}
+				change_variable = { 
+					name = trade_out_timber
+					add = var:trade_do_trade_t
+				}
+				change_variable = { 
+					name = trade_earn_timber
+					add = var:trade_do_trade_tt
+				}
+				capital_county = { 
+					change_variable = { 
+						name = trade_in_timber
+						add = prev.var:trade_do_trade_t
+					}
+					change_variable = { 
+						name = trade_pay_timber
+						add = prev.var:trade_do_trade_tt
+					}
+				}
+			}
+			set_variable = { 
+				name = trade_do_trade_t
+				value = var:trade_dmnd_timber
+			}
+			change_variable = { 
+				name = trade_do_trade_t
+				subtract = var:trade_in_timber
+			}
+			set_variable = { 
+				name = trade_do_trade_tt
+				value = capital_county.var:trade_sply_timber
+			}
+			change_variable = { 
+				name = trade_do_trade_tt
+				subtract = capital_county.var:trade_out_timber
+			}
+			if = { 
+				limit = { 
+					has_variable = trade_do_trade_t
+					has_variable = trade_do_trade_tt
+					var:trade_do_trade_t > 0
+					var:trade_do_trade_tt > 0
+				}
+				if = { 
+					limit = { 
+						var:trade_do_trade_t = { 
+							compare_value > prev.var:trade_do_trade_tt
+						}
+					}
+					set_variable = { 
+						name = trade_do_trade_t
+						value = var:trade_do_trade_tt
+					}
+				}
+				set_variable = { 
+					name = trade_do_trade_tt
+					value = var:trade_price_timber
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					add = capital_county.var:trade_price_timber
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					divide = 2
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					multiply = var:trade_do_trade_t
+				}
+				change_variable = { 
+					name = trade_in_timber
+					add = var:trade_do_trade_t
+				}
+				change_variable = { 
+					name = trade_pay_timber
+					add = var:trade_do_trade_tt
+				}
+				capital_county = { 
+					change_variable = { 
+						name = trade_out_timber
+						add = prev.var:trade_do_trade_t
+					}
+					change_variable = { 
+						name = trade_earn_timber
+						add = prev.var:trade_do_trade_tt
+					}
+				}
+			}
 			remove_variable = trade_buy_timber
 			remove_variable = trade_sell_timber
 			remove_variable = trade_point_timber
@@ -49470,6 +50574,144 @@ census.06 = {
 			remove_variable = trade_do_trade_t_timber
 			remove_variable = trade_do_trade_tt_timber
 			remove_variable = trade_do_trade_ttt_timber
+			set_variable = { 
+				name = trade_do_trade_t
+				value = var:trade_sply_metal
+			}
+			change_variable = { 
+				name = trade_do_trade_t
+				subtract = var:trade_out_metal
+			}
+			set_variable = { 
+				name = trade_do_trade_tt
+				value = capital_county.var:trade_dmnd_metal
+			}
+			change_variable = { 
+				name = trade_do_trade_tt
+				subtract = capital_county.var:trade_in_metal
+			}
+			if = { 
+				limit = { 
+					has_variable = trade_do_trade_t
+					has_variable = trade_do_trade_tt
+					var:trade_do_trade_t > 0
+					var:trade_do_trade_tt > 0
+				}
+				if = { 
+					limit = { 
+						var:trade_do_trade_t = { 
+							compare_value > prev.var:trade_do_trade_tt
+						}
+					}
+					set_variable = { 
+						name = trade_do_trade_t
+						value = var:trade_do_trade_tt
+					}
+				}
+				set_variable = { 
+					name = trade_do_trade_tt
+					value = var:trade_price_metal
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					add = capital_county.var:trade_price_metal
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					divide = 2
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					multiply = var:trade_do_trade_t
+				}
+				change_variable = { 
+					name = trade_out_metal
+					add = var:trade_do_trade_t
+				}
+				change_variable = { 
+					name = trade_earn_metal
+					add = var:trade_do_trade_tt
+				}
+				capital_county = { 
+					change_variable = { 
+						name = trade_in_metal
+						add = prev.var:trade_do_trade_t
+					}
+					change_variable = { 
+						name = trade_pay_metal
+						add = prev.var:trade_do_trade_tt
+					}
+				}
+			}
+			set_variable = { 
+				name = trade_do_trade_t
+				value = var:trade_dmnd_metal
+			}
+			change_variable = { 
+				name = trade_do_trade_t
+				subtract = var:trade_in_metal
+			}
+			set_variable = { 
+				name = trade_do_trade_tt
+				value = capital_county.var:trade_sply_metal
+			}
+			change_variable = { 
+				name = trade_do_trade_tt
+				subtract = capital_county.var:trade_out_metal
+			}
+			if = { 
+				limit = { 
+					has_variable = trade_do_trade_t
+					has_variable = trade_do_trade_tt
+					var:trade_do_trade_t > 0
+					var:trade_do_trade_tt > 0
+				}
+				if = { 
+					limit = { 
+						var:trade_do_trade_t = { 
+							compare_value > prev.var:trade_do_trade_tt
+						}
+					}
+					set_variable = { 
+						name = trade_do_trade_t
+						value = var:trade_do_trade_tt
+					}
+				}
+				set_variable = { 
+					name = trade_do_trade_tt
+					value = var:trade_price_metal
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					add = capital_county.var:trade_price_metal
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					divide = 2
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					multiply = var:trade_do_trade_t
+				}
+				change_variable = { 
+					name = trade_in_metal
+					add = var:trade_do_trade_t
+				}
+				change_variable = { 
+					name = trade_pay_metal
+					add = var:trade_do_trade_tt
+				}
+				capital_county = { 
+					change_variable = { 
+						name = trade_out_metal
+						add = prev.var:trade_do_trade_t
+					}
+					change_variable = { 
+						name = trade_earn_metal
+						add = prev.var:trade_do_trade_tt
+					}
+				}
+			}
 			remove_variable = trade_buy_metal
 			remove_variable = trade_sell_metal
 			remove_variable = trade_point_metal
@@ -49479,6 +50721,144 @@ census.06 = {
 			remove_variable = trade_do_trade_t_metal
 			remove_variable = trade_do_trade_tt_metal
 			remove_variable = trade_do_trade_ttt_metal
+			set_variable = { 
+				name = trade_do_trade_t
+				value = var:trade_sply_exotics_w
+			}
+			change_variable = { 
+				name = trade_do_trade_t
+				subtract = var:trade_out_exotics_w
+			}
+			set_variable = { 
+				name = trade_do_trade_tt
+				value = capital_county.var:trade_dmnd_exotics_w
+			}
+			change_variable = { 
+				name = trade_do_trade_tt
+				subtract = capital_county.var:trade_in_exotics_w
+			}
+			if = { 
+				limit = { 
+					has_variable = trade_do_trade_t
+					has_variable = trade_do_trade_tt
+					var:trade_do_trade_t > 0
+					var:trade_do_trade_tt > 0
+				}
+				if = { 
+					limit = { 
+						var:trade_do_trade_t = { 
+							compare_value > prev.var:trade_do_trade_tt
+						}
+					}
+					set_variable = { 
+						name = trade_do_trade_t
+						value = var:trade_do_trade_tt
+					}
+				}
+				set_variable = { 
+					name = trade_do_trade_tt
+					value = var:trade_price_exotics_w
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					add = capital_county.var:trade_price_exotics_w
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					divide = 2
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					multiply = var:trade_do_trade_t
+				}
+				change_variable = { 
+					name = trade_out_exotics_w
+					add = var:trade_do_trade_t
+				}
+				change_variable = { 
+					name = trade_earn_exotics_w
+					add = var:trade_do_trade_tt
+				}
+				capital_county = { 
+					change_variable = { 
+						name = trade_in_exotics_w
+						add = prev.var:trade_do_trade_t
+					}
+					change_variable = { 
+						name = trade_pay_exotics_w
+						add = prev.var:trade_do_trade_tt
+					}
+				}
+			}
+			set_variable = { 
+				name = trade_do_trade_t
+				value = var:trade_dmnd_exotics_w
+			}
+			change_variable = { 
+				name = trade_do_trade_t
+				subtract = var:trade_in_exotics_w
+			}
+			set_variable = { 
+				name = trade_do_trade_tt
+				value = capital_county.var:trade_sply_exotics_w
+			}
+			change_variable = { 
+				name = trade_do_trade_tt
+				subtract = capital_county.var:trade_out_exotics_w
+			}
+			if = { 
+				limit = { 
+					has_variable = trade_do_trade_t
+					has_variable = trade_do_trade_tt
+					var:trade_do_trade_t > 0
+					var:trade_do_trade_tt > 0
+				}
+				if = { 
+					limit = { 
+						var:trade_do_trade_t = { 
+							compare_value > prev.var:trade_do_trade_tt
+						}
+					}
+					set_variable = { 
+						name = trade_do_trade_t
+						value = var:trade_do_trade_tt
+					}
+				}
+				set_variable = { 
+					name = trade_do_trade_tt
+					value = var:trade_price_exotics_w
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					add = capital_county.var:trade_price_exotics_w
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					divide = 2
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					multiply = var:trade_do_trade_t
+				}
+				change_variable = { 
+					name = trade_in_exotics_w
+					add = var:trade_do_trade_t
+				}
+				change_variable = { 
+					name = trade_pay_exotics_w
+					add = var:trade_do_trade_tt
+				}
+				capital_county = { 
+					change_variable = { 
+						name = trade_out_exotics_w
+						add = prev.var:trade_do_trade_t
+					}
+					change_variable = { 
+						name = trade_earn_exotics_w
+						add = prev.var:trade_do_trade_tt
+					}
+				}
+			}
 			remove_variable = trade_buy_exotics_w
 			remove_variable = trade_sell_exotics_w
 			remove_variable = trade_point_exotics_w
@@ -49488,6 +50868,144 @@ census.06 = {
 			remove_variable = trade_do_trade_t_exotics_w
 			remove_variable = trade_do_trade_tt_exotics_w
 			remove_variable = trade_do_trade_ttt_exotics_w
+			set_variable = { 
+				name = trade_do_trade_t
+				value = var:trade_sply_exotics_e
+			}
+			change_variable = { 
+				name = trade_do_trade_t
+				subtract = var:trade_out_exotics_e
+			}
+			set_variable = { 
+				name = trade_do_trade_tt
+				value = capital_county.var:trade_dmnd_exotics_e
+			}
+			change_variable = { 
+				name = trade_do_trade_tt
+				subtract = capital_county.var:trade_in_exotics_e
+			}
+			if = { 
+				limit = { 
+					has_variable = trade_do_trade_t
+					has_variable = trade_do_trade_tt
+					var:trade_do_trade_t > 0
+					var:trade_do_trade_tt > 0
+				}
+				if = { 
+					limit = { 
+						var:trade_do_trade_t = { 
+							compare_value > prev.var:trade_do_trade_tt
+						}
+					}
+					set_variable = { 
+						name = trade_do_trade_t
+						value = var:trade_do_trade_tt
+					}
+				}
+				set_variable = { 
+					name = trade_do_trade_tt
+					value = var:trade_price_exotics_e
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					add = capital_county.var:trade_price_exotics_e
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					divide = 2
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					multiply = var:trade_do_trade_t
+				}
+				change_variable = { 
+					name = trade_out_exotics_e
+					add = var:trade_do_trade_t
+				}
+				change_variable = { 
+					name = trade_earn_exotics_e
+					add = var:trade_do_trade_tt
+				}
+				capital_county = { 
+					change_variable = { 
+						name = trade_in_exotics_e
+						add = prev.var:trade_do_trade_t
+					}
+					change_variable = { 
+						name = trade_pay_exotics_e
+						add = prev.var:trade_do_trade_tt
+					}
+				}
+			}
+			set_variable = { 
+				name = trade_do_trade_t
+				value = var:trade_dmnd_exotics_e
+			}
+			change_variable = { 
+				name = trade_do_trade_t
+				subtract = var:trade_in_exotics_e
+			}
+			set_variable = { 
+				name = trade_do_trade_tt
+				value = capital_county.var:trade_sply_exotics_e
+			}
+			change_variable = { 
+				name = trade_do_trade_tt
+				subtract = capital_county.var:trade_out_exotics_e
+			}
+			if = { 
+				limit = { 
+					has_variable = trade_do_trade_t
+					has_variable = trade_do_trade_tt
+					var:trade_do_trade_t > 0
+					var:trade_do_trade_tt > 0
+				}
+				if = { 
+					limit = { 
+						var:trade_do_trade_t = { 
+							compare_value > prev.var:trade_do_trade_tt
+						}
+					}
+					set_variable = { 
+						name = trade_do_trade_t
+						value = var:trade_do_trade_tt
+					}
+				}
+				set_variable = { 
+					name = trade_do_trade_tt
+					value = var:trade_price_exotics_e
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					add = capital_county.var:trade_price_exotics_e
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					divide = 2
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					multiply = var:trade_do_trade_t
+				}
+				change_variable = { 
+					name = trade_in_exotics_e
+					add = var:trade_do_trade_t
+				}
+				change_variable = { 
+					name = trade_pay_exotics_e
+					add = var:trade_do_trade_tt
+				}
+				capital_county = { 
+					change_variable = { 
+						name = trade_out_exotics_e
+						add = prev.var:trade_do_trade_t
+					}
+					change_variable = { 
+						name = trade_earn_exotics_e
+						add = prev.var:trade_do_trade_tt
+					}
+				}
+			}
 			remove_variable = trade_buy_exotics_e
 			remove_variable = trade_sell_exotics_e
 			remove_variable = trade_point_exotics_e
@@ -49497,6 +51015,144 @@ census.06 = {
 			remove_variable = trade_do_trade_t_exotics_e
 			remove_variable = trade_do_trade_tt_exotics_e
 			remove_variable = trade_do_trade_ttt_exotics_e
+			set_variable = { 
+				name = trade_do_trade_t
+				value = var:trade_sply_exotics_g
+			}
+			change_variable = { 
+				name = trade_do_trade_t
+				subtract = var:trade_out_exotics_g
+			}
+			set_variable = { 
+				name = trade_do_trade_tt
+				value = capital_county.var:trade_dmnd_exotics_g
+			}
+			change_variable = { 
+				name = trade_do_trade_tt
+				subtract = capital_county.var:trade_in_exotics_g
+			}
+			if = { 
+				limit = { 
+					has_variable = trade_do_trade_t
+					has_variable = trade_do_trade_tt
+					var:trade_do_trade_t > 0
+					var:trade_do_trade_tt > 0
+				}
+				if = { 
+					limit = { 
+						var:trade_do_trade_t = { 
+							compare_value > prev.var:trade_do_trade_tt
+						}
+					}
+					set_variable = { 
+						name = trade_do_trade_t
+						value = var:trade_do_trade_tt
+					}
+				}
+				set_variable = { 
+					name = trade_do_trade_tt
+					value = var:trade_price_exotics_g
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					add = capital_county.var:trade_price_exotics_g
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					divide = 2
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					multiply = var:trade_do_trade_t
+				}
+				change_variable = { 
+					name = trade_out_exotics_g
+					add = var:trade_do_trade_t
+				}
+				change_variable = { 
+					name = trade_earn_exotics_g
+					add = var:trade_do_trade_tt
+				}
+				capital_county = { 
+					change_variable = { 
+						name = trade_in_exotics_g
+						add = prev.var:trade_do_trade_t
+					}
+					change_variable = { 
+						name = trade_pay_exotics_g
+						add = prev.var:trade_do_trade_tt
+					}
+				}
+			}
+			set_variable = { 
+				name = trade_do_trade_t
+				value = var:trade_dmnd_exotics_g
+			}
+			change_variable = { 
+				name = trade_do_trade_t
+				subtract = var:trade_in_exotics_g
+			}
+			set_variable = { 
+				name = trade_do_trade_tt
+				value = capital_county.var:trade_sply_exotics_g
+			}
+			change_variable = { 
+				name = trade_do_trade_tt
+				subtract = capital_county.var:trade_out_exotics_g
+			}
+			if = { 
+				limit = { 
+					has_variable = trade_do_trade_t
+					has_variable = trade_do_trade_tt
+					var:trade_do_trade_t > 0
+					var:trade_do_trade_tt > 0
+				}
+				if = { 
+					limit = { 
+						var:trade_do_trade_t = { 
+							compare_value > prev.var:trade_do_trade_tt
+						}
+					}
+					set_variable = { 
+						name = trade_do_trade_t
+						value = var:trade_do_trade_tt
+					}
+				}
+				set_variable = { 
+					name = trade_do_trade_tt
+					value = var:trade_price_exotics_g
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					add = capital_county.var:trade_price_exotics_g
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					divide = 2
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					multiply = var:trade_do_trade_t
+				}
+				change_variable = { 
+					name = trade_in_exotics_g
+					add = var:trade_do_trade_t
+				}
+				change_variable = { 
+					name = trade_pay_exotics_g
+					add = var:trade_do_trade_tt
+				}
+				capital_county = { 
+					change_variable = { 
+						name = trade_out_exotics_g
+						add = prev.var:trade_do_trade_t
+					}
+					change_variable = { 
+						name = trade_earn_exotics_g
+						add = prev.var:trade_do_trade_tt
+					}
+				}
+			}
 			remove_variable = trade_buy_exotics_g
 			remove_variable = trade_sell_exotics_g
 			remove_variable = trade_point_exotics_g
@@ -49506,6 +51162,144 @@ census.06 = {
 			remove_variable = trade_do_trade_t_exotics_g
 			remove_variable = trade_do_trade_tt_exotics_g
 			remove_variable = trade_do_trade_ttt_exotics_g
+			set_variable = { 
+				name = trade_do_trade_t
+				value = var:trade_sply_textile
+			}
+			change_variable = { 
+				name = trade_do_trade_t
+				subtract = var:trade_out_textile
+			}
+			set_variable = { 
+				name = trade_do_trade_tt
+				value = capital_county.var:trade_dmnd_textile
+			}
+			change_variable = { 
+				name = trade_do_trade_tt
+				subtract = capital_county.var:trade_in_textile
+			}
+			if = { 
+				limit = { 
+					has_variable = trade_do_trade_t
+					has_variable = trade_do_trade_tt
+					var:trade_do_trade_t > 0
+					var:trade_do_trade_tt > 0
+				}
+				if = { 
+					limit = { 
+						var:trade_do_trade_t = { 
+							compare_value > prev.var:trade_do_trade_tt
+						}
+					}
+					set_variable = { 
+						name = trade_do_trade_t
+						value = var:trade_do_trade_tt
+					}
+				}
+				set_variable = { 
+					name = trade_do_trade_tt
+					value = var:trade_price_textile
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					add = capital_county.var:trade_price_textile
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					divide = 2
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					multiply = var:trade_do_trade_t
+				}
+				change_variable = { 
+					name = trade_out_textile
+					add = var:trade_do_trade_t
+				}
+				change_variable = { 
+					name = trade_earn_textile
+					add = var:trade_do_trade_tt
+				}
+				capital_county = { 
+					change_variable = { 
+						name = trade_in_textile
+						add = prev.var:trade_do_trade_t
+					}
+					change_variable = { 
+						name = trade_pay_textile
+						add = prev.var:trade_do_trade_tt
+					}
+				}
+			}
+			set_variable = { 
+				name = trade_do_trade_t
+				value = var:trade_dmnd_textile
+			}
+			change_variable = { 
+				name = trade_do_trade_t
+				subtract = var:trade_in_textile
+			}
+			set_variable = { 
+				name = trade_do_trade_tt
+				value = capital_county.var:trade_sply_textile
+			}
+			change_variable = { 
+				name = trade_do_trade_tt
+				subtract = capital_county.var:trade_out_textile
+			}
+			if = { 
+				limit = { 
+					has_variable = trade_do_trade_t
+					has_variable = trade_do_trade_tt
+					var:trade_do_trade_t > 0
+					var:trade_do_trade_tt > 0
+				}
+				if = { 
+					limit = { 
+						var:trade_do_trade_t = { 
+							compare_value > prev.var:trade_do_trade_tt
+						}
+					}
+					set_variable = { 
+						name = trade_do_trade_t
+						value = var:trade_do_trade_tt
+					}
+				}
+				set_variable = { 
+					name = trade_do_trade_tt
+					value = var:trade_price_textile
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					add = capital_county.var:trade_price_textile
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					divide = 2
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					multiply = var:trade_do_trade_t
+				}
+				change_variable = { 
+					name = trade_in_textile
+					add = var:trade_do_trade_t
+				}
+				change_variable = { 
+					name = trade_pay_textile
+					add = var:trade_do_trade_tt
+				}
+				capital_county = { 
+					change_variable = { 
+						name = trade_out_textile
+						add = prev.var:trade_do_trade_t
+					}
+					change_variable = { 
+						name = trade_earn_textile
+						add = prev.var:trade_do_trade_tt
+					}
+				}
+			}
 			remove_variable = trade_buy_textile
 			remove_variable = trade_sell_textile
 			remove_variable = trade_point_textile
@@ -49515,6 +51309,144 @@ census.06 = {
 			remove_variable = trade_do_trade_t_textile
 			remove_variable = trade_do_trade_tt_textile
 			remove_variable = trade_do_trade_ttt_textile
+			set_variable = { 
+				name = trade_do_trade_t
+				value = var:trade_sply_pottery
+			}
+			change_variable = { 
+				name = trade_do_trade_t
+				subtract = var:trade_out_pottery
+			}
+			set_variable = { 
+				name = trade_do_trade_tt
+				value = capital_county.var:trade_dmnd_pottery
+			}
+			change_variable = { 
+				name = trade_do_trade_tt
+				subtract = capital_county.var:trade_in_pottery
+			}
+			if = { 
+				limit = { 
+					has_variable = trade_do_trade_t
+					has_variable = trade_do_trade_tt
+					var:trade_do_trade_t > 0
+					var:trade_do_trade_tt > 0
+				}
+				if = { 
+					limit = { 
+						var:trade_do_trade_t = { 
+							compare_value > prev.var:trade_do_trade_tt
+						}
+					}
+					set_variable = { 
+						name = trade_do_trade_t
+						value = var:trade_do_trade_tt
+					}
+				}
+				set_variable = { 
+					name = trade_do_trade_tt
+					value = var:trade_price_pottery
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					add = capital_county.var:trade_price_pottery
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					divide = 2
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					multiply = var:trade_do_trade_t
+				}
+				change_variable = { 
+					name = trade_out_pottery
+					add = var:trade_do_trade_t
+				}
+				change_variable = { 
+					name = trade_earn_pottery
+					add = var:trade_do_trade_tt
+				}
+				capital_county = { 
+					change_variable = { 
+						name = trade_in_pottery
+						add = prev.var:trade_do_trade_t
+					}
+					change_variable = { 
+						name = trade_pay_pottery
+						add = prev.var:trade_do_trade_tt
+					}
+				}
+			}
+			set_variable = { 
+				name = trade_do_trade_t
+				value = var:trade_dmnd_pottery
+			}
+			change_variable = { 
+				name = trade_do_trade_t
+				subtract = var:trade_in_pottery
+			}
+			set_variable = { 
+				name = trade_do_trade_tt
+				value = capital_county.var:trade_sply_pottery
+			}
+			change_variable = { 
+				name = trade_do_trade_tt
+				subtract = capital_county.var:trade_out_pottery
+			}
+			if = { 
+				limit = { 
+					has_variable = trade_do_trade_t
+					has_variable = trade_do_trade_tt
+					var:trade_do_trade_t > 0
+					var:trade_do_trade_tt > 0
+				}
+				if = { 
+					limit = { 
+						var:trade_do_trade_t = { 
+							compare_value > prev.var:trade_do_trade_tt
+						}
+					}
+					set_variable = { 
+						name = trade_do_trade_t
+						value = var:trade_do_trade_tt
+					}
+				}
+				set_variable = { 
+					name = trade_do_trade_tt
+					value = var:trade_price_pottery
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					add = capital_county.var:trade_price_pottery
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					divide = 2
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					multiply = var:trade_do_trade_t
+				}
+				change_variable = { 
+					name = trade_in_pottery
+					add = var:trade_do_trade_t
+				}
+				change_variable = { 
+					name = trade_pay_pottery
+					add = var:trade_do_trade_tt
+				}
+				capital_county = { 
+					change_variable = { 
+						name = trade_out_pottery
+						add = prev.var:trade_do_trade_t
+					}
+					change_variable = { 
+						name = trade_earn_pottery
+						add = prev.var:trade_do_trade_tt
+					}
+				}
+			}
 			remove_variable = trade_buy_pottery
 			remove_variable = trade_sell_pottery
 			remove_variable = trade_point_pottery
@@ -49524,6 +51456,144 @@ census.06 = {
 			remove_variable = trade_do_trade_t_pottery
 			remove_variable = trade_do_trade_tt_pottery
 			remove_variable = trade_do_trade_ttt_pottery
+			set_variable = { 
+				name = trade_do_trade_t
+				value = var:trade_sply_tools
+			}
+			change_variable = { 
+				name = trade_do_trade_t
+				subtract = var:trade_out_tools
+			}
+			set_variable = { 
+				name = trade_do_trade_tt
+				value = capital_county.var:trade_dmnd_tools
+			}
+			change_variable = { 
+				name = trade_do_trade_tt
+				subtract = capital_county.var:trade_in_tools
+			}
+			if = { 
+				limit = { 
+					has_variable = trade_do_trade_t
+					has_variable = trade_do_trade_tt
+					var:trade_do_trade_t > 0
+					var:trade_do_trade_tt > 0
+				}
+				if = { 
+					limit = { 
+						var:trade_do_trade_t = { 
+							compare_value > prev.var:trade_do_trade_tt
+						}
+					}
+					set_variable = { 
+						name = trade_do_trade_t
+						value = var:trade_do_trade_tt
+					}
+				}
+				set_variable = { 
+					name = trade_do_trade_tt
+					value = var:trade_price_tools
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					add = capital_county.var:trade_price_tools
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					divide = 2
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					multiply = var:trade_do_trade_t
+				}
+				change_variable = { 
+					name = trade_out_tools
+					add = var:trade_do_trade_t
+				}
+				change_variable = { 
+					name = trade_earn_tools
+					add = var:trade_do_trade_tt
+				}
+				capital_county = { 
+					change_variable = { 
+						name = trade_in_tools
+						add = prev.var:trade_do_trade_t
+					}
+					change_variable = { 
+						name = trade_pay_tools
+						add = prev.var:trade_do_trade_tt
+					}
+				}
+			}
+			set_variable = { 
+				name = trade_do_trade_t
+				value = var:trade_dmnd_tools
+			}
+			change_variable = { 
+				name = trade_do_trade_t
+				subtract = var:trade_in_tools
+			}
+			set_variable = { 
+				name = trade_do_trade_tt
+				value = capital_county.var:trade_sply_tools
+			}
+			change_variable = { 
+				name = trade_do_trade_tt
+				subtract = capital_county.var:trade_out_tools
+			}
+			if = { 
+				limit = { 
+					has_variable = trade_do_trade_t
+					has_variable = trade_do_trade_tt
+					var:trade_do_trade_t > 0
+					var:trade_do_trade_tt > 0
+				}
+				if = { 
+					limit = { 
+						var:trade_do_trade_t = { 
+							compare_value > prev.var:trade_do_trade_tt
+						}
+					}
+					set_variable = { 
+						name = trade_do_trade_t
+						value = var:trade_do_trade_tt
+					}
+				}
+				set_variable = { 
+					name = trade_do_trade_tt
+					value = var:trade_price_tools
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					add = capital_county.var:trade_price_tools
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					divide = 2
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					multiply = var:trade_do_trade_t
+				}
+				change_variable = { 
+					name = trade_in_tools
+					add = var:trade_do_trade_t
+				}
+				change_variable = { 
+					name = trade_pay_tools
+					add = var:trade_do_trade_tt
+				}
+				capital_county = { 
+					change_variable = { 
+						name = trade_out_tools
+						add = prev.var:trade_do_trade_t
+					}
+					change_variable = { 
+						name = trade_earn_tools
+						add = prev.var:trade_do_trade_tt
+					}
+				}
+			}
 			remove_variable = trade_buy_tools
 			remove_variable = trade_sell_tools
 			remove_variable = trade_point_tools
@@ -49533,6 +51603,144 @@ census.06 = {
 			remove_variable = trade_do_trade_t_tools
 			remove_variable = trade_do_trade_tt_tools
 			remove_variable = trade_do_trade_ttt_tools
+			set_variable = { 
+				name = trade_do_trade_t
+				value = var:trade_sply_armaments
+			}
+			change_variable = { 
+				name = trade_do_trade_t
+				subtract = var:trade_out_armaments
+			}
+			set_variable = { 
+				name = trade_do_trade_tt
+				value = capital_county.var:trade_dmnd_armaments
+			}
+			change_variable = { 
+				name = trade_do_trade_tt
+				subtract = capital_county.var:trade_in_armaments
+			}
+			if = { 
+				limit = { 
+					has_variable = trade_do_trade_t
+					has_variable = trade_do_trade_tt
+					var:trade_do_trade_t > 0
+					var:trade_do_trade_tt > 0
+				}
+				if = { 
+					limit = { 
+						var:trade_do_trade_t = { 
+							compare_value > prev.var:trade_do_trade_tt
+						}
+					}
+					set_variable = { 
+						name = trade_do_trade_t
+						value = var:trade_do_trade_tt
+					}
+				}
+				set_variable = { 
+					name = trade_do_trade_tt
+					value = var:trade_price_armaments
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					add = capital_county.var:trade_price_armaments
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					divide = 2
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					multiply = var:trade_do_trade_t
+				}
+				change_variable = { 
+					name = trade_out_armaments
+					add = var:trade_do_trade_t
+				}
+				change_variable = { 
+					name = trade_earn_armaments
+					add = var:trade_do_trade_tt
+				}
+				capital_county = { 
+					change_variable = { 
+						name = trade_in_armaments
+						add = prev.var:trade_do_trade_t
+					}
+					change_variable = { 
+						name = trade_pay_armaments
+						add = prev.var:trade_do_trade_tt
+					}
+				}
+			}
+			set_variable = { 
+				name = trade_do_trade_t
+				value = var:trade_dmnd_armaments
+			}
+			change_variable = { 
+				name = trade_do_trade_t
+				subtract = var:trade_in_armaments
+			}
+			set_variable = { 
+				name = trade_do_trade_tt
+				value = capital_county.var:trade_sply_armaments
+			}
+			change_variable = { 
+				name = trade_do_trade_tt
+				subtract = capital_county.var:trade_out_armaments
+			}
+			if = { 
+				limit = { 
+					has_variable = trade_do_trade_t
+					has_variable = trade_do_trade_tt
+					var:trade_do_trade_t > 0
+					var:trade_do_trade_tt > 0
+				}
+				if = { 
+					limit = { 
+						var:trade_do_trade_t = { 
+							compare_value > prev.var:trade_do_trade_tt
+						}
+					}
+					set_variable = { 
+						name = trade_do_trade_t
+						value = var:trade_do_trade_tt
+					}
+				}
+				set_variable = { 
+					name = trade_do_trade_tt
+					value = var:trade_price_armaments
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					add = capital_county.var:trade_price_armaments
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					divide = 2
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					multiply = var:trade_do_trade_t
+				}
+				change_variable = { 
+					name = trade_in_armaments
+					add = var:trade_do_trade_t
+				}
+				change_variable = { 
+					name = trade_pay_armaments
+					add = var:trade_do_trade_tt
+				}
+				capital_county = { 
+					change_variable = { 
+						name = trade_out_armaments
+						add = prev.var:trade_do_trade_t
+					}
+					change_variable = { 
+						name = trade_earn_armaments
+						add = prev.var:trade_do_trade_tt
+					}
+				}
+			}
 			remove_variable = trade_buy_armaments
 			remove_variable = trade_sell_armaments
 			remove_variable = trade_point_armaments
@@ -72536,6 +74744,10 @@ census.11 = {
 			set_variable = { 
 				name = stat_main_t
 				value = var:stat_tax
+			}
+			change_variable = { 
+				name = stat_main_t
+				divide = 12
 			}
 			if = { 
 				limit = { 
