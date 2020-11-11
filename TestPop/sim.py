@@ -452,7 +452,7 @@ sim_run.02 = {
 					else = {
 						change_variable = { name = sim_balance multiply = -1 }
 						
-						eff_binary_1_16 = { name = sim_balance eff = add_gold rev = yes }
+						eff_binary_1_16 = { name = sim_balance eff = remove_short_term_gold }
 					}
 
 					remove_variable = sim_balance
