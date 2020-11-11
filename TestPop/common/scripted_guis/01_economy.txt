@@ -27,6 +27,7 @@
 			remove_variable = info_trade_county_price_textile
 			remove_variable = info_trade_county_price_pottery
 			remove_variable = info_trade_county_price_tools
+			remove_variable = info_trade_county_price_armaments
 		}
 		else = { 
 			set_variable = { 
@@ -93,6 +94,10 @@
 				name = info_trade_county_price_tools
 				value = county.var:trade_price_tools
 			}
+			set_variable = { 
+				name = info_trade_county_price_armaments
+				value = county.var:trade_price_armaments
+			}
 		}
 	}
 }
@@ -125,6 +130,7 @@ close_county_trade = {
 			remove_variable = info_trade_county_price_textile
 			remove_variable = info_trade_county_price_pottery
 			remove_variable = info_trade_county_price_tools
+			remove_variable = info_trade_county_price_armaments
 		}
 	}
 }
@@ -277,6 +283,15 @@ toggle_prov_trade = {
 			remove_variable = info_trade_prov_in_pop_tools
 			remove_variable = info_trade_prov_in_prod_tools
 			remove_variable = info_trade_prov_in_build_tools
+			remove_variable = info_trade_prov_sply_armaments
+			remove_variable = info_trade_prov_dmnd_armaments
+			remove_variable = info_trade_prov_dmnd_pop_armaments
+			remove_variable = info_trade_prov_dmnd_prod_armaments
+			remove_variable = info_trade_prov_dmnd_build_armaments
+			remove_variable = info_trade_prov_in_armaments
+			remove_variable = info_trade_prov_in_pop_armaments
+			remove_variable = info_trade_prov_in_prod_armaments
+			remove_variable = info_trade_prov_in_build_armaments
 		}
 		else = { 
 			set_variable = { 
@@ -3373,6 +3388,212 @@ toggle_prov_trade = {
 				name = info_trade_prov_in_tools
 				add = var:info_trade_prov_in_build_tools
 			}
+			set_variable = { 
+				name = info_trade_prov_sply_armaments
+				value = 0
+			}
+			set_variable = { 
+				name = info_trade_prov_dmnd_armaments
+				value = 0
+			}
+			set_variable = { 
+				name = info_trade_prov_dmnd_pop_armaments
+				value = 0
+			}
+			set_variable = { 
+				name = info_trade_prov_dmnd_prod_armaments
+				value = 0
+			}
+			set_variable = { 
+				name = info_trade_prov_dmnd_build_armaments
+				value = 0
+			}
+			set_variable = { 
+				name = info_trade_prov_in_armaments
+				value = 0
+			}
+			set_variable = { 
+				name = info_trade_prov_in_pop_armaments
+				value = 0
+			}
+			set_variable = { 
+				name = info_trade_prov_in_prod_armaments
+				value = 0
+			}
+			set_variable = { 
+				name = info_trade_prov_in_build_armaments
+				value = 0
+			}
+			if = { 
+				limit = { 
+					has_variable = pop_calorie_armaments
+					var:pop_calorie_armaments > 0
+				}
+				change_variable = { 
+					name = info_trade_prov_dmnd_pop_armaments
+					add = var:pop_calorie_armaments
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = pop_calorie_actual_armaments
+					var:pop_calorie_actual_armaments > 0
+				}
+				change_variable = { 
+					name = info_trade_prov_in_pop_armaments
+					add = var:pop_calorie_actual_armaments
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = pop_nutrient_armaments
+					var:pop_nutrient_armaments > 0
+				}
+				change_variable = { 
+					name = info_trade_prov_dmnd_pop_armaments
+					add = var:pop_nutrient_armaments
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = pop_nutrient_actual_armaments
+					var:pop_nutrient_actual_armaments > 0
+				}
+				change_variable = { 
+					name = info_trade_prov_in_pop_armaments
+					add = var:pop_nutrient_actual_armaments
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = pop_comfort_armaments
+					var:pop_comfort_armaments > 0
+				}
+				change_variable = { 
+					name = info_trade_prov_dmnd_pop_armaments
+					add = var:pop_comfort_armaments
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = pop_comfort_actual_armaments
+					var:pop_comfort_actual_armaments > 0
+				}
+				change_variable = { 
+					name = info_trade_prov_in_pop_armaments
+					add = var:pop_comfort_actual_armaments
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = pop_luxury_armaments
+					var:pop_luxury_armaments > 0
+				}
+				change_variable = { 
+					name = info_trade_prov_dmnd_pop_armaments
+					add = var:pop_luxury_armaments
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = pop_luxury_actual_armaments
+					var:pop_luxury_actual_armaments > 0
+				}
+				change_variable = { 
+					name = info_trade_prov_in_pop_armaments
+					add = var:pop_luxury_actual_armaments
+				}
+			}
+			every_in_list = { 
+				variable = prod_instances
+				if = { 
+					limit = { 
+						has_variable = prod_sply_old_armaments
+						var:prod_sply_old_armaments > 0
+					}
+					prev = { 
+						change_variable = { 
+							name = info_trade_prov_sply_armaments
+							add = prev.var:prod_sply_old_armaments
+						}
+					}
+				}
+				if = { 
+					limit = { 
+						has_variable = prod_dmnd_old_armaments
+						var:prod_dmnd_old_armaments > 0
+					}
+					prev = { 
+						change_variable = { 
+							name = info_trade_prov_dmnd_prod_armaments
+							add = prev.var:prod_dmnd_old_armaments
+						}
+					}
+				}
+				if = { 
+					limit = { 
+						has_variable = prod_in_old_armaments
+						var:prod_in_old_armaments > 0
+					}
+					prev = { 
+						change_variable = { 
+							name = info_trade_prov_in_prod_armaments
+							add = prev.var:prod_in_old_armaments
+						}
+					}
+				}
+			}
+			every_in_list = { 
+				variable = build_slots
+				if = { 
+					limit = { 
+						has_variable = build_armaments
+						var:build_armaments > 0
+					}
+					prev = { 
+						change_variable = { 
+							name = info_trade_prov_dmnd_build_armaments
+							add = prev.var:build_armaments
+						}
+					}
+				}
+				if = { 
+					limit = { 
+						has_variable = build_in_armaments
+						var:build_in_armaments > 0
+					}
+					prev = { 
+						change_variable = { 
+							name = info_trade_prov_in_build_armaments
+							add = prev.var:build_in_armaments
+						}
+					}
+				}
+			}
+			change_variable = { 
+				name = info_trade_prov_dmnd_armaments
+				add = var:info_trade_prov_dmnd_pop_armaments
+			}
+			change_variable = { 
+				name = info_trade_prov_dmnd_armaments
+				add = var:info_trade_prov_dmnd_prod_armaments
+			}
+			change_variable = { 
+				name = info_trade_prov_dmnd_armaments
+				add = var:info_trade_prov_dmnd_build_armaments
+			}
+			change_variable = { 
+				name = info_trade_prov_in_armaments
+				add = var:info_trade_prov_in_pop_armaments
+			}
+			change_variable = { 
+				name = info_trade_prov_in_armaments
+				add = var:info_trade_prov_in_prod_armaments
+			}
+			change_variable = { 
+				name = info_trade_prov_in_armaments
+				add = var:info_trade_prov_in_build_armaments
+			}
 		}
 	}
 }
@@ -3525,6 +3746,15 @@ close_prov_trade = {
 			remove_variable = info_trade_prov_in_pop_tools
 			remove_variable = info_trade_prov_in_prod_tools
 			remove_variable = info_trade_prov_in_build_tools
+			remove_variable = info_trade_prov_sply_armaments
+			remove_variable = info_trade_prov_dmnd_armaments
+			remove_variable = info_trade_prov_dmnd_pop_armaments
+			remove_variable = info_trade_prov_dmnd_prod_armaments
+			remove_variable = info_trade_prov_dmnd_build_armaments
+			remove_variable = info_trade_prov_in_armaments
+			remove_variable = info_trade_prov_in_pop_armaments
+			remove_variable = info_trade_prov_in_prod_armaments
+			remove_variable = info_trade_prov_in_build_armaments
 		}
 	}
 }
@@ -4246,6 +4476,26 @@ toggle_prov_merchant_dat = {
 			remove_variable = info_dat_merchant_out_scope_4_tools
 			remove_variable = info_dat_merchant_in_val_4_tools
 			remove_variable = info_dat_merchant_in_scope_4_tools
+			remove_variable = info_dat_merchant_out_val_0_armaments
+			remove_variable = info_dat_merchant_out_scope_0_armaments
+			remove_variable = info_dat_merchant_in_val_0_armaments
+			remove_variable = info_dat_merchant_in_scope_0_armaments
+			remove_variable = info_dat_merchant_out_val_1_armaments
+			remove_variable = info_dat_merchant_out_scope_1_armaments
+			remove_variable = info_dat_merchant_in_val_1_armaments
+			remove_variable = info_dat_merchant_in_scope_1_armaments
+			remove_variable = info_dat_merchant_out_val_2_armaments
+			remove_variable = info_dat_merchant_out_scope_2_armaments
+			remove_variable = info_dat_merchant_in_val_2_armaments
+			remove_variable = info_dat_merchant_in_scope_2_armaments
+			remove_variable = info_dat_merchant_out_val_3_armaments
+			remove_variable = info_dat_merchant_out_scope_3_armaments
+			remove_variable = info_dat_merchant_in_val_3_armaments
+			remove_variable = info_dat_merchant_in_scope_3_armaments
+			remove_variable = info_dat_merchant_out_val_4_armaments
+			remove_variable = info_dat_merchant_out_scope_4_armaments
+			remove_variable = info_dat_merchant_in_val_4_armaments
+			remove_variable = info_dat_merchant_in_scope_4_armaments
 		}
 		else_if = { 
 			limit = { 
@@ -16826,6 +17076,844 @@ toggle_prov_merchant_dat = {
 			remove_global_variable = toggled_prov_merchant_dat_t
 			clear_variable_list = toggled_prov_merchant_dat_t
 			clear_variable_list = array_toggled_prov_merchant_dat_t
+			var:trade_merchant = { 
+				every_in_list = { 
+					variable = trade_dat_armaments
+					scope:toggle_prov_merchant_dat_t = { 
+						add_to_variable_list = { 
+							name = toggled_prov_merchant_dat_t
+							target = prev
+						}
+					}
+				}
+				every_in_list = { 
+					variable = array_trade_dat_armaments
+					scope:toggle_prov_merchant_dat_t = { 
+						add_to_variable_list = { 
+							name = array_toggled_prov_merchant_dat_t
+							target = prev
+						}
+					}
+				}
+			}
+			set_global_variable = { 
+				name = array_get_max_t
+				value = 0
+			}
+			set_global_variable = { 
+				name = array_get_max_tt
+				value = 0
+			}
+			set_variable = { 
+				name = array_get_max_t
+				value = -210000
+			}
+			every_in_list = { 
+				variable = array_toggled_prov_merchant_dat_t
+				if = { 
+					limit = { 
+						prev.var:array_get_max_t = { 
+							compare_value < prev
+						}
+					}
+					set_global_variable = { 
+						name = array_get_max_tt
+						value = global_var:array_get_max_t
+					}
+					prev = { 
+						set_variable = { 
+							name = array_get_max_t
+							value = prev
+						}
+					}
+				}
+				change_global_variable = { 
+					name = array_get_max_t
+					add = 1
+				}
+			}
+			set_variable = { 
+				name = info_dat_merchant_out_val_0_armaments
+				value = var:array_get_max_t
+			}
+			change_variable = { 
+				name = info_dat_merchant_out_val_0_armaments
+				divide = 10
+			}
+			set_global_variable = { 
+				name = toggled_prov_merchant_dat_t
+				value = global_var:array_get_max_tt
+			}
+			remove_global_variable = array_get_max_t
+			remove_global_variable = array_get_max_tt
+			remove_variable = array_get_max_t
+			if = { 
+				limit = { 
+					has_variable = info_dat_merchant_out_val_0_armaments
+					var:info_dat_merchant_out_val_0_armaments > 0
+				}
+				ordered_in_list = { 
+					variable = toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						set_variable = { 
+							name = info_dat_merchant_out_scope_0_armaments
+							value = prev
+						}
+						remove_list_variable = { 
+							name = toggled_prov_merchant_dat_t
+							target = prev
+						}
+					}
+				}
+				ordered_in_list = { 
+					variable = array_toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						remove_list_variable = { 
+							name = array_toggled_prov_merchant_dat_t
+							target = prev
+						}
+					}
+				}
+			}
+			else = { 
+				remove_variable = info_dat_merchant_out_val_0_armaments
+			}
+			set_global_variable = { 
+				name = array_get_max_t
+				value = 0
+			}
+			set_global_variable = { 
+				name = array_get_max_tt
+				value = 0
+			}
+			set_variable = { 
+				name = array_get_max_t
+				value = -210000
+			}
+			every_in_list = { 
+				variable = array_toggled_prov_merchant_dat_t
+				if = { 
+					limit = { 
+						prev.var:array_get_max_t = { 
+							compare_value < prev
+						}
+					}
+					set_global_variable = { 
+						name = array_get_max_tt
+						value = global_var:array_get_max_t
+					}
+					prev = { 
+						set_variable = { 
+							name = array_get_max_t
+							value = prev
+						}
+					}
+				}
+				change_global_variable = { 
+					name = array_get_max_t
+					add = 1
+				}
+			}
+			set_variable = { 
+				name = info_dat_merchant_out_val_1_armaments
+				value = var:array_get_max_t
+			}
+			change_variable = { 
+				name = info_dat_merchant_out_val_1_armaments
+				divide = 10
+			}
+			set_global_variable = { 
+				name = toggled_prov_merchant_dat_t
+				value = global_var:array_get_max_tt
+			}
+			remove_global_variable = array_get_max_t
+			remove_global_variable = array_get_max_tt
+			remove_variable = array_get_max_t
+			if = { 
+				limit = { 
+					has_variable = info_dat_merchant_out_val_1_armaments
+					var:info_dat_merchant_out_val_1_armaments > 0
+				}
+				ordered_in_list = { 
+					variable = toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						set_variable = { 
+							name = info_dat_merchant_out_scope_1_armaments
+							value = prev
+						}
+						remove_list_variable = { 
+							name = toggled_prov_merchant_dat_t
+							target = prev
+						}
+					}
+				}
+				ordered_in_list = { 
+					variable = array_toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						remove_list_variable = { 
+							name = array_toggled_prov_merchant_dat_t
+							target = prev
+						}
+					}
+				}
+			}
+			else = { 
+				remove_variable = info_dat_merchant_out_val_1_armaments
+			}
+			set_global_variable = { 
+				name = array_get_max_t
+				value = 0
+			}
+			set_global_variable = { 
+				name = array_get_max_tt
+				value = 0
+			}
+			set_variable = { 
+				name = array_get_max_t
+				value = -210000
+			}
+			every_in_list = { 
+				variable = array_toggled_prov_merchant_dat_t
+				if = { 
+					limit = { 
+						prev.var:array_get_max_t = { 
+							compare_value < prev
+						}
+					}
+					set_global_variable = { 
+						name = array_get_max_tt
+						value = global_var:array_get_max_t
+					}
+					prev = { 
+						set_variable = { 
+							name = array_get_max_t
+							value = prev
+						}
+					}
+				}
+				change_global_variable = { 
+					name = array_get_max_t
+					add = 1
+				}
+			}
+			set_variable = { 
+				name = info_dat_merchant_out_val_2_armaments
+				value = var:array_get_max_t
+			}
+			change_variable = { 
+				name = info_dat_merchant_out_val_2_armaments
+				divide = 10
+			}
+			set_global_variable = { 
+				name = toggled_prov_merchant_dat_t
+				value = global_var:array_get_max_tt
+			}
+			remove_global_variable = array_get_max_t
+			remove_global_variable = array_get_max_tt
+			remove_variable = array_get_max_t
+			if = { 
+				limit = { 
+					has_variable = info_dat_merchant_out_val_2_armaments
+					var:info_dat_merchant_out_val_2_armaments > 0
+				}
+				ordered_in_list = { 
+					variable = toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						set_variable = { 
+							name = info_dat_merchant_out_scope_2_armaments
+							value = prev
+						}
+						remove_list_variable = { 
+							name = toggled_prov_merchant_dat_t
+							target = prev
+						}
+					}
+				}
+				ordered_in_list = { 
+					variable = array_toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						remove_list_variable = { 
+							name = array_toggled_prov_merchant_dat_t
+							target = prev
+						}
+					}
+				}
+			}
+			else = { 
+				remove_variable = info_dat_merchant_out_val_2_armaments
+			}
+			set_global_variable = { 
+				name = array_get_max_t
+				value = 0
+			}
+			set_global_variable = { 
+				name = array_get_max_tt
+				value = 0
+			}
+			set_variable = { 
+				name = array_get_max_t
+				value = -210000
+			}
+			every_in_list = { 
+				variable = array_toggled_prov_merchant_dat_t
+				if = { 
+					limit = { 
+						prev.var:array_get_max_t = { 
+							compare_value < prev
+						}
+					}
+					set_global_variable = { 
+						name = array_get_max_tt
+						value = global_var:array_get_max_t
+					}
+					prev = { 
+						set_variable = { 
+							name = array_get_max_t
+							value = prev
+						}
+					}
+				}
+				change_global_variable = { 
+					name = array_get_max_t
+					add = 1
+				}
+			}
+			set_variable = { 
+				name = info_dat_merchant_out_val_3_armaments
+				value = var:array_get_max_t
+			}
+			change_variable = { 
+				name = info_dat_merchant_out_val_3_armaments
+				divide = 10
+			}
+			set_global_variable = { 
+				name = toggled_prov_merchant_dat_t
+				value = global_var:array_get_max_tt
+			}
+			remove_global_variable = array_get_max_t
+			remove_global_variable = array_get_max_tt
+			remove_variable = array_get_max_t
+			if = { 
+				limit = { 
+					has_variable = info_dat_merchant_out_val_3_armaments
+					var:info_dat_merchant_out_val_3_armaments > 0
+				}
+				ordered_in_list = { 
+					variable = toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						set_variable = { 
+							name = info_dat_merchant_out_scope_3_armaments
+							value = prev
+						}
+						remove_list_variable = { 
+							name = toggled_prov_merchant_dat_t
+							target = prev
+						}
+					}
+				}
+				ordered_in_list = { 
+					variable = array_toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						remove_list_variable = { 
+							name = array_toggled_prov_merchant_dat_t
+							target = prev
+						}
+					}
+				}
+			}
+			else = { 
+				remove_variable = info_dat_merchant_out_val_3_armaments
+			}
+			set_global_variable = { 
+				name = array_get_max_t
+				value = 0
+			}
+			set_global_variable = { 
+				name = array_get_max_tt
+				value = 0
+			}
+			set_variable = { 
+				name = array_get_max_t
+				value = -210000
+			}
+			every_in_list = { 
+				variable = array_toggled_prov_merchant_dat_t
+				if = { 
+					limit = { 
+						prev.var:array_get_max_t = { 
+							compare_value < prev
+						}
+					}
+					set_global_variable = { 
+						name = array_get_max_tt
+						value = global_var:array_get_max_t
+					}
+					prev = { 
+						set_variable = { 
+							name = array_get_max_t
+							value = prev
+						}
+					}
+				}
+				change_global_variable = { 
+					name = array_get_max_t
+					add = 1
+				}
+			}
+			set_variable = { 
+				name = info_dat_merchant_out_val_4_armaments
+				value = var:array_get_max_t
+			}
+			change_variable = { 
+				name = info_dat_merchant_out_val_4_armaments
+				divide = 10
+			}
+			set_global_variable = { 
+				name = toggled_prov_merchant_dat_t
+				value = global_var:array_get_max_tt
+			}
+			remove_global_variable = array_get_max_t
+			remove_global_variable = array_get_max_tt
+			remove_variable = array_get_max_t
+			if = { 
+				limit = { 
+					has_variable = info_dat_merchant_out_val_4_armaments
+					var:info_dat_merchant_out_val_4_armaments > 0
+				}
+				ordered_in_list = { 
+					variable = toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						set_variable = { 
+							name = info_dat_merchant_out_scope_4_armaments
+							value = prev
+						}
+						remove_list_variable = { 
+							name = toggled_prov_merchant_dat_t
+							target = prev
+						}
+					}
+				}
+				ordered_in_list = { 
+					variable = array_toggled_prov_merchant_dat_t
+					position = global_var:toggled_prov_merchant_dat_t.compare_value
+					prev = { 
+						remove_list_variable = { 
+							name = array_toggled_prov_merchant_dat_t
+							target = prev
+						}
+					}
+				}
+			}
+			else = { 
+				remove_variable = info_dat_merchant_out_val_4_armaments
+			}
+			set_global_variable = { 
+				name = array_get_min_t
+				value = 0
+			}
+			set_global_variable = { 
+				name = array_get_min_tt
+				value = 0
+			}
+			set_variable = { 
+				name = array_get_min_t
+				value = 210000
+			}
+			every_in_list = { 
+				variable = array_toggled_prov_merchant_dat_t
+				if = { 
+					limit = { 
+						prev.var:array_get_min_t = { 
+							compare_value > prev
+						}
+					}
+					set_global_variable = { 
+						name = array_get_min_tt
+						value = global_var:array_get_min_t
+					}
+					prev = { 
+						set_variable = { 
+							name = array_get_min_t
+							value = prev
+						}
+					}
+				}
+				change_global_variable = { 
+					name = array_get_min_t
+					add = 1
+				}
+			}
+			set_variable = { 
+				name = info_dat_merchant_in_val_0_armaments
+				value = var:array_get_min_t
+			}
+			change_variable = { 
+				name = info_dat_merchant_in_val_0_armaments
+				divide = 10
+			}
+			set_global_variable = { 
+				name = toggled_prov_merchant_dat_t
+				value = global_var:array_get_min_tt
+			}
+			remove_global_variable = array_get_min_t
+			remove_global_variable = array_get_min_tt
+			remove_variable = array_get_min_t
+			change_variable = { 
+				name = info_dat_merchant_in_val_0_armaments
+				multiply = -1
+			}
+			ordered_in_list = { 
+				variable = toggled_prov_merchant_dat_t
+				position = global_var:toggled_prov_merchant_dat_t.compare_value
+				prev = { 
+					set_variable = { 
+						name = info_dat_merchant_in_scope_0_armaments
+						value = prev
+					}
+					remove_list_variable = { 
+						name = toggled_prov_merchant_dat_t
+						target = prev
+					}
+				}
+			}
+			ordered_in_list = { 
+				variable = array_toggled_prov_merchant_dat_t
+				position = global_var:toggled_prov_merchant_dat_t.compare_value
+				prev = { 
+					remove_list_variable = { 
+						name = array_toggled_prov_merchant_dat_t
+						target = prev
+					}
+				}
+			}
+			set_global_variable = { 
+				name = array_get_min_t
+				value = 0
+			}
+			set_global_variable = { 
+				name = array_get_min_tt
+				value = 0
+			}
+			set_variable = { 
+				name = array_get_min_t
+				value = 210000
+			}
+			every_in_list = { 
+				variable = array_toggled_prov_merchant_dat_t
+				if = { 
+					limit = { 
+						prev.var:array_get_min_t = { 
+							compare_value > prev
+						}
+					}
+					set_global_variable = { 
+						name = array_get_min_tt
+						value = global_var:array_get_min_t
+					}
+					prev = { 
+						set_variable = { 
+							name = array_get_min_t
+							value = prev
+						}
+					}
+				}
+				change_global_variable = { 
+					name = array_get_min_t
+					add = 1
+				}
+			}
+			set_variable = { 
+				name = info_dat_merchant_in_val_1_armaments
+				value = var:array_get_min_t
+			}
+			change_variable = { 
+				name = info_dat_merchant_in_val_1_armaments
+				divide = 10
+			}
+			set_global_variable = { 
+				name = toggled_prov_merchant_dat_t
+				value = global_var:array_get_min_tt
+			}
+			remove_global_variable = array_get_min_t
+			remove_global_variable = array_get_min_tt
+			remove_variable = array_get_min_t
+			change_variable = { 
+				name = info_dat_merchant_in_val_1_armaments
+				multiply = -1
+			}
+			ordered_in_list = { 
+				variable = toggled_prov_merchant_dat_t
+				position = global_var:toggled_prov_merchant_dat_t.compare_value
+				prev = { 
+					set_variable = { 
+						name = info_dat_merchant_in_scope_1_armaments
+						value = prev
+					}
+					remove_list_variable = { 
+						name = toggled_prov_merchant_dat_t
+						target = prev
+					}
+				}
+			}
+			ordered_in_list = { 
+				variable = array_toggled_prov_merchant_dat_t
+				position = global_var:toggled_prov_merchant_dat_t.compare_value
+				prev = { 
+					remove_list_variable = { 
+						name = array_toggled_prov_merchant_dat_t
+						target = prev
+					}
+				}
+			}
+			set_global_variable = { 
+				name = array_get_min_t
+				value = 0
+			}
+			set_global_variable = { 
+				name = array_get_min_tt
+				value = 0
+			}
+			set_variable = { 
+				name = array_get_min_t
+				value = 210000
+			}
+			every_in_list = { 
+				variable = array_toggled_prov_merchant_dat_t
+				if = { 
+					limit = { 
+						prev.var:array_get_min_t = { 
+							compare_value > prev
+						}
+					}
+					set_global_variable = { 
+						name = array_get_min_tt
+						value = global_var:array_get_min_t
+					}
+					prev = { 
+						set_variable = { 
+							name = array_get_min_t
+							value = prev
+						}
+					}
+				}
+				change_global_variable = { 
+					name = array_get_min_t
+					add = 1
+				}
+			}
+			set_variable = { 
+				name = info_dat_merchant_in_val_2_armaments
+				value = var:array_get_min_t
+			}
+			change_variable = { 
+				name = info_dat_merchant_in_val_2_armaments
+				divide = 10
+			}
+			set_global_variable = { 
+				name = toggled_prov_merchant_dat_t
+				value = global_var:array_get_min_tt
+			}
+			remove_global_variable = array_get_min_t
+			remove_global_variable = array_get_min_tt
+			remove_variable = array_get_min_t
+			change_variable = { 
+				name = info_dat_merchant_in_val_2_armaments
+				multiply = -1
+			}
+			ordered_in_list = { 
+				variable = toggled_prov_merchant_dat_t
+				position = global_var:toggled_prov_merchant_dat_t.compare_value
+				prev = { 
+					set_variable = { 
+						name = info_dat_merchant_in_scope_2_armaments
+						value = prev
+					}
+					remove_list_variable = { 
+						name = toggled_prov_merchant_dat_t
+						target = prev
+					}
+				}
+			}
+			ordered_in_list = { 
+				variable = array_toggled_prov_merchant_dat_t
+				position = global_var:toggled_prov_merchant_dat_t.compare_value
+				prev = { 
+					remove_list_variable = { 
+						name = array_toggled_prov_merchant_dat_t
+						target = prev
+					}
+				}
+			}
+			set_global_variable = { 
+				name = array_get_min_t
+				value = 0
+			}
+			set_global_variable = { 
+				name = array_get_min_tt
+				value = 0
+			}
+			set_variable = { 
+				name = array_get_min_t
+				value = 210000
+			}
+			every_in_list = { 
+				variable = array_toggled_prov_merchant_dat_t
+				if = { 
+					limit = { 
+						prev.var:array_get_min_t = { 
+							compare_value > prev
+						}
+					}
+					set_global_variable = { 
+						name = array_get_min_tt
+						value = global_var:array_get_min_t
+					}
+					prev = { 
+						set_variable = { 
+							name = array_get_min_t
+							value = prev
+						}
+					}
+				}
+				change_global_variable = { 
+					name = array_get_min_t
+					add = 1
+				}
+			}
+			set_variable = { 
+				name = info_dat_merchant_in_val_3_armaments
+				value = var:array_get_min_t
+			}
+			change_variable = { 
+				name = info_dat_merchant_in_val_3_armaments
+				divide = 10
+			}
+			set_global_variable = { 
+				name = toggled_prov_merchant_dat_t
+				value = global_var:array_get_min_tt
+			}
+			remove_global_variable = array_get_min_t
+			remove_global_variable = array_get_min_tt
+			remove_variable = array_get_min_t
+			change_variable = { 
+				name = info_dat_merchant_in_val_3_armaments
+				multiply = -1
+			}
+			ordered_in_list = { 
+				variable = toggled_prov_merchant_dat_t
+				position = global_var:toggled_prov_merchant_dat_t.compare_value
+				prev = { 
+					set_variable = { 
+						name = info_dat_merchant_in_scope_3_armaments
+						value = prev
+					}
+					remove_list_variable = { 
+						name = toggled_prov_merchant_dat_t
+						target = prev
+					}
+				}
+			}
+			ordered_in_list = { 
+				variable = array_toggled_prov_merchant_dat_t
+				position = global_var:toggled_prov_merchant_dat_t.compare_value
+				prev = { 
+					remove_list_variable = { 
+						name = array_toggled_prov_merchant_dat_t
+						target = prev
+					}
+				}
+			}
+			set_global_variable = { 
+				name = array_get_min_t
+				value = 0
+			}
+			set_global_variable = { 
+				name = array_get_min_tt
+				value = 0
+			}
+			set_variable = { 
+				name = array_get_min_t
+				value = 210000
+			}
+			every_in_list = { 
+				variable = array_toggled_prov_merchant_dat_t
+				if = { 
+					limit = { 
+						prev.var:array_get_min_t = { 
+							compare_value > prev
+						}
+					}
+					set_global_variable = { 
+						name = array_get_min_tt
+						value = global_var:array_get_min_t
+					}
+					prev = { 
+						set_variable = { 
+							name = array_get_min_t
+							value = prev
+						}
+					}
+				}
+				change_global_variable = { 
+					name = array_get_min_t
+					add = 1
+				}
+			}
+			set_variable = { 
+				name = info_dat_merchant_in_val_4_armaments
+				value = var:array_get_min_t
+			}
+			change_variable = { 
+				name = info_dat_merchant_in_val_4_armaments
+				divide = 10
+			}
+			set_global_variable = { 
+				name = toggled_prov_merchant_dat_t
+				value = global_var:array_get_min_tt
+			}
+			remove_global_variable = array_get_min_t
+			remove_global_variable = array_get_min_tt
+			remove_variable = array_get_min_t
+			change_variable = { 
+				name = info_dat_merchant_in_val_4_armaments
+				multiply = -1
+			}
+			ordered_in_list = { 
+				variable = toggled_prov_merchant_dat_t
+				position = global_var:toggled_prov_merchant_dat_t.compare_value
+				prev = { 
+					set_variable = { 
+						name = info_dat_merchant_in_scope_4_armaments
+						value = prev
+					}
+					remove_list_variable = { 
+						name = toggled_prov_merchant_dat_t
+						target = prev
+					}
+				}
+			}
+			ordered_in_list = { 
+				variable = array_toggled_prov_merchant_dat_t
+				position = global_var:toggled_prov_merchant_dat_t.compare_value
+				prev = { 
+					remove_list_variable = { 
+						name = array_toggled_prov_merchant_dat_t
+						target = prev
+					}
+				}
+			}
+			remove_global_variable = toggled_prov_merchant_dat_t
+			clear_variable_list = toggled_prov_merchant_dat_t
+			clear_variable_list = array_toggled_prov_merchant_dat_t
 		}
 	}
 }
@@ -17143,6 +18231,26 @@ close_prov_merchant_dat = {
 			remove_variable = info_dat_merchant_out_scope_4_tools
 			remove_variable = info_dat_merchant_in_val_4_tools
 			remove_variable = info_dat_merchant_in_scope_4_tools
+			remove_variable = info_dat_merchant_out_val_0_armaments
+			remove_variable = info_dat_merchant_out_scope_0_armaments
+			remove_variable = info_dat_merchant_in_val_0_armaments
+			remove_variable = info_dat_merchant_in_scope_0_armaments
+			remove_variable = info_dat_merchant_out_val_1_armaments
+			remove_variable = info_dat_merchant_out_scope_1_armaments
+			remove_variable = info_dat_merchant_in_val_1_armaments
+			remove_variable = info_dat_merchant_in_scope_1_armaments
+			remove_variable = info_dat_merchant_out_val_2_armaments
+			remove_variable = info_dat_merchant_out_scope_2_armaments
+			remove_variable = info_dat_merchant_in_val_2_armaments
+			remove_variable = info_dat_merchant_in_scope_2_armaments
+			remove_variable = info_dat_merchant_out_val_3_armaments
+			remove_variable = info_dat_merchant_out_scope_3_armaments
+			remove_variable = info_dat_merchant_in_val_3_armaments
+			remove_variable = info_dat_merchant_in_scope_3_armaments
+			remove_variable = info_dat_merchant_out_val_4_armaments
+			remove_variable = info_dat_merchant_out_scope_4_armaments
+			remove_variable = info_dat_merchant_in_val_4_armaments
+			remove_variable = info_dat_merchant_in_scope_4_armaments
 		}
 	}
 }
@@ -17340,6 +18448,18 @@ toggle_county_dat = {
 			remove_variable = info_dat_county_out_scope_2_tools
 			remove_variable = info_dat_county_in_val_2_tools
 			remove_variable = info_dat_county_in_scope_2_tools
+			remove_variable = info_dat_county_out_val_0_armaments
+			remove_variable = info_dat_county_out_scope_0_armaments
+			remove_variable = info_dat_county_in_val_0_armaments
+			remove_variable = info_dat_county_in_scope_0_armaments
+			remove_variable = info_dat_county_out_val_1_armaments
+			remove_variable = info_dat_county_out_scope_1_armaments
+			remove_variable = info_dat_county_in_val_1_armaments
+			remove_variable = info_dat_county_in_scope_1_armaments
+			remove_variable = info_dat_county_out_val_2_armaments
+			remove_variable = info_dat_county_out_scope_2_armaments
+			remove_variable = info_dat_county_in_val_2_armaments
+			remove_variable = info_dat_county_in_scope_2_armaments
 		}
 		else = { 
 			set_variable = { 
@@ -25027,6 +26147,518 @@ toggle_county_dat = {
 			remove_global_variable = toggled_county_dat_t
 			clear_variable_list = toggled_county_dat_t
 			clear_variable_list = array_toggled_county_dat_t
+			county = { 
+				every_in_list = { 
+					variable = trade_dat_armaments
+					scope:toggle_county_dat = { 
+						add_to_variable_list = { 
+							name = toggled_county_dat_t
+							target = prev
+						}
+					}
+				}
+				every_in_list = { 
+					variable = array_trade_dat_armaments
+					scope:toggle_county_dat = { 
+						add_to_variable_list = { 
+							name = array_toggled_county_dat_t
+							target = prev
+						}
+					}
+				}
+			}
+			set_global_variable = { 
+				name = array_get_max_t
+				value = 0
+			}
+			set_global_variable = { 
+				name = array_get_max_tt
+				value = 0
+			}
+			set_variable = { 
+				name = array_get_max_t
+				value = -210000
+			}
+			every_in_list = { 
+				variable = array_toggled_county_dat_t
+				if = { 
+					limit = { 
+						prev.var:array_get_max_t = { 
+							compare_value < prev
+						}
+					}
+					set_global_variable = { 
+						name = array_get_max_tt
+						value = global_var:array_get_max_t
+					}
+					prev = { 
+						set_variable = { 
+							name = array_get_max_t
+							value = prev
+						}
+					}
+				}
+				change_global_variable = { 
+					name = array_get_max_t
+					add = 1
+				}
+			}
+			set_variable = { 
+				name = info_dat_county_out_val_0_armaments
+				value = var:array_get_max_t
+			}
+			change_variable = { 
+				name = info_dat_county_out_val_0_armaments
+				divide = 10
+			}
+			set_global_variable = { 
+				name = toggled_county_dat_t
+				value = global_var:array_get_max_tt
+			}
+			remove_global_variable = array_get_max_t
+			remove_global_variable = array_get_max_tt
+			remove_variable = array_get_max_t
+			if = { 
+				limit = { 
+					has_variable = info_dat_county_out_val_0_armaments
+					var:info_dat_county_out_val_0_armaments > 0
+				}
+				ordered_in_list = { 
+					variable = toggled_county_dat_t
+					position = global_var:toggled_county_dat_t.compare_value
+					prev = { 
+						set_variable = { 
+							name = info_dat_county_out_scope_0_armaments
+							value = prev
+						}
+						remove_list_variable = { 
+							name = toggled_county_dat_t
+							target = prev
+						}
+					}
+				}
+				ordered_in_list = { 
+					variable = array_toggled_county_dat_t
+					position = global_var:toggled_county_dat_t.compare_value
+					prev = { 
+						remove_list_variable = { 
+							name = array_toggled_county_dat_t
+							target = prev
+						}
+					}
+				}
+			}
+			else = { 
+				remove_variable = info_dat_county_out_val_0_armaments
+			}
+			set_global_variable = { 
+				name = array_get_max_t
+				value = 0
+			}
+			set_global_variable = { 
+				name = array_get_max_tt
+				value = 0
+			}
+			set_variable = { 
+				name = array_get_max_t
+				value = -210000
+			}
+			every_in_list = { 
+				variable = array_toggled_county_dat_t
+				if = { 
+					limit = { 
+						prev.var:array_get_max_t = { 
+							compare_value < prev
+						}
+					}
+					set_global_variable = { 
+						name = array_get_max_tt
+						value = global_var:array_get_max_t
+					}
+					prev = { 
+						set_variable = { 
+							name = array_get_max_t
+							value = prev
+						}
+					}
+				}
+				change_global_variable = { 
+					name = array_get_max_t
+					add = 1
+				}
+			}
+			set_variable = { 
+				name = info_dat_county_out_val_1_armaments
+				value = var:array_get_max_t
+			}
+			change_variable = { 
+				name = info_dat_county_out_val_1_armaments
+				divide = 10
+			}
+			set_global_variable = { 
+				name = toggled_county_dat_t
+				value = global_var:array_get_max_tt
+			}
+			remove_global_variable = array_get_max_t
+			remove_global_variable = array_get_max_tt
+			remove_variable = array_get_max_t
+			if = { 
+				limit = { 
+					has_variable = info_dat_county_out_val_1_armaments
+					var:info_dat_county_out_val_1_armaments > 0
+				}
+				ordered_in_list = { 
+					variable = toggled_county_dat_t
+					position = global_var:toggled_county_dat_t.compare_value
+					prev = { 
+						set_variable = { 
+							name = info_dat_county_out_scope_1_armaments
+							value = prev
+						}
+						remove_list_variable = { 
+							name = toggled_county_dat_t
+							target = prev
+						}
+					}
+				}
+				ordered_in_list = { 
+					variable = array_toggled_county_dat_t
+					position = global_var:toggled_county_dat_t.compare_value
+					prev = { 
+						remove_list_variable = { 
+							name = array_toggled_county_dat_t
+							target = prev
+						}
+					}
+				}
+			}
+			else = { 
+				remove_variable = info_dat_county_out_val_1_armaments
+			}
+			set_global_variable = { 
+				name = array_get_max_t
+				value = 0
+			}
+			set_global_variable = { 
+				name = array_get_max_tt
+				value = 0
+			}
+			set_variable = { 
+				name = array_get_max_t
+				value = -210000
+			}
+			every_in_list = { 
+				variable = array_toggled_county_dat_t
+				if = { 
+					limit = { 
+						prev.var:array_get_max_t = { 
+							compare_value < prev
+						}
+					}
+					set_global_variable = { 
+						name = array_get_max_tt
+						value = global_var:array_get_max_t
+					}
+					prev = { 
+						set_variable = { 
+							name = array_get_max_t
+							value = prev
+						}
+					}
+				}
+				change_global_variable = { 
+					name = array_get_max_t
+					add = 1
+				}
+			}
+			set_variable = { 
+				name = info_dat_county_out_val_2_armaments
+				value = var:array_get_max_t
+			}
+			change_variable = { 
+				name = info_dat_county_out_val_2_armaments
+				divide = 10
+			}
+			set_global_variable = { 
+				name = toggled_county_dat_t
+				value = global_var:array_get_max_tt
+			}
+			remove_global_variable = array_get_max_t
+			remove_global_variable = array_get_max_tt
+			remove_variable = array_get_max_t
+			if = { 
+				limit = { 
+					has_variable = info_dat_county_out_val_2_armaments
+					var:info_dat_county_out_val_2_armaments > 0
+				}
+				ordered_in_list = { 
+					variable = toggled_county_dat_t
+					position = global_var:toggled_county_dat_t.compare_value
+					prev = { 
+						set_variable = { 
+							name = info_dat_county_out_scope_2_armaments
+							value = prev
+						}
+						remove_list_variable = { 
+							name = toggled_county_dat_t
+							target = prev
+						}
+					}
+				}
+				ordered_in_list = { 
+					variable = array_toggled_county_dat_t
+					position = global_var:toggled_county_dat_t.compare_value
+					prev = { 
+						remove_list_variable = { 
+							name = array_toggled_county_dat_t
+							target = prev
+						}
+					}
+				}
+			}
+			else = { 
+				remove_variable = info_dat_county_out_val_2_armaments
+			}
+			set_global_variable = { 
+				name = array_get_min_t
+				value = 0
+			}
+			set_global_variable = { 
+				name = array_get_min_tt
+				value = 0
+			}
+			set_variable = { 
+				name = array_get_min_t
+				value = 210000
+			}
+			every_in_list = { 
+				variable = array_toggled_county_dat_t
+				if = { 
+					limit = { 
+						prev.var:array_get_min_t = { 
+							compare_value > prev
+						}
+					}
+					set_global_variable = { 
+						name = array_get_min_tt
+						value = global_var:array_get_min_t
+					}
+					prev = { 
+						set_variable = { 
+							name = array_get_min_t
+							value = prev
+						}
+					}
+				}
+				change_global_variable = { 
+					name = array_get_min_t
+					add = 1
+				}
+			}
+			set_variable = { 
+				name = info_dat_county_in_val_0_armaments
+				value = var:array_get_min_t
+			}
+			change_variable = { 
+				name = info_dat_county_in_val_0_armaments
+				divide = 10
+			}
+			set_global_variable = { 
+				name = toggled_county_dat_t
+				value = global_var:array_get_min_tt
+			}
+			remove_global_variable = array_get_min_t
+			remove_global_variable = array_get_min_tt
+			remove_variable = array_get_min_t
+			change_variable = { 
+				name = info_dat_county_in_val_0_armaments
+				multiply = -1
+			}
+			ordered_in_list = { 
+				variable = toggled_county_dat_t
+				position = global_var:toggled_county_dat_t.compare_value
+				prev = { 
+					set_variable = { 
+						name = info_dat_county_in_scope_0_armaments
+						value = prev
+					}
+					remove_list_variable = { 
+						name = toggled_county_dat_t
+						target = prev
+					}
+				}
+			}
+			ordered_in_list = { 
+				variable = array_toggled_county_dat_t
+				position = global_var:toggled_county_dat_t.compare_value
+				prev = { 
+					remove_list_variable = { 
+						name = array_toggled_county_dat_t
+						target = prev
+					}
+				}
+			}
+			set_global_variable = { 
+				name = array_get_min_t
+				value = 0
+			}
+			set_global_variable = { 
+				name = array_get_min_tt
+				value = 0
+			}
+			set_variable = { 
+				name = array_get_min_t
+				value = 210000
+			}
+			every_in_list = { 
+				variable = array_toggled_county_dat_t
+				if = { 
+					limit = { 
+						prev.var:array_get_min_t = { 
+							compare_value > prev
+						}
+					}
+					set_global_variable = { 
+						name = array_get_min_tt
+						value = global_var:array_get_min_t
+					}
+					prev = { 
+						set_variable = { 
+							name = array_get_min_t
+							value = prev
+						}
+					}
+				}
+				change_global_variable = { 
+					name = array_get_min_t
+					add = 1
+				}
+			}
+			set_variable = { 
+				name = info_dat_county_in_val_1_armaments
+				value = var:array_get_min_t
+			}
+			change_variable = { 
+				name = info_dat_county_in_val_1_armaments
+				divide = 10
+			}
+			set_global_variable = { 
+				name = toggled_county_dat_t
+				value = global_var:array_get_min_tt
+			}
+			remove_global_variable = array_get_min_t
+			remove_global_variable = array_get_min_tt
+			remove_variable = array_get_min_t
+			change_variable = { 
+				name = info_dat_county_in_val_1_armaments
+				multiply = -1
+			}
+			ordered_in_list = { 
+				variable = toggled_county_dat_t
+				position = global_var:toggled_county_dat_t.compare_value
+				prev = { 
+					set_variable = { 
+						name = info_dat_county_in_scope_1_armaments
+						value = prev
+					}
+					remove_list_variable = { 
+						name = toggled_county_dat_t
+						target = prev
+					}
+				}
+			}
+			ordered_in_list = { 
+				variable = array_toggled_county_dat_t
+				position = global_var:toggled_county_dat_t.compare_value
+				prev = { 
+					remove_list_variable = { 
+						name = array_toggled_county_dat_t
+						target = prev
+					}
+				}
+			}
+			set_global_variable = { 
+				name = array_get_min_t
+				value = 0
+			}
+			set_global_variable = { 
+				name = array_get_min_tt
+				value = 0
+			}
+			set_variable = { 
+				name = array_get_min_t
+				value = 210000
+			}
+			every_in_list = { 
+				variable = array_toggled_county_dat_t
+				if = { 
+					limit = { 
+						prev.var:array_get_min_t = { 
+							compare_value > prev
+						}
+					}
+					set_global_variable = { 
+						name = array_get_min_tt
+						value = global_var:array_get_min_t
+					}
+					prev = { 
+						set_variable = { 
+							name = array_get_min_t
+							value = prev
+						}
+					}
+				}
+				change_global_variable = { 
+					name = array_get_min_t
+					add = 1
+				}
+			}
+			set_variable = { 
+				name = info_dat_county_in_val_2_armaments
+				value = var:array_get_min_t
+			}
+			change_variable = { 
+				name = info_dat_county_in_val_2_armaments
+				divide = 10
+			}
+			set_global_variable = { 
+				name = toggled_county_dat_t
+				value = global_var:array_get_min_tt
+			}
+			remove_global_variable = array_get_min_t
+			remove_global_variable = array_get_min_tt
+			remove_variable = array_get_min_t
+			change_variable = { 
+				name = info_dat_county_in_val_2_armaments
+				multiply = -1
+			}
+			ordered_in_list = { 
+				variable = toggled_county_dat_t
+				position = global_var:toggled_county_dat_t.compare_value
+				prev = { 
+					set_variable = { 
+						name = info_dat_county_in_scope_2_armaments
+						value = prev
+					}
+					remove_list_variable = { 
+						name = toggled_county_dat_t
+						target = prev
+					}
+				}
+			}
+			ordered_in_list = { 
+				variable = array_toggled_county_dat_t
+				position = global_var:toggled_county_dat_t.compare_value
+				prev = { 
+					remove_list_variable = { 
+						name = array_toggled_county_dat_t
+						target = prev
+					}
+				}
+			}
+			remove_global_variable = toggled_county_dat_t
+			clear_variable_list = toggled_county_dat_t
+			clear_variable_list = array_toggled_county_dat_t
 		}
 	}
 }
@@ -25224,6 +26856,18 @@ close_county_dat = {
 			remove_variable = info_dat_county_out_scope_2_tools
 			remove_variable = info_dat_county_in_val_2_tools
 			remove_variable = info_dat_county_in_scope_2_tools
+			remove_variable = info_dat_county_out_val_0_armaments
+			remove_variable = info_dat_county_out_scope_0_armaments
+			remove_variable = info_dat_county_in_val_0_armaments
+			remove_variable = info_dat_county_in_scope_0_armaments
+			remove_variable = info_dat_county_out_val_1_armaments
+			remove_variable = info_dat_county_out_scope_1_armaments
+			remove_variable = info_dat_county_in_val_1_armaments
+			remove_variable = info_dat_county_in_scope_1_armaments
+			remove_variable = info_dat_county_out_val_2_armaments
+			remove_variable = info_dat_county_out_scope_2_armaments
+			remove_variable = info_dat_county_in_val_2_armaments
+			remove_variable = info_dat_county_in_scope_2_armaments
 		}
 	}
 }

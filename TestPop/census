@@ -18,6 +18,8 @@ census.02 = {
 	
 	immediate = {
 		prod_update_instances = yes
+		
+		forest_main = yes
 	}
 	
 	option = {
@@ -29,7 +31,8 @@ census.03 = {
 	hidden = yes
 	
 	immediate = {
-		forest_main = yes
+		mil_maa_ai = yes
+		stockpile_ai = yes
 	}
 	
 	option = {
@@ -141,6 +144,46 @@ census.09 = {
 			}
 			pop_resolve_demand = yes
 		}
+	}
+	
+	option = {
+	}
+}
+
+census.10 = {
+	type = empty
+	hidden = yes
+	
+	immediate = {
+		while = {
+			count = 12
+			
+			mil_main = yes
+		}
+	}
+	
+	option = {
+	}
+}
+
+census.11 = {
+	type = empty
+	hidden = yes
+	
+	immediate = {
+		stat_main = yes
+	}
+	
+	option = {
+	}
+}
+
+census.12 = {
+	type = empty
+	hidden = yes
+	
+	immediate = {
+		mil_main = yes
 	}
 	
 	option = {

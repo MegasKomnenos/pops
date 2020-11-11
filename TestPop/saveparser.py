@@ -363,9 +363,21 @@ if __name__ == '__main__':
                                         
                                 outout.append('\t\t\t}\n')
                         else:
-                            outout.append(helper(('\t\t\tset_variable', 'value'), name, data, id_to_title))
+                            if 'trade_' in name:
+                                outout.append('\t\t\tprovince_owner = {\n')
+                                outout.append(helper(('\t\t\t\tset_variable', 'value'), name, data, id_to_title))
+                                outout.append('\t\t\t}\n')
+                            else:
+                                outout.append(helper(('\t\t\tset_variable', 'value'), name, data, id_to_title))
                     for name, data in prov[1].items():
-                        if name != 'prod_instances' and name != 'build_slots':
+                        if 'trade_dat' in name:
+                            outout.append('\t\t\tprovince_owner = {\n')
+
+                            for var in data:
+                                outout.append(helper(('\t\t\t\tadd_to_variable_list', 'target'), name, var, id_to_title))
+
+                            outout.append('\t\t\t}\n')
+                        elif name != 'prod_instances' and name != 'build_slots':
                             for var in data:
                                 outout.append(helper(('\t\t\tadd_to_variable_list', 'target'), name, var, id_to_title))
 
@@ -393,7 +405,10 @@ if __name__ == '__main__':
 
                 outout.append('\t\t}\n')
 
-            out.append(event % (iii, ''.join([item for item in outout if item]), ''))
+            out.append(event % (iii, ''.join([item for item in outout if item]), iii + 1))
+            out.append(event % (iii + 1, '''		init_task_templates = yes
+		init_rulers = yes	
+		task_main = yes''', ''))
 
             print('Parsing and Reconstructing the Events')
 

@@ -1,0 +1,66 @@
+﻿stockpile_ai = {
+	every_ruler = {
+		limit = {
+			is_character = yes
+			is_landed = yes
+			
+			OR = {
+				is_ai = yes
+				
+				has_global_variable = sim_i
+			}
+		}
+		^^goods^
+			set_variable = { name = trade_want_&goods& value = 0 }
+			
+			if = {
+				limit = {
+					has_variable = mil_maa_maintain_&goods&
+				}
+				change_variable = { name = trade_want_&goods& add = var:mil_maa_maintain_&goods& }
+			}
+			if = {
+				limit = {
+					has_variable = mil_levy_maintain_&goods&
+				}
+				change_variable = { name = trade_want_&goods& add = var:mil_levy_maintain_&goods& }
+			}
+			if = {
+				limit = {
+					has_variable = mil_maa_recruit_&goods&
+				}
+				change_variable = { name = trade_want_&goods& add = var:mil_maa_recruit_&goods& }
+			}
+			
+			change_variable = { name = trade_want_&goods& multiply = 24 }
+			
+			if = {
+				limit = {
+					NOT = {
+						has_variable = trade_has_&goods&
+					}
+				}
+				set_variable = { name = trade_has_&goods& value = 0 }
+			}
+			
+			if = {
+				limit = {
+					has_variable = trade_has_&goods&
+					
+					var:trade_has_&goods& = {
+						compare_value > prev.var:trade_want_&goods&
+					}
+				}
+				set_variable = { name = trade_sply_&goods& value = var:trade_has_&goods& }
+				change_variable = { name = trade_sply_&goods& subtract = var:trade_want_&goods& }
+				change_variable = { name = trade_sply_&goods& divide = 2 }
+				set_variable = { name = trade_dmnd_&goods& value = 0 }
+			}
+			else = {
+				set_variable = { name = trade_dmnd_&goods& value = var:trade_want_&goods& }
+				change_variable = { name = trade_dmnd_&goods& subtract = var:trade_has_&goods& }
+				set_variable = { name = trade_sply_&goods& value = 0 }
+			}
+		^
+	}
+}

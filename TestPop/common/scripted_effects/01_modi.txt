@@ -6,6 +6,14 @@
 		modi_prod = yes
 		modi_pop = yes
 	}
+	
+	every_ruler = {
+		limit = {
+			is_character = yes
+			is_landed = yes
+		}
+		modi_mil = yes
+	}
 }
 
 modi_prod = {
@@ -28,4 +36,11 @@ modi_pop = {
 	^^goods^set_variable = { name = modi_pop_nutrient_&goods& value = 1 }^
 	^^goods^set_variable = { name = modi_pop_comfort_&goods& value = 1 }^
 	^^goods^set_variable = { name = modi_pop_luxury_&goods& value = 1 }^
+}
+
+modi_mil = {
+	^^goods^
+		set_variable = { name = modi_mil_recruit_&goods& value = 1 }
+		set_variable = { name = modi_mil_maintain_&goods& value = 1 }
+	^
 }

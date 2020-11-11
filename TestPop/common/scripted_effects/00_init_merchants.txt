@@ -2,7 +2,7 @@
 	set_variable = { name = init_merchants_t value = $power$ }
 	change_variable = { name = init_merchants_t divide = 2 }
 	set_variable = { name = init_merchants_tt value = var:init_merchants_t }
-	change_variable = { name = init_merchants_tt multiply = 200 }
+	change_variable = { name = init_merchants_tt multiply = 150 }
 	
 	trade_new_merchant = {
 		location = $location$
@@ -43,7 +43,15 @@ init_merchants = {
 		}
 		save_temporary_scope_as = init_merchants_t
 		
-		init_merchants_helper = { location = scope:init_merchants_t power = 40 }
+		if = {
+			limit = {
+				var:workshop_total >= 10
+			}
+			init_merchants_helper = { location = scope:init_merchants_t power = 40 }
+		}
+		else = {
+			init_merchants_helper = { location = scope:init_merchants_t power = 30 }
+		}
 	}
 	
 	remove_variable = init_merchants_t

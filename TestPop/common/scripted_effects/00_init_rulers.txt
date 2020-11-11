@@ -1,0 +1,18 @@
+﻿init_rulers = {
+	every_rulers = {
+		limit = {
+			is_character = yes
+			is_landed = yes
+		}
+		add_gold = -100000
+		
+		eff_binary_1_16 = { name = trade_gold eff = add_gold }
+		
+		set_variable = { name = mil_maa value = trade_maa }
+		set_variable = { name = mil_maintain value = trade_maintain }
+		
+		remove_variable = trade_gold
+		remove_variable = mil_maa
+		remove_variable = mil_maintain
+	}
+}

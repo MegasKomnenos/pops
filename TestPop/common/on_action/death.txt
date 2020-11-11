@@ -6,7 +6,9 @@ on_death = {
 	effect = {
 		play_music_cue = "mx_cue_death"
 		
-		task_death_handler = yes
+		trigger_event = {
+			id = death.01
+		}
 		
 		every_parent = {
 			sound_foundations_random_removal_effect = yes

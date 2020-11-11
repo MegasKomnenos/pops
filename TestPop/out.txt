@@ -233,6 +233,10 @@ scope:task_new_template_t = {
 	}
 }
 every_ruler = { 
+	limit = { 
+		is_character = yes
+		is_landed = yes
+	}
 	if = { 
 		limit = { 
 			task_check_cond_manage_domain = yes
@@ -287,6 +291,10 @@ every_ruler = {
 				scope:task_new_task_t = { 
 					set_variable = { 
 						name = task_owner
+						value = prev
+					}
+					set_variable = { 
+						name = task_worker
 						value = prev
 					}
 				}
@@ -344,6 +352,7 @@ every_ruler = {
 				}
 			}
 			remove_variable = task_owner
+			remove_variable = task_worker
 			remove_variable = task_template
 			remove_variable = task_delegate
 			remove_variable = task_time_cost
@@ -351,17 +360,6 @@ every_ruler = {
 			remove_variable = task_crpt
 		}
 	}
-}
-global_var:manage_domain = { 
-	every_in_list = { 
-		variable = task_tasks
-		set_variable = { 
-			name = task_time_cost
-			value = var:task_owner.domain_size
-		}
-	}
-}
-every_ruler = { 
 	if = { 
 		limit = { 
 			task_check_cond_manage_realm = yes
@@ -416,6 +414,10 @@ every_ruler = {
 				scope:task_new_task_t = { 
 					set_variable = { 
 						name = task_owner
+						value = prev
+					}
+					set_variable = { 
+						name = task_worker
 						value = prev
 					}
 				}
@@ -473,6 +475,7 @@ every_ruler = {
 				}
 			}
 			remove_variable = task_owner
+			remove_variable = task_worker
 			remove_variable = task_template
 			remove_variable = task_delegate
 			remove_variable = task_time_cost
@@ -480,17 +483,6 @@ every_ruler = {
 			remove_variable = task_crpt
 		}
 	}
-}
-global_var:manage_realm = { 
-	every_in_list = { 
-		variable = task_tasks
-		set_variable = { 
-			name = task_time_cost
-			value = var:task_owner.vassal_count
-		}
-	}
-}
-every_ruler = { 
 	if = { 
 		limit = { 
 			task_check_cond_manage_logistics = yes
@@ -545,6 +537,10 @@ every_ruler = {
 				scope:task_new_task_t = { 
 					set_variable = { 
 						name = task_owner
+						value = prev
+					}
+					set_variable = { 
+						name = task_worker
 						value = prev
 					}
 				}
@@ -602,6 +598,7 @@ every_ruler = {
 				}
 			}
 			remove_variable = task_owner
+			remove_variable = task_worker
 			remove_variable = task_template
 			remove_variable = task_delegate
 			remove_variable = task_time_cost
@@ -609,17 +606,6 @@ every_ruler = {
 			remove_variable = task_crpt
 		}
 	}
-}
-global_var:manage_logistics = { 
-	every_in_list = { 
-		variable = task_tasks
-		set_variable = { 
-			name = task_time_cost
-			value = 1
-		}
-	}
-}
-every_ruler = { 
 	if = { 
 		limit = { 
 			task_check_cond_manage_court = yes
@@ -674,6 +660,10 @@ every_ruler = {
 				scope:task_new_task_t = { 
 					set_variable = { 
 						name = task_owner
+						value = prev
+					}
+					set_variable = { 
+						name = task_worker
 						value = prev
 					}
 				}
@@ -731,6 +721,7 @@ every_ruler = {
 				}
 			}
 			remove_variable = task_owner
+			remove_variable = task_worker
 			remove_variable = task_template
 			remove_variable = task_delegate
 			remove_variable = task_time_cost
@@ -738,17 +729,6 @@ every_ruler = {
 			remove_variable = task_crpt
 		}
 	}
-}
-global_var:manage_court = { 
-	every_in_list = { 
-		variable = task_tasks
-		set_variable = { 
-			name = task_time_cost
-			value = 1
-		}
-	}
-}
-every_ruler = { 
 	if = { 
 		limit = { 
 			task_check_cond_manage_stockpile = yes
@@ -803,6 +783,10 @@ every_ruler = {
 				scope:task_new_task_t = { 
 					set_variable = { 
 						name = task_owner
+						value = prev
+					}
+					set_variable = { 
+						name = task_worker
 						value = prev
 					}
 				}
@@ -860,6 +844,7 @@ every_ruler = {
 				}
 			}
 			remove_variable = task_owner
+			remove_variable = task_worker
 			remove_variable = task_template
 			remove_variable = task_delegate
 			remove_variable = task_time_cost
@@ -867,17 +852,6 @@ every_ruler = {
 			remove_variable = task_crpt
 		}
 	}
-}
-global_var:manage_stockpile = { 
-	every_in_list = { 
-		variable = task_tasks
-		set_variable = { 
-			name = task_time_cost
-			value = 1
-		}
-	}
-}
-every_ruler = { 
 	if = { 
 		limit = { 
 			task_check_cond_manage_oversight = yes
@@ -932,6 +906,10 @@ every_ruler = {
 				scope:task_new_task_t = { 
 					set_variable = { 
 						name = task_owner
+						value = prev
+					}
+					set_variable = { 
+						name = task_worker
 						value = prev
 					}
 				}
@@ -989,11 +967,65 @@ every_ruler = {
 				}
 			}
 			remove_variable = task_owner
+			remove_variable = task_worker
 			remove_variable = task_template
 			remove_variable = task_delegate
 			remove_variable = task_time_cost
 			remove_variable = task_time_in
 			remove_variable = task_crpt
+		}
+	}
+}
+global_var:manage_domain = { 
+	every_in_list = { 
+		variable = task_tasks
+		set_variable = { 
+			name = task_time_cost
+			value = var:task_owner.domain_size
+		}
+	}
+}
+global_var:manage_realm = { 
+	every_in_list = { 
+		variable = task_tasks
+		set_variable = { 
+			name = task_time_cost
+			value = var:task_owner.vassal_count
+		}
+		change_variable = { 
+			name = task_time_cost
+			multiply = 0.5
+		}
+		change_variable = { 
+			name = task_time_cost
+			add = 0.5
+		}
+	}
+}
+global_var:manage_logistics = { 
+	every_in_list = { 
+		variable = task_tasks
+		set_variable = { 
+			name = task_time_cost
+			value = 1
+		}
+	}
+}
+global_var:manage_court = { 
+	every_in_list = { 
+		variable = task_tasks
+		set_variable = { 
+			name = task_time_cost
+			value = 1
+		}
+	}
+}
+global_var:manage_stockpile = { 
+	every_in_list = { 
+		variable = task_tasks
+		set_variable = { 
+			name = task_time_cost
+			value = 1
 		}
 	}
 }
@@ -1003,7 +1035,7 @@ global_var:manage_oversight = {
 		save_temporary_scope_as = task_set_cost_manage_oversight_t
 		set_variable = { 
 			name = task_time_cost
-			value = 0.75
+			value = 0.5
 		}
 		var:task_owner = { 
 			every_in_list = { 
@@ -1014,7 +1046,7 @@ global_var:manage_oversight = {
 				scope:task_set_cost_manage_oversight_t = { 
 					change_variable = { 
 						name = task_time_cost
-						value = 0.25
+						add = 0.5
 					}
 				}
 			}
@@ -1024,6 +1056,7 @@ global_var:manage_oversight = {
 every_ruler = { 
 	limit = { 
 		is_character = yes
+		is_landed = yes
 	}
 	set_variable = { 
 		name = task_main_t
@@ -1035,6 +1068,12 @@ every_ruler = {
 			value = 0
 		}
 	}
+}
+every_ruler = { 
+	limit = { 
+		is_character = yes
+		is_landed = yes
+	}
 	every_in_list = { 
 		variable = task_tasks
 		prev = { 
@@ -1042,7 +1081,12 @@ every_ruler = {
 		}
 		if = { 
 			limit = { 
-				has_variable = task_delegate
+				OR = { 
+					prev = { 
+						is_councillor = yes
+					}
+					has_variable = task_delegate
+				}
 			}
 			if = { 
 				limit = { 
@@ -1109,6 +1153,10 @@ every_ruler = {
 					}
 				}
 			}
+		}
+		set_variable = { 
+			name = task_worker
+			value = scope:task_main_t
 		}
 		set_variable = { 
 			name = task_main_t
@@ -1281,10 +1329,6 @@ every_ruler = {
 				name = task_main_t
 				add = prev.var:task_main_tt
 			}
-			add_to_variable_list = { 
-				name = task_main_t
-				target = prev
-			}
 			add_to_global_variable_list = { 
 				name = task_main_t
 				target = this
@@ -1293,47 +1337,38 @@ every_ruler = {
 		remove_variable = task_main_t
 		remove_variable = task_main_tt
 	}
-	every_in_global_list = { 
-		variable = task_main_t
-		change_variable = { 
-			name = task_main_t
-			divide = 20
-		}
-		if = { 
-			limit = { 
+}
+every_in_global_list = { 
+	variable = task_main_t
+	change_variable = { 
+		name = task_main_t
+		divide = 20
+	}
+}
+every_in_global_list = { 
+	variable = task_tasks_active
+	set_variable = { 
+		name = task_time_in
+		value = 100
+	}
+	if = { 
+		limit = { 
+			var:task_worker = { 
 				has_variable = task_main_t
 				var:task_main_t > 1
 			}
-			every_in_list = { 
-				variable = task_main_t
-				set_variable = { 
-					name = task_time_in
-					value = 100
-				}
-				change_variable = { 
-					name = task_time_in
-					divide = prev.var:task_main_t
-				}
-			}
 		}
-		else = { 
-			every_in_list = { 
-				variable = task_main_t
-				set_variable = { 
-					name = task_time_in
-					value = 100
-				}
-			}
+		change_variable = { 
+			name = task_time_in
+			divide = var:task_worker.var:task_main_t
 		}
-		if = { 
-			limit = { 
-				this = prev
-			}
-			clear_variable_list = task_main_t
-		}
-		remove_variable = task_main_t
 	}
-	save_temporary_scope_as = task_main_t
+}
+every_ruler = { 
+	limit = { 
+		is_character = yes
+		is_landed = yes
+	}
 	ordered_in_list = { 
 		limit = { 
 			var:task_template = global_var:manage_oversight
@@ -1359,78 +1394,106 @@ every_ruler = {
 			}
 		}
 	}
-	every_in_global_list = { 
+}
+every_in_global_list = { 
+	variable = task_tasks_active
+	if = { 
 		limit = { 
-			NOT = { 
-				this = prev
-			}
+			var:task_owner = var:task_worker
 		}
-		variable = task_main_t
-		if = { 
-			limit = { 
-				opinion = { 
-					value >= 0
-					target = prev
-				}
-			}
+		set_variable = { 
+			name = task_main_t
+			value = 0
+		}
+	}
+	else = { 
+		var:task_worker = { 
 			if = { 
 				limit = { 
 					opinion = { 
-						value >= 50
-						target = prev
+						value >= 0
+						target = liege
 					}
 				}
 				if = { 
 					limit = { 
 						opinion = { 
-							value >= 75
-							target = prev
+							value >= 50
+							target = liege
 						}
 					}
 					if = { 
 						limit = { 
 							opinion = { 
-								value >= 88
-								target = prev
+								value >= 75
+								target = liege
 							}
 						}
 						if = { 
 							limit = { 
 								opinion = { 
-									value >= 94
-									target = prev
+									value >= 88
+									target = liege
 								}
 							}
 							if = { 
 								limit = { 
 									opinion = { 
-										value >= 97
-										target = prev
+										value >= 94
+										target = liege
 									}
 								}
 								if = { 
 									limit = { 
 										opinion = { 
-											value >= 99
-											target = prev
+											value >= 97
+											target = liege
 										}
 									}
 									if = { 
 										limit = { 
 											opinion = { 
-												value >= 100
-												target = prev
+												value >= 99
+												target = liege
 											}
 										}
-										set_variable = { 
-											name = task_main_t
-											value = 100
+										if = { 
+											limit = { 
+												opinion = { 
+													value >= 100
+													target = liege
+												}
+											}
+											set_variable = { 
+												name = task_main_tt
+												value = 100
+											}
+										}
+										else = { 
+											set_variable = { 
+												name = task_main_tt
+												value = 99
+											}
 										}
 									}
 									else = { 
-										set_variable = { 
-											name = task_main_t
-											value = 99
+										if = { 
+											limit = { 
+												opinion = { 
+													value >= 98
+													target = liege
+												}
+											}
+											set_variable = { 
+												name = task_main_tt
+												value = 98
+											}
+										}
+										else = { 
+											set_variable = { 
+												name = task_main_tt
+												value = 97
+											}
 										}
 									}
 								}
@@ -1438,19 +1501,33 @@ every_ruler = {
 									if = { 
 										limit = { 
 											opinion = { 
-												value >= 98
-												target = prev
+												value >= 95
+												target = liege
 											}
 										}
-										set_variable = { 
-											name = task_main_t
-											value = 98
+										if = { 
+											limit = { 
+												opinion = { 
+													value >= 96
+													target = liege
+												}
+											}
+											set_variable = { 
+												name = task_main_tt
+												value = 96
+											}
+										}
+										else = { 
+											set_variable = { 
+												name = task_main_tt
+												value = 95
+											}
 										}
 									}
 									else = { 
 										set_variable = { 
-											name = task_main_t
-											value = 97
+											name = task_main_tt
+											value = 94
 										}
 									}
 								}
@@ -1459,33 +1536,75 @@ every_ruler = {
 								if = { 
 									limit = { 
 										opinion = { 
-											value >= 95
-											target = prev
+											value >= 91
+											target = liege
 										}
 									}
 									if = { 
 										limit = { 
 											opinion = { 
-												value >= 96
-												target = prev
+												value >= 92
+												target = liege
 											}
 										}
-										set_variable = { 
-											name = task_main_t
-											value = 96
+										if = { 
+											limit = { 
+												opinion = { 
+													value >= 93
+													target = liege
+												}
+											}
+											set_variable = { 
+												name = task_main_tt
+												value = 93
+											}
+										}
+										else = { 
+											set_variable = { 
+												name = task_main_tt
+												value = 92
+											}
 										}
 									}
 									else = { 
 										set_variable = { 
-											name = task_main_t
-											value = 95
+											name = task_main_tt
+											value = 91
 										}
 									}
 								}
 								else = { 
-									set_variable = { 
-										name = task_main_t
-										value = 94
+									if = { 
+										limit = { 
+											opinion = { 
+												value >= 89
+												target = liege
+											}
+										}
+										if = { 
+											limit = { 
+												opinion = { 
+													value >= 90
+													target = liege
+												}
+											}
+											set_variable = { 
+												name = task_main_tt
+												value = 90
+											}
+										}
+										else = { 
+											set_variable = { 
+												name = task_main_tt
+												value = 89
+											}
+										}
+									}
+									else = { 
+										set_variable = { 
+											name = task_main_tt
+											value = 88
+										}
 									}
 								}
 							}
@@ -1494,40 +1613,96 @@ every_ruler = {
 							if = { 
 								limit = { 
 									opinion = { 
-										value >= 91
-										target = prev
+										value >= 81
+										target = liege
 									}
 								}
 								if = { 
 									limit = { 
 										opinion = { 
-											value >= 92
-											target = prev
+											value >= 84
+											target = liege
 										}
 									}
 									if = { 
 										limit = { 
 											opinion = { 
-												value >= 93
-												target = prev
+												value >= 86
+												target = liege
 											}
 										}
-										set_variable = { 
-											name = task_main_t
-											value = 93
+										if = { 
+											limit = { 
+												opinion = { 
+													value >= 87
+													target = liege
+												}
+											}
+											set_variable = { 
+												name = task_main_tt
+												value = 87
+											}
+										}
+										else = { 
+											set_variable = { 
+												name = task_main_tt
+												value = 86
+											}
 										}
 									}
 									else = { 
-										set_variable = { 
-											name = task_main_t
-											value = 92
+										if = { 
+											limit = { 
+												opinion = { 
+													value >= 85
+													target = liege
+												}
+											}
+											set_variable = { 
+												name = task_main_tt
+												value = 85
+											}
+										}
+										else = { 
+											set_variable = { 
+												name = task_main_tt
+												value = 84
+											}
 										}
 									}
 								}
 								else = { 
-									set_variable = { 
-										name = task_main_t
-										value = 91
+									if = { 
+										limit = { 
+											opinion = { 
+												value >= 82
+												target = liege
+											}
+										}
+										if = { 
+											limit = { 
+												opinion = { 
+													value >= 83
+													target = liege
+												}
+											}
+											set_variable = { 
+												name = task_main_tt
+												value = 83
+											}
+										}
+										else = { 
+											set_variable = { 
+												name = task_main_tt
+												value = 82
+											}
+										}
+									}
+									else = { 
+										set_variable = { 
+											name = task_main_tt
+											value = 81
+										}
 									}
 								}
 							}
@@ -1535,33 +1710,75 @@ every_ruler = {
 								if = { 
 									limit = { 
 										opinion = { 
-											value >= 89
-											target = prev
+											value >= 78
+											target = liege
 										}
 									}
 									if = { 
 										limit = { 
 											opinion = { 
-												value >= 90
-												target = prev
+												value >= 79
+												target = liege
 											}
 										}
-										set_variable = { 
-											name = task_main_t
-											value = 90
+										if = { 
+											limit = { 
+												opinion = { 
+													value >= 80
+													target = liege
+												}
+											}
+											set_variable = { 
+												name = task_main_tt
+												value = 80
+											}
+										}
+										else = { 
+											set_variable = { 
+												name = task_main_tt
+												value = 79
+											}
 										}
 									}
 									else = { 
 										set_variable = { 
-											name = task_main_t
-											value = 89
+											name = task_main_tt
+											value = 78
 										}
 									}
 								}
 								else = { 
-									set_variable = { 
-										name = task_main_t
-										value = 88
+									if = { 
+										limit = { 
+											opinion = { 
+												value >= 76
+												target = liege
+											}
+										}
+										if = { 
+											limit = { 
+												opinion = { 
+													value >= 77
+													target = liege
+												}
+											}
+											set_variable = { 
+												name = task_main_tt
+												value = 77
+											}
+										}
+										else = { 
+											set_variable = { 
+												name = task_main_tt
+												value = 76
+											}
+										}
+									}
+									else = { 
+										set_variable = { 
+											name = task_main_tt
+											value = 75
+										}
 									}
 								}
 							}
@@ -1571,40 +1788,68 @@ every_ruler = {
 						if = { 
 							limit = { 
 								opinion = { 
-									value >= 81
-									target = prev
+									value >= 62
+									target = liege
 								}
 							}
 							if = { 
 								limit = { 
 									opinion = { 
-										value >= 84
-										target = prev
+										value >= 68
+										target = liege
 									}
 								}
 								if = { 
 									limit = { 
 										opinion = { 
-											value >= 86
-											target = prev
+											value >= 71
+											target = liege
 										}
 									}
 									if = { 
 										limit = { 
 											opinion = { 
-												value >= 87
-												target = prev
+												value >= 73
+												target = liege
 											}
 										}
-										set_variable = { 
-											name = task_main_t
-											value = 87
+										if = { 
+											limit = { 
+												opinion = { 
+													value >= 74
+													target = liege
+												}
+											}
+											set_variable = { 
+												name = task_main_tt
+												value = 74
+											}
+										}
+										else = { 
+											set_variable = { 
+												name = task_main_tt
+												value = 73
+											}
 										}
 									}
 									else = { 
-										set_variable = { 
-											name = task_main_t
-											value = 86
+										if = { 
+											limit = { 
+												opinion = { 
+													value >= 72
+													target = liege
+												}
+											}
+											set_variable = { 
+												name = task_main_tt
+												value = 72
+											}
+										}
+										else = { 
+											set_variable = { 
+												name = task_main_tt
+												value = 71
+											}
 										}
 									}
 								}
@@ -1612,19 +1857,33 @@ every_ruler = {
 									if = { 
 										limit = { 
 											opinion = { 
-												value >= 85
-												target = prev
+												value >= 69
+												target = liege
 											}
 										}
-										set_variable = { 
-											name = task_main_t
-											value = 85
+										if = { 
+											limit = { 
+												opinion = { 
+													value >= 70
+													target = liege
+												}
+											}
+											set_variable = { 
+												name = task_main_tt
+												value = 70
+											}
+										}
+										else = { 
+											set_variable = { 
+												name = task_main_tt
+												value = 69
+											}
 										}
 									}
 									else = { 
 										set_variable = { 
-											name = task_main_t
-											value = 84
+											name = task_main_tt
+											value = 68
 										}
 									}
 								}
@@ -1633,33 +1892,75 @@ every_ruler = {
 								if = { 
 									limit = { 
 										opinion = { 
-											value >= 82
-											target = prev
+											value >= 65
+											target = liege
 										}
 									}
 									if = { 
 										limit = { 
 											opinion = { 
-												value >= 83
-												target = prev
+												value >= 66
+												target = liege
 											}
 										}
-										set_variable = { 
-											name = task_main_t
-											value = 83
+										if = { 
+											limit = { 
+												opinion = { 
+													value >= 67
+													target = liege
+												}
+											}
+											set_variable = { 
+												name = task_main_tt
+												value = 67
+											}
+										}
+										else = { 
+											set_variable = { 
+												name = task_main_tt
+												value = 66
+											}
 										}
 									}
 									else = { 
 										set_variable = { 
-											name = task_main_t
-											value = 82
+											name = task_main_tt
+											value = 65
 										}
 									}
 								}
 								else = { 
-									set_variable = { 
-										name = task_main_t
-										value = 81
+									if = { 
+										limit = { 
+											opinion = { 
+												value >= 63
+												target = liege
+											}
+										}
+										if = { 
+											limit = { 
+												opinion = { 
+													value >= 64
+													target = liege
+												}
+											}
+											set_variable = { 
+												name = task_main_tt
+												value = 64
+											}
+										}
+										else = { 
+											set_variable = { 
+												name = task_main_tt
+												value = 63
+											}
+										}
+									}
+									else = { 
+										set_variable = { 
+											name = task_main_tt
+											value = 62
+										}
 									}
 								}
 							}
@@ -1668,40 +1969,82 @@ every_ruler = {
 							if = { 
 								limit = { 
 									opinion = { 
-										value >= 78
-										target = prev
+										value >= 56
+										target = liege
 									}
 								}
 								if = { 
 									limit = { 
 										opinion = { 
-											value >= 79
-											target = prev
+											value >= 59
+											target = liege
 										}
 									}
 									if = { 
 										limit = { 
 											opinion = { 
-												value >= 80
-												target = prev
+												value >= 60
+												target = liege
 											}
 										}
-										set_variable = { 
-											name = task_main_t
-											value = 80
+										if = { 
+											limit = { 
+												opinion = { 
+													value >= 61
+													target = liege
+												}
+											}
+											set_variable = { 
+												name = task_main_tt
+												value = 61
+											}
+										}
+										else = { 
+											set_variable = { 
+												name = task_main_tt
+												value = 60
+											}
 										}
 									}
 									else = { 
 										set_variable = { 
-											name = task_main_t
-											value = 79
+											name = task_main_tt
+											value = 59
 										}
 									}
 								}
 								else = { 
-									set_variable = { 
-										name = task_main_t
-										value = 78
+									if = { 
+										limit = { 
+											opinion = { 
+												value >= 57
+												target = liege
+											}
+										}
+										if = { 
+											limit = { 
+												opinion = { 
+													value >= 58
+													target = liege
+												}
+											}
+											set_variable = { 
+												name = task_main_tt
+												value = 58
+											}
+										}
+										else = { 
+											set_variable = { 
+												name = task_main_tt
+												value = 57
+											}
+										}
+									}
+									else = { 
+										set_variable = { 
+											name = task_main_tt
+											value = 56
+										}
 									}
 								}
 							}
@@ -1709,33 +2052,75 @@ every_ruler = {
 								if = { 
 									limit = { 
 										opinion = { 
-											value >= 76
-											target = prev
+											value >= 53
+											target = liege
 										}
 									}
 									if = { 
 										limit = { 
 											opinion = { 
-												value >= 77
-												target = prev
+												value >= 54
+												target = liege
 											}
 										}
-										set_variable = { 
-											name = task_main_t
-											value = 77
+										if = { 
+											limit = { 
+												opinion = { 
+													value >= 55
+													target = liege
+												}
+											}
+											set_variable = { 
+												name = task_main_tt
+												value = 55
+											}
+										}
+										else = { 
+											set_variable = { 
+												name = task_main_tt
+												value = 54
+											}
 										}
 									}
 									else = { 
 										set_variable = { 
-											name = task_main_t
-											value = 76
+											name = task_main_tt
+											value = 53
 										}
 									}
 								}
 								else = { 
-									set_variable = { 
-										name = task_main_t
-										value = 75
+									if = { 
+										limit = { 
+											opinion = { 
+												value >= 51
+												target = liege
+											}
+										}
+										if = { 
+											limit = { 
+												opinion = { 
+													value >= 52
+													target = liege
+												}
+											}
+											set_variable = { 
+												name = task_main_tt
+												value = 52
+											}
+										}
+										else = { 
+											set_variable = { 
+												name = task_main_tt
+												value = 51
+											}
+										}
+									}
+									else = { 
+										set_variable = { 
+											name = task_main_tt
+											value = 50
+										}
 									}
 								}
 							}
@@ -1746,47 +2131,75 @@ every_ruler = {
 					if = { 
 						limit = { 
 							opinion = { 
-								value >= 62
-								target = prev
+								value >= 25
+								target = liege
 							}
 						}
 						if = { 
 							limit = { 
 								opinion = { 
-									value >= 68
-									target = prev
+									value >= 37
+									target = liege
 								}
 							}
 							if = { 
 								limit = { 
 									opinion = { 
-										value >= 71
-										target = prev
+										value >= 43
+										target = liege
 									}
 								}
 								if = { 
 									limit = { 
 										opinion = { 
-											value >= 73
-											target = prev
+											value >= 46
+											target = liege
 										}
 									}
 									if = { 
 										limit = { 
 											opinion = { 
-												value >= 74
-												target = prev
+												value >= 48
+												target = liege
 											}
 										}
-										set_variable = { 
-											name = task_main_t
-											value = 74
+										if = { 
+											limit = { 
+												opinion = { 
+													value >= 49
+													target = liege
+												}
+											}
+											set_variable = { 
+												name = task_main_tt
+												value = 49
+											}
+										}
+										else = { 
+											set_variable = { 
+												name = task_main_tt
+												value = 48
+											}
 										}
 									}
 									else = { 
-										set_variable = { 
-											name = task_main_t
-											value = 73
+										if = { 
+											limit = { 
+												opinion = { 
+													value >= 47
+													target = liege
+												}
+											}
+											set_variable = { 
+												name = task_main_tt
+												value = 47
+											}
+										}
+										else = { 
+											set_variable = { 
+												name = task_main_tt
+												value = 46
+											}
 										}
 									}
 								}
@@ -1794,19 +2207,33 @@ every_ruler = {
 									if = { 
 										limit = { 
 											opinion = { 
-												value >= 72
-												target = prev
+												value >= 44
+												target = liege
 											}
 										}
-										set_variable = { 
-											name = task_main_t
-											value = 72
+										if = { 
+											limit = { 
+												opinion = { 
+													value >= 45
+													target = liege
+												}
+											}
+											set_variable = { 
+												name = task_main_tt
+												value = 45
+											}
+										}
+										else = { 
+											set_variable = { 
+												name = task_main_tt
+												value = 44
+											}
 										}
 									}
 									else = { 
 										set_variable = { 
-											name = task_main_t
-											value = 71
+											name = task_main_tt
+											value = 43
 										}
 									}
 								}
@@ -1815,33 +2242,75 @@ every_ruler = {
 								if = { 
 									limit = { 
 										opinion = { 
-											value >= 69
-											target = prev
+											value >= 40
+											target = liege
 										}
 									}
 									if = { 
 										limit = { 
 											opinion = { 
-												value >= 70
-												target = prev
+												value >= 41
+												target = liege
 											}
 										}
-										set_variable = { 
-											name = task_main_t
-											value = 70
+										if = { 
+											limit = { 
+												opinion = { 
+													value >= 42
+													target = liege
+												}
+											}
+											set_variable = { 
+												name = task_main_tt
+												value = 42
+											}
+										}
+										else = { 
+											set_variable = { 
+												name = task_main_tt
+												value = 41
+											}
 										}
 									}
 									else = { 
 										set_variable = { 
-											name = task_main_t
-											value = 69
+											name = task_main_tt
+											value = 40
 										}
 									}
 								}
 								else = { 
-									set_variable = { 
-										name = task_main_t
-										value = 68
+									if = { 
+										limit = { 
+											opinion = { 
+												value >= 38
+												target = liege
+											}
+										}
+										if = { 
+											limit = { 
+												opinion = { 
+													value >= 39
+													target = liege
+												}
+											}
+											set_variable = { 
+												name = task_main_tt
+												value = 39
+											}
+										}
+										else = { 
+											set_variable = { 
+												name = task_main_tt
+												value = 38
+											}
+										}
+									}
+									else = { 
+										set_variable = { 
+											name = task_main_tt
+											value = 37
+										}
 									}
 								}
 							}
@@ -1850,40 +2319,82 @@ every_ruler = {
 							if = { 
 								limit = { 
 									opinion = { 
-										value >= 65
-										target = prev
+										value >= 31
+										target = liege
 									}
 								}
 								if = { 
 									limit = { 
 										opinion = { 
-											value >= 66
-											target = prev
+											value >= 34
+											target = liege
 										}
 									}
 									if = { 
 										limit = { 
 											opinion = { 
-												value >= 67
-												target = prev
+												value >= 35
+												target = liege
 											}
 										}
-										set_variable = { 
-											name = task_main_t
-											value = 67
+										if = { 
+											limit = { 
+												opinion = { 
+													value >= 36
+													target = liege
+												}
+											}
+											set_variable = { 
+												name = task_main_tt
+												value = 36
+											}
+										}
+										else = { 
+											set_variable = { 
+												name = task_main_tt
+												value = 35
+											}
 										}
 									}
 									else = { 
 										set_variable = { 
-											name = task_main_t
-											value = 66
+											name = task_main_tt
+											value = 34
 										}
 									}
 								}
 								else = { 
-									set_variable = { 
-										name = task_main_t
-										value = 65
+									if = { 
+										limit = { 
+											opinion = { 
+												value >= 32
+												target = liege
+											}
+										}
+										if = { 
+											limit = { 
+												opinion = { 
+													value >= 33
+													target = liege
+												}
+											}
+											set_variable = { 
+												name = task_main_tt
+												value = 33
+											}
+										}
+										else = { 
+											set_variable = { 
+												name = task_main_tt
+												value = 32
+											}
+										}
+									}
+									else = { 
+										set_variable = { 
+											name = task_main_tt
+											value = 31
+										}
 									}
 								}
 							}
@@ -1891,33 +2402,75 @@ every_ruler = {
 								if = { 
 									limit = { 
 										opinion = { 
-											value >= 63
-											target = prev
+											value >= 28
+											target = liege
 										}
 									}
 									if = { 
 										limit = { 
 											opinion = { 
-												value >= 64
-												target = prev
+												value >= 29
+												target = liege
 											}
 										}
-										set_variable = { 
-											name = task_main_t
-											value = 64
+										if = { 
+											limit = { 
+												opinion = { 
+													value >= 30
+													target = liege
+												}
+											}
+											set_variable = { 
+												name = task_main_tt
+												value = 30
+											}
+										}
+										else = { 
+											set_variable = { 
+												name = task_main_tt
+												value = 29
+											}
 										}
 									}
 									else = { 
 										set_variable = { 
-											name = task_main_t
-											value = 63
+											name = task_main_tt
+											value = 28
 										}
 									}
 								}
 								else = { 
-									set_variable = { 
-										name = task_main_t
-										value = 62
+									if = { 
+										limit = { 
+											opinion = { 
+												value >= 26
+												target = liege
+											}
+										}
+										if = { 
+											limit = { 
+												opinion = { 
+													value >= 27
+													target = liege
+												}
+											}
+											set_variable = { 
+												name = task_main_tt
+												value = 27
+											}
+										}
+										else = { 
+											set_variable = { 
+												name = task_main_tt
+												value = 26
+											}
+										}
+									}
+									else = { 
+										set_variable = { 
+											name = task_main_tt
+											value = 25
+										}
 									}
 								}
 							}
@@ -1927,47 +2480,103 @@ every_ruler = {
 						if = { 
 							limit = { 
 								opinion = { 
-									value >= 56
-									target = prev
+									value >= 12
+									target = liege
 								}
 							}
 							if = { 
 								limit = { 
 									opinion = { 
-										value >= 59
-										target = prev
+										value >= 18
+										target = liege
 									}
 								}
 								if = { 
 									limit = { 
 										opinion = { 
-											value >= 60
-											target = prev
+											value >= 21
+											target = liege
 										}
 									}
 									if = { 
 										limit = { 
 											opinion = { 
-												value >= 61
-												target = prev
+												value >= 23
+												target = liege
 											}
 										}
-										set_variable = { 
-											name = task_main_t
-											value = 61
+										if = { 
+											limit = { 
+												opinion = { 
+													value >= 24
+													target = liege
+												}
+											}
+											set_variable = { 
+												name = task_main_tt
+												value = 24
+											}
+										}
+										else = { 
+											set_variable = { 
+												name = task_main_tt
+												value = 23
+											}
 										}
 									}
 									else = { 
-										set_variable = { 
-											name = task_main_t
-											value = 60
+										if = { 
+											limit = { 
+												opinion = { 
+													value >= 22
+													target = liege
+												}
+											}
+											set_variable = { 
+												name = task_main_tt
+												value = 22
+											}
+										}
+										else = { 
+											set_variable = { 
+												name = task_main_tt
+												value = 21
+											}
 										}
 									}
 								}
 								else = { 
-									set_variable = { 
-										name = task_main_t
-										value = 59
+									if = { 
+										limit = { 
+											opinion = { 
+												value >= 19
+												target = liege
+											}
+										}
+										if = { 
+											limit = { 
+												opinion = { 
+													value >= 20
+													target = liege
+												}
+											}
+											set_variable = { 
+												name = task_main_tt
+												value = 20
+											}
+										}
+										else = { 
+											set_variable = { 
+												name = task_main_tt
+												value = 19
+											}
+										}
+									}
+									else = { 
+										set_variable = { 
+											name = task_main_tt
+											value = 18
+										}
 									}
 								}
 							}
@@ -1975,33 +2584,75 @@ every_ruler = {
 								if = { 
 									limit = { 
 										opinion = { 
-											value >= 57
-											target = prev
+											value >= 15
+											target = liege
 										}
 									}
 									if = { 
 										limit = { 
 											opinion = { 
-												value >= 58
-												target = prev
+												value >= 16
+												target = liege
 											}
 										}
-										set_variable = { 
-											name = task_main_t
-											value = 58
+										if = { 
+											limit = { 
+												opinion = { 
+													value >= 17
+													target = liege
+												}
+											}
+											set_variable = { 
+												name = task_main_tt
+												value = 17
+											}
+										}
+										else = { 
+											set_variable = { 
+												name = task_main_tt
+												value = 16
+											}
 										}
 									}
 									else = { 
 										set_variable = { 
-											name = task_main_t
-											value = 57
+											name = task_main_tt
+											value = 15
 										}
 									}
 								}
 								else = { 
-									set_variable = { 
-										name = task_main_t
-										value = 56
+									if = { 
+										limit = { 
+											opinion = { 
+												value >= 13
+												target = liege
+											}
+										}
+										if = { 
+											limit = { 
+												opinion = { 
+													value >= 14
+													target = liege
+												}
+											}
+											set_variable = { 
+												name = task_main_tt
+												value = 14
+											}
+										}
+										else = { 
+											set_variable = { 
+												name = task_main_tt
+												value = 13
+											}
+										}
+									}
+									else = { 
+										set_variable = { 
+											name = task_main_tt
+											value = 12
+										}
 									}
 								}
 							}
@@ -2010,40 +2661,82 @@ every_ruler = {
 							if = { 
 								limit = { 
 									opinion = { 
-										value >= 53
-										target = prev
+										value >= 6
+										target = liege
 									}
 								}
 								if = { 
 									limit = { 
 										opinion = { 
-											value >= 54
-											target = prev
+											value >= 9
+											target = liege
 										}
 									}
 									if = { 
 										limit = { 
 											opinion = { 
-												value >= 55
-												target = prev
+												value >= 10
+												target = liege
 											}
 										}
-										set_variable = { 
-											name = task_main_t
-											value = 55
+										if = { 
+											limit = { 
+												opinion = { 
+													value >= 11
+													target = liege
+												}
+											}
+											set_variable = { 
+												name = task_main_tt
+												value = 11
+											}
+										}
+										else = { 
+											set_variable = { 
+												name = task_main_tt
+												value = 10
+											}
 										}
 									}
 									else = { 
 										set_variable = { 
-											name = task_main_t
-											value = 54
+											name = task_main_tt
+											value = 9
 										}
 									}
 								}
 								else = { 
-									set_variable = { 
-										name = task_main_t
-										value = 53
+									if = { 
+										limit = { 
+											opinion = { 
+												value >= 7
+												target = liege
+											}
+										}
+										if = { 
+											limit = { 
+												opinion = { 
+													value >= 8
+													target = liege
+												}
+											}
+											set_variable = { 
+												name = task_main_tt
+												value = 8
+											}
+										}
+										else = { 
+											set_variable = { 
+												name = task_main_tt
+												value = 7
+											}
+										}
+									}
+									else = { 
+										set_variable = { 
+											name = task_main_tt
+											value = 6
+										}
 									}
 								}
 							}
@@ -2051,33 +2744,75 @@ every_ruler = {
 								if = { 
 									limit = { 
 										opinion = { 
-											value >= 51
-											target = prev
+											value >= 3
+											target = liege
 										}
 									}
 									if = { 
 										limit = { 
 											opinion = { 
-												value >= 52
-												target = prev
+												value >= 4
+												target = liege
 											}
 										}
-										set_variable = { 
-											name = task_main_t
-											value = 52
+										if = { 
+											limit = { 
+												opinion = { 
+													value >= 5
+													target = liege
+												}
+											}
+											set_variable = { 
+												name = task_main_tt
+												value = 5
+											}
+										}
+										else = { 
+											set_variable = { 
+												name = task_main_tt
+												value = 4
+											}
 										}
 									}
 									else = { 
 										set_variable = { 
-											name = task_main_t
-											value = 51
+											name = task_main_tt
+											value = 3
 										}
 									}
 								}
 								else = { 
-									set_variable = { 
-										name = task_main_t
-										value = 50
+									if = { 
+										limit = { 
+											opinion = { 
+												value >= 1
+												target = liege
+											}
+										}
+										if = { 
+											limit = { 
+												opinion = { 
+													value >= 2
+													target = liege
+												}
+											}
+											set_variable = { 
+												name = task_main_tt
+												value = 2
+											}
+										}
+										else = { 
+											set_variable = { 
+												name = task_main_tt
+												value = 1
+											}
+										}
+									}
+									else = { 
+										set_variable = { 
+											name = task_main_tt
+											value = 0
+										}
 									}
 								}
 							}
@@ -2089,54 +2824,82 @@ every_ruler = {
 				if = { 
 					limit = { 
 						opinion = { 
-							value >= 25
-							target = prev
+							value >= -50
+							target = liege
 						}
 					}
 					if = { 
 						limit = { 
 							opinion = { 
-								value >= 37
-								target = prev
+								value >= -25
+								target = liege
 							}
 						}
 						if = { 
 							limit = { 
 								opinion = { 
-									value >= 43
-									target = prev
+									value >= -13
+									target = liege
 								}
 							}
 							if = { 
 								limit = { 
 									opinion = { 
-										value >= 46
-										target = prev
+										value >= -7
+										target = liege
 									}
 								}
 								if = { 
 									limit = { 
 										opinion = { 
-											value >= 48
-											target = prev
+											value >= -4
+											target = liege
 										}
 									}
 									if = { 
 										limit = { 
 											opinion = { 
-												value >= 49
-												target = prev
+												value >= -2
+												target = liege
 											}
 										}
-										set_variable = { 
-											name = task_main_t
-											value = 49
+										if = { 
+											limit = { 
+												opinion = { 
+													value >= -1
+													target = liege
+												}
+											}
+											set_variable = { 
+												name = task_main_tt
+												value = -1
+											}
+										}
+										else = { 
+											set_variable = { 
+												name = task_main_tt
+												value = -2
+											}
 										}
 									}
 									else = { 
-										set_variable = { 
-											name = task_main_t
-											value = 48
+										if = { 
+											limit = { 
+												opinion = { 
+													value >= -3
+													target = liege
+												}
+											}
+											set_variable = { 
+												name = task_main_tt
+												value = -3
+											}
+										}
+										else = { 
+											set_variable = { 
+												name = task_main_tt
+												value = -4
+											}
 										}
 									}
 								}
@@ -2144,19 +2907,33 @@ every_ruler = {
 									if = { 
 										limit = { 
 											opinion = { 
-												value >= 47
-												target = prev
+												value >= -6
+												target = liege
 											}
 										}
-										set_variable = { 
-											name = task_main_t
-											value = 47
+										if = { 
+											limit = { 
+												opinion = { 
+													value >= -5
+													target = liege
+												}
+											}
+											set_variable = { 
+												name = task_main_tt
+												value = -5
+											}
+										}
+										else = { 
+											set_variable = { 
+												name = task_main_tt
+												value = -6
+											}
 										}
 									}
 									else = { 
 										set_variable = { 
-											name = task_main_t
-											value = 46
+											name = task_main_tt
+											value = -7
 										}
 									}
 								}
@@ -2165,33 +2942,75 @@ every_ruler = {
 								if = { 
 									limit = { 
 										opinion = { 
-											value >= 44
-											target = prev
+											value >= -10
+											target = liege
 										}
 									}
 									if = { 
 										limit = { 
 											opinion = { 
-												value >= 45
-												target = prev
+												value >= -9
+												target = liege
 											}
 										}
-										set_variable = { 
-											name = task_main_t
-											value = 45
+										if = { 
+											limit = { 
+												opinion = { 
+													value >= -8
+													target = liege
+												}
+											}
+											set_variable = { 
+												name = task_main_tt
+												value = -8
+											}
+										}
+										else = { 
+											set_variable = { 
+												name = task_main_tt
+												value = -9
+											}
 										}
 									}
 									else = { 
 										set_variable = { 
-											name = task_main_t
-											value = 44
+											name = task_main_tt
+											value = -10
 										}
 									}
 								}
 								else = { 
-									set_variable = { 
-										name = task_main_t
-										value = 43
+									if = { 
+										limit = { 
+											opinion = { 
+												value >= -12
+												target = liege
+											}
+										}
+										if = { 
+											limit = { 
+												opinion = { 
+													value >= -11
+													target = liege
+												}
+											}
+											set_variable = { 
+												name = task_main_tt
+												value = -11
+											}
+										}
+										else = { 
+											set_variable = { 
+												name = task_main_tt
+												value = -12
+											}
+										}
+									}
+									else = { 
+										set_variable = { 
+											name = task_main_tt
+											value = -13
+										}
 									}
 								}
 							}
@@ -2200,40 +3019,82 @@ every_ruler = {
 							if = { 
 								limit = { 
 									opinion = { 
-										value >= 40
-										target = prev
+										value >= -19
+										target = liege
 									}
 								}
 								if = { 
 									limit = { 
 										opinion = { 
-											value >= 41
-											target = prev
+											value >= -16
+											target = liege
 										}
 									}
 									if = { 
 										limit = { 
 											opinion = { 
-												value >= 42
-												target = prev
+												value >= -15
+												target = liege
 											}
 										}
-										set_variable = { 
-											name = task_main_t
-											value = 42
+										if = { 
+											limit = { 
+												opinion = { 
+													value >= -14
+													target = liege
+												}
+											}
+											set_variable = { 
+												name = task_main_tt
+												value = -14
+											}
+										}
+										else = { 
+											set_variable = { 
+												name = task_main_tt
+												value = -15
+											}
 										}
 									}
 									else = { 
 										set_variable = { 
-											name = task_main_t
-											value = 41
+											name = task_main_tt
+											value = -16
 										}
 									}
 								}
 								else = { 
-									set_variable = { 
-										name = task_main_t
-										value = 40
+									if = { 
+										limit = { 
+											opinion = { 
+												value >= -18
+												target = liege
+											}
+										}
+										if = { 
+											limit = { 
+												opinion = { 
+													value >= -17
+													target = liege
+												}
+											}
+											set_variable = { 
+												name = task_main_tt
+												value = -17
+											}
+										}
+										else = { 
+											set_variable = { 
+												name = task_main_tt
+												value = -18
+											}
+										}
+									}
+									else = { 
+										set_variable = { 
+											name = task_main_tt
+											value = -19
+										}
 									}
 								}
 							}
@@ -2241,33 +3102,75 @@ every_ruler = {
 								if = { 
 									limit = { 
 										opinion = { 
-											value >= 38
-											target = prev
+											value >= -22
+											target = liege
 										}
 									}
 									if = { 
 										limit = { 
 											opinion = { 
-												value >= 39
-												target = prev
+												value >= -21
+												target = liege
 											}
 										}
-										set_variable = { 
-											name = task_main_t
-											value = 39
+										if = { 
+											limit = { 
+												opinion = { 
+													value >= -20
+													target = liege
+												}
+											}
+											set_variable = { 
+												name = task_main_tt
+												value = -20
+											}
+										}
+										else = { 
+											set_variable = { 
+												name = task_main_tt
+												value = -21
+											}
 										}
 									}
 									else = { 
 										set_variable = { 
-											name = task_main_t
-											value = 38
+											name = task_main_tt
+											value = -22
 										}
 									}
 								}
 								else = { 
-									set_variable = { 
-										name = task_main_t
-										value = 37
+									if = { 
+										limit = { 
+											opinion = { 
+												value >= -24
+												target = liege
+											}
+										}
+										if = { 
+											limit = { 
+												opinion = { 
+													value >= -23
+													target = liege
+												}
+											}
+											set_variable = { 
+												name = task_main_tt
+												value = -23
+											}
+										}
+										else = { 
+											set_variable = { 
+												name = task_main_tt
+												value = -24
+											}
+										}
+									}
+									else = { 
+										set_variable = { 
+											name = task_main_tt
+											value = -25
+										}
 									}
 								}
 							}
@@ -2277,47 +3180,103 @@ every_ruler = {
 						if = { 
 							limit = { 
 								opinion = { 
-									value >= 31
-									target = prev
+									value >= -38
+									target = liege
 								}
 							}
 							if = { 
 								limit = { 
 									opinion = { 
-										value >= 34
-										target = prev
+										value >= -32
+										target = liege
 									}
 								}
 								if = { 
 									limit = { 
 										opinion = { 
-											value >= 35
-											target = prev
+											value >= -29
+											target = liege
 										}
 									}
 									if = { 
 										limit = { 
 											opinion = { 
-												value >= 36
-												target = prev
+												value >= -27
+												target = liege
 											}
 										}
-										set_variable = { 
-											name = task_main_t
-											value = 36
+										if = { 
+											limit = { 
+												opinion = { 
+													value >= -26
+													target = liege
+												}
+											}
+											set_variable = { 
+												name = task_main_tt
+												value = -26
+											}
+										}
+										else = { 
+											set_variable = { 
+												name = task_main_tt
+												value = -27
+											}
 										}
 									}
 									else = { 
-										set_variable = { 
-											name = task_main_t
-											value = 35
+										if = { 
+											limit = { 
+												opinion = { 
+													value >= -28
+													target = liege
+												}
+											}
+											set_variable = { 
+												name = task_main_tt
+												value = -28
+											}
+										}
+										else = { 
+											set_variable = { 
+												name = task_main_tt
+												value = -29
+											}
 										}
 									}
 								}
 								else = { 
-									set_variable = { 
-										name = task_main_t
-										value = 34
+									if = { 
+										limit = { 
+											opinion = { 
+												value >= -31
+												target = liege
+											}
+										}
+										if = { 
+											limit = { 
+												opinion = { 
+													value >= -30
+													target = liege
+												}
+											}
+											set_variable = { 
+												name = task_main_tt
+												value = -30
+											}
+										}
+										else = { 
+											set_variable = { 
+												name = task_main_tt
+												value = -31
+											}
+										}
+									}
+									else = { 
+										set_variable = { 
+											name = task_main_tt
+											value = -32
+										}
 									}
 								}
 							}
@@ -2325,33 +3284,75 @@ every_ruler = {
 								if = { 
 									limit = { 
 										opinion = { 
-											value >= 32
-											target = prev
+											value >= -35
+											target = liege
 										}
 									}
 									if = { 
 										limit = { 
 											opinion = { 
-												value >= 33
-												target = prev
+												value >= -34
+												target = liege
 											}
 										}
-										set_variable = { 
-											name = task_main_t
-											value = 33
+										if = { 
+											limit = { 
+												opinion = { 
+													value >= -33
+													target = liege
+												}
+											}
+											set_variable = { 
+												name = task_main_tt
+												value = -33
+											}
+										}
+										else = { 
+											set_variable = { 
+												name = task_main_tt
+												value = -34
+											}
 										}
 									}
 									else = { 
 										set_variable = { 
-											name = task_main_t
-											value = 32
+											name = task_main_tt
+											value = -35
 										}
 									}
 								}
 								else = { 
-									set_variable = { 
-										name = task_main_t
-										value = 31
+									if = { 
+										limit = { 
+											opinion = { 
+												value >= -37
+												target = liege
+											}
+										}
+										if = { 
+											limit = { 
+												opinion = { 
+													value >= -36
+													target = liege
+												}
+											}
+											set_variable = { 
+												name = task_main_tt
+												value = -36
+											}
+										}
+										else = { 
+											set_variable = { 
+												name = task_main_tt
+												value = -37
+											}
+										}
+									}
+									else = { 
+										set_variable = { 
+											name = task_main_tt
+											value = -38
+										}
 									}
 								}
 							}
@@ -2360,40 +3361,82 @@ every_ruler = {
 							if = { 
 								limit = { 
 									opinion = { 
-										value >= 28
-										target = prev
+										value >= -44
+										target = liege
 									}
 								}
 								if = { 
 									limit = { 
 										opinion = { 
-											value >= 29
-											target = prev
+											value >= -41
+											target = liege
 										}
 									}
 									if = { 
 										limit = { 
 											opinion = { 
-												value >= 30
-												target = prev
+												value >= -40
+												target = liege
 											}
 										}
-										set_variable = { 
-											name = task_main_t
-											value = 30
+										if = { 
+											limit = { 
+												opinion = { 
+													value >= -39
+													target = liege
+												}
+											}
+											set_variable = { 
+												name = task_main_tt
+												value = -39
+											}
+										}
+										else = { 
+											set_variable = { 
+												name = task_main_tt
+												value = -40
+											}
 										}
 									}
 									else = { 
 										set_variable = { 
-											name = task_main_t
-											value = 29
+											name = task_main_tt
+											value = -41
 										}
 									}
 								}
 								else = { 
-									set_variable = { 
-										name = task_main_t
-										value = 28
+									if = { 
+										limit = { 
+											opinion = { 
+												value >= -43
+												target = liege
+											}
+										}
+										if = { 
+											limit = { 
+												opinion = { 
+													value >= -42
+													target = liege
+												}
+											}
+											set_variable = { 
+												name = task_main_tt
+												value = -42
+											}
+										}
+										else = { 
+											set_variable = { 
+												name = task_main_tt
+												value = -43
+											}
+										}
+									}
+									else = { 
+										set_variable = { 
+											name = task_main_tt
+											value = -44
+										}
 									}
 								}
 							}
@@ -2401,33 +3444,75 @@ every_ruler = {
 								if = { 
 									limit = { 
 										opinion = { 
-											value >= 26
-											target = prev
+											value >= -47
+											target = liege
 										}
 									}
 									if = { 
 										limit = { 
 											opinion = { 
-												value >= 27
-												target = prev
+												value >= -46
+												target = liege
 											}
 										}
-										set_variable = { 
-											name = task_main_t
-											value = 27
+										if = { 
+											limit = { 
+												opinion = { 
+													value >= -45
+													target = liege
+												}
+											}
+											set_variable = { 
+												name = task_main_tt
+												value = -45
+											}
+										}
+										else = { 
+											set_variable = { 
+												name = task_main_tt
+												value = -46
+											}
 										}
 									}
 									else = { 
 										set_variable = { 
-											name = task_main_t
-											value = 26
+											name = task_main_tt
+											value = -47
 										}
 									}
 								}
 								else = { 
-									set_variable = { 
-										name = task_main_t
-										value = 25
+									if = { 
+										limit = { 
+											opinion = { 
+												value >= -49
+												target = liege
+											}
+										}
+										if = { 
+											limit = { 
+												opinion = { 
+													value >= -48
+													target = liege
+												}
+											}
+											set_variable = { 
+												name = task_main_tt
+												value = -48
+											}
+										}
+										else = { 
+											set_variable = { 
+												name = task_main_tt
+												value = -49
+											}
+										}
+									}
+									else = { 
+										set_variable = { 
+											name = task_main_tt
+											value = -50
+										}
 									}
 								}
 							}
@@ -2438,47 +3523,75 @@ every_ruler = {
 					if = { 
 						limit = { 
 							opinion = { 
-								value >= 12
-								target = prev
+								value >= -75
+								target = liege
 							}
 						}
 						if = { 
 							limit = { 
 								opinion = { 
-									value >= 18
-									target = prev
+									value >= -63
+									target = liege
 								}
 							}
 							if = { 
 								limit = { 
 									opinion = { 
-										value >= 21
-										target = prev
+										value >= -57
+										target = liege
 									}
 								}
 								if = { 
 									limit = { 
 										opinion = { 
-											value >= 23
-											target = prev
+											value >= -54
+											target = liege
 										}
 									}
 									if = { 
 										limit = { 
 											opinion = { 
-												value >= 24
-												target = prev
+												value >= -52
+												target = liege
 											}
 										}
-										set_variable = { 
-											name = task_main_t
-											value = 24
+										if = { 
+											limit = { 
+												opinion = { 
+													value >= -51
+													target = liege
+												}
+											}
+											set_variable = { 
+												name = task_main_tt
+												value = -51
+											}
+										}
+										else = { 
+											set_variable = { 
+												name = task_main_tt
+												value = -52
+											}
 										}
 									}
 									else = { 
-										set_variable = { 
-											name = task_main_t
-											value = 23
+										if = { 
+											limit = { 
+												opinion = { 
+													value >= -53
+													target = liege
+												}
+											}
+											set_variable = { 
+												name = task_main_tt
+												value = -53
+											}
+										}
+										else = { 
+											set_variable = { 
+												name = task_main_tt
+												value = -54
+											}
 										}
 									}
 								}
@@ -2486,19 +3599,33 @@ every_ruler = {
 									if = { 
 										limit = { 
 											opinion = { 
-												value >= 22
-												target = prev
+												value >= -56
+												target = liege
 											}
 										}
-										set_variable = { 
-											name = task_main_t
-											value = 22
+										if = { 
+											limit = { 
+												opinion = { 
+													value >= -55
+													target = liege
+												}
+											}
+											set_variable = { 
+												name = task_main_tt
+												value = -55
+											}
+										}
+										else = { 
+											set_variable = { 
+												name = task_main_tt
+												value = -56
+											}
 										}
 									}
 									else = { 
 										set_variable = { 
-											name = task_main_t
-											value = 21
+											name = task_main_tt
+											value = -57
 										}
 									}
 								}
@@ -2507,33 +3634,75 @@ every_ruler = {
 								if = { 
 									limit = { 
 										opinion = { 
-											value >= 19
-											target = prev
+											value >= -60
+											target = liege
 										}
 									}
 									if = { 
 										limit = { 
 											opinion = { 
-												value >= 20
-												target = prev
+												value >= -59
+												target = liege
 											}
 										}
-										set_variable = { 
-											name = task_main_t
-											value = 20
+										if = { 
+											limit = { 
+												opinion = { 
+													value >= -58
+													target = liege
+												}
+											}
+											set_variable = { 
+												name = task_main_tt
+												value = -58
+											}
+										}
+										else = { 
+											set_variable = { 
+												name = task_main_tt
+												value = -59
+											}
 										}
 									}
 									else = { 
 										set_variable = { 
-											name = task_main_t
-											value = 19
+											name = task_main_tt
+											value = -60
 										}
 									}
 								}
 								else = { 
-									set_variable = { 
-										name = task_main_t
-										value = 18
+									if = { 
+										limit = { 
+											opinion = { 
+												value >= -62
+												target = liege
+											}
+										}
+										if = { 
+											limit = { 
+												opinion = { 
+													value >= -61
+													target = liege
+												}
+											}
+											set_variable = { 
+												name = task_main_tt
+												value = -61
+											}
+										}
+										else = { 
+											set_variable = { 
+												name = task_main_tt
+												value = -62
+											}
+										}
+									}
+									else = { 
+										set_variable = { 
+											name = task_main_tt
+											value = -63
+										}
 									}
 								}
 							}
@@ -2542,40 +3711,82 @@ every_ruler = {
 							if = { 
 								limit = { 
 									opinion = { 
-										value >= 15
-										target = prev
+										value >= -69
+										target = liege
 									}
 								}
 								if = { 
 									limit = { 
 										opinion = { 
-											value >= 16
-											target = prev
+											value >= -66
+											target = liege
 										}
 									}
 									if = { 
 										limit = { 
 											opinion = { 
-												value >= 17
-												target = prev
+												value >= -65
+												target = liege
 											}
 										}
-										set_variable = { 
-											name = task_main_t
-											value = 17
+										if = { 
+											limit = { 
+												opinion = { 
+													value >= -64
+													target = liege
+												}
+											}
+											set_variable = { 
+												name = task_main_tt
+												value = -64
+											}
+										}
+										else = { 
+											set_variable = { 
+												name = task_main_tt
+												value = -65
+											}
 										}
 									}
 									else = { 
 										set_variable = { 
-											name = task_main_t
-											value = 16
+											name = task_main_tt
+											value = -66
 										}
 									}
 								}
 								else = { 
-									set_variable = { 
-										name = task_main_t
-										value = 15
+									if = { 
+										limit = { 
+											opinion = { 
+												value >= -68
+												target = liege
+											}
+										}
+										if = { 
+											limit = { 
+												opinion = { 
+													value >= -67
+													target = liege
+												}
+											}
+											set_variable = { 
+												name = task_main_tt
+												value = -67
+											}
+										}
+										else = { 
+											set_variable = { 
+												name = task_main_tt
+												value = -68
+											}
+										}
+									}
+									else = { 
+										set_variable = { 
+											name = task_main_tt
+											value = -69
+										}
 									}
 								}
 							}
@@ -2583,33 +3794,75 @@ every_ruler = {
 								if = { 
 									limit = { 
 										opinion = { 
-											value >= 13
-											target = prev
+											value >= -72
+											target = liege
 										}
 									}
 									if = { 
 										limit = { 
 											opinion = { 
-												value >= 14
-												target = prev
+												value >= -71
+												target = liege
 											}
 										}
-										set_variable = { 
-											name = task_main_t
-											value = 14
+										if = { 
+											limit = { 
+												opinion = { 
+													value >= -70
+													target = liege
+												}
+											}
+											set_variable = { 
+												name = task_main_tt
+												value = -70
+											}
+										}
+										else = { 
+											set_variable = { 
+												name = task_main_tt
+												value = -71
+											}
 										}
 									}
 									else = { 
 										set_variable = { 
-											name = task_main_t
-											value = 13
+											name = task_main_tt
+											value = -72
 										}
 									}
 								}
 								else = { 
-									set_variable = { 
-										name = task_main_t
-										value = 12
+									if = { 
+										limit = { 
+											opinion = { 
+												value >= -74
+												target = liege
+											}
+										}
+										if = { 
+											limit = { 
+												opinion = { 
+													value >= -73
+													target = liege
+												}
+											}
+											set_variable = { 
+												name = task_main_tt
+												value = -73
+											}
+										}
+										else = { 
+											set_variable = { 
+												name = task_main_tt
+												value = -74
+											}
+										}
+									}
+									else = { 
+										set_variable = { 
+											name = task_main_tt
+											value = -75
+										}
 									}
 								}
 							}
@@ -2619,47 +3872,103 @@ every_ruler = {
 						if = { 
 							limit = { 
 								opinion = { 
-									value >= 6
-									target = prev
+									value >= -88
+									target = liege
 								}
 							}
 							if = { 
 								limit = { 
 									opinion = { 
-										value >= 9
-										target = prev
+										value >= -82
+										target = liege
 									}
 								}
 								if = { 
 									limit = { 
 										opinion = { 
-											value >= 10
-											target = prev
+											value >= -79
+											target = liege
 										}
 									}
 									if = { 
 										limit = { 
 											opinion = { 
-												value >= 11
-												target = prev
+												value >= -77
+												target = liege
 											}
 										}
-										set_variable = { 
-											name = task_main_t
-											value = 11
+										if = { 
+											limit = { 
+												opinion = { 
+													value >= -76
+													target = liege
+												}
+											}
+											set_variable = { 
+												name = task_main_tt
+												value = -76
+											}
+										}
+										else = { 
+											set_variable = { 
+												name = task_main_tt
+												value = -77
+											}
 										}
 									}
 									else = { 
-										set_variable = { 
-											name = task_main_t
-											value = 10
+										if = { 
+											limit = { 
+												opinion = { 
+													value >= -78
+													target = liege
+												}
+											}
+											set_variable = { 
+												name = task_main_tt
+												value = -78
+											}
+										}
+										else = { 
+											set_variable = { 
+												name = task_main_tt
+												value = -79
+											}
 										}
 									}
 								}
 								else = { 
-									set_variable = { 
-										name = task_main_t
-										value = 9
+									if = { 
+										limit = { 
+											opinion = { 
+												value >= -81
+												target = liege
+											}
+										}
+										if = { 
+											limit = { 
+												opinion = { 
+													value >= -80
+													target = liege
+												}
+											}
+											set_variable = { 
+												name = task_main_tt
+												value = -80
+											}
+										}
+										else = { 
+											set_variable = { 
+												name = task_main_tt
+												value = -81
+											}
+										}
+									}
+									else = { 
+										set_variable = { 
+											name = task_main_tt
+											value = -82
+										}
 									}
 								}
 							}
@@ -2667,33 +3976,75 @@ every_ruler = {
 								if = { 
 									limit = { 
 										opinion = { 
-											value >= 7
-											target = prev
+											value >= -85
+											target = liege
 										}
 									}
 									if = { 
 										limit = { 
 											opinion = { 
-												value >= 8
-												target = prev
+												value >= -84
+												target = liege
 											}
 										}
-										set_variable = { 
-											name = task_main_t
-											value = 8
+										if = { 
+											limit = { 
+												opinion = { 
+													value >= -83
+													target = liege
+												}
+											}
+											set_variable = { 
+												name = task_main_tt
+												value = -83
+											}
+										}
+										else = { 
+											set_variable = { 
+												name = task_main_tt
+												value = -84
+											}
 										}
 									}
 									else = { 
 										set_variable = { 
-											name = task_main_t
-											value = 7
+											name = task_main_tt
+											value = -85
 										}
 									}
 								}
 								else = { 
-									set_variable = { 
-										name = task_main_t
-										value = 6
+									if = { 
+										limit = { 
+											opinion = { 
+												value >= -87
+												target = liege
+											}
+										}
+										if = { 
+											limit = { 
+												opinion = { 
+													value >= -86
+													target = liege
+												}
+											}
+											set_variable = { 
+												name = task_main_tt
+												value = -86
+											}
+										}
+										else = { 
+											set_variable = { 
+												name = task_main_tt
+												value = -87
+											}
+										}
+									}
+									else = { 
+										set_variable = { 
+											name = task_main_tt
+											value = -88
+										}
 									}
 								}
 							}
@@ -2702,40 +4053,82 @@ every_ruler = {
 							if = { 
 								limit = { 
 									opinion = { 
-										value >= 3
-										target = prev
+										value >= -94
+										target = liege
 									}
 								}
 								if = { 
 									limit = { 
 										opinion = { 
-											value >= 4
-											target = prev
+											value >= -91
+											target = liege
 										}
 									}
 									if = { 
 										limit = { 
 											opinion = { 
-												value >= 5
-												target = prev
+												value >= -90
+												target = liege
 											}
 										}
-										set_variable = { 
-											name = task_main_t
-											value = 5
+										if = { 
+											limit = { 
+												opinion = { 
+													value >= -89
+													target = liege
+												}
+											}
+											set_variable = { 
+												name = task_main_tt
+												value = -89
+											}
+										}
+										else = { 
+											set_variable = { 
+												name = task_main_tt
+												value = -90
+											}
 										}
 									}
 									else = { 
 										set_variable = { 
-											name = task_main_t
-											value = 4
+											name = task_main_tt
+											value = -91
 										}
 									}
 								}
 								else = { 
-									set_variable = { 
-										name = task_main_t
-										value = 3
+									if = { 
+										limit = { 
+											opinion = { 
+												value >= -93
+												target = liege
+											}
+										}
+										if = { 
+											limit = { 
+												opinion = { 
+													value >= -92
+													target = liege
+												}
+											}
+											set_variable = { 
+												name = task_main_tt
+												value = -92
+											}
+										}
+										else = { 
+											set_variable = { 
+												name = task_main_tt
+												value = -93
+											}
+										}
+									}
+									else = { 
+										set_variable = { 
+											name = task_main_tt
+											value = -94
+										}
 									}
 								}
 							}
@@ -2743,33 +4136,75 @@ every_ruler = {
 								if = { 
 									limit = { 
 										opinion = { 
-											value >= 1
-											target = prev
+											value >= -97
+											target = liege
 										}
 									}
 									if = { 
 										limit = { 
 											opinion = { 
-												value >= 2
-												target = prev
+												value >= -96
+												target = liege
 											}
 										}
-										set_variable = { 
-											name = task_main_t
-											value = 2
+										if = { 
+											limit = { 
+												opinion = { 
+													value >= -95
+													target = liege
+												}
+											}
+											set_variable = { 
+												name = task_main_tt
+												value = -95
+											}
+										}
+										else = { 
+											set_variable = { 
+												name = task_main_tt
+												value = -96
+											}
 										}
 									}
 									else = { 
 										set_variable = { 
-											name = task_main_t
-											value = 1
+											name = task_main_tt
+											value = -97
 										}
 									}
 								}
 								else = { 
-									set_variable = { 
-										name = task_main_t
-										value = 0
+									if = { 
+										limit = { 
+											opinion = { 
+												value >= -99
+												target = liege
+											}
+										}
+										if = { 
+											limit = { 
+												opinion = { 
+													value >= -98
+													target = liege
+												}
+											}
+											set_variable = { 
+												name = task_main_tt
+												value = -98
+											}
+										}
+										else = { 
+											set_variable = { 
+												name = task_main_tt
+												value = -99
+											}
+										}
+									}
+									else = { 
+										set_variable = { 
+											name = task_main_tt
+											value = -100
+										}
 									}
 								}
 							}
@@ -2777,1489 +4212,119 @@ every_ruler = {
 					}
 				}
 			}
-		}
-		else = { 
 			if = { 
 				limit = { 
-					opinion = { 
-						value >= -50
-						target = prev
+					has_dread_level_towards = { 
+						target = liege
+						level = 2
 					}
 				}
-				if = { 
-					limit = { 
-						opinion = { 
-							value >= -25
-							target = prev
-						}
-					}
-					if = { 
-						limit = { 
-							opinion = { 
-								value >= -13
-								target = prev
-							}
-						}
-						if = { 
-							limit = { 
-								opinion = { 
-									value >= -7
-									target = prev
-								}
-							}
-							if = { 
-								limit = { 
-									opinion = { 
-										value >= -4
-										target = prev
-									}
-								}
-								if = { 
-									limit = { 
-										opinion = { 
-											value >= -2
-											target = prev
-										}
-									}
-									if = { 
-										limit = { 
-											opinion = { 
-												value >= -1
-												target = prev
-											}
-										}
-										set_variable = { 
-											name = task_main_t
-											value = -1
-										}
-									}
-									else = { 
-										set_variable = { 
-											name = task_main_t
-											value = -2
-										}
-									}
-								}
-								else = { 
-									if = { 
-										limit = { 
-											opinion = { 
-												value >= -3
-												target = prev
-											}
-										}
-										set_variable = { 
-											name = task_main_t
-											value = -3
-										}
-									}
-									else = { 
-										set_variable = { 
-											name = task_main_t
-											value = -4
-										}
-									}
-								}
-							}
-							else = { 
-								if = { 
-									limit = { 
-										opinion = { 
-											value >= -6
-											target = prev
-										}
-									}
-									if = { 
-										limit = { 
-											opinion = { 
-												value >= -5
-												target = prev
-											}
-										}
-										set_variable = { 
-											name = task_main_t
-											value = -5
-										}
-									}
-									else = { 
-										set_variable = { 
-											name = task_main_t
-											value = -6
-										}
-									}
-								}
-								else = { 
-									set_variable = { 
-										name = task_main_t
-										value = -7
-									}
-								}
-							}
-						}
-						else = { 
-							if = { 
-								limit = { 
-									opinion = { 
-										value >= -10
-										target = prev
-									}
-								}
-								if = { 
-									limit = { 
-										opinion = { 
-											value >= -9
-											target = prev
-										}
-									}
-									if = { 
-										limit = { 
-											opinion = { 
-												value >= -8
-												target = prev
-											}
-										}
-										set_variable = { 
-											name = task_main_t
-											value = -8
-										}
-									}
-									else = { 
-										set_variable = { 
-											name = task_main_t
-											value = -9
-										}
-									}
-								}
-								else = { 
-									set_variable = { 
-										name = task_main_t
-										value = -10
-									}
-								}
-							}
-							else = { 
-								if = { 
-									limit = { 
-										opinion = { 
-											value >= -12
-											target = prev
-										}
-									}
-									if = { 
-										limit = { 
-											opinion = { 
-												value >= -11
-												target = prev
-											}
-										}
-										set_variable = { 
-											name = task_main_t
-											value = -11
-										}
-									}
-									else = { 
-										set_variable = { 
-											name = task_main_t
-											value = -12
-										}
-									}
-								}
-								else = { 
-									set_variable = { 
-										name = task_main_t
-										value = -13
-									}
-								}
-							}
-						}
-					}
-					else = { 
-						if = { 
-							limit = { 
-								opinion = { 
-									value >= -19
-									target = prev
-								}
-							}
-							if = { 
-								limit = { 
-									opinion = { 
-										value >= -16
-										target = prev
-									}
-								}
-								if = { 
-									limit = { 
-										opinion = { 
-											value >= -15
-											target = prev
-										}
-									}
-									if = { 
-										limit = { 
-											opinion = { 
-												value >= -14
-												target = prev
-											}
-										}
-										set_variable = { 
-											name = task_main_t
-											value = -14
-										}
-									}
-									else = { 
-										set_variable = { 
-											name = task_main_t
-											value = -15
-										}
-									}
-								}
-								else = { 
-									set_variable = { 
-										name = task_main_t
-										value = -16
-									}
-								}
-							}
-							else = { 
-								if = { 
-									limit = { 
-										opinion = { 
-											value >= -18
-											target = prev
-										}
-									}
-									if = { 
-										limit = { 
-											opinion = { 
-												value >= -17
-												target = prev
-											}
-										}
-										set_variable = { 
-											name = task_main_t
-											value = -17
-										}
-									}
-									else = { 
-										set_variable = { 
-											name = task_main_t
-											value = -18
-										}
-									}
-								}
-								else = { 
-									set_variable = { 
-										name = task_main_t
-										value = -19
-									}
-								}
-							}
-						}
-						else = { 
-							if = { 
-								limit = { 
-									opinion = { 
-										value >= -22
-										target = prev
-									}
-								}
-								if = { 
-									limit = { 
-										opinion = { 
-											value >= -21
-											target = prev
-										}
-									}
-									if = { 
-										limit = { 
-											opinion = { 
-												value >= -20
-												target = prev
-											}
-										}
-										set_variable = { 
-											name = task_main_t
-											value = -20
-										}
-									}
-									else = { 
-										set_variable = { 
-											name = task_main_t
-											value = -21
-										}
-									}
-								}
-								else = { 
-									set_variable = { 
-										name = task_main_t
-										value = -22
-									}
-								}
-							}
-							else = { 
-								if = { 
-									limit = { 
-										opinion = { 
-											value >= -24
-											target = prev
-										}
-									}
-									if = { 
-										limit = { 
-											opinion = { 
-												value >= -23
-												target = prev
-											}
-										}
-										set_variable = { 
-											name = task_main_t
-											value = -23
-										}
-									}
-									else = { 
-										set_variable = { 
-											name = task_main_t
-											value = -24
-										}
-									}
-								}
-								else = { 
-									set_variable = { 
-										name = task_main_t
-										value = -25
-									}
-								}
-							}
-						}
-					}
-				}
-				else = { 
-					if = { 
-						limit = { 
-							opinion = { 
-								value >= -38
-								target = prev
-							}
-						}
-						if = { 
-							limit = { 
-								opinion = { 
-									value >= -32
-									target = prev
-								}
-							}
-							if = { 
-								limit = { 
-									opinion = { 
-										value >= -29
-										target = prev
-									}
-								}
-								if = { 
-									limit = { 
-										opinion = { 
-											value >= -27
-											target = prev
-										}
-									}
-									if = { 
-										limit = { 
-											opinion = { 
-												value >= -26
-												target = prev
-											}
-										}
-										set_variable = { 
-											name = task_main_t
-											value = -26
-										}
-									}
-									else = { 
-										set_variable = { 
-											name = task_main_t
-											value = -27
-										}
-									}
-								}
-								else = { 
-									if = { 
-										limit = { 
-											opinion = { 
-												value >= -28
-												target = prev
-											}
-										}
-										set_variable = { 
-											name = task_main_t
-											value = -28
-										}
-									}
-									else = { 
-										set_variable = { 
-											name = task_main_t
-											value = -29
-										}
-									}
-								}
-							}
-							else = { 
-								if = { 
-									limit = { 
-										opinion = { 
-											value >= -31
-											target = prev
-										}
-									}
-									if = { 
-										limit = { 
-											opinion = { 
-												value >= -30
-												target = prev
-											}
-										}
-										set_variable = { 
-											name = task_main_t
-											value = -30
-										}
-									}
-									else = { 
-										set_variable = { 
-											name = task_main_t
-											value = -31
-										}
-									}
-								}
-								else = { 
-									set_variable = { 
-										name = task_main_t
-										value = -32
-									}
-								}
-							}
-						}
-						else = { 
-							if = { 
-								limit = { 
-									opinion = { 
-										value >= -35
-										target = prev
-									}
-								}
-								if = { 
-									limit = { 
-										opinion = { 
-											value >= -34
-											target = prev
-										}
-									}
-									if = { 
-										limit = { 
-											opinion = { 
-												value >= -33
-												target = prev
-											}
-										}
-										set_variable = { 
-											name = task_main_t
-											value = -33
-										}
-									}
-									else = { 
-										set_variable = { 
-											name = task_main_t
-											value = -34
-										}
-									}
-								}
-								else = { 
-									set_variable = { 
-										name = task_main_t
-										value = -35
-									}
-								}
-							}
-							else = { 
-								if = { 
-									limit = { 
-										opinion = { 
-											value >= -37
-											target = prev
-										}
-									}
-									if = { 
-										limit = { 
-											opinion = { 
-												value >= -36
-												target = prev
-											}
-										}
-										set_variable = { 
-											name = task_main_t
-											value = -36
-										}
-									}
-									else = { 
-										set_variable = { 
-											name = task_main_t
-											value = -37
-										}
-									}
-								}
-								else = { 
-									set_variable = { 
-										name = task_main_t
-										value = -38
-									}
-								}
-							}
-						}
-					}
-					else = { 
-						if = { 
-							limit = { 
-								opinion = { 
-									value >= -44
-									target = prev
-								}
-							}
-							if = { 
-								limit = { 
-									opinion = { 
-										value >= -41
-										target = prev
-									}
-								}
-								if = { 
-									limit = { 
-										opinion = { 
-											value >= -40
-											target = prev
-										}
-									}
-									if = { 
-										limit = { 
-											opinion = { 
-												value >= -39
-												target = prev
-											}
-										}
-										set_variable = { 
-											name = task_main_t
-											value = -39
-										}
-									}
-									else = { 
-										set_variable = { 
-											name = task_main_t
-											value = -40
-										}
-									}
-								}
-								else = { 
-									set_variable = { 
-										name = task_main_t
-										value = -41
-									}
-								}
-							}
-							else = { 
-								if = { 
-									limit = { 
-										opinion = { 
-											value >= -43
-											target = prev
-										}
-									}
-									if = { 
-										limit = { 
-											opinion = { 
-												value >= -42
-												target = prev
-											}
-										}
-										set_variable = { 
-											name = task_main_t
-											value = -42
-										}
-									}
-									else = { 
-										set_variable = { 
-											name = task_main_t
-											value = -43
-										}
-									}
-								}
-								else = { 
-									set_variable = { 
-										name = task_main_t
-										value = -44
-									}
-								}
-							}
-						}
-						else = { 
-							if = { 
-								limit = { 
-									opinion = { 
-										value >= -47
-										target = prev
-									}
-								}
-								if = { 
-									limit = { 
-										opinion = { 
-											value >= -46
-											target = prev
-										}
-									}
-									if = { 
-										limit = { 
-											opinion = { 
-												value >= -45
-												target = prev
-											}
-										}
-										set_variable = { 
-											name = task_main_t
-											value = -45
-										}
-									}
-									else = { 
-										set_variable = { 
-											name = task_main_t
-											value = -46
-										}
-									}
-								}
-								else = { 
-									set_variable = { 
-										name = task_main_t
-										value = -47
-									}
-								}
-							}
-							else = { 
-								if = { 
-									limit = { 
-										opinion = { 
-											value >= -49
-											target = prev
-										}
-									}
-									if = { 
-										limit = { 
-											opinion = { 
-												value >= -48
-												target = prev
-											}
-										}
-										set_variable = { 
-											name = task_main_t
-											value = -48
-										}
-									}
-									else = { 
-										set_variable = { 
-											name = task_main_t
-											value = -49
-										}
-									}
-								}
-								else = { 
-									set_variable = { 
-										name = task_main_t
-										value = -50
-									}
-								}
-							}
-						}
-					}
+				change_variable = { 
+					name = task_main_tt
+					add = 200
 				}
 			}
-			else = { 
-				if = { 
-					limit = { 
-						opinion = { 
-							value >= -75
-							target = prev
-						}
-					}
-					if = { 
-						limit = { 
-							opinion = { 
-								value >= -63
-								target = prev
-							}
-						}
-						if = { 
-							limit = { 
-								opinion = { 
-									value >= -57
-									target = prev
-								}
-							}
-							if = { 
-								limit = { 
-									opinion = { 
-										value >= -54
-										target = prev
-									}
-								}
-								if = { 
-									limit = { 
-										opinion = { 
-											value >= -52
-											target = prev
-										}
-									}
-									if = { 
-										limit = { 
-											opinion = { 
-												value >= -51
-												target = prev
-											}
-										}
-										set_variable = { 
-											name = task_main_t
-											value = -51
-										}
-									}
-									else = { 
-										set_variable = { 
-											name = task_main_t
-											value = -52
-										}
-									}
-								}
-								else = { 
-									if = { 
-										limit = { 
-											opinion = { 
-												value >= -53
-												target = prev
-											}
-										}
-										set_variable = { 
-											name = task_main_t
-											value = -53
-										}
-									}
-									else = { 
-										set_variable = { 
-											name = task_main_t
-											value = -54
-										}
-									}
-								}
-							}
-							else = { 
-								if = { 
-									limit = { 
-										opinion = { 
-											value >= -56
-											target = prev
-										}
-									}
-									if = { 
-										limit = { 
-											opinion = { 
-												value >= -55
-												target = prev
-											}
-										}
-										set_variable = { 
-											name = task_main_t
-											value = -55
-										}
-									}
-									else = { 
-										set_variable = { 
-											name = task_main_t
-											value = -56
-										}
-									}
-								}
-								else = { 
-									set_variable = { 
-										name = task_main_t
-										value = -57
-									}
-								}
-							}
-						}
-						else = { 
-							if = { 
-								limit = { 
-									opinion = { 
-										value >= -60
-										target = prev
-									}
-								}
-								if = { 
-									limit = { 
-										opinion = { 
-											value >= -59
-											target = prev
-										}
-									}
-									if = { 
-										limit = { 
-											opinion = { 
-												value >= -58
-												target = prev
-											}
-										}
-										set_variable = { 
-											name = task_main_t
-											value = -58
-										}
-									}
-									else = { 
-										set_variable = { 
-											name = task_main_t
-											value = -59
-										}
-									}
-								}
-								else = { 
-									set_variable = { 
-										name = task_main_t
-										value = -60
-									}
-								}
-							}
-							else = { 
-								if = { 
-									limit = { 
-										opinion = { 
-											value >= -62
-											target = prev
-										}
-									}
-									if = { 
-										limit = { 
-											opinion = { 
-												value >= -61
-												target = prev
-											}
-										}
-										set_variable = { 
-											name = task_main_t
-											value = -61
-										}
-									}
-									else = { 
-										set_variable = { 
-											name = task_main_t
-											value = -62
-										}
-									}
-								}
-								else = { 
-									set_variable = { 
-										name = task_main_t
-										value = -63
-									}
-								}
-							}
-						}
-					}
-					else = { 
-						if = { 
-							limit = { 
-								opinion = { 
-									value >= -69
-									target = prev
-								}
-							}
-							if = { 
-								limit = { 
-									opinion = { 
-										value >= -66
-										target = prev
-									}
-								}
-								if = { 
-									limit = { 
-										opinion = { 
-											value >= -65
-											target = prev
-										}
-									}
-									if = { 
-										limit = { 
-											opinion = { 
-												value >= -64
-												target = prev
-											}
-										}
-										set_variable = { 
-											name = task_main_t
-											value = -64
-										}
-									}
-									else = { 
-										set_variable = { 
-											name = task_main_t
-											value = -65
-										}
-									}
-								}
-								else = { 
-									set_variable = { 
-										name = task_main_t
-										value = -66
-									}
-								}
-							}
-							else = { 
-								if = { 
-									limit = { 
-										opinion = { 
-											value >= -68
-											target = prev
-										}
-									}
-									if = { 
-										limit = { 
-											opinion = { 
-												value >= -67
-												target = prev
-											}
-										}
-										set_variable = { 
-											name = task_main_t
-											value = -67
-										}
-									}
-									else = { 
-										set_variable = { 
-											name = task_main_t
-											value = -68
-										}
-									}
-								}
-								else = { 
-									set_variable = { 
-										name = task_main_t
-										value = -69
-									}
-								}
-							}
-						}
-						else = { 
-							if = { 
-								limit = { 
-									opinion = { 
-										value >= -72
-										target = prev
-									}
-								}
-								if = { 
-									limit = { 
-										opinion = { 
-											value >= -71
-											target = prev
-										}
-									}
-									if = { 
-										limit = { 
-											opinion = { 
-												value >= -70
-												target = prev
-											}
-										}
-										set_variable = { 
-											name = task_main_t
-											value = -70
-										}
-									}
-									else = { 
-										set_variable = { 
-											name = task_main_t
-											value = -71
-										}
-									}
-								}
-								else = { 
-									set_variable = { 
-										name = task_main_t
-										value = -72
-									}
-								}
-							}
-							else = { 
-								if = { 
-									limit = { 
-										opinion = { 
-											value >= -74
-											target = prev
-										}
-									}
-									if = { 
-										limit = { 
-											opinion = { 
-												value >= -73
-												target = prev
-											}
-										}
-										set_variable = { 
-											name = task_main_t
-											value = -73
-										}
-									}
-									else = { 
-										set_variable = { 
-											name = task_main_t
-											value = -74
-										}
-									}
-								}
-								else = { 
-									set_variable = { 
-										name = task_main_t
-										value = -75
-									}
-								}
-							}
-						}
+			else_if = { 
+				limit = { 
+					has_dread_level_towards = { 
+						target = liege
+						level = 1
 					}
 				}
-				else = { 
-					if = { 
-						limit = { 
-							opinion = { 
-								value >= -88
-								target = prev
-							}
-						}
-						if = { 
-							limit = { 
-								opinion = { 
-									value >= -82
-									target = prev
-								}
-							}
-							if = { 
-								limit = { 
-									opinion = { 
-										value >= -79
-										target = prev
-									}
-								}
-								if = { 
-									limit = { 
-										opinion = { 
-											value >= -77
-											target = prev
-										}
-									}
-									if = { 
-										limit = { 
-											opinion = { 
-												value >= -76
-												target = prev
-											}
-										}
-										set_variable = { 
-											name = task_main_t
-											value = -76
-										}
-									}
-									else = { 
-										set_variable = { 
-											name = task_main_t
-											value = -77
-										}
-									}
-								}
-								else = { 
-									if = { 
-										limit = { 
-											opinion = { 
-												value >= -78
-												target = prev
-											}
-										}
-										set_variable = { 
-											name = task_main_t
-											value = -78
-										}
-									}
-									else = { 
-										set_variable = { 
-											name = task_main_t
-											value = -79
-										}
-									}
-								}
-							}
-							else = { 
-								if = { 
-									limit = { 
-										opinion = { 
-											value >= -81
-											target = prev
-										}
-									}
-									if = { 
-										limit = { 
-											opinion = { 
-												value >= -80
-												target = prev
-											}
-										}
-										set_variable = { 
-											name = task_main_t
-											value = -80
-										}
-									}
-									else = { 
-										set_variable = { 
-											name = task_main_t
-											value = -81
-										}
-									}
-								}
-								else = { 
-									set_variable = { 
-										name = task_main_t
-										value = -82
-									}
-								}
-							}
-						}
-						else = { 
-							if = { 
-								limit = { 
-									opinion = { 
-										value >= -85
-										target = prev
-									}
-								}
-								if = { 
-									limit = { 
-										opinion = { 
-											value >= -84
-											target = prev
-										}
-									}
-									if = { 
-										limit = { 
-											opinion = { 
-												value >= -83
-												target = prev
-											}
-										}
-										set_variable = { 
-											name = task_main_t
-											value = -83
-										}
-									}
-									else = { 
-										set_variable = { 
-											name = task_main_t
-											value = -84
-										}
-									}
-								}
-								else = { 
-									set_variable = { 
-										name = task_main_t
-										value = -85
-									}
-								}
-							}
-							else = { 
-								if = { 
-									limit = { 
-										opinion = { 
-											value >= -87
-											target = prev
-										}
-									}
-									if = { 
-										limit = { 
-											opinion = { 
-												value >= -86
-												target = prev
-											}
-										}
-										set_variable = { 
-											name = task_main_t
-											value = -86
-										}
-									}
-									else = { 
-										set_variable = { 
-											name = task_main_t
-											value = -87
-										}
-									}
-								}
-								else = { 
-									set_variable = { 
-										name = task_main_t
-										value = -88
-									}
-								}
-							}
-						}
-					}
-					else = { 
-						if = { 
-							limit = { 
-								opinion = { 
-									value >= -94
-									target = prev
-								}
-							}
-							if = { 
-								limit = { 
-									opinion = { 
-										value >= -91
-										target = prev
-									}
-								}
-								if = { 
-									limit = { 
-										opinion = { 
-											value >= -90
-											target = prev
-										}
-									}
-									if = { 
-										limit = { 
-											opinion = { 
-												value >= -89
-												target = prev
-											}
-										}
-										set_variable = { 
-											name = task_main_t
-											value = -89
-										}
-									}
-									else = { 
-										set_variable = { 
-											name = task_main_t
-											value = -90
-										}
-									}
-								}
-								else = { 
-									set_variable = { 
-										name = task_main_t
-										value = -91
-									}
-								}
-							}
-							else = { 
-								if = { 
-									limit = { 
-										opinion = { 
-											value >= -93
-											target = prev
-										}
-									}
-									if = { 
-										limit = { 
-											opinion = { 
-												value >= -92
-												target = prev
-											}
-										}
-										set_variable = { 
-											name = task_main_t
-											value = -92
-										}
-									}
-									else = { 
-										set_variable = { 
-											name = task_main_t
-											value = -93
-										}
-									}
-								}
-								else = { 
-									set_variable = { 
-										name = task_main_t
-										value = -94
-									}
-								}
-							}
-						}
-						else = { 
-							if = { 
-								limit = { 
-									opinion = { 
-										value >= -97
-										target = prev
-									}
-								}
-								if = { 
-									limit = { 
-										opinion = { 
-											value >= -96
-											target = prev
-										}
-									}
-									if = { 
-										limit = { 
-											opinion = { 
-												value >= -95
-												target = prev
-											}
-										}
-										set_variable = { 
-											name = task_main_t
-											value = -95
-										}
-									}
-									else = { 
-										set_variable = { 
-											name = task_main_t
-											value = -96
-										}
-									}
-								}
-								else = { 
-									set_variable = { 
-										name = task_main_t
-										value = -97
-									}
-								}
-							}
-							else = { 
-								if = { 
-									limit = { 
-										opinion = { 
-											value >= -99
-											target = prev
-										}
-									}
-									if = { 
-										limit = { 
-											opinion = { 
-												value >= -98
-												target = prev
-											}
-										}
-										set_variable = { 
-											name = task_main_t
-											value = -98
-										}
-									}
-									else = { 
-										set_variable = { 
-											name = task_main_t
-											value = -99
-										}
-									}
-								}
-								else = { 
-									set_variable = { 
-										name = task_main_t
-										value = -100
-									}
-								}
-							}
-						}
-					}
+				change_variable = { 
+					name = task_main_tt
+					add = 100
 				}
-			}
-		}
-		if = { 
-			limit = { 
-				has_dread_level_towards = { 
-					target = prev
-					level = 2
-				}
-			}
-			change_variable = { 
-				name = task_main_t
-				add = 200
-			}
-		}
-		else_if = { 
-			limit = { 
-				has_dread_level_towards = { 
-					target = prev
-					level = 1
-				}
-			}
-			change_variable = { 
-				name = task_main_t
-				add = 100
-			}
-		}
-		if = { 
-			limit = { 
-				has_variable = task_main_t
-				var:task_main_t > 100
-			}
-			set_variable = { 
-				name = task_main_t
-				value = 100
-			}
-		}
-		change_variable = { 
-			name = task_main_t
-			subtract = 100
-		}
-		change_variable = { 
-			name = task_main_t
-			divide = -2
-		}
-		every_in_list = { 
-			variable = task_main_t
-			set_variable = { 
-				name = task_main_t
-				value = prev.var:task_main_t
 			}
 			if = { 
 				limit = { 
 					NOT = { 
-						var:task_template = global_var:manage_oversight
+						prev.var:task_template = global_var:manage_oversight
 					}
 				}
 				change_variable = { 
+					name = task_main_tt
+					add = liege.var:task_main_t
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = task_main_tt
+					var:task_main_tt > 100
+				}
+				set_variable = { 
+					name = task_main_tt
+					value = 100
+				}
+			}
+			change_variable = { 
+				name = task_main_tt
+				subtract = 100
+			}
+			change_variable = { 
+				name = task_main_tt
+				multiply = var:task_main_tt
+			}
+			change_variable = { 
+				name = task_main_tt
+				divide = 400
+			}
+			prev = { 
+				set_variable = { 
 					name = task_main_t
-					subtract = scope:task_main_t.var:task_main_t
-				}
-				if = { 
-					limit = { 
-						OR = { 
-							NOT = { 
-								has_variable = task_main_t
-							}
-							var:task_main_t < 0
-						}
-					}
-					set_variable = { 
-						name = task_main_t
-						value = 0
-					}
+					value = prev.var:task_main_tt
 				}
 			}
-			change_variable = { 
-				name = task_main_t
-				subtract = var:task_crpt
-			}
-			change_variable = { 
-				name = task_main_t
-				divide = 10
-			}
-			change_variable = { 
-				name = task_crpt
-				add = var:task_main_t
-			}
-			remove_variable = task_main_t
+			remove_variable = task_main_tt
 		}
-		clear_variable_list = task_main_t
-		remove_variable = task_main_t
 	}
-	clear_global_variable_list = task_main_t
+	change_variable = { 
+		name = task_main_t
+		subtract = var:task_crpt
+	}
+	change_variable = { 
+		name = task_main_t
+		divide = 10
+	}
+	change_variable = { 
+		name = task_crpt
+		add = var:task_main_t
+	}
 	remove_variable = task_main_t
+}
+every_in_global_list = { 
+	variable = task_main_t
+	remove_variable = task_main_t
+	remove_variable = task_main_tt
+}
+clear_global_variable_list = task_main_t
+global_var:manage_domain = { 
+	every_in_list = { 
+		variable = task_tasks
+	}
+}
+global_var:manage_realm = { 
+	every_in_list = { 
+		variable = task_tasks
+	}
+}
+global_var:manage_logistics = { 
+	every_in_list = { 
+		variable = task_tasks
+	}
+}
+global_var:manage_court = { 
+	every_in_list = { 
+		variable = task_tasks
+	}
+}
+global_var:manage_stockpile = { 
+	every_in_list = { 
+		variable = task_tasks
+	}
+}
+global_var:manage_oversight = { 
+	every_in_list = { 
+		variable = task_tasks
+	}
 }

@@ -1,8 +1,47 @@
-﻿stat_do_prov = {
-	set_variable = { name = stat_do_prov_t value = var:pop_earn_serf }
-	change_variable = { name = stat_do_prov_t divide = 12 }
+﻿stat_main = {
+	every_province = {
+		limit = {
+			is_valid_prov = yes
+			is_city = yes
+		}
+		set_variable = { name = stat_tax value = var:pop_earn_serf }
+		change_variable = { name = stat_tax subtract = var:pop_pay_serf }
+		
+		set_variable = { name = stat_main_t value = var:stat_tax }
+		
+		mod_assign_2_16 = { type = province name = stat_tax var = stat_main_t }
+		
+		set_variable = { name = stat_levy value = var:mil_levy_field }
+		
+		set_variable = { name = stat_main_t value = var:stat_levy }
+		change_variable = { name = stat_main_t divide = 0.1 }
+		
+		add_province_modifier = stat_levy
+		mod_assign_2_20 = { type = province name = stat_levy var = stat_main_t }
+		
+		set_variable = { name = stat_garrison value = var:mil_levy_garrison }
+		
+		set_variable = { name = stat_main_t value = var:stat_garrison }
+		change_variable = { name = stat_main_t divide = 0.1 }
+		
+		add_province_modifier = stat_garrison
+		mod_assign_2_20 = { type = province name = stat_garrison var = stat_main_t }
+		
+		remove_variable = stat_main_t
+	}
 	
-	mod_assign_2_16 = { type = province name = stat_tax var = stat_do_prov_t } 
-	
-	remove_variable = stat_do_prov_t
+	every_ruler = {
+		limit = {
+			is_character = yes
+			is_landed = yes
+		}
+		set_variable = { name = stat_maa value = var:mil_maa }
+		
+		set_variable = { name = stat_main_t value = var:stat_maa }
+		change_variable = { name = stat_main_t multiply = 10 }
+		
+		mod_assign_0_12 = { type = character name = stat_maa var = stat_main_t }
+		
+		remove_variable = stat_main_t
+	}
 }

@@ -385,17 +385,66 @@ sim_run.02 = {
 				trigger_event = { id = census.07 }
 				trigger_event = { id = census.08 }
 				trigger_event = { id = census.09 }
+				trigger_event = { id = census.10 }
+				trigger_event = { id = census.11 }
 
+				every_ruler = {
+					limit = {
+						is_character = yes
+						is_landed = yes
+					}
+					set_variable = { name = sim_income value = 0 }
+				}
+				
 				every_province = {
 					limit = {
 						is_valid_prov = yes
 					}
 					change_variable = { name = pop_wealth add = var:pop_earn_free } 
-					change_variable = { name = pop_wealth add = var:pop_earn_serf }
 					change_variable = { name = pop_wealth subtract = var:pop_pay_free }
-					change_variable = { name = pop_wealth subtract = var:pop_pay_serf }
+
+					if = {
+						limit = {
+							is_city = yes
+						}
+						province_owner = {
+							if = {
+								limit = {
+									is_character = yes
+									is_ruler = yes
+									is_landed = yes
+									has_variable = sim_income
+								}
+								change_variable = { name = sim_income add = prev.var:pop_earn_serf }
+								change_variable = { name = sim_income add = prev.var:pop_pay_serf }
+							}
+							else = {
+								prev = {
+									change_variable = { name = pop_wealth add = var:pop_earn_serf }
+									change_variable = { name = pop_wealth subtract = var:pop_pay_serf }
+								}
+							}
+						}
+					}
+					else = {
+						change_variable = { name = pop_wealth add = var:pop_earn_serf }
+						change_variable = { name = pop_wealth subtract = var:pop_pay_serf }
+					}
 				}
 
+				every_ruler = {
+					limit = {
+						is_character = yes
+						is_landed = yes
+					}
+					set_variable = { name = sim_balance value = var:sim_income }
+					change_variable = { name = sim_balance add = var:trade_earn }
+					change_variable = { name = sim_balance subtract = var:trade_pay }
+					
+					eff_binary_1_16 = { name = sim_balance eff = add_gold }
+
+					remove_variable = sim_balance
+				}
 				set_variable = { name = t_disp value = global_var:sim_i }
 				
 				debug_log = "Logging Start: [THIS.Var('t_disp').GetValue]"
@@ -645,6 +694,47 @@ sim_run.02 = {
 				remove_variable = t_disp
 				remove_variable = t_disp_t
 			}
+		}
+		
+		every_ruler = {
+			limit = {
+				is_character = yes
+				is_landed = yes
+			}
+			remove_variable = sim_income
+			
+			^^goods^
+				every_in_list = {
+					variable = trade_dat_&goods&
+					
+					prev.capital_province = {
+						add_to_variable_list = { name = trade_dat_&goods& target = prev }
+					}
+				}
+				every_in_list = {
+					variable = array_trade_dat_&goods&
+					
+					prev.capital_province = {
+						add_to_variable_list = { name = array_trade_dat_&goods& target = prev }
+					}
+				}
+				
+				capital_province = {
+					set_variable = { name = trade_in_&goods& value = prev.var:trade_in_&goods& }
+					set_variable = { name = trade_out_&goods& value = prev.var:trade_out_&goods& }
+					set_variable = { name = trade_earn_&goods& value = prev.var:trade_earn_&goods& }
+					set_variable = { name = trade_pay_&goods& value = prev.var:trade_pay_&goods& }
+					set_variable = { name = trade_sply_&goods& value = prev.var:trade_sply_&goods& }
+					set_variable = { name = trade_dmnd_&goods& value = prev.var:trade_dmnd_&goods& }
+					set_variable = { name = trade_price_&goods& value = prev.var:trade_price_&goods& }
+					set_variable = { name = trade_gold value = prev.gold }
+					set_variable = { name = trade_maa value = prev.var:mil_maa }
+					set_variable = { name = trade_maintain value = prev.var:mil_maintain }
+				}
+				
+				clear_variable_list = trade_dat_&goods&
+				array_clear = { name = trade_dat_&goods& }
+			^
 		}
 		
 		remove_global_variable = sim_i
