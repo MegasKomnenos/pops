@@ -200,7 +200,13 @@ task_main = {
 			
 			if = {
 				limit = {
-					has_variable = task_delegate
+					OR = {
+						prev = {
+							is_councillor = yes
+						}
+						
+						has_variable = task_delegate
+					}
 				}
 				if = {
 					limit = {
