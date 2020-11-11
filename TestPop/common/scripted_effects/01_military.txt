@@ -182,18 +182,21 @@ mil_maa_ai = {
 			change_variable = { name = mil_maa_ai_t add = var:mil_maa_maintain_&goods& }
 		^
 		
-		set_variable = { name = mil_maa_ai_tt value = monthly_character_income }
-		
 		if = {
 			limit = {
 				has_variable = sim_income
 			}
-			change_variable = { name = mil_maa_ai_tt add = var:sim_income }
+			set_variable = { name = mil_maa_ai_tt value = var:sim_income }
+			change_variable = { name = mil_maa_ai_tt divide = 12 }
+		}
+		else = {
+			set_variable = { name = mil_maa_ai_tt value = 0 }
 		}
 		
-		change_variable = { name = mil_maa_ai_tt multiply = 10 }
+		change_variable = { name = mil_maa_ai_tt add = monthly_character_income }
+		change_variable = { name = mil_maa_ai_tt multiply = 20 }
 		change_variable = { name = mil_maa_ai_tt add = gold }
-		change_variable = { name = mil_maa_ai_tt divide = 50 }
+		change_variable = { name = mil_maa_ai_tt divide = 100 }
 		change_variable = { name = mil_maa_ai_tt divide = var:mil_maa_ai_t }
 		
 		if = {
