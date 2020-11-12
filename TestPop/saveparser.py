@@ -411,7 +411,8 @@ if __name__ == '__main__':
             out.append(event % (iii, ''.join([item for item in outout if item]), iii + 1))
             out.append(event % (iii + 1, '''		init_task_templates = yes
 		init_rulers = yes	
-		task_main = yes''', ''))
+		task_main = yes
+		stat_main = yes''', ''))
 
             print('Parsing and Reconstructing the Events')
 
