@@ -5,18 +5,19 @@ task_check_cond_manage_realm = {
 	vassal_count > 0
 }
 task_check_cond_manage_logistics = {
-#	OR = {
-#		has_raised_armies = yes
-#		
-#		number_of_maa_regiments > 0
-#	}
-	always = no
+	OR = {
+		has_raised_armies = yes
+		
+		number_of_maa_regiments > 0
+	}
 }
 task_check_cond_manage_court = {
 	always = no
 }
 task_check_cond_manage_stockpile = {
-	always = no
+	OR = {
+		^^goods^has_variable = trade_want_&goods&^
+	}
 }
 task_check_cond_manage_oversight = {
 	NOT = {
