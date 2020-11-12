@@ -416,7 +416,7 @@ sim_run.02 = {
 									has_variable = sim_income
 								}
 								change_variable = { name = sim_income add = prev.var:pop_earn_serf }
-								change_variable = { name = sim_income add = prev.var:pop_pay_serf }
+								change_variable = { name = sim_income subtract = prev.var:pop_pay_serf }
 							}
 							else = {
 								prev = {

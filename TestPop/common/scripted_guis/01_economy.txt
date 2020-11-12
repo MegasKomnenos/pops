@@ -30003,3 +30003,3211 @@ close_prov_merchant_core = {
 		}
 	}
 }
+toggle_player_stockpile = { 
+	scope = character
+	is_shown = { 
+		always = yes
+	}
+	is_valid = { 
+		always = yes
+	}
+	effect = { 
+		if = { 
+			limit = { 
+				has_variable = toggled_player_stockpile
+			}
+			remove_variable = toggled_player_stockpile
+			remove_variable = info_player_stockpile_maa_recruit_food
+			remove_variable = info_player_stockpile_maa_maintain_food
+			remove_variable = info_player_stockpile_levy_maintain_food
+			remove_variable = info_player_stockpile_dmnd_food
+			remove_variable = info_player_stockpile_maa_recruit_cereal
+			remove_variable = info_player_stockpile_maa_maintain_cereal
+			remove_variable = info_player_stockpile_levy_maintain_cereal
+			remove_variable = info_player_stockpile_dmnd_cereal
+			remove_variable = info_player_stockpile_maa_recruit_salted
+			remove_variable = info_player_stockpile_maa_maintain_salted
+			remove_variable = info_player_stockpile_levy_maintain_salted
+			remove_variable = info_player_stockpile_dmnd_salted
+			remove_variable = info_player_stockpile_maa_recruit_salt
+			remove_variable = info_player_stockpile_maa_maintain_salt
+			remove_variable = info_player_stockpile_levy_maintain_salt
+			remove_variable = info_player_stockpile_dmnd_salt
+			remove_variable = info_player_stockpile_maa_recruit_mud
+			remove_variable = info_player_stockpile_maa_maintain_mud
+			remove_variable = info_player_stockpile_levy_maintain_mud
+			remove_variable = info_player_stockpile_dmnd_mud
+			remove_variable = info_player_stockpile_maa_recruit_fuel
+			remove_variable = info_player_stockpile_maa_maintain_fuel
+			remove_variable = info_player_stockpile_levy_maintain_fuel
+			remove_variable = info_player_stockpile_dmnd_fuel
+			remove_variable = info_player_stockpile_maa_recruit_fiber
+			remove_variable = info_player_stockpile_maa_maintain_fiber
+			remove_variable = info_player_stockpile_levy_maintain_fiber
+			remove_variable = info_player_stockpile_dmnd_fiber
+			remove_variable = info_player_stockpile_maa_recruit_timber
+			remove_variable = info_player_stockpile_maa_maintain_timber
+			remove_variable = info_player_stockpile_levy_maintain_timber
+			remove_variable = info_player_stockpile_dmnd_timber
+			remove_variable = info_player_stockpile_maa_recruit_metal
+			remove_variable = info_player_stockpile_maa_maintain_metal
+			remove_variable = info_player_stockpile_levy_maintain_metal
+			remove_variable = info_player_stockpile_dmnd_metal
+			remove_variable = info_player_stockpile_maa_recruit_exotics_w
+			remove_variable = info_player_stockpile_maa_maintain_exotics_w
+			remove_variable = info_player_stockpile_levy_maintain_exotics_w
+			remove_variable = info_player_stockpile_dmnd_exotics_w
+			remove_variable = info_player_stockpile_maa_recruit_exotics_e
+			remove_variable = info_player_stockpile_maa_maintain_exotics_e
+			remove_variable = info_player_stockpile_levy_maintain_exotics_e
+			remove_variable = info_player_stockpile_dmnd_exotics_e
+			remove_variable = info_player_stockpile_maa_recruit_exotics_g
+			remove_variable = info_player_stockpile_maa_maintain_exotics_g
+			remove_variable = info_player_stockpile_levy_maintain_exotics_g
+			remove_variable = info_player_stockpile_dmnd_exotics_g
+			remove_variable = info_player_stockpile_maa_recruit_textile
+			remove_variable = info_player_stockpile_maa_maintain_textile
+			remove_variable = info_player_stockpile_levy_maintain_textile
+			remove_variable = info_player_stockpile_dmnd_textile
+			remove_variable = info_player_stockpile_maa_recruit_pottery
+			remove_variable = info_player_stockpile_maa_maintain_pottery
+			remove_variable = info_player_stockpile_levy_maintain_pottery
+			remove_variable = info_player_stockpile_dmnd_pottery
+			remove_variable = info_player_stockpile_maa_recruit_tools
+			remove_variable = info_player_stockpile_maa_maintain_tools
+			remove_variable = info_player_stockpile_levy_maintain_tools
+			remove_variable = info_player_stockpile_dmnd_tools
+			remove_variable = info_player_stockpile_maa_recruit_armaments
+			remove_variable = info_player_stockpile_maa_maintain_armaments
+			remove_variable = info_player_stockpile_levy_maintain_armaments
+			remove_variable = info_player_stockpile_dmnd_armaments
+		}
+		else = { 
+			set_variable = { 
+				name = toggled_player_stockpile
+				value = 1
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_earn
+					}
+				}
+				set_variable = { 
+					name = trade_earn
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_pay
+					}
+				}
+				set_variable = { 
+					name = trade_pay
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_in_food
+					}
+				}
+				set_variable = { 
+					name = trade_in_food
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_out_food
+					}
+				}
+				set_variable = { 
+					name = trade_out_food
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_earn_food
+					}
+				}
+				set_variable = { 
+					name = trade_earn_food
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_pay_food
+					}
+				}
+				set_variable = { 
+					name = trade_pay_food
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_has_food
+					}
+				}
+				set_variable = { 
+					name = trade_has_food
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_want_food
+					}
+				}
+				set_variable = { 
+					name = trade_want_food
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_price_food
+					}
+				}
+				set_variable = { 
+					name = trade_price_food
+					value = capital_county.var:trade_price_food
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_sply_food
+					}
+				}
+				set_variable = { 
+					name = trade_sply_food
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_dmnd_food
+					}
+				}
+				set_variable = { 
+					name = trade_dmnd_food
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = mil_maa_recruit_food
+					}
+				}
+				set_variable = { 
+					name = mil_maa_recruit_food
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = mil_maa_maintain_food
+					}
+				}
+				set_variable = { 
+					name = mil_maa_maintain_food
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = mil_levy_maintain_food
+					}
+				}
+				set_variable = { 
+					name = mil_levy_maintain_food
+					value = 0
+				}
+			}
+			set_variable = { 
+				name = info_player_stockpile_maa_recruit_food
+				value = var:mil_maa_recruit_food
+			}
+			set_variable = { 
+				name = info_player_stockpile_maa_maintain_food
+				value = var:mil_maa_maintain_food
+			}
+			set_variable = { 
+				name = info_player_stockpile_levy_maintain_food
+				value = var:mil_levy_maintain_food
+			}
+			change_variable = { 
+				name = info_player_stockpile_maa_recruit_food
+				multiply = 12
+			}
+			change_variable = { 
+				name = info_player_stockpile_maa_maintain_food
+				multiply = 12
+			}
+			change_variable = { 
+				name = info_player_stockpile_levy_maintain_food
+				multiply = 12
+			}
+			set_variable = { 
+				name = info_player_stockpile_dmnd_food
+				value = var:info_player_stockpile_maa_recruit_food
+			}
+			change_variable = { 
+				name = info_player_stockpile_dmnd_food
+				add = var:info_player_stockpile_maa_maintain_food
+			}
+			change_variable = { 
+				name = info_player_stockpile_dmnd_food
+				add = var:info_player_stockpile_levy_maintain_food
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_earn
+					}
+				}
+				set_variable = { 
+					name = trade_earn
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_pay
+					}
+				}
+				set_variable = { 
+					name = trade_pay
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_in_cereal
+					}
+				}
+				set_variable = { 
+					name = trade_in_cereal
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_out_cereal
+					}
+				}
+				set_variable = { 
+					name = trade_out_cereal
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_earn_cereal
+					}
+				}
+				set_variable = { 
+					name = trade_earn_cereal
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_pay_cereal
+					}
+				}
+				set_variable = { 
+					name = trade_pay_cereal
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_has_cereal
+					}
+				}
+				set_variable = { 
+					name = trade_has_cereal
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_want_cereal
+					}
+				}
+				set_variable = { 
+					name = trade_want_cereal
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_price_cereal
+					}
+				}
+				set_variable = { 
+					name = trade_price_cereal
+					value = capital_county.var:trade_price_cereal
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_sply_cereal
+					}
+				}
+				set_variable = { 
+					name = trade_sply_cereal
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_dmnd_cereal
+					}
+				}
+				set_variable = { 
+					name = trade_dmnd_cereal
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = mil_maa_recruit_cereal
+					}
+				}
+				set_variable = { 
+					name = mil_maa_recruit_cereal
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = mil_maa_maintain_cereal
+					}
+				}
+				set_variable = { 
+					name = mil_maa_maintain_cereal
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = mil_levy_maintain_cereal
+					}
+				}
+				set_variable = { 
+					name = mil_levy_maintain_cereal
+					value = 0
+				}
+			}
+			set_variable = { 
+				name = info_player_stockpile_maa_recruit_cereal
+				value = var:mil_maa_recruit_cereal
+			}
+			set_variable = { 
+				name = info_player_stockpile_maa_maintain_cereal
+				value = var:mil_maa_maintain_cereal
+			}
+			set_variable = { 
+				name = info_player_stockpile_levy_maintain_cereal
+				value = var:mil_levy_maintain_cereal
+			}
+			change_variable = { 
+				name = info_player_stockpile_maa_recruit_cereal
+				multiply = 12
+			}
+			change_variable = { 
+				name = info_player_stockpile_maa_maintain_cereal
+				multiply = 12
+			}
+			change_variable = { 
+				name = info_player_stockpile_levy_maintain_cereal
+				multiply = 12
+			}
+			set_variable = { 
+				name = info_player_stockpile_dmnd_cereal
+				value = var:info_player_stockpile_maa_recruit_cereal
+			}
+			change_variable = { 
+				name = info_player_stockpile_dmnd_cereal
+				add = var:info_player_stockpile_maa_maintain_cereal
+			}
+			change_variable = { 
+				name = info_player_stockpile_dmnd_cereal
+				add = var:info_player_stockpile_levy_maintain_cereal
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_earn
+					}
+				}
+				set_variable = { 
+					name = trade_earn
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_pay
+					}
+				}
+				set_variable = { 
+					name = trade_pay
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_in_salted
+					}
+				}
+				set_variable = { 
+					name = trade_in_salted
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_out_salted
+					}
+				}
+				set_variable = { 
+					name = trade_out_salted
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_earn_salted
+					}
+				}
+				set_variable = { 
+					name = trade_earn_salted
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_pay_salted
+					}
+				}
+				set_variable = { 
+					name = trade_pay_salted
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_has_salted
+					}
+				}
+				set_variable = { 
+					name = trade_has_salted
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_want_salted
+					}
+				}
+				set_variable = { 
+					name = trade_want_salted
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_price_salted
+					}
+				}
+				set_variable = { 
+					name = trade_price_salted
+					value = capital_county.var:trade_price_salted
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_sply_salted
+					}
+				}
+				set_variable = { 
+					name = trade_sply_salted
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_dmnd_salted
+					}
+				}
+				set_variable = { 
+					name = trade_dmnd_salted
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = mil_maa_recruit_salted
+					}
+				}
+				set_variable = { 
+					name = mil_maa_recruit_salted
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = mil_maa_maintain_salted
+					}
+				}
+				set_variable = { 
+					name = mil_maa_maintain_salted
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = mil_levy_maintain_salted
+					}
+				}
+				set_variable = { 
+					name = mil_levy_maintain_salted
+					value = 0
+				}
+			}
+			set_variable = { 
+				name = info_player_stockpile_maa_recruit_salted
+				value = var:mil_maa_recruit_salted
+			}
+			set_variable = { 
+				name = info_player_stockpile_maa_maintain_salted
+				value = var:mil_maa_maintain_salted
+			}
+			set_variable = { 
+				name = info_player_stockpile_levy_maintain_salted
+				value = var:mil_levy_maintain_salted
+			}
+			change_variable = { 
+				name = info_player_stockpile_maa_recruit_salted
+				multiply = 12
+			}
+			change_variable = { 
+				name = info_player_stockpile_maa_maintain_salted
+				multiply = 12
+			}
+			change_variable = { 
+				name = info_player_stockpile_levy_maintain_salted
+				multiply = 12
+			}
+			set_variable = { 
+				name = info_player_stockpile_dmnd_salted
+				value = var:info_player_stockpile_maa_recruit_salted
+			}
+			change_variable = { 
+				name = info_player_stockpile_dmnd_salted
+				add = var:info_player_stockpile_maa_maintain_salted
+			}
+			change_variable = { 
+				name = info_player_stockpile_dmnd_salted
+				add = var:info_player_stockpile_levy_maintain_salted
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_earn
+					}
+				}
+				set_variable = { 
+					name = trade_earn
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_pay
+					}
+				}
+				set_variable = { 
+					name = trade_pay
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_in_salt
+					}
+				}
+				set_variable = { 
+					name = trade_in_salt
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_out_salt
+					}
+				}
+				set_variable = { 
+					name = trade_out_salt
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_earn_salt
+					}
+				}
+				set_variable = { 
+					name = trade_earn_salt
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_pay_salt
+					}
+				}
+				set_variable = { 
+					name = trade_pay_salt
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_has_salt
+					}
+				}
+				set_variable = { 
+					name = trade_has_salt
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_want_salt
+					}
+				}
+				set_variable = { 
+					name = trade_want_salt
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_price_salt
+					}
+				}
+				set_variable = { 
+					name = trade_price_salt
+					value = capital_county.var:trade_price_salt
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_sply_salt
+					}
+				}
+				set_variable = { 
+					name = trade_sply_salt
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_dmnd_salt
+					}
+				}
+				set_variable = { 
+					name = trade_dmnd_salt
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = mil_maa_recruit_salt
+					}
+				}
+				set_variable = { 
+					name = mil_maa_recruit_salt
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = mil_maa_maintain_salt
+					}
+				}
+				set_variable = { 
+					name = mil_maa_maintain_salt
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = mil_levy_maintain_salt
+					}
+				}
+				set_variable = { 
+					name = mil_levy_maintain_salt
+					value = 0
+				}
+			}
+			set_variable = { 
+				name = info_player_stockpile_maa_recruit_salt
+				value = var:mil_maa_recruit_salt
+			}
+			set_variable = { 
+				name = info_player_stockpile_maa_maintain_salt
+				value = var:mil_maa_maintain_salt
+			}
+			set_variable = { 
+				name = info_player_stockpile_levy_maintain_salt
+				value = var:mil_levy_maintain_salt
+			}
+			change_variable = { 
+				name = info_player_stockpile_maa_recruit_salt
+				multiply = 12
+			}
+			change_variable = { 
+				name = info_player_stockpile_maa_maintain_salt
+				multiply = 12
+			}
+			change_variable = { 
+				name = info_player_stockpile_levy_maintain_salt
+				multiply = 12
+			}
+			set_variable = { 
+				name = info_player_stockpile_dmnd_salt
+				value = var:info_player_stockpile_maa_recruit_salt
+			}
+			change_variable = { 
+				name = info_player_stockpile_dmnd_salt
+				add = var:info_player_stockpile_maa_maintain_salt
+			}
+			change_variable = { 
+				name = info_player_stockpile_dmnd_salt
+				add = var:info_player_stockpile_levy_maintain_salt
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_earn
+					}
+				}
+				set_variable = { 
+					name = trade_earn
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_pay
+					}
+				}
+				set_variable = { 
+					name = trade_pay
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_in_mud
+					}
+				}
+				set_variable = { 
+					name = trade_in_mud
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_out_mud
+					}
+				}
+				set_variable = { 
+					name = trade_out_mud
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_earn_mud
+					}
+				}
+				set_variable = { 
+					name = trade_earn_mud
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_pay_mud
+					}
+				}
+				set_variable = { 
+					name = trade_pay_mud
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_has_mud
+					}
+				}
+				set_variable = { 
+					name = trade_has_mud
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_want_mud
+					}
+				}
+				set_variable = { 
+					name = trade_want_mud
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_price_mud
+					}
+				}
+				set_variable = { 
+					name = trade_price_mud
+					value = capital_county.var:trade_price_mud
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_sply_mud
+					}
+				}
+				set_variable = { 
+					name = trade_sply_mud
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_dmnd_mud
+					}
+				}
+				set_variable = { 
+					name = trade_dmnd_mud
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = mil_maa_recruit_mud
+					}
+				}
+				set_variable = { 
+					name = mil_maa_recruit_mud
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = mil_maa_maintain_mud
+					}
+				}
+				set_variable = { 
+					name = mil_maa_maintain_mud
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = mil_levy_maintain_mud
+					}
+				}
+				set_variable = { 
+					name = mil_levy_maintain_mud
+					value = 0
+				}
+			}
+			set_variable = { 
+				name = info_player_stockpile_maa_recruit_mud
+				value = var:mil_maa_recruit_mud
+			}
+			set_variable = { 
+				name = info_player_stockpile_maa_maintain_mud
+				value = var:mil_maa_maintain_mud
+			}
+			set_variable = { 
+				name = info_player_stockpile_levy_maintain_mud
+				value = var:mil_levy_maintain_mud
+			}
+			change_variable = { 
+				name = info_player_stockpile_maa_recruit_mud
+				multiply = 12
+			}
+			change_variable = { 
+				name = info_player_stockpile_maa_maintain_mud
+				multiply = 12
+			}
+			change_variable = { 
+				name = info_player_stockpile_levy_maintain_mud
+				multiply = 12
+			}
+			set_variable = { 
+				name = info_player_stockpile_dmnd_mud
+				value = var:info_player_stockpile_maa_recruit_mud
+			}
+			change_variable = { 
+				name = info_player_stockpile_dmnd_mud
+				add = var:info_player_stockpile_maa_maintain_mud
+			}
+			change_variable = { 
+				name = info_player_stockpile_dmnd_mud
+				add = var:info_player_stockpile_levy_maintain_mud
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_earn
+					}
+				}
+				set_variable = { 
+					name = trade_earn
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_pay
+					}
+				}
+				set_variable = { 
+					name = trade_pay
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_in_fuel
+					}
+				}
+				set_variable = { 
+					name = trade_in_fuel
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_out_fuel
+					}
+				}
+				set_variable = { 
+					name = trade_out_fuel
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_earn_fuel
+					}
+				}
+				set_variable = { 
+					name = trade_earn_fuel
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_pay_fuel
+					}
+				}
+				set_variable = { 
+					name = trade_pay_fuel
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_has_fuel
+					}
+				}
+				set_variable = { 
+					name = trade_has_fuel
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_want_fuel
+					}
+				}
+				set_variable = { 
+					name = trade_want_fuel
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_price_fuel
+					}
+				}
+				set_variable = { 
+					name = trade_price_fuel
+					value = capital_county.var:trade_price_fuel
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_sply_fuel
+					}
+				}
+				set_variable = { 
+					name = trade_sply_fuel
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_dmnd_fuel
+					}
+				}
+				set_variable = { 
+					name = trade_dmnd_fuel
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = mil_maa_recruit_fuel
+					}
+				}
+				set_variable = { 
+					name = mil_maa_recruit_fuel
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = mil_maa_maintain_fuel
+					}
+				}
+				set_variable = { 
+					name = mil_maa_maintain_fuel
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = mil_levy_maintain_fuel
+					}
+				}
+				set_variable = { 
+					name = mil_levy_maintain_fuel
+					value = 0
+				}
+			}
+			set_variable = { 
+				name = info_player_stockpile_maa_recruit_fuel
+				value = var:mil_maa_recruit_fuel
+			}
+			set_variable = { 
+				name = info_player_stockpile_maa_maintain_fuel
+				value = var:mil_maa_maintain_fuel
+			}
+			set_variable = { 
+				name = info_player_stockpile_levy_maintain_fuel
+				value = var:mil_levy_maintain_fuel
+			}
+			change_variable = { 
+				name = info_player_stockpile_maa_recruit_fuel
+				multiply = 12
+			}
+			change_variable = { 
+				name = info_player_stockpile_maa_maintain_fuel
+				multiply = 12
+			}
+			change_variable = { 
+				name = info_player_stockpile_levy_maintain_fuel
+				multiply = 12
+			}
+			set_variable = { 
+				name = info_player_stockpile_dmnd_fuel
+				value = var:info_player_stockpile_maa_recruit_fuel
+			}
+			change_variable = { 
+				name = info_player_stockpile_dmnd_fuel
+				add = var:info_player_stockpile_maa_maintain_fuel
+			}
+			change_variable = { 
+				name = info_player_stockpile_dmnd_fuel
+				add = var:info_player_stockpile_levy_maintain_fuel
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_earn
+					}
+				}
+				set_variable = { 
+					name = trade_earn
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_pay
+					}
+				}
+				set_variable = { 
+					name = trade_pay
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_in_fiber
+					}
+				}
+				set_variable = { 
+					name = trade_in_fiber
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_out_fiber
+					}
+				}
+				set_variable = { 
+					name = trade_out_fiber
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_earn_fiber
+					}
+				}
+				set_variable = { 
+					name = trade_earn_fiber
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_pay_fiber
+					}
+				}
+				set_variable = { 
+					name = trade_pay_fiber
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_has_fiber
+					}
+				}
+				set_variable = { 
+					name = trade_has_fiber
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_want_fiber
+					}
+				}
+				set_variable = { 
+					name = trade_want_fiber
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_price_fiber
+					}
+				}
+				set_variable = { 
+					name = trade_price_fiber
+					value = capital_county.var:trade_price_fiber
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_sply_fiber
+					}
+				}
+				set_variable = { 
+					name = trade_sply_fiber
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_dmnd_fiber
+					}
+				}
+				set_variable = { 
+					name = trade_dmnd_fiber
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = mil_maa_recruit_fiber
+					}
+				}
+				set_variable = { 
+					name = mil_maa_recruit_fiber
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = mil_maa_maintain_fiber
+					}
+				}
+				set_variable = { 
+					name = mil_maa_maintain_fiber
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = mil_levy_maintain_fiber
+					}
+				}
+				set_variable = { 
+					name = mil_levy_maintain_fiber
+					value = 0
+				}
+			}
+			set_variable = { 
+				name = info_player_stockpile_maa_recruit_fiber
+				value = var:mil_maa_recruit_fiber
+			}
+			set_variable = { 
+				name = info_player_stockpile_maa_maintain_fiber
+				value = var:mil_maa_maintain_fiber
+			}
+			set_variable = { 
+				name = info_player_stockpile_levy_maintain_fiber
+				value = var:mil_levy_maintain_fiber
+			}
+			change_variable = { 
+				name = info_player_stockpile_maa_recruit_fiber
+				multiply = 12
+			}
+			change_variable = { 
+				name = info_player_stockpile_maa_maintain_fiber
+				multiply = 12
+			}
+			change_variable = { 
+				name = info_player_stockpile_levy_maintain_fiber
+				multiply = 12
+			}
+			set_variable = { 
+				name = info_player_stockpile_dmnd_fiber
+				value = var:info_player_stockpile_maa_recruit_fiber
+			}
+			change_variable = { 
+				name = info_player_stockpile_dmnd_fiber
+				add = var:info_player_stockpile_maa_maintain_fiber
+			}
+			change_variable = { 
+				name = info_player_stockpile_dmnd_fiber
+				add = var:info_player_stockpile_levy_maintain_fiber
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_earn
+					}
+				}
+				set_variable = { 
+					name = trade_earn
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_pay
+					}
+				}
+				set_variable = { 
+					name = trade_pay
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_in_timber
+					}
+				}
+				set_variable = { 
+					name = trade_in_timber
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_out_timber
+					}
+				}
+				set_variable = { 
+					name = trade_out_timber
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_earn_timber
+					}
+				}
+				set_variable = { 
+					name = trade_earn_timber
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_pay_timber
+					}
+				}
+				set_variable = { 
+					name = trade_pay_timber
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_has_timber
+					}
+				}
+				set_variable = { 
+					name = trade_has_timber
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_want_timber
+					}
+				}
+				set_variable = { 
+					name = trade_want_timber
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_price_timber
+					}
+				}
+				set_variable = { 
+					name = trade_price_timber
+					value = capital_county.var:trade_price_timber
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_sply_timber
+					}
+				}
+				set_variable = { 
+					name = trade_sply_timber
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_dmnd_timber
+					}
+				}
+				set_variable = { 
+					name = trade_dmnd_timber
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = mil_maa_recruit_timber
+					}
+				}
+				set_variable = { 
+					name = mil_maa_recruit_timber
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = mil_maa_maintain_timber
+					}
+				}
+				set_variable = { 
+					name = mil_maa_maintain_timber
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = mil_levy_maintain_timber
+					}
+				}
+				set_variable = { 
+					name = mil_levy_maintain_timber
+					value = 0
+				}
+			}
+			set_variable = { 
+				name = info_player_stockpile_maa_recruit_timber
+				value = var:mil_maa_recruit_timber
+			}
+			set_variable = { 
+				name = info_player_stockpile_maa_maintain_timber
+				value = var:mil_maa_maintain_timber
+			}
+			set_variable = { 
+				name = info_player_stockpile_levy_maintain_timber
+				value = var:mil_levy_maintain_timber
+			}
+			change_variable = { 
+				name = info_player_stockpile_maa_recruit_timber
+				multiply = 12
+			}
+			change_variable = { 
+				name = info_player_stockpile_maa_maintain_timber
+				multiply = 12
+			}
+			change_variable = { 
+				name = info_player_stockpile_levy_maintain_timber
+				multiply = 12
+			}
+			set_variable = { 
+				name = info_player_stockpile_dmnd_timber
+				value = var:info_player_stockpile_maa_recruit_timber
+			}
+			change_variable = { 
+				name = info_player_stockpile_dmnd_timber
+				add = var:info_player_stockpile_maa_maintain_timber
+			}
+			change_variable = { 
+				name = info_player_stockpile_dmnd_timber
+				add = var:info_player_stockpile_levy_maintain_timber
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_earn
+					}
+				}
+				set_variable = { 
+					name = trade_earn
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_pay
+					}
+				}
+				set_variable = { 
+					name = trade_pay
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_in_metal
+					}
+				}
+				set_variable = { 
+					name = trade_in_metal
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_out_metal
+					}
+				}
+				set_variable = { 
+					name = trade_out_metal
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_earn_metal
+					}
+				}
+				set_variable = { 
+					name = trade_earn_metal
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_pay_metal
+					}
+				}
+				set_variable = { 
+					name = trade_pay_metal
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_has_metal
+					}
+				}
+				set_variable = { 
+					name = trade_has_metal
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_want_metal
+					}
+				}
+				set_variable = { 
+					name = trade_want_metal
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_price_metal
+					}
+				}
+				set_variable = { 
+					name = trade_price_metal
+					value = capital_county.var:trade_price_metal
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_sply_metal
+					}
+				}
+				set_variable = { 
+					name = trade_sply_metal
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_dmnd_metal
+					}
+				}
+				set_variable = { 
+					name = trade_dmnd_metal
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = mil_maa_recruit_metal
+					}
+				}
+				set_variable = { 
+					name = mil_maa_recruit_metal
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = mil_maa_maintain_metal
+					}
+				}
+				set_variable = { 
+					name = mil_maa_maintain_metal
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = mil_levy_maintain_metal
+					}
+				}
+				set_variable = { 
+					name = mil_levy_maintain_metal
+					value = 0
+				}
+			}
+			set_variable = { 
+				name = info_player_stockpile_maa_recruit_metal
+				value = var:mil_maa_recruit_metal
+			}
+			set_variable = { 
+				name = info_player_stockpile_maa_maintain_metal
+				value = var:mil_maa_maintain_metal
+			}
+			set_variable = { 
+				name = info_player_stockpile_levy_maintain_metal
+				value = var:mil_levy_maintain_metal
+			}
+			change_variable = { 
+				name = info_player_stockpile_maa_recruit_metal
+				multiply = 12
+			}
+			change_variable = { 
+				name = info_player_stockpile_maa_maintain_metal
+				multiply = 12
+			}
+			change_variable = { 
+				name = info_player_stockpile_levy_maintain_metal
+				multiply = 12
+			}
+			set_variable = { 
+				name = info_player_stockpile_dmnd_metal
+				value = var:info_player_stockpile_maa_recruit_metal
+			}
+			change_variable = { 
+				name = info_player_stockpile_dmnd_metal
+				add = var:info_player_stockpile_maa_maintain_metal
+			}
+			change_variable = { 
+				name = info_player_stockpile_dmnd_metal
+				add = var:info_player_stockpile_levy_maintain_metal
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_earn
+					}
+				}
+				set_variable = { 
+					name = trade_earn
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_pay
+					}
+				}
+				set_variable = { 
+					name = trade_pay
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_in_exotics_w
+					}
+				}
+				set_variable = { 
+					name = trade_in_exotics_w
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_out_exotics_w
+					}
+				}
+				set_variable = { 
+					name = trade_out_exotics_w
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_earn_exotics_w
+					}
+				}
+				set_variable = { 
+					name = trade_earn_exotics_w
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_pay_exotics_w
+					}
+				}
+				set_variable = { 
+					name = trade_pay_exotics_w
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_has_exotics_w
+					}
+				}
+				set_variable = { 
+					name = trade_has_exotics_w
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_want_exotics_w
+					}
+				}
+				set_variable = { 
+					name = trade_want_exotics_w
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_price_exotics_w
+					}
+				}
+				set_variable = { 
+					name = trade_price_exotics_w
+					value = capital_county.var:trade_price_exotics_w
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_sply_exotics_w
+					}
+				}
+				set_variable = { 
+					name = trade_sply_exotics_w
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_dmnd_exotics_w
+					}
+				}
+				set_variable = { 
+					name = trade_dmnd_exotics_w
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = mil_maa_recruit_exotics_w
+					}
+				}
+				set_variable = { 
+					name = mil_maa_recruit_exotics_w
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = mil_maa_maintain_exotics_w
+					}
+				}
+				set_variable = { 
+					name = mil_maa_maintain_exotics_w
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = mil_levy_maintain_exotics_w
+					}
+				}
+				set_variable = { 
+					name = mil_levy_maintain_exotics_w
+					value = 0
+				}
+			}
+			set_variable = { 
+				name = info_player_stockpile_maa_recruit_exotics_w
+				value = var:mil_maa_recruit_exotics_w
+			}
+			set_variable = { 
+				name = info_player_stockpile_maa_maintain_exotics_w
+				value = var:mil_maa_maintain_exotics_w
+			}
+			set_variable = { 
+				name = info_player_stockpile_levy_maintain_exotics_w
+				value = var:mil_levy_maintain_exotics_w
+			}
+			change_variable = { 
+				name = info_player_stockpile_maa_recruit_exotics_w
+				multiply = 12
+			}
+			change_variable = { 
+				name = info_player_stockpile_maa_maintain_exotics_w
+				multiply = 12
+			}
+			change_variable = { 
+				name = info_player_stockpile_levy_maintain_exotics_w
+				multiply = 12
+			}
+			set_variable = { 
+				name = info_player_stockpile_dmnd_exotics_w
+				value = var:info_player_stockpile_maa_recruit_exotics_w
+			}
+			change_variable = { 
+				name = info_player_stockpile_dmnd_exotics_w
+				add = var:info_player_stockpile_maa_maintain_exotics_w
+			}
+			change_variable = { 
+				name = info_player_stockpile_dmnd_exotics_w
+				add = var:info_player_stockpile_levy_maintain_exotics_w
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_earn
+					}
+				}
+				set_variable = { 
+					name = trade_earn
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_pay
+					}
+				}
+				set_variable = { 
+					name = trade_pay
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_in_exotics_e
+					}
+				}
+				set_variable = { 
+					name = trade_in_exotics_e
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_out_exotics_e
+					}
+				}
+				set_variable = { 
+					name = trade_out_exotics_e
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_earn_exotics_e
+					}
+				}
+				set_variable = { 
+					name = trade_earn_exotics_e
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_pay_exotics_e
+					}
+				}
+				set_variable = { 
+					name = trade_pay_exotics_e
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_has_exotics_e
+					}
+				}
+				set_variable = { 
+					name = trade_has_exotics_e
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_want_exotics_e
+					}
+				}
+				set_variable = { 
+					name = trade_want_exotics_e
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_price_exotics_e
+					}
+				}
+				set_variable = { 
+					name = trade_price_exotics_e
+					value = capital_county.var:trade_price_exotics_e
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_sply_exotics_e
+					}
+				}
+				set_variable = { 
+					name = trade_sply_exotics_e
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_dmnd_exotics_e
+					}
+				}
+				set_variable = { 
+					name = trade_dmnd_exotics_e
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = mil_maa_recruit_exotics_e
+					}
+				}
+				set_variable = { 
+					name = mil_maa_recruit_exotics_e
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = mil_maa_maintain_exotics_e
+					}
+				}
+				set_variable = { 
+					name = mil_maa_maintain_exotics_e
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = mil_levy_maintain_exotics_e
+					}
+				}
+				set_variable = { 
+					name = mil_levy_maintain_exotics_e
+					value = 0
+				}
+			}
+			set_variable = { 
+				name = info_player_stockpile_maa_recruit_exotics_e
+				value = var:mil_maa_recruit_exotics_e
+			}
+			set_variable = { 
+				name = info_player_stockpile_maa_maintain_exotics_e
+				value = var:mil_maa_maintain_exotics_e
+			}
+			set_variable = { 
+				name = info_player_stockpile_levy_maintain_exotics_e
+				value = var:mil_levy_maintain_exotics_e
+			}
+			change_variable = { 
+				name = info_player_stockpile_maa_recruit_exotics_e
+				multiply = 12
+			}
+			change_variable = { 
+				name = info_player_stockpile_maa_maintain_exotics_e
+				multiply = 12
+			}
+			change_variable = { 
+				name = info_player_stockpile_levy_maintain_exotics_e
+				multiply = 12
+			}
+			set_variable = { 
+				name = info_player_stockpile_dmnd_exotics_e
+				value = var:info_player_stockpile_maa_recruit_exotics_e
+			}
+			change_variable = { 
+				name = info_player_stockpile_dmnd_exotics_e
+				add = var:info_player_stockpile_maa_maintain_exotics_e
+			}
+			change_variable = { 
+				name = info_player_stockpile_dmnd_exotics_e
+				add = var:info_player_stockpile_levy_maintain_exotics_e
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_earn
+					}
+				}
+				set_variable = { 
+					name = trade_earn
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_pay
+					}
+				}
+				set_variable = { 
+					name = trade_pay
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_in_exotics_g
+					}
+				}
+				set_variable = { 
+					name = trade_in_exotics_g
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_out_exotics_g
+					}
+				}
+				set_variable = { 
+					name = trade_out_exotics_g
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_earn_exotics_g
+					}
+				}
+				set_variable = { 
+					name = trade_earn_exotics_g
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_pay_exotics_g
+					}
+				}
+				set_variable = { 
+					name = trade_pay_exotics_g
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_has_exotics_g
+					}
+				}
+				set_variable = { 
+					name = trade_has_exotics_g
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_want_exotics_g
+					}
+				}
+				set_variable = { 
+					name = trade_want_exotics_g
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_price_exotics_g
+					}
+				}
+				set_variable = { 
+					name = trade_price_exotics_g
+					value = capital_county.var:trade_price_exotics_g
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_sply_exotics_g
+					}
+				}
+				set_variable = { 
+					name = trade_sply_exotics_g
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_dmnd_exotics_g
+					}
+				}
+				set_variable = { 
+					name = trade_dmnd_exotics_g
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = mil_maa_recruit_exotics_g
+					}
+				}
+				set_variable = { 
+					name = mil_maa_recruit_exotics_g
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = mil_maa_maintain_exotics_g
+					}
+				}
+				set_variable = { 
+					name = mil_maa_maintain_exotics_g
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = mil_levy_maintain_exotics_g
+					}
+				}
+				set_variable = { 
+					name = mil_levy_maintain_exotics_g
+					value = 0
+				}
+			}
+			set_variable = { 
+				name = info_player_stockpile_maa_recruit_exotics_g
+				value = var:mil_maa_recruit_exotics_g
+			}
+			set_variable = { 
+				name = info_player_stockpile_maa_maintain_exotics_g
+				value = var:mil_maa_maintain_exotics_g
+			}
+			set_variable = { 
+				name = info_player_stockpile_levy_maintain_exotics_g
+				value = var:mil_levy_maintain_exotics_g
+			}
+			change_variable = { 
+				name = info_player_stockpile_maa_recruit_exotics_g
+				multiply = 12
+			}
+			change_variable = { 
+				name = info_player_stockpile_maa_maintain_exotics_g
+				multiply = 12
+			}
+			change_variable = { 
+				name = info_player_stockpile_levy_maintain_exotics_g
+				multiply = 12
+			}
+			set_variable = { 
+				name = info_player_stockpile_dmnd_exotics_g
+				value = var:info_player_stockpile_maa_recruit_exotics_g
+			}
+			change_variable = { 
+				name = info_player_stockpile_dmnd_exotics_g
+				add = var:info_player_stockpile_maa_maintain_exotics_g
+			}
+			change_variable = { 
+				name = info_player_stockpile_dmnd_exotics_g
+				add = var:info_player_stockpile_levy_maintain_exotics_g
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_earn
+					}
+				}
+				set_variable = { 
+					name = trade_earn
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_pay
+					}
+				}
+				set_variable = { 
+					name = trade_pay
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_in_textile
+					}
+				}
+				set_variable = { 
+					name = trade_in_textile
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_out_textile
+					}
+				}
+				set_variable = { 
+					name = trade_out_textile
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_earn_textile
+					}
+				}
+				set_variable = { 
+					name = trade_earn_textile
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_pay_textile
+					}
+				}
+				set_variable = { 
+					name = trade_pay_textile
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_has_textile
+					}
+				}
+				set_variable = { 
+					name = trade_has_textile
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_want_textile
+					}
+				}
+				set_variable = { 
+					name = trade_want_textile
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_price_textile
+					}
+				}
+				set_variable = { 
+					name = trade_price_textile
+					value = capital_county.var:trade_price_textile
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_sply_textile
+					}
+				}
+				set_variable = { 
+					name = trade_sply_textile
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_dmnd_textile
+					}
+				}
+				set_variable = { 
+					name = trade_dmnd_textile
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = mil_maa_recruit_textile
+					}
+				}
+				set_variable = { 
+					name = mil_maa_recruit_textile
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = mil_maa_maintain_textile
+					}
+				}
+				set_variable = { 
+					name = mil_maa_maintain_textile
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = mil_levy_maintain_textile
+					}
+				}
+				set_variable = { 
+					name = mil_levy_maintain_textile
+					value = 0
+				}
+			}
+			set_variable = { 
+				name = info_player_stockpile_maa_recruit_textile
+				value = var:mil_maa_recruit_textile
+			}
+			set_variable = { 
+				name = info_player_stockpile_maa_maintain_textile
+				value = var:mil_maa_maintain_textile
+			}
+			set_variable = { 
+				name = info_player_stockpile_levy_maintain_textile
+				value = var:mil_levy_maintain_textile
+			}
+			change_variable = { 
+				name = info_player_stockpile_maa_recruit_textile
+				multiply = 12
+			}
+			change_variable = { 
+				name = info_player_stockpile_maa_maintain_textile
+				multiply = 12
+			}
+			change_variable = { 
+				name = info_player_stockpile_levy_maintain_textile
+				multiply = 12
+			}
+			set_variable = { 
+				name = info_player_stockpile_dmnd_textile
+				value = var:info_player_stockpile_maa_recruit_textile
+			}
+			change_variable = { 
+				name = info_player_stockpile_dmnd_textile
+				add = var:info_player_stockpile_maa_maintain_textile
+			}
+			change_variable = { 
+				name = info_player_stockpile_dmnd_textile
+				add = var:info_player_stockpile_levy_maintain_textile
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_earn
+					}
+				}
+				set_variable = { 
+					name = trade_earn
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_pay
+					}
+				}
+				set_variable = { 
+					name = trade_pay
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_in_pottery
+					}
+				}
+				set_variable = { 
+					name = trade_in_pottery
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_out_pottery
+					}
+				}
+				set_variable = { 
+					name = trade_out_pottery
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_earn_pottery
+					}
+				}
+				set_variable = { 
+					name = trade_earn_pottery
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_pay_pottery
+					}
+				}
+				set_variable = { 
+					name = trade_pay_pottery
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_has_pottery
+					}
+				}
+				set_variable = { 
+					name = trade_has_pottery
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_want_pottery
+					}
+				}
+				set_variable = { 
+					name = trade_want_pottery
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_price_pottery
+					}
+				}
+				set_variable = { 
+					name = trade_price_pottery
+					value = capital_county.var:trade_price_pottery
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_sply_pottery
+					}
+				}
+				set_variable = { 
+					name = trade_sply_pottery
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_dmnd_pottery
+					}
+				}
+				set_variable = { 
+					name = trade_dmnd_pottery
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = mil_maa_recruit_pottery
+					}
+				}
+				set_variable = { 
+					name = mil_maa_recruit_pottery
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = mil_maa_maintain_pottery
+					}
+				}
+				set_variable = { 
+					name = mil_maa_maintain_pottery
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = mil_levy_maintain_pottery
+					}
+				}
+				set_variable = { 
+					name = mil_levy_maintain_pottery
+					value = 0
+				}
+			}
+			set_variable = { 
+				name = info_player_stockpile_maa_recruit_pottery
+				value = var:mil_maa_recruit_pottery
+			}
+			set_variable = { 
+				name = info_player_stockpile_maa_maintain_pottery
+				value = var:mil_maa_maintain_pottery
+			}
+			set_variable = { 
+				name = info_player_stockpile_levy_maintain_pottery
+				value = var:mil_levy_maintain_pottery
+			}
+			change_variable = { 
+				name = info_player_stockpile_maa_recruit_pottery
+				multiply = 12
+			}
+			change_variable = { 
+				name = info_player_stockpile_maa_maintain_pottery
+				multiply = 12
+			}
+			change_variable = { 
+				name = info_player_stockpile_levy_maintain_pottery
+				multiply = 12
+			}
+			set_variable = { 
+				name = info_player_stockpile_dmnd_pottery
+				value = var:info_player_stockpile_maa_recruit_pottery
+			}
+			change_variable = { 
+				name = info_player_stockpile_dmnd_pottery
+				add = var:info_player_stockpile_maa_maintain_pottery
+			}
+			change_variable = { 
+				name = info_player_stockpile_dmnd_pottery
+				add = var:info_player_stockpile_levy_maintain_pottery
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_earn
+					}
+				}
+				set_variable = { 
+					name = trade_earn
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_pay
+					}
+				}
+				set_variable = { 
+					name = trade_pay
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_in_tools
+					}
+				}
+				set_variable = { 
+					name = trade_in_tools
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_out_tools
+					}
+				}
+				set_variable = { 
+					name = trade_out_tools
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_earn_tools
+					}
+				}
+				set_variable = { 
+					name = trade_earn_tools
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_pay_tools
+					}
+				}
+				set_variable = { 
+					name = trade_pay_tools
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_has_tools
+					}
+				}
+				set_variable = { 
+					name = trade_has_tools
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_want_tools
+					}
+				}
+				set_variable = { 
+					name = trade_want_tools
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_price_tools
+					}
+				}
+				set_variable = { 
+					name = trade_price_tools
+					value = capital_county.var:trade_price_tools
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_sply_tools
+					}
+				}
+				set_variable = { 
+					name = trade_sply_tools
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_dmnd_tools
+					}
+				}
+				set_variable = { 
+					name = trade_dmnd_tools
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = mil_maa_recruit_tools
+					}
+				}
+				set_variable = { 
+					name = mil_maa_recruit_tools
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = mil_maa_maintain_tools
+					}
+				}
+				set_variable = { 
+					name = mil_maa_maintain_tools
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = mil_levy_maintain_tools
+					}
+				}
+				set_variable = { 
+					name = mil_levy_maintain_tools
+					value = 0
+				}
+			}
+			set_variable = { 
+				name = info_player_stockpile_maa_recruit_tools
+				value = var:mil_maa_recruit_tools
+			}
+			set_variable = { 
+				name = info_player_stockpile_maa_maintain_tools
+				value = var:mil_maa_maintain_tools
+			}
+			set_variable = { 
+				name = info_player_stockpile_levy_maintain_tools
+				value = var:mil_levy_maintain_tools
+			}
+			change_variable = { 
+				name = info_player_stockpile_maa_recruit_tools
+				multiply = 12
+			}
+			change_variable = { 
+				name = info_player_stockpile_maa_maintain_tools
+				multiply = 12
+			}
+			change_variable = { 
+				name = info_player_stockpile_levy_maintain_tools
+				multiply = 12
+			}
+			set_variable = { 
+				name = info_player_stockpile_dmnd_tools
+				value = var:info_player_stockpile_maa_recruit_tools
+			}
+			change_variable = { 
+				name = info_player_stockpile_dmnd_tools
+				add = var:info_player_stockpile_maa_maintain_tools
+			}
+			change_variable = { 
+				name = info_player_stockpile_dmnd_tools
+				add = var:info_player_stockpile_levy_maintain_tools
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_earn
+					}
+				}
+				set_variable = { 
+					name = trade_earn
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_pay
+					}
+				}
+				set_variable = { 
+					name = trade_pay
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_in_armaments
+					}
+				}
+				set_variable = { 
+					name = trade_in_armaments
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_out_armaments
+					}
+				}
+				set_variable = { 
+					name = trade_out_armaments
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_earn_armaments
+					}
+				}
+				set_variable = { 
+					name = trade_earn_armaments
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_pay_armaments
+					}
+				}
+				set_variable = { 
+					name = trade_pay_armaments
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_has_armaments
+					}
+				}
+				set_variable = { 
+					name = trade_has_armaments
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_want_armaments
+					}
+				}
+				set_variable = { 
+					name = trade_want_armaments
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_price_armaments
+					}
+				}
+				set_variable = { 
+					name = trade_price_armaments
+					value = capital_county.var:trade_price_armaments
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_sply_armaments
+					}
+				}
+				set_variable = { 
+					name = trade_sply_armaments
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_dmnd_armaments
+					}
+				}
+				set_variable = { 
+					name = trade_dmnd_armaments
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = mil_maa_recruit_armaments
+					}
+				}
+				set_variable = { 
+					name = mil_maa_recruit_armaments
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = mil_maa_maintain_armaments
+					}
+				}
+				set_variable = { 
+					name = mil_maa_maintain_armaments
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = mil_levy_maintain_armaments
+					}
+				}
+				set_variable = { 
+					name = mil_levy_maintain_armaments
+					value = 0
+				}
+			}
+			set_variable = { 
+				name = info_player_stockpile_maa_recruit_armaments
+				value = var:mil_maa_recruit_armaments
+			}
+			set_variable = { 
+				name = info_player_stockpile_maa_maintain_armaments
+				value = var:mil_maa_maintain_armaments
+			}
+			set_variable = { 
+				name = info_player_stockpile_levy_maintain_armaments
+				value = var:mil_levy_maintain_armaments
+			}
+			change_variable = { 
+				name = info_player_stockpile_maa_recruit_armaments
+				multiply = 12
+			}
+			change_variable = { 
+				name = info_player_stockpile_maa_maintain_armaments
+				multiply = 12
+			}
+			change_variable = { 
+				name = info_player_stockpile_levy_maintain_armaments
+				multiply = 12
+			}
+			set_variable = { 
+				name = info_player_stockpile_dmnd_armaments
+				value = var:info_player_stockpile_maa_recruit_armaments
+			}
+			change_variable = { 
+				name = info_player_stockpile_dmnd_armaments
+				add = var:info_player_stockpile_maa_maintain_armaments
+			}
+			change_variable = { 
+				name = info_player_stockpile_dmnd_armaments
+				add = var:info_player_stockpile_levy_maintain_armaments
+			}
+		}
+	}
+}
+close_player_stockpile = { 
+	scope = character
+	is_shown = { 
+		always = yes
+	}
+	is_valid = { 
+		always = yes
+	}
+	effect = { 
+		if = { 
+			limit = { 
+				has_variable = toggled_player_stockpile
+			}
+			remove_variable = toggled_player_stockpile
+			remove_variable = info_player_stockpile_maa_recruit_food
+			remove_variable = info_player_stockpile_maa_maintain_food
+			remove_variable = info_player_stockpile_levy_maintain_food
+			remove_variable = info_player_stockpile_dmnd_food
+			remove_variable = info_player_stockpile_maa_recruit_cereal
+			remove_variable = info_player_stockpile_maa_maintain_cereal
+			remove_variable = info_player_stockpile_levy_maintain_cereal
+			remove_variable = info_player_stockpile_dmnd_cereal
+			remove_variable = info_player_stockpile_maa_recruit_salted
+			remove_variable = info_player_stockpile_maa_maintain_salted
+			remove_variable = info_player_stockpile_levy_maintain_salted
+			remove_variable = info_player_stockpile_dmnd_salted
+			remove_variable = info_player_stockpile_maa_recruit_salt
+			remove_variable = info_player_stockpile_maa_maintain_salt
+			remove_variable = info_player_stockpile_levy_maintain_salt
+			remove_variable = info_player_stockpile_dmnd_salt
+			remove_variable = info_player_stockpile_maa_recruit_mud
+			remove_variable = info_player_stockpile_maa_maintain_mud
+			remove_variable = info_player_stockpile_levy_maintain_mud
+			remove_variable = info_player_stockpile_dmnd_mud
+			remove_variable = info_player_stockpile_maa_recruit_fuel
+			remove_variable = info_player_stockpile_maa_maintain_fuel
+			remove_variable = info_player_stockpile_levy_maintain_fuel
+			remove_variable = info_player_stockpile_dmnd_fuel
+			remove_variable = info_player_stockpile_maa_recruit_fiber
+			remove_variable = info_player_stockpile_maa_maintain_fiber
+			remove_variable = info_player_stockpile_levy_maintain_fiber
+			remove_variable = info_player_stockpile_dmnd_fiber
+			remove_variable = info_player_stockpile_maa_recruit_timber
+			remove_variable = info_player_stockpile_maa_maintain_timber
+			remove_variable = info_player_stockpile_levy_maintain_timber
+			remove_variable = info_player_stockpile_dmnd_timber
+			remove_variable = info_player_stockpile_maa_recruit_metal
+			remove_variable = info_player_stockpile_maa_maintain_metal
+			remove_variable = info_player_stockpile_levy_maintain_metal
+			remove_variable = info_player_stockpile_dmnd_metal
+			remove_variable = info_player_stockpile_maa_recruit_exotics_w
+			remove_variable = info_player_stockpile_maa_maintain_exotics_w
+			remove_variable = info_player_stockpile_levy_maintain_exotics_w
+			remove_variable = info_player_stockpile_dmnd_exotics_w
+			remove_variable = info_player_stockpile_maa_recruit_exotics_e
+			remove_variable = info_player_stockpile_maa_maintain_exotics_e
+			remove_variable = info_player_stockpile_levy_maintain_exotics_e
+			remove_variable = info_player_stockpile_dmnd_exotics_e
+			remove_variable = info_player_stockpile_maa_recruit_exotics_g
+			remove_variable = info_player_stockpile_maa_maintain_exotics_g
+			remove_variable = info_player_stockpile_levy_maintain_exotics_g
+			remove_variable = info_player_stockpile_dmnd_exotics_g
+			remove_variable = info_player_stockpile_maa_recruit_textile
+			remove_variable = info_player_stockpile_maa_maintain_textile
+			remove_variable = info_player_stockpile_levy_maintain_textile
+			remove_variable = info_player_stockpile_dmnd_textile
+			remove_variable = info_player_stockpile_maa_recruit_pottery
+			remove_variable = info_player_stockpile_maa_maintain_pottery
+			remove_variable = info_player_stockpile_levy_maintain_pottery
+			remove_variable = info_player_stockpile_dmnd_pottery
+			remove_variable = info_player_stockpile_maa_recruit_tools
+			remove_variable = info_player_stockpile_maa_maintain_tools
+			remove_variable = info_player_stockpile_levy_maintain_tools
+			remove_variable = info_player_stockpile_dmnd_tools
+			remove_variable = info_player_stockpile_maa_recruit_armaments
+			remove_variable = info_player_stockpile_maa_maintain_armaments
+			remove_variable = info_player_stockpile_levy_maintain_armaments
+			remove_variable = info_player_stockpile_dmnd_armaments
+		}
+	}
+}

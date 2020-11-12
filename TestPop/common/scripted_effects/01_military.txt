@@ -238,7 +238,7 @@ mil_maa_ai = {
 				}
 			}
 			change_variable = { name = mil_maa_ai_tt subtract = var:mil_maa }
-			change_variable = { name = mil_maa_ai_tt divide = 12 }
+			change_variable = { name = mil_maa_ai_tt divide = 24 }
 			
 			mil_recruit_maa = { size = var:mil_maa_ai_tt }
 		}
@@ -266,6 +266,23 @@ mil_maa_ai = {
 		remove_variable = mil_maa_ai_t
 		remove_variable = mil_maa_ai_tt
 	}
+}
+mil_maa_player = {
+	if = {
+		limit = {
+			NOT = {
+				has_variable = mil_maa_recruit
+			}
+		}
+		set_variable = { name = mil_maa_recruit value = 0 }
+	}
+	
+	set_variable = { name = mil_maa_player_t value = var:mil_maa_recruit }
+	change_variable = { name = mil_maa_player_t divide = 12 }
+	
+	mil_recruit_maa = { size = var:mil_maa_player_t }
+	
+	remove_variable = mil_maa_player_t
 }
 
 mil_main = {

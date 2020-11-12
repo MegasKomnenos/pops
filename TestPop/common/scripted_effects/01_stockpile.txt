@@ -64,3 +64,42 @@
 		^
 	}
 }
+stockpile_player = {
+	^^goods^
+		if = {
+			limit = {
+				NOT = {
+					has_variable = trade_has_&goods&
+				}
+			}
+			set_variable = { name = trade_has_&goods& value = 0 }
+		}
+		if = {
+			limit = {
+				NOT = {
+					want_variable = trade_want_&goods&
+				}
+			}
+			set_variable = { name = trade_want_&goods& value = 0 }
+		}
+			
+		if = {
+			limit = {
+				has_variable = trade_has_&goods&
+				
+				var:trade_has_&goods& = {
+					compare_value > prev.var:trade_want_&goods&
+				}
+			}
+			set_variable = { name = trade_sply_&goods& value = var:trade_has_&goods& }
+			change_variable = { name = trade_sply_&goods& subtract = var:trade_want_&goods& }
+			change_variable = { name = trade_sply_&goods& divide = 2 }
+			set_variable = { name = trade_dmnd_&goods& value = 0 }
+		}
+		else = {
+			set_variable = { name = trade_dmnd_&goods& value = var:trade_want_&goods& }
+			change_variable = { name = trade_dmnd_&goods& subtract = var:trade_has_&goods& }
+			set_variable = { name = trade_sply_&goods& value = 0 }
+		}
+	^
+}

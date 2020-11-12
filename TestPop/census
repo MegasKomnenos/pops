@@ -33,6 +33,18 @@ census.03 = {
 	immediate = {
 		mil_maa_ai = yes
 		stockpile_ai = yes
+		
+		if = {
+			limit = {
+				NOT = {
+					has_global_variable = sim_i
+				}
+			}
+			every_player = {
+				mil_maa_player = yes
+				stockpile_player = yes
+			}
+		}
 	}
 	
 	option = {

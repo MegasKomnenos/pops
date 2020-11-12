@@ -983,3 +983,88 @@ close_prov_merchant_core = {
 		}
 	}
 }
+
+toggle_player_stockpile = {
+	scope = character
+	
+	is_shown = {
+		always = yes
+	}
+	is_valid = {
+		always = yes
+	}
+	
+	effect = {
+		if = {
+			limit = {
+				has_variable = toggled_player_stockpile
+			}
+			remove_variable = toggled_player_stockpile
+			
+			^^goods^
+				remove_variable = info_player_stockpile_maa_recruit_&goods&
+				remove_variable = info_player_stockpile_maa_maintain_&goods&
+				remove_variable = info_player_stockpile_levy_maintain_&goods&
+				remove_variable = info_player_stockpile_dmnd_&goods&
+			^
+		}
+		else = {
+			set_variable = { name = toggled_player_stockpile value = 1 }
+			
+			^^goods^
+				if = { limit = { NOT = { has_variable = trade_earn } } set_variable = { name = trade_earn value = 0 } }
+				if = { limit = { NOT = { has_variable = trade_pay } } set_variable = { name = trade_pay value = 0 } }
+				if = { limit = { NOT = { has_variable = trade_in_&goods& } } set_variable = { name = trade_in_&goods& value = 0 } }
+				if = { limit = { NOT = { has_variable = trade_out_&goods& } } set_variable = { name = trade_out_&goods& value = 0 } }
+				if = { limit = { NOT = { has_variable = trade_earn_&goods& } } set_variable = { name = trade_earn_&goods& value = 0 } }
+				if = { limit = { NOT = { has_variable = trade_pay_&goods& } } set_variable = { name = trade_pay_&goods& value = 0 } }
+				if = { limit = { NOT = { has_variable = trade_has_&goods& } } set_variable = { name = trade_has_&goods& value = 0 } }
+				if = { limit = { NOT = { has_variable = trade_want_&goods& } } set_variable = { name = trade_want_&goods& value = 0 } }
+				if = { limit = { NOT = { has_variable = trade_price_&goods& } } set_variable = { name = trade_price_&goods& value = capital_county.var:trade_price_&goods& } }
+				if = { limit = { NOT = { has_variable = trade_sply_&goods& } } set_variable = { name = trade_sply_&goods& value = 0 } }
+				if = { limit = { NOT = { has_variable = trade_dmnd_&goods& } } set_variable = { name = trade_dmnd_&goods& value = 0 } }
+				if = { limit = { NOT = { has_variable = mil_maa_recruit_&goods& } } set_variable = { name = mil_maa_recruit_&goods& value = 0 } }
+				if = { limit = { NOT = { has_variable = mil_maa_maintain_&goods& } } set_variable = { name = mil_maa_maintain_&goods& value = 0 } }
+				if = { limit = { NOT = { has_variable = mil_levy_maintain_&goods& } } set_variable = { name = mil_levy_maintain_&goods& value = 0 } }
+				
+				set_variable = { name = info_player_stockpile_maa_recruit_&goods& value = var:mil_maa_recruit_&goods& }
+				set_variable = { name = info_player_stockpile_maa_maintain_&goods& value = var:mil_maa_maintain_&goods& }
+				set_variable = { name = info_player_stockpile_levy_maintain_&goods& value = var:mil_levy_maintain_&goods& }
+				
+				change_variable = { name = info_player_stockpile_maa_recruit_&goods& multiply = 12 }
+				change_variable = { name = info_player_stockpile_maa_maintain_&goods& multiply = 12 }
+				change_variable = { name = info_player_stockpile_levy_maintain_&goods& multiply = 12 }
+				
+				set_variable = { name = info_player_stockpile_dmnd_&goods& value = var:info_player_stockpile_maa_recruit_&goods& }
+				change_variable = { name = info_player_stockpile_dmnd_&goods& add = var:info_player_stockpile_maa_maintain_&goods& }
+				change_variable = { name = info_player_stockpile_dmnd_&goods& add = var:info_player_stockpile_levy_maintain_&goods& }
+			^
+		}
+	}
+}
+close_player_stockpile = {
+	scope = character
+	
+	is_shown = {
+		always = yes
+	}
+	is_valid = {
+		always = yes
+	}
+	
+	effect = {
+		if = {
+			limit = {
+				has_variable = toggled_player_stockpile
+			}
+			remove_variable = toggled_player_stockpile
+			
+			^^goods^
+				remove_variable = info_player_stockpile_maa_recruit_&goods&
+				remove_variable = info_player_stockpile_maa_maintain_&goods&
+				remove_variable = info_player_stockpile_levy_maintain_&goods&
+				remove_variable = info_player_stockpile_dmnd_&goods&
+			^
+		}
+	}
+}

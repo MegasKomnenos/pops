@@ -1064,19 +1064,28 @@ trade_do_trade = {
 							change_variable = { name = trade_do_trade_t_&goods& divide = prev.var:trade_do_trade_t }
 							change_variable = { name = trade_do_trade_t add = var:trade_do_trade_t_&goods& }
 							set_variable = { name = trade_do_trade_tt_&goods& value = 0 }
+							set_variable = { name = trade_do_trade_ttt_&goods& value = 0 }
+						}
+						else = {
+							remove_variable = trade_do_trade_t_&goods&
+							remove_variable = trade_do_trade_ttt_&goods&
 						}
 					^
+					
+					if = {
+						limit = {
+							has_variable = trade_do_trade_t
+							
+							var:trade_do_trade_t > 0
+						}
+						add_to_global_variable_list = { name = trade_do_trade_t target = this }
+					}
 				}
 
 				set_variable = { name = trade_do_trade_t value = 0 }
 
 				every_in_global_list = {
-					limit = {
-						has_variable = trade_do_trade_t
-						
-						var:trade_do_trade_t > 0
-					}
-					variable = trade_do_trade_list
+					variable = trade_do_trade_t
 					
 					prev = {
 						change_variable = { name = trade_do_trade_t add = prev.var:trade_do_trade_t }
@@ -1093,46 +1102,36 @@ trade_do_trade = {
 						var:trade_do_trade_t > 0
 						var:trade_do_trade_tt > 0
 					}
-					set_variable = { name = trade_do_trade_ttt value = 0 }
+					set_variable = { name = trade_do_trade_ttt value = var:trade_do_trade_tt }
+					change_variable = { name = trade_do_trade_ttt multiply = 100 }
+					change_variable = { name = trade_do_trade_ttt divide = var:trade_do_trade_t }
 					
 					every_in_global_list = {
-						limit = {
-							has_variable = trade_do_trade_t
-						
-							var:trade_do_trade_t > 0
-						}
-						variable = trade_do_trade_list
+						variable = trade_do_trade_t
 						
 						set_variable = { name = trade_do_trade_tt value = var:trade_do_trade_t }
-						change_variable = { name = trade_do_trade_tt multiply = 100 }
-						change_variable = { name = trade_do_trade_tt divide = prev.var:trade_do_trade_t }
-						change_variable = { name = trade_do_trade_tt multiply = prev.var:trade_do_trade_tt }
+						change_variable = { name = trade_do_trade_tt multiply = prev.var:trade_do_trade_ttt }
 						change_variable = { name = trade_do_trade_tt divide = 100 }
 						change_variable = { name = trade_do_trade_tt divide = var:trade_cost }
 					}
+					
+					set_variable = { name = trade_do_trade_ttt value = 0 }
+					
 					every_in_global_list = {
-						limit = {
-							has_variable = trade_do_trade_tt
-							var:trade_do_trade_tt > 0.01
-								
-							has_variable = trade_do_trade_t
-							var:trade_do_trade_t > 0
-						}
-						variable = trade_do_trade_list
+						variable = trade_do_trade_t
+						
+						set_variable = { name = trade_do_trade_ttt value = var:trade_do_trade_tt }
+						change_variable = { name = trade_do_trade_ttt multiply = 100 }
+						change_variable = { name = trade_do_trade_ttt divide = var:trade_do_trade_t }
 						
 						^^goods^
 							if = {
 								limit = {
-									has_variable = trade_point_&goods&
-									var:trade_point_&goods& > 0
-									
 									has_variable = trade_do_trade_t_&goods&
 									var:trade_do_trade_t_&goods& > 0
 								}
 								set_variable = { name = trade_do_trade_ttt_&goods& value = var:trade_do_trade_t_&goods& }
-								change_variable = { name = trade_do_trade_ttt_&goods& multiply = 100 }
-								change_variable = { name = trade_do_trade_ttt_&goods& divide = var:trade_do_trade_t }
-								change_variable = { name = trade_do_trade_ttt_&goods& multiply = var:trade_do_trade_tt }
+								change_variable = { name = trade_do_trade_ttt_&goods& multiply = var:trade_do_trade_ttt }
 								change_variable = { name = trade_do_trade_ttt_&goods& divide = trade_power_cost_&goods& }
 								change_variable = { name = trade_do_trade_ttt_&goods& divide = 100 }
 								change_variable = { name = trade_do_trade_tt_&goods& add = var:trade_do_trade_ttt_&goods& }
@@ -1144,16 +1143,11 @@ trade_do_trade = {
 						^^goods^
 							if = {
 								limit = {
-									has_variable = trade_point_&goods&
-									var:trade_point_&goods& > 0
-									
-									has_variable = trade_do_trade_t_&goods&
-									var:trade_do_trade_t_&goods& > 0
+									has_variable = trade_do_trade_ttt_&goods&
+									var:trade_do_trade_ttt_&goods& > 0
 								}
 								if = {
 									limit = {
-										has_variable = trade_do_trade_tt_&goods&
-										
 										var:trade_do_trade_tt_&goods& = {
 											compare_value >= prev.var:trade_buy_&goods&
 											compare_value >= prev.var:trade_sell_&goods&
@@ -1172,12 +1166,26 @@ trade_do_trade = {
 									
 									change_variable = { name = trade_do_trade_t subtract = var:trade_do_trade_t_&goods& }
 									
-									set_variable = { name = trade_point_&goods& value = 0 }
-									set_variable = { name = trade_do_trade_t_&goods& value = 0 }
+									if = {
+										limit = {
+											OR = {
+												NOT = {
+													has_variable = trade_do_trade_t
+												}
+												
+												var:trade_do_trade_t = 0
+											}
+										}
+										remove_list_global_variable = { name = trade_do_trade_t target = this }
+									}
+									
+									remove_variable = trade_do_trade_t_&goods&
 								}
 								
 								change_variable = { name = trade_do_trade_ttt_&goods& multiply = trade_power_cost_&goods& }
 								change_variable = { name = trade_do_trade_ttt add = var:trade_do_trade_ttt_&goods& }
+								
+								remove_variable = trade_do_trade_ttt_&goods&
 							}
 						^
 						
@@ -1204,6 +1212,8 @@ trade_do_trade = {
 						change_variable = { name = trade_do_trade_tt subtract = var:trade_do_trade_ttt }
 					}
 				}
+				
+				clear_global_variable_list = trade_do_trade_t
 
 				every_in_global_list = {
 					variable = trade_do_trade_list
@@ -1402,6 +1412,20 @@ trade_do_trade = {
 			change_variable = { name = trade_do_trade_t subtract = var:trade_out_&goods& }
 			set_variable = { name = trade_do_trade_tt value = capital_county.var:trade_dmnd_&goods& }
 			change_variable = { name = trade_do_trade_tt subtract = capital_county.var:trade_in_&goods& }
+			
+			if = {
+				limit = {
+					capital_county.var:trade_price_&goods& = {
+						compare_value > prev.var:trade_price_&goods&
+					}
+				}
+				set_variable = { name = trade_do_trade_ttt value = var:trade_price_&goods& }
+				change_variable = { name = trade_do_trade_ttt multiply = 10 }
+				change_variable = { name = trade_do_trade_ttt divide = capital_county.var:trade_price_&goods& }
+				change_variable = { name = trade_do_trade_ttt multiply = var:trade_do_trade_ttt }
+				change_variable = { name = trade_do_trade_tt multiply = var:trade_do_trade_ttt }
+				change_variable = { name = trade_do_trade_tt divide = 100 }
+			}
 			
 			if = {
 				limit = {
@@ -2462,12 +2486,6 @@ trade_update_price = {
 		limit = {
 			is_character = yes
 			is_landed = yes
-			
-			OR = {
-				is_ai = yes
-				
-				has_global_variable = sim_i
-			}
 		}
 		^^goods^
 			set_variable = { name = trade_update_price_tt value = var:trade_sply_&goods& }
