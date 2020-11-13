@@ -443,7 +443,7 @@ if __name__ == '__main__':
 
                 outout.append('\t\t}\n')
 
-            out.append(event % (iii, ''.join([item for item in outout if item]), iii + 1))
+            out.append(event % (iii, ''.join([item for item in outout if item]), nxt % str(iii + 1)))
             out.append(event % (iii + 1, '''		init_rulers = yes	
 		stat_main = yes''', ''))
 
