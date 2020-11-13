@@ -158,6 +158,55 @@ array_get_max = {
 }
 
 # Parameters: name, return_val, return_ind
+array_get_max_abs = {
+	set_global_variable = { name = array_get_max_abs_t value = 0 }
+	set_global_variable = { name = array_get_max_abs_tt value = 0 }
+	set_variable = { name = array_get_max_abs_t value = 0 }
+	set_variable = { name = array_get_max_abs_tt value = 0 }
+	
+	every_in_list = {
+		variable = array_$name$
+		
+		prev = {
+			set_variable = { name = array_get_max_abs_ttt value = prev }
+			
+			if = {
+				limit = {
+					has_variable = array_get_max_abs_ttt
+					
+					var:array_get_max_abs_ttt < 0
+				}
+				change_variable = { name = array_get_max_abs_ttt multiply = -1 }
+			}
+			
+			if = {
+				limit = {
+					var:array_get_max_abs_tt = {
+						compare_value < prev.var:array_get_max_abs_ttt
+					}
+				}
+				set_variable = { name = array_get_max_abs_t value = prev }
+				set_variable = { name = array_get_max_abs_tt value = var:array_get_max_abs_ttt }
+				
+				set_global_variable = { name = array_get_max_abs_tt value = global_var:array_get_max_abs_t }
+			}
+			
+			change_global_variable = { name = array_get_max_abs_t add = 1 }
+		}
+	}
+	
+	set_variable = { name = $return_val$ value = var:array_get_max_abs_t }
+	change_variable = { name = $return_val$ divide = $dec$ }
+	set_global_variable = { name = $return_ind$ value = global_var:array_get_max_abs_tt }
+	
+	remove_global_variable = array_get_max_abs_t
+	remove_global_variable = array_get_max_abs_tt
+	remove_variable = array_get_max_abs_t
+	remove_variable = array_get_max_abs_tt
+	remove_variable = array_get_max_abs_ttt
+}
+
+# Parameters: name, return_val, return_ind
 array_get_min = {
 	set_global_variable = { name = array_get_min_t value = 0 }
 	set_global_variable = { name = array_get_min_tt value = 0 }
