@@ -293,7 +293,7 @@ if __name__ == '__main__':
                 elif data[0] == 'lt':
                     return '%s = { name = %s %s = title:%s }\n' % (form[0], name, form[1], id_to_title[data[1]])
                 elif data[0] == 'flag':
-                    return '%s = { name = %s %s = flag:%s }\n' % (form[0], name, form[1], data[1])
+                    return '%s = { name = %s %s = flag:%s }\n' % (form[0], name, form[1], data[1].strip('"'))
                 else:
                     return ''
             else:
