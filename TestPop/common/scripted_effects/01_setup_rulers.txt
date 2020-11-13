@@ -6,12 +6,12 @@
 		}
 		set_variable = { name = is_character value = 1 }
 		
-		add_gold = -100000
+		remove_short_term_gold = 100000
 		
 		eff_binary_1_16 = { name = trade_gold eff = add_gold }
 		
-		set_variable = { name = mil_maa value = trade_maa }
-		set_variable = { name = mil_maintain value = trade_maintain }
+		set_variable = { name = mil_maa value = var:trade_maa }
+		set_variable = { name = mil_maintain value = var:trade_maintain }
 		
 		remove_variable = trade_gold
 		remove_variable = mil_maa
