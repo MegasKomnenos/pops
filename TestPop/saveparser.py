@@ -443,7 +443,7 @@ if __name__ == '__main__':
 
                 outout.append('\t\t}\n')
 
-            out.append(event % (iii, ''.join([item for item in outout if item]), ''))
+            out.append(event % (iii, ''.join([item for item in outout if item]), '\n\t\ttrigger_event = { id = census.99 }'))
 
             print('Parsing and Reconstructing the Events')
 

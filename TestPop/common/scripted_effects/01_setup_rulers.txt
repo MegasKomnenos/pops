@@ -6,9 +6,16 @@
 		}
 		set_variable = { name = is_character value = 1 }
 		
-		remove_short_term_gold = 100000
-		
-		eff_binary_1_16 = { name = trade_gold eff = add_gold }
+		if = {
+			limit = {
+				has_variable = trade_gold
+				
+				var:trade_gold > 0
+			}
+			remove_short_term_gold = 100000
+			
+			eff_binary_1_16 = { name = trade_gold eff = add_gold }
+		}
 		
 		set_variable = { name = mil_maa value = var:trade_maa }
 		set_variable = { name = mil_maintain value = var:trade_maintain }
@@ -17,6 +24,8 @@
 		remove_variable = mil_maa
 		remove_variable = mil_maintain
 	}
+	
+	modi_refresh = yes
 	
 	set_global_variable = { name = sim_i value = 1 }
 	
