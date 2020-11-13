@@ -10,6 +10,8 @@
 				has_global_variable = sim_i
 			}
 		}
+		set_variable = { name = has_stockpile value = 1 }
+		
 		^^goods^
 			set_variable = { name = trade_want_&goods& value = 0 }
 			
@@ -65,6 +67,8 @@
 	}
 }
 stockpile_player = {
+	remove_variable = has_stockpile
+	
 	^^goods^
 		if = {
 			limit = {
@@ -100,6 +104,24 @@ stockpile_player = {
 			set_variable = { name = trade_dmnd_&goods& value = var:trade_want_&goods& }
 			change_variable = { name = trade_dmnd_&goods& subtract = var:trade_has_&goods& }
 			set_variable = { name = trade_sply_&goods& value = 0 }
+		}
+		
+		if = {
+			limit = {
+				OR = {
+					AND = {
+						has_variable = trade_sply_&goods&
+						
+						var:trade_sply_&goods& > 0
+					}
+					AND = {
+						has_variable = trade_dmnd_&goods&
+						
+						var:trade_dmnd_&goods& > 0
+					}
+				}
+			}
+			set_variable = { name = has_stockpile value = 1 }
 		}
 	^
 }
