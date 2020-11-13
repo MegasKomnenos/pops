@@ -382,10 +382,7 @@ if __name__ == '__main__':
                         else:
                             if 'trade_' in name:
                                 outout.append('\t\t\tcounty.holder = {\n')
-                                outout.append('\t\t')
-                                outout.append(create_character)
-                                outout.append('\t\t')
-                                outout.append(character_data % ''.join([helper(('\t\t\t\tset_variable', 'value'), n, d, id_to_title) for n, d in chars[data[1]][0].items()]))
+                                outout.append(helper(('\t\t\t\tset_variable', 'value'), name, data, id_to_title))
                                 outout.append('\t\t\t}\n')
                             else:
                                 outout.append(helper(('\t\t\tset_variable', 'value'), name, data, id_to_title))
@@ -409,7 +406,7 @@ if __name__ == '__main__':
                                     if not 'template' in n and not 'owner' in n and not 'worker' in n:
                                         outout.append(helper(('\t\t\t\t\tset_variable', 'value'), n, d, id_to_title))
 
-                                outout.append('\t\t\t\t\tset_variable = { name = task_template value = %s }\n' % tasks[chars[var[1]][0]['task_template']])
+                                outout.append('\t\t\t\t\tset_variable = { name = task_template value = global_var:%s }\n' % tasks[chars[var[1]][0]['task_template'][1]])
                                 outout.append('\t\t\t\t\tset_variable = { name = task_owner value = prev }\n')
                                 outout.append('\t\t\t\t\tset_variable = { name = task_worker value = prev }\n')
 
