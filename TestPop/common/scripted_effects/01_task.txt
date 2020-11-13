@@ -458,9 +458,9 @@ task_set_cost_manage_logistics = {
 	set_variable = { name = task_time_cost value = 0 }
 	
 	^^goods^
-		change_variable = { name = task_time_cost add = var:mil_maa_recruit_&goods& }
-		change_variable = { name = task_time_cost add = var:mil_maa_maintain_&goods& }
-		change_variable = { name = task_time_cost add = var:mil_levy_maintain_&goods& }
+		change_variable = { name = task_time_cost add = var:task_owner.var:mil_maa_recruit_&goods& }
+		change_variable = { name = task_time_cost add = var:task_owner.var:mil_maa_maintain_&goods& }
+		change_variable = { name = task_time_cost add = var:task_owner.var:mil_levy_maintain_&goods& }
 	^
 	
 	sqrt_effect = {
@@ -478,7 +478,7 @@ task_set_cost_manage_stockpile = {
 	set_variable = { name = task_time_cost value = 0 }
 	
 	^^goods^
-		change_variable = { name = task_time_cost add = var:trade_want_&goods& }
+		change_variable = { name = task_time_cost add = var:task_owner.var:trade_want_&goods& }
 	^
 	
 	sqrt_effect = {
