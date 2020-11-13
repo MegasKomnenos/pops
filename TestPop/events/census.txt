@@ -8657,6 +8657,10 @@ census.02 = {
 				}
 			}
 			set_variable = { 
+				name = has_stockpile
+				value = 1
+			}
+			set_variable = { 
 				name = trade_want_food
 				value = 0
 			}
@@ -10673,6 +10677,7 @@ census.02 = {
 				}
 				remove_variable = mil_recruit_maa_t
 				remove_variable = mil_maa_player_t
+				remove_variable = has_stockpile
 				if = { 
 					limit = { 
 						NOT = { 
@@ -10731,6 +10736,24 @@ census.02 = {
 					set_variable = { 
 						name = trade_sply_food
 						value = 0
+					}
+				}
+				if = { 
+					limit = { 
+						OR = { 
+							AND = { 
+								has_variable = trade_sply_food
+								var:trade_sply_food > 0
+							}
+							AND = { 
+								has_variable = trade_dmnd_food
+								var:trade_dmnd_food > 0
+							}
+						}
+					}
+					set_variable = { 
+						name = has_stockpile
+						value = 1
 					}
 				}
 				if = { 
@@ -10795,6 +10818,24 @@ census.02 = {
 				}
 				if = { 
 					limit = { 
+						OR = { 
+							AND = { 
+								has_variable = trade_sply_cereal
+								var:trade_sply_cereal > 0
+							}
+							AND = { 
+								has_variable = trade_dmnd_cereal
+								var:trade_dmnd_cereal > 0
+							}
+						}
+					}
+					set_variable = { 
+						name = has_stockpile
+						value = 1
+					}
+				}
+				if = { 
+					limit = { 
 						NOT = { 
 							has_variable = trade_has_salted
 						}
@@ -10851,6 +10892,24 @@ census.02 = {
 					set_variable = { 
 						name = trade_sply_salted
 						value = 0
+					}
+				}
+				if = { 
+					limit = { 
+						OR = { 
+							AND = { 
+								has_variable = trade_sply_salted
+								var:trade_sply_salted > 0
+							}
+							AND = { 
+								has_variable = trade_dmnd_salted
+								var:trade_dmnd_salted > 0
+							}
+						}
+					}
+					set_variable = { 
+						name = has_stockpile
+						value = 1
 					}
 				}
 				if = { 
@@ -10915,6 +10974,24 @@ census.02 = {
 				}
 				if = { 
 					limit = { 
+						OR = { 
+							AND = { 
+								has_variable = trade_sply_salt
+								var:trade_sply_salt > 0
+							}
+							AND = { 
+								has_variable = trade_dmnd_salt
+								var:trade_dmnd_salt > 0
+							}
+						}
+					}
+					set_variable = { 
+						name = has_stockpile
+						value = 1
+					}
+				}
+				if = { 
+					limit = { 
 						NOT = { 
 							has_variable = trade_has_mud
 						}
@@ -10971,6 +11048,24 @@ census.02 = {
 					set_variable = { 
 						name = trade_sply_mud
 						value = 0
+					}
+				}
+				if = { 
+					limit = { 
+						OR = { 
+							AND = { 
+								has_variable = trade_sply_mud
+								var:trade_sply_mud > 0
+							}
+							AND = { 
+								has_variable = trade_dmnd_mud
+								var:trade_dmnd_mud > 0
+							}
+						}
+					}
+					set_variable = { 
+						name = has_stockpile
+						value = 1
 					}
 				}
 				if = { 
@@ -11035,6 +11130,24 @@ census.02 = {
 				}
 				if = { 
 					limit = { 
+						OR = { 
+							AND = { 
+								has_variable = trade_sply_fuel
+								var:trade_sply_fuel > 0
+							}
+							AND = { 
+								has_variable = trade_dmnd_fuel
+								var:trade_dmnd_fuel > 0
+							}
+						}
+					}
+					set_variable = { 
+						name = has_stockpile
+						value = 1
+					}
+				}
+				if = { 
+					limit = { 
 						NOT = { 
 							has_variable = trade_has_fiber
 						}
@@ -11091,6 +11204,24 @@ census.02 = {
 					set_variable = { 
 						name = trade_sply_fiber
 						value = 0
+					}
+				}
+				if = { 
+					limit = { 
+						OR = { 
+							AND = { 
+								has_variable = trade_sply_fiber
+								var:trade_sply_fiber > 0
+							}
+							AND = { 
+								has_variable = trade_dmnd_fiber
+								var:trade_dmnd_fiber > 0
+							}
+						}
+					}
+					set_variable = { 
+						name = has_stockpile
+						value = 1
 					}
 				}
 				if = { 
@@ -11155,6 +11286,24 @@ census.02 = {
 				}
 				if = { 
 					limit = { 
+						OR = { 
+							AND = { 
+								has_variable = trade_sply_timber
+								var:trade_sply_timber > 0
+							}
+							AND = { 
+								has_variable = trade_dmnd_timber
+								var:trade_dmnd_timber > 0
+							}
+						}
+					}
+					set_variable = { 
+						name = has_stockpile
+						value = 1
+					}
+				}
+				if = { 
+					limit = { 
 						NOT = { 
 							has_variable = trade_has_metal
 						}
@@ -11211,6 +11360,24 @@ census.02 = {
 					set_variable = { 
 						name = trade_sply_metal
 						value = 0
+					}
+				}
+				if = { 
+					limit = { 
+						OR = { 
+							AND = { 
+								has_variable = trade_sply_metal
+								var:trade_sply_metal > 0
+							}
+							AND = { 
+								has_variable = trade_dmnd_metal
+								var:trade_dmnd_metal > 0
+							}
+						}
+					}
+					set_variable = { 
+						name = has_stockpile
+						value = 1
 					}
 				}
 				if = { 
@@ -11275,6 +11442,24 @@ census.02 = {
 				}
 				if = { 
 					limit = { 
+						OR = { 
+							AND = { 
+								has_variable = trade_sply_exotics_w
+								var:trade_sply_exotics_w > 0
+							}
+							AND = { 
+								has_variable = trade_dmnd_exotics_w
+								var:trade_dmnd_exotics_w > 0
+							}
+						}
+					}
+					set_variable = { 
+						name = has_stockpile
+						value = 1
+					}
+				}
+				if = { 
+					limit = { 
 						NOT = { 
 							has_variable = trade_has_exotics_e
 						}
@@ -11331,6 +11516,24 @@ census.02 = {
 					set_variable = { 
 						name = trade_sply_exotics_e
 						value = 0
+					}
+				}
+				if = { 
+					limit = { 
+						OR = { 
+							AND = { 
+								has_variable = trade_sply_exotics_e
+								var:trade_sply_exotics_e > 0
+							}
+							AND = { 
+								has_variable = trade_dmnd_exotics_e
+								var:trade_dmnd_exotics_e > 0
+							}
+						}
+					}
+					set_variable = { 
+						name = has_stockpile
+						value = 1
 					}
 				}
 				if = { 
@@ -11395,6 +11598,24 @@ census.02 = {
 				}
 				if = { 
 					limit = { 
+						OR = { 
+							AND = { 
+								has_variable = trade_sply_exotics_g
+								var:trade_sply_exotics_g > 0
+							}
+							AND = { 
+								has_variable = trade_dmnd_exotics_g
+								var:trade_dmnd_exotics_g > 0
+							}
+						}
+					}
+					set_variable = { 
+						name = has_stockpile
+						value = 1
+					}
+				}
+				if = { 
+					limit = { 
 						NOT = { 
 							has_variable = trade_has_textile
 						}
@@ -11451,6 +11672,24 @@ census.02 = {
 					set_variable = { 
 						name = trade_sply_textile
 						value = 0
+					}
+				}
+				if = { 
+					limit = { 
+						OR = { 
+							AND = { 
+								has_variable = trade_sply_textile
+								var:trade_sply_textile > 0
+							}
+							AND = { 
+								has_variable = trade_dmnd_textile
+								var:trade_dmnd_textile > 0
+							}
+						}
+					}
+					set_variable = { 
+						name = has_stockpile
+						value = 1
 					}
 				}
 				if = { 
@@ -11515,6 +11754,24 @@ census.02 = {
 				}
 				if = { 
 					limit = { 
+						OR = { 
+							AND = { 
+								has_variable = trade_sply_pottery
+								var:trade_sply_pottery > 0
+							}
+							AND = { 
+								has_variable = trade_dmnd_pottery
+								var:trade_dmnd_pottery > 0
+							}
+						}
+					}
+					set_variable = { 
+						name = has_stockpile
+						value = 1
+					}
+				}
+				if = { 
+					limit = { 
 						NOT = { 
 							has_variable = trade_has_tools
 						}
@@ -11575,6 +11832,24 @@ census.02 = {
 				}
 				if = { 
 					limit = { 
+						OR = { 
+							AND = { 
+								has_variable = trade_sply_tools
+								var:trade_sply_tools > 0
+							}
+							AND = { 
+								has_variable = trade_dmnd_tools
+								var:trade_dmnd_tools > 0
+							}
+						}
+					}
+					set_variable = { 
+						name = has_stockpile
+						value = 1
+					}
+				}
+				if = { 
+					limit = { 
 						NOT = { 
 							has_variable = trade_has_armaments
 						}
@@ -11631,6 +11906,24 @@ census.02 = {
 					set_variable = { 
 						name = trade_sply_armaments
 						value = 0
+					}
+				}
+				if = { 
+					limit = { 
+						OR = { 
+							AND = { 
+								has_variable = trade_sply_armaments
+								var:trade_sply_armaments > 0
+							}
+							AND = { 
+								has_variable = trade_dmnd_armaments
+								var:trade_dmnd_armaments > 0
+							}
+						}
+					}
+					set_variable = { 
+						name = has_stockpile
+						value = 1
 					}
 				}
 			}
@@ -12692,7 +12985,7 @@ census.03 = {
 				remove_variable = math_sqrt_i
 				change_variable = { 
 					name = task_time_cost
-					value = 2.5
+					divide = 2.5
 				}
 				change_variable = { 
 					name = task_time_cost
@@ -12861,7 +13154,7 @@ census.03 = {
 				remove_variable = math_sqrt_i
 				change_variable = { 
 					name = task_time_cost
-					value = 10
+					divide = 10
 				}
 				change_variable = { 
 					name = task_time_cost
