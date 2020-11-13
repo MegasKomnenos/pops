@@ -16811,6 +16811,529 @@ census.03 = {
 				variable = task_tasks
 			}
 		}
+		every_ruler = { 
+			limit = { 
+				is_character = yes
+				is_landed = yes
+				is_councillor = no
+				has_variable_list = task_tasks
+				variable_list_size = { 
+					name = task_tasks
+					value >= 1
+				}
+				OR = { 
+					is_ai = yes
+					has_global_variable = sim_i
+				}
+			}
+			every_in_list = { 
+				variable = task_tasks
+				prev = { 
+					save_temporary_scope_as = task_ai_t
+				}
+				if = { 
+					limit = { 
+						var:task_template.var:task_councillor = flag:spouse
+					}
+					prev = { 
+						primary_spouse = { 
+							save_temporary_scope_as = task_ai_t
+						}
+					}
+				}
+				else_if = { 
+					limit = { 
+						var:task_template.var:task_councillor = flag:diplomacy
+					}
+					prev = { 
+						ordered_diplomacy_councillor = { 
+							position = 0
+							save_temporary_scope_as = task_ai_t
+						}
+					}
+				}
+				else_if = { 
+					limit = { 
+						var:task_template.var:task_councillor = flag:martial
+					}
+					prev = { 
+						ordered_martial_councillor = { 
+							position = 0
+							save_temporary_scope_as = task_ai_t
+						}
+					}
+				}
+				else_if = { 
+					limit = { 
+						var:task_template.var:task_councillor = flag:stewardship
+					}
+					prev = { 
+						ordered_stewardship_councillor = { 
+							position = 0
+							save_temporary_scope_as = task_ai_t
+						}
+					}
+				}
+				else_if = { 
+					limit = { 
+						var:task_template.var:task_councillor = flag:intrigue
+					}
+					prev = { 
+						ordered_intrigue_councillor = { 
+							position = 0
+							save_temporary_scope_as = task_ai_t
+						}
+					}
+				}
+				else_if = { 
+					limit = { 
+						var:task_template.var:task_councillor = flag:learning
+					}
+					prev = { 
+						ordered_learning_councillor = { 
+							position = 0
+							save_temporary_scope_as = task_ai_t
+						}
+					}
+				}
+				set_variable = { 
+					name = task_ai_t
+					value = 1
+				}
+				set_variable = { 
+					name = task_ai_tt
+					value = 1
+				}
+				if = { 
+					limit = { 
+						var:task_template = { 
+							has_variable = task_diplomacy_mult
+						}
+					}
+					set_variable = { 
+						name = task_ai_ttt
+						value = var:task_template.var:task_diplomacy_mult
+					}
+					set_variable = { 
+						name = task_ai_tttt
+						value = var:task_template.var:task_diplomacy_mult
+					}
+					change_variable = { 
+						name = task_ai_ttt
+						multiply = prev.diplomacy
+					}
+					change_variable = { 
+						name = task_ai_tttt
+						multiply = scope:task_ai_t.diplomacy
+					}
+					if = { 
+						limit = { 
+							var:task_template = { 
+								has_variable = task_diplomacy_base
+							}
+						}
+						change_variable = { 
+							name = task_ai_ttt
+							add = var:task_template.var:task_diplomacy_base
+						}
+						change_variable = { 
+							name = task_ai_tttt
+							add = var:task_template.var:task_diplomacy_base
+						}
+					}
+					change_variable = { 
+						name = task_ai_t
+						multiply = var:task_ai_ttt
+					}
+					change_variable = { 
+						name = task_ai_tt
+						multiply = var:task_ai_tttt
+					}
+				}
+				if = { 
+					limit = { 
+						var:task_template = { 
+							has_variable = task_martial_mult
+						}
+					}
+					set_variable = { 
+						name = task_ai_ttt
+						value = var:task_template.var:task_martial_mult
+					}
+					set_variable = { 
+						name = task_ai_tttt
+						value = var:task_template.var:task_martial_mult
+					}
+					change_variable = { 
+						name = task_ai_ttt
+						multiply = prev.martial
+					}
+					change_variable = { 
+						name = task_ai_tttt
+						multiply = scope:task_ai_t.martial
+					}
+					if = { 
+						limit = { 
+							var:task_template = { 
+								has_variable = task_martial_base
+							}
+						}
+						change_variable = { 
+							name = task_ai_ttt
+							add = var:task_template.var:task_martial_base
+						}
+						change_variable = { 
+							name = task_ai_tttt
+							add = var:task_template.var:task_martial_base
+						}
+					}
+					change_variable = { 
+						name = task_ai_t
+						multiply = var:task_ai_ttt
+					}
+					change_variable = { 
+						name = task_ai_tt
+						multiply = var:task_ai_tttt
+					}
+				}
+				if = { 
+					limit = { 
+						var:task_template = { 
+							has_variable = task_stewardship_mult
+						}
+					}
+					set_variable = { 
+						name = task_ai_ttt
+						value = var:task_template.var:task_stewardship_mult
+					}
+					set_variable = { 
+						name = task_ai_tttt
+						value = var:task_template.var:task_stewardship_mult
+					}
+					change_variable = { 
+						name = task_ai_ttt
+						multiply = prev.stewardship
+					}
+					change_variable = { 
+						name = task_ai_tttt
+						multiply = scope:task_ai_t.stewardship
+					}
+					if = { 
+						limit = { 
+							var:task_template = { 
+								has_variable = task_stewardship_base
+							}
+						}
+						change_variable = { 
+							name = task_ai_ttt
+							add = var:task_template.var:task_stewardship_base
+						}
+						change_variable = { 
+							name = task_ai_tttt
+							add = var:task_template.var:task_stewardship_base
+						}
+					}
+					change_variable = { 
+						name = task_ai_t
+						multiply = var:task_ai_ttt
+					}
+					change_variable = { 
+						name = task_ai_tt
+						multiply = var:task_ai_tttt
+					}
+				}
+				if = { 
+					limit = { 
+						var:task_template = { 
+							has_variable = task_intrigue_mult
+						}
+					}
+					set_variable = { 
+						name = task_ai_ttt
+						value = var:task_template.var:task_intrigue_mult
+					}
+					set_variable = { 
+						name = task_ai_tttt
+						value = var:task_template.var:task_intrigue_mult
+					}
+					change_variable = { 
+						name = task_ai_ttt
+						multiply = prev.intrigue
+					}
+					change_variable = { 
+						name = task_ai_tttt
+						multiply = scope:task_ai_t.intrigue
+					}
+					if = { 
+						limit = { 
+							var:task_template = { 
+								has_variable = task_intrigue_base
+							}
+						}
+						change_variable = { 
+							name = task_ai_ttt
+							add = var:task_template.var:task_intrigue_base
+						}
+						change_variable = { 
+							name = task_ai_tttt
+							add = var:task_template.var:task_intrigue_base
+						}
+					}
+					change_variable = { 
+						name = task_ai_t
+						multiply = var:task_ai_ttt
+					}
+					change_variable = { 
+						name = task_ai_tt
+						multiply = var:task_ai_tttt
+					}
+				}
+				if = { 
+					limit = { 
+						var:task_template = { 
+							has_variable = task_learning_mult
+						}
+					}
+					set_variable = { 
+						name = task_ai_ttt
+						value = var:task_template.var:task_learning_mult
+					}
+					set_variable = { 
+						name = task_ai_tttt
+						value = var:task_template.var:task_learning_mult
+					}
+					change_variable = { 
+						name = task_ai_ttt
+						multiply = prev.learning
+					}
+					change_variable = { 
+						name = task_ai_tttt
+						multiply = scope:task_ai_t.learning
+					}
+					if = { 
+						limit = { 
+							var:task_template = { 
+								has_variable = task_learning_base
+							}
+						}
+						change_variable = { 
+							name = task_ai_ttt
+							add = var:task_template.var:task_learning_base
+						}
+						change_variable = { 
+							name = task_ai_tttt
+							add = var:task_template.var:task_learning_base
+						}
+					}
+					change_variable = { 
+						name = task_ai_t
+						multiply = var:task_ai_ttt
+					}
+					change_variable = { 
+						name = task_ai_tt
+						multiply = var:task_ai_tttt
+					}
+				}
+				change_variable = { 
+					name = task_ai_t
+					add = 0.05
+				}
+				change_variable = { 
+					name = task_ai_tt
+					add = 0.05
+				}
+				set_variable = { 
+					name = task_ai_ttt
+					value = var:task_time_cost
+				}
+				change_variable = { 
+					name = task_ai_ttt
+					divide = var:task_ai_t
+				}
+				set_variable = { 
+					name = task_ai_t
+					value = var:task_ai_ttt
+				}
+				set_variable = { 
+					name = task_ai_ttt
+					value = var:task_time_cost
+				}
+				change_variable = { 
+					name = task_ai_ttt
+					divide = var:task_ai_tt
+				}
+				set_variable = { 
+					name = task_ai_tt
+					value = var:task_ai_ttt
+				}
+				set_variable = { 
+					name = task_ai_ttt
+					value = scope:task_ai_t
+				}
+			}
+			set_variable = { 
+				name = task_ai_t
+				value = 0
+			}
+			every_councillor = { 
+				set_variable = { 
+					name = task_ai_t
+					value = 0
+				}
+			}
+			every_in_list = { 
+				variable = task_tasks
+				remove_variable = task_delegate
+				prev = { 
+					change_variable = { 
+						name = task_ai_t
+						add = prev.var:task_ai_t
+					}
+				}
+			}
+			while = { 
+				limit = { 
+					var:task_ai_t > 20
+				}
+				set_variable = { 
+					name = task_ai_tt
+					value = var:task_ai_t
+				}
+				every_in_list = { 
+					limit = { 
+						NOT = { 
+							has_variable = task_delegate
+							var:task_ai_ttt = prev
+						}
+					}
+					variable = task_tasks
+					set_variable = { 
+						name = task_ai_tttt
+						value = var:task_ai_ttt.var:task_ai_t
+					}
+					change_variable = { 
+						name = task_ai_tttt
+						add = var:task_ai_tt
+					}
+					if = { 
+						limit = { 
+							has_variable = task_ai_tttt
+							var:task_ai_tttt > 20
+						}
+						set_variable = { 
+							name = task_ai_tttt
+							value = 1
+						}
+					}
+					else = { 
+						change_variable = { 
+							name = task_ai_tttt
+							divide = -20
+						}
+						change_variable = { 
+							name = task_ai_tttt
+							add = 1
+						}
+						change_variable = { 
+							name = task_ai_tttt
+							multiply = 9
+						}
+						change_variable = { 
+							name = task_ai_tttt
+							add = 1
+						}
+					}
+					if = { 
+						limit = { 
+							var:task_ai_t = { 
+								compare_value < prev.var:task_ai_tt
+							}
+						}
+						set_variable = { 
+							name = task_ai_ttttt
+							value = 1
+						}
+					}
+					else = { 
+						set_variable = { 
+							name = task_ai_ttttt
+							value = var:task_ai_t
+						}
+						change_variable = { 
+							name = task_ai_ttttt
+							divide = var:task_ai_tt
+						}
+						change_variable = { 
+							name = task_ai_ttttt
+							subtract = 1
+						}
+						change_variable = { 
+							name = task_ai_ttttt
+							multiply = 4
+						}
+						change_variable = { 
+							name = task_ai_ttttt
+							add = 1
+						}
+					}
+					change_variable = { 
+						name = task_ai_tttt
+						multiply = var:task_ai_ttttt
+					}
+				}
+				ordered_in_list = { 
+					limit = { 
+						NOT = { 
+							has_variable = task_delegate
+							var:task_ai_ttt = prev
+						}
+					}
+					variable = task_tasks
+					order_by = var:task_ai_tttt
+					position = 0
+					set_variable = { 
+						name = task_delegate
+						value = 1
+					}
+					var:task_ai_ttt = { 
+						change_variable = { 
+							name = task_ai_t
+							add = prev.var:task_ai_tt
+						}
+					}
+					prev = { 
+						change_variable = { 
+							name = task_ai_t
+							subtract = prev.var:task_ai_t
+						}
+					}
+				}
+				if = { 
+					limit = { 
+						var:task_ai_tt = { 
+							compare_value = prev.var:task_ai_t
+						}
+					}
+					set_variable = { 
+						name = task_ai_t
+						value = 0
+					}
+				}
+			}
+			remove_variable = task_ai_t
+			remove_variable = task_ai_tt
+			every_councillor = { 
+				remove_variable = task_ai_t
+			}
+			every_in_list = { 
+				variable = task_tasks
+				remove_variable = task_ai_t
+				remove_variable = task_ai_tt
+				remove_variable = task_ai_ttt
+				remove_variable = task_ai_tttt
+				remove_variable = task_ai_ttttt
+			}
+		}
 		every_county = { 
 			limit = { 
 				is_valid_prov = yes
