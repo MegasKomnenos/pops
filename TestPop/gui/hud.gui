@@ -821,7 +821,7 @@ widget = {
 	
 	window = {
 		parentanchor = right
-		size = { 600 400 }
+		size = { 800 600 }
 		position = { 300 0 }
 		movable = yes
 		visible = "[EqualTo_CFixedPoint('(CFixedPoint)1', GetPlayer.MakeScope.Var('toggled_player_tasks').GetValue)]"
@@ -830,9 +830,6 @@ widget = {
 			texture = "gfx/interface/component_tiles/tile_window_background_subwindow.dds"
 			spriteType = Corneredtiled
 			spriteborder = { 18 18 }
-			margin = { -23 -17 }
-			margin_left = 40
-			margin_bottom = 20
 			texture_density = 2
 			
 			modify_texture = {
@@ -846,7 +843,7 @@ widget = {
 		
 		buttons_window_control = {
 			parentanchor = top|right
-			position = { -40 35 }
+			position = { -10 10 }
 			blockoverride "button_close"
 			{
 				datacontext = "[GetScriptedGui( 'close_player_tasks' )]"
@@ -857,15 +854,34 @@ widget = {
 			}
 		}
 		
+		text_single = {
+			position = { 30 15 }
+			text = "Task & Time"
+			default_format = "#high"
+			align = nobaseline
+			using = Font_Size_Big
+			max_width = 190
+			fontsize_min = 20
+		}
+		
 		vbox = {
+			margin_top = 70
 			hbox = {
+				spacing = 10
 				vbox = {
 					portrait_head = {
 						name = "tasks_window_player_portrait"
 						datacontext = "[GetPlayer]"
 					}
-					text_single = {
-						text = "Time & Remainder: [GetPlayer.MakeScope.Var('toggle_player_tasks_time').GetValue] / [GetPlayer.MakeScope.Var('toggle_player_tasks_time_remain').GetValue]"
+					vbox = {
+						text_single = {
+							layoutpolicy_horizontal = expanding
+							text = "Spent: [GetPlayer.MakeScope.Var('toggle_player_tasks_time').GetValue]"
+						}
+						text_single = {
+							layoutpolicy_horizontal = expanding
+							text = "Remain: [GetPlayer.MakeScope.Var('toggle_player_tasks_time_remain').GetValue]"
+						}
 					}
 				}
 				vbox = {
@@ -874,8 +890,15 @@ widget = {
 						name = "tasks_window_player_portrait"
 						datacontext = "[GetPlayer.MakeScope.Var('toggle_player_tasks_councillor_diplomacy').GetCharacter]"
 					}
-					text_single = {
-						text = "Time & Remainder: [GetPlayer.MakeScope.Var('toggle_player_tasks_councillor_diplomacy').Var('toggle_player_tasks_time').GetValue] / [GetPlayer.MakeScope.Var('toggle_player_tasks_councillor_diplomacy').Var('toggle_player_tasks_time_remain').GetValue]"
+					vbox = {
+						text_single = {
+							layoutpolicy_horizontal = expanding
+							text = "Spent: [GetPlayer.MakeScope.Var('toggle_player_tasks_councillor_diplomacy').Var('toggle_player_tasks_time').GetValue]"
+						}
+						text_single = {
+							layoutpolicy_horizontal = expanding
+							text = "Remain: [GetPlayer.MakeScope.Var('toggle_player_tasks_councillor_diplomacy').Var('toggle_player_tasks_time_remain').GetValue]"
+						}
 					}
 				}
 				vbox = {
@@ -884,8 +907,15 @@ widget = {
 						name = "tasks_window_player_portrait"
 						datacontext = "[GetPlayer.MakeScope.Var('toggle_player_tasks_councillor_martial').GetCharacter]"
 					}
-					text_single = {
-						text = "Time & Remainder: [GetPlayer.MakeScope.Var('toggle_player_tasks_councillor_martial').Var('toggle_player_tasks_time').GetValue] / [GetPlayer.MakeScope.Var('toggle_player_tasks_councillor_martial').Var('toggle_player_tasks_time_remain').GetValue]"
+					vbox = {
+						text_single = {
+							layoutpolicy_horizontal = expanding
+							text = "Spent: [GetPlayer.MakeScope.Var('toggle_player_tasks_councillor_martial').Var('toggle_player_tasks_time').GetValue]"
+						}
+						text_single = {
+							layoutpolicy_horizontal = expanding
+							text = "Remain: [GetPlayer.MakeScope.Var('toggle_player_tasks_councillor_martial').Var('toggle_player_tasks_time_remain').GetValue]"
+						}
 					}
 				}
 				vbox = {
@@ -894,8 +924,15 @@ widget = {
 						name = "tasks_window_player_portrait"
 						datacontext = "[GetPlayer.MakeScope.Var('toggle_player_tasks_councillor_stewardship').GetCharacter]"
 					}
-					text_single = {
-						text = "Time & Remainder: [GetPlayer.MakeScope.Var('toggle_player_tasks_councillor_stewardship').Var('toggle_player_tasks_time').GetValue] / [GetPlayer.MakeScope.Var('toggle_player_tasks_councillor_stewardship').Var('toggle_player_tasks_time_remain').GetValue]"
+					vbox = {
+						text_single = {
+							layoutpolicy_horizontal = expanding
+							text = "Spent: [GetPlayer.MakeScope.Var('toggle_player_tasks_councillor_stewardship').Var('toggle_player_tasks_time').GetValue]"
+						}
+						text_single = {
+							layoutpolicy_horizontal = expanding
+							text = "Remain: [GetPlayer.MakeScope.Var('toggle_player_tasks_councillor_stewardship').Var('toggle_player_tasks_time_remain').GetValue]"
+						}
 					}
 				}
 				vbox = {
@@ -904,8 +941,15 @@ widget = {
 						name = "tasks_window_player_portrait"
 						datacontext = "[GetPlayer.MakeScope.Var('toggle_player_tasks_councillor_intrigue').GetCharacter]"
 					}
-					text_single = {
-						text = "Time & Remainder: [GetPlayer.MakeScope.Var('toggle_player_tasks_councillor_intrigue').Var('toggle_player_tasks_time').GetValue] / [GetPlayer.MakeScope.Var('toggle_player_tasks_councillor_intrigue').Var('toggle_player_tasks_time_remain').GetValue]"
+					vbox = {
+						text_single = {
+							layoutpolicy_horizontal = expanding
+							text = "Spent: [GetPlayer.MakeScope.Var('toggle_player_tasks_councillor_intrigue').Var('toggle_player_tasks_time').GetValue]"
+						}
+						text_single = {
+							layoutpolicy_horizontal = expanding
+							text = "Remain: [GetPlayer.MakeScope.Var('toggle_player_tasks_councillor_intrigue').Var('toggle_player_tasks_time_remain').GetValue]"
+						}
 					}
 				}
 				vbox = {
@@ -914,140 +958,249 @@ widget = {
 						name = "tasks_window_player_portrait"
 						datacontext = "[GetPlayer.MakeScope.Var('toggle_player_tasks_councillor_learning').GetCharacter]"
 					}
-					text_single = {
-						text = "Time & Remainder: [GetPlayer.MakeScope.Var('toggle_player_tasks_councillor_learning').Var('toggle_player_tasks_time').GetValue] / [GetPlayer.MakeScope.Var('toggle_player_tasks_councillor_learning').Var('toggle_player_tasks_time_remain').GetValue]"
+					vbox = {
+						text_single = {
+							layoutpolicy_horizontal = expanding
+							text = "Spent: [GetPlayer.MakeScope.Var('toggle_player_tasks_councillor_learning').Var('toggle_player_tasks_time').GetValue]"
+						}
+						text_single = {
+							layoutpolicy_horizontal = expanding
+							text = "Remain: [GetPlayer.MakeScope.Var('toggle_player_tasks_councillor_learning').Var('toggle_player_tasks_time_remain').GetValue]"
+						}
 					}
 				}
 			}
-			hbox = {
-				visible = "[EqualTo_CFixedPoint('(CFixedPoint)1', GetPlayer.MakeScope.Var('toggle_player_tasks_has_manage_domain').GetValue)]"
-				
-				text_single = {
-					text = "Domain"
-				}
-				
-				vbox = {
-					text_single = {
-						text = "Time Required: [GetPlayer.MakeScope.Var('toggle_player_tasks_time_manage_domain').GetValue]"
-					}
-					text_single = {
-						text = "Time Receieved: [GetPlayer.MakeScope.Var('toggle_player_tasks_time_in_manage_domain').GetValue]%"
-					}
-					text_single = {
-						text = "Base Cost: [GetPlayer.MakeScope.Var('toggle_player_tasks_time_cost_manage_domain').GetValue]"
-					}
-					text_single = {
-						text = "Corruption: [GetPlayer.MakeScope.Var('toggle_player_tasks_crpt_manage_domain').GetValue]"
-					}
-				}
+			
+			spacer = {
+				size = { 0 10 }
 			}
-			hbox = {
-				visible = "[EqualTo_CFixedPoint('(CFixedPoint)1', GetPlayer.MakeScope.Var('toggle_player_tasks_has_manage_realm').GetValue)]"
+			
+			scrollbox = {
+				minimumsize = { 780 300 }
+				maximumsize = { 780 2000 }
+				layoutpolicy_vertical = expanding
+				layoutpolicy_horizontal = expanding
 				
-				text_single = {
-					text = "Realm"
-				}
-				
-				vbox = {
-					text_single = {
-						text = "Time Required: [GetPlayer.MakeScope.Var('toggle_player_tasks_time_manage_realm').GetValue]"
-					}
-					text_single = {
-						text = "Time Receieved: [GetPlayer.MakeScope.Var('toggle_player_tasks_time_in_manage_realm').GetValue]%"
-					}
-					text_single = {
-						text = "Base Cost: [GetPlayer.MakeScope.Var('toggle_player_tasks_time_cost_manage_realm').GetValue]"
-					}
-					text_single = {
-						text = "Corruption: [GetPlayer.MakeScope.Var('toggle_player_tasks_crpt_manage_realm').GetValue]"
-					}
-				}
-			}
-			hbox = {
-				visible = "[EqualTo_CFixedPoint('(CFixedPoint)1', GetPlayer.MakeScope.Var('toggle_player_tasks_has_manage_logistics').GetValue)]"
-				
-				text_single = {
-					text = "Logistics"
-				}
-				
-				vbox = {
-					text_single = {
-						text = "Time Required: [GetPlayer.MakeScope.Var('toggle_player_tasks_time_manage_logistics').GetValue]"
-					}
-					text_single = {
-						text = "Time Receieved: [GetPlayer.MakeScope.Var('toggle_player_tasks_time_in_manage_logistics').GetValue]%"
-					}
-					text_single = {
-						text = "Base Cost: [GetPlayer.MakeScope.Var('toggle_player_tasks_time_cost_manage_logistics').GetValue]"
-					}
-					text_single = {
-						text = "Corruption: [GetPlayer.MakeScope.Var('toggle_player_tasks_crpt_manage_logistics').GetValue]"
-					}
-				}
-			}
-			hbox = {
-				visible = "[EqualTo_CFixedPoint('(CFixedPoint)1', GetPlayer.MakeScope.Var('toggle_player_tasks_has_manage_court').GetValue)]"
-				
-				text_single = {
-					text = "Court"
-				}
-				
-				vbox = {
-					text_single = {
-						text = "Time Required: [GetPlayer.MakeScope.Var('toggle_player_tasks_time_manage_court').GetValue]"
-					}
-					text_single = {
-						text = "Time Receieved: [GetPlayer.MakeScope.Var('toggle_player_tasks_time_in_manage_court').GetValue]%"
-					}
-					text_single = {
-						text = "Base Cost: [GetPlayer.MakeScope.Var('toggle_player_tasks_time_cost_manage_court').GetValue]"
-					}
-					text_single = {
-						text = "Corruption: [GetPlayer.MakeScope.Var('toggle_player_tasks_crpt_manage_court').GetValue]"
-					}
-				}
-			}
-			hbox = {
-				visible = "[EqualTo_CFixedPoint('(CFixedPoint)1', GetPlayer.MakeScope.Var('toggle_player_tasks_has_manage_stockpile').GetValue)]"
-				
-				text_single = {
-					text = "Stockpile"
-				}
-				
-				vbox = {
-					text_single = {
-						text = "Time Required: [GetPlayer.MakeScope.Var('toggle_player_tasks_time_manage_stockpile').GetValue]"
-					}
-					text_single = {
-						text = "Time Receieved: [GetPlayer.MakeScope.Var('toggle_player_tasks_time_in_manage_stockpile').GetValue]%"
-					}
-					text_single = {
-						text = "Base Cost: [GetPlayer.MakeScope.Var('toggle_player_tasks_time_cost_manage_stockpile').GetValue]"
-					}
-					text_single = {
-						text = "Corruption: [GetPlayer.MakeScope.Var('toggle_player_tasks_crpt_manage_stockpile').GetValue]"
-					}
-				}
-			}
-			hbox = {
-				visible = "[EqualTo_CFixedPoint('(CFixedPoint)1', GetPlayer.MakeScope.Var('toggle_player_tasks_has_manage_oversight').GetValue)]"
-				
-				text_single = {
-					text = "Oversight"
-				}
-				
-				vbox = {
-					text_single = {
-						text = "Time Required: [GetPlayer.MakeScope.Var('toggle_player_tasks_time_manage_oversight').GetValue]"
-					}
-					text_single = {
-						text = "Time Receieved: [GetPlayer.MakeScope.Var('toggle_player_tasks_time_in_manage_oversight').GetValue]%"
-					}
-					text_single = {
-						text = "Base Cost: [GetPlayer.MakeScope.Var('toggle_player_tasks_time_cost_manage_oversight').GetValue]"
-					}
-					text_single = {
-						text = "Corruption: [GetPlayer.MakeScope.Var('toggle_player_tasks_crpt_manage_oversight').GetValue]"
+				blockoverride "scrollbox_content"
+				{
+					vbox = {
+						spacing = 10
+						
+						layoutpolicy_horizontal = expanding
+						hbox = {
+							visible = "[EqualTo_CFixedPoint('(CFixedPoint)1', GetPlayer.MakeScope.Var('toggle_player_tasks_has_manage_domain').GetValue)]"
+							layoutpolicy_horizontal = expanding
+							
+							spacer = {
+								size = { 20 0 }
+							}
+							
+							text_single = {
+								layoutpolicy_horizontal = expanding
+								text = "Domain"
+								min_width = 200
+								max_width = 200
+							}
+							
+							vbox = {
+								layoutpolicy_horizontal = expanding
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									text = "Time Required: [GetPlayer.MakeScope.Var('toggle_player_tasks_time_manage_domain').GetValue]"
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									text = "Time Receieved: [GetPlayer.MakeScope.Var('toggle_player_tasks_time_in_manage_domain').GetValue]%"
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									text = "Base Cost: [GetPlayer.MakeScope.Var('toggle_player_tasks_time_cost_manage_domain').GetValue]"
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									text = "Corruption: [GetPlayer.MakeScope.Var('toggle_player_tasks_crpt_manage_domain').GetValue]%"
+								}
+							}
+						}
+						hbox = {
+							visible = "[EqualTo_CFixedPoint('(CFixedPoint)1', GetPlayer.MakeScope.Var('toggle_player_tasks_has_manage_realm').GetValue)]"
+							layoutpolicy_horizontal = expanding
+							
+							spacer = {
+								size = { 20 0 }
+							}
+							
+							text_single = {
+								layoutpolicy_horizontal = expanding
+								text = "Realm"
+								min_width = 200
+								max_width = 200
+							}
+							
+							vbox = {
+								layoutpolicy_horizontal = expanding
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									text = "Time Required: [GetPlayer.MakeScope.Var('toggle_player_tasks_time_manage_realm').GetValue]"
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									text = "Time Receieved: [GetPlayer.MakeScope.Var('toggle_player_tasks_time_in_manage_realm').GetValue]%"
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									text = "Base Cost: [GetPlayer.MakeScope.Var('toggle_player_tasks_time_cost_manage_realm').GetValue]"
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									text = "Corruption: [GetPlayer.MakeScope.Var('toggle_player_tasks_crpt_manage_realm').GetValue]%"
+								}
+							}
+						}
+						hbox = {
+							visible = "[EqualTo_CFixedPoint('(CFixedPoint)1', GetPlayer.MakeScope.Var('toggle_player_tasks_has_manage_logistics').GetValue)]"
+							layoutpolicy_horizontal = expanding
+							
+							spacer = {
+								size = { 20 0 }
+							}
+							
+							text_single = {
+								layoutpolicy_horizontal = expanding
+								text = "Logistics"
+								min_width = 200
+								max_width = 200
+							}
+							
+							vbox = {
+								layoutpolicy_horizontal = expanding
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									text = "Time Required: [GetPlayer.MakeScope.Var('toggle_player_tasks_time_manage_logistics').GetValue]"
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									text = "Time Receieved: [GetPlayer.MakeScope.Var('toggle_player_tasks_time_in_manage_logistics').GetValue]%"
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									text = "Base Cost: [GetPlayer.MakeScope.Var('toggle_player_tasks_time_cost_manage_logistics').GetValue]"
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									text = "Corruption: [GetPlayer.MakeScope.Var('toggle_player_tasks_crpt_manage_logistics').GetValue]%"
+								}
+							}
+						}
+						hbox = {
+							visible = "[EqualTo_CFixedPoint('(CFixedPoint)1', GetPlayer.MakeScope.Var('toggle_player_tasks_has_manage_court').GetValue)]"
+							layoutpolicy_horizontal = expanding
+							
+							spacer = {
+								size = { 20 0 }
+							}
+							
+							text_single = {
+								layoutpolicy_horizontal = expanding
+								text = "Court"
+								min_width = 200
+								max_width = 200
+							}
+							
+							vbox = {	
+								layoutpolicy_horizontal = expanding
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									text = "Time Required: [GetPlayer.MakeScope.Var('toggle_player_tasks_time_manage_court').GetValue]"
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									text = "Time Receieved: [GetPlayer.MakeScope.Var('toggle_player_tasks_time_in_manage_court').GetValue]%"
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									text = "Base Cost: [GetPlayer.MakeScope.Var('toggle_player_tasks_time_cost_manage_court').GetValue]"
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									text = "Corruption: [GetPlayer.MakeScope.Var('toggle_player_tasks_crpt_manage_court').GetValue]%"
+								}
+							}
+						}
+						hbox = {
+							visible = "[EqualTo_CFixedPoint('(CFixedPoint)1', GetPlayer.MakeScope.Var('toggle_player_tasks_has_manage_stockpile').GetValue)]"
+							layoutpolicy_horizontal = expanding
+							
+							spacer = {
+								size = { 20 0 }
+							}
+							
+							text_single = {
+								layoutpolicy_horizontal = expanding
+								text = "Stockpile"
+								min_width = 200
+								max_width = 200
+							}
+							
+							vbox = {	
+								layoutpolicy_horizontal = expanding
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									text = "Time Required: [GetPlayer.MakeScope.Var('toggle_player_tasks_time_manage_stockpile').GetValue]"
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									text = "Time Receieved: [GetPlayer.MakeScope.Var('toggle_player_tasks_time_in_manage_stockpile').GetValue]%"
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									text = "Base Cost: [GetPlayer.MakeScope.Var('toggle_player_tasks_time_cost_manage_stockpile').GetValue]"
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									text = "Corruption: [GetPlayer.MakeScope.Var('toggle_player_tasks_crpt_manage_stockpile').GetValue]%"
+								}
+							}
+						}
+						hbox = {
+							visible = "[EqualTo_CFixedPoint('(CFixedPoint)1', GetPlayer.MakeScope.Var('toggle_player_tasks_has_manage_oversight').GetValue)]"
+							layoutpolicy_horizontal = expanding
+							
+							spacer = {
+								size = { 20 0 }
+							}
+							
+							text_single = {
+								layoutpolicy_horizontal = expanding
+								text = "Oversight"
+								min_width = 200
+								max_width = 200
+							}
+							
+							vbox = {
+								layoutpolicy_horizontal = expanding
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									text = "Time Required: [GetPlayer.MakeScope.Var('toggle_player_tasks_time_manage_oversight').GetValue]"
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									text = "Time Receieved: [GetPlayer.MakeScope.Var('toggle_player_tasks_time_in_manage_oversight').GetValue]%"
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									text = "Base Cost: [GetPlayer.MakeScope.Var('toggle_player_tasks_time_cost_manage_oversight').GetValue]"
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									text = "Corruption: [GetPlayer.MakeScope.Var('toggle_player_tasks_crpt_manage_oversight').GetValue]%"
+								}
+							}
+						}
+						
+						spacer = {
+							size = { 0 5 }
+						}
 					}
 				}
 			}
