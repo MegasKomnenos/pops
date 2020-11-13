@@ -641,11 +641,13 @@ task_main = {
 
 task_set_cost_manage_domain = {
 	set_variable = { name = task_time_cost value = var:task_owner.domain_size }
+	change_variable = { name = task_time_cost multiply = 0.8 }
+	change_variable = { name = task_time_cost add = 0.2 }
 }
 task_set_cost_manage_realm = {
 	set_variable = { name = task_time_cost value = var:task_owner.vassal_count }
-	change_variable = { name = task_time_cost multiply = 0.5 }
-	change_variable = { name = task_time_cost add = 0.5 }
+	change_variable = { name = task_time_cost multiply = 0.4 }
+	change_variable = { name = task_time_cost add = 0.6 }
 }
 task_set_cost_manage_logistics = {
 	set_variable = { name = task_time_cost value = 0 }
@@ -684,7 +686,7 @@ task_set_cost_manage_logistics = {
 		return = task_time_cost
 	}
 	
-	change_variable = { name = task_time_cost divide = 2.5 }
+	change_variable = { name = task_time_cost divide = 2 }
 	change_variable = { name = task_time_cost add = 1 }
 }
 task_set_cost_manage_court = {
@@ -702,7 +704,7 @@ task_set_cost_manage_stockpile = {
 		return = task_time_cost
 	}
 	
-	change_variable = { name = task_time_cost divide = 10 }
+	change_variable = { name = task_time_cost divide = 8 }
 	change_variable = { name = task_time_cost add = 1 }
 }
 task_set_cost_manage_oversight = {

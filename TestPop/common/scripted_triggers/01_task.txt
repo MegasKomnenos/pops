@@ -8,7 +8,11 @@ task_check_cond_manage_logistics = {
 	OR = {
 		has_raised_armies = yes
 		
-		number_of_maa_regiments > 0
+		AND = {
+			has_variable = mil_maa
+			
+			var:mil_maa > 0
+		}
 	}
 }
 task_check_cond_manage_court = {
