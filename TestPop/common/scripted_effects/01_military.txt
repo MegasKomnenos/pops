@@ -303,7 +303,9 @@ mil_main = {
 		
 		every_army = {
 			prev = {
-				change_variable = { name = mil_levy_field add = prev.army_max_size }
+				set_variable = { name = mil_main_t value = prev.army_max_size }
+				change_variable = { name = mil_main_t divide = 1000 }
+				change_variable = { name = mil_levy_field add = var:mil_main_t }
 			}
 		}
 		

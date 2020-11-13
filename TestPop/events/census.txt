@@ -84113,9 +84113,17 @@ census.10 = {
 				}
 				every_army = { 
 					prev = { 
+						set_variable = { 
+							name = mil_main_t
+							value = prev.army_max_size
+						}
+						change_variable = { 
+							name = mil_main_t
+							divide = 1000
+						}
 						change_variable = { 
 							name = mil_levy_field
-							add = prev.army_max_size
+							add = var:mil_main_t
 						}
 					}
 				}
@@ -89191,9 +89199,17 @@ census.12 = {
 			}
 			every_army = { 
 				prev = { 
+					set_variable = { 
+						name = mil_main_t
+						value = prev.army_max_size
+					}
+					change_variable = { 
+						name = mil_main_t
+						divide = 1000
+					}
 					change_variable = { 
 						name = mil_levy_field
-						add = prev.army_max_size
+						add = var:mil_main_t
 					}
 				}
 			}
@@ -94869,9 +94885,17 @@ census.99 = {
 			}
 			every_army = { 
 				prev = { 
+					set_variable = { 
+						name = mil_main_t
+						value = prev.army_max_size
+					}
+					change_variable = { 
+						name = mil_main_t
+						divide = 1000
+					}
 					change_variable = { 
 						name = mil_levy_field
-						add = prev.army_max_size
+						add = var:mil_main_t
 					}
 				}
 			}

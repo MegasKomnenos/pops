@@ -293,7 +293,7 @@ sim_run.02 = {
 		set_global_variable = { name = sim_i value = 0 }
 
 		while = {
-			count = 200
+			count = 300
 			
 			global_var:arhat = {
 				change_global_variable = { name = sim_i add = 1 }
