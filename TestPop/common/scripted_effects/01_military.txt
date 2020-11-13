@@ -333,6 +333,8 @@ mil_main = {
 		
 		change_variable = { name = mil_maa multiply = 0.998 }
 		
+		set_variable = { name = mil_maa_tt value = 0 }
+		
 		^^goods^
 			if = {
 				limit = {
@@ -354,11 +356,22 @@ mil_main = {
 				
 				change_variable = { name = mil_main_t multiply = mil_maa_recruit_&goods& }
 				change_variable = { name = mil_main_t divide = 10 }
-				change_variable = { name = mil_maa add = var:mil_main_t }
+				change_variable = { name = mil_maa_tt add = var:mil_main_t }
 			}
 		^
 		
+		if = {
+			limit = {
+				has_variable = task_manage_logistics
+			}
+			change_variable = { name = mil_maa_tt multiply = var:task_manage_logistics.var:task_time_in }
+			change_variable = { name = mil_maa_tt divide = 100 }
+		}
+		
+		change_variable = { name = mil_maa add = var:mil_maa_tt }
+		
 		remove_variable = mil_main_t
+		remove_variable = mil_maa_tt
 		
 		mil_maintain_maa = { size = var:mil_maa }
 		
@@ -418,6 +431,14 @@ mil_main = {
 		}
 		else = {
 			set_variable = { name = mil_maintain value = 10 }
+		}
+		
+		if = {
+			limit = {
+				has_variable = task_manage_logistics
+			}
+			change_variable = { name = mil_maintain multiply = var:task_manage_logistics.var:task_time_in }
+			change_variable = { name = mil_maintain divide = 100 }
 		}
 		
 		remove_variable = mil_maintain_t

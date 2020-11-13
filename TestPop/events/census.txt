@@ -670,13 +670,6 @@ census.01 = {
 				value = 1
 			}
 		}
-	}
-	option = { }
-}
-census.02 = { 
-	type = empty
-	hidden = yes
-	immediate = { 
 		every_in_global_list = { 
 			variable = prod_instances
 			if = { 
@@ -6336,7 +6329,7 @@ census.02 = {
 	}
 	option = { }
 }
-census.03 = { 
+census.02 = { 
 	type = empty
 	hidden = yes
 	immediate = { 
@@ -11640,6 +11633,5218 @@ census.03 = {
 						value = 0
 					}
 				}
+			}
+		}
+	}
+	option = { }
+}
+census.03 = { 
+	type = empty
+	hidden = yes
+	immediate = { 
+		every_ruler = { 
+			limit = { 
+				is_character = yes
+				is_landed = yes
+			}
+			if = { 
+				limit = { 
+					task_check_cond_manage_domain = yes
+				}
+				if = { 
+					limit = { 
+						NOT = { 
+							any_in_list = { 
+								variable = task_tasks
+								var:task_template = global_var:manage_domain
+							}
+						}
+					}
+					if = { 
+						limit = { 
+							has_global_variable_list = task_tasks
+							global_variable_list_size = { 
+								name = task_tasks
+								value > 0
+							}
+						}
+						ordered_in_global_list = { 
+							variable = task_tasks
+							position = 0
+							save_temporary_scope_as = task_new_task_t
+							remove_list_global_variable = { 
+								name = task_tasks
+								target = this
+							}
+						}
+					}
+					else = { 
+						create_character = { 
+							save_temporary_scope_as = task_new_task_t
+							gender = male
+							trait = character_not_1
+							employer = global_var:arhat
+							faith = global_var:arhat.faith
+							culture = global_var:arhat.culture
+							dynasty = none
+						}
+					}
+					add_to_global_variable_list = { 
+						name = task_tasks_active
+						target = scope:task_new_task_t
+					}
+					this = { 
+						add_to_variable_list = { 
+							name = task_tasks
+							target = scope:task_new_task_t
+						}
+						scope:task_new_task_t = { 
+							set_variable = { 
+								name = task_owner
+								value = prev
+							}
+							set_variable = { 
+								name = task_worker
+								value = prev
+							}
+						}
+					}
+					global_var:manage_domain = { 
+						add_to_variable_list = { 
+							name = task_tasks
+							target = scope:task_new_task_t
+						}
+					}
+					scope:task_new_task_t = { 
+						set_variable = { 
+							name = task_template
+							value = global_var:manage_domain
+						}
+						set_variable = { 
+							name = task_time_cost
+							value = 0
+						}
+						set_variable = { 
+							name = task_time_in
+							value = 0
+						}
+						set_variable = { 
+							name = task_crpt
+							value = 0
+						}
+					}
+				}
+			}
+			else = { 
+				every_in_list = { 
+					limit = { 
+						var:task_template = global_var:manage_domain
+					}
+					variable = task_tasks
+					remove_list_global_variable = { 
+						name = task_tasks_active
+						target = this
+					}
+					add_to_global_variable_list = { 
+						name = task_tasks
+						target = this
+					}
+					var:task_owner = { 
+						remove_list_variable = { 
+							name = task_tasks
+							target = prev
+						}
+					}
+					var:task_template = { 
+						remove_list_variable = { 
+							name = task_tasks
+							target = prev
+						}
+					}
+					remove_variable = task_owner
+					remove_variable = task_worker
+					remove_variable = task_template
+					remove_variable = task_delegate
+					remove_variable = task_time_cost
+					remove_variable = task_time_in
+					remove_variable = task_crpt
+				}
+			}
+			if = { 
+				limit = { 
+					task_check_cond_manage_realm = yes
+				}
+				if = { 
+					limit = { 
+						NOT = { 
+							any_in_list = { 
+								variable = task_tasks
+								var:task_template = global_var:manage_realm
+							}
+						}
+					}
+					if = { 
+						limit = { 
+							has_global_variable_list = task_tasks
+							global_variable_list_size = { 
+								name = task_tasks
+								value > 0
+							}
+						}
+						ordered_in_global_list = { 
+							variable = task_tasks
+							position = 0
+							save_temporary_scope_as = task_new_task_t
+							remove_list_global_variable = { 
+								name = task_tasks
+								target = this
+							}
+						}
+					}
+					else = { 
+						create_character = { 
+							save_temporary_scope_as = task_new_task_t
+							gender = male
+							trait = character_not_1
+							employer = global_var:arhat
+							faith = global_var:arhat.faith
+							culture = global_var:arhat.culture
+							dynasty = none
+						}
+					}
+					add_to_global_variable_list = { 
+						name = task_tasks_active
+						target = scope:task_new_task_t
+					}
+					this = { 
+						add_to_variable_list = { 
+							name = task_tasks
+							target = scope:task_new_task_t
+						}
+						scope:task_new_task_t = { 
+							set_variable = { 
+								name = task_owner
+								value = prev
+							}
+							set_variable = { 
+								name = task_worker
+								value = prev
+							}
+						}
+					}
+					global_var:manage_realm = { 
+						add_to_variable_list = { 
+							name = task_tasks
+							target = scope:task_new_task_t
+						}
+					}
+					scope:task_new_task_t = { 
+						set_variable = { 
+							name = task_template
+							value = global_var:manage_realm
+						}
+						set_variable = { 
+							name = task_time_cost
+							value = 0
+						}
+						set_variable = { 
+							name = task_time_in
+							value = 0
+						}
+						set_variable = { 
+							name = task_crpt
+							value = 0
+						}
+					}
+				}
+			}
+			else = { 
+				every_in_list = { 
+					limit = { 
+						var:task_template = global_var:manage_realm
+					}
+					variable = task_tasks
+					remove_list_global_variable = { 
+						name = task_tasks_active
+						target = this
+					}
+					add_to_global_variable_list = { 
+						name = task_tasks
+						target = this
+					}
+					var:task_owner = { 
+						remove_list_variable = { 
+							name = task_tasks
+							target = prev
+						}
+					}
+					var:task_template = { 
+						remove_list_variable = { 
+							name = task_tasks
+							target = prev
+						}
+					}
+					remove_variable = task_owner
+					remove_variable = task_worker
+					remove_variable = task_template
+					remove_variable = task_delegate
+					remove_variable = task_time_cost
+					remove_variable = task_time_in
+					remove_variable = task_crpt
+				}
+			}
+			if = { 
+				limit = { 
+					task_check_cond_manage_logistics = yes
+				}
+				if = { 
+					limit = { 
+						NOT = { 
+							any_in_list = { 
+								variable = task_tasks
+								var:task_template = global_var:manage_logistics
+							}
+						}
+					}
+					if = { 
+						limit = { 
+							has_global_variable_list = task_tasks
+							global_variable_list_size = { 
+								name = task_tasks
+								value > 0
+							}
+						}
+						ordered_in_global_list = { 
+							variable = task_tasks
+							position = 0
+							save_temporary_scope_as = task_new_task_t
+							remove_list_global_variable = { 
+								name = task_tasks
+								target = this
+							}
+						}
+					}
+					else = { 
+						create_character = { 
+							save_temporary_scope_as = task_new_task_t
+							gender = male
+							trait = character_not_1
+							employer = global_var:arhat
+							faith = global_var:arhat.faith
+							culture = global_var:arhat.culture
+							dynasty = none
+						}
+					}
+					add_to_global_variable_list = { 
+						name = task_tasks_active
+						target = scope:task_new_task_t
+					}
+					this = { 
+						add_to_variable_list = { 
+							name = task_tasks
+							target = scope:task_new_task_t
+						}
+						scope:task_new_task_t = { 
+							set_variable = { 
+								name = task_owner
+								value = prev
+							}
+							set_variable = { 
+								name = task_worker
+								value = prev
+							}
+						}
+					}
+					global_var:manage_logistics = { 
+						add_to_variable_list = { 
+							name = task_tasks
+							target = scope:task_new_task_t
+						}
+					}
+					scope:task_new_task_t = { 
+						set_variable = { 
+							name = task_template
+							value = global_var:manage_logistics
+						}
+						set_variable = { 
+							name = task_time_cost
+							value = 0
+						}
+						set_variable = { 
+							name = task_time_in
+							value = 0
+						}
+						set_variable = { 
+							name = task_crpt
+							value = 0
+						}
+					}
+				}
+			}
+			else = { 
+				every_in_list = { 
+					limit = { 
+						var:task_template = global_var:manage_logistics
+					}
+					variable = task_tasks
+					remove_list_global_variable = { 
+						name = task_tasks_active
+						target = this
+					}
+					add_to_global_variable_list = { 
+						name = task_tasks
+						target = this
+					}
+					var:task_owner = { 
+						remove_list_variable = { 
+							name = task_tasks
+							target = prev
+						}
+					}
+					var:task_template = { 
+						remove_list_variable = { 
+							name = task_tasks
+							target = prev
+						}
+					}
+					remove_variable = task_owner
+					remove_variable = task_worker
+					remove_variable = task_template
+					remove_variable = task_delegate
+					remove_variable = task_time_cost
+					remove_variable = task_time_in
+					remove_variable = task_crpt
+				}
+			}
+			if = { 
+				limit = { 
+					task_check_cond_manage_court = yes
+				}
+				if = { 
+					limit = { 
+						NOT = { 
+							any_in_list = { 
+								variable = task_tasks
+								var:task_template = global_var:manage_court
+							}
+						}
+					}
+					if = { 
+						limit = { 
+							has_global_variable_list = task_tasks
+							global_variable_list_size = { 
+								name = task_tasks
+								value > 0
+							}
+						}
+						ordered_in_global_list = { 
+							variable = task_tasks
+							position = 0
+							save_temporary_scope_as = task_new_task_t
+							remove_list_global_variable = { 
+								name = task_tasks
+								target = this
+							}
+						}
+					}
+					else = { 
+						create_character = { 
+							save_temporary_scope_as = task_new_task_t
+							gender = male
+							trait = character_not_1
+							employer = global_var:arhat
+							faith = global_var:arhat.faith
+							culture = global_var:arhat.culture
+							dynasty = none
+						}
+					}
+					add_to_global_variable_list = { 
+						name = task_tasks_active
+						target = scope:task_new_task_t
+					}
+					this = { 
+						add_to_variable_list = { 
+							name = task_tasks
+							target = scope:task_new_task_t
+						}
+						scope:task_new_task_t = { 
+							set_variable = { 
+								name = task_owner
+								value = prev
+							}
+							set_variable = { 
+								name = task_worker
+								value = prev
+							}
+						}
+					}
+					global_var:manage_court = { 
+						add_to_variable_list = { 
+							name = task_tasks
+							target = scope:task_new_task_t
+						}
+					}
+					scope:task_new_task_t = { 
+						set_variable = { 
+							name = task_template
+							value = global_var:manage_court
+						}
+						set_variable = { 
+							name = task_time_cost
+							value = 0
+						}
+						set_variable = { 
+							name = task_time_in
+							value = 0
+						}
+						set_variable = { 
+							name = task_crpt
+							value = 0
+						}
+					}
+				}
+			}
+			else = { 
+				every_in_list = { 
+					limit = { 
+						var:task_template = global_var:manage_court
+					}
+					variable = task_tasks
+					remove_list_global_variable = { 
+						name = task_tasks_active
+						target = this
+					}
+					add_to_global_variable_list = { 
+						name = task_tasks
+						target = this
+					}
+					var:task_owner = { 
+						remove_list_variable = { 
+							name = task_tasks
+							target = prev
+						}
+					}
+					var:task_template = { 
+						remove_list_variable = { 
+							name = task_tasks
+							target = prev
+						}
+					}
+					remove_variable = task_owner
+					remove_variable = task_worker
+					remove_variable = task_template
+					remove_variable = task_delegate
+					remove_variable = task_time_cost
+					remove_variable = task_time_in
+					remove_variable = task_crpt
+				}
+			}
+			if = { 
+				limit = { 
+					task_check_cond_manage_stockpile = yes
+				}
+				if = { 
+					limit = { 
+						NOT = { 
+							any_in_list = { 
+								variable = task_tasks
+								var:task_template = global_var:manage_stockpile
+							}
+						}
+					}
+					if = { 
+						limit = { 
+							has_global_variable_list = task_tasks
+							global_variable_list_size = { 
+								name = task_tasks
+								value > 0
+							}
+						}
+						ordered_in_global_list = { 
+							variable = task_tasks
+							position = 0
+							save_temporary_scope_as = task_new_task_t
+							remove_list_global_variable = { 
+								name = task_tasks
+								target = this
+							}
+						}
+					}
+					else = { 
+						create_character = { 
+							save_temporary_scope_as = task_new_task_t
+							gender = male
+							trait = character_not_1
+							employer = global_var:arhat
+							faith = global_var:arhat.faith
+							culture = global_var:arhat.culture
+							dynasty = none
+						}
+					}
+					add_to_global_variable_list = { 
+						name = task_tasks_active
+						target = scope:task_new_task_t
+					}
+					this = { 
+						add_to_variable_list = { 
+							name = task_tasks
+							target = scope:task_new_task_t
+						}
+						scope:task_new_task_t = { 
+							set_variable = { 
+								name = task_owner
+								value = prev
+							}
+							set_variable = { 
+								name = task_worker
+								value = prev
+							}
+						}
+					}
+					global_var:manage_stockpile = { 
+						add_to_variable_list = { 
+							name = task_tasks
+							target = scope:task_new_task_t
+						}
+					}
+					scope:task_new_task_t = { 
+						set_variable = { 
+							name = task_template
+							value = global_var:manage_stockpile
+						}
+						set_variable = { 
+							name = task_time_cost
+							value = 0
+						}
+						set_variable = { 
+							name = task_time_in
+							value = 0
+						}
+						set_variable = { 
+							name = task_crpt
+							value = 0
+						}
+					}
+				}
+			}
+			else = { 
+				every_in_list = { 
+					limit = { 
+						var:task_template = global_var:manage_stockpile
+					}
+					variable = task_tasks
+					remove_list_global_variable = { 
+						name = task_tasks_active
+						target = this
+					}
+					add_to_global_variable_list = { 
+						name = task_tasks
+						target = this
+					}
+					var:task_owner = { 
+						remove_list_variable = { 
+							name = task_tasks
+							target = prev
+						}
+					}
+					var:task_template = { 
+						remove_list_variable = { 
+							name = task_tasks
+							target = prev
+						}
+					}
+					remove_variable = task_owner
+					remove_variable = task_worker
+					remove_variable = task_template
+					remove_variable = task_delegate
+					remove_variable = task_time_cost
+					remove_variable = task_time_in
+					remove_variable = task_crpt
+				}
+			}
+			if = { 
+				limit = { 
+					task_check_cond_manage_oversight = yes
+				}
+				if = { 
+					limit = { 
+						NOT = { 
+							any_in_list = { 
+								variable = task_tasks
+								var:task_template = global_var:manage_oversight
+							}
+						}
+					}
+					if = { 
+						limit = { 
+							has_global_variable_list = task_tasks
+							global_variable_list_size = { 
+								name = task_tasks
+								value > 0
+							}
+						}
+						ordered_in_global_list = { 
+							variable = task_tasks
+							position = 0
+							save_temporary_scope_as = task_new_task_t
+							remove_list_global_variable = { 
+								name = task_tasks
+								target = this
+							}
+						}
+					}
+					else = { 
+						create_character = { 
+							save_temporary_scope_as = task_new_task_t
+							gender = male
+							trait = character_not_1
+							employer = global_var:arhat
+							faith = global_var:arhat.faith
+							culture = global_var:arhat.culture
+							dynasty = none
+						}
+					}
+					add_to_global_variable_list = { 
+						name = task_tasks_active
+						target = scope:task_new_task_t
+					}
+					this = { 
+						add_to_variable_list = { 
+							name = task_tasks
+							target = scope:task_new_task_t
+						}
+						scope:task_new_task_t = { 
+							set_variable = { 
+								name = task_owner
+								value = prev
+							}
+							set_variable = { 
+								name = task_worker
+								value = prev
+							}
+						}
+					}
+					global_var:manage_oversight = { 
+						add_to_variable_list = { 
+							name = task_tasks
+							target = scope:task_new_task_t
+						}
+					}
+					scope:task_new_task_t = { 
+						set_variable = { 
+							name = task_template
+							value = global_var:manage_oversight
+						}
+						set_variable = { 
+							name = task_time_cost
+							value = 0
+						}
+						set_variable = { 
+							name = task_time_in
+							value = 0
+						}
+						set_variable = { 
+							name = task_crpt
+							value = 0
+						}
+					}
+				}
+			}
+			else = { 
+				every_in_list = { 
+					limit = { 
+						var:task_template = global_var:manage_oversight
+					}
+					variable = task_tasks
+					remove_list_global_variable = { 
+						name = task_tasks_active
+						target = this
+					}
+					add_to_global_variable_list = { 
+						name = task_tasks
+						target = this
+					}
+					var:task_owner = { 
+						remove_list_variable = { 
+							name = task_tasks
+							target = prev
+						}
+					}
+					var:task_template = { 
+						remove_list_variable = { 
+							name = task_tasks
+							target = prev
+						}
+					}
+					remove_variable = task_owner
+					remove_variable = task_worker
+					remove_variable = task_template
+					remove_variable = task_delegate
+					remove_variable = task_time_cost
+					remove_variable = task_time_in
+					remove_variable = task_crpt
+				}
+			}
+		}
+		global_var:manage_domain = { 
+			every_in_list = { 
+				variable = task_tasks
+				set_variable = { 
+					name = task_time_cost
+					value = var:task_owner.domain_size
+				}
+			}
+		}
+		global_var:manage_realm = { 
+			every_in_list = { 
+				variable = task_tasks
+				set_variable = { 
+					name = task_time_cost
+					value = var:task_owner.vassal_count
+				}
+				change_variable = { 
+					name = task_time_cost
+					multiply = 0.5
+				}
+				change_variable = { 
+					name = task_time_cost
+					add = 0.5
+				}
+			}
+		}
+		global_var:manage_logistics = { 
+			every_in_list = { 
+				variable = task_tasks
+				set_variable = { 
+					name = task_time_cost
+					value = 0
+				}
+				change_variable = { 
+					name = task_time_cost
+					add = var:mil_maa_recruit_food
+				}
+				change_variable = { 
+					name = task_time_cost
+					add = var:mil_maa_maintain_food
+				}
+				change_variable = { 
+					name = task_time_cost
+					add = var:mil_levy_maintain_food
+				}
+				change_variable = { 
+					name = task_time_cost
+					add = var:mil_maa_recruit_cereal
+				}
+				change_variable = { 
+					name = task_time_cost
+					add = var:mil_maa_maintain_cereal
+				}
+				change_variable = { 
+					name = task_time_cost
+					add = var:mil_levy_maintain_cereal
+				}
+				change_variable = { 
+					name = task_time_cost
+					add = var:mil_maa_recruit_salted
+				}
+				change_variable = { 
+					name = task_time_cost
+					add = var:mil_maa_maintain_salted
+				}
+				change_variable = { 
+					name = task_time_cost
+					add = var:mil_levy_maintain_salted
+				}
+				change_variable = { 
+					name = task_time_cost
+					add = var:mil_maa_recruit_salt
+				}
+				change_variable = { 
+					name = task_time_cost
+					add = var:mil_maa_maintain_salt
+				}
+				change_variable = { 
+					name = task_time_cost
+					add = var:mil_levy_maintain_salt
+				}
+				change_variable = { 
+					name = task_time_cost
+					add = var:mil_maa_recruit_mud
+				}
+				change_variable = { 
+					name = task_time_cost
+					add = var:mil_maa_maintain_mud
+				}
+				change_variable = { 
+					name = task_time_cost
+					add = var:mil_levy_maintain_mud
+				}
+				change_variable = { 
+					name = task_time_cost
+					add = var:mil_maa_recruit_fuel
+				}
+				change_variable = { 
+					name = task_time_cost
+					add = var:mil_maa_maintain_fuel
+				}
+				change_variable = { 
+					name = task_time_cost
+					add = var:mil_levy_maintain_fuel
+				}
+				change_variable = { 
+					name = task_time_cost
+					add = var:mil_maa_recruit_fiber
+				}
+				change_variable = { 
+					name = task_time_cost
+					add = var:mil_maa_maintain_fiber
+				}
+				change_variable = { 
+					name = task_time_cost
+					add = var:mil_levy_maintain_fiber
+				}
+				change_variable = { 
+					name = task_time_cost
+					add = var:mil_maa_recruit_timber
+				}
+				change_variable = { 
+					name = task_time_cost
+					add = var:mil_maa_maintain_timber
+				}
+				change_variable = { 
+					name = task_time_cost
+					add = var:mil_levy_maintain_timber
+				}
+				change_variable = { 
+					name = task_time_cost
+					add = var:mil_maa_recruit_metal
+				}
+				change_variable = { 
+					name = task_time_cost
+					add = var:mil_maa_maintain_metal
+				}
+				change_variable = { 
+					name = task_time_cost
+					add = var:mil_levy_maintain_metal
+				}
+				change_variable = { 
+					name = task_time_cost
+					add = var:mil_maa_recruit_exotics_w
+				}
+				change_variable = { 
+					name = task_time_cost
+					add = var:mil_maa_maintain_exotics_w
+				}
+				change_variable = { 
+					name = task_time_cost
+					add = var:mil_levy_maintain_exotics_w
+				}
+				change_variable = { 
+					name = task_time_cost
+					add = var:mil_maa_recruit_exotics_e
+				}
+				change_variable = { 
+					name = task_time_cost
+					add = var:mil_maa_maintain_exotics_e
+				}
+				change_variable = { 
+					name = task_time_cost
+					add = var:mil_levy_maintain_exotics_e
+				}
+				change_variable = { 
+					name = task_time_cost
+					add = var:mil_maa_recruit_exotics_g
+				}
+				change_variable = { 
+					name = task_time_cost
+					add = var:mil_maa_maintain_exotics_g
+				}
+				change_variable = { 
+					name = task_time_cost
+					add = var:mil_levy_maintain_exotics_g
+				}
+				change_variable = { 
+					name = task_time_cost
+					add = var:mil_maa_recruit_textile
+				}
+				change_variable = { 
+					name = task_time_cost
+					add = var:mil_maa_maintain_textile
+				}
+				change_variable = { 
+					name = task_time_cost
+					add = var:mil_levy_maintain_textile
+				}
+				change_variable = { 
+					name = task_time_cost
+					add = var:mil_maa_recruit_pottery
+				}
+				change_variable = { 
+					name = task_time_cost
+					add = var:mil_maa_maintain_pottery
+				}
+				change_variable = { 
+					name = task_time_cost
+					add = var:mil_levy_maintain_pottery
+				}
+				change_variable = { 
+					name = task_time_cost
+					add = var:mil_maa_recruit_tools
+				}
+				change_variable = { 
+					name = task_time_cost
+					add = var:mil_maa_maintain_tools
+				}
+				change_variable = { 
+					name = task_time_cost
+					add = var:mil_levy_maintain_tools
+				}
+				change_variable = { 
+					name = task_time_cost
+					add = var:mil_maa_recruit_armaments
+				}
+				change_variable = { 
+					name = task_time_cost
+					add = var:mil_maa_maintain_armaments
+				}
+				change_variable = { 
+					name = task_time_cost
+					add = var:mil_levy_maintain_armaments
+				}
+				set_variable = { 
+					name = math_sqrt_i
+					value = var:task_time_cost
+				}
+				if = { 
+					limit = { 
+						has_variable = math_sqrt_i
+						var:math_sqrt_i > 0
+					}
+					set_variable = { 
+						name = math_sqrt_x
+						value = var:math_sqrt_i
+					}
+					set_variable = { 
+						name = math_sqrt_n
+						value = var:math_sqrt_i
+					}
+					change_variable = { 
+						name = math_sqrt_n
+						divide = 2
+					}
+					set_variable = { 
+						name = math_sqrt_tt
+						value = 0.5
+					}
+					while = { 
+						limit = { 
+							has_variable = math_sqrt_n
+							var:math_sqrt_n > 0
+							OR = { 
+								var:math_sqrt_tt < 0.995
+								var:math_sqrt_tt > 1.005
+							}
+						}
+						set_variable = { 
+							name = math_sqrt_x
+							value = var:math_sqrt_n
+						}
+						set_variable = { 
+							name = math_sqrt_t
+							value = var:math_sqrt_i
+						}
+						change_variable = { 
+							name = math_sqrt_t
+							divide = var:math_sqrt_n
+						}
+						change_variable = { 
+							name = math_sqrt_n
+							add = var:math_sqrt_t
+						}
+						change_variable = { 
+							name = math_sqrt_n
+							divide = 2
+						}
+						set_variable = { 
+							name = math_sqrt_tt
+							value = var:math_sqrt_x
+						}
+						change_variable = { 
+							name = math_sqrt_tt
+							divide = var:math_sqrt_n
+						}
+					}
+					set_variable = { 
+						name = task_time_cost
+						value = var:math_sqrt_n
+					}
+					remove_variable = math_sqrt_x
+					remove_variable = math_sqrt_t
+					remove_variable = math_sqrt_n
+					remove_variable = math_sqrt_tt
+				}
+				else = { 
+					set_variable = { 
+						name = task_time_cost
+						value = 0
+					}
+				}
+				remove_variable = math_sqrt_i
+				change_variable = { 
+					name = task_time_cost
+					value = 2.5
+				}
+				change_variable = { 
+					name = task_time_cost
+					add = 1
+				}
+			}
+		}
+		global_var:manage_court = { 
+			every_in_list = { 
+				variable = task_tasks
+				set_variable = { 
+					name = task_time_cost
+					value = 1
+				}
+			}
+		}
+		global_var:manage_stockpile = { 
+			every_in_list = { 
+				variable = task_tasks
+				set_variable = { 
+					name = task_time_cost
+					value = 0
+				}
+				change_variable = { 
+					name = task_time_cost
+					add = var:trade_want_food
+				}
+				change_variable = { 
+					name = task_time_cost
+					add = var:trade_want_cereal
+				}
+				change_variable = { 
+					name = task_time_cost
+					add = var:trade_want_salted
+				}
+				change_variable = { 
+					name = task_time_cost
+					add = var:trade_want_salt
+				}
+				change_variable = { 
+					name = task_time_cost
+					add = var:trade_want_mud
+				}
+				change_variable = { 
+					name = task_time_cost
+					add = var:trade_want_fuel
+				}
+				change_variable = { 
+					name = task_time_cost
+					add = var:trade_want_fiber
+				}
+				change_variable = { 
+					name = task_time_cost
+					add = var:trade_want_timber
+				}
+				change_variable = { 
+					name = task_time_cost
+					add = var:trade_want_metal
+				}
+				change_variable = { 
+					name = task_time_cost
+					add = var:trade_want_exotics_w
+				}
+				change_variable = { 
+					name = task_time_cost
+					add = var:trade_want_exotics_e
+				}
+				change_variable = { 
+					name = task_time_cost
+					add = var:trade_want_exotics_g
+				}
+				change_variable = { 
+					name = task_time_cost
+					add = var:trade_want_textile
+				}
+				change_variable = { 
+					name = task_time_cost
+					add = var:trade_want_pottery
+				}
+				change_variable = { 
+					name = task_time_cost
+					add = var:trade_want_tools
+				}
+				change_variable = { 
+					name = task_time_cost
+					add = var:trade_want_armaments
+				}
+				set_variable = { 
+					name = math_sqrt_i
+					value = var:task_time_cost
+				}
+				if = { 
+					limit = { 
+						has_variable = math_sqrt_i
+						var:math_sqrt_i > 0
+					}
+					set_variable = { 
+						name = math_sqrt_x
+						value = var:math_sqrt_i
+					}
+					set_variable = { 
+						name = math_sqrt_n
+						value = var:math_sqrt_i
+					}
+					change_variable = { 
+						name = math_sqrt_n
+						divide = 2
+					}
+					set_variable = { 
+						name = math_sqrt_tt
+						value = 0.5
+					}
+					while = { 
+						limit = { 
+							has_variable = math_sqrt_n
+							var:math_sqrt_n > 0
+							OR = { 
+								var:math_sqrt_tt < 0.995
+								var:math_sqrt_tt > 1.005
+							}
+						}
+						set_variable = { 
+							name = math_sqrt_x
+							value = var:math_sqrt_n
+						}
+						set_variable = { 
+							name = math_sqrt_t
+							value = var:math_sqrt_i
+						}
+						change_variable = { 
+							name = math_sqrt_t
+							divide = var:math_sqrt_n
+						}
+						change_variable = { 
+							name = math_sqrt_n
+							add = var:math_sqrt_t
+						}
+						change_variable = { 
+							name = math_sqrt_n
+							divide = 2
+						}
+						set_variable = { 
+							name = math_sqrt_tt
+							value = var:math_sqrt_x
+						}
+						change_variable = { 
+							name = math_sqrt_tt
+							divide = var:math_sqrt_n
+						}
+					}
+					set_variable = { 
+						name = task_time_cost
+						value = var:math_sqrt_n
+					}
+					remove_variable = math_sqrt_x
+					remove_variable = math_sqrt_t
+					remove_variable = math_sqrt_n
+					remove_variable = math_sqrt_tt
+				}
+				else = { 
+					set_variable = { 
+						name = task_time_cost
+						value = 0
+					}
+				}
+				remove_variable = math_sqrt_i
+				change_variable = { 
+					name = task_time_cost
+					value = 10
+				}
+				change_variable = { 
+					name = task_time_cost
+					add = 1
+				}
+			}
+		}
+		global_var:manage_oversight = { 
+			every_in_list = { 
+				variable = task_tasks
+				save_temporary_scope_as = task_set_cost_manage_oversight_t
+				set_variable = { 
+					name = task_time_cost
+					value = 0.5
+				}
+				var:task_owner = { 
+					every_in_list = { 
+						limit = { 
+							has_variable = task_delegate
+						}
+						variable = task_tasks
+						scope:task_set_cost_manage_oversight_t = { 
+							change_variable = { 
+								name = task_time_cost
+								add = 0.5
+							}
+						}
+					}
+				}
+			}
+		}
+		every_ruler = { 
+			limit = { 
+				is_character = yes
+				is_landed = yes
+			}
+			set_variable = { 
+				name = task_main_t
+				value = 0
+			}
+			every_councillor = { 
+				set_variable = { 
+					name = task_main_t
+					value = 0
+				}
+			}
+		}
+		every_ruler = { 
+			limit = { 
+				is_character = yes
+				is_landed = yes
+			}
+			every_in_list = { 
+				variable = task_tasks
+				prev = { 
+					save_temporary_scope_as = task_main_t
+				}
+				if = { 
+					limit = { 
+						OR = { 
+							prev = { 
+								is_councillor = yes
+							}
+							has_variable = task_delegate
+						}
+					}
+					if = { 
+						limit = { 
+							var:task_template.var:task_councillor = flag:spouse
+						}
+						prev = { 
+							primary_spouse = { 
+								save_temporary_scope_as = task_main_t
+							}
+						}
+					}
+					else_if = { 
+						limit = { 
+							var:task_template.var:task_councillor = flag:diplomacy
+						}
+						prev = { 
+							ordered_diplomacy_councillor = { 
+								position = 0
+								save_temporary_scope_as = task_main_t
+							}
+						}
+					}
+					else_if = { 
+						limit = { 
+							var:task_template.var:task_councillor = flag:martial
+						}
+						prev = { 
+							ordered_martial_councillor = { 
+								position = 0
+								save_temporary_scope_as = task_main_t
+							}
+						}
+					}
+					else_if = { 
+						limit = { 
+							var:task_template.var:task_councillor = flag:stewardship
+						}
+						prev = { 
+							ordered_stewardship_councillor = { 
+								position = 0
+								save_temporary_scope_as = task_main_t
+							}
+						}
+					}
+					else_if = { 
+						limit = { 
+							var:task_template.var:task_councillor = flag:intrigue
+						}
+						prev = { 
+							ordered_intrigue_councillor = { 
+								position = 0
+								save_temporary_scope_as = task_main_t
+							}
+						}
+					}
+					else_if = { 
+						limit = { 
+							var:task_template.var:task_councillor = flag:learning
+						}
+						prev = { 
+							ordered_learning_councillor = { 
+								position = 0
+								save_temporary_scope_as = task_main_t
+							}
+						}
+					}
+				}
+				set_variable = { 
+					name = task_worker
+					value = scope:task_main_t
+				}
+				set_variable = { 
+					name = task_main_t
+					value = 1
+				}
+				if = { 
+					limit = { 
+						var:task_template = { 
+							has_variable = task_diplomacy_mult
+						}
+					}
+					set_variable = { 
+						name = task_main_tt
+						value = var:task_template.var:task_diplomacy_mult
+					}
+					change_variable = { 
+						name = task_main_tt
+						multiply = scope:task_main_t.diplomacy
+					}
+					if = { 
+						limit = { 
+							var:task_template = { 
+								has_variable = task_diplomacy_base
+							}
+						}
+						change_variable = { 
+							name = task_main_tt
+							add = var:task_template.var:task_diplomacy_base
+						}
+					}
+					change_variable = { 
+						name = task_main_t
+						multiply = var:task_main_tt
+					}
+				}
+				if = { 
+					limit = { 
+						var:task_template = { 
+							has_variable = task_martial_mult
+						}
+					}
+					set_variable = { 
+						name = task_main_tt
+						value = var:task_template.var:task_martial_mult
+					}
+					change_variable = { 
+						name = task_main_tt
+						multiply = scope:task_main_t.martial
+					}
+					if = { 
+						limit = { 
+							var:task_template = { 
+								has_variable = task_martial_base
+							}
+						}
+						change_variable = { 
+							name = task_main_tt
+							add = var:task_template.var:task_martial_base
+						}
+					}
+					change_variable = { 
+						name = task_main_t
+						multiply = var:task_main_tt
+					}
+				}
+				if = { 
+					limit = { 
+						var:task_template = { 
+							has_variable = task_stewardship_mult
+						}
+					}
+					set_variable = { 
+						name = task_main_tt
+						value = var:task_template.var:task_stewardship_mult
+					}
+					change_variable = { 
+						name = task_main_tt
+						multiply = scope:task_main_t.stewardship
+					}
+					if = { 
+						limit = { 
+							var:task_template = { 
+								has_variable = task_stewardship_base
+							}
+						}
+						change_variable = { 
+							name = task_main_tt
+							add = var:task_template.var:task_stewardship_base
+						}
+					}
+					change_variable = { 
+						name = task_main_t
+						multiply = var:task_main_tt
+					}
+				}
+				if = { 
+					limit = { 
+						var:task_template = { 
+							has_variable = task_intrigue_mult
+						}
+					}
+					set_variable = { 
+						name = task_main_tt
+						value = var:task_template.var:task_intrigue_mult
+					}
+					change_variable = { 
+						name = task_main_tt
+						multiply = scope:task_main_t.intrigue
+					}
+					if = { 
+						limit = { 
+							var:task_template = { 
+								has_variable = task_intrigue_base
+							}
+						}
+						change_variable = { 
+							name = task_main_tt
+							add = var:task_template.var:task_intrigue_base
+						}
+					}
+					change_variable = { 
+						name = task_main_t
+						multiply = var:task_main_tt
+					}
+				}
+				if = { 
+					limit = { 
+						var:task_template = { 
+							has_variable = task_learning_mult
+						}
+					}
+					set_variable = { 
+						name = task_main_tt
+						value = var:task_template.var:task_learning_mult
+					}
+					change_variable = { 
+						name = task_main_tt
+						multiply = scope:task_main_t.learning
+					}
+					if = { 
+						limit = { 
+							var:task_template = { 
+								has_variable = task_learning_base
+							}
+						}
+						change_variable = { 
+							name = task_main_tt
+							add = var:task_template.var:task_learning_base
+						}
+					}
+					change_variable = { 
+						name = task_main_t
+						multiply = var:task_main_tt
+					}
+				}
+				change_variable = { 
+					name = task_main_t
+					add = 0.05
+				}
+				set_variable = { 
+					name = task_main_tt
+					value = var:task_time_cost
+				}
+				change_variable = { 
+					name = task_main_tt
+					divide = var:task_main_t
+				}
+				scope:task_main_t = { 
+					change_variable = { 
+						name = task_main_t
+						add = prev.var:task_main_tt
+					}
+					add_to_global_variable_list = { 
+						name = task_main_t
+						target = this
+					}
+				}
+				remove_variable = task_main_t
+				remove_variable = task_main_tt
+			}
+		}
+		every_in_global_list = { 
+			variable = task_main_t
+			change_variable = { 
+				name = task_main_t
+				divide = 20
+			}
+		}
+		every_in_global_list = { 
+			variable = task_tasks_active
+			set_variable = { 
+				name = task_time_in
+				value = 100
+			}
+			if = { 
+				limit = { 
+					var:task_worker = { 
+						has_variable = task_main_t
+						var:task_main_t > 1
+					}
+				}
+				change_variable = { 
+					name = task_time_in
+					divide = var:task_worker.var:task_main_t
+				}
+			}
+		}
+		every_ruler = { 
+			limit = { 
+				is_character = yes
+				is_landed = yes
+			}
+			ordered_in_list = { 
+				limit = { 
+					var:task_template = global_var:manage_oversight
+				}
+				variable = task_tasks
+				position = 0
+				prev = { 
+					set_variable = { 
+						name = task_main_t
+						value = 100
+					}
+					change_variable = { 
+						name = task_main_t
+						subtract = prev.var:task_crpt
+					}
+					change_variable = { 
+						name = task_main_t
+						multiply = prev.var:task_time_in
+					}
+					change_variable = { 
+						name = task_main_t
+						divide = 100
+					}
+				}
+			}
+		}
+		every_in_global_list = { 
+			variable = task_tasks_active
+			if = { 
+				limit = { 
+					var:task_owner = var:task_worker
+				}
+				set_variable = { 
+					name = task_main_t
+					value = 0
+				}
+			}
+			else = { 
+				var:task_worker = { 
+					if = { 
+						limit = { 
+							opinion = { 
+								value >= 0
+								target = liege
+							}
+						}
+						if = { 
+							limit = { 
+								opinion = { 
+									value >= 50
+									target = liege
+								}
+							}
+							if = { 
+								limit = { 
+									opinion = { 
+										value >= 75
+										target = liege
+									}
+								}
+								if = { 
+									limit = { 
+										opinion = { 
+											value >= 88
+											target = liege
+										}
+									}
+									if = { 
+										limit = { 
+											opinion = { 
+												value >= 94
+												target = liege
+											}
+										}
+										if = { 
+											limit = { 
+												opinion = { 
+													value >= 97
+													target = liege
+												}
+											}
+											if = { 
+												limit = { 
+													opinion = { 
+														value >= 99
+														target = liege
+													}
+												}
+												if = { 
+													limit = { 
+														opinion = { 
+															value >= 100
+															target = liege
+														}
+													}
+													set_variable = { 
+														name = task_main_tt
+														value = 100
+													}
+												}
+												else = { 
+													set_variable = { 
+														name = task_main_tt
+														value = 99
+													}
+												}
+											}
+											else = { 
+												if = { 
+													limit = { 
+														opinion = { 
+															value >= 98
+															target = liege
+														}
+													}
+													set_variable = { 
+														name = task_main_tt
+														value = 98
+													}
+												}
+												else = { 
+													set_variable = { 
+														name = task_main_tt
+														value = 97
+													}
+												}
+											}
+										}
+										else = { 
+											if = { 
+												limit = { 
+													opinion = { 
+														value >= 95
+														target = liege
+													}
+												}
+												if = { 
+													limit = { 
+														opinion = { 
+															value >= 96
+															target = liege
+														}
+													}
+													set_variable = { 
+														name = task_main_tt
+														value = 96
+													}
+												}
+												else = { 
+													set_variable = { 
+														name = task_main_tt
+														value = 95
+													}
+												}
+											}
+											else = { 
+												set_variable = { 
+													name = task_main_tt
+													value = 94
+												}
+											}
+										}
+									}
+									else = { 
+										if = { 
+											limit = { 
+												opinion = { 
+													value >= 91
+													target = liege
+												}
+											}
+											if = { 
+												limit = { 
+													opinion = { 
+														value >= 92
+														target = liege
+													}
+												}
+												if = { 
+													limit = { 
+														opinion = { 
+															value >= 93
+															target = liege
+														}
+													}
+													set_variable = { 
+														name = task_main_tt
+														value = 93
+													}
+												}
+												else = { 
+													set_variable = { 
+														name = task_main_tt
+														value = 92
+													}
+												}
+											}
+											else = { 
+												set_variable = { 
+													name = task_main_tt
+													value = 91
+												}
+											}
+										}
+										else = { 
+											if = { 
+												limit = { 
+													opinion = { 
+														value >= 89
+														target = liege
+													}
+												}
+												if = { 
+													limit = { 
+														opinion = { 
+															value >= 90
+															target = liege
+														}
+													}
+													set_variable = { 
+														name = task_main_tt
+														value = 90
+													}
+												}
+												else = { 
+													set_variable = { 
+														name = task_main_tt
+														value = 89
+													}
+												}
+											}
+											else = { 
+												set_variable = { 
+													name = task_main_tt
+													value = 88
+												}
+											}
+										}
+									}
+								}
+								else = { 
+									if = { 
+										limit = { 
+											opinion = { 
+												value >= 81
+												target = liege
+											}
+										}
+										if = { 
+											limit = { 
+												opinion = { 
+													value >= 84
+													target = liege
+												}
+											}
+											if = { 
+												limit = { 
+													opinion = { 
+														value >= 86
+														target = liege
+													}
+												}
+												if = { 
+													limit = { 
+														opinion = { 
+															value >= 87
+															target = liege
+														}
+													}
+													set_variable = { 
+														name = task_main_tt
+														value = 87
+													}
+												}
+												else = { 
+													set_variable = { 
+														name = task_main_tt
+														value = 86
+													}
+												}
+											}
+											else = { 
+												if = { 
+													limit = { 
+														opinion = { 
+															value >= 85
+															target = liege
+														}
+													}
+													set_variable = { 
+														name = task_main_tt
+														value = 85
+													}
+												}
+												else = { 
+													set_variable = { 
+														name = task_main_tt
+														value = 84
+													}
+												}
+											}
+										}
+										else = { 
+											if = { 
+												limit = { 
+													opinion = { 
+														value >= 82
+														target = liege
+													}
+												}
+												if = { 
+													limit = { 
+														opinion = { 
+															value >= 83
+															target = liege
+														}
+													}
+													set_variable = { 
+														name = task_main_tt
+														value = 83
+													}
+												}
+												else = { 
+													set_variable = { 
+														name = task_main_tt
+														value = 82
+													}
+												}
+											}
+											else = { 
+												set_variable = { 
+													name = task_main_tt
+													value = 81
+												}
+											}
+										}
+									}
+									else = { 
+										if = { 
+											limit = { 
+												opinion = { 
+													value >= 78
+													target = liege
+												}
+											}
+											if = { 
+												limit = { 
+													opinion = { 
+														value >= 79
+														target = liege
+													}
+												}
+												if = { 
+													limit = { 
+														opinion = { 
+															value >= 80
+															target = liege
+														}
+													}
+													set_variable = { 
+														name = task_main_tt
+														value = 80
+													}
+												}
+												else = { 
+													set_variable = { 
+														name = task_main_tt
+														value = 79
+													}
+												}
+											}
+											else = { 
+												set_variable = { 
+													name = task_main_tt
+													value = 78
+												}
+											}
+										}
+										else = { 
+											if = { 
+												limit = { 
+													opinion = { 
+														value >= 76
+														target = liege
+													}
+												}
+												if = { 
+													limit = { 
+														opinion = { 
+															value >= 77
+															target = liege
+														}
+													}
+													set_variable = { 
+														name = task_main_tt
+														value = 77
+													}
+												}
+												else = { 
+													set_variable = { 
+														name = task_main_tt
+														value = 76
+													}
+												}
+											}
+											else = { 
+												set_variable = { 
+													name = task_main_tt
+													value = 75
+												}
+											}
+										}
+									}
+								}
+							}
+							else = { 
+								if = { 
+									limit = { 
+										opinion = { 
+											value >= 62
+											target = liege
+										}
+									}
+									if = { 
+										limit = { 
+											opinion = { 
+												value >= 68
+												target = liege
+											}
+										}
+										if = { 
+											limit = { 
+												opinion = { 
+													value >= 71
+													target = liege
+												}
+											}
+											if = { 
+												limit = { 
+													opinion = { 
+														value >= 73
+														target = liege
+													}
+												}
+												if = { 
+													limit = { 
+														opinion = { 
+															value >= 74
+															target = liege
+														}
+													}
+													set_variable = { 
+														name = task_main_tt
+														value = 74
+													}
+												}
+												else = { 
+													set_variable = { 
+														name = task_main_tt
+														value = 73
+													}
+												}
+											}
+											else = { 
+												if = { 
+													limit = { 
+														opinion = { 
+															value >= 72
+															target = liege
+														}
+													}
+													set_variable = { 
+														name = task_main_tt
+														value = 72
+													}
+												}
+												else = { 
+													set_variable = { 
+														name = task_main_tt
+														value = 71
+													}
+												}
+											}
+										}
+										else = { 
+											if = { 
+												limit = { 
+													opinion = { 
+														value >= 69
+														target = liege
+													}
+												}
+												if = { 
+													limit = { 
+														opinion = { 
+															value >= 70
+															target = liege
+														}
+													}
+													set_variable = { 
+														name = task_main_tt
+														value = 70
+													}
+												}
+												else = { 
+													set_variable = { 
+														name = task_main_tt
+														value = 69
+													}
+												}
+											}
+											else = { 
+												set_variable = { 
+													name = task_main_tt
+													value = 68
+												}
+											}
+										}
+									}
+									else = { 
+										if = { 
+											limit = { 
+												opinion = { 
+													value >= 65
+													target = liege
+												}
+											}
+											if = { 
+												limit = { 
+													opinion = { 
+														value >= 66
+														target = liege
+													}
+												}
+												if = { 
+													limit = { 
+														opinion = { 
+															value >= 67
+															target = liege
+														}
+													}
+													set_variable = { 
+														name = task_main_tt
+														value = 67
+													}
+												}
+												else = { 
+													set_variable = { 
+														name = task_main_tt
+														value = 66
+													}
+												}
+											}
+											else = { 
+												set_variable = { 
+													name = task_main_tt
+													value = 65
+												}
+											}
+										}
+										else = { 
+											if = { 
+												limit = { 
+													opinion = { 
+														value >= 63
+														target = liege
+													}
+												}
+												if = { 
+													limit = { 
+														opinion = { 
+															value >= 64
+															target = liege
+														}
+													}
+													set_variable = { 
+														name = task_main_tt
+														value = 64
+													}
+												}
+												else = { 
+													set_variable = { 
+														name = task_main_tt
+														value = 63
+													}
+												}
+											}
+											else = { 
+												set_variable = { 
+													name = task_main_tt
+													value = 62
+												}
+											}
+										}
+									}
+								}
+								else = { 
+									if = { 
+										limit = { 
+											opinion = { 
+												value >= 56
+												target = liege
+											}
+										}
+										if = { 
+											limit = { 
+												opinion = { 
+													value >= 59
+													target = liege
+												}
+											}
+											if = { 
+												limit = { 
+													opinion = { 
+														value >= 60
+														target = liege
+													}
+												}
+												if = { 
+													limit = { 
+														opinion = { 
+															value >= 61
+															target = liege
+														}
+													}
+													set_variable = { 
+														name = task_main_tt
+														value = 61
+													}
+												}
+												else = { 
+													set_variable = { 
+														name = task_main_tt
+														value = 60
+													}
+												}
+											}
+											else = { 
+												set_variable = { 
+													name = task_main_tt
+													value = 59
+												}
+											}
+										}
+										else = { 
+											if = { 
+												limit = { 
+													opinion = { 
+														value >= 57
+														target = liege
+													}
+												}
+												if = { 
+													limit = { 
+														opinion = { 
+															value >= 58
+															target = liege
+														}
+													}
+													set_variable = { 
+														name = task_main_tt
+														value = 58
+													}
+												}
+												else = { 
+													set_variable = { 
+														name = task_main_tt
+														value = 57
+													}
+												}
+											}
+											else = { 
+												set_variable = { 
+													name = task_main_tt
+													value = 56
+												}
+											}
+										}
+									}
+									else = { 
+										if = { 
+											limit = { 
+												opinion = { 
+													value >= 53
+													target = liege
+												}
+											}
+											if = { 
+												limit = { 
+													opinion = { 
+														value >= 54
+														target = liege
+													}
+												}
+												if = { 
+													limit = { 
+														opinion = { 
+															value >= 55
+															target = liege
+														}
+													}
+													set_variable = { 
+														name = task_main_tt
+														value = 55
+													}
+												}
+												else = { 
+													set_variable = { 
+														name = task_main_tt
+														value = 54
+													}
+												}
+											}
+											else = { 
+												set_variable = { 
+													name = task_main_tt
+													value = 53
+												}
+											}
+										}
+										else = { 
+											if = { 
+												limit = { 
+													opinion = { 
+														value >= 51
+														target = liege
+													}
+												}
+												if = { 
+													limit = { 
+														opinion = { 
+															value >= 52
+															target = liege
+														}
+													}
+													set_variable = { 
+														name = task_main_tt
+														value = 52
+													}
+												}
+												else = { 
+													set_variable = { 
+														name = task_main_tt
+														value = 51
+													}
+												}
+											}
+											else = { 
+												set_variable = { 
+													name = task_main_tt
+													value = 50
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+						else = { 
+							if = { 
+								limit = { 
+									opinion = { 
+										value >= 25
+										target = liege
+									}
+								}
+								if = { 
+									limit = { 
+										opinion = { 
+											value >= 37
+											target = liege
+										}
+									}
+									if = { 
+										limit = { 
+											opinion = { 
+												value >= 43
+												target = liege
+											}
+										}
+										if = { 
+											limit = { 
+												opinion = { 
+													value >= 46
+													target = liege
+												}
+											}
+											if = { 
+												limit = { 
+													opinion = { 
+														value >= 48
+														target = liege
+													}
+												}
+												if = { 
+													limit = { 
+														opinion = { 
+															value >= 49
+															target = liege
+														}
+													}
+													set_variable = { 
+														name = task_main_tt
+														value = 49
+													}
+												}
+												else = { 
+													set_variable = { 
+														name = task_main_tt
+														value = 48
+													}
+												}
+											}
+											else = { 
+												if = { 
+													limit = { 
+														opinion = { 
+															value >= 47
+															target = liege
+														}
+													}
+													set_variable = { 
+														name = task_main_tt
+														value = 47
+													}
+												}
+												else = { 
+													set_variable = { 
+														name = task_main_tt
+														value = 46
+													}
+												}
+											}
+										}
+										else = { 
+											if = { 
+												limit = { 
+													opinion = { 
+														value >= 44
+														target = liege
+													}
+												}
+												if = { 
+													limit = { 
+														opinion = { 
+															value >= 45
+															target = liege
+														}
+													}
+													set_variable = { 
+														name = task_main_tt
+														value = 45
+													}
+												}
+												else = { 
+													set_variable = { 
+														name = task_main_tt
+														value = 44
+													}
+												}
+											}
+											else = { 
+												set_variable = { 
+													name = task_main_tt
+													value = 43
+												}
+											}
+										}
+									}
+									else = { 
+										if = { 
+											limit = { 
+												opinion = { 
+													value >= 40
+													target = liege
+												}
+											}
+											if = { 
+												limit = { 
+													opinion = { 
+														value >= 41
+														target = liege
+													}
+												}
+												if = { 
+													limit = { 
+														opinion = { 
+															value >= 42
+															target = liege
+														}
+													}
+													set_variable = { 
+														name = task_main_tt
+														value = 42
+													}
+												}
+												else = { 
+													set_variable = { 
+														name = task_main_tt
+														value = 41
+													}
+												}
+											}
+											else = { 
+												set_variable = { 
+													name = task_main_tt
+													value = 40
+												}
+											}
+										}
+										else = { 
+											if = { 
+												limit = { 
+													opinion = { 
+														value >= 38
+														target = liege
+													}
+												}
+												if = { 
+													limit = { 
+														opinion = { 
+															value >= 39
+															target = liege
+														}
+													}
+													set_variable = { 
+														name = task_main_tt
+														value = 39
+													}
+												}
+												else = { 
+													set_variable = { 
+														name = task_main_tt
+														value = 38
+													}
+												}
+											}
+											else = { 
+												set_variable = { 
+													name = task_main_tt
+													value = 37
+												}
+											}
+										}
+									}
+								}
+								else = { 
+									if = { 
+										limit = { 
+											opinion = { 
+												value >= 31
+												target = liege
+											}
+										}
+										if = { 
+											limit = { 
+												opinion = { 
+													value >= 34
+													target = liege
+												}
+											}
+											if = { 
+												limit = { 
+													opinion = { 
+														value >= 35
+														target = liege
+													}
+												}
+												if = { 
+													limit = { 
+														opinion = { 
+															value >= 36
+															target = liege
+														}
+													}
+													set_variable = { 
+														name = task_main_tt
+														value = 36
+													}
+												}
+												else = { 
+													set_variable = { 
+														name = task_main_tt
+														value = 35
+													}
+												}
+											}
+											else = { 
+												set_variable = { 
+													name = task_main_tt
+													value = 34
+												}
+											}
+										}
+										else = { 
+											if = { 
+												limit = { 
+													opinion = { 
+														value >= 32
+														target = liege
+													}
+												}
+												if = { 
+													limit = { 
+														opinion = { 
+															value >= 33
+															target = liege
+														}
+													}
+													set_variable = { 
+														name = task_main_tt
+														value = 33
+													}
+												}
+												else = { 
+													set_variable = { 
+														name = task_main_tt
+														value = 32
+													}
+												}
+											}
+											else = { 
+												set_variable = { 
+													name = task_main_tt
+													value = 31
+												}
+											}
+										}
+									}
+									else = { 
+										if = { 
+											limit = { 
+												opinion = { 
+													value >= 28
+													target = liege
+												}
+											}
+											if = { 
+												limit = { 
+													opinion = { 
+														value >= 29
+														target = liege
+													}
+												}
+												if = { 
+													limit = { 
+														opinion = { 
+															value >= 30
+															target = liege
+														}
+													}
+													set_variable = { 
+														name = task_main_tt
+														value = 30
+													}
+												}
+												else = { 
+													set_variable = { 
+														name = task_main_tt
+														value = 29
+													}
+												}
+											}
+											else = { 
+												set_variable = { 
+													name = task_main_tt
+													value = 28
+												}
+											}
+										}
+										else = { 
+											if = { 
+												limit = { 
+													opinion = { 
+														value >= 26
+														target = liege
+													}
+												}
+												if = { 
+													limit = { 
+														opinion = { 
+															value >= 27
+															target = liege
+														}
+													}
+													set_variable = { 
+														name = task_main_tt
+														value = 27
+													}
+												}
+												else = { 
+													set_variable = { 
+														name = task_main_tt
+														value = 26
+													}
+												}
+											}
+											else = { 
+												set_variable = { 
+													name = task_main_tt
+													value = 25
+												}
+											}
+										}
+									}
+								}
+							}
+							else = { 
+								if = { 
+									limit = { 
+										opinion = { 
+											value >= 12
+											target = liege
+										}
+									}
+									if = { 
+										limit = { 
+											opinion = { 
+												value >= 18
+												target = liege
+											}
+										}
+										if = { 
+											limit = { 
+												opinion = { 
+													value >= 21
+													target = liege
+												}
+											}
+											if = { 
+												limit = { 
+													opinion = { 
+														value >= 23
+														target = liege
+													}
+												}
+												if = { 
+													limit = { 
+														opinion = { 
+															value >= 24
+															target = liege
+														}
+													}
+													set_variable = { 
+														name = task_main_tt
+														value = 24
+													}
+												}
+												else = { 
+													set_variable = { 
+														name = task_main_tt
+														value = 23
+													}
+												}
+											}
+											else = { 
+												if = { 
+													limit = { 
+														opinion = { 
+															value >= 22
+															target = liege
+														}
+													}
+													set_variable = { 
+														name = task_main_tt
+														value = 22
+													}
+												}
+												else = { 
+													set_variable = { 
+														name = task_main_tt
+														value = 21
+													}
+												}
+											}
+										}
+										else = { 
+											if = { 
+												limit = { 
+													opinion = { 
+														value >= 19
+														target = liege
+													}
+												}
+												if = { 
+													limit = { 
+														opinion = { 
+															value >= 20
+															target = liege
+														}
+													}
+													set_variable = { 
+														name = task_main_tt
+														value = 20
+													}
+												}
+												else = { 
+													set_variable = { 
+														name = task_main_tt
+														value = 19
+													}
+												}
+											}
+											else = { 
+												set_variable = { 
+													name = task_main_tt
+													value = 18
+												}
+											}
+										}
+									}
+									else = { 
+										if = { 
+											limit = { 
+												opinion = { 
+													value >= 15
+													target = liege
+												}
+											}
+											if = { 
+												limit = { 
+													opinion = { 
+														value >= 16
+														target = liege
+													}
+												}
+												if = { 
+													limit = { 
+														opinion = { 
+															value >= 17
+															target = liege
+														}
+													}
+													set_variable = { 
+														name = task_main_tt
+														value = 17
+													}
+												}
+												else = { 
+													set_variable = { 
+														name = task_main_tt
+														value = 16
+													}
+												}
+											}
+											else = { 
+												set_variable = { 
+													name = task_main_tt
+													value = 15
+												}
+											}
+										}
+										else = { 
+											if = { 
+												limit = { 
+													opinion = { 
+														value >= 13
+														target = liege
+													}
+												}
+												if = { 
+													limit = { 
+														opinion = { 
+															value >= 14
+															target = liege
+														}
+													}
+													set_variable = { 
+														name = task_main_tt
+														value = 14
+													}
+												}
+												else = { 
+													set_variable = { 
+														name = task_main_tt
+														value = 13
+													}
+												}
+											}
+											else = { 
+												set_variable = { 
+													name = task_main_tt
+													value = 12
+												}
+											}
+										}
+									}
+								}
+								else = { 
+									if = { 
+										limit = { 
+											opinion = { 
+												value >= 6
+												target = liege
+											}
+										}
+										if = { 
+											limit = { 
+												opinion = { 
+													value >= 9
+													target = liege
+												}
+											}
+											if = { 
+												limit = { 
+													opinion = { 
+														value >= 10
+														target = liege
+													}
+												}
+												if = { 
+													limit = { 
+														opinion = { 
+															value >= 11
+															target = liege
+														}
+													}
+													set_variable = { 
+														name = task_main_tt
+														value = 11
+													}
+												}
+												else = { 
+													set_variable = { 
+														name = task_main_tt
+														value = 10
+													}
+												}
+											}
+											else = { 
+												set_variable = { 
+													name = task_main_tt
+													value = 9
+												}
+											}
+										}
+										else = { 
+											if = { 
+												limit = { 
+													opinion = { 
+														value >= 7
+														target = liege
+													}
+												}
+												if = { 
+													limit = { 
+														opinion = { 
+															value >= 8
+															target = liege
+														}
+													}
+													set_variable = { 
+														name = task_main_tt
+														value = 8
+													}
+												}
+												else = { 
+													set_variable = { 
+														name = task_main_tt
+														value = 7
+													}
+												}
+											}
+											else = { 
+												set_variable = { 
+													name = task_main_tt
+													value = 6
+												}
+											}
+										}
+									}
+									else = { 
+										if = { 
+											limit = { 
+												opinion = { 
+													value >= 3
+													target = liege
+												}
+											}
+											if = { 
+												limit = { 
+													opinion = { 
+														value >= 4
+														target = liege
+													}
+												}
+												if = { 
+													limit = { 
+														opinion = { 
+															value >= 5
+															target = liege
+														}
+													}
+													set_variable = { 
+														name = task_main_tt
+														value = 5
+													}
+												}
+												else = { 
+													set_variable = { 
+														name = task_main_tt
+														value = 4
+													}
+												}
+											}
+											else = { 
+												set_variable = { 
+													name = task_main_tt
+													value = 3
+												}
+											}
+										}
+										else = { 
+											if = { 
+												limit = { 
+													opinion = { 
+														value >= 1
+														target = liege
+													}
+												}
+												if = { 
+													limit = { 
+														opinion = { 
+															value >= 2
+															target = liege
+														}
+													}
+													set_variable = { 
+														name = task_main_tt
+														value = 2
+													}
+												}
+												else = { 
+													set_variable = { 
+														name = task_main_tt
+														value = 1
+													}
+												}
+											}
+											else = { 
+												set_variable = { 
+													name = task_main_tt
+													value = 0
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+					else = { 
+						if = { 
+							limit = { 
+								opinion = { 
+									value >= -50
+									target = liege
+								}
+							}
+							if = { 
+								limit = { 
+									opinion = { 
+										value >= -25
+										target = liege
+									}
+								}
+								if = { 
+									limit = { 
+										opinion = { 
+											value >= -13
+											target = liege
+										}
+									}
+									if = { 
+										limit = { 
+											opinion = { 
+												value >= -7
+												target = liege
+											}
+										}
+										if = { 
+											limit = { 
+												opinion = { 
+													value >= -4
+													target = liege
+												}
+											}
+											if = { 
+												limit = { 
+													opinion = { 
+														value >= -2
+														target = liege
+													}
+												}
+												if = { 
+													limit = { 
+														opinion = { 
+															value >= -1
+															target = liege
+														}
+													}
+													set_variable = { 
+														name = task_main_tt
+														value = -1
+													}
+												}
+												else = { 
+													set_variable = { 
+														name = task_main_tt
+														value = -2
+													}
+												}
+											}
+											else = { 
+												if = { 
+													limit = { 
+														opinion = { 
+															value >= -3
+															target = liege
+														}
+													}
+													set_variable = { 
+														name = task_main_tt
+														value = -3
+													}
+												}
+												else = { 
+													set_variable = { 
+														name = task_main_tt
+														value = -4
+													}
+												}
+											}
+										}
+										else = { 
+											if = { 
+												limit = { 
+													opinion = { 
+														value >= -6
+														target = liege
+													}
+												}
+												if = { 
+													limit = { 
+														opinion = { 
+															value >= -5
+															target = liege
+														}
+													}
+													set_variable = { 
+														name = task_main_tt
+														value = -5
+													}
+												}
+												else = { 
+													set_variable = { 
+														name = task_main_tt
+														value = -6
+													}
+												}
+											}
+											else = { 
+												set_variable = { 
+													name = task_main_tt
+													value = -7
+												}
+											}
+										}
+									}
+									else = { 
+										if = { 
+											limit = { 
+												opinion = { 
+													value >= -10
+													target = liege
+												}
+											}
+											if = { 
+												limit = { 
+													opinion = { 
+														value >= -9
+														target = liege
+													}
+												}
+												if = { 
+													limit = { 
+														opinion = { 
+															value >= -8
+															target = liege
+														}
+													}
+													set_variable = { 
+														name = task_main_tt
+														value = -8
+													}
+												}
+												else = { 
+													set_variable = { 
+														name = task_main_tt
+														value = -9
+													}
+												}
+											}
+											else = { 
+												set_variable = { 
+													name = task_main_tt
+													value = -10
+												}
+											}
+										}
+										else = { 
+											if = { 
+												limit = { 
+													opinion = { 
+														value >= -12
+														target = liege
+													}
+												}
+												if = { 
+													limit = { 
+														opinion = { 
+															value >= -11
+															target = liege
+														}
+													}
+													set_variable = { 
+														name = task_main_tt
+														value = -11
+													}
+												}
+												else = { 
+													set_variable = { 
+														name = task_main_tt
+														value = -12
+													}
+												}
+											}
+											else = { 
+												set_variable = { 
+													name = task_main_tt
+													value = -13
+												}
+											}
+										}
+									}
+								}
+								else = { 
+									if = { 
+										limit = { 
+											opinion = { 
+												value >= -19
+												target = liege
+											}
+										}
+										if = { 
+											limit = { 
+												opinion = { 
+													value >= -16
+													target = liege
+												}
+											}
+											if = { 
+												limit = { 
+													opinion = { 
+														value >= -15
+														target = liege
+													}
+												}
+												if = { 
+													limit = { 
+														opinion = { 
+															value >= -14
+															target = liege
+														}
+													}
+													set_variable = { 
+														name = task_main_tt
+														value = -14
+													}
+												}
+												else = { 
+													set_variable = { 
+														name = task_main_tt
+														value = -15
+													}
+												}
+											}
+											else = { 
+												set_variable = { 
+													name = task_main_tt
+													value = -16
+												}
+											}
+										}
+										else = { 
+											if = { 
+												limit = { 
+													opinion = { 
+														value >= -18
+														target = liege
+													}
+												}
+												if = { 
+													limit = { 
+														opinion = { 
+															value >= -17
+															target = liege
+														}
+													}
+													set_variable = { 
+														name = task_main_tt
+														value = -17
+													}
+												}
+												else = { 
+													set_variable = { 
+														name = task_main_tt
+														value = -18
+													}
+												}
+											}
+											else = { 
+												set_variable = { 
+													name = task_main_tt
+													value = -19
+												}
+											}
+										}
+									}
+									else = { 
+										if = { 
+											limit = { 
+												opinion = { 
+													value >= -22
+													target = liege
+												}
+											}
+											if = { 
+												limit = { 
+													opinion = { 
+														value >= -21
+														target = liege
+													}
+												}
+												if = { 
+													limit = { 
+														opinion = { 
+															value >= -20
+															target = liege
+														}
+													}
+													set_variable = { 
+														name = task_main_tt
+														value = -20
+													}
+												}
+												else = { 
+													set_variable = { 
+														name = task_main_tt
+														value = -21
+													}
+												}
+											}
+											else = { 
+												set_variable = { 
+													name = task_main_tt
+													value = -22
+												}
+											}
+										}
+										else = { 
+											if = { 
+												limit = { 
+													opinion = { 
+														value >= -24
+														target = liege
+													}
+												}
+												if = { 
+													limit = { 
+														opinion = { 
+															value >= -23
+															target = liege
+														}
+													}
+													set_variable = { 
+														name = task_main_tt
+														value = -23
+													}
+												}
+												else = { 
+													set_variable = { 
+														name = task_main_tt
+														value = -24
+													}
+												}
+											}
+											else = { 
+												set_variable = { 
+													name = task_main_tt
+													value = -25
+												}
+											}
+										}
+									}
+								}
+							}
+							else = { 
+								if = { 
+									limit = { 
+										opinion = { 
+											value >= -38
+											target = liege
+										}
+									}
+									if = { 
+										limit = { 
+											opinion = { 
+												value >= -32
+												target = liege
+											}
+										}
+										if = { 
+											limit = { 
+												opinion = { 
+													value >= -29
+													target = liege
+												}
+											}
+											if = { 
+												limit = { 
+													opinion = { 
+														value >= -27
+														target = liege
+													}
+												}
+												if = { 
+													limit = { 
+														opinion = { 
+															value >= -26
+															target = liege
+														}
+													}
+													set_variable = { 
+														name = task_main_tt
+														value = -26
+													}
+												}
+												else = { 
+													set_variable = { 
+														name = task_main_tt
+														value = -27
+													}
+												}
+											}
+											else = { 
+												if = { 
+													limit = { 
+														opinion = { 
+															value >= -28
+															target = liege
+														}
+													}
+													set_variable = { 
+														name = task_main_tt
+														value = -28
+													}
+												}
+												else = { 
+													set_variable = { 
+														name = task_main_tt
+														value = -29
+													}
+												}
+											}
+										}
+										else = { 
+											if = { 
+												limit = { 
+													opinion = { 
+														value >= -31
+														target = liege
+													}
+												}
+												if = { 
+													limit = { 
+														opinion = { 
+															value >= -30
+															target = liege
+														}
+													}
+													set_variable = { 
+														name = task_main_tt
+														value = -30
+													}
+												}
+												else = { 
+													set_variable = { 
+														name = task_main_tt
+														value = -31
+													}
+												}
+											}
+											else = { 
+												set_variable = { 
+													name = task_main_tt
+													value = -32
+												}
+											}
+										}
+									}
+									else = { 
+										if = { 
+											limit = { 
+												opinion = { 
+													value >= -35
+													target = liege
+												}
+											}
+											if = { 
+												limit = { 
+													opinion = { 
+														value >= -34
+														target = liege
+													}
+												}
+												if = { 
+													limit = { 
+														opinion = { 
+															value >= -33
+															target = liege
+														}
+													}
+													set_variable = { 
+														name = task_main_tt
+														value = -33
+													}
+												}
+												else = { 
+													set_variable = { 
+														name = task_main_tt
+														value = -34
+													}
+												}
+											}
+											else = { 
+												set_variable = { 
+													name = task_main_tt
+													value = -35
+												}
+											}
+										}
+										else = { 
+											if = { 
+												limit = { 
+													opinion = { 
+														value >= -37
+														target = liege
+													}
+												}
+												if = { 
+													limit = { 
+														opinion = { 
+															value >= -36
+															target = liege
+														}
+													}
+													set_variable = { 
+														name = task_main_tt
+														value = -36
+													}
+												}
+												else = { 
+													set_variable = { 
+														name = task_main_tt
+														value = -37
+													}
+												}
+											}
+											else = { 
+												set_variable = { 
+													name = task_main_tt
+													value = -38
+												}
+											}
+										}
+									}
+								}
+								else = { 
+									if = { 
+										limit = { 
+											opinion = { 
+												value >= -44
+												target = liege
+											}
+										}
+										if = { 
+											limit = { 
+												opinion = { 
+													value >= -41
+													target = liege
+												}
+											}
+											if = { 
+												limit = { 
+													opinion = { 
+														value >= -40
+														target = liege
+													}
+												}
+												if = { 
+													limit = { 
+														opinion = { 
+															value >= -39
+															target = liege
+														}
+													}
+													set_variable = { 
+														name = task_main_tt
+														value = -39
+													}
+												}
+												else = { 
+													set_variable = { 
+														name = task_main_tt
+														value = -40
+													}
+												}
+											}
+											else = { 
+												set_variable = { 
+													name = task_main_tt
+													value = -41
+												}
+											}
+										}
+										else = { 
+											if = { 
+												limit = { 
+													opinion = { 
+														value >= -43
+														target = liege
+													}
+												}
+												if = { 
+													limit = { 
+														opinion = { 
+															value >= -42
+															target = liege
+														}
+													}
+													set_variable = { 
+														name = task_main_tt
+														value = -42
+													}
+												}
+												else = { 
+													set_variable = { 
+														name = task_main_tt
+														value = -43
+													}
+												}
+											}
+											else = { 
+												set_variable = { 
+													name = task_main_tt
+													value = -44
+												}
+											}
+										}
+									}
+									else = { 
+										if = { 
+											limit = { 
+												opinion = { 
+													value >= -47
+													target = liege
+												}
+											}
+											if = { 
+												limit = { 
+													opinion = { 
+														value >= -46
+														target = liege
+													}
+												}
+												if = { 
+													limit = { 
+														opinion = { 
+															value >= -45
+															target = liege
+														}
+													}
+													set_variable = { 
+														name = task_main_tt
+														value = -45
+													}
+												}
+												else = { 
+													set_variable = { 
+														name = task_main_tt
+														value = -46
+													}
+												}
+											}
+											else = { 
+												set_variable = { 
+													name = task_main_tt
+													value = -47
+												}
+											}
+										}
+										else = { 
+											if = { 
+												limit = { 
+													opinion = { 
+														value >= -49
+														target = liege
+													}
+												}
+												if = { 
+													limit = { 
+														opinion = { 
+															value >= -48
+															target = liege
+														}
+													}
+													set_variable = { 
+														name = task_main_tt
+														value = -48
+													}
+												}
+												else = { 
+													set_variable = { 
+														name = task_main_tt
+														value = -49
+													}
+												}
+											}
+											else = { 
+												set_variable = { 
+													name = task_main_tt
+													value = -50
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+						else = { 
+							if = { 
+								limit = { 
+									opinion = { 
+										value >= -75
+										target = liege
+									}
+								}
+								if = { 
+									limit = { 
+										opinion = { 
+											value >= -63
+											target = liege
+										}
+									}
+									if = { 
+										limit = { 
+											opinion = { 
+												value >= -57
+												target = liege
+											}
+										}
+										if = { 
+											limit = { 
+												opinion = { 
+													value >= -54
+													target = liege
+												}
+											}
+											if = { 
+												limit = { 
+													opinion = { 
+														value >= -52
+														target = liege
+													}
+												}
+												if = { 
+													limit = { 
+														opinion = { 
+															value >= -51
+															target = liege
+														}
+													}
+													set_variable = { 
+														name = task_main_tt
+														value = -51
+													}
+												}
+												else = { 
+													set_variable = { 
+														name = task_main_tt
+														value = -52
+													}
+												}
+											}
+											else = { 
+												if = { 
+													limit = { 
+														opinion = { 
+															value >= -53
+															target = liege
+														}
+													}
+													set_variable = { 
+														name = task_main_tt
+														value = -53
+													}
+												}
+												else = { 
+													set_variable = { 
+														name = task_main_tt
+														value = -54
+													}
+												}
+											}
+										}
+										else = { 
+											if = { 
+												limit = { 
+													opinion = { 
+														value >= -56
+														target = liege
+													}
+												}
+												if = { 
+													limit = { 
+														opinion = { 
+															value >= -55
+															target = liege
+														}
+													}
+													set_variable = { 
+														name = task_main_tt
+														value = -55
+													}
+												}
+												else = { 
+													set_variable = { 
+														name = task_main_tt
+														value = -56
+													}
+												}
+											}
+											else = { 
+												set_variable = { 
+													name = task_main_tt
+													value = -57
+												}
+											}
+										}
+									}
+									else = { 
+										if = { 
+											limit = { 
+												opinion = { 
+													value >= -60
+													target = liege
+												}
+											}
+											if = { 
+												limit = { 
+													opinion = { 
+														value >= -59
+														target = liege
+													}
+												}
+												if = { 
+													limit = { 
+														opinion = { 
+															value >= -58
+															target = liege
+														}
+													}
+													set_variable = { 
+														name = task_main_tt
+														value = -58
+													}
+												}
+												else = { 
+													set_variable = { 
+														name = task_main_tt
+														value = -59
+													}
+												}
+											}
+											else = { 
+												set_variable = { 
+													name = task_main_tt
+													value = -60
+												}
+											}
+										}
+										else = { 
+											if = { 
+												limit = { 
+													opinion = { 
+														value >= -62
+														target = liege
+													}
+												}
+												if = { 
+													limit = { 
+														opinion = { 
+															value >= -61
+															target = liege
+														}
+													}
+													set_variable = { 
+														name = task_main_tt
+														value = -61
+													}
+												}
+												else = { 
+													set_variable = { 
+														name = task_main_tt
+														value = -62
+													}
+												}
+											}
+											else = { 
+												set_variable = { 
+													name = task_main_tt
+													value = -63
+												}
+											}
+										}
+									}
+								}
+								else = { 
+									if = { 
+										limit = { 
+											opinion = { 
+												value >= -69
+												target = liege
+											}
+										}
+										if = { 
+											limit = { 
+												opinion = { 
+													value >= -66
+													target = liege
+												}
+											}
+											if = { 
+												limit = { 
+													opinion = { 
+														value >= -65
+														target = liege
+													}
+												}
+												if = { 
+													limit = { 
+														opinion = { 
+															value >= -64
+															target = liege
+														}
+													}
+													set_variable = { 
+														name = task_main_tt
+														value = -64
+													}
+												}
+												else = { 
+													set_variable = { 
+														name = task_main_tt
+														value = -65
+													}
+												}
+											}
+											else = { 
+												set_variable = { 
+													name = task_main_tt
+													value = -66
+												}
+											}
+										}
+										else = { 
+											if = { 
+												limit = { 
+													opinion = { 
+														value >= -68
+														target = liege
+													}
+												}
+												if = { 
+													limit = { 
+														opinion = { 
+															value >= -67
+															target = liege
+														}
+													}
+													set_variable = { 
+														name = task_main_tt
+														value = -67
+													}
+												}
+												else = { 
+													set_variable = { 
+														name = task_main_tt
+														value = -68
+													}
+												}
+											}
+											else = { 
+												set_variable = { 
+													name = task_main_tt
+													value = -69
+												}
+											}
+										}
+									}
+									else = { 
+										if = { 
+											limit = { 
+												opinion = { 
+													value >= -72
+													target = liege
+												}
+											}
+											if = { 
+												limit = { 
+													opinion = { 
+														value >= -71
+														target = liege
+													}
+												}
+												if = { 
+													limit = { 
+														opinion = { 
+															value >= -70
+															target = liege
+														}
+													}
+													set_variable = { 
+														name = task_main_tt
+														value = -70
+													}
+												}
+												else = { 
+													set_variable = { 
+														name = task_main_tt
+														value = -71
+													}
+												}
+											}
+											else = { 
+												set_variable = { 
+													name = task_main_tt
+													value = -72
+												}
+											}
+										}
+										else = { 
+											if = { 
+												limit = { 
+													opinion = { 
+														value >= -74
+														target = liege
+													}
+												}
+												if = { 
+													limit = { 
+														opinion = { 
+															value >= -73
+															target = liege
+														}
+													}
+													set_variable = { 
+														name = task_main_tt
+														value = -73
+													}
+												}
+												else = { 
+													set_variable = { 
+														name = task_main_tt
+														value = -74
+													}
+												}
+											}
+											else = { 
+												set_variable = { 
+													name = task_main_tt
+													value = -75
+												}
+											}
+										}
+									}
+								}
+							}
+							else = { 
+								if = { 
+									limit = { 
+										opinion = { 
+											value >= -88
+											target = liege
+										}
+									}
+									if = { 
+										limit = { 
+											opinion = { 
+												value >= -82
+												target = liege
+											}
+										}
+										if = { 
+											limit = { 
+												opinion = { 
+													value >= -79
+													target = liege
+												}
+											}
+											if = { 
+												limit = { 
+													opinion = { 
+														value >= -77
+														target = liege
+													}
+												}
+												if = { 
+													limit = { 
+														opinion = { 
+															value >= -76
+															target = liege
+														}
+													}
+													set_variable = { 
+														name = task_main_tt
+														value = -76
+													}
+												}
+												else = { 
+													set_variable = { 
+														name = task_main_tt
+														value = -77
+													}
+												}
+											}
+											else = { 
+												if = { 
+													limit = { 
+														opinion = { 
+															value >= -78
+															target = liege
+														}
+													}
+													set_variable = { 
+														name = task_main_tt
+														value = -78
+													}
+												}
+												else = { 
+													set_variable = { 
+														name = task_main_tt
+														value = -79
+													}
+												}
+											}
+										}
+										else = { 
+											if = { 
+												limit = { 
+													opinion = { 
+														value >= -81
+														target = liege
+													}
+												}
+												if = { 
+													limit = { 
+														opinion = { 
+															value >= -80
+															target = liege
+														}
+													}
+													set_variable = { 
+														name = task_main_tt
+														value = -80
+													}
+												}
+												else = { 
+													set_variable = { 
+														name = task_main_tt
+														value = -81
+													}
+												}
+											}
+											else = { 
+												set_variable = { 
+													name = task_main_tt
+													value = -82
+												}
+											}
+										}
+									}
+									else = { 
+										if = { 
+											limit = { 
+												opinion = { 
+													value >= -85
+													target = liege
+												}
+											}
+											if = { 
+												limit = { 
+													opinion = { 
+														value >= -84
+														target = liege
+													}
+												}
+												if = { 
+													limit = { 
+														opinion = { 
+															value >= -83
+															target = liege
+														}
+													}
+													set_variable = { 
+														name = task_main_tt
+														value = -83
+													}
+												}
+												else = { 
+													set_variable = { 
+														name = task_main_tt
+														value = -84
+													}
+												}
+											}
+											else = { 
+												set_variable = { 
+													name = task_main_tt
+													value = -85
+												}
+											}
+										}
+										else = { 
+											if = { 
+												limit = { 
+													opinion = { 
+														value >= -87
+														target = liege
+													}
+												}
+												if = { 
+													limit = { 
+														opinion = { 
+															value >= -86
+															target = liege
+														}
+													}
+													set_variable = { 
+														name = task_main_tt
+														value = -86
+													}
+												}
+												else = { 
+													set_variable = { 
+														name = task_main_tt
+														value = -87
+													}
+												}
+											}
+											else = { 
+												set_variable = { 
+													name = task_main_tt
+													value = -88
+												}
+											}
+										}
+									}
+								}
+								else = { 
+									if = { 
+										limit = { 
+											opinion = { 
+												value >= -94
+												target = liege
+											}
+										}
+										if = { 
+											limit = { 
+												opinion = { 
+													value >= -91
+													target = liege
+												}
+											}
+											if = { 
+												limit = { 
+													opinion = { 
+														value >= -90
+														target = liege
+													}
+												}
+												if = { 
+													limit = { 
+														opinion = { 
+															value >= -89
+															target = liege
+														}
+													}
+													set_variable = { 
+														name = task_main_tt
+														value = -89
+													}
+												}
+												else = { 
+													set_variable = { 
+														name = task_main_tt
+														value = -90
+													}
+												}
+											}
+											else = { 
+												set_variable = { 
+													name = task_main_tt
+													value = -91
+												}
+											}
+										}
+										else = { 
+											if = { 
+												limit = { 
+													opinion = { 
+														value >= -93
+														target = liege
+													}
+												}
+												if = { 
+													limit = { 
+														opinion = { 
+															value >= -92
+															target = liege
+														}
+													}
+													set_variable = { 
+														name = task_main_tt
+														value = -92
+													}
+												}
+												else = { 
+													set_variable = { 
+														name = task_main_tt
+														value = -93
+													}
+												}
+											}
+											else = { 
+												set_variable = { 
+													name = task_main_tt
+													value = -94
+												}
+											}
+										}
+									}
+									else = { 
+										if = { 
+											limit = { 
+												opinion = { 
+													value >= -97
+													target = liege
+												}
+											}
+											if = { 
+												limit = { 
+													opinion = { 
+														value >= -96
+														target = liege
+													}
+												}
+												if = { 
+													limit = { 
+														opinion = { 
+															value >= -95
+															target = liege
+														}
+													}
+													set_variable = { 
+														name = task_main_tt
+														value = -95
+													}
+												}
+												else = { 
+													set_variable = { 
+														name = task_main_tt
+														value = -96
+													}
+												}
+											}
+											else = { 
+												set_variable = { 
+													name = task_main_tt
+													value = -97
+												}
+											}
+										}
+										else = { 
+											if = { 
+												limit = { 
+													opinion = { 
+														value >= -99
+														target = liege
+													}
+												}
+												if = { 
+													limit = { 
+														opinion = { 
+															value >= -98
+															target = liege
+														}
+													}
+													set_variable = { 
+														name = task_main_tt
+														value = -98
+													}
+												}
+												else = { 
+													set_variable = { 
+														name = task_main_tt
+														value = -99
+													}
+												}
+											}
+											else = { 
+												set_variable = { 
+													name = task_main_tt
+													value = -100
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+					if = { 
+						limit = { 
+							has_dread_level_towards = { 
+								target = liege
+								level = 2
+							}
+						}
+						change_variable = { 
+							name = task_main_tt
+							add = 200
+						}
+					}
+					else_if = { 
+						limit = { 
+							has_dread_level_towards = { 
+								target = liege
+								level = 1
+							}
+						}
+						change_variable = { 
+							name = task_main_tt
+							add = 100
+						}
+					}
+					if = { 
+						limit = { 
+							NOT = { 
+								prev.var:task_template = global_var:manage_oversight
+							}
+						}
+						change_variable = { 
+							name = task_main_tt
+							add = liege.var:task_main_t
+						}
+					}
+					if = { 
+						limit = { 
+							has_variable = task_main_tt
+							var:task_main_tt > 100
+						}
+						set_variable = { 
+							name = task_main_tt
+							value = 100
+						}
+					}
+					change_variable = { 
+						name = task_main_tt
+						subtract = 100
+					}
+					change_variable = { 
+						name = task_main_tt
+						multiply = var:task_main_tt
+					}
+					change_variable = { 
+						name = task_main_tt
+						divide = 400
+					}
+					prev = { 
+						set_variable = { 
+							name = task_main_t
+							value = prev.var:task_main_tt
+						}
+					}
+					remove_variable = task_main_tt
+				}
+			}
+			change_variable = { 
+				name = task_main_t
+				subtract = var:task_crpt
+			}
+			change_variable = { 
+				name = task_main_t
+				divide = 10
+			}
+			change_variable = { 
+				name = task_crpt
+				add = var:task_main_t
+			}
+			remove_variable = task_main_t
+		}
+		every_in_global_list = { 
+			variable = task_main_t
+			remove_variable = task_main_t
+			remove_variable = task_main_tt
+		}
+		clear_global_variable_list = task_main_t
+		global_var:manage_domain = { 
+			every_in_list = { 
+				variable = task_tasks
+			}
+		}
+		global_var:manage_realm = { 
+			every_in_list = { 
+				variable = task_tasks
+			}
+		}
+		global_var:manage_logistics = { 
+			every_in_list = { 
+				variable = task_tasks
+				var:task_owner = { 
+					set_variable = { 
+						name = task_manage_logistics
+						value = prev
+					}
+				}
+			}
+		}
+		global_var:manage_court = { 
+			every_in_list = { 
+				variable = task_tasks
+			}
+		}
+		global_var:manage_stockpile = { 
+			every_in_list = { 
+				variable = task_tasks
+				var:task_owner = { 
+					set_variable = { 
+						name = task_manage_stockpile
+						value = prev
+					}
+				}
+			}
+		}
+		global_var:manage_oversight = { 
+			every_in_list = { 
+				variable = task_tasks
+			}
+		}
+		every_county = { 
+			limit = { 
+				is_valid_prov = yes
+			}
+			set_variable = { 
+				name = modi_prod_dmnd_food
+				value = 1
+			}
+			set_variable = { 
+				name = modi_prod_sply_food
+				value = 1
+			}
+			change_variable = { 
+				name = modi_prod_dmnd_food
+				multiply = var:prod_effic
+			}
+			change_variable = { 
+				name = modi_prod_sply_food
+				multiply = var:prod_effic
+			}
+			set_variable = { 
+				name = modi_prod_dmnd_cereal
+				value = 1
+			}
+			set_variable = { 
+				name = modi_prod_sply_cereal
+				value = 1
+			}
+			change_variable = { 
+				name = modi_prod_dmnd_cereal
+				multiply = var:prod_effic
+			}
+			change_variable = { 
+				name = modi_prod_sply_cereal
+				multiply = var:prod_effic
+			}
+			set_variable = { 
+				name = modi_prod_dmnd_salted
+				value = 1
+			}
+			set_variable = { 
+				name = modi_prod_sply_salted
+				value = 1
+			}
+			change_variable = { 
+				name = modi_prod_dmnd_salted
+				multiply = var:prod_effic
+			}
+			change_variable = { 
+				name = modi_prod_sply_salted
+				multiply = var:prod_effic
+			}
+			set_variable = { 
+				name = modi_prod_dmnd_salt
+				value = 1
+			}
+			set_variable = { 
+				name = modi_prod_sply_salt
+				value = 1
+			}
+			change_variable = { 
+				name = modi_prod_dmnd_salt
+				multiply = var:prod_effic
+			}
+			change_variable = { 
+				name = modi_prod_sply_salt
+				multiply = var:prod_effic
+			}
+			set_variable = { 
+				name = modi_prod_dmnd_mud
+				value = 1
+			}
+			set_variable = { 
+				name = modi_prod_sply_mud
+				value = 1
+			}
+			change_variable = { 
+				name = modi_prod_dmnd_mud
+				multiply = var:prod_effic
+			}
+			change_variable = { 
+				name = modi_prod_sply_mud
+				multiply = var:prod_effic
+			}
+			set_variable = { 
+				name = modi_prod_dmnd_fuel
+				value = 1
+			}
+			set_variable = { 
+				name = modi_prod_sply_fuel
+				value = 1
+			}
+			change_variable = { 
+				name = modi_prod_dmnd_fuel
+				multiply = var:prod_effic
+			}
+			change_variable = { 
+				name = modi_prod_sply_fuel
+				multiply = var:prod_effic
+			}
+			set_variable = { 
+				name = modi_prod_dmnd_fiber
+				value = 1
+			}
+			set_variable = { 
+				name = modi_prod_sply_fiber
+				value = 1
+			}
+			change_variable = { 
+				name = modi_prod_dmnd_fiber
+				multiply = var:prod_effic
+			}
+			change_variable = { 
+				name = modi_prod_sply_fiber
+				multiply = var:prod_effic
+			}
+			set_variable = { 
+				name = modi_prod_dmnd_timber
+				value = 1
+			}
+			set_variable = { 
+				name = modi_prod_sply_timber
+				value = 1
+			}
+			change_variable = { 
+				name = modi_prod_dmnd_timber
+				multiply = var:prod_effic
+			}
+			change_variable = { 
+				name = modi_prod_sply_timber
+				multiply = var:prod_effic
+			}
+			set_variable = { 
+				name = modi_prod_dmnd_metal
+				value = 1
+			}
+			set_variable = { 
+				name = modi_prod_sply_metal
+				value = 1
+			}
+			change_variable = { 
+				name = modi_prod_dmnd_metal
+				multiply = var:prod_effic
+			}
+			change_variable = { 
+				name = modi_prod_sply_metal
+				multiply = var:prod_effic
+			}
+			set_variable = { 
+				name = modi_prod_dmnd_exotics_w
+				value = 1
+			}
+			set_variable = { 
+				name = modi_prod_sply_exotics_w
+				value = 1
+			}
+			change_variable = { 
+				name = modi_prod_dmnd_exotics_w
+				multiply = var:prod_effic
+			}
+			change_variable = { 
+				name = modi_prod_sply_exotics_w
+				multiply = var:prod_effic
+			}
+			set_variable = { 
+				name = modi_prod_dmnd_exotics_e
+				value = 1
+			}
+			set_variable = { 
+				name = modi_prod_sply_exotics_e
+				value = 1
+			}
+			change_variable = { 
+				name = modi_prod_dmnd_exotics_e
+				multiply = var:prod_effic
+			}
+			change_variable = { 
+				name = modi_prod_sply_exotics_e
+				multiply = var:prod_effic
+			}
+			set_variable = { 
+				name = modi_prod_dmnd_exotics_g
+				value = 1
+			}
+			set_variable = { 
+				name = modi_prod_sply_exotics_g
+				value = 1
+			}
+			change_variable = { 
+				name = modi_prod_dmnd_exotics_g
+				multiply = var:prod_effic
+			}
+			change_variable = { 
+				name = modi_prod_sply_exotics_g
+				multiply = var:prod_effic
+			}
+			set_variable = { 
+				name = modi_prod_dmnd_textile
+				value = 1
+			}
+			set_variable = { 
+				name = modi_prod_sply_textile
+				value = 1
+			}
+			change_variable = { 
+				name = modi_prod_dmnd_textile
+				multiply = var:prod_effic
+			}
+			change_variable = { 
+				name = modi_prod_sply_textile
+				multiply = var:prod_effic
+			}
+			set_variable = { 
+				name = modi_prod_dmnd_pottery
+				value = 1
+			}
+			set_variable = { 
+				name = modi_prod_sply_pottery
+				value = 1
+			}
+			change_variable = { 
+				name = modi_prod_dmnd_pottery
+				multiply = var:prod_effic
+			}
+			change_variable = { 
+				name = modi_prod_sply_pottery
+				multiply = var:prod_effic
+			}
+			set_variable = { 
+				name = modi_prod_dmnd_tools
+				value = 1
+			}
+			set_variable = { 
+				name = modi_prod_sply_tools
+				value = 1
+			}
+			change_variable = { 
+				name = modi_prod_dmnd_tools
+				multiply = var:prod_effic
+			}
+			change_variable = { 
+				name = modi_prod_sply_tools
+				multiply = var:prod_effic
+			}
+			set_variable = { 
+				name = modi_prod_dmnd_armaments
+				value = 1
+			}
+			set_variable = { 
+				name = modi_prod_sply_armaments
+				value = 1
+			}
+			change_variable = { 
+				name = modi_prod_dmnd_armaments
+				multiply = var:prod_effic
+			}
+			change_variable = { 
+				name = modi_prod_sply_armaments
+				multiply = var:prod_effic
+			}
+			set_variable = { 
+				name = modi_pop_calorie
+				value = 1
+			}
+			set_variable = { 
+				name = modi_pop_nutrient
+				value = 1
+			}
+			set_variable = { 
+				name = modi_pop_comfort
+				value = 1
+			}
+			set_variable = { 
+				name = modi_pop_luxury
+				value = 1
+			}
+			set_variable = { 
+				name = modi_pop_calorie_food
+				value = 1
+			}
+			set_variable = { 
+				name = modi_pop_calorie_cereal
+				value = 1
+			}
+			set_variable = { 
+				name = modi_pop_calorie_salted
+				value = 1
+			}
+			set_variable = { 
+				name = modi_pop_calorie_salt
+				value = 1
+			}
+			set_variable = { 
+				name = modi_pop_calorie_mud
+				value = 1
+			}
+			set_variable = { 
+				name = modi_pop_calorie_fuel
+				value = 1
+			}
+			set_variable = { 
+				name = modi_pop_calorie_fiber
+				value = 1
+			}
+			set_variable = { 
+				name = modi_pop_calorie_timber
+				value = 1
+			}
+			set_variable = { 
+				name = modi_pop_calorie_metal
+				value = 1
+			}
+			set_variable = { 
+				name = modi_pop_calorie_exotics_w
+				value = 1
+			}
+			set_variable = { 
+				name = modi_pop_calorie_exotics_e
+				value = 1
+			}
+			set_variable = { 
+				name = modi_pop_calorie_exotics_g
+				value = 1
+			}
+			set_variable = { 
+				name = modi_pop_calorie_textile
+				value = 1
+			}
+			set_variable = { 
+				name = modi_pop_calorie_pottery
+				value = 1
+			}
+			set_variable = { 
+				name = modi_pop_calorie_tools
+				value = 1
+			}
+			set_variable = { 
+				name = modi_pop_calorie_armaments
+				value = 1
+			}
+			set_variable = { 
+				name = modi_pop_nutrient_food
+				value = 1
+			}
+			set_variable = { 
+				name = modi_pop_nutrient_cereal
+				value = 1
+			}
+			set_variable = { 
+				name = modi_pop_nutrient_salted
+				value = 1
+			}
+			set_variable = { 
+				name = modi_pop_nutrient_salt
+				value = 1
+			}
+			set_variable = { 
+				name = modi_pop_nutrient_mud
+				value = 1
+			}
+			set_variable = { 
+				name = modi_pop_nutrient_fuel
+				value = 1
+			}
+			set_variable = { 
+				name = modi_pop_nutrient_fiber
+				value = 1
+			}
+			set_variable = { 
+				name = modi_pop_nutrient_timber
+				value = 1
+			}
+			set_variable = { 
+				name = modi_pop_nutrient_metal
+				value = 1
+			}
+			set_variable = { 
+				name = modi_pop_nutrient_exotics_w
+				value = 1
+			}
+			set_variable = { 
+				name = modi_pop_nutrient_exotics_e
+				value = 1
+			}
+			set_variable = { 
+				name = modi_pop_nutrient_exotics_g
+				value = 1
+			}
+			set_variable = { 
+				name = modi_pop_nutrient_textile
+				value = 1
+			}
+			set_variable = { 
+				name = modi_pop_nutrient_pottery
+				value = 1
+			}
+			set_variable = { 
+				name = modi_pop_nutrient_tools
+				value = 1
+			}
+			set_variable = { 
+				name = modi_pop_nutrient_armaments
+				value = 1
+			}
+			set_variable = { 
+				name = modi_pop_comfort_food
+				value = 1
+			}
+			set_variable = { 
+				name = modi_pop_comfort_cereal
+				value = 1
+			}
+			set_variable = { 
+				name = modi_pop_comfort_salted
+				value = 1
+			}
+			set_variable = { 
+				name = modi_pop_comfort_salt
+				value = 1
+			}
+			set_variable = { 
+				name = modi_pop_comfort_mud
+				value = 1
+			}
+			set_variable = { 
+				name = modi_pop_comfort_fuel
+				value = 1
+			}
+			set_variable = { 
+				name = modi_pop_comfort_fiber
+				value = 1
+			}
+			set_variable = { 
+				name = modi_pop_comfort_timber
+				value = 1
+			}
+			set_variable = { 
+				name = modi_pop_comfort_metal
+				value = 1
+			}
+			set_variable = { 
+				name = modi_pop_comfort_exotics_w
+				value = 1
+			}
+			set_variable = { 
+				name = modi_pop_comfort_exotics_e
+				value = 1
+			}
+			set_variable = { 
+				name = modi_pop_comfort_exotics_g
+				value = 1
+			}
+			set_variable = { 
+				name = modi_pop_comfort_textile
+				value = 1
+			}
+			set_variable = { 
+				name = modi_pop_comfort_pottery
+				value = 1
+			}
+			set_variable = { 
+				name = modi_pop_comfort_tools
+				value = 1
+			}
+			set_variable = { 
+				name = modi_pop_comfort_armaments
+				value = 1
+			}
+			set_variable = { 
+				name = modi_pop_luxury_food
+				value = 1
+			}
+			set_variable = { 
+				name = modi_pop_luxury_cereal
+				value = 1
+			}
+			set_variable = { 
+				name = modi_pop_luxury_salted
+				value = 1
+			}
+			set_variable = { 
+				name = modi_pop_luxury_salt
+				value = 1
+			}
+			set_variable = { 
+				name = modi_pop_luxury_mud
+				value = 1
+			}
+			set_variable = { 
+				name = modi_pop_luxury_fuel
+				value = 1
+			}
+			set_variable = { 
+				name = modi_pop_luxury_fiber
+				value = 1
+			}
+			set_variable = { 
+				name = modi_pop_luxury_timber
+				value = 1
+			}
+			set_variable = { 
+				name = modi_pop_luxury_metal
+				value = 1
+			}
+			set_variable = { 
+				name = modi_pop_luxury_exotics_w
+				value = 1
+			}
+			set_variable = { 
+				name = modi_pop_luxury_exotics_e
+				value = 1
+			}
+			set_variable = { 
+				name = modi_pop_luxury_exotics_g
+				value = 1
+			}
+			set_variable = { 
+				name = modi_pop_luxury_textile
+				value = 1
+			}
+			set_variable = { 
+				name = modi_pop_luxury_pottery
+				value = 1
+			}
+			set_variable = { 
+				name = modi_pop_luxury_tools
+				value = 1
+			}
+			set_variable = { 
+				name = modi_pop_luxury_armaments
+				value = 1
+			}
+		}
+		every_ruler = { 
+			limit = { 
+				is_character = yes
+				is_landed = yes
+			}
+			set_variable = { 
+				name = modi_mil_recruit_food
+				value = 1
+			}
+			set_variable = { 
+				name = modi_mil_maintain_food
+				value = 1
+			}
+			set_variable = { 
+				name = modi_mil_recruit_cereal
+				value = 1
+			}
+			set_variable = { 
+				name = modi_mil_maintain_cereal
+				value = 1
+			}
+			set_variable = { 
+				name = modi_mil_recruit_salted
+				value = 1
+			}
+			set_variable = { 
+				name = modi_mil_maintain_salted
+				value = 1
+			}
+			set_variable = { 
+				name = modi_mil_recruit_salt
+				value = 1
+			}
+			set_variable = { 
+				name = modi_mil_maintain_salt
+				value = 1
+			}
+			set_variable = { 
+				name = modi_mil_recruit_mud
+				value = 1
+			}
+			set_variable = { 
+				name = modi_mil_maintain_mud
+				value = 1
+			}
+			set_variable = { 
+				name = modi_mil_recruit_fuel
+				value = 1
+			}
+			set_variable = { 
+				name = modi_mil_maintain_fuel
+				value = 1
+			}
+			set_variable = { 
+				name = modi_mil_recruit_fiber
+				value = 1
+			}
+			set_variable = { 
+				name = modi_mil_maintain_fiber
+				value = 1
+			}
+			set_variable = { 
+				name = modi_mil_recruit_timber
+				value = 1
+			}
+			set_variable = { 
+				name = modi_mil_maintain_timber
+				value = 1
+			}
+			set_variable = { 
+				name = modi_mil_recruit_metal
+				value = 1
+			}
+			set_variable = { 
+				name = modi_mil_maintain_metal
+				value = 1
+			}
+			set_variable = { 
+				name = modi_mil_recruit_exotics_w
+				value = 1
+			}
+			set_variable = { 
+				name = modi_mil_maintain_exotics_w
+				value = 1
+			}
+			set_variable = { 
+				name = modi_mil_recruit_exotics_e
+				value = 1
+			}
+			set_variable = { 
+				name = modi_mil_maintain_exotics_e
+				value = 1
+			}
+			set_variable = { 
+				name = modi_mil_recruit_exotics_g
+				value = 1
+			}
+			set_variable = { 
+				name = modi_mil_maintain_exotics_g
+				value = 1
+			}
+			set_variable = { 
+				name = modi_mil_recruit_textile
+				value = 1
+			}
+			set_variable = { 
+				name = modi_mil_maintain_textile
+				value = 1
+			}
+			set_variable = { 
+				name = modi_mil_recruit_pottery
+				value = 1
+			}
+			set_variable = { 
+				name = modi_mil_maintain_pottery
+				value = 1
+			}
+			set_variable = { 
+				name = modi_mil_recruit_tools
+				value = 1
+			}
+			set_variable = { 
+				name = modi_mil_maintain_tools
+				value = 1
+			}
+			set_variable = { 
+				name = modi_mil_recruit_armaments
+				value = 1
+			}
+			set_variable = { 
+				name = modi_mil_maintain_armaments
+				value = 1
 			}
 		}
 	}
@@ -29330,6 +34535,19 @@ census.06 = {
 							name = trade_point_food
 							divide = var:trade_cost
 						}
+						if = { 
+							limit = { 
+								has_variable = task_manage_stockpile
+							}
+							change_variable = { 
+								name = trade_point_food
+								multiply = var:task_manage_stockpile.var:task_time_in
+							}
+							change_variable = { 
+								name = trade_point_food
+								divide = 100
+							}
+						}
 					}
 					else = { 
 						remove_variable = trade_point_food
@@ -29448,6 +34666,19 @@ census.06 = {
 						change_variable = { 
 							name = trade_point_cereal
 							divide = var:trade_cost
+						}
+						if = { 
+							limit = { 
+								has_variable = task_manage_stockpile
+							}
+							change_variable = { 
+								name = trade_point_cereal
+								multiply = var:task_manage_stockpile.var:task_time_in
+							}
+							change_variable = { 
+								name = trade_point_cereal
+								divide = 100
+							}
 						}
 					}
 					else = { 
@@ -29568,6 +34799,19 @@ census.06 = {
 							name = trade_point_salted
 							divide = var:trade_cost
 						}
+						if = { 
+							limit = { 
+								has_variable = task_manage_stockpile
+							}
+							change_variable = { 
+								name = trade_point_salted
+								multiply = var:task_manage_stockpile.var:task_time_in
+							}
+							change_variable = { 
+								name = trade_point_salted
+								divide = 100
+							}
+						}
 					}
 					else = { 
 						remove_variable = trade_point_salted
@@ -29686,6 +34930,19 @@ census.06 = {
 						change_variable = { 
 							name = trade_point_salt
 							divide = var:trade_cost
+						}
+						if = { 
+							limit = { 
+								has_variable = task_manage_stockpile
+							}
+							change_variable = { 
+								name = trade_point_salt
+								multiply = var:task_manage_stockpile.var:task_time_in
+							}
+							change_variable = { 
+								name = trade_point_salt
+								divide = 100
+							}
 						}
 					}
 					else = { 
@@ -29806,6 +35063,19 @@ census.06 = {
 							name = trade_point_mud
 							divide = var:trade_cost
 						}
+						if = { 
+							limit = { 
+								has_variable = task_manage_stockpile
+							}
+							change_variable = { 
+								name = trade_point_mud
+								multiply = var:task_manage_stockpile.var:task_time_in
+							}
+							change_variable = { 
+								name = trade_point_mud
+								divide = 100
+							}
+						}
 					}
 					else = { 
 						remove_variable = trade_point_mud
@@ -29924,6 +35194,19 @@ census.06 = {
 						change_variable = { 
 							name = trade_point_fuel
 							divide = var:trade_cost
+						}
+						if = { 
+							limit = { 
+								has_variable = task_manage_stockpile
+							}
+							change_variable = { 
+								name = trade_point_fuel
+								multiply = var:task_manage_stockpile.var:task_time_in
+							}
+							change_variable = { 
+								name = trade_point_fuel
+								divide = 100
+							}
 						}
 					}
 					else = { 
@@ -30044,6 +35327,19 @@ census.06 = {
 							name = trade_point_fiber
 							divide = var:trade_cost
 						}
+						if = { 
+							limit = { 
+								has_variable = task_manage_stockpile
+							}
+							change_variable = { 
+								name = trade_point_fiber
+								multiply = var:task_manage_stockpile.var:task_time_in
+							}
+							change_variable = { 
+								name = trade_point_fiber
+								divide = 100
+							}
+						}
 					}
 					else = { 
 						remove_variable = trade_point_fiber
@@ -30162,6 +35458,19 @@ census.06 = {
 						change_variable = { 
 							name = trade_point_timber
 							divide = var:trade_cost
+						}
+						if = { 
+							limit = { 
+								has_variable = task_manage_stockpile
+							}
+							change_variable = { 
+								name = trade_point_timber
+								multiply = var:task_manage_stockpile.var:task_time_in
+							}
+							change_variable = { 
+								name = trade_point_timber
+								divide = 100
+							}
 						}
 					}
 					else = { 
@@ -30282,6 +35591,19 @@ census.06 = {
 							name = trade_point_metal
 							divide = var:trade_cost
 						}
+						if = { 
+							limit = { 
+								has_variable = task_manage_stockpile
+							}
+							change_variable = { 
+								name = trade_point_metal
+								multiply = var:task_manage_stockpile.var:task_time_in
+							}
+							change_variable = { 
+								name = trade_point_metal
+								divide = 100
+							}
+						}
 					}
 					else = { 
 						remove_variable = trade_point_metal
@@ -30400,6 +35722,19 @@ census.06 = {
 						change_variable = { 
 							name = trade_point_exotics_w
 							divide = var:trade_cost
+						}
+						if = { 
+							limit = { 
+								has_variable = task_manage_stockpile
+							}
+							change_variable = { 
+								name = trade_point_exotics_w
+								multiply = var:task_manage_stockpile.var:task_time_in
+							}
+							change_variable = { 
+								name = trade_point_exotics_w
+								divide = 100
+							}
 						}
 					}
 					else = { 
@@ -30520,6 +35855,19 @@ census.06 = {
 							name = trade_point_exotics_e
 							divide = var:trade_cost
 						}
+						if = { 
+							limit = { 
+								has_variable = task_manage_stockpile
+							}
+							change_variable = { 
+								name = trade_point_exotics_e
+								multiply = var:task_manage_stockpile.var:task_time_in
+							}
+							change_variable = { 
+								name = trade_point_exotics_e
+								divide = 100
+							}
+						}
 					}
 					else = { 
 						remove_variable = trade_point_exotics_e
@@ -30638,6 +35986,19 @@ census.06 = {
 						change_variable = { 
 							name = trade_point_exotics_g
 							divide = var:trade_cost
+						}
+						if = { 
+							limit = { 
+								has_variable = task_manage_stockpile
+							}
+							change_variable = { 
+								name = trade_point_exotics_g
+								multiply = var:task_manage_stockpile.var:task_time_in
+							}
+							change_variable = { 
+								name = trade_point_exotics_g
+								divide = 100
+							}
 						}
 					}
 					else = { 
@@ -30758,6 +36119,19 @@ census.06 = {
 							name = trade_point_textile
 							divide = var:trade_cost
 						}
+						if = { 
+							limit = { 
+								has_variable = task_manage_stockpile
+							}
+							change_variable = { 
+								name = trade_point_textile
+								multiply = var:task_manage_stockpile.var:task_time_in
+							}
+							change_variable = { 
+								name = trade_point_textile
+								divide = 100
+							}
+						}
 					}
 					else = { 
 						remove_variable = trade_point_textile
@@ -30876,6 +36250,19 @@ census.06 = {
 						change_variable = { 
 							name = trade_point_pottery
 							divide = var:trade_cost
+						}
+						if = { 
+							limit = { 
+								has_variable = task_manage_stockpile
+							}
+							change_variable = { 
+								name = trade_point_pottery
+								multiply = var:task_manage_stockpile.var:task_time_in
+							}
+							change_variable = { 
+								name = trade_point_pottery
+								divide = 100
+							}
 						}
 					}
 					else = { 
@@ -30996,6 +36383,19 @@ census.06 = {
 							name = trade_point_tools
 							divide = var:trade_cost
 						}
+						if = { 
+							limit = { 
+								has_variable = task_manage_stockpile
+							}
+							change_variable = { 
+								name = trade_point_tools
+								multiply = var:task_manage_stockpile.var:task_time_in
+							}
+							change_variable = { 
+								name = trade_point_tools
+								divide = 100
+							}
+						}
 					}
 					else = { 
 						remove_variable = trade_point_tools
@@ -31114,6 +36514,19 @@ census.06 = {
 						change_variable = { 
 							name = trade_point_armaments
 							divide = var:trade_cost
+						}
+						if = { 
+							limit = { 
+								has_variable = task_manage_stockpile
+							}
+							change_variable = { 
+								name = trade_point_armaments
+								multiply = var:task_manage_stockpile.var:task_time_in
+							}
+							change_variable = { 
+								name = trade_point_armaments
+								divide = 100
+							}
 						}
 					}
 					else = { 
@@ -50885,6 +56298,19 @@ census.06 = {
 			}
 			if = { 
 				limit = { 
+					has_variable = task_manage_stockpile
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					multiply = var:task_manage_stockpile.var:task_time_in
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					divide = 100
+				}
+			}
+			if = { 
+				limit = { 
 					has_variable = trade_do_trade_t
 					has_variable = trade_do_trade_tt
 					var:trade_do_trade_t > 0
@@ -50977,6 +56403,19 @@ census.06 = {
 				change_variable = { 
 					name = trade_do_trade_tt
 					multiply = var:trade_do_trade_ttt
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					divide = 100
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = task_manage_stockpile
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					multiply = var:task_manage_stockpile.var:task_time_in
 				}
 				change_variable = { 
 					name = trade_do_trade_tt
@@ -51093,6 +56532,19 @@ census.06 = {
 			}
 			if = { 
 				limit = { 
+					has_variable = task_manage_stockpile
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					multiply = var:task_manage_stockpile.var:task_time_in
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					divide = 100
+				}
+			}
+			if = { 
+				limit = { 
 					has_variable = trade_do_trade_t
 					has_variable = trade_do_trade_tt
 					var:trade_do_trade_t > 0
@@ -51185,6 +56637,19 @@ census.06 = {
 				change_variable = { 
 					name = trade_do_trade_tt
 					multiply = var:trade_do_trade_ttt
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					divide = 100
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = task_manage_stockpile
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					multiply = var:task_manage_stockpile.var:task_time_in
 				}
 				change_variable = { 
 					name = trade_do_trade_tt
@@ -51301,6 +56766,19 @@ census.06 = {
 			}
 			if = { 
 				limit = { 
+					has_variable = task_manage_stockpile
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					multiply = var:task_manage_stockpile.var:task_time_in
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					divide = 100
+				}
+			}
+			if = { 
+				limit = { 
 					has_variable = trade_do_trade_t
 					has_variable = trade_do_trade_tt
 					var:trade_do_trade_t > 0
@@ -51393,6 +56871,19 @@ census.06 = {
 				change_variable = { 
 					name = trade_do_trade_tt
 					multiply = var:trade_do_trade_ttt
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					divide = 100
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = task_manage_stockpile
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					multiply = var:task_manage_stockpile.var:task_time_in
 				}
 				change_variable = { 
 					name = trade_do_trade_tt
@@ -51509,6 +57000,19 @@ census.06 = {
 			}
 			if = { 
 				limit = { 
+					has_variable = task_manage_stockpile
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					multiply = var:task_manage_stockpile.var:task_time_in
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					divide = 100
+				}
+			}
+			if = { 
+				limit = { 
 					has_variable = trade_do_trade_t
 					has_variable = trade_do_trade_tt
 					var:trade_do_trade_t > 0
@@ -51601,6 +57105,19 @@ census.06 = {
 				change_variable = { 
 					name = trade_do_trade_tt
 					multiply = var:trade_do_trade_ttt
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					divide = 100
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = task_manage_stockpile
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					multiply = var:task_manage_stockpile.var:task_time_in
 				}
 				change_variable = { 
 					name = trade_do_trade_tt
@@ -51717,6 +57234,19 @@ census.06 = {
 			}
 			if = { 
 				limit = { 
+					has_variable = task_manage_stockpile
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					multiply = var:task_manage_stockpile.var:task_time_in
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					divide = 100
+				}
+			}
+			if = { 
+				limit = { 
 					has_variable = trade_do_trade_t
 					has_variable = trade_do_trade_tt
 					var:trade_do_trade_t > 0
@@ -51809,6 +57339,19 @@ census.06 = {
 				change_variable = { 
 					name = trade_do_trade_tt
 					multiply = var:trade_do_trade_ttt
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					divide = 100
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = task_manage_stockpile
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					multiply = var:task_manage_stockpile.var:task_time_in
 				}
 				change_variable = { 
 					name = trade_do_trade_tt
@@ -51925,6 +57468,19 @@ census.06 = {
 			}
 			if = { 
 				limit = { 
+					has_variable = task_manage_stockpile
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					multiply = var:task_manage_stockpile.var:task_time_in
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					divide = 100
+				}
+			}
+			if = { 
+				limit = { 
 					has_variable = trade_do_trade_t
 					has_variable = trade_do_trade_tt
 					var:trade_do_trade_t > 0
@@ -52017,6 +57573,19 @@ census.06 = {
 				change_variable = { 
 					name = trade_do_trade_tt
 					multiply = var:trade_do_trade_ttt
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					divide = 100
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = task_manage_stockpile
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					multiply = var:task_manage_stockpile.var:task_time_in
 				}
 				change_variable = { 
 					name = trade_do_trade_tt
@@ -52133,6 +57702,19 @@ census.06 = {
 			}
 			if = { 
 				limit = { 
+					has_variable = task_manage_stockpile
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					multiply = var:task_manage_stockpile.var:task_time_in
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					divide = 100
+				}
+			}
+			if = { 
+				limit = { 
 					has_variable = trade_do_trade_t
 					has_variable = trade_do_trade_tt
 					var:trade_do_trade_t > 0
@@ -52225,6 +57807,19 @@ census.06 = {
 				change_variable = { 
 					name = trade_do_trade_tt
 					multiply = var:trade_do_trade_ttt
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					divide = 100
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = task_manage_stockpile
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					multiply = var:task_manage_stockpile.var:task_time_in
 				}
 				change_variable = { 
 					name = trade_do_trade_tt
@@ -52341,6 +57936,19 @@ census.06 = {
 			}
 			if = { 
 				limit = { 
+					has_variable = task_manage_stockpile
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					multiply = var:task_manage_stockpile.var:task_time_in
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					divide = 100
+				}
+			}
+			if = { 
+				limit = { 
 					has_variable = trade_do_trade_t
 					has_variable = trade_do_trade_tt
 					var:trade_do_trade_t > 0
@@ -52433,6 +58041,19 @@ census.06 = {
 				change_variable = { 
 					name = trade_do_trade_tt
 					multiply = var:trade_do_trade_ttt
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					divide = 100
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = task_manage_stockpile
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					multiply = var:task_manage_stockpile.var:task_time_in
 				}
 				change_variable = { 
 					name = trade_do_trade_tt
@@ -52549,6 +58170,19 @@ census.06 = {
 			}
 			if = { 
 				limit = { 
+					has_variable = task_manage_stockpile
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					multiply = var:task_manage_stockpile.var:task_time_in
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					divide = 100
+				}
+			}
+			if = { 
+				limit = { 
 					has_variable = trade_do_trade_t
 					has_variable = trade_do_trade_tt
 					var:trade_do_trade_t > 0
@@ -52641,6 +58275,19 @@ census.06 = {
 				change_variable = { 
 					name = trade_do_trade_tt
 					multiply = var:trade_do_trade_ttt
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					divide = 100
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = task_manage_stockpile
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					multiply = var:task_manage_stockpile.var:task_time_in
 				}
 				change_variable = { 
 					name = trade_do_trade_tt
@@ -52757,6 +58404,19 @@ census.06 = {
 			}
 			if = { 
 				limit = { 
+					has_variable = task_manage_stockpile
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					multiply = var:task_manage_stockpile.var:task_time_in
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					divide = 100
+				}
+			}
+			if = { 
+				limit = { 
 					has_variable = trade_do_trade_t
 					has_variable = trade_do_trade_tt
 					var:trade_do_trade_t > 0
@@ -52849,6 +58509,19 @@ census.06 = {
 				change_variable = { 
 					name = trade_do_trade_tt
 					multiply = var:trade_do_trade_ttt
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					divide = 100
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = task_manage_stockpile
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					multiply = var:task_manage_stockpile.var:task_time_in
 				}
 				change_variable = { 
 					name = trade_do_trade_tt
@@ -52965,6 +58638,19 @@ census.06 = {
 			}
 			if = { 
 				limit = { 
+					has_variable = task_manage_stockpile
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					multiply = var:task_manage_stockpile.var:task_time_in
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					divide = 100
+				}
+			}
+			if = { 
+				limit = { 
 					has_variable = trade_do_trade_t
 					has_variable = trade_do_trade_tt
 					var:trade_do_trade_t > 0
@@ -53057,6 +58743,19 @@ census.06 = {
 				change_variable = { 
 					name = trade_do_trade_tt
 					multiply = var:trade_do_trade_ttt
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					divide = 100
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = task_manage_stockpile
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					multiply = var:task_manage_stockpile.var:task_time_in
 				}
 				change_variable = { 
 					name = trade_do_trade_tt
@@ -53173,6 +58872,19 @@ census.06 = {
 			}
 			if = { 
 				limit = { 
+					has_variable = task_manage_stockpile
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					multiply = var:task_manage_stockpile.var:task_time_in
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					divide = 100
+				}
+			}
+			if = { 
+				limit = { 
 					has_variable = trade_do_trade_t
 					has_variable = trade_do_trade_tt
 					var:trade_do_trade_t > 0
@@ -53265,6 +58977,19 @@ census.06 = {
 				change_variable = { 
 					name = trade_do_trade_tt
 					multiply = var:trade_do_trade_ttt
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					divide = 100
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = task_manage_stockpile
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					multiply = var:task_manage_stockpile.var:task_time_in
 				}
 				change_variable = { 
 					name = trade_do_trade_tt
@@ -53381,6 +59106,19 @@ census.06 = {
 			}
 			if = { 
 				limit = { 
+					has_variable = task_manage_stockpile
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					multiply = var:task_manage_stockpile.var:task_time_in
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					divide = 100
+				}
+			}
+			if = { 
+				limit = { 
 					has_variable = trade_do_trade_t
 					has_variable = trade_do_trade_tt
 					var:trade_do_trade_t > 0
@@ -53473,6 +59211,19 @@ census.06 = {
 				change_variable = { 
 					name = trade_do_trade_tt
 					multiply = var:trade_do_trade_ttt
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					divide = 100
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = task_manage_stockpile
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					multiply = var:task_manage_stockpile.var:task_time_in
 				}
 				change_variable = { 
 					name = trade_do_trade_tt
@@ -53589,6 +59340,19 @@ census.06 = {
 			}
 			if = { 
 				limit = { 
+					has_variable = task_manage_stockpile
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					multiply = var:task_manage_stockpile.var:task_time_in
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					divide = 100
+				}
+			}
+			if = { 
+				limit = { 
 					has_variable = trade_do_trade_t
 					has_variable = trade_do_trade_tt
 					var:trade_do_trade_t > 0
@@ -53681,6 +59445,19 @@ census.06 = {
 				change_variable = { 
 					name = trade_do_trade_tt
 					multiply = var:trade_do_trade_ttt
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					divide = 100
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = task_manage_stockpile
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					multiply = var:task_manage_stockpile.var:task_time_in
 				}
 				change_variable = { 
 					name = trade_do_trade_tt
@@ -53797,6 +59574,19 @@ census.06 = {
 			}
 			if = { 
 				limit = { 
+					has_variable = task_manage_stockpile
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					multiply = var:task_manage_stockpile.var:task_time_in
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					divide = 100
+				}
+			}
+			if = { 
+				limit = { 
 					has_variable = trade_do_trade_t
 					has_variable = trade_do_trade_tt
 					var:trade_do_trade_t > 0
@@ -53889,6 +59679,19 @@ census.06 = {
 				change_variable = { 
 					name = trade_do_trade_tt
 					multiply = var:trade_do_trade_ttt
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					divide = 100
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = task_manage_stockpile
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					multiply = var:task_manage_stockpile.var:task_time_in
 				}
 				change_variable = { 
 					name = trade_do_trade_tt
@@ -54005,6 +59808,19 @@ census.06 = {
 			}
 			if = { 
 				limit = { 
+					has_variable = task_manage_stockpile
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					multiply = var:task_manage_stockpile.var:task_time_in
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					divide = 100
+				}
+			}
+			if = { 
+				limit = { 
 					has_variable = trade_do_trade_t
 					has_variable = trade_do_trade_tt
 					var:trade_do_trade_t > 0
@@ -54097,6 +59913,19 @@ census.06 = {
 				change_variable = { 
 					name = trade_do_trade_tt
 					multiply = var:trade_do_trade_ttt
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					divide = 100
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = task_manage_stockpile
+				}
+				change_variable = { 
+					name = trade_do_trade_tt
+					multiply = var:task_manage_stockpile.var:task_time_in
 				}
 				change_variable = { 
 					name = trade_do_trade_tt
@@ -77161,6 +82990,10 @@ census.10 = {
 					name = mil_maa
 					multiply = 0.998
 				}
+				set_variable = { 
+					name = mil_maa_tt
+					value = 0
+				}
 				if = { 
 					limit = { 
 						has_variable = mil_maa_recruit_food
@@ -77195,7 +83028,7 @@ census.10 = {
 						divide = 10
 					}
 					change_variable = { 
-						name = mil_maa
+						name = mil_maa_tt
 						add = var:mil_main_t
 					}
 				}
@@ -77233,7 +83066,7 @@ census.10 = {
 						divide = 10
 					}
 					change_variable = { 
-						name = mil_maa
+						name = mil_maa_tt
 						add = var:mil_main_t
 					}
 				}
@@ -77271,7 +83104,7 @@ census.10 = {
 						divide = 10
 					}
 					change_variable = { 
-						name = mil_maa
+						name = mil_maa_tt
 						add = var:mil_main_t
 					}
 				}
@@ -77309,7 +83142,7 @@ census.10 = {
 						divide = 10
 					}
 					change_variable = { 
-						name = mil_maa
+						name = mil_maa_tt
 						add = var:mil_main_t
 					}
 				}
@@ -77347,7 +83180,7 @@ census.10 = {
 						divide = 10
 					}
 					change_variable = { 
-						name = mil_maa
+						name = mil_maa_tt
 						add = var:mil_main_t
 					}
 				}
@@ -77385,7 +83218,7 @@ census.10 = {
 						divide = 10
 					}
 					change_variable = { 
-						name = mil_maa
+						name = mil_maa_tt
 						add = var:mil_main_t
 					}
 				}
@@ -77423,7 +83256,7 @@ census.10 = {
 						divide = 10
 					}
 					change_variable = { 
-						name = mil_maa
+						name = mil_maa_tt
 						add = var:mil_main_t
 					}
 				}
@@ -77461,7 +83294,7 @@ census.10 = {
 						divide = 10
 					}
 					change_variable = { 
-						name = mil_maa
+						name = mil_maa_tt
 						add = var:mil_main_t
 					}
 				}
@@ -77499,7 +83332,7 @@ census.10 = {
 						divide = 10
 					}
 					change_variable = { 
-						name = mil_maa
+						name = mil_maa_tt
 						add = var:mil_main_t
 					}
 				}
@@ -77537,7 +83370,7 @@ census.10 = {
 						divide = 10
 					}
 					change_variable = { 
-						name = mil_maa
+						name = mil_maa_tt
 						add = var:mil_main_t
 					}
 				}
@@ -77575,7 +83408,7 @@ census.10 = {
 						divide = 10
 					}
 					change_variable = { 
-						name = mil_maa
+						name = mil_maa_tt
 						add = var:mil_main_t
 					}
 				}
@@ -77613,7 +83446,7 @@ census.10 = {
 						divide = 10
 					}
 					change_variable = { 
-						name = mil_maa
+						name = mil_maa_tt
 						add = var:mil_main_t
 					}
 				}
@@ -77651,7 +83484,7 @@ census.10 = {
 						divide = 10
 					}
 					change_variable = { 
-						name = mil_maa
+						name = mil_maa_tt
 						add = var:mil_main_t
 					}
 				}
@@ -77689,7 +83522,7 @@ census.10 = {
 						divide = 10
 					}
 					change_variable = { 
-						name = mil_maa
+						name = mil_maa_tt
 						add = var:mil_main_t
 					}
 				}
@@ -77727,7 +83560,7 @@ census.10 = {
 						divide = 10
 					}
 					change_variable = { 
-						name = mil_maa
+						name = mil_maa_tt
 						add = var:mil_main_t
 					}
 				}
@@ -77765,11 +83598,29 @@ census.10 = {
 						divide = 10
 					}
 					change_variable = { 
-						name = mil_maa
+						name = mil_maa_tt
 						add = var:mil_main_t
 					}
 				}
+				if = { 
+					limit = { 
+						has_variable = task_manage_logistics
+					}
+					change_variable = { 
+						name = mil_maa_tt
+						multiply = var:task_manage_logistics.var:task_time_in
+					}
+					change_variable = { 
+						name = mil_maa_tt
+						divide = 100
+					}
+				}
+				change_variable = { 
+					name = mil_maa
+					add = var:mil_maa_tt
+				}
 				remove_variable = mil_main_t
+				remove_variable = mil_maa_tt
 				set_variable = { 
 					name = mil_maintain_maa_t
 					value = 0
@@ -79996,6 +85847,19 @@ census.10 = {
 						value = 10
 					}
 				}
+				if = { 
+					limit = { 
+						has_variable = task_manage_logistics
+					}
+					change_variable = { 
+						name = mil_maintain
+						multiply = var:task_manage_logistics.var:task_time_in
+					}
+					change_variable = { 
+						name = mil_maintain
+						divide = 100
+					}
+				}
 				remove_variable = mil_maintain_t
 				remove_variable = mil_maintain_tt
 			}
@@ -82217,6 +88081,10 @@ census.12 = {
 				name = mil_maa
 				multiply = 0.998
 			}
+			set_variable = { 
+				name = mil_maa_tt
+				value = 0
+			}
 			if = { 
 				limit = { 
 					has_variable = mil_maa_recruit_food
@@ -82251,7 +88119,7 @@ census.12 = {
 					divide = 10
 				}
 				change_variable = { 
-					name = mil_maa
+					name = mil_maa_tt
 					add = var:mil_main_t
 				}
 			}
@@ -82289,7 +88157,7 @@ census.12 = {
 					divide = 10
 				}
 				change_variable = { 
-					name = mil_maa
+					name = mil_maa_tt
 					add = var:mil_main_t
 				}
 			}
@@ -82327,7 +88195,7 @@ census.12 = {
 					divide = 10
 				}
 				change_variable = { 
-					name = mil_maa
+					name = mil_maa_tt
 					add = var:mil_main_t
 				}
 			}
@@ -82365,7 +88233,7 @@ census.12 = {
 					divide = 10
 				}
 				change_variable = { 
-					name = mil_maa
+					name = mil_maa_tt
 					add = var:mil_main_t
 				}
 			}
@@ -82403,7 +88271,7 @@ census.12 = {
 					divide = 10
 				}
 				change_variable = { 
-					name = mil_maa
+					name = mil_maa_tt
 					add = var:mil_main_t
 				}
 			}
@@ -82441,7 +88309,7 @@ census.12 = {
 					divide = 10
 				}
 				change_variable = { 
-					name = mil_maa
+					name = mil_maa_tt
 					add = var:mil_main_t
 				}
 			}
@@ -82479,7 +88347,7 @@ census.12 = {
 					divide = 10
 				}
 				change_variable = { 
-					name = mil_maa
+					name = mil_maa_tt
 					add = var:mil_main_t
 				}
 			}
@@ -82517,7 +88385,7 @@ census.12 = {
 					divide = 10
 				}
 				change_variable = { 
-					name = mil_maa
+					name = mil_maa_tt
 					add = var:mil_main_t
 				}
 			}
@@ -82555,7 +88423,7 @@ census.12 = {
 					divide = 10
 				}
 				change_variable = { 
-					name = mil_maa
+					name = mil_maa_tt
 					add = var:mil_main_t
 				}
 			}
@@ -82593,7 +88461,7 @@ census.12 = {
 					divide = 10
 				}
 				change_variable = { 
-					name = mil_maa
+					name = mil_maa_tt
 					add = var:mil_main_t
 				}
 			}
@@ -82631,7 +88499,7 @@ census.12 = {
 					divide = 10
 				}
 				change_variable = { 
-					name = mil_maa
+					name = mil_maa_tt
 					add = var:mil_main_t
 				}
 			}
@@ -82669,7 +88537,7 @@ census.12 = {
 					divide = 10
 				}
 				change_variable = { 
-					name = mil_maa
+					name = mil_maa_tt
 					add = var:mil_main_t
 				}
 			}
@@ -82707,7 +88575,7 @@ census.12 = {
 					divide = 10
 				}
 				change_variable = { 
-					name = mil_maa
+					name = mil_maa_tt
 					add = var:mil_main_t
 				}
 			}
@@ -82745,7 +88613,7 @@ census.12 = {
 					divide = 10
 				}
 				change_variable = { 
-					name = mil_maa
+					name = mil_maa_tt
 					add = var:mil_main_t
 				}
 			}
@@ -82783,7 +88651,7 @@ census.12 = {
 					divide = 10
 				}
 				change_variable = { 
-					name = mil_maa
+					name = mil_maa_tt
 					add = var:mil_main_t
 				}
 			}
@@ -82821,11 +88689,29 @@ census.12 = {
 					divide = 10
 				}
 				change_variable = { 
-					name = mil_maa
+					name = mil_maa_tt
 					add = var:mil_main_t
 				}
 			}
+			if = { 
+				limit = { 
+					has_variable = task_manage_logistics
+				}
+				change_variable = { 
+					name = mil_maa_tt
+					multiply = var:task_manage_logistics.var:task_time_in
+				}
+				change_variable = { 
+					name = mil_maa_tt
+					divide = 100
+				}
+			}
+			change_variable = { 
+				name = mil_maa
+				add = var:mil_maa_tt
+			}
 			remove_variable = mil_main_t
+			remove_variable = mil_maa_tt
 			set_variable = { 
 				name = mil_maintain_maa_t
 				value = 0
@@ -85050,6 +90936,19 @@ census.12 = {
 				set_variable = { 
 					name = mil_maintain
 					value = 10
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = task_manage_logistics
+				}
+				change_variable = { 
+					name = mil_maintain
+					multiply = var:task_manage_logistics.var:task_time_in
+				}
+				change_variable = { 
+					name = mil_maintain
+					divide = 100
 				}
 			}
 			remove_variable = mil_maintain_t

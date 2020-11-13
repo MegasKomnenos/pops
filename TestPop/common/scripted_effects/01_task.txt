@@ -128,6 +128,26 @@ task_death_handler = {
 	}
 }
 
+task_ai = {
+	every_ruler = {
+		limit = {
+			is_character = yes
+			is_landed = yes
+			
+			has_variable_list = task_tasks
+			
+			variable_list_size = { name = task_tasks value >= 1 }
+			
+			OR = {
+				is_ai = yes
+				
+				has_global_variable = sim_i
+			}
+		}
+		
+	}
+}
+
 task_main = {
 	every_ruler = {
 		limit = {
@@ -493,10 +513,16 @@ task_do_pulse_manage_domain = {
 task_do_pulse_manage_realm = {
 }
 task_do_pulse_manage_logistics = {
+	var:task_owner = {
+		set_variable = { name = task_manage_logistics value = prev }
+	}
 }
 task_do_pulse_manage_court = {
 }
 task_do_pulse_manage_stockpile = {
+	var:task_owner = {
+		set_variable = { name = task_manage_stockpile value = prev }
+	}
 }
 task_do_pulse_manage_oversight = {
 }

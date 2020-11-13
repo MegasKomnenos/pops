@@ -11229,6 +11229,19 @@ while = {
 					name = trade_point_food
 					divide = var:trade_cost
 				}
+				if = { 
+					limit = { 
+						has_variable = task_manage_stockpile
+					}
+					change_variable = { 
+						name = trade_point_food
+						multiply = var:task_manage_stockpile.var:task_time_in
+					}
+					change_variable = { 
+						name = trade_point_food
+						divide = 100
+					}
+				}
 			}
 			else = { 
 				remove_variable = trade_point_food
@@ -11347,6 +11360,19 @@ while = {
 				change_variable = { 
 					name = trade_point_cereal
 					divide = var:trade_cost
+				}
+				if = { 
+					limit = { 
+						has_variable = task_manage_stockpile
+					}
+					change_variable = { 
+						name = trade_point_cereal
+						multiply = var:task_manage_stockpile.var:task_time_in
+					}
+					change_variable = { 
+						name = trade_point_cereal
+						divide = 100
+					}
 				}
 			}
 			else = { 
@@ -11467,6 +11493,19 @@ while = {
 					name = trade_point_salted
 					divide = var:trade_cost
 				}
+				if = { 
+					limit = { 
+						has_variable = task_manage_stockpile
+					}
+					change_variable = { 
+						name = trade_point_salted
+						multiply = var:task_manage_stockpile.var:task_time_in
+					}
+					change_variable = { 
+						name = trade_point_salted
+						divide = 100
+					}
+				}
 			}
 			else = { 
 				remove_variable = trade_point_salted
@@ -11585,6 +11624,19 @@ while = {
 				change_variable = { 
 					name = trade_point_salt
 					divide = var:trade_cost
+				}
+				if = { 
+					limit = { 
+						has_variable = task_manage_stockpile
+					}
+					change_variable = { 
+						name = trade_point_salt
+						multiply = var:task_manage_stockpile.var:task_time_in
+					}
+					change_variable = { 
+						name = trade_point_salt
+						divide = 100
+					}
 				}
 			}
 			else = { 
@@ -11705,6 +11757,19 @@ while = {
 					name = trade_point_mud
 					divide = var:trade_cost
 				}
+				if = { 
+					limit = { 
+						has_variable = task_manage_stockpile
+					}
+					change_variable = { 
+						name = trade_point_mud
+						multiply = var:task_manage_stockpile.var:task_time_in
+					}
+					change_variable = { 
+						name = trade_point_mud
+						divide = 100
+					}
+				}
 			}
 			else = { 
 				remove_variable = trade_point_mud
@@ -11823,6 +11888,19 @@ while = {
 				change_variable = { 
 					name = trade_point_fuel
 					divide = var:trade_cost
+				}
+				if = { 
+					limit = { 
+						has_variable = task_manage_stockpile
+					}
+					change_variable = { 
+						name = trade_point_fuel
+						multiply = var:task_manage_stockpile.var:task_time_in
+					}
+					change_variable = { 
+						name = trade_point_fuel
+						divide = 100
+					}
 				}
 			}
 			else = { 
@@ -11943,6 +12021,19 @@ while = {
 					name = trade_point_fiber
 					divide = var:trade_cost
 				}
+				if = { 
+					limit = { 
+						has_variable = task_manage_stockpile
+					}
+					change_variable = { 
+						name = trade_point_fiber
+						multiply = var:task_manage_stockpile.var:task_time_in
+					}
+					change_variable = { 
+						name = trade_point_fiber
+						divide = 100
+					}
+				}
 			}
 			else = { 
 				remove_variable = trade_point_fiber
@@ -12061,6 +12152,19 @@ while = {
 				change_variable = { 
 					name = trade_point_timber
 					divide = var:trade_cost
+				}
+				if = { 
+					limit = { 
+						has_variable = task_manage_stockpile
+					}
+					change_variable = { 
+						name = trade_point_timber
+						multiply = var:task_manage_stockpile.var:task_time_in
+					}
+					change_variable = { 
+						name = trade_point_timber
+						divide = 100
+					}
 				}
 			}
 			else = { 
@@ -12181,6 +12285,19 @@ while = {
 					name = trade_point_metal
 					divide = var:trade_cost
 				}
+				if = { 
+					limit = { 
+						has_variable = task_manage_stockpile
+					}
+					change_variable = { 
+						name = trade_point_metal
+						multiply = var:task_manage_stockpile.var:task_time_in
+					}
+					change_variable = { 
+						name = trade_point_metal
+						divide = 100
+					}
+				}
 			}
 			else = { 
 				remove_variable = trade_point_metal
@@ -12299,6 +12416,19 @@ while = {
 				change_variable = { 
 					name = trade_point_exotics_w
 					divide = var:trade_cost
+				}
+				if = { 
+					limit = { 
+						has_variable = task_manage_stockpile
+					}
+					change_variable = { 
+						name = trade_point_exotics_w
+						multiply = var:task_manage_stockpile.var:task_time_in
+					}
+					change_variable = { 
+						name = trade_point_exotics_w
+						divide = 100
+					}
 				}
 			}
 			else = { 
@@ -12419,6 +12549,19 @@ while = {
 					name = trade_point_exotics_e
 					divide = var:trade_cost
 				}
+				if = { 
+					limit = { 
+						has_variable = task_manage_stockpile
+					}
+					change_variable = { 
+						name = trade_point_exotics_e
+						multiply = var:task_manage_stockpile.var:task_time_in
+					}
+					change_variable = { 
+						name = trade_point_exotics_e
+						divide = 100
+					}
+				}
 			}
 			else = { 
 				remove_variable = trade_point_exotics_e
@@ -12537,6 +12680,19 @@ while = {
 				change_variable = { 
 					name = trade_point_exotics_g
 					divide = var:trade_cost
+				}
+				if = { 
+					limit = { 
+						has_variable = task_manage_stockpile
+					}
+					change_variable = { 
+						name = trade_point_exotics_g
+						multiply = var:task_manage_stockpile.var:task_time_in
+					}
+					change_variable = { 
+						name = trade_point_exotics_g
+						divide = 100
+					}
 				}
 			}
 			else = { 
@@ -12657,6 +12813,19 @@ while = {
 					name = trade_point_textile
 					divide = var:trade_cost
 				}
+				if = { 
+					limit = { 
+						has_variable = task_manage_stockpile
+					}
+					change_variable = { 
+						name = trade_point_textile
+						multiply = var:task_manage_stockpile.var:task_time_in
+					}
+					change_variable = { 
+						name = trade_point_textile
+						divide = 100
+					}
+				}
 			}
 			else = { 
 				remove_variable = trade_point_textile
@@ -12775,6 +12944,19 @@ while = {
 				change_variable = { 
 					name = trade_point_pottery
 					divide = var:trade_cost
+				}
+				if = { 
+					limit = { 
+						has_variable = task_manage_stockpile
+					}
+					change_variable = { 
+						name = trade_point_pottery
+						multiply = var:task_manage_stockpile.var:task_time_in
+					}
+					change_variable = { 
+						name = trade_point_pottery
+						divide = 100
+					}
 				}
 			}
 			else = { 
@@ -12895,6 +13077,19 @@ while = {
 					name = trade_point_tools
 					divide = var:trade_cost
 				}
+				if = { 
+					limit = { 
+						has_variable = task_manage_stockpile
+					}
+					change_variable = { 
+						name = trade_point_tools
+						multiply = var:task_manage_stockpile.var:task_time_in
+					}
+					change_variable = { 
+						name = trade_point_tools
+						divide = 100
+					}
+				}
 			}
 			else = { 
 				remove_variable = trade_point_tools
@@ -13013,6 +13208,19 @@ while = {
 				change_variable = { 
 					name = trade_point_armaments
 					divide = var:trade_cost
+				}
+				if = { 
+					limit = { 
+						has_variable = task_manage_stockpile
+					}
+					change_variable = { 
+						name = trade_point_armaments
+						multiply = var:task_manage_stockpile.var:task_time_in
+					}
+					change_variable = { 
+						name = trade_point_armaments
+						divide = 100
+					}
 				}
 			}
 			else = { 
@@ -32784,6 +32992,19 @@ every_ruler = {
 	}
 	if = { 
 		limit = { 
+			has_variable = task_manage_stockpile
+		}
+		change_variable = { 
+			name = trade_do_trade_tt
+			multiply = var:task_manage_stockpile.var:task_time_in
+		}
+		change_variable = { 
+			name = trade_do_trade_tt
+			divide = 100
+		}
+	}
+	if = { 
+		limit = { 
 			has_variable = trade_do_trade_t
 			has_variable = trade_do_trade_tt
 			var:trade_do_trade_t > 0
@@ -32876,6 +33097,19 @@ every_ruler = {
 		change_variable = { 
 			name = trade_do_trade_tt
 			multiply = var:trade_do_trade_ttt
+		}
+		change_variable = { 
+			name = trade_do_trade_tt
+			divide = 100
+		}
+	}
+	if = { 
+		limit = { 
+			has_variable = task_manage_stockpile
+		}
+		change_variable = { 
+			name = trade_do_trade_tt
+			multiply = var:task_manage_stockpile.var:task_time_in
 		}
 		change_variable = { 
 			name = trade_do_trade_tt
@@ -32992,6 +33226,19 @@ every_ruler = {
 	}
 	if = { 
 		limit = { 
+			has_variable = task_manage_stockpile
+		}
+		change_variable = { 
+			name = trade_do_trade_tt
+			multiply = var:task_manage_stockpile.var:task_time_in
+		}
+		change_variable = { 
+			name = trade_do_trade_tt
+			divide = 100
+		}
+	}
+	if = { 
+		limit = { 
 			has_variable = trade_do_trade_t
 			has_variable = trade_do_trade_tt
 			var:trade_do_trade_t > 0
@@ -33084,6 +33331,19 @@ every_ruler = {
 		change_variable = { 
 			name = trade_do_trade_tt
 			multiply = var:trade_do_trade_ttt
+		}
+		change_variable = { 
+			name = trade_do_trade_tt
+			divide = 100
+		}
+	}
+	if = { 
+		limit = { 
+			has_variable = task_manage_stockpile
+		}
+		change_variable = { 
+			name = trade_do_trade_tt
+			multiply = var:task_manage_stockpile.var:task_time_in
 		}
 		change_variable = { 
 			name = trade_do_trade_tt
@@ -33200,6 +33460,19 @@ every_ruler = {
 	}
 	if = { 
 		limit = { 
+			has_variable = task_manage_stockpile
+		}
+		change_variable = { 
+			name = trade_do_trade_tt
+			multiply = var:task_manage_stockpile.var:task_time_in
+		}
+		change_variable = { 
+			name = trade_do_trade_tt
+			divide = 100
+		}
+	}
+	if = { 
+		limit = { 
 			has_variable = trade_do_trade_t
 			has_variable = trade_do_trade_tt
 			var:trade_do_trade_t > 0
@@ -33292,6 +33565,19 @@ every_ruler = {
 		change_variable = { 
 			name = trade_do_trade_tt
 			multiply = var:trade_do_trade_ttt
+		}
+		change_variable = { 
+			name = trade_do_trade_tt
+			divide = 100
+		}
+	}
+	if = { 
+		limit = { 
+			has_variable = task_manage_stockpile
+		}
+		change_variable = { 
+			name = trade_do_trade_tt
+			multiply = var:task_manage_stockpile.var:task_time_in
 		}
 		change_variable = { 
 			name = trade_do_trade_tt
@@ -33408,6 +33694,19 @@ every_ruler = {
 	}
 	if = { 
 		limit = { 
+			has_variable = task_manage_stockpile
+		}
+		change_variable = { 
+			name = trade_do_trade_tt
+			multiply = var:task_manage_stockpile.var:task_time_in
+		}
+		change_variable = { 
+			name = trade_do_trade_tt
+			divide = 100
+		}
+	}
+	if = { 
+		limit = { 
 			has_variable = trade_do_trade_t
 			has_variable = trade_do_trade_tt
 			var:trade_do_trade_t > 0
@@ -33500,6 +33799,19 @@ every_ruler = {
 		change_variable = { 
 			name = trade_do_trade_tt
 			multiply = var:trade_do_trade_ttt
+		}
+		change_variable = { 
+			name = trade_do_trade_tt
+			divide = 100
+		}
+	}
+	if = { 
+		limit = { 
+			has_variable = task_manage_stockpile
+		}
+		change_variable = { 
+			name = trade_do_trade_tt
+			multiply = var:task_manage_stockpile.var:task_time_in
 		}
 		change_variable = { 
 			name = trade_do_trade_tt
@@ -33616,6 +33928,19 @@ every_ruler = {
 	}
 	if = { 
 		limit = { 
+			has_variable = task_manage_stockpile
+		}
+		change_variable = { 
+			name = trade_do_trade_tt
+			multiply = var:task_manage_stockpile.var:task_time_in
+		}
+		change_variable = { 
+			name = trade_do_trade_tt
+			divide = 100
+		}
+	}
+	if = { 
+		limit = { 
 			has_variable = trade_do_trade_t
 			has_variable = trade_do_trade_tt
 			var:trade_do_trade_t > 0
@@ -33708,6 +34033,19 @@ every_ruler = {
 		change_variable = { 
 			name = trade_do_trade_tt
 			multiply = var:trade_do_trade_ttt
+		}
+		change_variable = { 
+			name = trade_do_trade_tt
+			divide = 100
+		}
+	}
+	if = { 
+		limit = { 
+			has_variable = task_manage_stockpile
+		}
+		change_variable = { 
+			name = trade_do_trade_tt
+			multiply = var:task_manage_stockpile.var:task_time_in
 		}
 		change_variable = { 
 			name = trade_do_trade_tt
@@ -33824,6 +34162,19 @@ every_ruler = {
 	}
 	if = { 
 		limit = { 
+			has_variable = task_manage_stockpile
+		}
+		change_variable = { 
+			name = trade_do_trade_tt
+			multiply = var:task_manage_stockpile.var:task_time_in
+		}
+		change_variable = { 
+			name = trade_do_trade_tt
+			divide = 100
+		}
+	}
+	if = { 
+		limit = { 
 			has_variable = trade_do_trade_t
 			has_variable = trade_do_trade_tt
 			var:trade_do_trade_t > 0
@@ -33916,6 +34267,19 @@ every_ruler = {
 		change_variable = { 
 			name = trade_do_trade_tt
 			multiply = var:trade_do_trade_ttt
+		}
+		change_variable = { 
+			name = trade_do_trade_tt
+			divide = 100
+		}
+	}
+	if = { 
+		limit = { 
+			has_variable = task_manage_stockpile
+		}
+		change_variable = { 
+			name = trade_do_trade_tt
+			multiply = var:task_manage_stockpile.var:task_time_in
 		}
 		change_variable = { 
 			name = trade_do_trade_tt
@@ -34032,6 +34396,19 @@ every_ruler = {
 	}
 	if = { 
 		limit = { 
+			has_variable = task_manage_stockpile
+		}
+		change_variable = { 
+			name = trade_do_trade_tt
+			multiply = var:task_manage_stockpile.var:task_time_in
+		}
+		change_variable = { 
+			name = trade_do_trade_tt
+			divide = 100
+		}
+	}
+	if = { 
+		limit = { 
 			has_variable = trade_do_trade_t
 			has_variable = trade_do_trade_tt
 			var:trade_do_trade_t > 0
@@ -34124,6 +34501,19 @@ every_ruler = {
 		change_variable = { 
 			name = trade_do_trade_tt
 			multiply = var:trade_do_trade_ttt
+		}
+		change_variable = { 
+			name = trade_do_trade_tt
+			divide = 100
+		}
+	}
+	if = { 
+		limit = { 
+			has_variable = task_manage_stockpile
+		}
+		change_variable = { 
+			name = trade_do_trade_tt
+			multiply = var:task_manage_stockpile.var:task_time_in
 		}
 		change_variable = { 
 			name = trade_do_trade_tt
@@ -34240,6 +34630,19 @@ every_ruler = {
 	}
 	if = { 
 		limit = { 
+			has_variable = task_manage_stockpile
+		}
+		change_variable = { 
+			name = trade_do_trade_tt
+			multiply = var:task_manage_stockpile.var:task_time_in
+		}
+		change_variable = { 
+			name = trade_do_trade_tt
+			divide = 100
+		}
+	}
+	if = { 
+		limit = { 
 			has_variable = trade_do_trade_t
 			has_variable = trade_do_trade_tt
 			var:trade_do_trade_t > 0
@@ -34332,6 +34735,19 @@ every_ruler = {
 		change_variable = { 
 			name = trade_do_trade_tt
 			multiply = var:trade_do_trade_ttt
+		}
+		change_variable = { 
+			name = trade_do_trade_tt
+			divide = 100
+		}
+	}
+	if = { 
+		limit = { 
+			has_variable = task_manage_stockpile
+		}
+		change_variable = { 
+			name = trade_do_trade_tt
+			multiply = var:task_manage_stockpile.var:task_time_in
 		}
 		change_variable = { 
 			name = trade_do_trade_tt
@@ -34448,6 +34864,19 @@ every_ruler = {
 	}
 	if = { 
 		limit = { 
+			has_variable = task_manage_stockpile
+		}
+		change_variable = { 
+			name = trade_do_trade_tt
+			multiply = var:task_manage_stockpile.var:task_time_in
+		}
+		change_variable = { 
+			name = trade_do_trade_tt
+			divide = 100
+		}
+	}
+	if = { 
+		limit = { 
 			has_variable = trade_do_trade_t
 			has_variable = trade_do_trade_tt
 			var:trade_do_trade_t > 0
@@ -34540,6 +34969,19 @@ every_ruler = {
 		change_variable = { 
 			name = trade_do_trade_tt
 			multiply = var:trade_do_trade_ttt
+		}
+		change_variable = { 
+			name = trade_do_trade_tt
+			divide = 100
+		}
+	}
+	if = { 
+		limit = { 
+			has_variable = task_manage_stockpile
+		}
+		change_variable = { 
+			name = trade_do_trade_tt
+			multiply = var:task_manage_stockpile.var:task_time_in
 		}
 		change_variable = { 
 			name = trade_do_trade_tt
@@ -34656,6 +35098,19 @@ every_ruler = {
 	}
 	if = { 
 		limit = { 
+			has_variable = task_manage_stockpile
+		}
+		change_variable = { 
+			name = trade_do_trade_tt
+			multiply = var:task_manage_stockpile.var:task_time_in
+		}
+		change_variable = { 
+			name = trade_do_trade_tt
+			divide = 100
+		}
+	}
+	if = { 
+		limit = { 
 			has_variable = trade_do_trade_t
 			has_variable = trade_do_trade_tt
 			var:trade_do_trade_t > 0
@@ -34748,6 +35203,19 @@ every_ruler = {
 		change_variable = { 
 			name = trade_do_trade_tt
 			multiply = var:trade_do_trade_ttt
+		}
+		change_variable = { 
+			name = trade_do_trade_tt
+			divide = 100
+		}
+	}
+	if = { 
+		limit = { 
+			has_variable = task_manage_stockpile
+		}
+		change_variable = { 
+			name = trade_do_trade_tt
+			multiply = var:task_manage_stockpile.var:task_time_in
 		}
 		change_variable = { 
 			name = trade_do_trade_tt
@@ -34864,6 +35332,19 @@ every_ruler = {
 	}
 	if = { 
 		limit = { 
+			has_variable = task_manage_stockpile
+		}
+		change_variable = { 
+			name = trade_do_trade_tt
+			multiply = var:task_manage_stockpile.var:task_time_in
+		}
+		change_variable = { 
+			name = trade_do_trade_tt
+			divide = 100
+		}
+	}
+	if = { 
+		limit = { 
 			has_variable = trade_do_trade_t
 			has_variable = trade_do_trade_tt
 			var:trade_do_trade_t > 0
@@ -34956,6 +35437,19 @@ every_ruler = {
 		change_variable = { 
 			name = trade_do_trade_tt
 			multiply = var:trade_do_trade_ttt
+		}
+		change_variable = { 
+			name = trade_do_trade_tt
+			divide = 100
+		}
+	}
+	if = { 
+		limit = { 
+			has_variable = task_manage_stockpile
+		}
+		change_variable = { 
+			name = trade_do_trade_tt
+			multiply = var:task_manage_stockpile.var:task_time_in
 		}
 		change_variable = { 
 			name = trade_do_trade_tt
@@ -35072,6 +35566,19 @@ every_ruler = {
 	}
 	if = { 
 		limit = { 
+			has_variable = task_manage_stockpile
+		}
+		change_variable = { 
+			name = trade_do_trade_tt
+			multiply = var:task_manage_stockpile.var:task_time_in
+		}
+		change_variable = { 
+			name = trade_do_trade_tt
+			divide = 100
+		}
+	}
+	if = { 
+		limit = { 
 			has_variable = trade_do_trade_t
 			has_variable = trade_do_trade_tt
 			var:trade_do_trade_t > 0
@@ -35164,6 +35671,19 @@ every_ruler = {
 		change_variable = { 
 			name = trade_do_trade_tt
 			multiply = var:trade_do_trade_ttt
+		}
+		change_variable = { 
+			name = trade_do_trade_tt
+			divide = 100
+		}
+	}
+	if = { 
+		limit = { 
+			has_variable = task_manage_stockpile
+		}
+		change_variable = { 
+			name = trade_do_trade_tt
+			multiply = var:task_manage_stockpile.var:task_time_in
 		}
 		change_variable = { 
 			name = trade_do_trade_tt
@@ -35280,6 +35800,19 @@ every_ruler = {
 	}
 	if = { 
 		limit = { 
+			has_variable = task_manage_stockpile
+		}
+		change_variable = { 
+			name = trade_do_trade_tt
+			multiply = var:task_manage_stockpile.var:task_time_in
+		}
+		change_variable = { 
+			name = trade_do_trade_tt
+			divide = 100
+		}
+	}
+	if = { 
+		limit = { 
 			has_variable = trade_do_trade_t
 			has_variable = trade_do_trade_tt
 			var:trade_do_trade_t > 0
@@ -35372,6 +35905,19 @@ every_ruler = {
 		change_variable = { 
 			name = trade_do_trade_tt
 			multiply = var:trade_do_trade_ttt
+		}
+		change_variable = { 
+			name = trade_do_trade_tt
+			divide = 100
+		}
+	}
+	if = { 
+		limit = { 
+			has_variable = task_manage_stockpile
+		}
+		change_variable = { 
+			name = trade_do_trade_tt
+			multiply = var:task_manage_stockpile.var:task_time_in
 		}
 		change_variable = { 
 			name = trade_do_trade_tt
@@ -35488,6 +36034,19 @@ every_ruler = {
 	}
 	if = { 
 		limit = { 
+			has_variable = task_manage_stockpile
+		}
+		change_variable = { 
+			name = trade_do_trade_tt
+			multiply = var:task_manage_stockpile.var:task_time_in
+		}
+		change_variable = { 
+			name = trade_do_trade_tt
+			divide = 100
+		}
+	}
+	if = { 
+		limit = { 
 			has_variable = trade_do_trade_t
 			has_variable = trade_do_trade_tt
 			var:trade_do_trade_t > 0
@@ -35580,6 +36139,19 @@ every_ruler = {
 		change_variable = { 
 			name = trade_do_trade_tt
 			multiply = var:trade_do_trade_ttt
+		}
+		change_variable = { 
+			name = trade_do_trade_tt
+			divide = 100
+		}
+	}
+	if = { 
+		limit = { 
+			has_variable = task_manage_stockpile
+		}
+		change_variable = { 
+			name = trade_do_trade_tt
+			multiply = var:task_manage_stockpile.var:task_time_in
 		}
 		change_variable = { 
 			name = trade_do_trade_tt
@@ -35696,6 +36268,19 @@ every_ruler = {
 	}
 	if = { 
 		limit = { 
+			has_variable = task_manage_stockpile
+		}
+		change_variable = { 
+			name = trade_do_trade_tt
+			multiply = var:task_manage_stockpile.var:task_time_in
+		}
+		change_variable = { 
+			name = trade_do_trade_tt
+			divide = 100
+		}
+	}
+	if = { 
+		limit = { 
 			has_variable = trade_do_trade_t
 			has_variable = trade_do_trade_tt
 			var:trade_do_trade_t > 0
@@ -35788,6 +36373,19 @@ every_ruler = {
 		change_variable = { 
 			name = trade_do_trade_tt
 			multiply = var:trade_do_trade_ttt
+		}
+		change_variable = { 
+			name = trade_do_trade_tt
+			divide = 100
+		}
+	}
+	if = { 
+		limit = { 
+			has_variable = task_manage_stockpile
+		}
+		change_variable = { 
+			name = trade_do_trade_tt
+			multiply = var:task_manage_stockpile.var:task_time_in
 		}
 		change_variable = { 
 			name = trade_do_trade_tt
@@ -35904,6 +36502,19 @@ every_ruler = {
 	}
 	if = { 
 		limit = { 
+			has_variable = task_manage_stockpile
+		}
+		change_variable = { 
+			name = trade_do_trade_tt
+			multiply = var:task_manage_stockpile.var:task_time_in
+		}
+		change_variable = { 
+			name = trade_do_trade_tt
+			divide = 100
+		}
+	}
+	if = { 
+		limit = { 
 			has_variable = trade_do_trade_t
 			has_variable = trade_do_trade_tt
 			var:trade_do_trade_t > 0
@@ -35996,6 +36607,19 @@ every_ruler = {
 		change_variable = { 
 			name = trade_do_trade_tt
 			multiply = var:trade_do_trade_ttt
+		}
+		change_variable = { 
+			name = trade_do_trade_tt
+			divide = 100
+		}
+	}
+	if = { 
+		limit = { 
+			has_variable = task_manage_stockpile
+		}
+		change_variable = { 
+			name = trade_do_trade_tt
+			multiply = var:task_manage_stockpile.var:task_time_in
 		}
 		change_variable = { 
 			name = trade_do_trade_tt

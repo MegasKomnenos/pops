@@ -97,7 +97,7 @@ if __name__ == '__main__':
 
         chars = dict()
 
-        for name in ['prod_templates', 'prod_instances', 'trade_merchants', 'tech_techs', 'tech_eras', 'build_templates', 'build_slots_active']:
+        for name in ['prod_templates', 'prod_instances', 'trade_merchants', 'tech_techs', 'tech_eras', 'build_templates', 'build_slots_active', 'task_templates', 'task_tasks_active']:
             for var in glob_lsts[name]:
                 if not var[1] in chars:
                     chars[var[1]] = (dict(), dict())
@@ -222,6 +222,7 @@ if __name__ == '__main__':
 
         templates = dict()
         names = dict()
+        tasks = dict()
 
         with open('common\\scripted_effects\\00_init_industry.txt', encoding='utf-8-sig') as ff:
             for scripts in parse_block(ff.read()):
@@ -242,6 +243,17 @@ if __name__ == '__main__':
                             for entry in template[2]:
                                 if entry[0] == 'name':
                                     names[glob_vars[entry[2]][1]] = entry[2]
+                                    
+                                    break
+                    break
+        with open('common\\scripted_effects\\00_init_task.txt', encoding='utf-8-sig') as ff:
+            for scripts in parse_block(ff.read()):
+                if scripts[0] == 'init_task_templates':
+                    for template in scripts[2]:
+                        if template[0] == 'task_new_template':
+                            for entry in template[2]:
+                                if entry[0] == 'name':
+                                    tasks[glob_vars[entry[2]][1]] = entry[2]
                                     
                                     break
                     break
@@ -306,6 +318,8 @@ if __name__ == '__main__':
                         outout.append('\t\tadd_to_global_variable_list = { name = tech_eras target = scope:save_data_t }\n')
                     elif ('char', data[1]) in glob_lsts['build_templates']:
                         outout.append('\t\tadd_to_global_variable_list = { name = build_templates target = scope:save_data_t }\n')
+                    elif ('char', data[1]) in glob_lsts['task_templates']:
+                        outout.append('\t\tadd_to_global_variable_list = { name = task_templates target = scope:save_data_t }\n')
                 else:
                     outout.append(helper(('\t\tset_global_variable', 'value'), name, data, id_to_title))
 
@@ -368,7 +382,10 @@ if __name__ == '__main__':
                         else:
                             if 'trade_' in name:
                                 outout.append('\t\t\tcounty.holder = {\n')
-                                outout.append(helper(('\t\t\t\tset_variable', 'value'), name, data, id_to_title))
+                                outout.append('\t\t')
+                                outout.append(create_character)
+                                outout.append('\t\t')
+                                outout.append(character_data % ''.join([helper(('\t\t\t\tset_variable', 'value'), n, d, id_to_title) for n, d in chars[data[1]][0].items()]))
                                 outout.append('\t\t\t}\n')
                             else:
                                 outout.append(helper(('\t\t\tset_variable', 'value'), name, data, id_to_title))
@@ -378,6 +395,27 @@ if __name__ == '__main__':
 
                             for var in data:
                                 outout.append(helper(('\t\t\t\tadd_to_variable_list', 'target'), name, var, id_to_title))
+
+                            outout.append('\t\t\t}\n')
+                        elif 'task_tasks' in name:
+                            outout.append('\t\t\tcounty.holder = {\n')
+
+                            for var in data:
+                                outout.append('\t\t')
+                                outout.append(create_character)
+                                outout.append('\t\t\t\tscope:save_data_t = {\n')
+
+                                for n, d in chars[var[1]][0].items():
+                                    if not 'template' in n and not 'owner' in n and not 'worker' in n:
+                                        outout.append(helper(('\t\t\t\t\tset_variable', 'value'), n, d, id_to_title))
+
+                                outout.append('\t\t\t\t\tset_variable = { name = task_template value = %s }\n' % tasks[chars[var[1]][0]['task_template']])
+                                outout.append('\t\t\t\t\tset_variable = { name = task_owner value = prev }\n')
+                                outout.append('\t\t\t\t\tset_variable = { name = task_worker value = prev }\n')
+
+                                outout.append('\t\t\t\t}\n')
+                                outout.append('\t\t\t\tadd_to_global_variable_list = { name = task_tasks_active target = scope:save_data_t }\n')
+                                outout.append('\t\t\t\tadd_to_variable_list = { name = task_tasks target = scope:save_data_t }\n')
 
                             outout.append('\t\t\t}\n')
                         elif name != 'prod_instances' and name != 'build_slots':
@@ -409,9 +447,7 @@ if __name__ == '__main__':
                 outout.append('\t\t}\n')
 
             out.append(event % (iii, ''.join([item for item in outout if item]), iii + 1))
-            out.append(event % (iii + 1, '''		init_task_templates = yes
-		init_rulers = yes	
-		task_main = yes
+            out.append(event % (iii + 1, '''		init_rulers = yes	
 		stat_main = yes''', ''))
 
             print('Parsing and Reconstructing the Events')

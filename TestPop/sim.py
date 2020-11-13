@@ -758,6 +758,14 @@ sim_run.02 = {
 				clear_variable_list = trade_dat_&goods&
 				array_clear = { name = trade_dat_&goods& }
 			^
+			
+			every_in_list = {
+				variable = task_tasks
+				
+				prev.capital_province = {
+					add_to_variable_list = { name = task_tasks target = prev }
+				}
+			}
 		}
 		
 		every_in_global_list = {
