@@ -47,8 +47,8 @@ window = {
 		position = { -60 60 }
 		on_start = "[GetVariableSystem.Clear( 'county_view_open' )]"
 		on_start = "[GetVariableSystem.Clear( 'hide_bottom_left_HUD' )]"
-		on_start = "[GetScriptedGui( 'close_county_trade' ).Execute( GuiScope.SetRoot( HoldingView.GetProvince.GetCounty.GetCapital.MakeScope ).End )]"
-		on_start = "[GetScriptedGui( 'close_prov_trade' ).Execute( GuiScope.SetRoot( Province.MakeScope ).End )]"
+		on_start = "[GetScriptedGui( 'close_county_commerce' ).Execute( GuiScope.SetRoot( HoldingView.GetProvince.GetCounty.GetCapital.MakeScope ).End )]"
+		on_start = "[GetScriptedGui( 'close_prov_economy' ).Execute( GuiScope.SetRoot( Province.MakeScope ).End )]"
 		on_start = "[GetScriptedGui( 'close_prov_pop' ).Execute( GuiScope.SetRoot( Province.MakeScope ).End )]"
 		on_start = "[GetScriptedGui( 'close_prov_prod' ).Execute( GuiScope.SetRoot( Province.MakeScope ).End )]"
 		on_start = "[GetScriptedGui( 'close_prov_build' ).Execute( GuiScope.SetRoot( Province.MakeScope ).End )]"
@@ -63,16 +63,19 @@ window = {
 	}
 	
 	window = {
-		parentanchor = top|right
-		size = { 250 500 }
-		position = { 400 0 }
-		movable = yes
-		visible = "[EqualTo_CFixedPoint('(CFixedPoint)1', County.GetCapital.MakeScope.Var('toggled_county_trade').GetValue)]"
+		parentanchor = right
+		size = { 300 610 }
+		position = { 300 0 }
+		movable = no
+		visible = "[EqualTo_CFixedPoint('(CFixedPoint)1', County.GetCapital.MakeScope.Var('toggled_county_commerce').GetValue)]"
 		
 		background = {
 			texture = "gfx/interface/component_tiles/tile_window_background_subwindow.dds"
 			spriteType = Corneredtiled
 			spriteborder = { 18 18 }
+			margin = { -23 -17 }
+			margin_left = 40
+			margin_bottom = 20
 			texture_density = 2
 			
 			modify_texture = {
@@ -86,113 +89,1663 @@ window = {
 		
 		buttons_window_control = {
 			parentanchor = top|right
+			position = { -40 35 }
 			blockoverride "button_close"
 			{
-				datacontext = "[GetScriptedGui( 'close_county_trade' )]"
+				datacontext = "[GetScriptedGui( 'close_county_commerce' )]"
 				onclick = "[ScriptedGui.Execute( GuiScope.SetRoot( HoldingView.GetProvince.GetCounty.GetCapital.MakeScope ).End )]"
+				background = {
+					using = Background_Area_Dark
+				}
 			}
 		}
 		
-		vbox = {
-			margin_left = 20
-			margin_bottom = 15
-			margin_top = 5
+		text_single = {
+			position = { -5 40 }
+			text = "Commerce"
+			default_format = "#high"
+			align = nobaseline
+			using = Font_Size_Big
+			max_width = 190
+			fontsize_min = 16
+		}
+		
+		container = {
 			layoutpolicy_vertical = expanding
 			
-			text_single = {
-				layoutpolicy_horizontal = expanding
-				text = "Food Price: [County.GetCapital.MakeScope.Var('info_trade_county_price_food').GetValue]"
-				using = Font_Size_Small
-			}
-			text_single = {
-				layoutpolicy_horizontal = expanding
-				text = "Cereal Price: [County.GetCapital.MakeScope.Var('info_trade_county_price_cereal').GetValue]"
-				using = Font_Size_Small
-			}
-			text_single = {
-				layoutpolicy_horizontal = expanding
-				text = "Salted Price: [County.GetCapital.MakeScope.Var('info_trade_county_price_salted').GetValue]"
-				using = Font_Size_Small
-			}
-			text_single = {
-				layoutpolicy_horizontal = expanding
-				text = "Salt Price: [County.GetCapital.MakeScope.Var('info_trade_county_price_salt').GetValue]"
-				using = Font_Size_Small
-			}
-			text_single = {
-				layoutpolicy_horizontal = expanding
-				text = "Mud Price: [County.GetCapital.MakeScope.Var('info_trade_county_price_mud').GetValue]"
-				using = Font_Size_Small
-			}
-			text_single = {
-				layoutpolicy_horizontal = expanding
-				text = "Fuel Price: [County.GetCapital.MakeScope.Var('info_trade_county_price_fuel').GetValue]"
-				using = Font_Size_Small
-			}
-			text_single = {
-				layoutpolicy_horizontal = expanding
-				text = "Fiber Price: [County.GetCapital.MakeScope.Var('info_trade_county_price_fiber').GetValue]"
-				using = Font_Size_Small
-			}
-			text_single = {
-				layoutpolicy_horizontal = expanding
-				text = "Timber Price: [County.GetCapital.MakeScope.Var('info_trade_county_price_timber').GetValue]"
-				using = Font_Size_Small
-			}
-			text_single = {
-				layoutpolicy_horizontal = expanding
-				text = "Metal Price: [County.GetCapital.MakeScope.Var('info_trade_county_price_metal').GetValue]"
-				using = Font_Size_Small
-			}
-			text_single = {
-				layoutpolicy_horizontal = expanding
-				text = "Western Exotics Price: [County.GetCapital.MakeScope.Var('info_trade_county_price_exotics_w').GetValue]"
-				using = Font_Size_Small
-			}
-			text_single = {
-				layoutpolicy_horizontal = expanding
-				text = "Eastern Exotics Price: [County.GetCapital.MakeScope.Var('info_trade_county_price_exotics_e').GetValue]"
-				using = Font_Size_Small
-			}
-			text_single = {
-				layoutpolicy_horizontal = expanding
-				text = "General Exotics Price: [County.GetCapital.MakeScope.Var('info_trade_county_price_exotics_g').GetValue]"
-				using = Font_Size_Small
-			}
-			text_single = {
-				layoutpolicy_horizontal = expanding
-				text = "Textile Price: [County.GetCapital.MakeScope.Var('info_trade_county_price_textile').GetValue]"
-				using = Font_Size_Small
-			}
-			text_single = {
-				layoutpolicy_horizontal = expanding
-				text = "Pottery Price: [County.GetCapital.MakeScope.Var('info_trade_county_price_pottery').GetValue]"
-				using = Font_Size_Small
-			}
-			text_single = {
-				layoutpolicy_horizontal = expanding
-				text = "Tools Price: [County.GetCapital.MakeScope.Var('info_trade_county_price_tools').GetValue]"
-				using = Font_Size_Small
-			}
-			text_single = {
-				layoutpolicy_horizontal = expanding
-				text = "Armaments Price: [County.GetCapital.MakeScope.Var('info_trade_county_price_armaments').GetValue]"
-				using = Font_Size_Small
+			scrollbox = {
+				minimumsize = { 300 550 }
+				position = { -30 85 }
+				layoutpolicy_vertical = expanding
+				
+				blockoverride scrollbox_background
+				{
+					background = {
+						using = Background_Area_Dark
+					}
+				}
+				
+				blockoverride "scrollbox_content"
+				{
+					position = { -10 0 }
+					vbox = {
+						spacing = 5
+						hbox = {
+							layoutpolicy_horizontal = expanding
+							max_width = 284
+							min_width = 284
+							
+							icon = {
+								name = "icon_building_cereal_fields"
+								texture = "gfx/interface/icons/building_types/icon_building_cereal_fields.dds"
+								size = { 30 30 }
+							}
+							
+							vbox = {
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									min_width = 245
+									max_width = 245
+									text = "Food: $[County.GetCapital.MakeScope.Var('toggle_county_commerce_price_food').GetValue]"
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									fontsize = 12
+									fontsize_min = 4
+									min_width = 245
+									max_width = 245
+									visible = "[GreaterThan_CFixedPoint(County.GetCapital.MakeScope.Var('toggle_county_commerce_val_0_food').GetValue, '(CFixedPoint)0')]"
+									text = "Exported > [County.GetCapital.MakeScope.Var('toggle_county_commerce_scope_0_food').GetProvince.GetNameNoTooltip]: [County.GetCapital.MakeScope.Var('toggle_county_commerce_val_0_food').GetValue]"
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									fontsize = 12
+									fontsize_min = 4
+									min_width = 245
+									max_width = 245
+									visible = "[Not(GreaterThanOrEqualTo_CFixedPoint(County.GetCapital.MakeScope.Var('toggle_county_commerce_val_0_food').GetValue, '(CFixedPoint)0'))]"
+									text = "Imported < [County.GetCapital.MakeScope.Var('toggle_county_commerce_scope_0_food').GetProvince.GetNameNoTooltip]: [County.GetCapital.MakeScope.Var('toggle_county_commerce_rev_0_food').GetValue]"
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									fontsize = 12
+									fontsize_min = 4
+									min_width = 245
+									max_width = 245
+									visible = "[EqualTo_CFixedPoint(County.GetCapital.MakeScope.Var('toggle_county_commerce_val_0_food').GetValue, '(CFixedPoint)0')]"
+									text = ""
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									fontsize = 12
+									fontsize_min = 4
+									min_width = 245
+									max_width = 245
+									visible = "[GreaterThan_CFixedPoint(County.GetCapital.MakeScope.Var('toggle_county_commerce_val_1_food').GetValue, '(CFixedPoint)0')]"
+									text = "Exported > [County.GetCapital.MakeScope.Var('toggle_county_commerce_scope_1_food').GetProvince.GetNameNoTooltip]: [County.GetCapital.MakeScope.Var('toggle_county_commerce_val_1_food').GetValue]"
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									fontsize = 12
+									fontsize_min = 4
+									min_width = 245
+									max_width = 245
+									visible = "[Not(GreaterThanOrEqualTo_CFixedPoint(County.GetCapital.MakeScope.Var('toggle_county_commerce_val_1_food').GetValue, '(CFixedPoint)0'))]"
+									text = "Imported < [County.GetCapital.MakeScope.Var('toggle_county_commerce_scope_1_food').GetProvince.GetNameNoTooltip]: [County.GetCapital.MakeScope.Var('toggle_county_commerce_rev_1_food').GetValue]"
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									fontsize = 12
+									fontsize_min = 4
+									min_width = 245
+									max_width = 245
+									visible = "[EqualTo_CFixedPoint(County.GetCapital.MakeScope.Var('toggle_county_commerce_val_1_food').GetValue, '(CFixedPoint)0')]"
+									text = ""
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									fontsize = 12
+									fontsize_min = 4
+									min_width = 245
+									max_width = 245
+									visible = "[GreaterThan_CFixedPoint(County.GetCapital.MakeScope.Var('toggle_county_commerce_val_2_food').GetValue, '(CFixedPoint)0')]"
+									text = "Exported > [County.GetCapital.MakeScope.Var('toggle_county_commerce_scope_2_food').GetProvince.GetNameNoTooltip]: [County.GetCapital.MakeScope.Var('toggle_county_commerce_val_2_food').GetValue]"
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									fontsize = 12
+									fontsize_min = 4
+									min_width = 245
+									max_width = 245
+									visible = "[Not(GreaterThanOrEqualTo_CFixedPoint(County.GetCapital.MakeScope.Var('toggle_county_commerce_val_2_food').GetValue, '(CFixedPoint)0'))]"
+									text = "Imported < [County.GetCapital.MakeScope.Var('toggle_county_commerce_scope_2_food').GetProvince.GetNameNoTooltip]: [County.GetCapital.MakeScope.Var('toggle_county_commerce_rev_2_food').GetValue]"
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									fontsize = 12
+									fontsize_min = 4
+									min_width = 245
+									max_width = 245
+									visible = "[EqualTo_CFixedPoint(County.GetCapital.MakeScope.Var('toggle_county_commerce_val_2_food').GetValue, '(CFixedPoint)0')]"
+									text = ""
+								}
+								spacer = {
+									size = { 0 8 }
+								}
+							}
+							
+							background = {
+								using = Background_Area_Light
+							}
+						}
+						hbox = {
+							layoutpolicy_horizontal = expanding
+							max_width = 284
+							min_width = 284
+							
+							icon = {
+								name = "icon_building_cereal_fields"
+								texture = "gfx/interface/icons/building_types/icon_building_cereal_fields.dds"
+								size = { 30 30 }
+							}
+							
+							vbox = {
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									min_width = 245
+									max_width = 245
+									text = "Cereal: $[County.GetCapital.MakeScope.Var('toggle_county_commerce_price_cereal').GetValue]"
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									fontsize = 12
+									fontsize_min = 4
+									min_width = 245
+									max_width = 245
+									visible = "[GreaterThan_CFixedPoint(County.GetCapital.MakeScope.Var('toggle_county_commerce_val_0_cereal').GetValue, '(CFixedPoint)0')]"
+									text = "Exported > [County.GetCapital.MakeScope.Var('toggle_county_commerce_scope_0_cereal').GetProvince.GetNameNoTooltip]: [County.GetCapital.MakeScope.Var('toggle_county_commerce_val_0_cereal').GetValue]"
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									fontsize = 12
+									fontsize_min = 4
+									min_width = 245
+									max_width = 245
+									visible = "[Not(GreaterThanOrEqualTo_CFixedPoint(County.GetCapital.MakeScope.Var('toggle_county_commerce_val_0_cereal').GetValue, '(CFixedPoint)0'))]"
+									text = "Imported < [County.GetCapital.MakeScope.Var('toggle_county_commerce_scope_0_cereal').GetProvince.GetNameNoTooltip]: [County.GetCapital.MakeScope.Var('toggle_county_commerce_rev_0_cereal').GetValue]"
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									fontsize = 12
+									fontsize_min = 4
+									min_width = 245
+									max_width = 245
+									visible = "[EqualTo_CFixedPoint(County.GetCapital.MakeScope.Var('toggle_county_commerce_val_0_cereal').GetValue, '(CFixedPoint)0')]"
+									text = ""
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									fontsize = 12
+									fontsize_min = 4
+									min_width = 245
+									max_width = 245
+									visible = "[GreaterThan_CFixedPoint(County.GetCapital.MakeScope.Var('toggle_county_commerce_val_1_cereal').GetValue, '(CFixedPoint)0')]"
+									text = "Exported > [County.GetCapital.MakeScope.Var('toggle_county_commerce_scope_1_cereal').GetProvince.GetNameNoTooltip]: [County.GetCapital.MakeScope.Var('toggle_county_commerce_val_1_cereal').GetValue]"
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									fontsize = 12
+									fontsize_min = 4
+									min_width = 245
+									max_width = 245
+									visible = "[Not(GreaterThanOrEqualTo_CFixedPoint(County.GetCapital.MakeScope.Var('toggle_county_commerce_val_1_cereal').GetValue, '(CFixedPoint)0'))]"
+									text = "Imported < [County.GetCapital.MakeScope.Var('toggle_county_commerce_scope_1_cereal').GetProvince.GetNameNoTooltip]: [County.GetCapital.MakeScope.Var('toggle_county_commerce_rev_1_cereal').GetValue]"
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									fontsize = 12
+									fontsize_min = 4
+									min_width = 245
+									max_width = 245
+									visible = "[EqualTo_CFixedPoint(County.GetCapital.MakeScope.Var('toggle_county_commerce_val_1_cereal').GetValue, '(CFixedPoint)0')]"
+									text = ""
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									fontsize = 12
+									fontsize_min = 4
+									min_width = 245
+									max_width = 245
+									visible = "[GreaterThan_CFixedPoint(County.GetCapital.MakeScope.Var('toggle_county_commerce_val_2_cereal').GetValue, '(CFixedPoint)0')]"
+									text = "Exported > [County.GetCapital.MakeScope.Var('toggle_county_commerce_scope_2_cereal').GetProvince.GetNameNoTooltip]: [County.GetCapital.MakeScope.Var('toggle_county_commerce_val_2_cereal').GetValue]"
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									fontsize = 12
+									fontsize_min = 4
+									min_width = 245
+									max_width = 245
+									visible = "[Not(GreaterThanOrEqualTo_CFixedPoint(County.GetCapital.MakeScope.Var('toggle_county_commerce_val_2_cereal').GetValue, '(CFixedPoint)0'))]"
+									text = "Imported < [County.GetCapital.MakeScope.Var('toggle_county_commerce_scope_2_cereal').GetProvince.GetNameNoTooltip]: [County.GetCapital.MakeScope.Var('toggle_county_commerce_rev_2_cereal').GetValue]"
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									fontsize = 12
+									fontsize_min = 4
+									min_width = 245
+									max_width = 245
+									visible = "[EqualTo_CFixedPoint(County.GetCapital.MakeScope.Var('toggle_county_commerce_val_2_cereal').GetValue, '(CFixedPoint)0')]"
+									text = ""
+								}
+								spacer = {
+									size = { 0 8 }
+								}
+							}
+							
+							background = {
+								using = Background_Area_Light
+							}
+						}
+						hbox = {
+							layoutpolicy_horizontal = expanding
+							max_width = 284
+							min_width = 284
+							
+							icon = {
+								name = "icon_building_cereal_fields"
+								texture = "gfx/interface/icons/building_types/icon_building_cereal_fields.dds"
+								size = { 30 30 }
+							}
+							
+							vbox = {
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									min_width = 245
+									max_width = 245
+									text = "Salted: $[County.GetCapital.MakeScope.Var('toggle_county_commerce_price_salted').GetValue]"
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									fontsize = 12
+									fontsize_min = 4
+									min_width = 245
+									max_width = 245
+									visible = "[GreaterThan_CFixedPoint(County.GetCapital.MakeScope.Var('toggle_county_commerce_val_0_salted').GetValue, '(CFixedPoint)0')]"
+									text = "Exported > [County.GetCapital.MakeScope.Var('toggle_county_commerce_scope_0_salted').GetProvince.GetNameNoTooltip]: [County.GetCapital.MakeScope.Var('toggle_county_commerce_val_0_salted').GetValue]"
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									fontsize = 12
+									fontsize_min = 4
+									min_width = 245
+									max_width = 245
+									visible = "[Not(GreaterThanOrEqualTo_CFixedPoint(County.GetCapital.MakeScope.Var('toggle_county_commerce_val_0_salted').GetValue, '(CFixedPoint)0'))]"
+									text = "Imported < [County.GetCapital.MakeScope.Var('toggle_county_commerce_scope_0_salted').GetProvince.GetNameNoTooltip]: [County.GetCapital.MakeScope.Var('toggle_county_commerce_rev_0_salted').GetValue]"
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									fontsize = 12
+									fontsize_min = 4
+									min_width = 245
+									max_width = 245
+									visible = "[EqualTo_CFixedPoint(County.GetCapital.MakeScope.Var('toggle_county_commerce_val_0_salted').GetValue, '(CFixedPoint)0')]"
+									text = ""
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									fontsize = 12
+									fontsize_min = 4
+									min_width = 245
+									max_width = 245
+									visible = "[GreaterThan_CFixedPoint(County.GetCapital.MakeScope.Var('toggle_county_commerce_val_1_salted').GetValue, '(CFixedPoint)0')]"
+									text = "Exported > [County.GetCapital.MakeScope.Var('toggle_county_commerce_scope_1_salted').GetProvince.GetNameNoTooltip]: [County.GetCapital.MakeScope.Var('toggle_county_commerce_val_1_salted').GetValue]"
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									fontsize = 12
+									fontsize_min = 4
+									min_width = 245
+									max_width = 245
+									visible = "[Not(GreaterThanOrEqualTo_CFixedPoint(County.GetCapital.MakeScope.Var('toggle_county_commerce_val_1_salted').GetValue, '(CFixedPoint)0'))]"
+									text = "Imported < [County.GetCapital.MakeScope.Var('toggle_county_commerce_scope_1_salted').GetProvince.GetNameNoTooltip]: [County.GetCapital.MakeScope.Var('toggle_county_commerce_rev_1_salted').GetValue]"
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									fontsize = 12
+									fontsize_min = 4
+									min_width = 245
+									max_width = 245
+									visible = "[EqualTo_CFixedPoint(County.GetCapital.MakeScope.Var('toggle_county_commerce_val_1_salted').GetValue, '(CFixedPoint)0')]"
+									text = ""
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									fontsize = 12
+									fontsize_min = 4
+									min_width = 245
+									max_width = 245
+									visible = "[GreaterThan_CFixedPoint(County.GetCapital.MakeScope.Var('toggle_county_commerce_val_2_salted').GetValue, '(CFixedPoint)0')]"
+									text = "Exported > [County.GetCapital.MakeScope.Var('toggle_county_commerce_scope_2_salted').GetProvince.GetNameNoTooltip]: [County.GetCapital.MakeScope.Var('toggle_county_commerce_val_2_salted').GetValue]"
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									fontsize = 12
+									fontsize_min = 4
+									min_width = 245
+									max_width = 245
+									visible = "[Not(GreaterThanOrEqualTo_CFixedPoint(County.GetCapital.MakeScope.Var('toggle_county_commerce_val_2_salted').GetValue, '(CFixedPoint)0'))]"
+									text = "Imported < [County.GetCapital.MakeScope.Var('toggle_county_commerce_scope_2_salted').GetProvince.GetNameNoTooltip]: [County.GetCapital.MakeScope.Var('toggle_county_commerce_rev_2_salted').GetValue]"
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									fontsize = 12
+									fontsize_min = 4
+									min_width = 245
+									max_width = 245
+									visible = "[EqualTo_CFixedPoint(County.GetCapital.MakeScope.Var('toggle_county_commerce_val_2_salted').GetValue, '(CFixedPoint)0')]"
+									text = ""
+								}
+								spacer = {
+									size = { 0 8 }
+								}
+							}
+							
+							background = {
+								using = Background_Area_Light
+							}
+						}
+						hbox = {
+							layoutpolicy_horizontal = expanding
+							max_width = 284
+							min_width = 284
+							
+							icon = {
+								name = "icon_building_cereal_fields"
+								texture = "gfx/interface/icons/building_types/icon_building_cereal_fields.dds"
+								size = { 30 30 }
+							}
+							
+							vbox = {
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									min_width = 245
+									max_width = 245
+									text = "Salt: $[County.GetCapital.MakeScope.Var('toggle_county_commerce_price_salt').GetValue]"
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									fontsize = 12
+									fontsize_min = 4
+									min_width = 245
+									max_width = 245
+									visible = "[GreaterThan_CFixedPoint(County.GetCapital.MakeScope.Var('toggle_county_commerce_val_0_salt').GetValue, '(CFixedPoint)0')]"
+									text = "Exported > [County.GetCapital.MakeScope.Var('toggle_county_commerce_scope_0_salt').GetProvince.GetNameNoTooltip]: [County.GetCapital.MakeScope.Var('toggle_county_commerce_val_0_salt').GetValue]"
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									fontsize = 12
+									fontsize_min = 4
+									min_width = 245
+									max_width = 245
+									visible = "[Not(GreaterThanOrEqualTo_CFixedPoint(County.GetCapital.MakeScope.Var('toggle_county_commerce_val_0_salt').GetValue, '(CFixedPoint)0'))]"
+									text = "Imported < [County.GetCapital.MakeScope.Var('toggle_county_commerce_scope_0_salt').GetProvince.GetNameNoTooltip]: [County.GetCapital.MakeScope.Var('toggle_county_commerce_rev_0_salt').GetValue]"
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									fontsize = 12
+									fontsize_min = 4
+									min_width = 245
+									max_width = 245
+									visible = "[EqualTo_CFixedPoint(County.GetCapital.MakeScope.Var('toggle_county_commerce_val_0_salt').GetValue, '(CFixedPoint)0')]"
+									text = ""
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									fontsize = 12
+									fontsize_min = 4
+									min_width = 245
+									max_width = 245
+									visible = "[GreaterThan_CFixedPoint(County.GetCapital.MakeScope.Var('toggle_county_commerce_val_1_salt').GetValue, '(CFixedPoint)0')]"
+									text = "Exported > [County.GetCapital.MakeScope.Var('toggle_county_commerce_scope_1_salt').GetProvince.GetNameNoTooltip]: [County.GetCapital.MakeScope.Var('toggle_county_commerce_val_1_salt').GetValue]"
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									fontsize = 12
+									fontsize_min = 4
+									min_width = 245
+									max_width = 245
+									visible = "[Not(GreaterThanOrEqualTo_CFixedPoint(County.GetCapital.MakeScope.Var('toggle_county_commerce_val_1_salt').GetValue, '(CFixedPoint)0'))]"
+									text = "Imported < [County.GetCapital.MakeScope.Var('toggle_county_commerce_scope_1_salt').GetProvince.GetNameNoTooltip]: [County.GetCapital.MakeScope.Var('toggle_county_commerce_rev_1_salt').GetValue]"
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									fontsize = 12
+									fontsize_min = 4
+									min_width = 245
+									max_width = 245
+									visible = "[EqualTo_CFixedPoint(County.GetCapital.MakeScope.Var('toggle_county_commerce_val_1_salt').GetValue, '(CFixedPoint)0')]"
+									text = ""
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									fontsize = 12
+									fontsize_min = 4
+									min_width = 245
+									max_width = 245
+									visible = "[GreaterThan_CFixedPoint(County.GetCapital.MakeScope.Var('toggle_county_commerce_val_2_salt').GetValue, '(CFixedPoint)0')]"
+									text = "Exported > [County.GetCapital.MakeScope.Var('toggle_county_commerce_scope_2_salt').GetProvince.GetNameNoTooltip]: [County.GetCapital.MakeScope.Var('toggle_county_commerce_val_2_salt').GetValue]"
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									fontsize = 12
+									fontsize_min = 4
+									min_width = 245
+									max_width = 245
+									visible = "[Not(GreaterThanOrEqualTo_CFixedPoint(County.GetCapital.MakeScope.Var('toggle_county_commerce_val_2_salt').GetValue, '(CFixedPoint)0'))]"
+									text = "Imported < [County.GetCapital.MakeScope.Var('toggle_county_commerce_scope_2_salt').GetProvince.GetNameNoTooltip]: [County.GetCapital.MakeScope.Var('toggle_county_commerce_rev_2_salt').GetValue]"
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									fontsize = 12
+									fontsize_min = 4
+									min_width = 245
+									max_width = 245
+									visible = "[EqualTo_CFixedPoint(County.GetCapital.MakeScope.Var('toggle_county_commerce_val_2_salt').GetValue, '(CFixedPoint)0')]"
+									text = ""
+								}
+								spacer = {
+									size = { 0 8 }
+								}
+							}
+							
+							background = {
+								using = Background_Area_Light
+							}
+						}
+						hbox = {
+							layoutpolicy_horizontal = expanding
+							max_width = 284
+							min_width = 284
+							
+							icon = {
+								name = "icon_building_cereal_fields"
+								texture = "gfx/interface/icons/building_types/icon_building_cereal_fields.dds"
+								size = { 30 30 }
+							}
+							
+							vbox = {
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									min_width = 245
+									max_width = 245
+									text = "Mud: $[County.GetCapital.MakeScope.Var('toggle_county_commerce_price_mud').GetValue]"
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									fontsize = 12
+									fontsize_min = 4
+									min_width = 245
+									max_width = 245
+									visible = "[GreaterThan_CFixedPoint(County.GetCapital.MakeScope.Var('toggle_county_commerce_val_0_mud').GetValue, '(CFixedPoint)0')]"
+									text = "Exported > [County.GetCapital.MakeScope.Var('toggle_county_commerce_scope_0_mud').GetProvince.GetNameNoTooltip]: [County.GetCapital.MakeScope.Var('toggle_county_commerce_val_0_mud').GetValue]"
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									fontsize = 12
+									fontsize_min = 4
+									min_width = 245
+									max_width = 245
+									visible = "[Not(GreaterThanOrEqualTo_CFixedPoint(County.GetCapital.MakeScope.Var('toggle_county_commerce_val_0_mud').GetValue, '(CFixedPoint)0'))]"
+									text = "Imported < [County.GetCapital.MakeScope.Var('toggle_county_commerce_scope_0_mud').GetProvince.GetNameNoTooltip]: [County.GetCapital.MakeScope.Var('toggle_county_commerce_rev_0_mud').GetValue]"
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									fontsize = 12
+									fontsize_min = 4
+									min_width = 245
+									max_width = 245
+									visible = "[EqualTo_CFixedPoint(County.GetCapital.MakeScope.Var('toggle_county_commerce_val_0_mud').GetValue, '(CFixedPoint)0')]"
+									text = ""
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									fontsize = 12
+									fontsize_min = 4
+									min_width = 245
+									max_width = 245
+									visible = "[GreaterThan_CFixedPoint(County.GetCapital.MakeScope.Var('toggle_county_commerce_val_1_mud').GetValue, '(CFixedPoint)0')]"
+									text = "Exported > [County.GetCapital.MakeScope.Var('toggle_county_commerce_scope_1_mud').GetProvince.GetNameNoTooltip]: [County.GetCapital.MakeScope.Var('toggle_county_commerce_val_1_mud').GetValue]"
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									fontsize = 12
+									fontsize_min = 4
+									min_width = 245
+									max_width = 245
+									visible = "[Not(GreaterThanOrEqualTo_CFixedPoint(County.GetCapital.MakeScope.Var('toggle_county_commerce_val_1_mud').GetValue, '(CFixedPoint)0'))]"
+									text = "Imported < [County.GetCapital.MakeScope.Var('toggle_county_commerce_scope_1_mud').GetProvince.GetNameNoTooltip]: [County.GetCapital.MakeScope.Var('toggle_county_commerce_rev_1_mud').GetValue]"
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									fontsize = 12
+									fontsize_min = 4
+									min_width = 245
+									max_width = 245
+									visible = "[EqualTo_CFixedPoint(County.GetCapital.MakeScope.Var('toggle_county_commerce_val_1_mud').GetValue, '(CFixedPoint)0')]"
+									text = ""
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									fontsize = 12
+									fontsize_min = 4
+									min_width = 245
+									max_width = 245
+									visible = "[GreaterThan_CFixedPoint(County.GetCapital.MakeScope.Var('toggle_county_commerce_val_2_mud').GetValue, '(CFixedPoint)0')]"
+									text = "Exported > [County.GetCapital.MakeScope.Var('toggle_county_commerce_scope_2_mud').GetProvince.GetNameNoTooltip]: [County.GetCapital.MakeScope.Var('toggle_county_commerce_val_2_mud').GetValue]"
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									fontsize = 12
+									fontsize_min = 4
+									min_width = 245
+									max_width = 245
+									visible = "[Not(GreaterThanOrEqualTo_CFixedPoint(County.GetCapital.MakeScope.Var('toggle_county_commerce_val_2_mud').GetValue, '(CFixedPoint)0'))]"
+									text = "Imported < [County.GetCapital.MakeScope.Var('toggle_county_commerce_scope_2_mud').GetProvince.GetNameNoTooltip]: [County.GetCapital.MakeScope.Var('toggle_county_commerce_rev_2_mud').GetValue]"
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									fontsize = 12
+									fontsize_min = 4
+									min_width = 245
+									max_width = 245
+									visible = "[EqualTo_CFixedPoint(County.GetCapital.MakeScope.Var('toggle_county_commerce_val_2_mud').GetValue, '(CFixedPoint)0')]"
+									text = ""
+								}
+								spacer = {
+									size = { 0 8 }
+								}
+							}
+							
+							background = {
+								using = Background_Area_Light
+							}
+						}
+						hbox = {
+							layoutpolicy_horizontal = expanding
+							max_width = 284
+							min_width = 284
+							
+							icon = {
+								name = "icon_building_cereal_fields"
+								texture = "gfx/interface/icons/building_types/icon_building_cereal_fields.dds"
+								size = { 30 30 }
+							}
+							
+							vbox = {
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									min_width = 245
+									max_width = 245
+									text = "Fuel: $[County.GetCapital.MakeScope.Var('toggle_county_commerce_price_fuel').GetValue]"
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									fontsize = 12
+									fontsize_min = 4
+									min_width = 245
+									max_width = 245
+									visible = "[GreaterThan_CFixedPoint(County.GetCapital.MakeScope.Var('toggle_county_commerce_val_0_fuel').GetValue, '(CFixedPoint)0')]"
+									text = "Exported > [County.GetCapital.MakeScope.Var('toggle_county_commerce_scope_0_fuel').GetProvince.GetNameNoTooltip]: [County.GetCapital.MakeScope.Var('toggle_county_commerce_val_0_fuel').GetValue]"
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									fontsize = 12
+									fontsize_min = 4
+									min_width = 245
+									max_width = 245
+									visible = "[Not(GreaterThanOrEqualTo_CFixedPoint(County.GetCapital.MakeScope.Var('toggle_county_commerce_val_0_fuel').GetValue, '(CFixedPoint)0'))]"
+									text = "Imported < [County.GetCapital.MakeScope.Var('toggle_county_commerce_scope_0_fuel').GetProvince.GetNameNoTooltip]: [County.GetCapital.MakeScope.Var('toggle_county_commerce_rev_0_fuel').GetValue]"
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									fontsize = 12
+									fontsize_min = 4
+									min_width = 245
+									max_width = 245
+									visible = "[EqualTo_CFixedPoint(County.GetCapital.MakeScope.Var('toggle_county_commerce_val_0_fuel').GetValue, '(CFixedPoint)0')]"
+									text = ""
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									fontsize = 12
+									fontsize_min = 4
+									min_width = 245
+									max_width = 245
+									visible = "[GreaterThan_CFixedPoint(County.GetCapital.MakeScope.Var('toggle_county_commerce_val_1_fuel').GetValue, '(CFixedPoint)0')]"
+									text = "Exported > [County.GetCapital.MakeScope.Var('toggle_county_commerce_scope_1_fuel').GetProvince.GetNameNoTooltip]: [County.GetCapital.MakeScope.Var('toggle_county_commerce_val_1_fuel').GetValue]"
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									fontsize = 12
+									fontsize_min = 4
+									min_width = 245
+									max_width = 245
+									visible = "[Not(GreaterThanOrEqualTo_CFixedPoint(County.GetCapital.MakeScope.Var('toggle_county_commerce_val_1_fuel').GetValue, '(CFixedPoint)0'))]"
+									text = "Imported < [County.GetCapital.MakeScope.Var('toggle_county_commerce_scope_1_fuel').GetProvince.GetNameNoTooltip]: [County.GetCapital.MakeScope.Var('toggle_county_commerce_rev_1_fuel').GetValue]"
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									fontsize = 12
+									fontsize_min = 4
+									min_width = 245
+									max_width = 245
+									visible = "[EqualTo_CFixedPoint(County.GetCapital.MakeScope.Var('toggle_county_commerce_val_1_fuel').GetValue, '(CFixedPoint)0')]"
+									text = ""
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									fontsize = 12
+									fontsize_min = 4
+									min_width = 245
+									max_width = 245
+									visible = "[GreaterThan_CFixedPoint(County.GetCapital.MakeScope.Var('toggle_county_commerce_val_2_fuel').GetValue, '(CFixedPoint)0')]"
+									text = "Exported > [County.GetCapital.MakeScope.Var('toggle_county_commerce_scope_2_fuel').GetProvince.GetNameNoTooltip]: [County.GetCapital.MakeScope.Var('toggle_county_commerce_val_2_fuel').GetValue]"
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									fontsize = 12
+									fontsize_min = 4
+									min_width = 245
+									max_width = 245
+									visible = "[Not(GreaterThanOrEqualTo_CFixedPoint(County.GetCapital.MakeScope.Var('toggle_county_commerce_val_2_fuel').GetValue, '(CFixedPoint)0'))]"
+									text = "Imported < [County.GetCapital.MakeScope.Var('toggle_county_commerce_scope_2_fuel').GetProvince.GetNameNoTooltip]: [County.GetCapital.MakeScope.Var('toggle_county_commerce_rev_2_fuel').GetValue]"
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									fontsize = 12
+									fontsize_min = 4
+									min_width = 245
+									max_width = 245
+									visible = "[EqualTo_CFixedPoint(County.GetCapital.MakeScope.Var('toggle_county_commerce_val_2_fuel').GetValue, '(CFixedPoint)0')]"
+									text = ""
+								}
+								spacer = {
+									size = { 0 8 }
+								}
+							}
+							
+							background = {
+								using = Background_Area_Light
+							}
+						}
+						hbox = {
+							layoutpolicy_horizontal = expanding
+							max_width = 284
+							min_width = 284
+							
+							icon = {
+								name = "icon_building_cereal_fields"
+								texture = "gfx/interface/icons/building_types/icon_building_cereal_fields.dds"
+								size = { 30 30 }
+							}
+							
+							vbox = {
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									min_width = 245
+									max_width = 245
+									text = "Fiber: $[County.GetCapital.MakeScope.Var('toggle_county_commerce_price_fiber').GetValue]"
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									fontsize = 12
+									fontsize_min = 4
+									min_width = 245
+									max_width = 245
+									visible = "[GreaterThan_CFixedPoint(County.GetCapital.MakeScope.Var('toggle_county_commerce_val_0_fiber').GetValue, '(CFixedPoint)0')]"
+									text = "Exported > [County.GetCapital.MakeScope.Var('toggle_county_commerce_scope_0_fiber').GetProvince.GetNameNoTooltip]: [County.GetCapital.MakeScope.Var('toggle_county_commerce_val_0_fiber').GetValue]"
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									fontsize = 12
+									fontsize_min = 4
+									min_width = 245
+									max_width = 245
+									visible = "[Not(GreaterThanOrEqualTo_CFixedPoint(County.GetCapital.MakeScope.Var('toggle_county_commerce_val_0_fiber').GetValue, '(CFixedPoint)0'))]"
+									text = "Imported < [County.GetCapital.MakeScope.Var('toggle_county_commerce_scope_0_fiber').GetProvince.GetNameNoTooltip]: [County.GetCapital.MakeScope.Var('toggle_county_commerce_rev_0_fiber').GetValue]"
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									fontsize = 12
+									fontsize_min = 4
+									min_width = 245
+									max_width = 245
+									visible = "[EqualTo_CFixedPoint(County.GetCapital.MakeScope.Var('toggle_county_commerce_val_0_fiber').GetValue, '(CFixedPoint)0')]"
+									text = ""
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									fontsize = 12
+									fontsize_min = 4
+									min_width = 245
+									max_width = 245
+									visible = "[GreaterThan_CFixedPoint(County.GetCapital.MakeScope.Var('toggle_county_commerce_val_1_fiber').GetValue, '(CFixedPoint)0')]"
+									text = "Exported > [County.GetCapital.MakeScope.Var('toggle_county_commerce_scope_1_fiber').GetProvince.GetNameNoTooltip]: [County.GetCapital.MakeScope.Var('toggle_county_commerce_val_1_fiber').GetValue]"
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									fontsize = 12
+									fontsize_min = 4
+									min_width = 245
+									max_width = 245
+									visible = "[Not(GreaterThanOrEqualTo_CFixedPoint(County.GetCapital.MakeScope.Var('toggle_county_commerce_val_1_fiber').GetValue, '(CFixedPoint)0'))]"
+									text = "Imported < [County.GetCapital.MakeScope.Var('toggle_county_commerce_scope_1_fiber').GetProvince.GetNameNoTooltip]: [County.GetCapital.MakeScope.Var('toggle_county_commerce_rev_1_fiber').GetValue]"
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									fontsize = 12
+									fontsize_min = 4
+									min_width = 245
+									max_width = 245
+									visible = "[EqualTo_CFixedPoint(County.GetCapital.MakeScope.Var('toggle_county_commerce_val_1_fiber').GetValue, '(CFixedPoint)0')]"
+									text = ""
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									fontsize = 12
+									fontsize_min = 4
+									min_width = 245
+									max_width = 245
+									visible = "[GreaterThan_CFixedPoint(County.GetCapital.MakeScope.Var('toggle_county_commerce_val_2_fiber').GetValue, '(CFixedPoint)0')]"
+									text = "Exported > [County.GetCapital.MakeScope.Var('toggle_county_commerce_scope_2_fiber').GetProvince.GetNameNoTooltip]: [County.GetCapital.MakeScope.Var('toggle_county_commerce_val_2_fiber').GetValue]"
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									fontsize = 12
+									fontsize_min = 4
+									min_width = 245
+									max_width = 245
+									visible = "[Not(GreaterThanOrEqualTo_CFixedPoint(County.GetCapital.MakeScope.Var('toggle_county_commerce_val_2_fiber').GetValue, '(CFixedPoint)0'))]"
+									text = "Imported < [County.GetCapital.MakeScope.Var('toggle_county_commerce_scope_2_fiber').GetProvince.GetNameNoTooltip]: [County.GetCapital.MakeScope.Var('toggle_county_commerce_rev_2_fiber').GetValue]"
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									fontsize = 12
+									fontsize_min = 4
+									min_width = 245
+									max_width = 245
+									visible = "[EqualTo_CFixedPoint(County.GetCapital.MakeScope.Var('toggle_county_commerce_val_2_fiber').GetValue, '(CFixedPoint)0')]"
+									text = ""
+								}
+								spacer = {
+									size = { 0 8 }
+								}
+							}
+							
+							background = {
+								using = Background_Area_Light
+							}
+						}
+						hbox = {
+							layoutpolicy_horizontal = expanding
+							max_width = 284
+							min_width = 284
+							
+							icon = {
+								name = "icon_building_cereal_fields"
+								texture = "gfx/interface/icons/building_types/icon_building_cereal_fields.dds"
+								size = { 30 30 }
+							}
+							
+							vbox = {
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									min_width = 245
+									max_width = 245
+									text = "Timber: $[County.GetCapital.MakeScope.Var('toggle_county_commerce_price_timber').GetValue]"
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									fontsize = 12
+									fontsize_min = 4
+									min_width = 245
+									max_width = 245
+									visible = "[GreaterThan_CFixedPoint(County.GetCapital.MakeScope.Var('toggle_county_commerce_val_0_timber').GetValue, '(CFixedPoint)0')]"
+									text = "Exported > [County.GetCapital.MakeScope.Var('toggle_county_commerce_scope_0_timber').GetProvince.GetNameNoTooltip]: [County.GetCapital.MakeScope.Var('toggle_county_commerce_val_0_timber').GetValue]"
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									fontsize = 12
+									fontsize_min = 4
+									min_width = 245
+									max_width = 245
+									visible = "[Not(GreaterThanOrEqualTo_CFixedPoint(County.GetCapital.MakeScope.Var('toggle_county_commerce_val_0_timber').GetValue, '(CFixedPoint)0'))]"
+									text = "Imported < [County.GetCapital.MakeScope.Var('toggle_county_commerce_scope_0_timber').GetProvince.GetNameNoTooltip]: [County.GetCapital.MakeScope.Var('toggle_county_commerce_rev_0_timber').GetValue]"
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									fontsize = 12
+									fontsize_min = 4
+									min_width = 245
+									max_width = 245
+									visible = "[EqualTo_CFixedPoint(County.GetCapital.MakeScope.Var('toggle_county_commerce_val_0_timber').GetValue, '(CFixedPoint)0')]"
+									text = ""
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									fontsize = 12
+									fontsize_min = 4
+									min_width = 245
+									max_width = 245
+									visible = "[GreaterThan_CFixedPoint(County.GetCapital.MakeScope.Var('toggle_county_commerce_val_1_timber').GetValue, '(CFixedPoint)0')]"
+									text = "Exported > [County.GetCapital.MakeScope.Var('toggle_county_commerce_scope_1_timber').GetProvince.GetNameNoTooltip]: [County.GetCapital.MakeScope.Var('toggle_county_commerce_val_1_timber').GetValue]"
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									fontsize = 12
+									fontsize_min = 4
+									min_width = 245
+									max_width = 245
+									visible = "[Not(GreaterThanOrEqualTo_CFixedPoint(County.GetCapital.MakeScope.Var('toggle_county_commerce_val_1_timber').GetValue, '(CFixedPoint)0'))]"
+									text = "Imported < [County.GetCapital.MakeScope.Var('toggle_county_commerce_scope_1_timber').GetProvince.GetNameNoTooltip]: [County.GetCapital.MakeScope.Var('toggle_county_commerce_rev_1_timber').GetValue]"
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									fontsize = 12
+									fontsize_min = 4
+									min_width = 245
+									max_width = 245
+									visible = "[EqualTo_CFixedPoint(County.GetCapital.MakeScope.Var('toggle_county_commerce_val_1_timber').GetValue, '(CFixedPoint)0')]"
+									text = ""
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									fontsize = 12
+									fontsize_min = 4
+									min_width = 245
+									max_width = 245
+									visible = "[GreaterThan_CFixedPoint(County.GetCapital.MakeScope.Var('toggle_county_commerce_val_2_timber').GetValue, '(CFixedPoint)0')]"
+									text = "Exported > [County.GetCapital.MakeScope.Var('toggle_county_commerce_scope_2_timber').GetProvince.GetNameNoTooltip]: [County.GetCapital.MakeScope.Var('toggle_county_commerce_val_2_timber').GetValue]"
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									fontsize = 12
+									fontsize_min = 4
+									min_width = 245
+									max_width = 245
+									visible = "[Not(GreaterThanOrEqualTo_CFixedPoint(County.GetCapital.MakeScope.Var('toggle_county_commerce_val_2_timber').GetValue, '(CFixedPoint)0'))]"
+									text = "Imported < [County.GetCapital.MakeScope.Var('toggle_county_commerce_scope_2_timber').GetProvince.GetNameNoTooltip]: [County.GetCapital.MakeScope.Var('toggle_county_commerce_rev_2_timber').GetValue]"
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									fontsize = 12
+									fontsize_min = 4
+									min_width = 245
+									max_width = 245
+									visible = "[EqualTo_CFixedPoint(County.GetCapital.MakeScope.Var('toggle_county_commerce_val_2_timber').GetValue, '(CFixedPoint)0')]"
+									text = ""
+								}
+								spacer = {
+									size = { 0 8 }
+								}
+							}
+							
+							background = {
+								using = Background_Area_Light
+							}
+						}
+						hbox = {
+							layoutpolicy_horizontal = expanding
+							max_width = 284
+							min_width = 284
+							
+							icon = {
+								name = "icon_building_cereal_fields"
+								texture = "gfx/interface/icons/building_types/icon_building_cereal_fields.dds"
+								size = { 30 30 }
+							}
+							
+							vbox = {
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									min_width = 245
+									max_width = 245
+									text = "Metal: $[County.GetCapital.MakeScope.Var('toggle_county_commerce_price_metal').GetValue]"
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									fontsize = 12
+									fontsize_min = 4
+									min_width = 245
+									max_width = 245
+									visible = "[GreaterThan_CFixedPoint(County.GetCapital.MakeScope.Var('toggle_county_commerce_val_0_metal').GetValue, '(CFixedPoint)0')]"
+									text = "Exported > [County.GetCapital.MakeScope.Var('toggle_county_commerce_scope_0_metal').GetProvince.GetNameNoTooltip]: [County.GetCapital.MakeScope.Var('toggle_county_commerce_val_0_metal').GetValue]"
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									fontsize = 12
+									fontsize_min = 4
+									min_width = 245
+									max_width = 245
+									visible = "[Not(GreaterThanOrEqualTo_CFixedPoint(County.GetCapital.MakeScope.Var('toggle_county_commerce_val_0_metal').GetValue, '(CFixedPoint)0'))]"
+									text = "Imported < [County.GetCapital.MakeScope.Var('toggle_county_commerce_scope_0_metal').GetProvince.GetNameNoTooltip]: [County.GetCapital.MakeScope.Var('toggle_county_commerce_rev_0_metal').GetValue]"
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									fontsize = 12
+									fontsize_min = 4
+									min_width = 245
+									max_width = 245
+									visible = "[EqualTo_CFixedPoint(County.GetCapital.MakeScope.Var('toggle_county_commerce_val_0_metal').GetValue, '(CFixedPoint)0')]"
+									text = ""
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									fontsize = 12
+									fontsize_min = 4
+									min_width = 245
+									max_width = 245
+									visible = "[GreaterThan_CFixedPoint(County.GetCapital.MakeScope.Var('toggle_county_commerce_val_1_metal').GetValue, '(CFixedPoint)0')]"
+									text = "Exported > [County.GetCapital.MakeScope.Var('toggle_county_commerce_scope_1_metal').GetProvince.GetNameNoTooltip]: [County.GetCapital.MakeScope.Var('toggle_county_commerce_val_1_metal').GetValue]"
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									fontsize = 12
+									fontsize_min = 4
+									min_width = 245
+									max_width = 245
+									visible = "[Not(GreaterThanOrEqualTo_CFixedPoint(County.GetCapital.MakeScope.Var('toggle_county_commerce_val_1_metal').GetValue, '(CFixedPoint)0'))]"
+									text = "Imported < [County.GetCapital.MakeScope.Var('toggle_county_commerce_scope_1_metal').GetProvince.GetNameNoTooltip]: [County.GetCapital.MakeScope.Var('toggle_county_commerce_rev_1_metal').GetValue]"
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									fontsize = 12
+									fontsize_min = 4
+									min_width = 245
+									max_width = 245
+									visible = "[EqualTo_CFixedPoint(County.GetCapital.MakeScope.Var('toggle_county_commerce_val_1_metal').GetValue, '(CFixedPoint)0')]"
+									text = ""
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									fontsize = 12
+									fontsize_min = 4
+									min_width = 245
+									max_width = 245
+									visible = "[GreaterThan_CFixedPoint(County.GetCapital.MakeScope.Var('toggle_county_commerce_val_2_metal').GetValue, '(CFixedPoint)0')]"
+									text = "Exported > [County.GetCapital.MakeScope.Var('toggle_county_commerce_scope_2_metal').GetProvince.GetNameNoTooltip]: [County.GetCapital.MakeScope.Var('toggle_county_commerce_val_2_metal').GetValue]"
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									fontsize = 12
+									fontsize_min = 4
+									min_width = 245
+									max_width = 245
+									visible = "[Not(GreaterThanOrEqualTo_CFixedPoint(County.GetCapital.MakeScope.Var('toggle_county_commerce_val_2_metal').GetValue, '(CFixedPoint)0'))]"
+									text = "Imported < [County.GetCapital.MakeScope.Var('toggle_county_commerce_scope_2_metal').GetProvince.GetNameNoTooltip]: [County.GetCapital.MakeScope.Var('toggle_county_commerce_rev_2_metal').GetValue]"
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									fontsize = 12
+									fontsize_min = 4
+									min_width = 245
+									max_width = 245
+									visible = "[EqualTo_CFixedPoint(County.GetCapital.MakeScope.Var('toggle_county_commerce_val_2_metal').GetValue, '(CFixedPoint)0')]"
+									text = ""
+								}
+								spacer = {
+									size = { 0 8 }
+								}
+							}
+							
+							background = {
+								using = Background_Area_Light
+							}
+						}
+						hbox = {
+							layoutpolicy_horizontal = expanding
+							max_width = 284
+							min_width = 284
+							
+							icon = {
+								name = "icon_building_cereal_fields"
+								texture = "gfx/interface/icons/building_types/icon_building_cereal_fields.dds"
+								size = { 30 30 }
+							}
+							
+							vbox = {
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									min_width = 245
+									max_width = 245
+									text = "Western Exotics: $[County.GetCapital.MakeScope.Var('toggle_county_commerce_price_exotics_w').GetValue]"
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									fontsize = 12
+									fontsize_min = 4
+									min_width = 245
+									max_width = 245
+									visible = "[GreaterThan_CFixedPoint(County.GetCapital.MakeScope.Var('toggle_county_commerce_val_0_exotics_w').GetValue, '(CFixedPoint)0')]"
+									text = "Exported > [County.GetCapital.MakeScope.Var('toggle_county_commerce_scope_0_exotics_w').GetProvince.GetNameNoTooltip]: [County.GetCapital.MakeScope.Var('toggle_county_commerce_val_0_exotics_w').GetValue]"
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									fontsize = 12
+									fontsize_min = 4
+									min_width = 245
+									max_width = 245
+									visible = "[Not(GreaterThanOrEqualTo_CFixedPoint(County.GetCapital.MakeScope.Var('toggle_county_commerce_val_0_exotics_w').GetValue, '(CFixedPoint)0'))]"
+									text = "Imported < [County.GetCapital.MakeScope.Var('toggle_county_commerce_scope_0_exotics_w').GetProvince.GetNameNoTooltip]: [County.GetCapital.MakeScope.Var('toggle_county_commerce_rev_0_exotics_w').GetValue]"
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									fontsize = 12
+									fontsize_min = 4
+									min_width = 245
+									max_width = 245
+									visible = "[EqualTo_CFixedPoint(County.GetCapital.MakeScope.Var('toggle_county_commerce_val_0_exotics_w').GetValue, '(CFixedPoint)0')]"
+									text = ""
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									fontsize = 12
+									fontsize_min = 4
+									min_width = 245
+									max_width = 245
+									visible = "[GreaterThan_CFixedPoint(County.GetCapital.MakeScope.Var('toggle_county_commerce_val_1_exotics_w').GetValue, '(CFixedPoint)0')]"
+									text = "Exported > [County.GetCapital.MakeScope.Var('toggle_county_commerce_scope_1_exotics_w').GetProvince.GetNameNoTooltip]: [County.GetCapital.MakeScope.Var('toggle_county_commerce_val_1_exotics_w').GetValue]"
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									fontsize = 12
+									fontsize_min = 4
+									min_width = 245
+									max_width = 245
+									visible = "[Not(GreaterThanOrEqualTo_CFixedPoint(County.GetCapital.MakeScope.Var('toggle_county_commerce_val_1_exotics_w').GetValue, '(CFixedPoint)0'))]"
+									text = "Imported < [County.GetCapital.MakeScope.Var('toggle_county_commerce_scope_1_exotics_w').GetProvince.GetNameNoTooltip]: [County.GetCapital.MakeScope.Var('toggle_county_commerce_rev_1_exotics_w').GetValue]"
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									fontsize = 12
+									fontsize_min = 4
+									min_width = 245
+									max_width = 245
+									visible = "[EqualTo_CFixedPoint(County.GetCapital.MakeScope.Var('toggle_county_commerce_val_1_exotics_w').GetValue, '(CFixedPoint)0')]"
+									text = ""
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									fontsize = 12
+									fontsize_min = 4
+									min_width = 245
+									max_width = 245
+									visible = "[GreaterThan_CFixedPoint(County.GetCapital.MakeScope.Var('toggle_county_commerce_val_2_exotics_w').GetValue, '(CFixedPoint)0')]"
+									text = "Exported > [County.GetCapital.MakeScope.Var('toggle_county_commerce_scope_2_exotics_w').GetProvince.GetNameNoTooltip]: [County.GetCapital.MakeScope.Var('toggle_county_commerce_val_2_exotics_w').GetValue]"
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									fontsize = 12
+									fontsize_min = 4
+									min_width = 245
+									max_width = 245
+									visible = "[Not(GreaterThanOrEqualTo_CFixedPoint(County.GetCapital.MakeScope.Var('toggle_county_commerce_val_2_exotics_w').GetValue, '(CFixedPoint)0'))]"
+									text = "Imported < [County.GetCapital.MakeScope.Var('toggle_county_commerce_scope_2_exotics_w').GetProvince.GetNameNoTooltip]: [County.GetCapital.MakeScope.Var('toggle_county_commerce_rev_2_exotics_w').GetValue]"
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									fontsize = 12
+									fontsize_min = 4
+									min_width = 245
+									max_width = 245
+									visible = "[EqualTo_CFixedPoint(County.GetCapital.MakeScope.Var('toggle_county_commerce_val_2_exotics_w').GetValue, '(CFixedPoint)0')]"
+									text = ""
+								}
+								spacer = {
+									size = { 0 8 }
+								}
+							}
+							
+							background = {
+								using = Background_Area_Light
+							}
+						}
+						hbox = {
+							layoutpolicy_horizontal = expanding
+							max_width = 284
+							min_width = 284
+							
+							icon = {
+								name = "icon_building_cereal_fields"
+								texture = "gfx/interface/icons/building_types/icon_building_cereal_fields.dds"
+								size = { 30 30 }
+							}
+							
+							vbox = {
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									min_width = 245
+									max_width = 245
+									text = "Eastern Exotics: $[County.GetCapital.MakeScope.Var('toggle_county_commerce_price_exotics_e').GetValue]"
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									fontsize = 12
+									fontsize_min = 4
+									min_width = 245
+									max_width = 245
+									visible = "[GreaterThan_CFixedPoint(County.GetCapital.MakeScope.Var('toggle_county_commerce_val_0_exotics_e').GetValue, '(CFixedPoint)0')]"
+									text = "Exported > [County.GetCapital.MakeScope.Var('toggle_county_commerce_scope_0_exotics_e').GetProvince.GetNameNoTooltip]: [County.GetCapital.MakeScope.Var('toggle_county_commerce_val_0_exotics_e').GetValue]"
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									fontsize = 12
+									fontsize_min = 4
+									min_width = 245
+									max_width = 245
+									visible = "[Not(GreaterThanOrEqualTo_CFixedPoint(County.GetCapital.MakeScope.Var('toggle_county_commerce_val_0_exotics_e').GetValue, '(CFixedPoint)0'))]"
+									text = "Imported < [County.GetCapital.MakeScope.Var('toggle_county_commerce_scope_0_exotics_e').GetProvince.GetNameNoTooltip]: [County.GetCapital.MakeScope.Var('toggle_county_commerce_rev_0_exotics_e').GetValue]"
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									fontsize = 12
+									fontsize_min = 4
+									min_width = 245
+									max_width = 245
+									visible = "[EqualTo_CFixedPoint(County.GetCapital.MakeScope.Var('toggle_county_commerce_val_0_exotics_e').GetValue, '(CFixedPoint)0')]"
+									text = ""
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									fontsize = 12
+									fontsize_min = 4
+									min_width = 245
+									max_width = 245
+									visible = "[GreaterThan_CFixedPoint(County.GetCapital.MakeScope.Var('toggle_county_commerce_val_1_exotics_e').GetValue, '(CFixedPoint)0')]"
+									text = "Exported > [County.GetCapital.MakeScope.Var('toggle_county_commerce_scope_1_exotics_e').GetProvince.GetNameNoTooltip]: [County.GetCapital.MakeScope.Var('toggle_county_commerce_val_1_exotics_e').GetValue]"
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									fontsize = 12
+									fontsize_min = 4
+									min_width = 245
+									max_width = 245
+									visible = "[Not(GreaterThanOrEqualTo_CFixedPoint(County.GetCapital.MakeScope.Var('toggle_county_commerce_val_1_exotics_e').GetValue, '(CFixedPoint)0'))]"
+									text = "Imported < [County.GetCapital.MakeScope.Var('toggle_county_commerce_scope_1_exotics_e').GetProvince.GetNameNoTooltip]: [County.GetCapital.MakeScope.Var('toggle_county_commerce_rev_1_exotics_e').GetValue]"
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									fontsize = 12
+									fontsize_min = 4
+									min_width = 245
+									max_width = 245
+									visible = "[EqualTo_CFixedPoint(County.GetCapital.MakeScope.Var('toggle_county_commerce_val_1_exotics_e').GetValue, '(CFixedPoint)0')]"
+									text = ""
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									fontsize = 12
+									fontsize_min = 4
+									min_width = 245
+									max_width = 245
+									visible = "[GreaterThan_CFixedPoint(County.GetCapital.MakeScope.Var('toggle_county_commerce_val_2_exotics_e').GetValue, '(CFixedPoint)0')]"
+									text = "Exported > [County.GetCapital.MakeScope.Var('toggle_county_commerce_scope_2_exotics_e').GetProvince.GetNameNoTooltip]: [County.GetCapital.MakeScope.Var('toggle_county_commerce_val_2_exotics_e').GetValue]"
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									fontsize = 12
+									fontsize_min = 4
+									min_width = 245
+									max_width = 245
+									visible = "[Not(GreaterThanOrEqualTo_CFixedPoint(County.GetCapital.MakeScope.Var('toggle_county_commerce_val_2_exotics_e').GetValue, '(CFixedPoint)0'))]"
+									text = "Imported < [County.GetCapital.MakeScope.Var('toggle_county_commerce_scope_2_exotics_e').GetProvince.GetNameNoTooltip]: [County.GetCapital.MakeScope.Var('toggle_county_commerce_rev_2_exotics_e').GetValue]"
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									fontsize = 12
+									fontsize_min = 4
+									min_width = 245
+									max_width = 245
+									visible = "[EqualTo_CFixedPoint(County.GetCapital.MakeScope.Var('toggle_county_commerce_val_2_exotics_e').GetValue, '(CFixedPoint)0')]"
+									text = ""
+								}
+								spacer = {
+									size = { 0 8 }
+								}
+							}
+							
+							background = {
+								using = Background_Area_Light
+							}
+						}
+						hbox = {
+							layoutpolicy_horizontal = expanding
+							max_width = 284
+							min_width = 284
+							
+							icon = {
+								name = "icon_building_cereal_fields"
+								texture = "gfx/interface/icons/building_types/icon_building_cereal_fields.dds"
+								size = { 30 30 }
+							}
+							
+							vbox = {
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									min_width = 245
+									max_width = 245
+									text = "General Exotics: $[County.GetCapital.MakeScope.Var('toggle_county_commerce_price_exotics_g').GetValue]"
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									fontsize = 12
+									fontsize_min = 4
+									min_width = 245
+									max_width = 245
+									visible = "[GreaterThan_CFixedPoint(County.GetCapital.MakeScope.Var('toggle_county_commerce_val_0_exotics_g').GetValue, '(CFixedPoint)0')]"
+									text = "Exported > [County.GetCapital.MakeScope.Var('toggle_county_commerce_scope_0_exotics_g').GetProvince.GetNameNoTooltip]: [County.GetCapital.MakeScope.Var('toggle_county_commerce_val_0_exotics_g').GetValue]"
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									fontsize = 12
+									fontsize_min = 4
+									min_width = 245
+									max_width = 245
+									visible = "[Not(GreaterThanOrEqualTo_CFixedPoint(County.GetCapital.MakeScope.Var('toggle_county_commerce_val_0_exotics_g').GetValue, '(CFixedPoint)0'))]"
+									text = "Imported < [County.GetCapital.MakeScope.Var('toggle_county_commerce_scope_0_exotics_g').GetProvince.GetNameNoTooltip]: [County.GetCapital.MakeScope.Var('toggle_county_commerce_rev_0_exotics_g').GetValue]"
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									fontsize = 12
+									fontsize_min = 4
+									min_width = 245
+									max_width = 245
+									visible = "[GreaterThan_CFixedPoint(County.GetCapital.MakeScope.Var('toggle_county_commerce_val_1_exotics_g').GetValue, '(CFixedPoint)0')]"
+									text = "Exported > [County.GetCapital.MakeScope.Var('toggle_county_commerce_scope_1_exotics_g').GetProvince.GetNameNoTooltip]: [County.GetCapital.MakeScope.Var('toggle_county_commerce_val_1_exotics_g').GetValue]"
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									fontsize = 12
+									fontsize_min = 4
+									min_width = 245
+									max_width = 245
+									visible = "[Not(GreaterThanOrEqualTo_CFixedPoint(County.GetCapital.MakeScope.Var('toggle_county_commerce_val_1_exotics_g').GetValue, '(CFixedPoint)0'))]"
+									text = "Imported < [County.GetCapital.MakeScope.Var('toggle_county_commerce_scope_1_exotics_g').GetProvince.GetNameNoTooltip]: [County.GetCapital.MakeScope.Var('toggle_county_commerce_rev_1_exotics_g').GetValue]"
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									fontsize = 12
+									fontsize_min = 4
+									min_width = 245
+									max_width = 245
+									visible = "[GreaterThan_CFixedPoint(County.GetCapital.MakeScope.Var('toggle_county_commerce_val_2_exotics_g').GetValue, '(CFixedPoint)0')]"
+									text = "Exported > [County.GetCapital.MakeScope.Var('toggle_county_commerce_scope_2_exotics_g').GetProvince.GetNameNoTooltip]: [County.GetCapital.MakeScope.Var('toggle_county_commerce_val_2_exotics_g').GetValue]"
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									fontsize = 12
+									fontsize_min = 4
+									min_width = 245
+									max_width = 245
+									visible = "[Not(GreaterThanOrEqualTo_CFixedPoint(County.GetCapital.MakeScope.Var('toggle_county_commerce_val_2_exotics_g').GetValue, '(CFixedPoint)0'))]"
+									text = "Imported < [County.GetCapital.MakeScope.Var('toggle_county_commerce_scope_2_exotics_g').GetProvince.GetNameNoTooltip]: [County.GetCapital.MakeScope.Var('toggle_county_commerce_rev_2_exotics_g').GetValue]"
+								}
+								spacer = {
+									size = { 0 8 }
+								}
+							}
+							
+							background = {
+								using = Background_Area_Light
+							}
+						}
+						hbox = {
+							layoutpolicy_horizontal = expanding
+							max_width = 284
+							min_width = 284
+							
+							icon = {
+								name = "icon_building_cereal_fields"
+								texture = "gfx/interface/icons/building_types/icon_building_cereal_fields.dds"
+								size = { 30 30 }
+							}
+							
+							vbox = {
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									min_width = 245
+									max_width = 245
+									text = "Textile: $[County.GetCapital.MakeScope.Var('toggle_county_commerce_price_textile').GetValue]"
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									fontsize = 12
+									fontsize_min = 4
+									min_width = 245
+									max_width = 245
+									visible = "[GreaterThan_CFixedPoint(County.GetCapital.MakeScope.Var('toggle_county_commerce_val_0_textile').GetValue, '(CFixedPoint)0')]"
+									text = "Exported > [County.GetCapital.MakeScope.Var('toggle_county_commerce_scope_0_textile').GetProvince.GetNameNoTooltip]: [County.GetCapital.MakeScope.Var('toggle_county_commerce_val_0_textile').GetValue]"
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									fontsize = 12
+									fontsize_min = 4
+									min_width = 245
+									max_width = 245
+									visible = "[Not(GreaterThanOrEqualTo_CFixedPoint(County.GetCapital.MakeScope.Var('toggle_county_commerce_val_0_textile').GetValue, '(CFixedPoint)0'))]"
+									text = "Imported < [County.GetCapital.MakeScope.Var('toggle_county_commerce_scope_0_textile').GetProvince.GetNameNoTooltip]: [County.GetCapital.MakeScope.Var('toggle_county_commerce_rev_0_textile').GetValue]"
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									fontsize = 12
+									fontsize_min = 4
+									min_width = 245
+									max_width = 245
+									visible = "[GreaterThan_CFixedPoint(County.GetCapital.MakeScope.Var('toggle_county_commerce_val_1_textile').GetValue, '(CFixedPoint)0')]"
+									text = "Exported > [County.GetCapital.MakeScope.Var('toggle_county_commerce_scope_1_textile').GetProvince.GetNameNoTooltip]: [County.GetCapital.MakeScope.Var('toggle_county_commerce_val_1_textile').GetValue]"
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									fontsize = 12
+									fontsize_min = 4
+									min_width = 245
+									max_width = 245
+									visible = "[Not(GreaterThanOrEqualTo_CFixedPoint(County.GetCapital.MakeScope.Var('toggle_county_commerce_val_1_textile').GetValue, '(CFixedPoint)0'))]"
+									text = "Imported < [County.GetCapital.MakeScope.Var('toggle_county_commerce_scope_1_textile').GetProvince.GetNameNoTooltip]: [County.GetCapital.MakeScope.Var('toggle_county_commerce_rev_1_textile').GetValue]"
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									fontsize = 12
+									fontsize_min = 4
+									min_width = 245
+									max_width = 245
+									visible = "[GreaterThan_CFixedPoint(County.GetCapital.MakeScope.Var('toggle_county_commerce_val_2_textile').GetValue, '(CFixedPoint)0')]"
+									text = "Exported > [County.GetCapital.MakeScope.Var('toggle_county_commerce_scope_2_textile').GetProvince.GetNameNoTooltip]: [County.GetCapital.MakeScope.Var('toggle_county_commerce_val_2_textile').GetValue]"
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									fontsize = 12
+									fontsize_min = 4
+									min_width = 245
+									max_width = 245
+									visible = "[Not(GreaterThanOrEqualTo_CFixedPoint(County.GetCapital.MakeScope.Var('toggle_county_commerce_val_2_textile').GetValue, '(CFixedPoint)0'))]"
+									text = "Imported < [County.GetCapital.MakeScope.Var('toggle_county_commerce_scope_2_textile').GetProvince.GetNameNoTooltip]: [County.GetCapital.MakeScope.Var('toggle_county_commerce_rev_2_textile').GetValue]"
+								}
+								spacer = {
+									size = { 0 8 }
+								}
+							}
+							
+							background = {
+								using = Background_Area_Light
+							}
+						}
+						hbox = {
+							layoutpolicy_horizontal = expanding
+							max_width = 284
+							min_width = 284
+							
+							icon = {
+								name = "icon_building_cereal_fields"
+								texture = "gfx/interface/icons/building_types/icon_building_cereal_fields.dds"
+								size = { 30 30 }
+							}
+							
+							vbox = {
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									min_width = 245
+									max_width = 245
+									text = "Pottery: $[County.GetCapital.MakeScope.Var('toggle_county_commerce_price_pottery').GetValue]"
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									fontsize = 12
+									fontsize_min = 4
+									min_width = 245
+									max_width = 245
+									visible = "[GreaterThan_CFixedPoint(County.GetCapital.MakeScope.Var('toggle_county_commerce_val_0_pottery').GetValue, '(CFixedPoint)0')]"
+									text = "Exported > [County.GetCapital.MakeScope.Var('toggle_county_commerce_scope_0_pottery').GetProvince.GetNameNoTooltip]: [County.GetCapital.MakeScope.Var('toggle_county_commerce_val_0_pottery').GetValue]"
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									fontsize = 12
+									fontsize_min = 4
+									min_width = 245
+									max_width = 245
+									visible = "[Not(GreaterThanOrEqualTo_CFixedPoint(County.GetCapital.MakeScope.Var('toggle_county_commerce_val_0_pottery').GetValue, '(CFixedPoint)0'))]"
+									text = "Imported < [County.GetCapital.MakeScope.Var('toggle_county_commerce_scope_0_pottery').GetProvince.GetNameNoTooltip]: [County.GetCapital.MakeScope.Var('toggle_county_commerce_rev_0_pottery').GetValue]"
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									fontsize = 12
+									fontsize_min = 4
+									min_width = 245
+									max_width = 245
+									visible = "[GreaterThan_CFixedPoint(County.GetCapital.MakeScope.Var('toggle_county_commerce_val_1_pottery').GetValue, '(CFixedPoint)0')]"
+									text = "Exported > [County.GetCapital.MakeScope.Var('toggle_county_commerce_scope_1_pottery').GetProvince.GetNameNoTooltip]: [County.GetCapital.MakeScope.Var('toggle_county_commerce_val_1_pottery').GetValue]"
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									fontsize = 12
+									fontsize_min = 4
+									min_width = 245
+									max_width = 245
+									visible = "[Not(GreaterThanOrEqualTo_CFixedPoint(County.GetCapital.MakeScope.Var('toggle_county_commerce_val_1_pottery').GetValue, '(CFixedPoint)0'))]"
+									text = "Imported < [County.GetCapital.MakeScope.Var('toggle_county_commerce_scope_1_pottery').GetProvince.GetNameNoTooltip]: [County.GetCapital.MakeScope.Var('toggle_county_commerce_rev_1_pottery').GetValue]"
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									fontsize = 12
+									fontsize_min = 4
+									min_width = 245
+									max_width = 245
+									visible = "[GreaterThan_CFixedPoint(County.GetCapital.MakeScope.Var('toggle_county_commerce_val_2_pottery').GetValue, '(CFixedPoint)0')]"
+									text = "Exported > [County.GetCapital.MakeScope.Var('toggle_county_commerce_scope_2_pottery').GetProvince.GetNameNoTooltip]: [County.GetCapital.MakeScope.Var('toggle_county_commerce_val_2_pottery').GetValue]"
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									fontsize = 12
+									fontsize_min = 4
+									min_width = 245
+									max_width = 245
+									visible = "[Not(GreaterThanOrEqualTo_CFixedPoint(County.GetCapital.MakeScope.Var('toggle_county_commerce_val_2_pottery').GetValue, '(CFixedPoint)0'))]"
+									text = "Imported < [County.GetCapital.MakeScope.Var('toggle_county_commerce_scope_2_pottery').GetProvince.GetNameNoTooltip]: [County.GetCapital.MakeScope.Var('toggle_county_commerce_rev_2_pottery').GetValue]"
+								}
+								spacer = {
+									size = { 0 8 }
+								}
+							}
+							
+							background = {
+								using = Background_Area_Light
+							}
+						}
+						hbox = {
+							layoutpolicy_horizontal = expanding
+							max_width = 284
+							min_width = 284
+							
+							icon = {
+								name = "icon_building_cereal_fields"
+								texture = "gfx/interface/icons/building_types/icon_building_cereal_fields.dds"
+								size = { 30 30 }
+							}
+							
+							vbox = {
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									min_width = 245
+									max_width = 245
+									text = "Tools: $[County.GetCapital.MakeScope.Var('toggle_county_commerce_price_tools').GetValue]"
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									fontsize = 12
+									fontsize_min = 4
+									min_width = 245
+									max_width = 245
+									visible = "[GreaterThan_CFixedPoint(County.GetCapital.MakeScope.Var('toggle_county_commerce_val_0_tools').GetValue, '(CFixedPoint)0')]"
+									text = "Exported > [County.GetCapital.MakeScope.Var('toggle_county_commerce_scope_0_tools').GetProvince.GetNameNoTooltip]: [County.GetCapital.MakeScope.Var('toggle_county_commerce_val_0_tools').GetValue]"
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									fontsize = 12
+									fontsize_min = 4
+									min_width = 245
+									max_width = 245
+									visible = "[Not(GreaterThanOrEqualTo_CFixedPoint(County.GetCapital.MakeScope.Var('toggle_county_commerce_val_0_tools').GetValue, '(CFixedPoint)0'))]"
+									text = "Imported < [County.GetCapital.MakeScope.Var('toggle_county_commerce_scope_0_tools').GetProvince.GetNameNoTooltip]: [County.GetCapital.MakeScope.Var('toggle_county_commerce_rev_0_tools').GetValue]"
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									fontsize = 12
+									fontsize_min = 4
+									min_width = 245
+									max_width = 245
+									visible = "[GreaterThan_CFixedPoint(County.GetCapital.MakeScope.Var('toggle_county_commerce_val_1_tools').GetValue, '(CFixedPoint)0')]"
+									text = "Exported > [County.GetCapital.MakeScope.Var('toggle_county_commerce_scope_1_tools').GetProvince.GetNameNoTooltip]: [County.GetCapital.MakeScope.Var('toggle_county_commerce_val_1_tools').GetValue]"
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									fontsize = 12
+									fontsize_min = 4
+									min_width = 245
+									max_width = 245
+									visible = "[Not(GreaterThanOrEqualTo_CFixedPoint(County.GetCapital.MakeScope.Var('toggle_county_commerce_val_1_tools').GetValue, '(CFixedPoint)0'))]"
+									text = "Imported < [County.GetCapital.MakeScope.Var('toggle_county_commerce_scope_1_tools').GetProvince.GetNameNoTooltip]: [County.GetCapital.MakeScope.Var('toggle_county_commerce_rev_1_tools').GetValue]"
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									fontsize = 12
+									fontsize_min = 4
+									min_width = 245
+									max_width = 245
+									visible = "[GreaterThan_CFixedPoint(County.GetCapital.MakeScope.Var('toggle_county_commerce_val_2_tools').GetValue, '(CFixedPoint)0')]"
+									text = "Exported > [County.GetCapital.MakeScope.Var('toggle_county_commerce_scope_2_tools').GetProvince.GetNameNoTooltip]: [County.GetCapital.MakeScope.Var('toggle_county_commerce_val_2_tools').GetValue]"
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									fontsize = 12
+									fontsize_min = 4
+									min_width = 245
+									max_width = 245
+									visible = "[Not(GreaterThanOrEqualTo_CFixedPoint(County.GetCapital.MakeScope.Var('toggle_county_commerce_val_2_tools').GetValue, '(CFixedPoint)0'))]"
+									text = "Imported < [County.GetCapital.MakeScope.Var('toggle_county_commerce_scope_2_tools').GetProvince.GetNameNoTooltip]: [County.GetCapital.MakeScope.Var('toggle_county_commerce_rev_2_tools').GetValue]"
+								}
+								spacer = {
+									size = { 0 8 }
+								}
+							}
+							
+							background = {
+								using = Background_Area_Light
+							}
+						}
+						hbox = {
+							layoutpolicy_horizontal = expanding
+							max_width = 284
+							min_width = 284
+							
+							icon = {
+								name = "icon_building_cereal_fields"
+								texture = "gfx/interface/icons/building_types/icon_building_cereal_fields.dds"
+								size = { 30 30 }
+							}
+							
+							vbox = {
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									min_width = 245
+									max_width = 245
+									text = "Armaments: $[County.GetCapital.MakeScope.Var('toggle_county_commerce_price_armaments').GetValue]"
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									fontsize = 12
+									fontsize_min = 4
+									min_width = 245
+									max_width = 245
+									visible = "[GreaterThan_CFixedPoint(County.GetCapital.MakeScope.Var('toggle_county_commerce_val_0_armaments').GetValue, '(CFixedPoint)0')]"
+									text = "Exported > [County.GetCapital.MakeScope.Var('toggle_county_commerce_scope_0_armaments').GetProvince.GetNameNoTooltip]: [County.GetCapital.MakeScope.Var('toggle_county_commerce_val_0_armaments').GetValue]"
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									fontsize = 12
+									fontsize_min = 4
+									min_width = 245
+									max_width = 245
+									visible = "[Not(GreaterThanOrEqualTo_CFixedPoint(County.GetCapital.MakeScope.Var('toggle_county_commerce_val_0_armaments').GetValue, '(CFixedPoint)0'))]"
+									text = "Imported < [County.GetCapital.MakeScope.Var('toggle_county_commerce_scope_0_armaments').GetProvince.GetNameNoTooltip]: [County.GetCapital.MakeScope.Var('toggle_county_commerce_rev_0_armaments').GetValue]"
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									fontsize = 12
+									fontsize_min = 4
+									min_width = 245
+									max_width = 245
+									visible = "[GreaterThan_CFixedPoint(County.GetCapital.MakeScope.Var('toggle_county_commerce_val_1_armaments').GetValue, '(CFixedPoint)0')]"
+									text = "Exported > [County.GetCapital.MakeScope.Var('toggle_county_commerce_scope_1_armaments').GetProvince.GetNameNoTooltip]: [County.GetCapital.MakeScope.Var('toggle_county_commerce_val_1_armaments').GetValue]"
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									fontsize = 12
+									fontsize_min = 4
+									min_width = 245
+									max_width = 245
+									visible = "[Not(GreaterThanOrEqualTo_CFixedPoint(County.GetCapital.MakeScope.Var('toggle_county_commerce_val_1_armaments').GetValue, '(CFixedPoint)0'))]"
+									text = "Imported < [County.GetCapital.MakeScope.Var('toggle_county_commerce_scope_1_armaments').GetProvince.GetNameNoTooltip]: [County.GetCapital.MakeScope.Var('toggle_county_commerce_rev_1_armaments').GetValue]"
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									fontsize = 12
+									fontsize_min = 4
+									min_width = 245
+									max_width = 245
+									visible = "[GreaterThan_CFixedPoint(County.GetCapital.MakeScope.Var('toggle_county_commerce_val_2_armaments').GetValue, '(CFixedPoint)0')]"
+									text = "Exported > [County.GetCapital.MakeScope.Var('toggle_county_commerce_scope_2_armaments').GetProvince.GetNameNoTooltip]: [County.GetCapital.MakeScope.Var('toggle_county_commerce_val_2_armaments').GetValue]"
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									fontsize = 12
+									fontsize_min = 4
+									min_width = 245
+									max_width = 245
+									visible = "[Not(GreaterThanOrEqualTo_CFixedPoint(County.GetCapital.MakeScope.Var('toggle_county_commerce_val_2_armaments').GetValue, '(CFixedPoint)0'))]"
+									text = "Imported < [County.GetCapital.MakeScope.Var('toggle_county_commerce_scope_2_armaments').GetProvince.GetNameNoTooltip]: [County.GetCapital.MakeScope.Var('toggle_county_commerce_rev_2_armaments').GetValue]"
+								}
+								spacer = {
+									size = { 0 8 }
+								}
+							}
+							
+							background = {
+								using = Background_Area_Light
+							}
+						}
+						spacer = {
+							size = { 0 20 }
+						}
+					}
+				}
 			}
 		}
 	}
 	
 	window = {
-		parentanchor = top|right
-		size = { 450 900 }
-		position = { 400 -400 }
-		movable = yes
-		visible = "[EqualTo_CFixedPoint('(CFixedPoint)1', Province.MakeScope.Var('toggled_prov_trade').GetValue)]"
+		parentanchor = right
+		size = { 300 610 }
+		position = { 300 0 }
+		movable = no
+		visible = "[EqualTo_CFixedPoint('(CFixedPoint)1', Province.MakeScope.Var('toggled_prov_economy').GetValue)]"
 		
 		background = {
 			texture = "gfx/interface/component_tiles/tile_window_background_subwindow.dds"
 			spriteType = Corneredtiled
 			spriteborder = { 18 18 }
+			margin = { -23 -17 }
+			margin_left = 40
+			margin_bottom = 20
 			texture_density = 2
 			
 			modify_texture = {
@@ -206,561 +1759,612 @@ window = {
 		
 		buttons_window_control = {
 			parentanchor = top|right
+			position = { -40 35 }
 			blockoverride "button_close"
 			{
-				datacontext = "[GetScriptedGui( 'close_prov_trade' )]"
+				datacontext = "[GetScriptedGui( 'close_prov_economy' )]"
 				onclick = "[ScriptedGui.Execute( GuiScope.SetRoot( Province.MakeScope ).End )]"
+				background = {
+					using = Background_Area_Dark
+				}
 			}
 		}
 		
-		vbox = {
-			margin_left = 20
-			margin_bottom = 15
-			margin_top = 10
+		text_single = {
+			position = { -5 40 }
+			text = "Local Economy"
+			default_format = "#high"
+			align = nobaseline
+			using = Font_Size_Big
+			max_width = 190
+			fontsize_min = 16
+		}
+		
+		container = {
 			layoutpolicy_vertical = expanding
 			
-			hbox = {
-				layoutpolicy_horizontal = expanding
+			scrollbox = {
+				minimumsize = { 300 550 }
+				position = { -30 85 }
+				layoutpolicy_vertical = expanding
 				
-				vbox = {
-					layoutpolicy_horizontal = expanding
-					
-					text_single = {
-						parentanchor = left
-						text = "Food:"
-						using = Font_Size_Small
-						layoutpolicy_horizontal = expanding
-					}
-					text_single = {
-						layoutpolicy_horizontal = expanding
-						text = " - Stockpile: [Province.MakeScope.Var('prod_has_food').GetValue]"
-						using = Font_Size_Small
-					}
-					text_single = {
-						layoutpolicy_horizontal = expanding
-						text = " - Supply: [Province.MakeScope.Var('info_trade_prov_sply_food').GetValue]"
-						using = Font_Size_Small
-					}
-					text_single = {
-						layoutpolicy_horizontal = expanding
-						text = " - Demand: [Province.MakeScope.Var('info_trade_prov_dmnd_food').GetValue]"
-						using = Font_Size_Small
-						tooltip = "Pop, Industry, Construction: ([Province.MakeScope.Var('info_trade_prov_dmnd_pop_food').GetValue], [Province.MakeScope.Var('info_trade_prov_dmnd_prod_food').GetValue], [Province.MakeScope.Var('info_trade_prov_dmnd_build_food').GetValue])"
-					}
-					text_single = {
-						layoutpolicy_horizontal = expanding
-						text = " - Demand Met: [Province.MakeScope.Var('info_trade_prov_in_food').GetValue]"
-						using = Font_Size_Small
-						tooltip = "Pop, Industry, Construction: ([Province.MakeScope.Var('info_trade_prov_in_pop_food').GetValue], [Province.MakeScope.Var('info_trade_prov_in_prod_food').GetValue], [Province.MakeScope.Var('info_trade_prov_in_build_food').GetValue])"
+				blockoverride scrollbox_background
+				{
+					background = {
+						using = Background_Area_Dark
 					}
 				}
-				vbox = {
-					layoutpolicy_horizontal = expanding
-					
-					text_single = {
-						parentanchor = left
-						text = "Cereal:"
-						using = Font_Size_Small
-						layoutpolicy_horizontal = expanding
-					}
-					text_single = {
-						layoutpolicy_horizontal = expanding
-						text = " - Stockpile: [Province.MakeScope.Var('prod_has_cereal').GetValue]"
-						using = Font_Size_Small
-					}
-					text_single = {
-						layoutpolicy_horizontal = expanding
-						text = " - Supply: [Province.MakeScope.Var('info_trade_prov_sply_cereal').GetValue]"
-						using = Font_Size_Small
-					}
-					text_single = {
-						layoutpolicy_horizontal = expanding
-						text = " - Demand: [Province.MakeScope.Var('info_trade_prov_dmnd_cereal').GetValue]"
-						using = Font_Size_Small
-						tooltip = "Pop, Industry, Construction: ([Province.MakeScope.Var('info_trade_prov_dmnd_pop_cereal').GetValue], [Province.MakeScope.Var('info_trade_prov_dmnd_prod_cereal').GetValue], [Province.MakeScope.Var('info_trade_prov_dmnd_build_cereal').GetValue])"
-					}
-					text_single = {
-						layoutpolicy_horizontal = expanding
-						text = " - Demand Met: [Province.MakeScope.Var('info_trade_prov_in_cereal').GetValue]"
-						using = Font_Size_Small
-						tooltip = "Pop, Industry, Construction: ([Province.MakeScope.Var('info_trade_prov_in_pop_cereal').GetValue], [Province.MakeScope.Var('info_trade_prov_in_prod_cereal').GetValue], [Province.MakeScope.Var('info_trade_prov_in_build_cereal').GetValue])"
-					}
-				}
-			}
-			hbox = {
-				layoutpolicy_horizontal = expanding
 				
-				vbox = {
-					layoutpolicy_horizontal = expanding
-					
-					text_single = {
-						parentanchor = left
-						text = "Salted:"
-						using = Font_Size_Small
-						layoutpolicy_horizontal = expanding
-					}
-					text_single = {
-						layoutpolicy_horizontal = expanding
-						text = " - Stockpile: [Province.MakeScope.Var('prod_has_salted').GetValue]"
-						using = Font_Size_Small
-					}
-					text_single = {
-						layoutpolicy_horizontal = expanding
-						text = " - Supply: [Province.MakeScope.Var('info_trade_prov_sply_salted').GetValue]"
-						using = Font_Size_Small
-					}
-					text_single = {
-						layoutpolicy_horizontal = expanding
-						text = " - Demand: [Province.MakeScope.Var('info_trade_prov_dmnd_salted').GetValue]"
-						using = Font_Size_Small
-						tooltip = "Pop, Industry, Construction: ([Province.MakeScope.Var('info_trade_prov_dmnd_pop_salted').GetValue], [Province.MakeScope.Var('info_trade_prov_dmnd_prod_salted').GetValue], [Province.MakeScope.Var('info_trade_prov_dmnd_build_salted').GetValue])"
-					}
-					text_single = {
-						layoutpolicy_horizontal = expanding
-						text = " - Demand Met: [Province.MakeScope.Var('info_trade_prov_in_salted').GetValue]"
-						using = Font_Size_Small
-						tooltip = "Pop, Industry, Construction: ([Province.MakeScope.Var('info_trade_prov_in_pop_salted').GetValue], [Province.MakeScope.Var('info_trade_prov_in_prod_salted').GetValue], [Province.MakeScope.Var('info_trade_prov_in_build_salted').GetValue])"
-					}
-				}
-				vbox = {
-					layoutpolicy_horizontal = expanding
-					
-					text_single = {
-						parentanchor = left
-						text = "Salt:"
-						using = Font_Size_Small
-						layoutpolicy_horizontal = expanding
-					}
-					text_single = {
-						layoutpolicy_horizontal = expanding
-						text = " - Stockpile: [Province.MakeScope.Var('prod_has_salt').GetValue]"
-						using = Font_Size_Small
-					}
-					text_single = {
-						layoutpolicy_horizontal = expanding
-						text = " - Supply: [Province.MakeScope.Var('info_trade_prov_sply_salt').GetValue]"
-						using = Font_Size_Small
-					}
-					text_single = {
-						layoutpolicy_horizontal = expanding
-						text = " - Demand: [Province.MakeScope.Var('info_trade_prov_dmnd_salt').GetValue]"
-						using = Font_Size_Small
-						tooltip = "Pop, Industry, Construction: ([Province.MakeScope.Var('info_trade_prov_dmnd_pop_salt').GetValue], [Province.MakeScope.Var('info_trade_prov_dmnd_prod_salt').GetValue], [Province.MakeScope.Var('info_trade_prov_dmnd_build_salt').GetValue])"
-					}
-					text_single = {
-						layoutpolicy_horizontal = expanding
-						text = " - Demand Met: [Province.MakeScope.Var('info_trade_prov_in_salt').GetValue]"
-						using = Font_Size_Small
-						tooltip = "Pop, Industry, Construction: ([Province.MakeScope.Var('info_trade_prov_in_pop_salt').GetValue], [Province.MakeScope.Var('info_trade_prov_in_prod_salt').GetValue], [Province.MakeScope.Var('info_trade_prov_in_build_salt').GetValue])"
-					}
-				}
-			}
-			hbox = {
-				layoutpolicy_horizontal = expanding
-				
-				vbox = {
-					layoutpolicy_horizontal = expanding
-					
-					text_single = {
-						parentanchor = left
-						text = "Mud:"
-						using = Font_Size_Small
-						layoutpolicy_horizontal = expanding
-					}
-					text_single = {
-						layoutpolicy_horizontal = expanding
-						text = " - Stockpile: [Province.MakeScope.Var('prod_has_mud').GetValue]"
-						using = Font_Size_Small
-					}
-					text_single = {
-						layoutpolicy_horizontal = expanding
-						text = " - Supply: [Province.MakeScope.Var('info_trade_prov_sply_mud').GetValue]"
-						using = Font_Size_Small
-					}
-					text_single = {
-						layoutpolicy_horizontal = expanding
-						text = " - Demand: [Province.MakeScope.Var('info_trade_prov_dmnd_mud').GetValue]"
-						using = Font_Size_Small
-						tooltip = "Pop, Industry, Construction: ([Province.MakeScope.Var('info_trade_prov_dmnd_pop_mud').GetValue], [Province.MakeScope.Var('info_trade_prov_dmnd_prod_mud').GetValue], [Province.MakeScope.Var('info_trade_prov_dmnd_build_mud').GetValue])"
-					}
-					text_single = {
-						layoutpolicy_horizontal = expanding
-						text = " - Demand Met: [Province.MakeScope.Var('info_trade_prov_in_mud').GetValue]"
-						using = Font_Size_Small
-						tooltip = "Pop, Industry, Construction: ([Province.MakeScope.Var('info_trade_prov_in_pop_mud').GetValue], [Province.MakeScope.Var('info_trade_prov_in_prod_mud').GetValue], [Province.MakeScope.Var('info_trade_prov_in_build_mud').GetValue])"
-					}
-				}
-				vbox = {
-					layoutpolicy_horizontal = expanding
-					
-					text_single = {
-						parentanchor = left
-						text = "Fuel:"
-						using = Font_Size_Small
-						layoutpolicy_horizontal = expanding
-					}
-					text_single = {
-						layoutpolicy_horizontal = expanding
-						text = " - Stockpile: [Province.MakeScope.Var('prod_has_fuel').GetValue]"
-						using = Font_Size_Small
-					}
-					text_single = {
-						layoutpolicy_horizontal = expanding
-						text = " - Supply: [Province.MakeScope.Var('info_trade_prov_sply_fuel').GetValue]"
-						using = Font_Size_Small
-					}
-					text_single = {
-						layoutpolicy_horizontal = expanding
-						text = " - Demand: [Province.MakeScope.Var('info_trade_prov_dmnd_fuel').GetValue]"
-						using = Font_Size_Small
-						tooltip = "Pop, Industry, Construction: ([Province.MakeScope.Var('info_trade_prov_dmnd_pop_fuel').GetValue], [Province.MakeScope.Var('info_trade_prov_dmnd_prod_fuel').GetValue], [Province.MakeScope.Var('info_trade_prov_dmnd_build_fuel').GetValue])"
-					}
-					text_single = {
-						layoutpolicy_horizontal = expanding
-						text = " - Demand Met: [Province.MakeScope.Var('info_trade_prov_in_fuel').GetValue]"
-						using = Font_Size_Small
-						tooltip = "Pop, Industry, Construction: ([Province.MakeScope.Var('info_trade_prov_in_pop_fuel').GetValue], [Province.MakeScope.Var('info_trade_prov_in_prod_fuel').GetValue], [Province.MakeScope.Var('info_trade_prov_in_build_fuel').GetValue])"
-					}
-				}
-			}
-			hbox = {
-				layoutpolicy_horizontal = expanding
-				
-				vbox = {
-					layoutpolicy_horizontal = expanding
-					
-					text_single = {
-						parentanchor = left
-						text = "Fiber:"
-						using = Font_Size_Small
-						layoutpolicy_horizontal = expanding
-					}
-					text_single = {
-						layoutpolicy_horizontal = expanding
-						text = " - Stockpile: [Province.MakeScope.Var('prod_has_fiber').GetValue]"
-						using = Font_Size_Small
-					}
-					text_single = {
-						layoutpolicy_horizontal = expanding
-						text = " - Supply: [Province.MakeScope.Var('info_trade_prov_sply_fiber').GetValue]"
-						using = Font_Size_Small
-					}
-					text_single = {
-						layoutpolicy_horizontal = expanding
-						text = " - Demand: [Province.MakeScope.Var('info_trade_prov_dmnd_fiber').GetValue]"
-						using = Font_Size_Small
-						tooltip = "Pop, Industry, Construction: ([Province.MakeScope.Var('info_trade_prov_dmnd_pop_fiber').GetValue], [Province.MakeScope.Var('info_trade_prov_dmnd_prod_fiber').GetValue], [Province.MakeScope.Var('info_trade_prov_dmnd_build_fiber').GetValue])"
-					}
-					text_single = {
-						layoutpolicy_horizontal = expanding
-						text = " - Demand Met: [Province.MakeScope.Var('info_trade_prov_in_fiber').GetValue]"
-						using = Font_Size_Small
-						tooltip = "Pop, Industry, Construction: ([Province.MakeScope.Var('info_trade_prov_in_pop_fiber').GetValue], [Province.MakeScope.Var('info_trade_prov_in_prod_fiber').GetValue], [Province.MakeScope.Var('info_trade_prov_in_build_fiber').GetValue])"
-					}
-				}
-				vbox = {
-					layoutpolicy_horizontal = expanding
-					
-					text_single = {
-						parentanchor = left
-						text = "Timber:"
-						using = Font_Size_Small
-						layoutpolicy_horizontal = expanding
-					}
-					text_single = {
-						layoutpolicy_horizontal = expanding
-						text = " - Stockpile: [Province.MakeScope.Var('prod_has_timber').GetValue]"
-						using = Font_Size_Small
-					}
-					text_single = {
-						layoutpolicy_horizontal = expanding
-						text = " - Supply: [Province.MakeScope.Var('info_trade_prov_sply_timber').GetValue]"
-						using = Font_Size_Small
-					}
-					text_single = {
-						layoutpolicy_horizontal = expanding
-						text = " - Demand: [Province.MakeScope.Var('info_trade_prov_dmnd_timber').GetValue]"
-						using = Font_Size_Small
-						tooltip = "Pop, Industry, Construction: ([Province.MakeScope.Var('info_trade_prov_dmnd_pop_timber').GetValue], [Province.MakeScope.Var('info_trade_prov_dmnd_prod_timber').GetValue], [Province.MakeScope.Var('info_trade_prov_dmnd_build_timber').GetValue])"
-					}
-					text_single = {
-						layoutpolicy_horizontal = expanding
-						text = " - Demand Met: [Province.MakeScope.Var('info_trade_prov_in_timber').GetValue]"
-						using = Font_Size_Small
-						tooltip = "Pop, Industry, Construction: ([Province.MakeScope.Var('info_trade_prov_in_pop_timber').GetValue], [Province.MakeScope.Var('info_trade_prov_in_prod_timber').GetValue], [Province.MakeScope.Var('info_trade_prov_in_build_timber').GetValue])"
-					}
-				}
-			}
-			hbox = {
-				layoutpolicy_horizontal = expanding
-				
-				vbox = {
-					layoutpolicy_horizontal = expanding
-					
-					text_single = {
-						parentanchor = left
-						text = "Metal:"
-						using = Font_Size_Small
-						layoutpolicy_horizontal = expanding
-					}
-					text_single = {
-						layoutpolicy_horizontal = expanding
-						text = " - Stockpile: [Province.MakeScope.Var('prod_has_metal').GetValue]"
-						using = Font_Size_Small
-					}
-					text_single = {
-						layoutpolicy_horizontal = expanding
-						text = " - Supply: [Province.MakeScope.Var('info_trade_prov_sply_metal').GetValue]"
-						using = Font_Size_Small
-					}
-					text_single = {
-						layoutpolicy_horizontal = expanding
-						text = " - Demand: [Province.MakeScope.Var('info_trade_prov_dmnd_metal').GetValue]"
-						using = Font_Size_Small
-						tooltip = "Pop, Industry, Construction: ([Province.MakeScope.Var('info_trade_prov_dmnd_pop_metal').GetValue], [Province.MakeScope.Var('info_trade_prov_dmnd_prod_metal').GetValue], [Province.MakeScope.Var('info_trade_prov_dmnd_build_metal').GetValue])"
-					}
-					text_single = {
-						layoutpolicy_horizontal = expanding
-						text = " - Demand Met: [Province.MakeScope.Var('info_trade_prov_in_metal').GetValue]"
-						using = Font_Size_Small
-						tooltip = "Pop, Industry, Construction: ([Province.MakeScope.Var('info_trade_prov_in_pop_metal').GetValue], [Province.MakeScope.Var('info_trade_prov_in_prod_metal').GetValue], [Province.MakeScope.Var('info_trade_prov_in_build_metal').GetValue])"
-					}
-				}
-				vbox = {
-					layoutpolicy_horizontal = expanding
-					
-					text_single = {
-						parentanchor = left
-						text = "Western Exotics:"
-						using = Font_Size_Small
-						layoutpolicy_horizontal = expanding
-					}
-					text_single = {
-						layoutpolicy_horizontal = expanding
-						text = " - Stockpile: [Province.MakeScope.Var('prod_has_exotics_w').GetValue]"
-						using = Font_Size_Small
-					}
-					text_single = {
-						layoutpolicy_horizontal = expanding
-						text = " - Supply: [Province.MakeScope.Var('info_trade_prov_sply_exotics_w').GetValue]"
-						using = Font_Size_Small
-					}
-					text_single = {
-						layoutpolicy_horizontal = expanding
-						text = " - Demand: [Province.MakeScope.Var('info_trade_prov_dmnd_exotics_w').GetValue]"
-						using = Font_Size_Small
-						tooltip = "Pop, Industry, Construction: ([Province.MakeScope.Var('info_trade_prov_dmnd_pop_exotics_w').GetValue], [Province.MakeScope.Var('info_trade_prov_dmnd_prod_exotics_w').GetValue], [Province.MakeScope.Var('info_trade_prov_dmnd_build_exotics_w').GetValue])"
-					}
-					text_single = {
-						layoutpolicy_horizontal = expanding
-						text = " - Demand Met: [Province.MakeScope.Var('info_trade_prov_in_exotics_w').GetValue]"
-						using = Font_Size_Small
-						tooltip = "Pop, Industry, Construction: ([Province.MakeScope.Var('info_trade_prov_in_pop_exotics_w').GetValue], [Province.MakeScope.Var('info_trade_prov_in_prod_exotics_w').GetValue], [Province.MakeScope.Var('info_trade_prov_in_build_exotics_w').GetValue])"
-					}
-				}
-			}
-			hbox = {
-				layoutpolicy_horizontal = expanding
-				
-				vbox = {
-					layoutpolicy_horizontal = expanding
-					
-					text_single = {
-						parentanchor = left
-						text = "Eastern Exotics:"
-						using = Font_Size_Small
-						layoutpolicy_horizontal = expanding
-					}
-					text_single = {
-						layoutpolicy_horizontal = expanding
-						text = " - Stockpile: [Province.MakeScope.Var('prod_has_exotics_e').GetValue]"
-						using = Font_Size_Small
-					}
-					text_single = {
-						layoutpolicy_horizontal = expanding
-						text = " - Supply: [Province.MakeScope.Var('info_trade_prov_sply_exotics_e').GetValue]"
-						using = Font_Size_Small
-					}
-					text_single = {
-						layoutpolicy_horizontal = expanding
-						text = " - Demand: [Province.MakeScope.Var('info_trade_prov_dmnd_exotics_e').GetValue]"
-						using = Font_Size_Small
-						tooltip = "Pop, Industry, Construction: ([Province.MakeScope.Var('info_trade_prov_dmnd_pop_exotics_e').GetValue], [Province.MakeScope.Var('info_trade_prov_dmnd_prod_exotics_e').GetValue], [Province.MakeScope.Var('info_trade_prov_dmnd_build_exotics_e').GetValue])"
-					}
-					text_single = {
-						layoutpolicy_horizontal = expanding
-						text = " - Demand Met: [Province.MakeScope.Var('info_trade_prov_in_exotics_e').GetValue]"
-						using = Font_Size_Small
-						tooltip = "Pop, Industry, Construction: ([Province.MakeScope.Var('info_trade_prov_in_pop_exotics_e').GetValue], [Province.MakeScope.Var('info_trade_prov_in_prod_exotics_e').GetValue], [Province.MakeScope.Var('info_trade_prov_in_build_exotics_e').GetValue])"
-					}
-				}
-				vbox = {
-					layoutpolicy_horizontal = expanding
-					
-					text_single = {
-						parentanchor = left
-						text = "General Exotics:"
-						using = Font_Size_Small
-						layoutpolicy_horizontal = expanding
-					}
-					text_single = {
-						layoutpolicy_horizontal = expanding
-						text = " - Stockpile: [Province.MakeScope.Var('prod_has_exotics_g').GetValue]"
-						using = Font_Size_Small
-					}
-					text_single = {
-						layoutpolicy_horizontal = expanding
-						text = " - Supply: [Province.MakeScope.Var('info_trade_prov_sply_exotics_g').GetValue]"
-						using = Font_Size_Small
-					}
-					text_single = {
-						layoutpolicy_horizontal = expanding
-						text = " - Demand: [Province.MakeScope.Var('info_trade_prov_dmnd_exotics_g').GetValue]"
-						using = Font_Size_Small
-						tooltip = "Pop, Industry, Construction: ([Province.MakeScope.Var('info_trade_prov_dmnd_pop_exotics_g').GetValue], [Province.MakeScope.Var('info_trade_prov_dmnd_prod_exotics_g').GetValue], [Province.MakeScope.Var('info_trade_prov_dmnd_build_exotics_g').GetValue])"
-					}
-					text_single = {
-						layoutpolicy_horizontal = expanding
-						text = " - Demand Met: [Province.MakeScope.Var('info_trade_prov_in_exotics_g').GetValue]"
-						using = Font_Size_Small
-						tooltip = "Pop, Industry, Construction: ([Province.MakeScope.Var('info_trade_prov_in_pop_exotics_g').GetValue], [Province.MakeScope.Var('info_trade_prov_in_prod_exotics_g').GetValue], [Province.MakeScope.Var('info_trade_prov_in_build_exotics_g').GetValue])"
-					}
-				}
-			}
-			hbox = {
-				layoutpolicy_horizontal = expanding
-				
-				vbox = {
-					layoutpolicy_horizontal = expanding
-					
-					text_single = {
-						parentanchor = left
-						text = "Textile:"
-						using = Font_Size_Small
-						layoutpolicy_horizontal = expanding
-					}
-					text_single = {
-						layoutpolicy_horizontal = expanding
-						text = " - Stockpile: [Province.MakeScope.Var('prod_has_textile').GetValue]"
-						using = Font_Size_Small
-					}
-					text_single = {
-						layoutpolicy_horizontal = expanding
-						text = " - Supply: [Province.MakeScope.Var('info_trade_prov_sply_textile').GetValue]"
-						using = Font_Size_Small
-					}
-					text_single = {
-						layoutpolicy_horizontal = expanding
-						text = " - Demand: [Province.MakeScope.Var('info_trade_prov_dmnd_textile').GetValue]"
-						using = Font_Size_Small
-						tooltip = "Pop, Industry, Construction: ([Province.MakeScope.Var('info_trade_prov_dmnd_pop_textile').GetValue], [Province.MakeScope.Var('info_trade_prov_dmnd_prod_textile').GetValue], [Province.MakeScope.Var('info_trade_prov_dmnd_build_textile').GetValue])"
-					}
-					text_single = {
-						layoutpolicy_horizontal = expanding
-						text = " - Demand Met: [Province.MakeScope.Var('info_trade_prov_in_textile').GetValue]"
-						using = Font_Size_Small
-						tooltip = "Pop, Industry, Construction: ([Province.MakeScope.Var('info_trade_prov_in_pop_textile').GetValue], [Province.MakeScope.Var('info_trade_prov_in_prod_textile').GetValue], [Province.MakeScope.Var('info_trade_prov_in_build_textile').GetValue])"
-					}
-				}
-				vbox = {
-					layoutpolicy_horizontal = expanding
-					
-					text_single = {
-						parentanchor = left
-						text = "Pottery:"
-						using = Font_Size_Small
-						layoutpolicy_horizontal = expanding
-					}
-					text_single = {
-						layoutpolicy_horizontal = expanding
-						text = " - Stockpile: [Province.MakeScope.Var('prod_has_pottery').GetValue]"
-						using = Font_Size_Small
-					}
-					text_single = {
-						layoutpolicy_horizontal = expanding
-						text = " - Supply: [Province.MakeScope.Var('info_trade_prov_sply_pottery').GetValue]"
-						using = Font_Size_Small
-					}
-					text_single = {
-						layoutpolicy_horizontal = expanding
-						text = " - Demand: [Province.MakeScope.Var('info_trade_prov_dmnd_pottery').GetValue]"
-						using = Font_Size_Small
-						tooltip = "Pop, Industry, Construction: ([Province.MakeScope.Var('info_trade_prov_dmnd_pop_pottery').GetValue], [Province.MakeScope.Var('info_trade_prov_dmnd_prod_pottery').GetValue], [Province.MakeScope.Var('info_trade_prov_dmnd_build_pottery').GetValue])"
-					}
-					text_single = {
-						layoutpolicy_horizontal = expanding
-						text = " - Demand Met: [Province.MakeScope.Var('info_trade_prov_in_pottery').GetValue]"
-						using = Font_Size_Small
-						tooltip = "Pop, Industry, Construction: ([Province.MakeScope.Var('info_trade_prov_in_pop_pottery').GetValue], [Province.MakeScope.Var('info_trade_prov_in_prod_pottery').GetValue], [Province.MakeScope.Var('info_trade_prov_in_build_pottery').GetValue])"
-					}
-				}
-			}
-			
-			hbox = {
-				layoutpolicy_horizontal = expanding
-				
-				vbox = {
-					layoutpolicy_horizontal = expanding
-					
-					text_single = {
-						parentanchor = left
-						text = "Tools:"
-						using = Font_Size_Small
-						layoutpolicy_horizontal = expanding
-					}
-					text_single = {
-						layoutpolicy_horizontal = expanding
-						text = " - Stockpile: [Province.MakeScope.Var('prod_has_tools').GetValue]"
-						using = Font_Size_Small
-					}
-					text_single = {
-						layoutpolicy_horizontal = expanding
-						text = " - Supply: [Province.MakeScope.Var('info_trade_prov_sply_tools').GetValue]"
-						using = Font_Size_Small
-					}
-					text_single = {
-						layoutpolicy_horizontal = expanding
-						text = " - Demand: [Province.MakeScope.Var('info_trade_prov_dmnd_tools').GetValue]"
-						using = Font_Size_Small
-						tooltip = "Pop, Industry, Construction: ([Province.MakeScope.Var('info_trade_prov_dmnd_pop_tools').GetValue], [Province.MakeScope.Var('info_trade_prov_dmnd_prod_tools').GetValue], [Province.MakeScope.Var('info_trade_prov_dmnd_build_tools').GetValue])"
-					}
-					text_single = {
-						layoutpolicy_horizontal = expanding
-						text = " - Demand Met: [Province.MakeScope.Var('info_trade_prov_in_tools').GetValue]"
-						using = Font_Size_Small
-						tooltip = "Pop, Industry, Construction: ([Province.MakeScope.Var('info_trade_prov_in_pop_tools').GetValue], [Province.MakeScope.Var('info_trade_prov_in_prod_tools').GetValue], [Province.MakeScope.Var('info_trade_prov_in_build_tools').GetValue])"
-					}
-				}
-				vbox = {
-					layoutpolicy_horizontal = expanding
-					
-					text_single = {
-						parentanchor = left
-						text = "Armaments:"
-						using = Font_Size_Small
-						layoutpolicy_horizontal = expanding
-					}
-					text_single = {
-						layoutpolicy_horizontal = expanding
-						text = " - Stockpile: [Province.MakeScope.Var('prod_has_armaments').GetValue]"
-						using = Font_Size_Small
-					}
-					text_single = {
-						layoutpolicy_horizontal = expanding
-						text = " - Supply: [Province.MakeScope.Var('info_trade_prov_sply_armaments').GetValue]"
-						using = Font_Size_Small
-					}
-					text_single = {
-						layoutpolicy_horizontal = expanding
-						text = " - Demand: [Province.MakeScope.Var('info_trade_prov_dmnd_armaments').GetValue]"
-						using = Font_Size_Small
-						tooltip = "Pop, Industry, Construction: ([Province.MakeScope.Var('info_trade_prov_dmnd_pop_armaments').GetValue], [Province.MakeScope.Var('info_trade_prov_dmnd_prod_armaments').GetValue], [Province.MakeScope.Var('info_trade_prov_dmnd_build_armaments').GetValue])"
-					}
-					text_single = {
-						layoutpolicy_horizontal = expanding
-						text = " - Demand Met: [Province.MakeScope.Var('info_trade_prov_in_armaments').GetValue]"
-						using = Font_Size_Small
-						tooltip = "Pop, Industry, Construction: ([Province.MakeScope.Var('info_trade_prov_in_pop_armaments').GetValue], [Province.MakeScope.Var('info_trade_prov_in_prod_armaments').GetValue], [Province.MakeScope.Var('info_trade_prov_in_build_armaments').GetValue])"
+				blockoverride "scrollbox_content"
+				{
+					position = { -10 0 }
+					vbox = {
+						spacing = 5
+						hbox = {
+							layoutpolicy_horizontal = expanding
+							max_width = 284
+							min_width = 284
+							
+							icon = {
+								name = "icon_building_cereal_fields"
+								texture = "gfx/interface/icons/building_types/icon_building_cereal_fields.dds"
+								size = { 30 30 }
+							}
+							
+							vbox = {
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									min_width = 245
+									max_width = 245
+									text = "Food: [Province.MakeScope.Var('prod_has_food').GetValue]"
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									fontsize = 12
+									fontsize_min = 4
+									min_width = 245
+									max_width = 245
+									text = "Supply & Demand: [Province.MakeScope.Var('toggle_prov_economy_sply_food').GetValue] / [Province.MakeScope.Var('toggle_prov_economy_dmnd_food').GetValue]"
+									tooltip = "Demand Met & Demand from Pop, from Construction, from Industry: [Province.MakeScope.Var('toggle_prov_economy_in_food').GetValue] / [Province.MakeScope.Var('toggle_prov_economy_dmnd_pop_food').GetValue], [Province.MakeScope.Var('toggle_prov_economy_dmnd_build_food').GetValue], [Province.MakeScope.Var('toggle_prov_economy_dmnd_prod_food').GetValue]"
+								}
+								spacer = {
+									size = { 0 8 }
+								}
+							}
+							
+							background = {
+								using = Background_Area_Light
+							}
+						}
+						hbox = {
+							layoutpolicy_horizontal = expanding
+							max_width = 284
+							min_width = 284
+							
+							icon = {
+								name = "icon_building_cereal_fields"
+								texture = "gfx/interface/icons/building_types/icon_building_cereal_fields.dds"
+								size = { 30 30 }
+							}
+							vbox = {
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									min_width = 245
+									max_width = 245
+									text = "Cereal: [Province.MakeScope.Var('prod_has_cereal').GetValue]"
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									fontsize = 12
+									fontsize_min = 4
+									min_width = 245
+									max_width = 245
+									text = "Supply & Demand: [Province.MakeScope.Var('toggle_prov_economy_sply_cereal').GetValue] / [Province.MakeScope.Var('toggle_prov_economy_dmnd_cereal').GetValue]"
+									tooltip = "Demand Met & Demand from Pop, from Construction, from Industry: [Province.MakeScope.Var('toggle_prov_economy_in_cereal').GetValue] / [Province.MakeScope.Var('toggle_prov_economy_dmnd_pop_cereal').GetValue], [Province.MakeScope.Var('toggle_prov_economy_dmnd_build_cereal').GetValue], [Province.MakeScope.Var('toggle_prov_economy_dmnd_prod_cereal').GetValue]"
+								}
+								spacer = {
+									size = { 0 8 }
+								}
+							}
+							
+							background = {
+								using = Background_Area_Light
+							}
+						}
+						hbox = {
+							layoutpolicy_horizontal = expanding
+							max_width = 284
+							min_width = 284
+							
+							icon = {
+								name = "icon_building_cereal_fields"
+								texture = "gfx/interface/icons/building_types/icon_building_cereal_fields.dds"
+								size = { 30 30 }
+							}
+							vbox = {
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									min_width = 245
+									max_width = 245
+									text = "Salted: [Province.MakeScope.Var('prod_has_salted').GetValue]"
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									fontsize = 12
+									fontsize_min = 4
+									min_width = 245
+									max_width = 245
+									text = "Supply & Demand: [Province.MakeScope.Var('toggle_prov_economy_sply_salted').GetValue] / [Province.MakeScope.Var('toggle_prov_economy_dmnd_salted').GetValue]"
+									tooltip = "Demand Met & Demand from Pop, from Construction, from Industry: [Province.MakeScope.Var('toggle_prov_economy_in_salted').GetValue] / [Province.MakeScope.Var('toggle_prov_economy_dmnd_pop_salted').GetValue], [Province.MakeScope.Var('toggle_prov_economy_dmnd_build_salted').GetValue], [Province.MakeScope.Var('toggle_prov_economy_dmnd_prod_salted').GetValue]"
+								}
+								spacer = {
+									size = { 0 8 }
+								}
+							}
+							
+							background = {
+								using = Background_Area_Light
+							}
+						}
+						hbox = {
+							layoutpolicy_horizontal = expanding
+							max_width = 284
+							min_width = 284
+							
+							icon = {
+								name = "icon_building_cereal_fields"
+								texture = "gfx/interface/icons/building_types/icon_building_cereal_fields.dds"
+								size = { 30 30 }
+							}
+							vbox = {
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									min_width = 245
+									max_width = 245
+									text = "Salt: [Province.MakeScope.Var('prod_has_salt').GetValue]"
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									fontsize = 12
+									fontsize_min = 4
+									min_width = 245
+									max_width = 245
+									text = "Supply & Demand: [Province.MakeScope.Var('toggle_prov_economy_sply_salt').GetValue] / [Province.MakeScope.Var('toggle_prov_economy_dmnd_salt').GetValue]"
+									tooltip = "Demand Met & Demand from Pop, from Construction, from Industry: [Province.MakeScope.Var('toggle_prov_economy_in_salt').GetValue] / [Province.MakeScope.Var('toggle_prov_economy_dmnd_pop_salt').GetValue], [Province.MakeScope.Var('toggle_prov_economy_dmnd_build_salt').GetValue], [Province.MakeScope.Var('toggle_prov_economy_dmnd_prod_salt').GetValue]"
+								}
+								spacer = {
+									size = { 0 8 }
+								}
+							}
+							
+							background = {
+								using = Background_Area_Light
+							}
+						}
+						hbox = {
+							layoutpolicy_horizontal = expanding
+							max_width = 284
+							min_width = 284
+							
+							icon = {
+								name = "icon_building_cereal_fields"
+								texture = "gfx/interface/icons/building_types/icon_building_cereal_fields.dds"
+								size = { 30 30 }
+							}
+							vbox = {
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									min_width = 245
+									max_width = 245
+									text = "Mud: [Province.MakeScope.Var('prod_has_mud').GetValue]"
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									fontsize = 12
+									fontsize_min = 4
+									min_width = 245
+									max_width = 245
+									text = "Supply & Demand: [Province.MakeScope.Var('toggle_prov_economy_sply_mud').GetValue] / [Province.MakeScope.Var('toggle_prov_economy_dmnd_mud').GetValue]"
+									tooltip = "Demand Met & Demand from Pop, from Construction, from Industry: [Province.MakeScope.Var('toggle_prov_economy_in_mud').GetValue] / [Province.MakeScope.Var('toggle_prov_economy_dmnd_pop_mud').GetValue], [Province.MakeScope.Var('toggle_prov_economy_dmnd_build_mud').GetValue], [Province.MakeScope.Var('toggle_prov_economy_dmnd_prod_mud').GetValue]"
+								}
+								spacer = {
+									size = { 0 8 }
+								}
+							}
+							
+							background = {
+								using = Background_Area_Light
+							}
+						}
+						hbox = {
+							layoutpolicy_horizontal = expanding
+							max_width = 284
+							min_width = 284
+							
+							icon = {
+								name = "icon_building_cereal_fields"
+								texture = "gfx/interface/icons/building_types/icon_building_cereal_fields.dds"
+								size = { 30 30 }
+							}
+							vbox = {
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									min_width = 245
+									max_width = 245
+									text = "Fuel: [Province.MakeScope.Var('prod_has_fuel').GetValue]"
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									fontsize = 12
+									fontsize_min = 4
+									min_width = 245
+									max_width = 245
+									text = "Supply & Demand: [Province.MakeScope.Var('toggle_prov_economy_sply_fuel').GetValue] / [Province.MakeScope.Var('toggle_prov_economy_dmnd_fuel').GetValue]"
+									tooltip = "Demand Met & Demand from Pop, from Construction, from Industry: [Province.MakeScope.Var('toggle_prov_economy_in_fuel').GetValue] / [Province.MakeScope.Var('toggle_prov_economy_dmnd_pop_fuel').GetValue], [Province.MakeScope.Var('toggle_prov_economy_dmnd_build_fuel').GetValue], [Province.MakeScope.Var('toggle_prov_economy_dmnd_prod_fuel').GetValue]"
+								}
+								spacer = {
+									size = { 0 8 }
+								}
+							}
+							
+							background = {
+								using = Background_Area_Light
+							}
+						}
+						hbox = {
+							layoutpolicy_horizontal = expanding
+							max_width = 284
+							min_width = 284
+							
+							icon = {
+								name = "icon_building_cereal_fields"
+								texture = "gfx/interface/icons/building_types/icon_building_cereal_fields.dds"
+								size = { 30 30 }
+							}
+							vbox = {
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									min_width = 245
+									max_width = 245
+									text = "Fiber: [Province.MakeScope.Var('prod_has_fiber').GetValue]"
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									fontsize = 12
+									fontsize_min = 4
+									min_width = 245
+									max_width = 245
+									text = "Supply & Demand: [Province.MakeScope.Var('toggle_prov_economy_sply_fiber').GetValue] / [Province.MakeScope.Var('toggle_prov_economy_dmnd_fiber').GetValue]"
+									tooltip = "Demand Met & Demand from Pop, from Construction, from Industry: [Province.MakeScope.Var('toggle_prov_economy_in_fiber').GetValue] / [Province.MakeScope.Var('toggle_prov_economy_dmnd_pop_fiber').GetValue], [Province.MakeScope.Var('toggle_prov_economy_dmnd_build_fiber').GetValue], [Province.MakeScope.Var('toggle_prov_economy_dmnd_prod_fiber').GetValue]"
+								}
+								spacer = {
+									size = { 0 8 }
+								}
+							}
+							
+							background = {
+								using = Background_Area_Light
+							}
+						}
+						hbox = {
+							layoutpolicy_horizontal = expanding
+							max_width = 284
+							min_width = 284
+							
+							icon = {
+								name = "icon_building_cereal_fields"
+								texture = "gfx/interface/icons/building_types/icon_building_cereal_fields.dds"
+								size = { 30 30 }
+							}
+							vbox = {
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									min_width = 245
+									max_width = 245
+									text = "Timber: [Province.MakeScope.Var('prod_has_timber').GetValue]"
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									fontsize = 12
+									fontsize_min = 4
+									min_width = 245
+									max_width = 245
+									text = "Supply & Demand: [Province.MakeScope.Var('toggle_prov_economy_sply_timber').GetValue] / [Province.MakeScope.Var('toggle_prov_economy_dmnd_timber').GetValue]"
+									tooltip = "Demand Met & Demand from Pop, from Construction, from Industry: [Province.MakeScope.Var('toggle_prov_economy_in_timber').GetValue] / [Province.MakeScope.Var('toggle_prov_economy_dmnd_pop_timber').GetValue], [Province.MakeScope.Var('toggle_prov_economy_dmnd_build_timber').GetValue], [Province.MakeScope.Var('toggle_prov_economy_dmnd_prod_timber').GetValue]"
+								}
+								spacer = {
+									size = { 0 8 }
+								}
+							}
+							
+							background = {
+								using = Background_Area_Light
+							}
+						}
+						hbox = {
+							layoutpolicy_horizontal = expanding
+							max_width = 284
+							min_width = 284
+							
+							icon = {
+								name = "icon_building_cereal_fields"
+								texture = "gfx/interface/icons/building_types/icon_building_cereal_fields.dds"
+								size = { 30 30 }
+							}
+							vbox = {
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									min_width = 245
+									max_width = 245
+									text = "Metal: [Province.MakeScope.Var('prod_has_metal').GetValue]"
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									fontsize = 12
+									fontsize_min = 4
+									min_width = 245
+									max_width = 245
+									text = "Supply & Demand: [Province.MakeScope.Var('toggle_prov_economy_sply_metal').GetValue] / [Province.MakeScope.Var('toggle_prov_economy_dmnd_metal').GetValue]"
+									tooltip = "Demand Met & Demand from Pop, from Construction, from Industry: [Province.MakeScope.Var('toggle_prov_economy_in_metal').GetValue] / [Province.MakeScope.Var('toggle_prov_economy_dmnd_pop_metal').GetValue], [Province.MakeScope.Var('toggle_prov_economy_dmnd_build_metal').GetValue], [Province.MakeScope.Var('toggle_prov_economy_dmnd_prod_metal').GetValue]"
+								}
+								spacer = {
+									size = { 0 8 }
+								}
+							}
+							
+							background = {
+								using = Background_Area_Light
+							}
+						}
+						hbox = {
+							layoutpolicy_horizontal = expanding
+							max_width = 284
+							min_width = 284
+							
+							icon = {
+								name = "icon_building_cereal_fields"
+								texture = "gfx/interface/icons/building_types/icon_building_cereal_fields.dds"
+								size = { 30 30 }
+							}
+							vbox = {
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									min_width = 245
+									max_width = 245
+									text = "Western Exotics: [Province.MakeScope.Var('prod_has_exotics_w').GetValue]"
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									fontsize = 12
+									fontsize_min = 4
+									min_width = 245
+									max_width = 245
+									text = "Supply & Demand: [Province.MakeScope.Var('toggle_prov_economy_sply_exotics_w').GetValue] / [Province.MakeScope.Var('toggle_prov_economy_dmnd_exotics_w').GetValue]"
+									tooltip = "Demand Met & Demand from Pop, from Construction, from Industry: [Province.MakeScope.Var('toggle_prov_economy_in_exotics_w').GetValue] / [Province.MakeScope.Var('toggle_prov_economy_dmnd_pop_exotics_w').GetValue], [Province.MakeScope.Var('toggle_prov_economy_dmnd_build_exotics_w').GetValue], [Province.MakeScope.Var('toggle_prov_economy_dmnd_prod_exotics_w').GetValue]"
+								}
+								spacer = {
+									size = { 0 8 }
+								}
+							}
+							
+							background = {
+								using = Background_Area_Light
+							}
+						}
+						hbox = {
+							layoutpolicy_horizontal = expanding
+							max_width = 284
+							min_width = 284
+							
+							icon = {
+								name = "icon_building_cereal_fields"
+								texture = "gfx/interface/icons/building_types/icon_building_cereal_fields.dds"
+								size = { 30 30 }
+							}
+							vbox = {
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									min_width = 245
+									max_width = 245
+									text = "Eastern Exotics: [Province.MakeScope.Var('prod_has_exotics_e').GetValue]"
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									fontsize = 12
+									fontsize_min = 4
+									min_width = 245
+									max_width = 245
+									text = "Supply & Demand: [Province.MakeScope.Var('toggle_prov_economy_sply_exotics_e').GetValue] / [Province.MakeScope.Var('toggle_prov_economy_dmnd_exotics_e').GetValue]"
+									tooltip = "Demand Met & Demand from Pop, from Construction, from Industry: [Province.MakeScope.Var('toggle_prov_economy_in_exotics_e').GetValue] / [Province.MakeScope.Var('toggle_prov_economy_dmnd_pop_exotics_e').GetValue], [Province.MakeScope.Var('toggle_prov_economy_dmnd_build_exotics_e').GetValue], [Province.MakeScope.Var('toggle_prov_economy_dmnd_prod_exotics_e').GetValue]"
+								}
+								spacer = {
+									size = { 0 8 }
+								}
+							}
+							
+							background = {
+								using = Background_Area_Light
+							}
+						}
+						hbox = {
+							layoutpolicy_horizontal = expanding
+							max_width = 284
+							min_width = 284
+							
+							icon = {
+								name = "icon_building_cereal_fields"
+								texture = "gfx/interface/icons/building_types/icon_building_cereal_fields.dds"
+								size = { 30 30 }
+							}
+							vbox = {
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									min_width = 245
+									max_width = 245
+									text = "General Exotics: [Province.MakeScope.Var('prod_has_exotics_g').GetValue]"
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									fontsize = 12
+									fontsize_min = 4
+									min_width = 245
+									max_width = 245
+									text = "Supply & Demand: [Province.MakeScope.Var('toggle_prov_economy_sply_exotics_g').GetValue] / [Province.MakeScope.Var('toggle_prov_economy_dmnd_exotics_g').GetValue]"
+									tooltip = "Demand Met & Demand from Pop, from Construction, from Industry: [Province.MakeScope.Var('toggle_prov_economy_in_exotics_g').GetValue] / [Province.MakeScope.Var('toggle_prov_economy_dmnd_pop_exotics_g').GetValue], [Province.MakeScope.Var('toggle_prov_economy_dmnd_build_exotics_g').GetValue], [Province.MakeScope.Var('toggle_prov_economy_dmnd_prod_exotics_g').GetValue]"
+								}
+								spacer = {
+									size = { 0 8 }
+								}
+							}
+							
+							background = {
+								using = Background_Area_Light
+							}
+						}
+						hbox = {
+							layoutpolicy_horizontal = expanding
+							max_width = 284
+							min_width = 284
+							
+							icon = {
+								name = "icon_building_cereal_fields"
+								texture = "gfx/interface/icons/building_types/icon_building_cereal_fields.dds"
+								size = { 30 30 }
+							}
+							vbox = {
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									min_width = 245
+									max_width = 245
+									text = "Textile: [Province.MakeScope.Var('prod_has_textile').GetValue]"
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									fontsize = 12
+									fontsize_min = 4
+									min_width = 245
+									max_width = 245
+									text = "Supply & Demand: [Province.MakeScope.Var('toggle_prov_economy_sply_textile').GetValue] / [Province.MakeScope.Var('toggle_prov_economy_dmnd_textile').GetValue]"
+									tooltip = "Demand Met & Demand from Pop, from Construction, from Industry: [Province.MakeScope.Var('toggle_prov_economy_in_textile').GetValue] / [Province.MakeScope.Var('toggle_prov_economy_dmnd_pop_textile').GetValue], [Province.MakeScope.Var('toggle_prov_economy_dmnd_build_textile').GetValue], [Province.MakeScope.Var('toggle_prov_economy_dmnd_prod_textile').GetValue]"
+								}
+								spacer = {
+									size = { 0 8 }
+								}
+							}
+							
+							background = {
+								using = Background_Area_Light
+							}
+						}
+						hbox = {
+							layoutpolicy_horizontal = expanding
+							max_width = 284
+							min_width = 284
+							
+							icon = {
+								name = "icon_building_cereal_fields"
+								texture = "gfx/interface/icons/building_types/icon_building_cereal_fields.dds"
+								size = { 30 30 }
+							}
+							vbox = {
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									min_width = 245
+									max_width = 245
+									text = "Pottery: [Province.MakeScope.Var('prod_has_pottery').GetValue]"
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									fontsize = 12
+									fontsize_min = 4
+									min_width = 245
+									max_width = 245
+									text = "Supply & Demand: [Province.MakeScope.Var('toggle_prov_economy_sply_pottery').GetValue] / [Province.MakeScope.Var('toggle_prov_economy_dmnd_pottery').GetValue]"
+									tooltip = "Demand Met & Demand from Pop, from Construction, from Industry: [Province.MakeScope.Var('toggle_prov_economy_in_pottery').GetValue] / [Province.MakeScope.Var('toggle_prov_economy_dmnd_pop_pottery').GetValue], [Province.MakeScope.Var('toggle_prov_economy_dmnd_build_pottery').GetValue], [Province.MakeScope.Var('toggle_prov_economy_dmnd_prod_pottery').GetValue]"
+								}
+								spacer = {
+									size = { 0 8 }
+								}
+							}
+							
+							background = {
+								using = Background_Area_Light
+							}
+						}
+						hbox = {
+							layoutpolicy_horizontal = expanding
+							max_width = 284
+							min_width = 284
+							
+							icon = {
+								name = "icon_building_cereal_fields"
+								texture = "gfx/interface/icons/building_types/icon_building_cereal_fields.dds"
+								size = { 30 30 }
+							}
+							vbox = {
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									min_width = 245
+									max_width = 245
+									text = "Tools: [Province.MakeScope.Var('prod_has_tools').GetValue]"
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									fontsize = 12
+									fontsize_min = 4
+									min_width = 245
+									max_width = 245
+									text = "Supply & Demand: [Province.MakeScope.Var('toggle_prov_economy_sply_tools').GetValue] / [Province.MakeScope.Var('toggle_prov_economy_dmnd_tools').GetValue]"
+									tooltip = "Demand Met & Demand from Pop, from Construction, from Industry: [Province.MakeScope.Var('toggle_prov_economy_in_tools').GetValue] / [Province.MakeScope.Var('toggle_prov_economy_dmnd_pop_tools').GetValue], [Province.MakeScope.Var('toggle_prov_economy_dmnd_build_tools').GetValue], [Province.MakeScope.Var('toggle_prov_economy_dmnd_prod_tools').GetValue]"
+								}
+								spacer = {
+									size = { 0 8 }
+								}
+							}
+							
+							background = {
+								using = Background_Area_Light
+							}
+						}
+						hbox = {
+							layoutpolicy_horizontal = expanding
+							max_width = 284
+							min_width = 284
+							
+							icon = {
+								name = "icon_building_cereal_fields"
+								texture = "gfx/interface/icons/building_types/icon_building_cereal_fields.dds"
+								size = { 30 30 }
+							}
+							vbox = {
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									min_width = 245
+									max_width = 245
+									text = "Armaments: [Province.MakeScope.Var('prod_has_armaments').GetValue]"
+								}
+								text_single = {
+									layoutpolicy_horizontal = expanding
+									fontsize = 12
+									fontsize_min = 4
+									min_width = 245
+									max_width = 245
+									text = "Supply & Demand: [Province.MakeScope.Var('toggle_prov_economy_sply_armaments').GetValue] / [Province.MakeScope.Var('toggle_prov_economy_dmnd_armaments').GetValue]"
+									tooltip = "Demand Met & Demand from Pop, from Construction, from Industry: [Province.MakeScope.Var('toggle_prov_economy_in_armaments').GetValue] / [Province.MakeScope.Var('toggle_prov_economy_dmnd_pop_armaments').GetValue], [Province.MakeScope.Var('toggle_prov_economy_dmnd_build_armaments').GetValue], [Province.MakeScope.Var('toggle_prov_economy_dmnd_prod_armaments').GetValue]"
+								}
+								spacer = {
+									size = { 0 8 }
+								}
+							}
+							
+							background = {
+								using = Background_Area_Light
+							}
+						}
+						
+						spacer = {
+							size = { 0 20 }
+						}
 					}
 				}
 			}
@@ -4623,8 +6227,8 @@ window = {
 					}
 					
 					button_icon = {
-						name = "toggle_county_trade"
-						datacontext = "[GetScriptedGui( 'toggle_county_trade' )]"
+						name = "toggle_county_commerce"
+						datacontext = "[GetScriptedGui( 'toggle_county_commerce' )]"
 						onclick = "[ScriptedGui.Execute( GuiScope.SetRoot( HoldingView.GetProvince.GetCounty.GetCapital.MakeScope ).End )]"
 						size = { 25 25 }
 						texture = "gfx/interface/buttons/button_round_big.dds"
@@ -5442,8 +7046,8 @@ window = {
 					
 					flowcontainer = {
 						button_icon = {
-							name = "toggle_prov_trade"
-							datacontext = "[GetScriptedGui( 'toggle_prov_trade' )]"
+							name = "toggle_prov_economy"
+							datacontext = "[GetScriptedGui( 'toggle_prov_economy' )]"
 							onclick = "[ScriptedGui.Execute( GuiScope.SetRoot( Province.MakeScope ).End )]"
 							size = { 25 25 }
 							texture = "gfx/interface/buttons/button_round_big.dds"

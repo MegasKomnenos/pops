@@ -1,4 +1,4 @@
-﻿toggle_county_trade = {
+﻿toggle_county_commerce = {
 	scope = province
 	
 	is_shown = {
@@ -11,20 +11,91 @@
 	effect = {
 		if = {
 			limit = {
-				has_variable = toggled_county_trade
+				has_variable = toggled_county_commerce
 			}
-			remove_variable = toggled_county_trade
+			remove_variable = toggled_county_commerce
 			
-			^^goods^remove_variable = info_trade_county_price_&goods&^
+			^^goods^
+				remove_variable = toggle_county_commerce_price_&goods&
+				
+				^^range3^
+					remove_variable = toggle_county_commerce_val_&range3&_&goods&
+					remove_variable = toggle_county_commerce_rev_&range3&_&goods&
+					remove_variable = toggle_county_commerce_scope_&range3&_&goods&
+				^
+			^
 		}
 		else = {
-			set_variable = { name = toggled_county_trade value = 1 }
+			set_variable = { name = toggled_county_commerce value = 1 }
 			
-			^^goods^set_variable = { name = info_trade_county_price_&goods& value = county.var:trade_price_&goods& }^
+			^^goods^set_variable = { name = toggle_county_commerce_price_&goods& value = county.var:trade_price_&goods& }^
+			
+			save_temporary_scope_as = toggle_county_commerce_t
+			
+			^^goods^
+				county = {
+					every_in_list = {
+						variable = trade_dat_&goods&
+						
+						scope:toggle_county_commerce_t = {
+							add_to_variable_list = { name = toggle_county_commerce_t target = prev }
+						}
+					}
+					every_in_list = {
+						variable = array_trade_dat_&goods&
+						
+						scope:toggle_county_commerce_t = {
+							add_to_variable_list = { name = array_toggle_county_commerce_t target = prev }
+						}
+					}
+				}
+				
+				^^range3^
+					array_get_max_abs = { 
+						name = toggle_county_commerce_t 
+						return_val = toggle_county_commerce_val_&range3&_&goods&
+						return_ind = toggle_county_commerce_t
+						dec = 10
+					}
+					
+					set_variable = { name = toggle_county_commerce_rev_&range3&_&goods& value = var:toggle_county_commerce_val_&range3&_&goods& }
+					change_variable = { name = toggle_county_commerce_rev_&range3&_&goods& multiply = -1 }
+					
+					if = {
+						limit = {
+							has_variable = toggle_county_commerce_val_&range3&_&goods&
+							
+							var:toggle_county_commerce_val_&range3&_&goods& != 0
+						}
+						ordered_in_list = {
+							variable = toggle_county_commerce_t
+							position = global_var:toggle_county_commerce_t.compare_value
+							
+							prev = {
+								set_variable = { name = toggle_county_commerce_scope_&range3&_&goods& value = prev }
+								
+								remove_list_variable = { name = toggle_county_commerce_t target = prev }
+							}
+						}
+						ordered_in_list = {
+							variable = array_toggle_county_commerce_t
+							position = global_var:toggle_county_commerce_t.compare_value
+							
+							prev = {
+								remove_list_variable = { name = array_toggle_county_commerce_t target = prev }
+							}
+						}
+					}
+				^
+				
+				remove_global_variable = toggle_county_commerce_t
+				clear_variable_list = toggle_county_commerce_t
+				array_clear = { name = toggle_county_commerce_t }
+			^
 		}
 	}
 }
-close_county_trade = {
+close_county_commerce = {
 	scope = province
 	
 	is_shown = {
@@ -37,16 +108,24 @@ close_county_trade = {
 	effect = {
 		if = {
 			limit = {
-				has_variable = toggled_county_trade
+				has_variable = toggled_county_commerce
 			}
-			remove_variable = toggled_county_trade
-		
-			^^goods^remove_variable = info_trade_county_price_&goods&^
+			remove_variable = toggled_county_commerce
+			
+			^^goods^
+				remove_variable = toggle_county_commerce_price_&goods&
+				
+				^^range3^
+					remove_variable = toggle_county_commerce_val_&range3&_&goods&
+					remove_variable = toggle_county_commerce_rev_&range3&_&goods&
+					remove_variable = toggle_county_commerce_scope_&range3&_&goods&
+				^
+			^
 		}
 	}
 }
 
-toggle_prov_trade = {
+toggle_prov_economy = {
 	scope = province
 	
 	is_shown = {
@@ -59,35 +138,35 @@ toggle_prov_trade = {
 	effect = {
 		if = {
 			limit = {
-				has_variable = toggled_prov_trade
+				has_variable = toggled_prov_economy
 			}
-			remove_variable = toggled_prov_trade
+			remove_variable = toggled_prov_economy
 			
 			^^goods^
-				remove_variable = info_trade_prov_sply_&goods&
-				remove_variable = info_trade_prov_dmnd_&goods&
-				remove_variable = info_trade_prov_dmnd_pop_&goods&
-				remove_variable = info_trade_prov_dmnd_prod_&goods&
-				remove_variable = info_trade_prov_dmnd_build_&goods&
-				remove_variable = info_trade_prov_in_&goods&
-				remove_variable = info_trade_prov_in_pop_&goods&
-				remove_variable = info_trade_prov_in_prod_&goods&
-				remove_variable = info_trade_prov_in_build_&goods&
+				remove_variable = toggle_prov_economy_sply_&goods&
+				remove_variable = toggle_prov_economy_dmnd_&goods&
+				remove_variable = toggle_prov_economy_dmnd_pop_&goods&
+				remove_variable = toggle_prov_economy_dmnd_prod_&goods&
+				remove_variable = toggle_prov_economy_dmnd_build_&goods&
+				remove_variable = toggle_prov_economy_in_&goods&
+				remove_variable = toggle_prov_economy_in_pop_&goods&
+				remove_variable = toggle_prov_economy_in_prod_&goods&
+				remove_variable = toggle_prov_economy_in_build_&goods&
 			^
 		}
 		else = {
-			set_variable = { name = toggled_prov_trade value = 1 }
+			set_variable = { name = toggled_prov_economy value = 1 }
 			
 			^^goods^
-				set_variable = { name = info_trade_prov_sply_&goods& value = 0 }
-				set_variable = { name = info_trade_prov_dmnd_&goods& value = 0 }
-				set_variable = { name = info_trade_prov_dmnd_pop_&goods& value = 0 }
-				set_variable = { name = info_trade_prov_dmnd_prod_&goods& value = 0 }
-				set_variable = { name = info_trade_prov_dmnd_build_&goods& value = 0 }
-				set_variable = { name = info_trade_prov_in_&goods& value = 0 }
-				set_variable = { name = info_trade_prov_in_pop_&goods& value = 0 }
-				set_variable = { name = info_trade_prov_in_prod_&goods& value = 0 }
-				set_variable = { name = info_trade_prov_in_build_&goods& value = 0 }
+				set_variable = { name = toggle_prov_economy_sply_&goods& value = 0 }
+				set_variable = { name = toggle_prov_economy_dmnd_&goods& value = 0 }
+				set_variable = { name = toggle_prov_economy_dmnd_pop_&goods& value = 0 }
+				set_variable = { name = toggle_prov_economy_dmnd_prod_&goods& value = 0 }
+				set_variable = { name = toggle_prov_economy_dmnd_build_&goods& value = 0 }
+				set_variable = { name = toggle_prov_economy_in_&goods& value = 0 }
+				set_variable = { name = toggle_prov_economy_in_pop_&goods& value = 0 }
+				set_variable = { name = toggle_prov_economy_in_prod_&goods& value = 0 }
+				set_variable = { name = toggle_prov_economy_in_build_&goods& value = 0 }
 				
 				if = {
 					limit = {
@@ -95,7 +174,7 @@ toggle_prov_trade = {
 						
 						var:pop_calorie_&goods& > 0
 					}
-					change_variable = { name = info_trade_prov_dmnd_pop_&goods& add = var:pop_calorie_&goods& }
+					change_variable = { name = toggle_prov_economy_dmnd_pop_&goods& add = var:pop_calorie_&goods& }
 				}
 				if = {
 					limit = {
@@ -103,7 +182,7 @@ toggle_prov_trade = {
 						
 						var:pop_calorie_actual_&goods& > 0
 					}
-					change_variable = { name = info_trade_prov_in_pop_&goods& add = var:pop_calorie_actual_&goods& }
+					change_variable = { name = toggle_prov_economy_in_pop_&goods& add = var:pop_calorie_actual_&goods& }
 				}
 				
 				if = {
@@ -112,7 +191,7 @@ toggle_prov_trade = {
 						
 						var:pop_nutrient_&goods& > 0
 					}
-					change_variable = { name = info_trade_prov_dmnd_pop_&goods& add = var:pop_nutrient_&goods& }
+					change_variable = { name = toggle_prov_economy_dmnd_pop_&goods& add = var:pop_nutrient_&goods& }
 				}
 				if = {
 					limit = {
@@ -120,7 +199,7 @@ toggle_prov_trade = {
 						
 						var:pop_nutrient_actual_&goods& > 0
 					}
-					change_variable = { name = info_trade_prov_in_pop_&goods& add = var:pop_nutrient_actual_&goods& }
+					change_variable = { name = toggle_prov_economy_in_pop_&goods& add = var:pop_nutrient_actual_&goods& }
 				}
 				
 				if = {
@@ -129,7 +208,7 @@ toggle_prov_trade = {
 						
 						var:pop_comfort_&goods& > 0
 					}
-					change_variable = { name = info_trade_prov_dmnd_pop_&goods& add = var:pop_comfort_&goods& }
+					change_variable = { name = toggle_prov_economy_dmnd_pop_&goods& add = var:pop_comfort_&goods& }
 				}
 				if = {
 					limit = {
@@ -137,7 +216,7 @@ toggle_prov_trade = {
 						
 						var:pop_comfort_actual_&goods& > 0
 					}
-					change_variable = { name = info_trade_prov_in_pop_&goods& add = var:pop_comfort_actual_&goods& }
+					change_variable = { name = toggle_prov_economy_in_pop_&goods& add = var:pop_comfort_actual_&goods& }
 				}
 				
 				if = {
@@ -146,7 +225,7 @@ toggle_prov_trade = {
 						
 						var:pop_luxury_&goods& > 0
 					}
-					change_variable = { name = info_trade_prov_dmnd_pop_&goods& add = var:pop_luxury_&goods& }
+					change_variable = { name = toggle_prov_economy_dmnd_pop_&goods& add = var:pop_luxury_&goods& }
 				}
 				if = {
 					limit = {
@@ -154,7 +233,7 @@ toggle_prov_trade = {
 						
 						var:pop_luxury_actual_&goods& > 0
 					}
-					change_variable = { name = info_trade_prov_in_pop_&goods& add = var:pop_luxury_actual_&goods& }
+					change_variable = { name = toggle_prov_economy_in_pop_&goods& add = var:pop_luxury_actual_&goods& }
 				}
 
 				
@@ -168,7 +247,7 @@ toggle_prov_trade = {
 							var:prod_sply_old_&goods& > 0
 						}
 						prev = {
-							change_variable = { name = info_trade_prov_sply_&goods& add = prev.var:prod_sply_old_&goods& }
+							change_variable = { name = toggle_prov_economy_sply_&goods& add = prev.var:prod_sply_old_&goods& }
 						}
 					}
 					if = {
@@ -178,7 +257,7 @@ toggle_prov_trade = {
 							var:prod_dmnd_old_&goods& > 0
 						}
 						prev = {
-							change_variable = { name = info_trade_prov_dmnd_prod_&goods& add = prev.var:prod_dmnd_old_&goods& }
+							change_variable = { name = toggle_prov_economy_dmnd_prod_&goods& add = prev.var:prod_dmnd_old_&goods& }
 						}
 					}
 					if = {
@@ -188,7 +267,7 @@ toggle_prov_trade = {
 							var:prod_in_old_&goods& > 0
 						}
 						prev = {
-							change_variable = { name = info_trade_prov_in_prod_&goods& add = prev.var:prod_in_old_&goods& }
+							change_variable = { name = toggle_prov_economy_in_prod_&goods& add = prev.var:prod_in_old_&goods& }
 						}
 					}
 				}
@@ -202,7 +281,7 @@ toggle_prov_trade = {
 							var:build_&goods& > 0
 						}
 						prev = {
-							change_variable = { name = info_trade_prov_dmnd_build_&goods& add = prev.var:build_&goods& }
+							change_variable = { name = toggle_prov_economy_dmnd_build_&goods& add = prev.var:build_&goods& }
 						}
 					}
 					if = {
@@ -212,23 +291,23 @@ toggle_prov_trade = {
 							var:build_in_&goods& > 0
 						}
 						prev = {
-							change_variable = { name = info_trade_prov_in_build_&goods& add = prev.var:build_in_&goods& }
+							change_variable = { name = toggle_prov_economy_in_build_&goods& add = prev.var:build_in_&goods& }
 						}
 					}
 				}
 				
-				change_variable = { name = info_trade_prov_dmnd_&goods& add = var:info_trade_prov_dmnd_pop_&goods& }
-				change_variable = { name = info_trade_prov_dmnd_&goods& add = var:info_trade_prov_dmnd_prod_&goods& }
-				change_variable = { name = info_trade_prov_dmnd_&goods& add = var:info_trade_prov_dmnd_build_&goods& }
+				change_variable = { name = toggle_prov_economy_dmnd_&goods& add = var:toggle_prov_economy_dmnd_pop_&goods& }
+				change_variable = { name = toggle_prov_economy_dmnd_&goods& add = var:toggle_prov_economy_dmnd_prod_&goods& }
+				change_variable = { name = toggle_prov_economy_dmnd_&goods& add = var:toggle_prov_economy_dmnd_build_&goods& }
 				
-				change_variable = { name = info_trade_prov_in_&goods& add = var:info_trade_prov_in_pop_&goods& }
-				change_variable = { name = info_trade_prov_in_&goods& add = var:info_trade_prov_in_prod_&goods& }
-				change_variable = { name = info_trade_prov_in_&goods& add = var:info_trade_prov_in_build_&goods& }
+				change_variable = { name = toggle_prov_economy_in_&goods& add = var:toggle_prov_economy_in_pop_&goods& }
+				change_variable = { name = toggle_prov_economy_in_&goods& add = var:toggle_prov_economy_in_prod_&goods& }
+				change_variable = { name = toggle_prov_economy_in_&goods& add = var:toggle_prov_economy_in_build_&goods& }
 			^
 		}
 	}
 }
-close_prov_trade = {
+close_prov_economy = {
 	scope = province
 	
 	is_shown = {
@@ -241,20 +320,20 @@ close_prov_trade = {
 	effect = {
 		if = {
 			limit = {
-				has_variable = toggled_prov_trade
+				has_variable = toggled_prov_economy
 			}
-			remove_variable = toggled_prov_trade
+			remove_variable = toggled_prov_economy
 			
 			^^goods^
-				remove_variable = info_trade_prov_sply_&goods&
-				remove_variable = info_trade_prov_dmnd_&goods&
-				remove_variable = info_trade_prov_dmnd_pop_&goods&
-				remove_variable = info_trade_prov_dmnd_prod_&goods&
-				remove_variable = info_trade_prov_dmnd_build_&goods&
-				remove_variable = info_trade_prov_in_&goods&
-				remove_variable = info_trade_prov_in_pop_&goods&
-				remove_variable = info_trade_prov_in_prod_&goods&
-				remove_variable = info_trade_prov_in_build_&goods&
+				remove_variable = toggle_prov_economy_sply_&goods&
+				remove_variable = toggle_prov_economy_dmnd_&goods&
+				remove_variable = toggle_prov_economy_dmnd_pop_&goods&
+				remove_variable = toggle_prov_economy_dmnd_prod_&goods&
+				remove_variable = toggle_prov_economy_dmnd_build_&goods&
+				remove_variable = toggle_prov_economy_in_&goods&
+				remove_variable = toggle_prov_economy_in_pop_&goods&
+				remove_variable = toggle_prov_economy_in_prod_&goods&
+				remove_variable = toggle_prov_economy_in_build_&goods&
 			^
 		}
 	}
