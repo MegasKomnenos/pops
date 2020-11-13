@@ -92123,7 +92123,5126 @@ census.99 = {
 	type = empty
 	hidden = yes
 	immediate = { 
-		init_rulers = yes
+		every_rulers = { 
+			limit = { 
+				is_character = yes
+				is_landed = yes
+			}
+			set_variable = { 
+				name = is_character
+				value = 1
+			}
+			add_gold = -100000
+			if = { 
+				limit = { 
+					has_variable = trade_gold
+					var:trade_gold >= 3276.8
+				}
+				add_gold = 3276.8
+				change_variable = { 
+					name = trade_gold
+					subtract = 3276.8
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = trade_gold
+					var:trade_gold >= 1638.4
+				}
+				add_gold = 1638.4
+				change_variable = { 
+					name = trade_gold
+					subtract = 1638.4
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = trade_gold
+					var:trade_gold >= 819.2
+				}
+				add_gold = 819.2
+				change_variable = { 
+					name = trade_gold
+					subtract = 819.2
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = trade_gold
+					var:trade_gold >= 409.6
+				}
+				add_gold = 409.6
+				change_variable = { 
+					name = trade_gold
+					subtract = 409.6
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = trade_gold
+					var:trade_gold >= 204.8
+				}
+				add_gold = 204.8
+				change_variable = { 
+					name = trade_gold
+					subtract = 204.8
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = trade_gold
+					var:trade_gold >= 102.4
+				}
+				add_gold = 102.4
+				change_variable = { 
+					name = trade_gold
+					subtract = 102.4
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = trade_gold
+					var:trade_gold >= 51.2
+				}
+				add_gold = 51.2
+				change_variable = { 
+					name = trade_gold
+					subtract = 51.2
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = trade_gold
+					var:trade_gold >= 25.6
+				}
+				add_gold = 25.6
+				change_variable = { 
+					name = trade_gold
+					subtract = 25.6
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = trade_gold
+					var:trade_gold >= 12.8
+				}
+				add_gold = 12.8
+				change_variable = { 
+					name = trade_gold
+					subtract = 12.8
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = trade_gold
+					var:trade_gold >= 6.4
+				}
+				add_gold = 6.4
+				change_variable = { 
+					name = trade_gold
+					subtract = 6.4
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = trade_gold
+					var:trade_gold >= 3.2
+				}
+				add_gold = 3.2
+				change_variable = { 
+					name = trade_gold
+					subtract = 3.2
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = trade_gold
+					var:trade_gold >= 1.6
+				}
+				add_gold = 1.6
+				change_variable = { 
+					name = trade_gold
+					subtract = 1.6
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = trade_gold
+					var:trade_gold >= 0.8
+				}
+				add_gold = 0.8
+				change_variable = { 
+					name = trade_gold
+					subtract = 0.8
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = trade_gold
+					var:trade_gold >= 0.4
+				}
+				add_gold = 0.4
+				change_variable = { 
+					name = trade_gold
+					subtract = 0.4
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = trade_gold
+					var:trade_gold >= 0.2
+				}
+				add_gold = 0.2
+				change_variable = { 
+					name = trade_gold
+					subtract = 0.2
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = trade_gold
+					var:trade_gold >= 0.1
+				}
+				add_gold = 0.1
+				change_variable = { 
+					name = trade_gold
+					subtract = 0.1
+				}
+			}
+			set_variable = { 
+				name = mil_maa
+				value = trade_maa
+			}
+			set_variable = { 
+				name = mil_maintain
+				value = trade_maintain
+			}
+			remove_variable = trade_gold
+			remove_variable = mil_maa
+			remove_variable = mil_maintain
+		}
+		set_global_variable = { 
+			name = sim_i
+			value = 1
+		}
+		every_ruler = { 
+			limit = { 
+				is_character = yes
+				is_landed = yes
+			}
+			set_variable = { 
+				name = mil_levy_field
+				value = 0
+			}
+		}
+		every_province = { 
+			limit = { 
+				is_valid_prov = yes
+			}
+			set_variable = { 
+				name = mil_mp_goal
+				value = var:pop_total
+			}
+			change_variable = { 
+				name = mil_mp_goal
+				multiply = 0.25
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = mil_mp_cur
+					}
+				}
+				set_variable = { 
+					name = mil_mp_cur
+					value = 0
+				}
+			}
+			set_variable = { 
+				name = mil_mp_change
+				value = var:mil_mp_goal
+			}
+			change_variable = { 
+				name = mil_mp_change
+				subtract = var:mil_mp_cur
+			}
+			change_variable = { 
+				name = mil_mp_change
+				divide = 10
+			}
+			change_variable = { 
+				name = mil_mp_change
+				divide = 12
+			}
+			change_variable = { 
+				name = mil_mp_cur
+				add = var:mil_mp_change
+			}
+			set_variable = { 
+				name = mil_levy_goal
+				value = 1
+			}
+			change_variable = { 
+				name = mil_levy_goal
+				subtract = var:pop_freedom
+			}
+			change_variable = { 
+				name = mil_levy_goal
+				multiply = 20
+			}
+			change_variable = { 
+				name = mil_levy_goal
+				multiply = var:mil_mp_cur
+			}
+			change_variable = { 
+				name = mil_levy_goal
+				divide = 100
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = mil_levy_cur
+					}
+				}
+				set_variable = { 
+					name = mil_levy_cur
+					value = 0
+				}
+			}
+			set_variable = { 
+				name = mil_levy_change
+				value = var:mil_levy_goal
+			}
+			change_variable = { 
+				name = mil_levy_change
+				subtract = var:mil_levy_cur
+			}
+			change_variable = { 
+				name = mil_levy_change
+				divide = 5
+			}
+			change_variable = { 
+				name = mil_levy_change
+				divide = 12
+			}
+			change_variable = { 
+				name = mil_levy_cur
+				add = var:mil_levy_change
+			}
+			set_variable = { 
+				name = mil_levy_field
+				value = var:mil_levy_cur
+			}
+			change_variable = { 
+				name = mil_levy_field
+				multiply = 0.5
+			}
+			set_variable = { 
+				name = mil_levy_garrison
+				value = var:mil_levy_cur
+			}
+			change_variable = { 
+				name = mil_levy_garrison
+				subtract = var:mil_levy_field
+			}
+		}
+		every_army = { 
+			army_owner = { 
+				if = { 
+					limit = { 
+						is_character = yes
+						is_landed = yes
+						is_ruler = yes
+					}
+					change_variable = { 
+						name = mil_levy_field
+						add = prev.army_max_size
+					}
+				}
+			}
+		}
+		every_ruler = { 
+			limit = { 
+				is_character = yes
+				is_landed = yes
+			}
+			if = { 
+				limit = { 
+					has_variable = mil_levy_field
+					var:mil_levy_field > 0
+				}
+				change_variable = { 
+					name = mil_levy_field
+					multiply = 10
+				}
+				change_variable = { 
+					name = mil_levy_field
+					subtract = number_of_maa_regiments
+				}
+				change_variable = { 
+					name = mil_levy_field
+					divide = 10
+				}
+			}
+			change_variable = { 
+				name = mil_maa
+				multiply = 0.998
+			}
+			set_variable = { 
+				name = mil_maa_tt
+				value = 0
+			}
+			if = { 
+				limit = { 
+					has_variable = mil_maa_recruit_food
+				}
+				if = { 
+					limit = { 
+						var:mil_maa_recruit_food = { 
+							compare_value > prev.var:trade_has_food
+						}
+					}
+					set_variable = { 
+						name = mil_main_t
+						value = var:trade_has_food
+					}
+				}
+				else = { 
+					set_variable = { 
+						name = mil_main_t
+						value = var:mil_maa_recruit_food
+					}
+				}
+				change_variable = { 
+					name = trade_has_food
+					subtract = var:mil_main_t
+				}
+				change_variable = { 
+					name = mil_main_t
+					multiply = mil_maa_recruit_food
+				}
+				change_variable = { 
+					name = mil_main_t
+					divide = 10
+				}
+				change_variable = { 
+					name = mil_maa_tt
+					add = var:mil_main_t
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = mil_maa_recruit_cereal
+				}
+				if = { 
+					limit = { 
+						var:mil_maa_recruit_cereal = { 
+							compare_value > prev.var:trade_has_cereal
+						}
+					}
+					set_variable = { 
+						name = mil_main_t
+						value = var:trade_has_cereal
+					}
+				}
+				else = { 
+					set_variable = { 
+						name = mil_main_t
+						value = var:mil_maa_recruit_cereal
+					}
+				}
+				change_variable = { 
+					name = trade_has_cereal
+					subtract = var:mil_main_t
+				}
+				change_variable = { 
+					name = mil_main_t
+					multiply = mil_maa_recruit_cereal
+				}
+				change_variable = { 
+					name = mil_main_t
+					divide = 10
+				}
+				change_variable = { 
+					name = mil_maa_tt
+					add = var:mil_main_t
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = mil_maa_recruit_salted
+				}
+				if = { 
+					limit = { 
+						var:mil_maa_recruit_salted = { 
+							compare_value > prev.var:trade_has_salted
+						}
+					}
+					set_variable = { 
+						name = mil_main_t
+						value = var:trade_has_salted
+					}
+				}
+				else = { 
+					set_variable = { 
+						name = mil_main_t
+						value = var:mil_maa_recruit_salted
+					}
+				}
+				change_variable = { 
+					name = trade_has_salted
+					subtract = var:mil_main_t
+				}
+				change_variable = { 
+					name = mil_main_t
+					multiply = mil_maa_recruit_salted
+				}
+				change_variable = { 
+					name = mil_main_t
+					divide = 10
+				}
+				change_variable = { 
+					name = mil_maa_tt
+					add = var:mil_main_t
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = mil_maa_recruit_salt
+				}
+				if = { 
+					limit = { 
+						var:mil_maa_recruit_salt = { 
+							compare_value > prev.var:trade_has_salt
+						}
+					}
+					set_variable = { 
+						name = mil_main_t
+						value = var:trade_has_salt
+					}
+				}
+				else = { 
+					set_variable = { 
+						name = mil_main_t
+						value = var:mil_maa_recruit_salt
+					}
+				}
+				change_variable = { 
+					name = trade_has_salt
+					subtract = var:mil_main_t
+				}
+				change_variable = { 
+					name = mil_main_t
+					multiply = mil_maa_recruit_salt
+				}
+				change_variable = { 
+					name = mil_main_t
+					divide = 10
+				}
+				change_variable = { 
+					name = mil_maa_tt
+					add = var:mil_main_t
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = mil_maa_recruit_mud
+				}
+				if = { 
+					limit = { 
+						var:mil_maa_recruit_mud = { 
+							compare_value > prev.var:trade_has_mud
+						}
+					}
+					set_variable = { 
+						name = mil_main_t
+						value = var:trade_has_mud
+					}
+				}
+				else = { 
+					set_variable = { 
+						name = mil_main_t
+						value = var:mil_maa_recruit_mud
+					}
+				}
+				change_variable = { 
+					name = trade_has_mud
+					subtract = var:mil_main_t
+				}
+				change_variable = { 
+					name = mil_main_t
+					multiply = mil_maa_recruit_mud
+				}
+				change_variable = { 
+					name = mil_main_t
+					divide = 10
+				}
+				change_variable = { 
+					name = mil_maa_tt
+					add = var:mil_main_t
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = mil_maa_recruit_fuel
+				}
+				if = { 
+					limit = { 
+						var:mil_maa_recruit_fuel = { 
+							compare_value > prev.var:trade_has_fuel
+						}
+					}
+					set_variable = { 
+						name = mil_main_t
+						value = var:trade_has_fuel
+					}
+				}
+				else = { 
+					set_variable = { 
+						name = mil_main_t
+						value = var:mil_maa_recruit_fuel
+					}
+				}
+				change_variable = { 
+					name = trade_has_fuel
+					subtract = var:mil_main_t
+				}
+				change_variable = { 
+					name = mil_main_t
+					multiply = mil_maa_recruit_fuel
+				}
+				change_variable = { 
+					name = mil_main_t
+					divide = 10
+				}
+				change_variable = { 
+					name = mil_maa_tt
+					add = var:mil_main_t
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = mil_maa_recruit_fiber
+				}
+				if = { 
+					limit = { 
+						var:mil_maa_recruit_fiber = { 
+							compare_value > prev.var:trade_has_fiber
+						}
+					}
+					set_variable = { 
+						name = mil_main_t
+						value = var:trade_has_fiber
+					}
+				}
+				else = { 
+					set_variable = { 
+						name = mil_main_t
+						value = var:mil_maa_recruit_fiber
+					}
+				}
+				change_variable = { 
+					name = trade_has_fiber
+					subtract = var:mil_main_t
+				}
+				change_variable = { 
+					name = mil_main_t
+					multiply = mil_maa_recruit_fiber
+				}
+				change_variable = { 
+					name = mil_main_t
+					divide = 10
+				}
+				change_variable = { 
+					name = mil_maa_tt
+					add = var:mil_main_t
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = mil_maa_recruit_timber
+				}
+				if = { 
+					limit = { 
+						var:mil_maa_recruit_timber = { 
+							compare_value > prev.var:trade_has_timber
+						}
+					}
+					set_variable = { 
+						name = mil_main_t
+						value = var:trade_has_timber
+					}
+				}
+				else = { 
+					set_variable = { 
+						name = mil_main_t
+						value = var:mil_maa_recruit_timber
+					}
+				}
+				change_variable = { 
+					name = trade_has_timber
+					subtract = var:mil_main_t
+				}
+				change_variable = { 
+					name = mil_main_t
+					multiply = mil_maa_recruit_timber
+				}
+				change_variable = { 
+					name = mil_main_t
+					divide = 10
+				}
+				change_variable = { 
+					name = mil_maa_tt
+					add = var:mil_main_t
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = mil_maa_recruit_metal
+				}
+				if = { 
+					limit = { 
+						var:mil_maa_recruit_metal = { 
+							compare_value > prev.var:trade_has_metal
+						}
+					}
+					set_variable = { 
+						name = mil_main_t
+						value = var:trade_has_metal
+					}
+				}
+				else = { 
+					set_variable = { 
+						name = mil_main_t
+						value = var:mil_maa_recruit_metal
+					}
+				}
+				change_variable = { 
+					name = trade_has_metal
+					subtract = var:mil_main_t
+				}
+				change_variable = { 
+					name = mil_main_t
+					multiply = mil_maa_recruit_metal
+				}
+				change_variable = { 
+					name = mil_main_t
+					divide = 10
+				}
+				change_variable = { 
+					name = mil_maa_tt
+					add = var:mil_main_t
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = mil_maa_recruit_exotics_w
+				}
+				if = { 
+					limit = { 
+						var:mil_maa_recruit_exotics_w = { 
+							compare_value > prev.var:trade_has_exotics_w
+						}
+					}
+					set_variable = { 
+						name = mil_main_t
+						value = var:trade_has_exotics_w
+					}
+				}
+				else = { 
+					set_variable = { 
+						name = mil_main_t
+						value = var:mil_maa_recruit_exotics_w
+					}
+				}
+				change_variable = { 
+					name = trade_has_exotics_w
+					subtract = var:mil_main_t
+				}
+				change_variable = { 
+					name = mil_main_t
+					multiply = mil_maa_recruit_exotics_w
+				}
+				change_variable = { 
+					name = mil_main_t
+					divide = 10
+				}
+				change_variable = { 
+					name = mil_maa_tt
+					add = var:mil_main_t
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = mil_maa_recruit_exotics_e
+				}
+				if = { 
+					limit = { 
+						var:mil_maa_recruit_exotics_e = { 
+							compare_value > prev.var:trade_has_exotics_e
+						}
+					}
+					set_variable = { 
+						name = mil_main_t
+						value = var:trade_has_exotics_e
+					}
+				}
+				else = { 
+					set_variable = { 
+						name = mil_main_t
+						value = var:mil_maa_recruit_exotics_e
+					}
+				}
+				change_variable = { 
+					name = trade_has_exotics_e
+					subtract = var:mil_main_t
+				}
+				change_variable = { 
+					name = mil_main_t
+					multiply = mil_maa_recruit_exotics_e
+				}
+				change_variable = { 
+					name = mil_main_t
+					divide = 10
+				}
+				change_variable = { 
+					name = mil_maa_tt
+					add = var:mil_main_t
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = mil_maa_recruit_exotics_g
+				}
+				if = { 
+					limit = { 
+						var:mil_maa_recruit_exotics_g = { 
+							compare_value > prev.var:trade_has_exotics_g
+						}
+					}
+					set_variable = { 
+						name = mil_main_t
+						value = var:trade_has_exotics_g
+					}
+				}
+				else = { 
+					set_variable = { 
+						name = mil_main_t
+						value = var:mil_maa_recruit_exotics_g
+					}
+				}
+				change_variable = { 
+					name = trade_has_exotics_g
+					subtract = var:mil_main_t
+				}
+				change_variable = { 
+					name = mil_main_t
+					multiply = mil_maa_recruit_exotics_g
+				}
+				change_variable = { 
+					name = mil_main_t
+					divide = 10
+				}
+				change_variable = { 
+					name = mil_maa_tt
+					add = var:mil_main_t
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = mil_maa_recruit_textile
+				}
+				if = { 
+					limit = { 
+						var:mil_maa_recruit_textile = { 
+							compare_value > prev.var:trade_has_textile
+						}
+					}
+					set_variable = { 
+						name = mil_main_t
+						value = var:trade_has_textile
+					}
+				}
+				else = { 
+					set_variable = { 
+						name = mil_main_t
+						value = var:mil_maa_recruit_textile
+					}
+				}
+				change_variable = { 
+					name = trade_has_textile
+					subtract = var:mil_main_t
+				}
+				change_variable = { 
+					name = mil_main_t
+					multiply = mil_maa_recruit_textile
+				}
+				change_variable = { 
+					name = mil_main_t
+					divide = 10
+				}
+				change_variable = { 
+					name = mil_maa_tt
+					add = var:mil_main_t
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = mil_maa_recruit_pottery
+				}
+				if = { 
+					limit = { 
+						var:mil_maa_recruit_pottery = { 
+							compare_value > prev.var:trade_has_pottery
+						}
+					}
+					set_variable = { 
+						name = mil_main_t
+						value = var:trade_has_pottery
+					}
+				}
+				else = { 
+					set_variable = { 
+						name = mil_main_t
+						value = var:mil_maa_recruit_pottery
+					}
+				}
+				change_variable = { 
+					name = trade_has_pottery
+					subtract = var:mil_main_t
+				}
+				change_variable = { 
+					name = mil_main_t
+					multiply = mil_maa_recruit_pottery
+				}
+				change_variable = { 
+					name = mil_main_t
+					divide = 10
+				}
+				change_variable = { 
+					name = mil_maa_tt
+					add = var:mil_main_t
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = mil_maa_recruit_tools
+				}
+				if = { 
+					limit = { 
+						var:mil_maa_recruit_tools = { 
+							compare_value > prev.var:trade_has_tools
+						}
+					}
+					set_variable = { 
+						name = mil_main_t
+						value = var:trade_has_tools
+					}
+				}
+				else = { 
+					set_variable = { 
+						name = mil_main_t
+						value = var:mil_maa_recruit_tools
+					}
+				}
+				change_variable = { 
+					name = trade_has_tools
+					subtract = var:mil_main_t
+				}
+				change_variable = { 
+					name = mil_main_t
+					multiply = mil_maa_recruit_tools
+				}
+				change_variable = { 
+					name = mil_main_t
+					divide = 10
+				}
+				change_variable = { 
+					name = mil_maa_tt
+					add = var:mil_main_t
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = mil_maa_recruit_armaments
+				}
+				if = { 
+					limit = { 
+						var:mil_maa_recruit_armaments = { 
+							compare_value > prev.var:trade_has_armaments
+						}
+					}
+					set_variable = { 
+						name = mil_main_t
+						value = var:trade_has_armaments
+					}
+				}
+				else = { 
+					set_variable = { 
+						name = mil_main_t
+						value = var:mil_maa_recruit_armaments
+					}
+				}
+				change_variable = { 
+					name = trade_has_armaments
+					subtract = var:mil_main_t
+				}
+				change_variable = { 
+					name = mil_main_t
+					multiply = mil_maa_recruit_armaments
+				}
+				change_variable = { 
+					name = mil_main_t
+					divide = 10
+				}
+				change_variable = { 
+					name = mil_maa_tt
+					add = var:mil_main_t
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = task_manage_logistics
+				}
+				change_variable = { 
+					name = mil_maa_tt
+					multiply = var:task_manage_logistics.var:task_time_in
+				}
+				change_variable = { 
+					name = mil_maa_tt
+					divide = 100
+				}
+			}
+			change_variable = { 
+				name = mil_maa
+				add = var:mil_maa_tt
+			}
+			remove_variable = mil_main_t
+			remove_variable = mil_maa_tt
+			set_variable = { 
+				name = mil_maintain_maa_t
+				value = 0
+			}
+			set_variable = { 
+				name = mil_maa_maintain_food
+				value = mil_maa_maintain_food
+			}
+			change_variable = { 
+				name = mil_maa_maintain_food
+				multiply = 10
+			}
+			change_variable = { 
+				name = mil_maa_maintain_food
+				divide = var:trade_price_food
+			}
+			change_variable = { 
+				name = mil_maa_maintain_food
+				multiply = var:mil_maa_maintain_food
+			}
+			change_variable = { 
+				name = mil_maintain_maa_t
+				add = var:mil_maa_maintain_food
+			}
+			set_variable = { 
+				name = mil_maa_maintain_cereal
+				value = mil_maa_maintain_cereal
+			}
+			change_variable = { 
+				name = mil_maa_maintain_cereal
+				multiply = 10
+			}
+			change_variable = { 
+				name = mil_maa_maintain_cereal
+				divide = var:trade_price_cereal
+			}
+			change_variable = { 
+				name = mil_maa_maintain_cereal
+				multiply = var:mil_maa_maintain_cereal
+			}
+			change_variable = { 
+				name = mil_maintain_maa_t
+				add = var:mil_maa_maintain_cereal
+			}
+			set_variable = { 
+				name = mil_maa_maintain_salted
+				value = mil_maa_maintain_salted
+			}
+			change_variable = { 
+				name = mil_maa_maintain_salted
+				multiply = 10
+			}
+			change_variable = { 
+				name = mil_maa_maintain_salted
+				divide = var:trade_price_salted
+			}
+			change_variable = { 
+				name = mil_maa_maintain_salted
+				multiply = var:mil_maa_maintain_salted
+			}
+			change_variable = { 
+				name = mil_maintain_maa_t
+				add = var:mil_maa_maintain_salted
+			}
+			set_variable = { 
+				name = mil_maa_maintain_salt
+				value = mil_maa_maintain_salt
+			}
+			change_variable = { 
+				name = mil_maa_maintain_salt
+				multiply = 10
+			}
+			change_variable = { 
+				name = mil_maa_maintain_salt
+				divide = var:trade_price_salt
+			}
+			change_variable = { 
+				name = mil_maa_maintain_salt
+				multiply = var:mil_maa_maintain_salt
+			}
+			change_variable = { 
+				name = mil_maintain_maa_t
+				add = var:mil_maa_maintain_salt
+			}
+			set_variable = { 
+				name = mil_maa_maintain_mud
+				value = mil_maa_maintain_mud
+			}
+			change_variable = { 
+				name = mil_maa_maintain_mud
+				multiply = 10
+			}
+			change_variable = { 
+				name = mil_maa_maintain_mud
+				divide = var:trade_price_mud
+			}
+			change_variable = { 
+				name = mil_maa_maintain_mud
+				multiply = var:mil_maa_maintain_mud
+			}
+			change_variable = { 
+				name = mil_maintain_maa_t
+				add = var:mil_maa_maintain_mud
+			}
+			set_variable = { 
+				name = mil_maa_maintain_fuel
+				value = mil_maa_maintain_fuel
+			}
+			change_variable = { 
+				name = mil_maa_maintain_fuel
+				multiply = 10
+			}
+			change_variable = { 
+				name = mil_maa_maintain_fuel
+				divide = var:trade_price_fuel
+			}
+			change_variable = { 
+				name = mil_maa_maintain_fuel
+				multiply = var:mil_maa_maintain_fuel
+			}
+			change_variable = { 
+				name = mil_maintain_maa_t
+				add = var:mil_maa_maintain_fuel
+			}
+			set_variable = { 
+				name = mil_maa_maintain_fiber
+				value = mil_maa_maintain_fiber
+			}
+			change_variable = { 
+				name = mil_maa_maintain_fiber
+				multiply = 10
+			}
+			change_variable = { 
+				name = mil_maa_maintain_fiber
+				divide = var:trade_price_fiber
+			}
+			change_variable = { 
+				name = mil_maa_maintain_fiber
+				multiply = var:mil_maa_maintain_fiber
+			}
+			change_variable = { 
+				name = mil_maintain_maa_t
+				add = var:mil_maa_maintain_fiber
+			}
+			set_variable = { 
+				name = mil_maa_maintain_timber
+				value = mil_maa_maintain_timber
+			}
+			change_variable = { 
+				name = mil_maa_maintain_timber
+				multiply = 10
+			}
+			change_variable = { 
+				name = mil_maa_maintain_timber
+				divide = var:trade_price_timber
+			}
+			change_variable = { 
+				name = mil_maa_maintain_timber
+				multiply = var:mil_maa_maintain_timber
+			}
+			change_variable = { 
+				name = mil_maintain_maa_t
+				add = var:mil_maa_maintain_timber
+			}
+			set_variable = { 
+				name = mil_maa_maintain_metal
+				value = mil_maa_maintain_metal
+			}
+			change_variable = { 
+				name = mil_maa_maintain_metal
+				multiply = 10
+			}
+			change_variable = { 
+				name = mil_maa_maintain_metal
+				divide = var:trade_price_metal
+			}
+			change_variable = { 
+				name = mil_maa_maintain_metal
+				multiply = var:mil_maa_maintain_metal
+			}
+			change_variable = { 
+				name = mil_maintain_maa_t
+				add = var:mil_maa_maintain_metal
+			}
+			set_variable = { 
+				name = mil_maa_maintain_exotics_w
+				value = mil_maa_maintain_exotics_w
+			}
+			change_variable = { 
+				name = mil_maa_maintain_exotics_w
+				multiply = 10
+			}
+			change_variable = { 
+				name = mil_maa_maintain_exotics_w
+				divide = var:trade_price_exotics_w
+			}
+			change_variable = { 
+				name = mil_maa_maintain_exotics_w
+				multiply = var:mil_maa_maintain_exotics_w
+			}
+			change_variable = { 
+				name = mil_maintain_maa_t
+				add = var:mil_maa_maintain_exotics_w
+			}
+			set_variable = { 
+				name = mil_maa_maintain_exotics_e
+				value = mil_maa_maintain_exotics_e
+			}
+			change_variable = { 
+				name = mil_maa_maintain_exotics_e
+				multiply = 10
+			}
+			change_variable = { 
+				name = mil_maa_maintain_exotics_e
+				divide = var:trade_price_exotics_e
+			}
+			change_variable = { 
+				name = mil_maa_maintain_exotics_e
+				multiply = var:mil_maa_maintain_exotics_e
+			}
+			change_variable = { 
+				name = mil_maintain_maa_t
+				add = var:mil_maa_maintain_exotics_e
+			}
+			set_variable = { 
+				name = mil_maa_maintain_exotics_g
+				value = mil_maa_maintain_exotics_g
+			}
+			change_variable = { 
+				name = mil_maa_maintain_exotics_g
+				multiply = 10
+			}
+			change_variable = { 
+				name = mil_maa_maintain_exotics_g
+				divide = var:trade_price_exotics_g
+			}
+			change_variable = { 
+				name = mil_maa_maintain_exotics_g
+				multiply = var:mil_maa_maintain_exotics_g
+			}
+			change_variable = { 
+				name = mil_maintain_maa_t
+				add = var:mil_maa_maintain_exotics_g
+			}
+			set_variable = { 
+				name = mil_maa_maintain_textile
+				value = mil_maa_maintain_textile
+			}
+			change_variable = { 
+				name = mil_maa_maintain_textile
+				multiply = 10
+			}
+			change_variable = { 
+				name = mil_maa_maintain_textile
+				divide = var:trade_price_textile
+			}
+			change_variable = { 
+				name = mil_maa_maintain_textile
+				multiply = var:mil_maa_maintain_textile
+			}
+			change_variable = { 
+				name = mil_maintain_maa_t
+				add = var:mil_maa_maintain_textile
+			}
+			set_variable = { 
+				name = mil_maa_maintain_pottery
+				value = mil_maa_maintain_pottery
+			}
+			change_variable = { 
+				name = mil_maa_maintain_pottery
+				multiply = 10
+			}
+			change_variable = { 
+				name = mil_maa_maintain_pottery
+				divide = var:trade_price_pottery
+			}
+			change_variable = { 
+				name = mil_maa_maintain_pottery
+				multiply = var:mil_maa_maintain_pottery
+			}
+			change_variable = { 
+				name = mil_maintain_maa_t
+				add = var:mil_maa_maintain_pottery
+			}
+			set_variable = { 
+				name = mil_maa_maintain_tools
+				value = mil_maa_maintain_tools
+			}
+			change_variable = { 
+				name = mil_maa_maintain_tools
+				multiply = 10
+			}
+			change_variable = { 
+				name = mil_maa_maintain_tools
+				divide = var:trade_price_tools
+			}
+			change_variable = { 
+				name = mil_maa_maintain_tools
+				multiply = var:mil_maa_maintain_tools
+			}
+			change_variable = { 
+				name = mil_maintain_maa_t
+				add = var:mil_maa_maintain_tools
+			}
+			set_variable = { 
+				name = mil_maa_maintain_armaments
+				value = mil_maa_maintain_armaments
+			}
+			change_variable = { 
+				name = mil_maa_maintain_armaments
+				multiply = 10
+			}
+			change_variable = { 
+				name = mil_maa_maintain_armaments
+				divide = var:trade_price_armaments
+			}
+			change_variable = { 
+				name = mil_maa_maintain_armaments
+				multiply = var:mil_maa_maintain_armaments
+			}
+			change_variable = { 
+				name = mil_maintain_maa_t
+				add = var:mil_maa_maintain_armaments
+			}
+			change_variable = { 
+				name = mil_maa_maintain_food
+				multiply = 100
+			}
+			change_variable = { 
+				name = mil_maa_maintain_food
+				divide = var:mil_maintain_maa_t
+			}
+			change_variable = { 
+				name = mil_maa_maintain_food
+				multiply = var:mil_maa
+			}
+			change_variable = { 
+				name = mil_maa_maintain_food
+				divide = 100
+			}
+			change_variable = { 
+				name = mil_maa_maintain_food
+				divide = mil_maa_maintain_food
+			}
+			change_variable = { 
+				name = mil_maa_maintain_cereal
+				multiply = 100
+			}
+			change_variable = { 
+				name = mil_maa_maintain_cereal
+				divide = var:mil_maintain_maa_t
+			}
+			change_variable = { 
+				name = mil_maa_maintain_cereal
+				multiply = var:mil_maa
+			}
+			change_variable = { 
+				name = mil_maa_maintain_cereal
+				divide = 100
+			}
+			change_variable = { 
+				name = mil_maa_maintain_cereal
+				divide = mil_maa_maintain_cereal
+			}
+			change_variable = { 
+				name = mil_maa_maintain_salted
+				multiply = 100
+			}
+			change_variable = { 
+				name = mil_maa_maintain_salted
+				divide = var:mil_maintain_maa_t
+			}
+			change_variable = { 
+				name = mil_maa_maintain_salted
+				multiply = var:mil_maa
+			}
+			change_variable = { 
+				name = mil_maa_maintain_salted
+				divide = 100
+			}
+			change_variable = { 
+				name = mil_maa_maintain_salted
+				divide = mil_maa_maintain_salted
+			}
+			change_variable = { 
+				name = mil_maa_maintain_salt
+				multiply = 100
+			}
+			change_variable = { 
+				name = mil_maa_maintain_salt
+				divide = var:mil_maintain_maa_t
+			}
+			change_variable = { 
+				name = mil_maa_maintain_salt
+				multiply = var:mil_maa
+			}
+			change_variable = { 
+				name = mil_maa_maintain_salt
+				divide = 100
+			}
+			change_variable = { 
+				name = mil_maa_maintain_salt
+				divide = mil_maa_maintain_salt
+			}
+			change_variable = { 
+				name = mil_maa_maintain_mud
+				multiply = 100
+			}
+			change_variable = { 
+				name = mil_maa_maintain_mud
+				divide = var:mil_maintain_maa_t
+			}
+			change_variable = { 
+				name = mil_maa_maintain_mud
+				multiply = var:mil_maa
+			}
+			change_variable = { 
+				name = mil_maa_maintain_mud
+				divide = 100
+			}
+			change_variable = { 
+				name = mil_maa_maintain_mud
+				divide = mil_maa_maintain_mud
+			}
+			change_variable = { 
+				name = mil_maa_maintain_fuel
+				multiply = 100
+			}
+			change_variable = { 
+				name = mil_maa_maintain_fuel
+				divide = var:mil_maintain_maa_t
+			}
+			change_variable = { 
+				name = mil_maa_maintain_fuel
+				multiply = var:mil_maa
+			}
+			change_variable = { 
+				name = mil_maa_maintain_fuel
+				divide = 100
+			}
+			change_variable = { 
+				name = mil_maa_maintain_fuel
+				divide = mil_maa_maintain_fuel
+			}
+			change_variable = { 
+				name = mil_maa_maintain_fiber
+				multiply = 100
+			}
+			change_variable = { 
+				name = mil_maa_maintain_fiber
+				divide = var:mil_maintain_maa_t
+			}
+			change_variable = { 
+				name = mil_maa_maintain_fiber
+				multiply = var:mil_maa
+			}
+			change_variable = { 
+				name = mil_maa_maintain_fiber
+				divide = 100
+			}
+			change_variable = { 
+				name = mil_maa_maintain_fiber
+				divide = mil_maa_maintain_fiber
+			}
+			change_variable = { 
+				name = mil_maa_maintain_timber
+				multiply = 100
+			}
+			change_variable = { 
+				name = mil_maa_maintain_timber
+				divide = var:mil_maintain_maa_t
+			}
+			change_variable = { 
+				name = mil_maa_maintain_timber
+				multiply = var:mil_maa
+			}
+			change_variable = { 
+				name = mil_maa_maintain_timber
+				divide = 100
+			}
+			change_variable = { 
+				name = mil_maa_maintain_timber
+				divide = mil_maa_maintain_timber
+			}
+			change_variable = { 
+				name = mil_maa_maintain_metal
+				multiply = 100
+			}
+			change_variable = { 
+				name = mil_maa_maintain_metal
+				divide = var:mil_maintain_maa_t
+			}
+			change_variable = { 
+				name = mil_maa_maintain_metal
+				multiply = var:mil_maa
+			}
+			change_variable = { 
+				name = mil_maa_maintain_metal
+				divide = 100
+			}
+			change_variable = { 
+				name = mil_maa_maintain_metal
+				divide = mil_maa_maintain_metal
+			}
+			change_variable = { 
+				name = mil_maa_maintain_exotics_w
+				multiply = 100
+			}
+			change_variable = { 
+				name = mil_maa_maintain_exotics_w
+				divide = var:mil_maintain_maa_t
+			}
+			change_variable = { 
+				name = mil_maa_maintain_exotics_w
+				multiply = var:mil_maa
+			}
+			change_variable = { 
+				name = mil_maa_maintain_exotics_w
+				divide = 100
+			}
+			change_variable = { 
+				name = mil_maa_maintain_exotics_w
+				divide = mil_maa_maintain_exotics_w
+			}
+			change_variable = { 
+				name = mil_maa_maintain_exotics_e
+				multiply = 100
+			}
+			change_variable = { 
+				name = mil_maa_maintain_exotics_e
+				divide = var:mil_maintain_maa_t
+			}
+			change_variable = { 
+				name = mil_maa_maintain_exotics_e
+				multiply = var:mil_maa
+			}
+			change_variable = { 
+				name = mil_maa_maintain_exotics_e
+				divide = 100
+			}
+			change_variable = { 
+				name = mil_maa_maintain_exotics_e
+				divide = mil_maa_maintain_exotics_e
+			}
+			change_variable = { 
+				name = mil_maa_maintain_exotics_g
+				multiply = 100
+			}
+			change_variable = { 
+				name = mil_maa_maintain_exotics_g
+				divide = var:mil_maintain_maa_t
+			}
+			change_variable = { 
+				name = mil_maa_maintain_exotics_g
+				multiply = var:mil_maa
+			}
+			change_variable = { 
+				name = mil_maa_maintain_exotics_g
+				divide = 100
+			}
+			change_variable = { 
+				name = mil_maa_maintain_exotics_g
+				divide = mil_maa_maintain_exotics_g
+			}
+			change_variable = { 
+				name = mil_maa_maintain_textile
+				multiply = 100
+			}
+			change_variable = { 
+				name = mil_maa_maintain_textile
+				divide = var:mil_maintain_maa_t
+			}
+			change_variable = { 
+				name = mil_maa_maintain_textile
+				multiply = var:mil_maa
+			}
+			change_variable = { 
+				name = mil_maa_maintain_textile
+				divide = 100
+			}
+			change_variable = { 
+				name = mil_maa_maintain_textile
+				divide = mil_maa_maintain_textile
+			}
+			change_variable = { 
+				name = mil_maa_maintain_pottery
+				multiply = 100
+			}
+			change_variable = { 
+				name = mil_maa_maintain_pottery
+				divide = var:mil_maintain_maa_t
+			}
+			change_variable = { 
+				name = mil_maa_maintain_pottery
+				multiply = var:mil_maa
+			}
+			change_variable = { 
+				name = mil_maa_maintain_pottery
+				divide = 100
+			}
+			change_variable = { 
+				name = mil_maa_maintain_pottery
+				divide = mil_maa_maintain_pottery
+			}
+			change_variable = { 
+				name = mil_maa_maintain_tools
+				multiply = 100
+			}
+			change_variable = { 
+				name = mil_maa_maintain_tools
+				divide = var:mil_maintain_maa_t
+			}
+			change_variable = { 
+				name = mil_maa_maintain_tools
+				multiply = var:mil_maa
+			}
+			change_variable = { 
+				name = mil_maa_maintain_tools
+				divide = 100
+			}
+			change_variable = { 
+				name = mil_maa_maintain_tools
+				divide = mil_maa_maintain_tools
+			}
+			change_variable = { 
+				name = mil_maa_maintain_armaments
+				multiply = 100
+			}
+			change_variable = { 
+				name = mil_maa_maintain_armaments
+				divide = var:mil_maintain_maa_t
+			}
+			change_variable = { 
+				name = mil_maa_maintain_armaments
+				multiply = var:mil_maa
+			}
+			change_variable = { 
+				name = mil_maa_maintain_armaments
+				divide = 100
+			}
+			change_variable = { 
+				name = mil_maa_maintain_armaments
+				divide = mil_maa_maintain_armaments
+			}
+			remove_variable = mil_maintain_maa_t
+			if = { 
+				limit = { 
+					has_raised_armies = yes
+				}
+				change_variable = { 
+					name = mil_maa_maintain_food
+					multiply = 2
+				}
+				change_variable = { 
+					name = mil_maa_maintain_cereal
+					multiply = 2
+				}
+				change_variable = { 
+					name = mil_maa_maintain_salted
+					multiply = 2
+				}
+				change_variable = { 
+					name = mil_maa_maintain_salt
+					multiply = 2
+				}
+				change_variable = { 
+					name = mil_maa_maintain_mud
+					multiply = 2
+				}
+				change_variable = { 
+					name = mil_maa_maintain_fuel
+					multiply = 2
+				}
+				change_variable = { 
+					name = mil_maa_maintain_fiber
+					multiply = 2
+				}
+				change_variable = { 
+					name = mil_maa_maintain_timber
+					multiply = 2
+				}
+				change_variable = { 
+					name = mil_maa_maintain_metal
+					multiply = 2
+				}
+				change_variable = { 
+					name = mil_maa_maintain_exotics_w
+					multiply = 2
+				}
+				change_variable = { 
+					name = mil_maa_maintain_exotics_e
+					multiply = 2
+				}
+				change_variable = { 
+					name = mil_maa_maintain_exotics_g
+					multiply = 2
+				}
+				change_variable = { 
+					name = mil_maa_maintain_textile
+					multiply = 2
+				}
+				change_variable = { 
+					name = mil_maa_maintain_pottery
+					multiply = 2
+				}
+				change_variable = { 
+					name = mil_maa_maintain_tools
+					multiply = 2
+				}
+				change_variable = { 
+					name = mil_maa_maintain_armaments
+					multiply = 2
+				}
+				set_variable = { 
+					name = mil_maintain_levy_t
+					value = 0
+				}
+				set_variable = { 
+					name = mil_levy_maintain_food
+					value = mil_maa_maintain_food
+				}
+				change_variable = { 
+					name = mil_levy_maintain_food
+					multiply = 10
+				}
+				change_variable = { 
+					name = mil_levy_maintain_food
+					divide = var:trade_price_food
+				}
+				change_variable = { 
+					name = mil_levy_maintain_food
+					multiply = var:mil_levy_maintain_food
+				}
+				change_variable = { 
+					name = mil_maintain_levy_t
+					add = var:mil_levy_maintain_food
+				}
+				set_variable = { 
+					name = mil_levy_maintain_cereal
+					value = mil_maa_maintain_cereal
+				}
+				change_variable = { 
+					name = mil_levy_maintain_cereal
+					multiply = 10
+				}
+				change_variable = { 
+					name = mil_levy_maintain_cereal
+					divide = var:trade_price_cereal
+				}
+				change_variable = { 
+					name = mil_levy_maintain_cereal
+					multiply = var:mil_levy_maintain_cereal
+				}
+				change_variable = { 
+					name = mil_maintain_levy_t
+					add = var:mil_levy_maintain_cereal
+				}
+				set_variable = { 
+					name = mil_levy_maintain_salted
+					value = mil_maa_maintain_salted
+				}
+				change_variable = { 
+					name = mil_levy_maintain_salted
+					multiply = 10
+				}
+				change_variable = { 
+					name = mil_levy_maintain_salted
+					divide = var:trade_price_salted
+				}
+				change_variable = { 
+					name = mil_levy_maintain_salted
+					multiply = var:mil_levy_maintain_salted
+				}
+				change_variable = { 
+					name = mil_maintain_levy_t
+					add = var:mil_levy_maintain_salted
+				}
+				set_variable = { 
+					name = mil_levy_maintain_salt
+					value = mil_maa_maintain_salt
+				}
+				change_variable = { 
+					name = mil_levy_maintain_salt
+					multiply = 10
+				}
+				change_variable = { 
+					name = mil_levy_maintain_salt
+					divide = var:trade_price_salt
+				}
+				change_variable = { 
+					name = mil_levy_maintain_salt
+					multiply = var:mil_levy_maintain_salt
+				}
+				change_variable = { 
+					name = mil_maintain_levy_t
+					add = var:mil_levy_maintain_salt
+				}
+				set_variable = { 
+					name = mil_levy_maintain_mud
+					value = mil_maa_maintain_mud
+				}
+				change_variable = { 
+					name = mil_levy_maintain_mud
+					multiply = 10
+				}
+				change_variable = { 
+					name = mil_levy_maintain_mud
+					divide = var:trade_price_mud
+				}
+				change_variable = { 
+					name = mil_levy_maintain_mud
+					multiply = var:mil_levy_maintain_mud
+				}
+				change_variable = { 
+					name = mil_maintain_levy_t
+					add = var:mil_levy_maintain_mud
+				}
+				set_variable = { 
+					name = mil_levy_maintain_fuel
+					value = mil_maa_maintain_fuel
+				}
+				change_variable = { 
+					name = mil_levy_maintain_fuel
+					multiply = 10
+				}
+				change_variable = { 
+					name = mil_levy_maintain_fuel
+					divide = var:trade_price_fuel
+				}
+				change_variable = { 
+					name = mil_levy_maintain_fuel
+					multiply = var:mil_levy_maintain_fuel
+				}
+				change_variable = { 
+					name = mil_maintain_levy_t
+					add = var:mil_levy_maintain_fuel
+				}
+				set_variable = { 
+					name = mil_levy_maintain_fiber
+					value = mil_maa_maintain_fiber
+				}
+				change_variable = { 
+					name = mil_levy_maintain_fiber
+					multiply = 10
+				}
+				change_variable = { 
+					name = mil_levy_maintain_fiber
+					divide = var:trade_price_fiber
+				}
+				change_variable = { 
+					name = mil_levy_maintain_fiber
+					multiply = var:mil_levy_maintain_fiber
+				}
+				change_variable = { 
+					name = mil_maintain_levy_t
+					add = var:mil_levy_maintain_fiber
+				}
+				set_variable = { 
+					name = mil_levy_maintain_timber
+					value = mil_maa_maintain_timber
+				}
+				change_variable = { 
+					name = mil_levy_maintain_timber
+					multiply = 10
+				}
+				change_variable = { 
+					name = mil_levy_maintain_timber
+					divide = var:trade_price_timber
+				}
+				change_variable = { 
+					name = mil_levy_maintain_timber
+					multiply = var:mil_levy_maintain_timber
+				}
+				change_variable = { 
+					name = mil_maintain_levy_t
+					add = var:mil_levy_maintain_timber
+				}
+				set_variable = { 
+					name = mil_levy_maintain_metal
+					value = mil_maa_maintain_metal
+				}
+				change_variable = { 
+					name = mil_levy_maintain_metal
+					multiply = 10
+				}
+				change_variable = { 
+					name = mil_levy_maintain_metal
+					divide = var:trade_price_metal
+				}
+				change_variable = { 
+					name = mil_levy_maintain_metal
+					multiply = var:mil_levy_maintain_metal
+				}
+				change_variable = { 
+					name = mil_maintain_levy_t
+					add = var:mil_levy_maintain_metal
+				}
+				set_variable = { 
+					name = mil_levy_maintain_exotics_w
+					value = mil_maa_maintain_exotics_w
+				}
+				change_variable = { 
+					name = mil_levy_maintain_exotics_w
+					multiply = 10
+				}
+				change_variable = { 
+					name = mil_levy_maintain_exotics_w
+					divide = var:trade_price_exotics_w
+				}
+				change_variable = { 
+					name = mil_levy_maintain_exotics_w
+					multiply = var:mil_levy_maintain_exotics_w
+				}
+				change_variable = { 
+					name = mil_maintain_levy_t
+					add = var:mil_levy_maintain_exotics_w
+				}
+				set_variable = { 
+					name = mil_levy_maintain_exotics_e
+					value = mil_maa_maintain_exotics_e
+				}
+				change_variable = { 
+					name = mil_levy_maintain_exotics_e
+					multiply = 10
+				}
+				change_variable = { 
+					name = mil_levy_maintain_exotics_e
+					divide = var:trade_price_exotics_e
+				}
+				change_variable = { 
+					name = mil_levy_maintain_exotics_e
+					multiply = var:mil_levy_maintain_exotics_e
+				}
+				change_variable = { 
+					name = mil_maintain_levy_t
+					add = var:mil_levy_maintain_exotics_e
+				}
+				set_variable = { 
+					name = mil_levy_maintain_exotics_g
+					value = mil_maa_maintain_exotics_g
+				}
+				change_variable = { 
+					name = mil_levy_maintain_exotics_g
+					multiply = 10
+				}
+				change_variable = { 
+					name = mil_levy_maintain_exotics_g
+					divide = var:trade_price_exotics_g
+				}
+				change_variable = { 
+					name = mil_levy_maintain_exotics_g
+					multiply = var:mil_levy_maintain_exotics_g
+				}
+				change_variable = { 
+					name = mil_maintain_levy_t
+					add = var:mil_levy_maintain_exotics_g
+				}
+				set_variable = { 
+					name = mil_levy_maintain_textile
+					value = mil_maa_maintain_textile
+				}
+				change_variable = { 
+					name = mil_levy_maintain_textile
+					multiply = 10
+				}
+				change_variable = { 
+					name = mil_levy_maintain_textile
+					divide = var:trade_price_textile
+				}
+				change_variable = { 
+					name = mil_levy_maintain_textile
+					multiply = var:mil_levy_maintain_textile
+				}
+				change_variable = { 
+					name = mil_maintain_levy_t
+					add = var:mil_levy_maintain_textile
+				}
+				set_variable = { 
+					name = mil_levy_maintain_pottery
+					value = mil_maa_maintain_pottery
+				}
+				change_variable = { 
+					name = mil_levy_maintain_pottery
+					multiply = 10
+				}
+				change_variable = { 
+					name = mil_levy_maintain_pottery
+					divide = var:trade_price_pottery
+				}
+				change_variable = { 
+					name = mil_levy_maintain_pottery
+					multiply = var:mil_levy_maintain_pottery
+				}
+				change_variable = { 
+					name = mil_maintain_levy_t
+					add = var:mil_levy_maintain_pottery
+				}
+				set_variable = { 
+					name = mil_levy_maintain_tools
+					value = mil_maa_maintain_tools
+				}
+				change_variable = { 
+					name = mil_levy_maintain_tools
+					multiply = 10
+				}
+				change_variable = { 
+					name = mil_levy_maintain_tools
+					divide = var:trade_price_tools
+				}
+				change_variable = { 
+					name = mil_levy_maintain_tools
+					multiply = var:mil_levy_maintain_tools
+				}
+				change_variable = { 
+					name = mil_maintain_levy_t
+					add = var:mil_levy_maintain_tools
+				}
+				set_variable = { 
+					name = mil_levy_maintain_armaments
+					value = mil_maa_maintain_armaments
+				}
+				change_variable = { 
+					name = mil_levy_maintain_armaments
+					multiply = 10
+				}
+				change_variable = { 
+					name = mil_levy_maintain_armaments
+					divide = var:trade_price_armaments
+				}
+				change_variable = { 
+					name = mil_levy_maintain_armaments
+					multiply = var:mil_levy_maintain_armaments
+				}
+				change_variable = { 
+					name = mil_maintain_levy_t
+					add = var:mil_levy_maintain_armaments
+				}
+				change_variable = { 
+					name = mil_levy_maintain_food
+					multiply = 100
+				}
+				change_variable = { 
+					name = mil_levy_maintain_food
+					divide = var:mil_maintain_levy_t
+				}
+				change_variable = { 
+					name = mil_levy_maintain_food
+					multiply = var:mil_levy_field
+				}
+				change_variable = { 
+					name = mil_levy_maintain_food
+					divide = 100
+				}
+				change_variable = { 
+					name = mil_levy_maintain_food
+					divide = mil_maa_maintain_food
+				}
+				change_variable = { 
+					name = mil_levy_maintain_cereal
+					multiply = 100
+				}
+				change_variable = { 
+					name = mil_levy_maintain_cereal
+					divide = var:mil_maintain_levy_t
+				}
+				change_variable = { 
+					name = mil_levy_maintain_cereal
+					multiply = var:mil_levy_field
+				}
+				change_variable = { 
+					name = mil_levy_maintain_cereal
+					divide = 100
+				}
+				change_variable = { 
+					name = mil_levy_maintain_cereal
+					divide = mil_maa_maintain_cereal
+				}
+				change_variable = { 
+					name = mil_levy_maintain_salted
+					multiply = 100
+				}
+				change_variable = { 
+					name = mil_levy_maintain_salted
+					divide = var:mil_maintain_levy_t
+				}
+				change_variable = { 
+					name = mil_levy_maintain_salted
+					multiply = var:mil_levy_field
+				}
+				change_variable = { 
+					name = mil_levy_maintain_salted
+					divide = 100
+				}
+				change_variable = { 
+					name = mil_levy_maintain_salted
+					divide = mil_maa_maintain_salted
+				}
+				change_variable = { 
+					name = mil_levy_maintain_salt
+					multiply = 100
+				}
+				change_variable = { 
+					name = mil_levy_maintain_salt
+					divide = var:mil_maintain_levy_t
+				}
+				change_variable = { 
+					name = mil_levy_maintain_salt
+					multiply = var:mil_levy_field
+				}
+				change_variable = { 
+					name = mil_levy_maintain_salt
+					divide = 100
+				}
+				change_variable = { 
+					name = mil_levy_maintain_salt
+					divide = mil_maa_maintain_salt
+				}
+				change_variable = { 
+					name = mil_levy_maintain_mud
+					multiply = 100
+				}
+				change_variable = { 
+					name = mil_levy_maintain_mud
+					divide = var:mil_maintain_levy_t
+				}
+				change_variable = { 
+					name = mil_levy_maintain_mud
+					multiply = var:mil_levy_field
+				}
+				change_variable = { 
+					name = mil_levy_maintain_mud
+					divide = 100
+				}
+				change_variable = { 
+					name = mil_levy_maintain_mud
+					divide = mil_maa_maintain_mud
+				}
+				change_variable = { 
+					name = mil_levy_maintain_fuel
+					multiply = 100
+				}
+				change_variable = { 
+					name = mil_levy_maintain_fuel
+					divide = var:mil_maintain_levy_t
+				}
+				change_variable = { 
+					name = mil_levy_maintain_fuel
+					multiply = var:mil_levy_field
+				}
+				change_variable = { 
+					name = mil_levy_maintain_fuel
+					divide = 100
+				}
+				change_variable = { 
+					name = mil_levy_maintain_fuel
+					divide = mil_maa_maintain_fuel
+				}
+				change_variable = { 
+					name = mil_levy_maintain_fiber
+					multiply = 100
+				}
+				change_variable = { 
+					name = mil_levy_maintain_fiber
+					divide = var:mil_maintain_levy_t
+				}
+				change_variable = { 
+					name = mil_levy_maintain_fiber
+					multiply = var:mil_levy_field
+				}
+				change_variable = { 
+					name = mil_levy_maintain_fiber
+					divide = 100
+				}
+				change_variable = { 
+					name = mil_levy_maintain_fiber
+					divide = mil_maa_maintain_fiber
+				}
+				change_variable = { 
+					name = mil_levy_maintain_timber
+					multiply = 100
+				}
+				change_variable = { 
+					name = mil_levy_maintain_timber
+					divide = var:mil_maintain_levy_t
+				}
+				change_variable = { 
+					name = mil_levy_maintain_timber
+					multiply = var:mil_levy_field
+				}
+				change_variable = { 
+					name = mil_levy_maintain_timber
+					divide = 100
+				}
+				change_variable = { 
+					name = mil_levy_maintain_timber
+					divide = mil_maa_maintain_timber
+				}
+				change_variable = { 
+					name = mil_levy_maintain_metal
+					multiply = 100
+				}
+				change_variable = { 
+					name = mil_levy_maintain_metal
+					divide = var:mil_maintain_levy_t
+				}
+				change_variable = { 
+					name = mil_levy_maintain_metal
+					multiply = var:mil_levy_field
+				}
+				change_variable = { 
+					name = mil_levy_maintain_metal
+					divide = 100
+				}
+				change_variable = { 
+					name = mil_levy_maintain_metal
+					divide = mil_maa_maintain_metal
+				}
+				change_variable = { 
+					name = mil_levy_maintain_exotics_w
+					multiply = 100
+				}
+				change_variable = { 
+					name = mil_levy_maintain_exotics_w
+					divide = var:mil_maintain_levy_t
+				}
+				change_variable = { 
+					name = mil_levy_maintain_exotics_w
+					multiply = var:mil_levy_field
+				}
+				change_variable = { 
+					name = mil_levy_maintain_exotics_w
+					divide = 100
+				}
+				change_variable = { 
+					name = mil_levy_maintain_exotics_w
+					divide = mil_maa_maintain_exotics_w
+				}
+				change_variable = { 
+					name = mil_levy_maintain_exotics_e
+					multiply = 100
+				}
+				change_variable = { 
+					name = mil_levy_maintain_exotics_e
+					divide = var:mil_maintain_levy_t
+				}
+				change_variable = { 
+					name = mil_levy_maintain_exotics_e
+					multiply = var:mil_levy_field
+				}
+				change_variable = { 
+					name = mil_levy_maintain_exotics_e
+					divide = 100
+				}
+				change_variable = { 
+					name = mil_levy_maintain_exotics_e
+					divide = mil_maa_maintain_exotics_e
+				}
+				change_variable = { 
+					name = mil_levy_maintain_exotics_g
+					multiply = 100
+				}
+				change_variable = { 
+					name = mil_levy_maintain_exotics_g
+					divide = var:mil_maintain_levy_t
+				}
+				change_variable = { 
+					name = mil_levy_maintain_exotics_g
+					multiply = var:mil_levy_field
+				}
+				change_variable = { 
+					name = mil_levy_maintain_exotics_g
+					divide = 100
+				}
+				change_variable = { 
+					name = mil_levy_maintain_exotics_g
+					divide = mil_maa_maintain_exotics_g
+				}
+				change_variable = { 
+					name = mil_levy_maintain_textile
+					multiply = 100
+				}
+				change_variable = { 
+					name = mil_levy_maintain_textile
+					divide = var:mil_maintain_levy_t
+				}
+				change_variable = { 
+					name = mil_levy_maintain_textile
+					multiply = var:mil_levy_field
+				}
+				change_variable = { 
+					name = mil_levy_maintain_textile
+					divide = 100
+				}
+				change_variable = { 
+					name = mil_levy_maintain_textile
+					divide = mil_maa_maintain_textile
+				}
+				change_variable = { 
+					name = mil_levy_maintain_pottery
+					multiply = 100
+				}
+				change_variable = { 
+					name = mil_levy_maintain_pottery
+					divide = var:mil_maintain_levy_t
+				}
+				change_variable = { 
+					name = mil_levy_maintain_pottery
+					multiply = var:mil_levy_field
+				}
+				change_variable = { 
+					name = mil_levy_maintain_pottery
+					divide = 100
+				}
+				change_variable = { 
+					name = mil_levy_maintain_pottery
+					divide = mil_maa_maintain_pottery
+				}
+				change_variable = { 
+					name = mil_levy_maintain_tools
+					multiply = 100
+				}
+				change_variable = { 
+					name = mil_levy_maintain_tools
+					divide = var:mil_maintain_levy_t
+				}
+				change_variable = { 
+					name = mil_levy_maintain_tools
+					multiply = var:mil_levy_field
+				}
+				change_variable = { 
+					name = mil_levy_maintain_tools
+					divide = 100
+				}
+				change_variable = { 
+					name = mil_levy_maintain_tools
+					divide = mil_maa_maintain_tools
+				}
+				change_variable = { 
+					name = mil_levy_maintain_armaments
+					multiply = 100
+				}
+				change_variable = { 
+					name = mil_levy_maintain_armaments
+					divide = var:mil_maintain_levy_t
+				}
+				change_variable = { 
+					name = mil_levy_maintain_armaments
+					multiply = var:mil_levy_field
+				}
+				change_variable = { 
+					name = mil_levy_maintain_armaments
+					divide = 100
+				}
+				change_variable = { 
+					name = mil_levy_maintain_armaments
+					divide = mil_maa_maintain_armaments
+				}
+				remove_variable = mil_maintain_levy_t
+			}
+			else = { 
+				set_variable = { 
+					name = mil_levy_maintain_food
+					value = 0
+				}
+				set_variable = { 
+					name = mil_levy_maintain_cereal
+					value = 0
+				}
+				set_variable = { 
+					name = mil_levy_maintain_salted
+					value = 0
+				}
+				set_variable = { 
+					name = mil_levy_maintain_salt
+					value = 0
+				}
+				set_variable = { 
+					name = mil_levy_maintain_mud
+					value = 0
+				}
+				set_variable = { 
+					name = mil_levy_maintain_fuel
+					value = 0
+				}
+				set_variable = { 
+					name = mil_levy_maintain_fiber
+					value = 0
+				}
+				set_variable = { 
+					name = mil_levy_maintain_timber
+					value = 0
+				}
+				set_variable = { 
+					name = mil_levy_maintain_metal
+					value = 0
+				}
+				set_variable = { 
+					name = mil_levy_maintain_exotics_w
+					value = 0
+				}
+				set_variable = { 
+					name = mil_levy_maintain_exotics_e
+					value = 0
+				}
+				set_variable = { 
+					name = mil_levy_maintain_exotics_g
+					value = 0
+				}
+				set_variable = { 
+					name = mil_levy_maintain_textile
+					value = 0
+				}
+				set_variable = { 
+					name = mil_levy_maintain_pottery
+					value = 0
+				}
+				set_variable = { 
+					name = mil_levy_maintain_tools
+					value = 0
+				}
+				set_variable = { 
+					name = mil_levy_maintain_armaments
+					value = 0
+				}
+			}
+			set_variable = { 
+				name = mil_maintain_t
+				value = 0
+			}
+			set_variable = { 
+				name = mil_maintain_tt
+				value = 0
+			}
+			set_variable = { 
+				name = mil_maintain_food
+				value = var:mil_maa_maintain_food
+			}
+			change_variable = { 
+				name = mil_maintain_food
+				add = var:mil_levy_maintain_food
+			}
+			set_variable = { 
+				name = mil_maintain_ttt
+				value = var:mil_maintain_food
+			}
+			change_variable = { 
+				name = mil_maintain_ttt
+				multiply = mil_maa_maintain_food
+			}
+			change_variable = { 
+				name = mil_maintain_t
+				add = var:mil_maintain_ttt
+			}
+			if = { 
+				limit = { 
+					has_variable = mil_maintain_food
+					var:mil_maintain_food = { 
+						compare_value > prev.var:trade_has_food
+					}
+				}
+				set_variable = { 
+					name = mil_maintain_food
+					value = var:trade_has_food
+				}
+			}
+			change_variable = { 
+				name = trade_has_food
+				subtract = var:mil_maintain_food
+			}
+			set_variable = { 
+				name = mil_maintain_ttt
+				value = var:mil_maintain_food
+			}
+			change_variable = { 
+				name = mil_maintain_ttt
+				multiply = mil_maa_maintain_food
+			}
+			change_variable = { 
+				name = mil_maintain_tt
+				add = var:mil_maintain_ttt
+			}
+			set_variable = { 
+				name = mil_maintain_cereal
+				value = var:mil_maa_maintain_cereal
+			}
+			change_variable = { 
+				name = mil_maintain_cereal
+				add = var:mil_levy_maintain_cereal
+			}
+			set_variable = { 
+				name = mil_maintain_ttt
+				value = var:mil_maintain_cereal
+			}
+			change_variable = { 
+				name = mil_maintain_ttt
+				multiply = mil_maa_maintain_cereal
+			}
+			change_variable = { 
+				name = mil_maintain_t
+				add = var:mil_maintain_ttt
+			}
+			if = { 
+				limit = { 
+					has_variable = mil_maintain_cereal
+					var:mil_maintain_cereal = { 
+						compare_value > prev.var:trade_has_cereal
+					}
+				}
+				set_variable = { 
+					name = mil_maintain_cereal
+					value = var:trade_has_cereal
+				}
+			}
+			change_variable = { 
+				name = trade_has_cereal
+				subtract = var:mil_maintain_cereal
+			}
+			set_variable = { 
+				name = mil_maintain_ttt
+				value = var:mil_maintain_cereal
+			}
+			change_variable = { 
+				name = mil_maintain_ttt
+				multiply = mil_maa_maintain_cereal
+			}
+			change_variable = { 
+				name = mil_maintain_tt
+				add = var:mil_maintain_ttt
+			}
+			set_variable = { 
+				name = mil_maintain_salted
+				value = var:mil_maa_maintain_salted
+			}
+			change_variable = { 
+				name = mil_maintain_salted
+				add = var:mil_levy_maintain_salted
+			}
+			set_variable = { 
+				name = mil_maintain_ttt
+				value = var:mil_maintain_salted
+			}
+			change_variable = { 
+				name = mil_maintain_ttt
+				multiply = mil_maa_maintain_salted
+			}
+			change_variable = { 
+				name = mil_maintain_t
+				add = var:mil_maintain_ttt
+			}
+			if = { 
+				limit = { 
+					has_variable = mil_maintain_salted
+					var:mil_maintain_salted = { 
+						compare_value > prev.var:trade_has_salted
+					}
+				}
+				set_variable = { 
+					name = mil_maintain_salted
+					value = var:trade_has_salted
+				}
+			}
+			change_variable = { 
+				name = trade_has_salted
+				subtract = var:mil_maintain_salted
+			}
+			set_variable = { 
+				name = mil_maintain_ttt
+				value = var:mil_maintain_salted
+			}
+			change_variable = { 
+				name = mil_maintain_ttt
+				multiply = mil_maa_maintain_salted
+			}
+			change_variable = { 
+				name = mil_maintain_tt
+				add = var:mil_maintain_ttt
+			}
+			set_variable = { 
+				name = mil_maintain_salt
+				value = var:mil_maa_maintain_salt
+			}
+			change_variable = { 
+				name = mil_maintain_salt
+				add = var:mil_levy_maintain_salt
+			}
+			set_variable = { 
+				name = mil_maintain_ttt
+				value = var:mil_maintain_salt
+			}
+			change_variable = { 
+				name = mil_maintain_ttt
+				multiply = mil_maa_maintain_salt
+			}
+			change_variable = { 
+				name = mil_maintain_t
+				add = var:mil_maintain_ttt
+			}
+			if = { 
+				limit = { 
+					has_variable = mil_maintain_salt
+					var:mil_maintain_salt = { 
+						compare_value > prev.var:trade_has_salt
+					}
+				}
+				set_variable = { 
+					name = mil_maintain_salt
+					value = var:trade_has_salt
+				}
+			}
+			change_variable = { 
+				name = trade_has_salt
+				subtract = var:mil_maintain_salt
+			}
+			set_variable = { 
+				name = mil_maintain_ttt
+				value = var:mil_maintain_salt
+			}
+			change_variable = { 
+				name = mil_maintain_ttt
+				multiply = mil_maa_maintain_salt
+			}
+			change_variable = { 
+				name = mil_maintain_tt
+				add = var:mil_maintain_ttt
+			}
+			set_variable = { 
+				name = mil_maintain_mud
+				value = var:mil_maa_maintain_mud
+			}
+			change_variable = { 
+				name = mil_maintain_mud
+				add = var:mil_levy_maintain_mud
+			}
+			set_variable = { 
+				name = mil_maintain_ttt
+				value = var:mil_maintain_mud
+			}
+			change_variable = { 
+				name = mil_maintain_ttt
+				multiply = mil_maa_maintain_mud
+			}
+			change_variable = { 
+				name = mil_maintain_t
+				add = var:mil_maintain_ttt
+			}
+			if = { 
+				limit = { 
+					has_variable = mil_maintain_mud
+					var:mil_maintain_mud = { 
+						compare_value > prev.var:trade_has_mud
+					}
+				}
+				set_variable = { 
+					name = mil_maintain_mud
+					value = var:trade_has_mud
+				}
+			}
+			change_variable = { 
+				name = trade_has_mud
+				subtract = var:mil_maintain_mud
+			}
+			set_variable = { 
+				name = mil_maintain_ttt
+				value = var:mil_maintain_mud
+			}
+			change_variable = { 
+				name = mil_maintain_ttt
+				multiply = mil_maa_maintain_mud
+			}
+			change_variable = { 
+				name = mil_maintain_tt
+				add = var:mil_maintain_ttt
+			}
+			set_variable = { 
+				name = mil_maintain_fuel
+				value = var:mil_maa_maintain_fuel
+			}
+			change_variable = { 
+				name = mil_maintain_fuel
+				add = var:mil_levy_maintain_fuel
+			}
+			set_variable = { 
+				name = mil_maintain_ttt
+				value = var:mil_maintain_fuel
+			}
+			change_variable = { 
+				name = mil_maintain_ttt
+				multiply = mil_maa_maintain_fuel
+			}
+			change_variable = { 
+				name = mil_maintain_t
+				add = var:mil_maintain_ttt
+			}
+			if = { 
+				limit = { 
+					has_variable = mil_maintain_fuel
+					var:mil_maintain_fuel = { 
+						compare_value > prev.var:trade_has_fuel
+					}
+				}
+				set_variable = { 
+					name = mil_maintain_fuel
+					value = var:trade_has_fuel
+				}
+			}
+			change_variable = { 
+				name = trade_has_fuel
+				subtract = var:mil_maintain_fuel
+			}
+			set_variable = { 
+				name = mil_maintain_ttt
+				value = var:mil_maintain_fuel
+			}
+			change_variable = { 
+				name = mil_maintain_ttt
+				multiply = mil_maa_maintain_fuel
+			}
+			change_variable = { 
+				name = mil_maintain_tt
+				add = var:mil_maintain_ttt
+			}
+			set_variable = { 
+				name = mil_maintain_fiber
+				value = var:mil_maa_maintain_fiber
+			}
+			change_variable = { 
+				name = mil_maintain_fiber
+				add = var:mil_levy_maintain_fiber
+			}
+			set_variable = { 
+				name = mil_maintain_ttt
+				value = var:mil_maintain_fiber
+			}
+			change_variable = { 
+				name = mil_maintain_ttt
+				multiply = mil_maa_maintain_fiber
+			}
+			change_variable = { 
+				name = mil_maintain_t
+				add = var:mil_maintain_ttt
+			}
+			if = { 
+				limit = { 
+					has_variable = mil_maintain_fiber
+					var:mil_maintain_fiber = { 
+						compare_value > prev.var:trade_has_fiber
+					}
+				}
+				set_variable = { 
+					name = mil_maintain_fiber
+					value = var:trade_has_fiber
+				}
+			}
+			change_variable = { 
+				name = trade_has_fiber
+				subtract = var:mil_maintain_fiber
+			}
+			set_variable = { 
+				name = mil_maintain_ttt
+				value = var:mil_maintain_fiber
+			}
+			change_variable = { 
+				name = mil_maintain_ttt
+				multiply = mil_maa_maintain_fiber
+			}
+			change_variable = { 
+				name = mil_maintain_tt
+				add = var:mil_maintain_ttt
+			}
+			set_variable = { 
+				name = mil_maintain_timber
+				value = var:mil_maa_maintain_timber
+			}
+			change_variable = { 
+				name = mil_maintain_timber
+				add = var:mil_levy_maintain_timber
+			}
+			set_variable = { 
+				name = mil_maintain_ttt
+				value = var:mil_maintain_timber
+			}
+			change_variable = { 
+				name = mil_maintain_ttt
+				multiply = mil_maa_maintain_timber
+			}
+			change_variable = { 
+				name = mil_maintain_t
+				add = var:mil_maintain_ttt
+			}
+			if = { 
+				limit = { 
+					has_variable = mil_maintain_timber
+					var:mil_maintain_timber = { 
+						compare_value > prev.var:trade_has_timber
+					}
+				}
+				set_variable = { 
+					name = mil_maintain_timber
+					value = var:trade_has_timber
+				}
+			}
+			change_variable = { 
+				name = trade_has_timber
+				subtract = var:mil_maintain_timber
+			}
+			set_variable = { 
+				name = mil_maintain_ttt
+				value = var:mil_maintain_timber
+			}
+			change_variable = { 
+				name = mil_maintain_ttt
+				multiply = mil_maa_maintain_timber
+			}
+			change_variable = { 
+				name = mil_maintain_tt
+				add = var:mil_maintain_ttt
+			}
+			set_variable = { 
+				name = mil_maintain_metal
+				value = var:mil_maa_maintain_metal
+			}
+			change_variable = { 
+				name = mil_maintain_metal
+				add = var:mil_levy_maintain_metal
+			}
+			set_variable = { 
+				name = mil_maintain_ttt
+				value = var:mil_maintain_metal
+			}
+			change_variable = { 
+				name = mil_maintain_ttt
+				multiply = mil_maa_maintain_metal
+			}
+			change_variable = { 
+				name = mil_maintain_t
+				add = var:mil_maintain_ttt
+			}
+			if = { 
+				limit = { 
+					has_variable = mil_maintain_metal
+					var:mil_maintain_metal = { 
+						compare_value > prev.var:trade_has_metal
+					}
+				}
+				set_variable = { 
+					name = mil_maintain_metal
+					value = var:trade_has_metal
+				}
+			}
+			change_variable = { 
+				name = trade_has_metal
+				subtract = var:mil_maintain_metal
+			}
+			set_variable = { 
+				name = mil_maintain_ttt
+				value = var:mil_maintain_metal
+			}
+			change_variable = { 
+				name = mil_maintain_ttt
+				multiply = mil_maa_maintain_metal
+			}
+			change_variable = { 
+				name = mil_maintain_tt
+				add = var:mil_maintain_ttt
+			}
+			set_variable = { 
+				name = mil_maintain_exotics_w
+				value = var:mil_maa_maintain_exotics_w
+			}
+			change_variable = { 
+				name = mil_maintain_exotics_w
+				add = var:mil_levy_maintain_exotics_w
+			}
+			set_variable = { 
+				name = mil_maintain_ttt
+				value = var:mil_maintain_exotics_w
+			}
+			change_variable = { 
+				name = mil_maintain_ttt
+				multiply = mil_maa_maintain_exotics_w
+			}
+			change_variable = { 
+				name = mil_maintain_t
+				add = var:mil_maintain_ttt
+			}
+			if = { 
+				limit = { 
+					has_variable = mil_maintain_exotics_w
+					var:mil_maintain_exotics_w = { 
+						compare_value > prev.var:trade_has_exotics_w
+					}
+				}
+				set_variable = { 
+					name = mil_maintain_exotics_w
+					value = var:trade_has_exotics_w
+				}
+			}
+			change_variable = { 
+				name = trade_has_exotics_w
+				subtract = var:mil_maintain_exotics_w
+			}
+			set_variable = { 
+				name = mil_maintain_ttt
+				value = var:mil_maintain_exotics_w
+			}
+			change_variable = { 
+				name = mil_maintain_ttt
+				multiply = mil_maa_maintain_exotics_w
+			}
+			change_variable = { 
+				name = mil_maintain_tt
+				add = var:mil_maintain_ttt
+			}
+			set_variable = { 
+				name = mil_maintain_exotics_e
+				value = var:mil_maa_maintain_exotics_e
+			}
+			change_variable = { 
+				name = mil_maintain_exotics_e
+				add = var:mil_levy_maintain_exotics_e
+			}
+			set_variable = { 
+				name = mil_maintain_ttt
+				value = var:mil_maintain_exotics_e
+			}
+			change_variable = { 
+				name = mil_maintain_ttt
+				multiply = mil_maa_maintain_exotics_e
+			}
+			change_variable = { 
+				name = mil_maintain_t
+				add = var:mil_maintain_ttt
+			}
+			if = { 
+				limit = { 
+					has_variable = mil_maintain_exotics_e
+					var:mil_maintain_exotics_e = { 
+						compare_value > prev.var:trade_has_exotics_e
+					}
+				}
+				set_variable = { 
+					name = mil_maintain_exotics_e
+					value = var:trade_has_exotics_e
+				}
+			}
+			change_variable = { 
+				name = trade_has_exotics_e
+				subtract = var:mil_maintain_exotics_e
+			}
+			set_variable = { 
+				name = mil_maintain_ttt
+				value = var:mil_maintain_exotics_e
+			}
+			change_variable = { 
+				name = mil_maintain_ttt
+				multiply = mil_maa_maintain_exotics_e
+			}
+			change_variable = { 
+				name = mil_maintain_tt
+				add = var:mil_maintain_ttt
+			}
+			set_variable = { 
+				name = mil_maintain_exotics_g
+				value = var:mil_maa_maintain_exotics_g
+			}
+			change_variable = { 
+				name = mil_maintain_exotics_g
+				add = var:mil_levy_maintain_exotics_g
+			}
+			set_variable = { 
+				name = mil_maintain_ttt
+				value = var:mil_maintain_exotics_g
+			}
+			change_variable = { 
+				name = mil_maintain_ttt
+				multiply = mil_maa_maintain_exotics_g
+			}
+			change_variable = { 
+				name = mil_maintain_t
+				add = var:mil_maintain_ttt
+			}
+			if = { 
+				limit = { 
+					has_variable = mil_maintain_exotics_g
+					var:mil_maintain_exotics_g = { 
+						compare_value > prev.var:trade_has_exotics_g
+					}
+				}
+				set_variable = { 
+					name = mil_maintain_exotics_g
+					value = var:trade_has_exotics_g
+				}
+			}
+			change_variable = { 
+				name = trade_has_exotics_g
+				subtract = var:mil_maintain_exotics_g
+			}
+			set_variable = { 
+				name = mil_maintain_ttt
+				value = var:mil_maintain_exotics_g
+			}
+			change_variable = { 
+				name = mil_maintain_ttt
+				multiply = mil_maa_maintain_exotics_g
+			}
+			change_variable = { 
+				name = mil_maintain_tt
+				add = var:mil_maintain_ttt
+			}
+			set_variable = { 
+				name = mil_maintain_textile
+				value = var:mil_maa_maintain_textile
+			}
+			change_variable = { 
+				name = mil_maintain_textile
+				add = var:mil_levy_maintain_textile
+			}
+			set_variable = { 
+				name = mil_maintain_ttt
+				value = var:mil_maintain_textile
+			}
+			change_variable = { 
+				name = mil_maintain_ttt
+				multiply = mil_maa_maintain_textile
+			}
+			change_variable = { 
+				name = mil_maintain_t
+				add = var:mil_maintain_ttt
+			}
+			if = { 
+				limit = { 
+					has_variable = mil_maintain_textile
+					var:mil_maintain_textile = { 
+						compare_value > prev.var:trade_has_textile
+					}
+				}
+				set_variable = { 
+					name = mil_maintain_textile
+					value = var:trade_has_textile
+				}
+			}
+			change_variable = { 
+				name = trade_has_textile
+				subtract = var:mil_maintain_textile
+			}
+			set_variable = { 
+				name = mil_maintain_ttt
+				value = var:mil_maintain_textile
+			}
+			change_variable = { 
+				name = mil_maintain_ttt
+				multiply = mil_maa_maintain_textile
+			}
+			change_variable = { 
+				name = mil_maintain_tt
+				add = var:mil_maintain_ttt
+			}
+			set_variable = { 
+				name = mil_maintain_pottery
+				value = var:mil_maa_maintain_pottery
+			}
+			change_variable = { 
+				name = mil_maintain_pottery
+				add = var:mil_levy_maintain_pottery
+			}
+			set_variable = { 
+				name = mil_maintain_ttt
+				value = var:mil_maintain_pottery
+			}
+			change_variable = { 
+				name = mil_maintain_ttt
+				multiply = mil_maa_maintain_pottery
+			}
+			change_variable = { 
+				name = mil_maintain_t
+				add = var:mil_maintain_ttt
+			}
+			if = { 
+				limit = { 
+					has_variable = mil_maintain_pottery
+					var:mil_maintain_pottery = { 
+						compare_value > prev.var:trade_has_pottery
+					}
+				}
+				set_variable = { 
+					name = mil_maintain_pottery
+					value = var:trade_has_pottery
+				}
+			}
+			change_variable = { 
+				name = trade_has_pottery
+				subtract = var:mil_maintain_pottery
+			}
+			set_variable = { 
+				name = mil_maintain_ttt
+				value = var:mil_maintain_pottery
+			}
+			change_variable = { 
+				name = mil_maintain_ttt
+				multiply = mil_maa_maintain_pottery
+			}
+			change_variable = { 
+				name = mil_maintain_tt
+				add = var:mil_maintain_ttt
+			}
+			set_variable = { 
+				name = mil_maintain_tools
+				value = var:mil_maa_maintain_tools
+			}
+			change_variable = { 
+				name = mil_maintain_tools
+				add = var:mil_levy_maintain_tools
+			}
+			set_variable = { 
+				name = mil_maintain_ttt
+				value = var:mil_maintain_tools
+			}
+			change_variable = { 
+				name = mil_maintain_ttt
+				multiply = mil_maa_maintain_tools
+			}
+			change_variable = { 
+				name = mil_maintain_t
+				add = var:mil_maintain_ttt
+			}
+			if = { 
+				limit = { 
+					has_variable = mil_maintain_tools
+					var:mil_maintain_tools = { 
+						compare_value > prev.var:trade_has_tools
+					}
+				}
+				set_variable = { 
+					name = mil_maintain_tools
+					value = var:trade_has_tools
+				}
+			}
+			change_variable = { 
+				name = trade_has_tools
+				subtract = var:mil_maintain_tools
+			}
+			set_variable = { 
+				name = mil_maintain_ttt
+				value = var:mil_maintain_tools
+			}
+			change_variable = { 
+				name = mil_maintain_ttt
+				multiply = mil_maa_maintain_tools
+			}
+			change_variable = { 
+				name = mil_maintain_tt
+				add = var:mil_maintain_ttt
+			}
+			set_variable = { 
+				name = mil_maintain_armaments
+				value = var:mil_maa_maintain_armaments
+			}
+			change_variable = { 
+				name = mil_maintain_armaments
+				add = var:mil_levy_maintain_armaments
+			}
+			set_variable = { 
+				name = mil_maintain_ttt
+				value = var:mil_maintain_armaments
+			}
+			change_variable = { 
+				name = mil_maintain_ttt
+				multiply = mil_maa_maintain_armaments
+			}
+			change_variable = { 
+				name = mil_maintain_t
+				add = var:mil_maintain_ttt
+			}
+			if = { 
+				limit = { 
+					has_variable = mil_maintain_armaments
+					var:mil_maintain_armaments = { 
+						compare_value > prev.var:trade_has_armaments
+					}
+				}
+				set_variable = { 
+					name = mil_maintain_armaments
+					value = var:trade_has_armaments
+				}
+			}
+			change_variable = { 
+				name = trade_has_armaments
+				subtract = var:mil_maintain_armaments
+			}
+			set_variable = { 
+				name = mil_maintain_ttt
+				value = var:mil_maintain_armaments
+			}
+			change_variable = { 
+				name = mil_maintain_ttt
+				multiply = mil_maa_maintain_armaments
+			}
+			change_variable = { 
+				name = mil_maintain_tt
+				add = var:mil_maintain_ttt
+			}
+			remove_variable = mil_maintain_ttt
+			if = { 
+				limit = { 
+					has_variable = mil_maintain_t
+					var:mil_maintain_t > 0
+				}
+				change_variable = { 
+					name = mil_maintain_tt
+					multiply = 10
+				}
+				change_variable = { 
+					name = mil_maintain_tt
+					divide = var:mil_maintain_t
+				}
+				set_variable = { 
+					name = mil_maintain
+					value = var:mil_maintain_tt
+				}
+			}
+			else = { 
+				set_variable = { 
+					name = mil_maintain
+					value = 10
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = task_manage_logistics
+				}
+				change_variable = { 
+					name = mil_maintain
+					multiply = var:task_manage_logistics.var:task_time_in
+				}
+				change_variable = { 
+					name = mil_maintain
+					divide = 100
+				}
+			}
+			remove_variable = mil_maintain_t
+			remove_variable = mil_maintain_tt
+		}
+		every_ruler = { 
+			limit = { 
+				is_character = yes
+				is_landed = yes
+				OR = { 
+					is_ai = yes
+					has_global_variable = sim_i
+				}
+			}
+			set_variable = { 
+				name = has_stockpile
+				value = 1
+			}
+			set_variable = { 
+				name = trade_want_food
+				value = 0
+			}
+			if = { 
+				limit = { 
+					has_variable = mil_maa_maintain_food
+				}
+				change_variable = { 
+					name = trade_want_food
+					add = var:mil_maa_maintain_food
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = mil_levy_maintain_food
+				}
+				change_variable = { 
+					name = trade_want_food
+					add = var:mil_levy_maintain_food
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = mil_maa_recruit_food
+				}
+				change_variable = { 
+					name = trade_want_food
+					add = var:mil_maa_recruit_food
+				}
+			}
+			change_variable = { 
+				name = trade_want_food
+				multiply = 24
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_has_food
+					}
+				}
+				set_variable = { 
+					name = trade_has_food
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = trade_has_food
+					var:trade_has_food = { 
+						compare_value > prev.var:trade_want_food
+					}
+				}
+				set_variable = { 
+					name = trade_sply_food
+					value = var:trade_has_food
+				}
+				change_variable = { 
+					name = trade_sply_food
+					subtract = var:trade_want_food
+				}
+				change_variable = { 
+					name = trade_sply_food
+					divide = 2
+				}
+				set_variable = { 
+					name = trade_dmnd_food
+					value = 0
+				}
+			}
+			else = { 
+				set_variable = { 
+					name = trade_dmnd_food
+					value = var:trade_want_food
+				}
+				change_variable = { 
+					name = trade_dmnd_food
+					subtract = var:trade_has_food
+				}
+				set_variable = { 
+					name = trade_sply_food
+					value = 0
+				}
+			}
+			set_variable = { 
+				name = trade_want_cereal
+				value = 0
+			}
+			if = { 
+				limit = { 
+					has_variable = mil_maa_maintain_cereal
+				}
+				change_variable = { 
+					name = trade_want_cereal
+					add = var:mil_maa_maintain_cereal
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = mil_levy_maintain_cereal
+				}
+				change_variable = { 
+					name = trade_want_cereal
+					add = var:mil_levy_maintain_cereal
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = mil_maa_recruit_cereal
+				}
+				change_variable = { 
+					name = trade_want_cereal
+					add = var:mil_maa_recruit_cereal
+				}
+			}
+			change_variable = { 
+				name = trade_want_cereal
+				multiply = 24
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_has_cereal
+					}
+				}
+				set_variable = { 
+					name = trade_has_cereal
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = trade_has_cereal
+					var:trade_has_cereal = { 
+						compare_value > prev.var:trade_want_cereal
+					}
+				}
+				set_variable = { 
+					name = trade_sply_cereal
+					value = var:trade_has_cereal
+				}
+				change_variable = { 
+					name = trade_sply_cereal
+					subtract = var:trade_want_cereal
+				}
+				change_variable = { 
+					name = trade_sply_cereal
+					divide = 2
+				}
+				set_variable = { 
+					name = trade_dmnd_cereal
+					value = 0
+				}
+			}
+			else = { 
+				set_variable = { 
+					name = trade_dmnd_cereal
+					value = var:trade_want_cereal
+				}
+				change_variable = { 
+					name = trade_dmnd_cereal
+					subtract = var:trade_has_cereal
+				}
+				set_variable = { 
+					name = trade_sply_cereal
+					value = 0
+				}
+			}
+			set_variable = { 
+				name = trade_want_salted
+				value = 0
+			}
+			if = { 
+				limit = { 
+					has_variable = mil_maa_maintain_salted
+				}
+				change_variable = { 
+					name = trade_want_salted
+					add = var:mil_maa_maintain_salted
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = mil_levy_maintain_salted
+				}
+				change_variable = { 
+					name = trade_want_salted
+					add = var:mil_levy_maintain_salted
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = mil_maa_recruit_salted
+				}
+				change_variable = { 
+					name = trade_want_salted
+					add = var:mil_maa_recruit_salted
+				}
+			}
+			change_variable = { 
+				name = trade_want_salted
+				multiply = 24
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_has_salted
+					}
+				}
+				set_variable = { 
+					name = trade_has_salted
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = trade_has_salted
+					var:trade_has_salted = { 
+						compare_value > prev.var:trade_want_salted
+					}
+				}
+				set_variable = { 
+					name = trade_sply_salted
+					value = var:trade_has_salted
+				}
+				change_variable = { 
+					name = trade_sply_salted
+					subtract = var:trade_want_salted
+				}
+				change_variable = { 
+					name = trade_sply_salted
+					divide = 2
+				}
+				set_variable = { 
+					name = trade_dmnd_salted
+					value = 0
+				}
+			}
+			else = { 
+				set_variable = { 
+					name = trade_dmnd_salted
+					value = var:trade_want_salted
+				}
+				change_variable = { 
+					name = trade_dmnd_salted
+					subtract = var:trade_has_salted
+				}
+				set_variable = { 
+					name = trade_sply_salted
+					value = 0
+				}
+			}
+			set_variable = { 
+				name = trade_want_salt
+				value = 0
+			}
+			if = { 
+				limit = { 
+					has_variable = mil_maa_maintain_salt
+				}
+				change_variable = { 
+					name = trade_want_salt
+					add = var:mil_maa_maintain_salt
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = mil_levy_maintain_salt
+				}
+				change_variable = { 
+					name = trade_want_salt
+					add = var:mil_levy_maintain_salt
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = mil_maa_recruit_salt
+				}
+				change_variable = { 
+					name = trade_want_salt
+					add = var:mil_maa_recruit_salt
+				}
+			}
+			change_variable = { 
+				name = trade_want_salt
+				multiply = 24
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_has_salt
+					}
+				}
+				set_variable = { 
+					name = trade_has_salt
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = trade_has_salt
+					var:trade_has_salt = { 
+						compare_value > prev.var:trade_want_salt
+					}
+				}
+				set_variable = { 
+					name = trade_sply_salt
+					value = var:trade_has_salt
+				}
+				change_variable = { 
+					name = trade_sply_salt
+					subtract = var:trade_want_salt
+				}
+				change_variable = { 
+					name = trade_sply_salt
+					divide = 2
+				}
+				set_variable = { 
+					name = trade_dmnd_salt
+					value = 0
+				}
+			}
+			else = { 
+				set_variable = { 
+					name = trade_dmnd_salt
+					value = var:trade_want_salt
+				}
+				change_variable = { 
+					name = trade_dmnd_salt
+					subtract = var:trade_has_salt
+				}
+				set_variable = { 
+					name = trade_sply_salt
+					value = 0
+				}
+			}
+			set_variable = { 
+				name = trade_want_mud
+				value = 0
+			}
+			if = { 
+				limit = { 
+					has_variable = mil_maa_maintain_mud
+				}
+				change_variable = { 
+					name = trade_want_mud
+					add = var:mil_maa_maintain_mud
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = mil_levy_maintain_mud
+				}
+				change_variable = { 
+					name = trade_want_mud
+					add = var:mil_levy_maintain_mud
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = mil_maa_recruit_mud
+				}
+				change_variable = { 
+					name = trade_want_mud
+					add = var:mil_maa_recruit_mud
+				}
+			}
+			change_variable = { 
+				name = trade_want_mud
+				multiply = 24
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_has_mud
+					}
+				}
+				set_variable = { 
+					name = trade_has_mud
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = trade_has_mud
+					var:trade_has_mud = { 
+						compare_value > prev.var:trade_want_mud
+					}
+				}
+				set_variable = { 
+					name = trade_sply_mud
+					value = var:trade_has_mud
+				}
+				change_variable = { 
+					name = trade_sply_mud
+					subtract = var:trade_want_mud
+				}
+				change_variable = { 
+					name = trade_sply_mud
+					divide = 2
+				}
+				set_variable = { 
+					name = trade_dmnd_mud
+					value = 0
+				}
+			}
+			else = { 
+				set_variable = { 
+					name = trade_dmnd_mud
+					value = var:trade_want_mud
+				}
+				change_variable = { 
+					name = trade_dmnd_mud
+					subtract = var:trade_has_mud
+				}
+				set_variable = { 
+					name = trade_sply_mud
+					value = 0
+				}
+			}
+			set_variable = { 
+				name = trade_want_fuel
+				value = 0
+			}
+			if = { 
+				limit = { 
+					has_variable = mil_maa_maintain_fuel
+				}
+				change_variable = { 
+					name = trade_want_fuel
+					add = var:mil_maa_maintain_fuel
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = mil_levy_maintain_fuel
+				}
+				change_variable = { 
+					name = trade_want_fuel
+					add = var:mil_levy_maintain_fuel
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = mil_maa_recruit_fuel
+				}
+				change_variable = { 
+					name = trade_want_fuel
+					add = var:mil_maa_recruit_fuel
+				}
+			}
+			change_variable = { 
+				name = trade_want_fuel
+				multiply = 24
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_has_fuel
+					}
+				}
+				set_variable = { 
+					name = trade_has_fuel
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = trade_has_fuel
+					var:trade_has_fuel = { 
+						compare_value > prev.var:trade_want_fuel
+					}
+				}
+				set_variable = { 
+					name = trade_sply_fuel
+					value = var:trade_has_fuel
+				}
+				change_variable = { 
+					name = trade_sply_fuel
+					subtract = var:trade_want_fuel
+				}
+				change_variable = { 
+					name = trade_sply_fuel
+					divide = 2
+				}
+				set_variable = { 
+					name = trade_dmnd_fuel
+					value = 0
+				}
+			}
+			else = { 
+				set_variable = { 
+					name = trade_dmnd_fuel
+					value = var:trade_want_fuel
+				}
+				change_variable = { 
+					name = trade_dmnd_fuel
+					subtract = var:trade_has_fuel
+				}
+				set_variable = { 
+					name = trade_sply_fuel
+					value = 0
+				}
+			}
+			set_variable = { 
+				name = trade_want_fiber
+				value = 0
+			}
+			if = { 
+				limit = { 
+					has_variable = mil_maa_maintain_fiber
+				}
+				change_variable = { 
+					name = trade_want_fiber
+					add = var:mil_maa_maintain_fiber
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = mil_levy_maintain_fiber
+				}
+				change_variable = { 
+					name = trade_want_fiber
+					add = var:mil_levy_maintain_fiber
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = mil_maa_recruit_fiber
+				}
+				change_variable = { 
+					name = trade_want_fiber
+					add = var:mil_maa_recruit_fiber
+				}
+			}
+			change_variable = { 
+				name = trade_want_fiber
+				multiply = 24
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_has_fiber
+					}
+				}
+				set_variable = { 
+					name = trade_has_fiber
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = trade_has_fiber
+					var:trade_has_fiber = { 
+						compare_value > prev.var:trade_want_fiber
+					}
+				}
+				set_variable = { 
+					name = trade_sply_fiber
+					value = var:trade_has_fiber
+				}
+				change_variable = { 
+					name = trade_sply_fiber
+					subtract = var:trade_want_fiber
+				}
+				change_variable = { 
+					name = trade_sply_fiber
+					divide = 2
+				}
+				set_variable = { 
+					name = trade_dmnd_fiber
+					value = 0
+				}
+			}
+			else = { 
+				set_variable = { 
+					name = trade_dmnd_fiber
+					value = var:trade_want_fiber
+				}
+				change_variable = { 
+					name = trade_dmnd_fiber
+					subtract = var:trade_has_fiber
+				}
+				set_variable = { 
+					name = trade_sply_fiber
+					value = 0
+				}
+			}
+			set_variable = { 
+				name = trade_want_timber
+				value = 0
+			}
+			if = { 
+				limit = { 
+					has_variable = mil_maa_maintain_timber
+				}
+				change_variable = { 
+					name = trade_want_timber
+					add = var:mil_maa_maintain_timber
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = mil_levy_maintain_timber
+				}
+				change_variable = { 
+					name = trade_want_timber
+					add = var:mil_levy_maintain_timber
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = mil_maa_recruit_timber
+				}
+				change_variable = { 
+					name = trade_want_timber
+					add = var:mil_maa_recruit_timber
+				}
+			}
+			change_variable = { 
+				name = trade_want_timber
+				multiply = 24
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_has_timber
+					}
+				}
+				set_variable = { 
+					name = trade_has_timber
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = trade_has_timber
+					var:trade_has_timber = { 
+						compare_value > prev.var:trade_want_timber
+					}
+				}
+				set_variable = { 
+					name = trade_sply_timber
+					value = var:trade_has_timber
+				}
+				change_variable = { 
+					name = trade_sply_timber
+					subtract = var:trade_want_timber
+				}
+				change_variable = { 
+					name = trade_sply_timber
+					divide = 2
+				}
+				set_variable = { 
+					name = trade_dmnd_timber
+					value = 0
+				}
+			}
+			else = { 
+				set_variable = { 
+					name = trade_dmnd_timber
+					value = var:trade_want_timber
+				}
+				change_variable = { 
+					name = trade_dmnd_timber
+					subtract = var:trade_has_timber
+				}
+				set_variable = { 
+					name = trade_sply_timber
+					value = 0
+				}
+			}
+			set_variable = { 
+				name = trade_want_metal
+				value = 0
+			}
+			if = { 
+				limit = { 
+					has_variable = mil_maa_maintain_metal
+				}
+				change_variable = { 
+					name = trade_want_metal
+					add = var:mil_maa_maintain_metal
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = mil_levy_maintain_metal
+				}
+				change_variable = { 
+					name = trade_want_metal
+					add = var:mil_levy_maintain_metal
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = mil_maa_recruit_metal
+				}
+				change_variable = { 
+					name = trade_want_metal
+					add = var:mil_maa_recruit_metal
+				}
+			}
+			change_variable = { 
+				name = trade_want_metal
+				multiply = 24
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_has_metal
+					}
+				}
+				set_variable = { 
+					name = trade_has_metal
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = trade_has_metal
+					var:trade_has_metal = { 
+						compare_value > prev.var:trade_want_metal
+					}
+				}
+				set_variable = { 
+					name = trade_sply_metal
+					value = var:trade_has_metal
+				}
+				change_variable = { 
+					name = trade_sply_metal
+					subtract = var:trade_want_metal
+				}
+				change_variable = { 
+					name = trade_sply_metal
+					divide = 2
+				}
+				set_variable = { 
+					name = trade_dmnd_metal
+					value = 0
+				}
+			}
+			else = { 
+				set_variable = { 
+					name = trade_dmnd_metal
+					value = var:trade_want_metal
+				}
+				change_variable = { 
+					name = trade_dmnd_metal
+					subtract = var:trade_has_metal
+				}
+				set_variable = { 
+					name = trade_sply_metal
+					value = 0
+				}
+			}
+			set_variable = { 
+				name = trade_want_exotics_w
+				value = 0
+			}
+			if = { 
+				limit = { 
+					has_variable = mil_maa_maintain_exotics_w
+				}
+				change_variable = { 
+					name = trade_want_exotics_w
+					add = var:mil_maa_maintain_exotics_w
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = mil_levy_maintain_exotics_w
+				}
+				change_variable = { 
+					name = trade_want_exotics_w
+					add = var:mil_levy_maintain_exotics_w
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = mil_maa_recruit_exotics_w
+				}
+				change_variable = { 
+					name = trade_want_exotics_w
+					add = var:mil_maa_recruit_exotics_w
+				}
+			}
+			change_variable = { 
+				name = trade_want_exotics_w
+				multiply = 24
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_has_exotics_w
+					}
+				}
+				set_variable = { 
+					name = trade_has_exotics_w
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = trade_has_exotics_w
+					var:trade_has_exotics_w = { 
+						compare_value > prev.var:trade_want_exotics_w
+					}
+				}
+				set_variable = { 
+					name = trade_sply_exotics_w
+					value = var:trade_has_exotics_w
+				}
+				change_variable = { 
+					name = trade_sply_exotics_w
+					subtract = var:trade_want_exotics_w
+				}
+				change_variable = { 
+					name = trade_sply_exotics_w
+					divide = 2
+				}
+				set_variable = { 
+					name = trade_dmnd_exotics_w
+					value = 0
+				}
+			}
+			else = { 
+				set_variable = { 
+					name = trade_dmnd_exotics_w
+					value = var:trade_want_exotics_w
+				}
+				change_variable = { 
+					name = trade_dmnd_exotics_w
+					subtract = var:trade_has_exotics_w
+				}
+				set_variable = { 
+					name = trade_sply_exotics_w
+					value = 0
+				}
+			}
+			set_variable = { 
+				name = trade_want_exotics_e
+				value = 0
+			}
+			if = { 
+				limit = { 
+					has_variable = mil_maa_maintain_exotics_e
+				}
+				change_variable = { 
+					name = trade_want_exotics_e
+					add = var:mil_maa_maintain_exotics_e
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = mil_levy_maintain_exotics_e
+				}
+				change_variable = { 
+					name = trade_want_exotics_e
+					add = var:mil_levy_maintain_exotics_e
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = mil_maa_recruit_exotics_e
+				}
+				change_variable = { 
+					name = trade_want_exotics_e
+					add = var:mil_maa_recruit_exotics_e
+				}
+			}
+			change_variable = { 
+				name = trade_want_exotics_e
+				multiply = 24
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_has_exotics_e
+					}
+				}
+				set_variable = { 
+					name = trade_has_exotics_e
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = trade_has_exotics_e
+					var:trade_has_exotics_e = { 
+						compare_value > prev.var:trade_want_exotics_e
+					}
+				}
+				set_variable = { 
+					name = trade_sply_exotics_e
+					value = var:trade_has_exotics_e
+				}
+				change_variable = { 
+					name = trade_sply_exotics_e
+					subtract = var:trade_want_exotics_e
+				}
+				change_variable = { 
+					name = trade_sply_exotics_e
+					divide = 2
+				}
+				set_variable = { 
+					name = trade_dmnd_exotics_e
+					value = 0
+				}
+			}
+			else = { 
+				set_variable = { 
+					name = trade_dmnd_exotics_e
+					value = var:trade_want_exotics_e
+				}
+				change_variable = { 
+					name = trade_dmnd_exotics_e
+					subtract = var:trade_has_exotics_e
+				}
+				set_variable = { 
+					name = trade_sply_exotics_e
+					value = 0
+				}
+			}
+			set_variable = { 
+				name = trade_want_exotics_g
+				value = 0
+			}
+			if = { 
+				limit = { 
+					has_variable = mil_maa_maintain_exotics_g
+				}
+				change_variable = { 
+					name = trade_want_exotics_g
+					add = var:mil_maa_maintain_exotics_g
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = mil_levy_maintain_exotics_g
+				}
+				change_variable = { 
+					name = trade_want_exotics_g
+					add = var:mil_levy_maintain_exotics_g
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = mil_maa_recruit_exotics_g
+				}
+				change_variable = { 
+					name = trade_want_exotics_g
+					add = var:mil_maa_recruit_exotics_g
+				}
+			}
+			change_variable = { 
+				name = trade_want_exotics_g
+				multiply = 24
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_has_exotics_g
+					}
+				}
+				set_variable = { 
+					name = trade_has_exotics_g
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = trade_has_exotics_g
+					var:trade_has_exotics_g = { 
+						compare_value > prev.var:trade_want_exotics_g
+					}
+				}
+				set_variable = { 
+					name = trade_sply_exotics_g
+					value = var:trade_has_exotics_g
+				}
+				change_variable = { 
+					name = trade_sply_exotics_g
+					subtract = var:trade_want_exotics_g
+				}
+				change_variable = { 
+					name = trade_sply_exotics_g
+					divide = 2
+				}
+				set_variable = { 
+					name = trade_dmnd_exotics_g
+					value = 0
+				}
+			}
+			else = { 
+				set_variable = { 
+					name = trade_dmnd_exotics_g
+					value = var:trade_want_exotics_g
+				}
+				change_variable = { 
+					name = trade_dmnd_exotics_g
+					subtract = var:trade_has_exotics_g
+				}
+				set_variable = { 
+					name = trade_sply_exotics_g
+					value = 0
+				}
+			}
+			set_variable = { 
+				name = trade_want_textile
+				value = 0
+			}
+			if = { 
+				limit = { 
+					has_variable = mil_maa_maintain_textile
+				}
+				change_variable = { 
+					name = trade_want_textile
+					add = var:mil_maa_maintain_textile
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = mil_levy_maintain_textile
+				}
+				change_variable = { 
+					name = trade_want_textile
+					add = var:mil_levy_maintain_textile
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = mil_maa_recruit_textile
+				}
+				change_variable = { 
+					name = trade_want_textile
+					add = var:mil_maa_recruit_textile
+				}
+			}
+			change_variable = { 
+				name = trade_want_textile
+				multiply = 24
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_has_textile
+					}
+				}
+				set_variable = { 
+					name = trade_has_textile
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = trade_has_textile
+					var:trade_has_textile = { 
+						compare_value > prev.var:trade_want_textile
+					}
+				}
+				set_variable = { 
+					name = trade_sply_textile
+					value = var:trade_has_textile
+				}
+				change_variable = { 
+					name = trade_sply_textile
+					subtract = var:trade_want_textile
+				}
+				change_variable = { 
+					name = trade_sply_textile
+					divide = 2
+				}
+				set_variable = { 
+					name = trade_dmnd_textile
+					value = 0
+				}
+			}
+			else = { 
+				set_variable = { 
+					name = trade_dmnd_textile
+					value = var:trade_want_textile
+				}
+				change_variable = { 
+					name = trade_dmnd_textile
+					subtract = var:trade_has_textile
+				}
+				set_variable = { 
+					name = trade_sply_textile
+					value = 0
+				}
+			}
+			set_variable = { 
+				name = trade_want_pottery
+				value = 0
+			}
+			if = { 
+				limit = { 
+					has_variable = mil_maa_maintain_pottery
+				}
+				change_variable = { 
+					name = trade_want_pottery
+					add = var:mil_maa_maintain_pottery
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = mil_levy_maintain_pottery
+				}
+				change_variable = { 
+					name = trade_want_pottery
+					add = var:mil_levy_maintain_pottery
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = mil_maa_recruit_pottery
+				}
+				change_variable = { 
+					name = trade_want_pottery
+					add = var:mil_maa_recruit_pottery
+				}
+			}
+			change_variable = { 
+				name = trade_want_pottery
+				multiply = 24
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_has_pottery
+					}
+				}
+				set_variable = { 
+					name = trade_has_pottery
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = trade_has_pottery
+					var:trade_has_pottery = { 
+						compare_value > prev.var:trade_want_pottery
+					}
+				}
+				set_variable = { 
+					name = trade_sply_pottery
+					value = var:trade_has_pottery
+				}
+				change_variable = { 
+					name = trade_sply_pottery
+					subtract = var:trade_want_pottery
+				}
+				change_variable = { 
+					name = trade_sply_pottery
+					divide = 2
+				}
+				set_variable = { 
+					name = trade_dmnd_pottery
+					value = 0
+				}
+			}
+			else = { 
+				set_variable = { 
+					name = trade_dmnd_pottery
+					value = var:trade_want_pottery
+				}
+				change_variable = { 
+					name = trade_dmnd_pottery
+					subtract = var:trade_has_pottery
+				}
+				set_variable = { 
+					name = trade_sply_pottery
+					value = 0
+				}
+			}
+			set_variable = { 
+				name = trade_want_tools
+				value = 0
+			}
+			if = { 
+				limit = { 
+					has_variable = mil_maa_maintain_tools
+				}
+				change_variable = { 
+					name = trade_want_tools
+					add = var:mil_maa_maintain_tools
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = mil_levy_maintain_tools
+				}
+				change_variable = { 
+					name = trade_want_tools
+					add = var:mil_levy_maintain_tools
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = mil_maa_recruit_tools
+				}
+				change_variable = { 
+					name = trade_want_tools
+					add = var:mil_maa_recruit_tools
+				}
+			}
+			change_variable = { 
+				name = trade_want_tools
+				multiply = 24
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_has_tools
+					}
+				}
+				set_variable = { 
+					name = trade_has_tools
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = trade_has_tools
+					var:trade_has_tools = { 
+						compare_value > prev.var:trade_want_tools
+					}
+				}
+				set_variable = { 
+					name = trade_sply_tools
+					value = var:trade_has_tools
+				}
+				change_variable = { 
+					name = trade_sply_tools
+					subtract = var:trade_want_tools
+				}
+				change_variable = { 
+					name = trade_sply_tools
+					divide = 2
+				}
+				set_variable = { 
+					name = trade_dmnd_tools
+					value = 0
+				}
+			}
+			else = { 
+				set_variable = { 
+					name = trade_dmnd_tools
+					value = var:trade_want_tools
+				}
+				change_variable = { 
+					name = trade_dmnd_tools
+					subtract = var:trade_has_tools
+				}
+				set_variable = { 
+					name = trade_sply_tools
+					value = 0
+				}
+			}
+			set_variable = { 
+				name = trade_want_armaments
+				value = 0
+			}
+			if = { 
+				limit = { 
+					has_variable = mil_maa_maintain_armaments
+				}
+				change_variable = { 
+					name = trade_want_armaments
+					add = var:mil_maa_maintain_armaments
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = mil_levy_maintain_armaments
+				}
+				change_variable = { 
+					name = trade_want_armaments
+					add = var:mil_levy_maintain_armaments
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = mil_maa_recruit_armaments
+				}
+				change_variable = { 
+					name = trade_want_armaments
+					add = var:mil_maa_recruit_armaments
+				}
+			}
+			change_variable = { 
+				name = trade_want_armaments
+				multiply = 24
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_has_armaments
+					}
+				}
+				set_variable = { 
+					name = trade_has_armaments
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = trade_has_armaments
+					var:trade_has_armaments = { 
+						compare_value > prev.var:trade_want_armaments
+					}
+				}
+				set_variable = { 
+					name = trade_sply_armaments
+					value = var:trade_has_armaments
+				}
+				change_variable = { 
+					name = trade_sply_armaments
+					subtract = var:trade_want_armaments
+				}
+				change_variable = { 
+					name = trade_sply_armaments
+					divide = 2
+				}
+				set_variable = { 
+					name = trade_dmnd_armaments
+					value = 0
+				}
+			}
+			else = { 
+				set_variable = { 
+					name = trade_dmnd_armaments
+					value = var:trade_want_armaments
+				}
+				change_variable = { 
+					name = trade_dmnd_armaments
+					subtract = var:trade_has_armaments
+				}
+				set_variable = { 
+					name = trade_sply_armaments
+					value = 0
+				}
+			}
+		}
+		every_ruler = { 
+			limit = { 
+				is_character = yes
+				is_landed = yes
+				is_councillor = no
+				has_variable_list = task_tasks
+				variable_list_size = { 
+					name = task_tasks
+					value >= 1
+				}
+				OR = { 
+					is_ai = yes
+					has_global_variable = sim_i
+				}
+			}
+			every_in_list = { 
+				variable = task_tasks
+				prev = { 
+					save_temporary_scope_as = task_ai_t
+				}
+				if = { 
+					limit = { 
+						var:task_template.var:task_councillor = flag:spouse
+					}
+					prev = { 
+						primary_spouse = { 
+							save_temporary_scope_as = task_ai_t
+						}
+					}
+				}
+				else_if = { 
+					limit = { 
+						var:task_template.var:task_councillor = flag:diplomacy
+					}
+					prev = { 
+						ordered_diplomacy_councillor = { 
+							position = 0
+							save_temporary_scope_as = task_ai_t
+						}
+					}
+				}
+				else_if = { 
+					limit = { 
+						var:task_template.var:task_councillor = flag:martial
+					}
+					prev = { 
+						ordered_martial_councillor = { 
+							position = 0
+							save_temporary_scope_as = task_ai_t
+						}
+					}
+				}
+				else_if = { 
+					limit = { 
+						var:task_template.var:task_councillor = flag:stewardship
+					}
+					prev = { 
+						ordered_stewardship_councillor = { 
+							position = 0
+							save_temporary_scope_as = task_ai_t
+						}
+					}
+				}
+				else_if = { 
+					limit = { 
+						var:task_template.var:task_councillor = flag:intrigue
+					}
+					prev = { 
+						ordered_intrigue_councillor = { 
+							position = 0
+							save_temporary_scope_as = task_ai_t
+						}
+					}
+				}
+				else_if = { 
+					limit = { 
+						var:task_template.var:task_councillor = flag:learning
+					}
+					prev = { 
+						ordered_learning_councillor = { 
+							position = 0
+							save_temporary_scope_as = task_ai_t
+						}
+					}
+				}
+				set_variable = { 
+					name = task_ai_t
+					value = 1
+				}
+				set_variable = { 
+					name = task_ai_tt
+					value = 1
+				}
+				if = { 
+					limit = { 
+						var:task_template = { 
+							has_variable = task_diplomacy_mult
+						}
+					}
+					set_variable = { 
+						name = task_ai_ttt
+						value = var:task_template.var:task_diplomacy_mult
+					}
+					set_variable = { 
+						name = task_ai_tttt
+						value = var:task_template.var:task_diplomacy_mult
+					}
+					change_variable = { 
+						name = task_ai_ttt
+						multiply = prev.diplomacy
+					}
+					change_variable = { 
+						name = task_ai_tttt
+						multiply = scope:task_ai_t.diplomacy
+					}
+					if = { 
+						limit = { 
+							var:task_template = { 
+								has_variable = task_diplomacy_base
+							}
+						}
+						change_variable = { 
+							name = task_ai_ttt
+							add = var:task_template.var:task_diplomacy_base
+						}
+						change_variable = { 
+							name = task_ai_tttt
+							add = var:task_template.var:task_diplomacy_base
+						}
+					}
+					change_variable = { 
+						name = task_ai_t
+						multiply = var:task_ai_ttt
+					}
+					change_variable = { 
+						name = task_ai_tt
+						multiply = var:task_ai_tttt
+					}
+				}
+				if = { 
+					limit = { 
+						var:task_template = { 
+							has_variable = task_martial_mult
+						}
+					}
+					set_variable = { 
+						name = task_ai_ttt
+						value = var:task_template.var:task_martial_mult
+					}
+					set_variable = { 
+						name = task_ai_tttt
+						value = var:task_template.var:task_martial_mult
+					}
+					change_variable = { 
+						name = task_ai_ttt
+						multiply = prev.martial
+					}
+					change_variable = { 
+						name = task_ai_tttt
+						multiply = scope:task_ai_t.martial
+					}
+					if = { 
+						limit = { 
+							var:task_template = { 
+								has_variable = task_martial_base
+							}
+						}
+						change_variable = { 
+							name = task_ai_ttt
+							add = var:task_template.var:task_martial_base
+						}
+						change_variable = { 
+							name = task_ai_tttt
+							add = var:task_template.var:task_martial_base
+						}
+					}
+					change_variable = { 
+						name = task_ai_t
+						multiply = var:task_ai_ttt
+					}
+					change_variable = { 
+						name = task_ai_tt
+						multiply = var:task_ai_tttt
+					}
+				}
+				if = { 
+					limit = { 
+						var:task_template = { 
+							has_variable = task_stewardship_mult
+						}
+					}
+					set_variable = { 
+						name = task_ai_ttt
+						value = var:task_template.var:task_stewardship_mult
+					}
+					set_variable = { 
+						name = task_ai_tttt
+						value = var:task_template.var:task_stewardship_mult
+					}
+					change_variable = { 
+						name = task_ai_ttt
+						multiply = prev.stewardship
+					}
+					change_variable = { 
+						name = task_ai_tttt
+						multiply = scope:task_ai_t.stewardship
+					}
+					if = { 
+						limit = { 
+							var:task_template = { 
+								has_variable = task_stewardship_base
+							}
+						}
+						change_variable = { 
+							name = task_ai_ttt
+							add = var:task_template.var:task_stewardship_base
+						}
+						change_variable = { 
+							name = task_ai_tttt
+							add = var:task_template.var:task_stewardship_base
+						}
+					}
+					change_variable = { 
+						name = task_ai_t
+						multiply = var:task_ai_ttt
+					}
+					change_variable = { 
+						name = task_ai_tt
+						multiply = var:task_ai_tttt
+					}
+				}
+				if = { 
+					limit = { 
+						var:task_template = { 
+							has_variable = task_intrigue_mult
+						}
+					}
+					set_variable = { 
+						name = task_ai_ttt
+						value = var:task_template.var:task_intrigue_mult
+					}
+					set_variable = { 
+						name = task_ai_tttt
+						value = var:task_template.var:task_intrigue_mult
+					}
+					change_variable = { 
+						name = task_ai_ttt
+						multiply = prev.intrigue
+					}
+					change_variable = { 
+						name = task_ai_tttt
+						multiply = scope:task_ai_t.intrigue
+					}
+					if = { 
+						limit = { 
+							var:task_template = { 
+								has_variable = task_intrigue_base
+							}
+						}
+						change_variable = { 
+							name = task_ai_ttt
+							add = var:task_template.var:task_intrigue_base
+						}
+						change_variable = { 
+							name = task_ai_tttt
+							add = var:task_template.var:task_intrigue_base
+						}
+					}
+					change_variable = { 
+						name = task_ai_t
+						multiply = var:task_ai_ttt
+					}
+					change_variable = { 
+						name = task_ai_tt
+						multiply = var:task_ai_tttt
+					}
+				}
+				if = { 
+					limit = { 
+						var:task_template = { 
+							has_variable = task_learning_mult
+						}
+					}
+					set_variable = { 
+						name = task_ai_ttt
+						value = var:task_template.var:task_learning_mult
+					}
+					set_variable = { 
+						name = task_ai_tttt
+						value = var:task_template.var:task_learning_mult
+					}
+					change_variable = { 
+						name = task_ai_ttt
+						multiply = prev.learning
+					}
+					change_variable = { 
+						name = task_ai_tttt
+						multiply = scope:task_ai_t.learning
+					}
+					if = { 
+						limit = { 
+							var:task_template = { 
+								has_variable = task_learning_base
+							}
+						}
+						change_variable = { 
+							name = task_ai_ttt
+							add = var:task_template.var:task_learning_base
+						}
+						change_variable = { 
+							name = task_ai_tttt
+							add = var:task_template.var:task_learning_base
+						}
+					}
+					change_variable = { 
+						name = task_ai_t
+						multiply = var:task_ai_ttt
+					}
+					change_variable = { 
+						name = task_ai_tt
+						multiply = var:task_ai_tttt
+					}
+				}
+				change_variable = { 
+					name = task_ai_t
+					add = 0.05
+				}
+				change_variable = { 
+					name = task_ai_tt
+					add = 0.05
+				}
+				set_variable = { 
+					name = task_ai_ttt
+					value = var:task_time_cost
+				}
+				change_variable = { 
+					name = task_ai_ttt
+					divide = var:task_ai_t
+				}
+				set_variable = { 
+					name = task_ai_t
+					value = var:task_ai_ttt
+				}
+				set_variable = { 
+					name = task_ai_ttt
+					value = var:task_time_cost
+				}
+				change_variable = { 
+					name = task_ai_ttt
+					divide = var:task_ai_tt
+				}
+				set_variable = { 
+					name = task_ai_tt
+					value = var:task_ai_ttt
+				}
+				set_variable = { 
+					name = task_ai_ttt
+					value = scope:task_ai_t
+				}
+			}
+			set_variable = { 
+				name = task_ai_t
+				value = 0
+			}
+			every_councillor = { 
+				set_variable = { 
+					name = task_ai_t
+					value = 0
+				}
+			}
+			every_in_list = { 
+				variable = task_tasks
+				remove_variable = task_delegate
+				prev = { 
+					change_variable = { 
+						name = task_ai_t
+						add = prev.var:task_ai_t
+					}
+				}
+			}
+			while = { 
+				limit = { 
+					var:task_ai_t > 20
+				}
+				set_variable = { 
+					name = task_ai_tt
+					value = var:task_ai_t
+				}
+				every_in_list = { 
+					limit = { 
+						NOT = { 
+							has_variable = task_delegate
+							var:task_ai_ttt = prev
+						}
+					}
+					variable = task_tasks
+					set_variable = { 
+						name = task_ai_tttt
+						value = var:task_ai_ttt.var:task_ai_t
+					}
+					change_variable = { 
+						name = task_ai_tttt
+						add = var:task_ai_tt
+					}
+					if = { 
+						limit = { 
+							has_variable = task_ai_tttt
+							var:task_ai_tttt > 20
+						}
+						set_variable = { 
+							name = task_ai_tttt
+							value = 1
+						}
+					}
+					else = { 
+						change_variable = { 
+							name = task_ai_tttt
+							divide = -20
+						}
+						change_variable = { 
+							name = task_ai_tttt
+							add = 1
+						}
+						change_variable = { 
+							name = task_ai_tttt
+							multiply = 9
+						}
+						change_variable = { 
+							name = task_ai_tttt
+							add = 1
+						}
+					}
+					if = { 
+						limit = { 
+							var:task_ai_t = { 
+								compare_value < prev.var:task_ai_tt
+							}
+						}
+						set_variable = { 
+							name = task_ai_ttttt
+							value = 1
+						}
+					}
+					else = { 
+						set_variable = { 
+							name = task_ai_ttttt
+							value = var:task_ai_t
+						}
+						change_variable = { 
+							name = task_ai_ttttt
+							divide = var:task_ai_tt
+						}
+						change_variable = { 
+							name = task_ai_ttttt
+							subtract = 1
+						}
+						change_variable = { 
+							name = task_ai_ttttt
+							multiply = 4
+						}
+						change_variable = { 
+							name = task_ai_ttttt
+							add = 1
+						}
+					}
+					change_variable = { 
+						name = task_ai_tttt
+						multiply = var:task_ai_ttttt
+					}
+				}
+				ordered_in_list = { 
+					limit = { 
+						NOT = { 
+							has_variable = task_delegate
+							var:task_ai_ttt = prev
+						}
+					}
+					variable = task_tasks
+					order_by = var:task_ai_tttt
+					position = 0
+					set_variable = { 
+						name = task_delegate
+						value = 1
+					}
+					var:task_ai_ttt = { 
+						change_variable = { 
+							name = task_ai_t
+							add = prev.var:task_ai_tt
+						}
+					}
+					prev = { 
+						change_variable = { 
+							name = task_ai_t
+							subtract = prev.var:task_ai_t
+						}
+					}
+				}
+				if = { 
+					limit = { 
+						var:task_ai_tt = { 
+							compare_value = prev.var:task_ai_t
+						}
+					}
+					set_variable = { 
+						name = task_ai_t
+						value = 0
+					}
+				}
+			}
+			remove_variable = task_ai_t
+			remove_variable = task_ai_tt
+			every_councillor = { 
+				remove_variable = task_ai_t
+			}
+			every_in_list = { 
+				variable = task_tasks
+				remove_variable = task_ai_t
+				remove_variable = task_ai_tt
+				remove_variable = task_ai_ttt
+				remove_variable = task_ai_tttt
+				remove_variable = task_ai_ttttt
+			}
+		}
+		remove_global_variable = sim_i
 		every_province = { 
 			limit = { 
 				is_valid_prov = yes
