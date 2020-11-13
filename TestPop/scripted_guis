@@ -17,6 +17,7 @@
 			
 			^^goods^
 				remove_variable = toggle_county_commerce_price_&goods&
+				remove_variable = toggle_county_commerce_price_trend_&goods&
 				
 				^^range3^
 					remove_variable = toggle_county_commerce_val_&range3&_&goods&
@@ -28,7 +29,10 @@
 		else = {
 			set_variable = { name = toggled_county_commerce value = 1 }
 			
-			^^goods^set_variable = { name = toggle_county_commerce_price_&goods& value = county.var:trade_price_&goods& }^
+			^^goods^
+				set_variable = { name = toggle_county_commerce_price_&goods& value = county.var:trade_price_&goods& }
+				set_variable = { name = toggle_county_commerce_price_trend_&goods& value = county.var:trade_price_trend_&goods& }
+			^
 			
 			save_temporary_scope_as = toggle_county_commerce_t
 			
@@ -114,6 +118,7 @@ close_county_commerce = {
 			
 			^^goods^
 				remove_variable = toggle_county_commerce_price_&goods&
+				remove_variable = toggle_county_commerce_price_trend_&goods&
 				
 				^^range3^
 					remove_variable = toggle_county_commerce_val_&range3&_&goods&
