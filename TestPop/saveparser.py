@@ -292,6 +292,8 @@ if __name__ == '__main__':
                     return '%s = { name = %s }\n' % (form[0], name)
                 elif data[0] == 'lt':
                     return '%s = { name = %s %s = title:%s }\n' % (form[0], name, form[1], id_to_title[data[1]])
+                elif data[0] == 'flag':
+                    return = '%s = { name = %s %s = flag:%s }\n' % (form[0], name, form[1], data[1])
                 else:
                     return ''
             else:
@@ -373,48 +375,27 @@ if __name__ == '__main__':
 
                                 for n, vs in chars[data[1]][1].items():
                                     for v in vs:
-                                        if v[0] == 'prov':
-                                            outout.append(helper(('\t\t\t\tadd_to_variable_list', 'target'), n, ('prov', '%s.county.holder' % v[1]), id_to_title))
-                                        else:
-                                            outout.append(helper(('\t\t\t\tadd_to_variable_list', 'target'), n, v, id_to_title))
+                                        outout.append(helper(('\t\t\t\tadd_to_variable_list', 'target'), n, v, id_to_title))
                                         
                                 outout.append('\t\t\t}\n')
                         else:
-                            if 'trade_' in name:
-                                outout.append('\t\t\tcounty.holder = {\n')
-                                outout.append(helper(('\t\t\t\tset_variable', 'value'), name, data, id_to_title))
-                                outout.append('\t\t\t}\n')
-                            else:
-                                outout.append(helper(('\t\t\tset_variable', 'value'), name, data, id_to_title))
+                            outout.append(helper(('\t\t\tset_variable', 'value'), name, data, id_to_title))
                     for name, data in prov[1].items():
-                        if 'trade_dat' in name:
-                            outout.append('\t\t\tcounty.holder = {\n')
-
+                        if 'task_tasks' in name:
                             for var in data:
-                                outout.append(helper(('\t\t\t\tadd_to_variable_list', 'target'), name, var, id_to_title))
-
-                            outout.append('\t\t\t}\n')
-                        elif 'task_tasks' in name:
-                            outout.append('\t\t\tcounty.holder = {\n')
-
-                            for var in data:
-                                outout.append('\t\t')
+                                outout.append('\t')
                                 outout.append(create_character)
-                                outout.append('\t\t\t\tscope:save_data_t = {\n')
+                                outout.append('\t\t\tscope:save_data_t = {\n')
 
                                 for n, d in chars[var[1]][0].items():
                                     if not 'template' in n and not 'owner' in n and not 'worker' in n:
-                                        outout.append(helper(('\t\t\t\t\tset_variable', 'value'), n, d, id_to_title))
+                                        outout.append(helper(('\t\t\t\tset_variable', 'value'), n, d, id_to_title))
 
-                                outout.append('\t\t\t\t\tset_variable = { name = task_template value = global_var:%s }\n' % tasks[chars[var[1]][0]['task_template'][1]])
-                                outout.append('\t\t\t\t\tset_variable = { name = task_owner value = prev }\n')
-                                outout.append('\t\t\t\t\tset_variable = { name = task_worker value = prev }\n')
+                                outout.append('\t\t\t\tset_variable = { name = task_template value = global_var:%s }\n' % tasks[chars[var[1]][0]['task_template'][1]])
 
-                                outout.append('\t\t\t\t}\n')
-                                outout.append('\t\t\t\tadd_to_global_variable_list = { name = task_tasks_active target = scope:save_data_t }\n')
-                                outout.append('\t\t\t\tadd_to_variable_list = { name = task_tasks target = scope:save_data_t }\n')
-
-                            outout.append('\t\t\t}\n')
+                                outout.append('\t\t\t}\n')
+                                outout.append('\t\t\tadd_to_global_variable_list = { name = task_tasks_active target = scope:save_data_t }\n')
+                                outout.append('\t\t\tadd_to_variable_list = { name = task_tasks target = scope:save_data_t }\n')
                         elif name != 'prod_instances' and name != 'build_slots':
                             for var in data:
                                 outout.append(helper(('\t\t\tadd_to_variable_list', 'target'), name, var, id_to_title))
@@ -448,7 +429,6 @@ if __name__ == '__main__':
             print('Parsing and Reconstructing the Events')
 
             out[1] = reconstruct(parse_block(out[1]))
-            out[-1] = reconstruct(parse_block(out[-1]
 
             print('Joining the Events')
             

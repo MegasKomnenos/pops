@@ -293,7 +293,7 @@ sim_run.02 = {
 		set_global_variable = { name = sim_i value = 0 }
 
 		while = {
-			count = 300
+			count = 200
 			
 			global_var:arhat = {
 				change_global_variable = { name = sim_i add = 1 }
@@ -743,6 +743,8 @@ sim_run.02 = {
 				}
 				
 				capital_province = {
+					set_variable = { name = trade_has_&goods& value = prev.var:trade_has_&goods& }
+					set_variable = { name = trade_want_&goods& value = prev.var:trade_want_&goods& }
 					set_variable = { name = trade_in_&goods& value = prev.var:trade_in_&goods& }
 					set_variable = { name = trade_out_&goods& value = prev.var:trade_out_&goods& }
 					set_variable = { name = trade_earn_&goods& value = prev.var:trade_earn_&goods& }

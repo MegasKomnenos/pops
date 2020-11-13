@@ -1152,3 +1152,233 @@ close_player_stockpile = {
 		}
 	}
 }
+
+toggle_player_tasks = {
+	scope = character
+	
+	is_shown = {
+		always = yes
+	}
+	is_valid = {
+		always = yes
+	}
+	
+	effect = {
+		if = {
+			limit = {
+				has_variable = toggled_player_tasks
+			}
+			remove_variable = toggled_player_tasks
+			
+			remove_variable = toggle_player_tasks_time
+			remove_variable = toggle_player_tasks_time_remain
+			
+			^^skills^
+				if = {
+					limit = {
+						has_variable = toggle_player_tasks_councillor_&skills&
+					}
+					var:toggle_player_tasks_councillor_&skills& = {
+						remove_variable = toggle_player_tasks_time
+						remove_variable = toggle_player_tasks_time_remain
+					}
+				}
+				
+				remove_variable = toggle_player_tasks_councillor_&skills&
+				remove_variable = toggle_player_tasks_councillor_has_&skills&
+			^
+			
+			^^tasks_passive^
+				remove_variable = toggle_player_tasks_has_&tasks_passive&
+				remove_variable = toggle_player_tasks_time_&tasks_passive&
+				remove_variable = toggle_player_tasks_time_in_&tasks_passive&
+				remove_variable = toggle_player_tasks_time_cost_&tasks_passive&
+				remove_variable = toggle_player_tasks_crpt_&tasks_passive&
+				
+				^^skills^ remove_variable = toggle_player_tasks_time_factor_&skills&_&tasks_passive& ^
+			^
+		}
+		else = {
+			set_variable = { name = toggled_player_tasks value = 1 }
+			
+			set_variable = { name = toggle_player_tasks_time value = 0 }
+			
+			^^skills^
+				set_variable = { name = toggle_player_tasks_councillor_has_&skills& value = 0 }
+				
+				ordered_&skills&_councillor = {
+					position = 0
+					
+					set_variable = { name = toggle_player_tasks_time value = 0 }
+					
+					prev = {
+						set_variable = { name = toggle_player_tasks_councillor_has_&skills& value = 1 }
+						set_variable = { name = toggle_player_tasks_councillor_&skills& value = prev }
+					}
+				}
+			^
+			
+			^^tasks_passive^
+				set_variable = { name = toggle_player_tasks_has_&tasks_passive& value = 0 }
+				
+				every_in_list = {
+					limit = {
+						var:task_template = global_var:&tasks_passive&
+					}
+					variable = task_tasks
+					
+					prev = {
+						save_temporary_scope_as = toggle_player_tasks_t
+					}
+					
+					if = {
+						limit = {
+							OR = {
+								prev = {
+									is_councillor = yes
+								}
+								
+								has_variable = task_delegate
+							}
+						}
+						if = {
+							limit = {
+								var:task_template.var:task_councillor = flag:spouse
+							}
+							prev = {
+								primary_spouse = {
+									save_temporary_scope_as = toggle_player_tasks_t
+								}
+							}
+						}
+						^^skills^else_if = {
+							limit = {
+								var:task_template.var:task_councillor = flag:&skills&
+							}
+							prev = {
+								ordered_&skills&_councillor = {
+									position = 0
+									
+									save_temporary_scope_as = toggle_player_tasks_t
+								}
+							}
+						}^
+					}
+					
+					set_variable = { name = toggle_player_tasks_t value = 1 }
+				
+					^^skills^
+						if = {
+							limit = {
+								var:task_template = {
+									has_variable = task_&skills&_mult
+								}
+							}
+							set_variable = { name = toggle_player_tasks_tt value = var:task_template.var:task_&skills&_mult }
+							change_variable = { name = toggle_player_tasks_tt multiply = scope:toggle_player_tasks_t.&skills& }
+							
+							if = {
+								limit = {
+									var:task_template = {
+										has_variable = task_&skills&_base
+									}
+								}
+								change_variable = { name = toggle_player_tasks_tt add = var:task_template.var:task_&skills&_base }
+							}
+							
+							change_variable = { name = toggle_player_tasks_t multiply = var:toggle_player_tasks_tt }
+							
+							prev = {
+								set_variable = { name = toggle_player_tasks_time_factor_&skills&_&tasks_passive& value = prev.var:toggle_player_tasks_tt }
+							}
+						}
+					^
+					
+					change_variable = { name = toggle_player_tasks_t add = 0.05 }
+			
+					set_variable = { name = toggle_player_tasks_tt value = var:task_time_cost }
+					change_variable = { name = toggle_player_tasks_tt divide = var:toggle_player_tasks_t }
+					set_variable = { name = toggle_player_tasks_t value = var:toggle_player_tasks_tt }
+					
+					scope:toggle_player_tasks_t = {
+						change_variable = { name = toggle_player_tasks_time add = prev.var:toggle_player_tasks_t }
+					}
+					
+					prev = {
+						set_variable = { name = toggle_player_tasks_has_&tasks_passive& value = 1 }
+						set_variable = { name = toggle_player_tasks_time_&tasks_passive& value = prev.var:toggle_player_tasks_t }
+						set_variable = { name = toggle_player_tasks_time_in_&tasks_passive& value = prev.var:task_time_in }
+						set_variable = { name = toggle_player_tasks_time_cost_&tasks_passive& value = prev.var:task_time_cost }
+						set_variable = { name = toggle_player_tasks_crpt_&tasks_passive& value = prev.var:task_crpt }
+					}
+					
+					remove_variable = toggle_player_tasks_t
+					remove_variable = toggle_player_tasks_tt
+				}
+			^
+			
+			set_variable = { name = toggle_player_tasks_time_remain value = 20 }
+			change_variable = { name = toggle_player_tasks_time_remain subtract = var:toggle_player_tasks_time }
+			
+			every_councillor = {
+				set_variable = { name = toggle_player_tasks_time_remain value = 20 }
+				change_variable = { name = toggle_player_tasks_time_remain subtract = var:toggle_player_tasks_time }
+			}
+			^^skills^
+				ordered_&skills&_councillor = {
+					position = 0
+					
+					set_variable = { name = toggle_player_tasks_time_remain value = 20 }
+					change_variable = { name = toggle_player_tasks_time_remain subtract = var:toggle_player_tasks_time }
+				}
+			^
+		}
+	}
+}
+close_player_tasks = {
+	scope = character
+	
+	is_shown = {
+		always = yes
+	}
+	is_valid = {
+		always = yes
+	}
+	
+	effect = {
+		if = {
+			limit = {
+				has_variable = toggled_player_tasks
+			}
+			remove_variable = toggled_player_tasks
+			
+			remove_variable = toggle_player_tasks_time
+			remove_variable = toggle_player_tasks_time_remain
+			
+			^^skills^
+				if = {
+					limit = {
+						has_variable = toggle_player_tasks_councillor_&skills&
+					}
+					var:toggle_player_tasks_councillor_&skills& = {
+						remove_variable = toggle_player_tasks_time
+						remove_variable = toggle_player_tasks_time_remain
+					}
+				}
+				
+				remove_variable = toggle_player_tasks_councillor_&skills&
+				remove_variable = toggle_player_tasks_councillor_has_&skills&
+			^
+			
+			^^tasks_passive^
+				remove_variable = toggle_player_tasks_has_&tasks_passive&
+				remove_variable = toggle_player_tasks_time_&tasks_passive&
+				remove_variable = toggle_player_tasks_time_in_&tasks_passive&
+				remove_variable = toggle_player_tasks_time_cost_&tasks_passive&
+				remove_variable = toggle_player_tasks_crpt_&tasks_passive&
+				
+				^^skills^ remove_variable = toggle_player_tasks_time_factor_&skills&_&tasks_passive& ^
+			^
+		}
+	}
+}

@@ -39388,3 +39388,2367 @@ close_player_stockpile = {
 		}
 	}
 }
+toggle_player_tasks = { 
+	scope = character
+	is_shown = { 
+		always = yes
+	}
+	is_valid = { 
+		always = yes
+	}
+	effect = { 
+		if = { 
+			limit = { 
+				has_variable = toggled_player_tasks
+			}
+			remove_variable = toggled_player_tasks
+			remove_variable = toggle_player_tasks_time
+			remove_variable = toggle_player_tasks_time_remain
+			if = { 
+				limit = { 
+					has_variable = toggle_player_tasks_councillor_diplomacy
+				}
+				var:toggle_player_tasks_councillor_diplomacy = { 
+					remove_variable = toggle_player_tasks_time
+					remove_variable = toggle_player_tasks_time_remain
+				}
+			}
+			remove_variable = toggle_player_tasks_councillor_diplomacy
+			remove_variable = toggle_player_tasks_councillor_has_diplomacy
+			if = { 
+				limit = { 
+					has_variable = toggle_player_tasks_councillor_martial
+				}
+				var:toggle_player_tasks_councillor_martial = { 
+					remove_variable = toggle_player_tasks_time
+					remove_variable = toggle_player_tasks_time_remain
+				}
+			}
+			remove_variable = toggle_player_tasks_councillor_martial
+			remove_variable = toggle_player_tasks_councillor_has_martial
+			if = { 
+				limit = { 
+					has_variable = toggle_player_tasks_councillor_stewardship
+				}
+				var:toggle_player_tasks_councillor_stewardship = { 
+					remove_variable = toggle_player_tasks_time
+					remove_variable = toggle_player_tasks_time_remain
+				}
+			}
+			remove_variable = toggle_player_tasks_councillor_stewardship
+			remove_variable = toggle_player_tasks_councillor_has_stewardship
+			if = { 
+				limit = { 
+					has_variable = toggle_player_tasks_councillor_intrigue
+				}
+				var:toggle_player_tasks_councillor_intrigue = { 
+					remove_variable = toggle_player_tasks_time
+					remove_variable = toggle_player_tasks_time_remain
+				}
+			}
+			remove_variable = toggle_player_tasks_councillor_intrigue
+			remove_variable = toggle_player_tasks_councillor_has_intrigue
+			if = { 
+				limit = { 
+					has_variable = toggle_player_tasks_councillor_learning
+				}
+				var:toggle_player_tasks_councillor_learning = { 
+					remove_variable = toggle_player_tasks_time
+					remove_variable = toggle_player_tasks_time_remain
+				}
+			}
+			remove_variable = toggle_player_tasks_councillor_learning
+			remove_variable = toggle_player_tasks_councillor_has_learning
+			remove_variable = toggle_player_tasks_has_manage_domain
+			remove_variable = toggle_player_tasks_time_manage_domain
+			remove_variable = toggle_player_tasks_time_in_manage_domain
+			remove_variable = toggle_player_tasks_time_cost_manage_domain
+			remove_variable = toggle_player_tasks_crpt_manage_domain
+			remove_variable = toggle_player_tasks_time_factor_diplomacy_manage_domain
+			remove_variable = toggle_player_tasks_time_factor_martial_manage_domain
+			remove_variable = toggle_player_tasks_time_factor_stewardship_manage_domain
+			remove_variable = toggle_player_tasks_time_factor_intrigue_manage_domain
+			remove_variable = toggle_player_tasks_time_factor_learning_manage_domain
+			remove_variable = toggle_player_tasks_has_manage_realm
+			remove_variable = toggle_player_tasks_time_manage_realm
+			remove_variable = toggle_player_tasks_time_in_manage_realm
+			remove_variable = toggle_player_tasks_time_cost_manage_realm
+			remove_variable = toggle_player_tasks_crpt_manage_realm
+			remove_variable = toggle_player_tasks_time_factor_diplomacy_manage_realm
+			remove_variable = toggle_player_tasks_time_factor_martial_manage_realm
+			remove_variable = toggle_player_tasks_time_factor_stewardship_manage_realm
+			remove_variable = toggle_player_tasks_time_factor_intrigue_manage_realm
+			remove_variable = toggle_player_tasks_time_factor_learning_manage_realm
+			remove_variable = toggle_player_tasks_has_manage_logistics
+			remove_variable = toggle_player_tasks_time_manage_logistics
+			remove_variable = toggle_player_tasks_time_in_manage_logistics
+			remove_variable = toggle_player_tasks_time_cost_manage_logistics
+			remove_variable = toggle_player_tasks_crpt_manage_logistics
+			remove_variable = toggle_player_tasks_time_factor_diplomacy_manage_logistics
+			remove_variable = toggle_player_tasks_time_factor_martial_manage_logistics
+			remove_variable = toggle_player_tasks_time_factor_stewardship_manage_logistics
+			remove_variable = toggle_player_tasks_time_factor_intrigue_manage_logistics
+			remove_variable = toggle_player_tasks_time_factor_learning_manage_logistics
+			remove_variable = toggle_player_tasks_has_manage_court
+			remove_variable = toggle_player_tasks_time_manage_court
+			remove_variable = toggle_player_tasks_time_in_manage_court
+			remove_variable = toggle_player_tasks_time_cost_manage_court
+			remove_variable = toggle_player_tasks_crpt_manage_court
+			remove_variable = toggle_player_tasks_time_factor_diplomacy_manage_court
+			remove_variable = toggle_player_tasks_time_factor_martial_manage_court
+			remove_variable = toggle_player_tasks_time_factor_stewardship_manage_court
+			remove_variable = toggle_player_tasks_time_factor_intrigue_manage_court
+			remove_variable = toggle_player_tasks_time_factor_learning_manage_court
+			remove_variable = toggle_player_tasks_has_manage_stockpile
+			remove_variable = toggle_player_tasks_time_manage_stockpile
+			remove_variable = toggle_player_tasks_time_in_manage_stockpile
+			remove_variable = toggle_player_tasks_time_cost_manage_stockpile
+			remove_variable = toggle_player_tasks_crpt_manage_stockpile
+			remove_variable = toggle_player_tasks_time_factor_diplomacy_manage_stockpile
+			remove_variable = toggle_player_tasks_time_factor_martial_manage_stockpile
+			remove_variable = toggle_player_tasks_time_factor_stewardship_manage_stockpile
+			remove_variable = toggle_player_tasks_time_factor_intrigue_manage_stockpile
+			remove_variable = toggle_player_tasks_time_factor_learning_manage_stockpile
+			remove_variable = toggle_player_tasks_has_manage_oversight
+			remove_variable = toggle_player_tasks_time_manage_oversight
+			remove_variable = toggle_player_tasks_time_in_manage_oversight
+			remove_variable = toggle_player_tasks_time_cost_manage_oversight
+			remove_variable = toggle_player_tasks_crpt_manage_oversight
+			remove_variable = toggle_player_tasks_time_factor_diplomacy_manage_oversight
+			remove_variable = toggle_player_tasks_time_factor_martial_manage_oversight
+			remove_variable = toggle_player_tasks_time_factor_stewardship_manage_oversight
+			remove_variable = toggle_player_tasks_time_factor_intrigue_manage_oversight
+			remove_variable = toggle_player_tasks_time_factor_learning_manage_oversight
+		}
+		else = { 
+			set_variable = { 
+				name = toggled_player_tasks
+				value = 1
+			}
+			set_variable = { 
+				name = toggle_player_tasks_time
+				value = 0
+			}
+			set_variable = { 
+				name = toggle_player_tasks_councillor_has_diplomacy
+				value = 0
+			}
+			ordered_diplomacy_councillor = { 
+				position = 0
+				set_variable = { 
+					name = toggle_player_tasks_time
+					value = 0
+				}
+				prev = { 
+					set_variable = { 
+						name = toggle_player_tasks_councillor_has_diplomacy
+						value = 1
+					}
+					set_variable = { 
+						name = toggle_player_tasks_councillor_diplomacy
+						value = prev
+					}
+				}
+			}
+			set_variable = { 
+				name = toggle_player_tasks_councillor_has_martial
+				value = 0
+			}
+			ordered_martial_councillor = { 
+				position = 0
+				set_variable = { 
+					name = toggle_player_tasks_time
+					value = 0
+				}
+				prev = { 
+					set_variable = { 
+						name = toggle_player_tasks_councillor_has_martial
+						value = 1
+					}
+					set_variable = { 
+						name = toggle_player_tasks_councillor_martial
+						value = prev
+					}
+				}
+			}
+			set_variable = { 
+				name = toggle_player_tasks_councillor_has_stewardship
+				value = 0
+			}
+			ordered_stewardship_councillor = { 
+				position = 0
+				set_variable = { 
+					name = toggle_player_tasks_time
+					value = 0
+				}
+				prev = { 
+					set_variable = { 
+						name = toggle_player_tasks_councillor_has_stewardship
+						value = 1
+					}
+					set_variable = { 
+						name = toggle_player_tasks_councillor_stewardship
+						value = prev
+					}
+				}
+			}
+			set_variable = { 
+				name = toggle_player_tasks_councillor_has_intrigue
+				value = 0
+			}
+			ordered_intrigue_councillor = { 
+				position = 0
+				set_variable = { 
+					name = toggle_player_tasks_time
+					value = 0
+				}
+				prev = { 
+					set_variable = { 
+						name = toggle_player_tasks_councillor_has_intrigue
+						value = 1
+					}
+					set_variable = { 
+						name = toggle_player_tasks_councillor_intrigue
+						value = prev
+					}
+				}
+			}
+			set_variable = { 
+				name = toggle_player_tasks_councillor_has_learning
+				value = 0
+			}
+			ordered_learning_councillor = { 
+				position = 0
+				set_variable = { 
+					name = toggle_player_tasks_time
+					value = 0
+				}
+				prev = { 
+					set_variable = { 
+						name = toggle_player_tasks_councillor_has_learning
+						value = 1
+					}
+					set_variable = { 
+						name = toggle_player_tasks_councillor_learning
+						value = prev
+					}
+				}
+			}
+			set_variable = { 
+				name = toggle_player_tasks_has_manage_domain
+				value = 0
+			}
+			every_in_list = { 
+				limit = { 
+					var:task_template = global_var:manage_domain
+				}
+				variable = task_tasks
+				prev = { 
+					save_temporary_scope_as = toggle_player_tasks_t
+				}
+				if = { 
+					limit = { 
+						OR = { 
+							prev = { 
+								is_councillor = yes
+							}
+							has_variable = task_delegate
+						}
+					}
+					if = { 
+						limit = { 
+							var:task_template.var:task_councillor = flag:spouse
+						}
+						prev = { 
+							primary_spouse = { 
+								save_temporary_scope_as = toggle_player_tasks_t
+							}
+						}
+					}
+					else_if = { 
+						limit = { 
+							var:task_template.var:task_councillor = flag:diplomacy
+						}
+						prev = { 
+							ordered_diplomacy_councillor = { 
+								position = 0
+								save_temporary_scope_as = toggle_player_tasks_t
+							}
+						}
+					}
+					else_if = { 
+						limit = { 
+							var:task_template.var:task_councillor = flag:martial
+						}
+						prev = { 
+							ordered_martial_councillor = { 
+								position = 0
+								save_temporary_scope_as = toggle_player_tasks_t
+							}
+						}
+					}
+					else_if = { 
+						limit = { 
+							var:task_template.var:task_councillor = flag:stewardship
+						}
+						prev = { 
+							ordered_stewardship_councillor = { 
+								position = 0
+								save_temporary_scope_as = toggle_player_tasks_t
+							}
+						}
+					}
+					else_if = { 
+						limit = { 
+							var:task_template.var:task_councillor = flag:intrigue
+						}
+						prev = { 
+							ordered_intrigue_councillor = { 
+								position = 0
+								save_temporary_scope_as = toggle_player_tasks_t
+							}
+						}
+					}
+					else_if = { 
+						limit = { 
+							var:task_template.var:task_councillor = flag:learning
+						}
+						prev = { 
+							ordered_learning_councillor = { 
+								position = 0
+								save_temporary_scope_as = toggle_player_tasks_t
+							}
+						}
+					}
+				}
+				set_variable = { 
+					name = toggle_player_tasks_t
+					value = 1
+				}
+				if = { 
+					limit = { 
+						var:task_template = { 
+							has_variable = task_diplomacy_mult
+						}
+					}
+					set_variable = { 
+						name = toggle_player_tasks_tt
+						value = var:task_template.var:task_diplomacy_mult
+					}
+					change_variable = { 
+						name = toggle_player_tasks_tt
+						multiply = scope:toggle_player_tasks_t.diplomacy
+					}
+					if = { 
+						limit = { 
+							var:task_template = { 
+								has_variable = task_diplomacy_base
+							}
+						}
+						change_variable = { 
+							name = toggle_player_tasks_tt
+							add = var:task_template.var:task_diplomacy_base
+						}
+					}
+					change_variable = { 
+						name = toggle_player_tasks_t
+						multiply = var:toggle_player_tasks_tt
+					}
+					prev = { 
+						set_variable = { 
+							name = toggle_player_tasks_time_factor_diplomacy_manage_domain
+							value = prev.var:toggle_player_tasks_tt
+						}
+					}
+				}
+				if = { 
+					limit = { 
+						var:task_template = { 
+							has_variable = task_martial_mult
+						}
+					}
+					set_variable = { 
+						name = toggle_player_tasks_tt
+						value = var:task_template.var:task_martial_mult
+					}
+					change_variable = { 
+						name = toggle_player_tasks_tt
+						multiply = scope:toggle_player_tasks_t.martial
+					}
+					if = { 
+						limit = { 
+							var:task_template = { 
+								has_variable = task_martial_base
+							}
+						}
+						change_variable = { 
+							name = toggle_player_tasks_tt
+							add = var:task_template.var:task_martial_base
+						}
+					}
+					change_variable = { 
+						name = toggle_player_tasks_t
+						multiply = var:toggle_player_tasks_tt
+					}
+					prev = { 
+						set_variable = { 
+							name = toggle_player_tasks_time_factor_martial_manage_domain
+							value = prev.var:toggle_player_tasks_tt
+						}
+					}
+				}
+				if = { 
+					limit = { 
+						var:task_template = { 
+							has_variable = task_stewardship_mult
+						}
+					}
+					set_variable = { 
+						name = toggle_player_tasks_tt
+						value = var:task_template.var:task_stewardship_mult
+					}
+					change_variable = { 
+						name = toggle_player_tasks_tt
+						multiply = scope:toggle_player_tasks_t.stewardship
+					}
+					if = { 
+						limit = { 
+							var:task_template = { 
+								has_variable = task_stewardship_base
+							}
+						}
+						change_variable = { 
+							name = toggle_player_tasks_tt
+							add = var:task_template.var:task_stewardship_base
+						}
+					}
+					change_variable = { 
+						name = toggle_player_tasks_t
+						multiply = var:toggle_player_tasks_tt
+					}
+					prev = { 
+						set_variable = { 
+							name = toggle_player_tasks_time_factor_stewardship_manage_domain
+							value = prev.var:toggle_player_tasks_tt
+						}
+					}
+				}
+				if = { 
+					limit = { 
+						var:task_template = { 
+							has_variable = task_intrigue_mult
+						}
+					}
+					set_variable = { 
+						name = toggle_player_tasks_tt
+						value = var:task_template.var:task_intrigue_mult
+					}
+					change_variable = { 
+						name = toggle_player_tasks_tt
+						multiply = scope:toggle_player_tasks_t.intrigue
+					}
+					if = { 
+						limit = { 
+							var:task_template = { 
+								has_variable = task_intrigue_base
+							}
+						}
+						change_variable = { 
+							name = toggle_player_tasks_tt
+							add = var:task_template.var:task_intrigue_base
+						}
+					}
+					change_variable = { 
+						name = toggle_player_tasks_t
+						multiply = var:toggle_player_tasks_tt
+					}
+					prev = { 
+						set_variable = { 
+							name = toggle_player_tasks_time_factor_intrigue_manage_domain
+							value = prev.var:toggle_player_tasks_tt
+						}
+					}
+				}
+				if = { 
+					limit = { 
+						var:task_template = { 
+							has_variable = task_learning_mult
+						}
+					}
+					set_variable = { 
+						name = toggle_player_tasks_tt
+						value = var:task_template.var:task_learning_mult
+					}
+					change_variable = { 
+						name = toggle_player_tasks_tt
+						multiply = scope:toggle_player_tasks_t.learning
+					}
+					if = { 
+						limit = { 
+							var:task_template = { 
+								has_variable = task_learning_base
+							}
+						}
+						change_variable = { 
+							name = toggle_player_tasks_tt
+							add = var:task_template.var:task_learning_base
+						}
+					}
+					change_variable = { 
+						name = toggle_player_tasks_t
+						multiply = var:toggle_player_tasks_tt
+					}
+					prev = { 
+						set_variable = { 
+							name = toggle_player_tasks_time_factor_learning_manage_domain
+							value = prev.var:toggle_player_tasks_tt
+						}
+					}
+				}
+				change_variable = { 
+					name = toggle_player_tasks_t
+					add = 0.05
+				}
+				set_variable = { 
+					name = toggle_player_tasks_tt
+					value = var:task_time_cost
+				}
+				change_variable = { 
+					name = toggle_player_tasks_tt
+					divide = var:toggle_player_tasks_t
+				}
+				set_variable = { 
+					name = toggle_player_tasks_t
+					value = var:toggle_player_tasks_tt
+				}
+				scope:toggle_player_tasks_t = { 
+					change_variable = { 
+						name = toggle_player_tasks_time
+						add = prev.var:toggle_player_tasks_t
+					}
+				}
+				prev = { 
+					set_variable = { 
+						name = toggle_player_tasks_has_manage_domain
+						value = 1
+					}
+					set_variable = { 
+						name = toggle_player_tasks_time_manage_domain
+						value = prev.var:toggle_player_tasks_t
+					}
+					set_variable = { 
+						name = toggle_player_tasks_time_in_manage_domain
+						value = prev.var:task_time_in
+					}
+					set_variable = { 
+						name = toggle_player_tasks_time_cost_manage_domain
+						value = prev.var:task_time_cost
+					}
+					set_variable = { 
+						name = toggle_player_tasks_crpt_manage_domain
+						value = prev.var:task_crpt
+					}
+				}
+				remove_variable = toggle_player_tasks_t
+				remove_variable = toggle_player_tasks_tt
+			}
+			set_variable = { 
+				name = toggle_player_tasks_has_manage_realm
+				value = 0
+			}
+			every_in_list = { 
+				limit = { 
+					var:task_template = global_var:manage_realm
+				}
+				variable = task_tasks
+				prev = { 
+					save_temporary_scope_as = toggle_player_tasks_t
+				}
+				if = { 
+					limit = { 
+						OR = { 
+							prev = { 
+								is_councillor = yes
+							}
+							has_variable = task_delegate
+						}
+					}
+					if = { 
+						limit = { 
+							var:task_template.var:task_councillor = flag:spouse
+						}
+						prev = { 
+							primary_spouse = { 
+								save_temporary_scope_as = toggle_player_tasks_t
+							}
+						}
+					}
+					else_if = { 
+						limit = { 
+							var:task_template.var:task_councillor = flag:diplomacy
+						}
+						prev = { 
+							ordered_diplomacy_councillor = { 
+								position = 0
+								save_temporary_scope_as = toggle_player_tasks_t
+							}
+						}
+					}
+					else_if = { 
+						limit = { 
+							var:task_template.var:task_councillor = flag:martial
+						}
+						prev = { 
+							ordered_martial_councillor = { 
+								position = 0
+								save_temporary_scope_as = toggle_player_tasks_t
+							}
+						}
+					}
+					else_if = { 
+						limit = { 
+							var:task_template.var:task_councillor = flag:stewardship
+						}
+						prev = { 
+							ordered_stewardship_councillor = { 
+								position = 0
+								save_temporary_scope_as = toggle_player_tasks_t
+							}
+						}
+					}
+					else_if = { 
+						limit = { 
+							var:task_template.var:task_councillor = flag:intrigue
+						}
+						prev = { 
+							ordered_intrigue_councillor = { 
+								position = 0
+								save_temporary_scope_as = toggle_player_tasks_t
+							}
+						}
+					}
+					else_if = { 
+						limit = { 
+							var:task_template.var:task_councillor = flag:learning
+						}
+						prev = { 
+							ordered_learning_councillor = { 
+								position = 0
+								save_temporary_scope_as = toggle_player_tasks_t
+							}
+						}
+					}
+				}
+				set_variable = { 
+					name = toggle_player_tasks_t
+					value = 1
+				}
+				if = { 
+					limit = { 
+						var:task_template = { 
+							has_variable = task_diplomacy_mult
+						}
+					}
+					set_variable = { 
+						name = toggle_player_tasks_tt
+						value = var:task_template.var:task_diplomacy_mult
+					}
+					change_variable = { 
+						name = toggle_player_tasks_tt
+						multiply = scope:toggle_player_tasks_t.diplomacy
+					}
+					if = { 
+						limit = { 
+							var:task_template = { 
+								has_variable = task_diplomacy_base
+							}
+						}
+						change_variable = { 
+							name = toggle_player_tasks_tt
+							add = var:task_template.var:task_diplomacy_base
+						}
+					}
+					change_variable = { 
+						name = toggle_player_tasks_t
+						multiply = var:toggle_player_tasks_tt
+					}
+					prev = { 
+						set_variable = { 
+							name = toggle_player_tasks_time_factor_diplomacy_manage_realm
+							value = prev.var:toggle_player_tasks_tt
+						}
+					}
+				}
+				if = { 
+					limit = { 
+						var:task_template = { 
+							has_variable = task_martial_mult
+						}
+					}
+					set_variable = { 
+						name = toggle_player_tasks_tt
+						value = var:task_template.var:task_martial_mult
+					}
+					change_variable = { 
+						name = toggle_player_tasks_tt
+						multiply = scope:toggle_player_tasks_t.martial
+					}
+					if = { 
+						limit = { 
+							var:task_template = { 
+								has_variable = task_martial_base
+							}
+						}
+						change_variable = { 
+							name = toggle_player_tasks_tt
+							add = var:task_template.var:task_martial_base
+						}
+					}
+					change_variable = { 
+						name = toggle_player_tasks_t
+						multiply = var:toggle_player_tasks_tt
+					}
+					prev = { 
+						set_variable = { 
+							name = toggle_player_tasks_time_factor_martial_manage_realm
+							value = prev.var:toggle_player_tasks_tt
+						}
+					}
+				}
+				if = { 
+					limit = { 
+						var:task_template = { 
+							has_variable = task_stewardship_mult
+						}
+					}
+					set_variable = { 
+						name = toggle_player_tasks_tt
+						value = var:task_template.var:task_stewardship_mult
+					}
+					change_variable = { 
+						name = toggle_player_tasks_tt
+						multiply = scope:toggle_player_tasks_t.stewardship
+					}
+					if = { 
+						limit = { 
+							var:task_template = { 
+								has_variable = task_stewardship_base
+							}
+						}
+						change_variable = { 
+							name = toggle_player_tasks_tt
+							add = var:task_template.var:task_stewardship_base
+						}
+					}
+					change_variable = { 
+						name = toggle_player_tasks_t
+						multiply = var:toggle_player_tasks_tt
+					}
+					prev = { 
+						set_variable = { 
+							name = toggle_player_tasks_time_factor_stewardship_manage_realm
+							value = prev.var:toggle_player_tasks_tt
+						}
+					}
+				}
+				if = { 
+					limit = { 
+						var:task_template = { 
+							has_variable = task_intrigue_mult
+						}
+					}
+					set_variable = { 
+						name = toggle_player_tasks_tt
+						value = var:task_template.var:task_intrigue_mult
+					}
+					change_variable = { 
+						name = toggle_player_tasks_tt
+						multiply = scope:toggle_player_tasks_t.intrigue
+					}
+					if = { 
+						limit = { 
+							var:task_template = { 
+								has_variable = task_intrigue_base
+							}
+						}
+						change_variable = { 
+							name = toggle_player_tasks_tt
+							add = var:task_template.var:task_intrigue_base
+						}
+					}
+					change_variable = { 
+						name = toggle_player_tasks_t
+						multiply = var:toggle_player_tasks_tt
+					}
+					prev = { 
+						set_variable = { 
+							name = toggle_player_tasks_time_factor_intrigue_manage_realm
+							value = prev.var:toggle_player_tasks_tt
+						}
+					}
+				}
+				if = { 
+					limit = { 
+						var:task_template = { 
+							has_variable = task_learning_mult
+						}
+					}
+					set_variable = { 
+						name = toggle_player_tasks_tt
+						value = var:task_template.var:task_learning_mult
+					}
+					change_variable = { 
+						name = toggle_player_tasks_tt
+						multiply = scope:toggle_player_tasks_t.learning
+					}
+					if = { 
+						limit = { 
+							var:task_template = { 
+								has_variable = task_learning_base
+							}
+						}
+						change_variable = { 
+							name = toggle_player_tasks_tt
+							add = var:task_template.var:task_learning_base
+						}
+					}
+					change_variable = { 
+						name = toggle_player_tasks_t
+						multiply = var:toggle_player_tasks_tt
+					}
+					prev = { 
+						set_variable = { 
+							name = toggle_player_tasks_time_factor_learning_manage_realm
+							value = prev.var:toggle_player_tasks_tt
+						}
+					}
+				}
+				change_variable = { 
+					name = toggle_player_tasks_t
+					add = 0.05
+				}
+				set_variable = { 
+					name = toggle_player_tasks_tt
+					value = var:task_time_cost
+				}
+				change_variable = { 
+					name = toggle_player_tasks_tt
+					divide = var:toggle_player_tasks_t
+				}
+				set_variable = { 
+					name = toggle_player_tasks_t
+					value = var:toggle_player_tasks_tt
+				}
+				scope:toggle_player_tasks_t = { 
+					change_variable = { 
+						name = toggle_player_tasks_time
+						add = prev.var:toggle_player_tasks_t
+					}
+				}
+				prev = { 
+					set_variable = { 
+						name = toggle_player_tasks_has_manage_realm
+						value = 1
+					}
+					set_variable = { 
+						name = toggle_player_tasks_time_manage_realm
+						value = prev.var:toggle_player_tasks_t
+					}
+					set_variable = { 
+						name = toggle_player_tasks_time_in_manage_realm
+						value = prev.var:task_time_in
+					}
+					set_variable = { 
+						name = toggle_player_tasks_time_cost_manage_realm
+						value = prev.var:task_time_cost
+					}
+					set_variable = { 
+						name = toggle_player_tasks_crpt_manage_realm
+						value = prev.var:task_crpt
+					}
+				}
+				remove_variable = toggle_player_tasks_t
+				remove_variable = toggle_player_tasks_tt
+			}
+			set_variable = { 
+				name = toggle_player_tasks_has_manage_logistics
+				value = 0
+			}
+			every_in_list = { 
+				limit = { 
+					var:task_template = global_var:manage_logistics
+				}
+				variable = task_tasks
+				prev = { 
+					save_temporary_scope_as = toggle_player_tasks_t
+				}
+				if = { 
+					limit = { 
+						OR = { 
+							prev = { 
+								is_councillor = yes
+							}
+							has_variable = task_delegate
+						}
+					}
+					if = { 
+						limit = { 
+							var:task_template.var:task_councillor = flag:spouse
+						}
+						prev = { 
+							primary_spouse = { 
+								save_temporary_scope_as = toggle_player_tasks_t
+							}
+						}
+					}
+					else_if = { 
+						limit = { 
+							var:task_template.var:task_councillor = flag:diplomacy
+						}
+						prev = { 
+							ordered_diplomacy_councillor = { 
+								position = 0
+								save_temporary_scope_as = toggle_player_tasks_t
+							}
+						}
+					}
+					else_if = { 
+						limit = { 
+							var:task_template.var:task_councillor = flag:martial
+						}
+						prev = { 
+							ordered_martial_councillor = { 
+								position = 0
+								save_temporary_scope_as = toggle_player_tasks_t
+							}
+						}
+					}
+					else_if = { 
+						limit = { 
+							var:task_template.var:task_councillor = flag:stewardship
+						}
+						prev = { 
+							ordered_stewardship_councillor = { 
+								position = 0
+								save_temporary_scope_as = toggle_player_tasks_t
+							}
+						}
+					}
+					else_if = { 
+						limit = { 
+							var:task_template.var:task_councillor = flag:intrigue
+						}
+						prev = { 
+							ordered_intrigue_councillor = { 
+								position = 0
+								save_temporary_scope_as = toggle_player_tasks_t
+							}
+						}
+					}
+					else_if = { 
+						limit = { 
+							var:task_template.var:task_councillor = flag:learning
+						}
+						prev = { 
+							ordered_learning_councillor = { 
+								position = 0
+								save_temporary_scope_as = toggle_player_tasks_t
+							}
+						}
+					}
+				}
+				set_variable = { 
+					name = toggle_player_tasks_t
+					value = 1
+				}
+				if = { 
+					limit = { 
+						var:task_template = { 
+							has_variable = task_diplomacy_mult
+						}
+					}
+					set_variable = { 
+						name = toggle_player_tasks_tt
+						value = var:task_template.var:task_diplomacy_mult
+					}
+					change_variable = { 
+						name = toggle_player_tasks_tt
+						multiply = scope:toggle_player_tasks_t.diplomacy
+					}
+					if = { 
+						limit = { 
+							var:task_template = { 
+								has_variable = task_diplomacy_base
+							}
+						}
+						change_variable = { 
+							name = toggle_player_tasks_tt
+							add = var:task_template.var:task_diplomacy_base
+						}
+					}
+					change_variable = { 
+						name = toggle_player_tasks_t
+						multiply = var:toggle_player_tasks_tt
+					}
+					prev = { 
+						set_variable = { 
+							name = toggle_player_tasks_time_factor_diplomacy_manage_logistics
+							value = prev.var:toggle_player_tasks_tt
+						}
+					}
+				}
+				if = { 
+					limit = { 
+						var:task_template = { 
+							has_variable = task_martial_mult
+						}
+					}
+					set_variable = { 
+						name = toggle_player_tasks_tt
+						value = var:task_template.var:task_martial_mult
+					}
+					change_variable = { 
+						name = toggle_player_tasks_tt
+						multiply = scope:toggle_player_tasks_t.martial
+					}
+					if = { 
+						limit = { 
+							var:task_template = { 
+								has_variable = task_martial_base
+							}
+						}
+						change_variable = { 
+							name = toggle_player_tasks_tt
+							add = var:task_template.var:task_martial_base
+						}
+					}
+					change_variable = { 
+						name = toggle_player_tasks_t
+						multiply = var:toggle_player_tasks_tt
+					}
+					prev = { 
+						set_variable = { 
+							name = toggle_player_tasks_time_factor_martial_manage_logistics
+							value = prev.var:toggle_player_tasks_tt
+						}
+					}
+				}
+				if = { 
+					limit = { 
+						var:task_template = { 
+							has_variable = task_stewardship_mult
+						}
+					}
+					set_variable = { 
+						name = toggle_player_tasks_tt
+						value = var:task_template.var:task_stewardship_mult
+					}
+					change_variable = { 
+						name = toggle_player_tasks_tt
+						multiply = scope:toggle_player_tasks_t.stewardship
+					}
+					if = { 
+						limit = { 
+							var:task_template = { 
+								has_variable = task_stewardship_base
+							}
+						}
+						change_variable = { 
+							name = toggle_player_tasks_tt
+							add = var:task_template.var:task_stewardship_base
+						}
+					}
+					change_variable = { 
+						name = toggle_player_tasks_t
+						multiply = var:toggle_player_tasks_tt
+					}
+					prev = { 
+						set_variable = { 
+							name = toggle_player_tasks_time_factor_stewardship_manage_logistics
+							value = prev.var:toggle_player_tasks_tt
+						}
+					}
+				}
+				if = { 
+					limit = { 
+						var:task_template = { 
+							has_variable = task_intrigue_mult
+						}
+					}
+					set_variable = { 
+						name = toggle_player_tasks_tt
+						value = var:task_template.var:task_intrigue_mult
+					}
+					change_variable = { 
+						name = toggle_player_tasks_tt
+						multiply = scope:toggle_player_tasks_t.intrigue
+					}
+					if = { 
+						limit = { 
+							var:task_template = { 
+								has_variable = task_intrigue_base
+							}
+						}
+						change_variable = { 
+							name = toggle_player_tasks_tt
+							add = var:task_template.var:task_intrigue_base
+						}
+					}
+					change_variable = { 
+						name = toggle_player_tasks_t
+						multiply = var:toggle_player_tasks_tt
+					}
+					prev = { 
+						set_variable = { 
+							name = toggle_player_tasks_time_factor_intrigue_manage_logistics
+							value = prev.var:toggle_player_tasks_tt
+						}
+					}
+				}
+				if = { 
+					limit = { 
+						var:task_template = { 
+							has_variable = task_learning_mult
+						}
+					}
+					set_variable = { 
+						name = toggle_player_tasks_tt
+						value = var:task_template.var:task_learning_mult
+					}
+					change_variable = { 
+						name = toggle_player_tasks_tt
+						multiply = scope:toggle_player_tasks_t.learning
+					}
+					if = { 
+						limit = { 
+							var:task_template = { 
+								has_variable = task_learning_base
+							}
+						}
+						change_variable = { 
+							name = toggle_player_tasks_tt
+							add = var:task_template.var:task_learning_base
+						}
+					}
+					change_variable = { 
+						name = toggle_player_tasks_t
+						multiply = var:toggle_player_tasks_tt
+					}
+					prev = { 
+						set_variable = { 
+							name = toggle_player_tasks_time_factor_learning_manage_logistics
+							value = prev.var:toggle_player_tasks_tt
+						}
+					}
+				}
+				change_variable = { 
+					name = toggle_player_tasks_t
+					add = 0.05
+				}
+				set_variable = { 
+					name = toggle_player_tasks_tt
+					value = var:task_time_cost
+				}
+				change_variable = { 
+					name = toggle_player_tasks_tt
+					divide = var:toggle_player_tasks_t
+				}
+				set_variable = { 
+					name = toggle_player_tasks_t
+					value = var:toggle_player_tasks_tt
+				}
+				scope:toggle_player_tasks_t = { 
+					change_variable = { 
+						name = toggle_player_tasks_time
+						add = prev.var:toggle_player_tasks_t
+					}
+				}
+				prev = { 
+					set_variable = { 
+						name = toggle_player_tasks_has_manage_logistics
+						value = 1
+					}
+					set_variable = { 
+						name = toggle_player_tasks_time_manage_logistics
+						value = prev.var:toggle_player_tasks_t
+					}
+					set_variable = { 
+						name = toggle_player_tasks_time_in_manage_logistics
+						value = prev.var:task_time_in
+					}
+					set_variable = { 
+						name = toggle_player_tasks_time_cost_manage_logistics
+						value = prev.var:task_time_cost
+					}
+					set_variable = { 
+						name = toggle_player_tasks_crpt_manage_logistics
+						value = prev.var:task_crpt
+					}
+				}
+				remove_variable = toggle_player_tasks_t
+				remove_variable = toggle_player_tasks_tt
+			}
+			set_variable = { 
+				name = toggle_player_tasks_has_manage_court
+				value = 0
+			}
+			every_in_list = { 
+				limit = { 
+					var:task_template = global_var:manage_court
+				}
+				variable = task_tasks
+				prev = { 
+					save_temporary_scope_as = toggle_player_tasks_t
+				}
+				if = { 
+					limit = { 
+						OR = { 
+							prev = { 
+								is_councillor = yes
+							}
+							has_variable = task_delegate
+						}
+					}
+					if = { 
+						limit = { 
+							var:task_template.var:task_councillor = flag:spouse
+						}
+						prev = { 
+							primary_spouse = { 
+								save_temporary_scope_as = toggle_player_tasks_t
+							}
+						}
+					}
+					else_if = { 
+						limit = { 
+							var:task_template.var:task_councillor = flag:diplomacy
+						}
+						prev = { 
+							ordered_diplomacy_councillor = { 
+								position = 0
+								save_temporary_scope_as = toggle_player_tasks_t
+							}
+						}
+					}
+					else_if = { 
+						limit = { 
+							var:task_template.var:task_councillor = flag:martial
+						}
+						prev = { 
+							ordered_martial_councillor = { 
+								position = 0
+								save_temporary_scope_as = toggle_player_tasks_t
+							}
+						}
+					}
+					else_if = { 
+						limit = { 
+							var:task_template.var:task_councillor = flag:stewardship
+						}
+						prev = { 
+							ordered_stewardship_councillor = { 
+								position = 0
+								save_temporary_scope_as = toggle_player_tasks_t
+							}
+						}
+					}
+					else_if = { 
+						limit = { 
+							var:task_template.var:task_councillor = flag:intrigue
+						}
+						prev = { 
+							ordered_intrigue_councillor = { 
+								position = 0
+								save_temporary_scope_as = toggle_player_tasks_t
+							}
+						}
+					}
+					else_if = { 
+						limit = { 
+							var:task_template.var:task_councillor = flag:learning
+						}
+						prev = { 
+							ordered_learning_councillor = { 
+								position = 0
+								save_temporary_scope_as = toggle_player_tasks_t
+							}
+						}
+					}
+				}
+				set_variable = { 
+					name = toggle_player_tasks_t
+					value = 1
+				}
+				if = { 
+					limit = { 
+						var:task_template = { 
+							has_variable = task_diplomacy_mult
+						}
+					}
+					set_variable = { 
+						name = toggle_player_tasks_tt
+						value = var:task_template.var:task_diplomacy_mult
+					}
+					change_variable = { 
+						name = toggle_player_tasks_tt
+						multiply = scope:toggle_player_tasks_t.diplomacy
+					}
+					if = { 
+						limit = { 
+							var:task_template = { 
+								has_variable = task_diplomacy_base
+							}
+						}
+						change_variable = { 
+							name = toggle_player_tasks_tt
+							add = var:task_template.var:task_diplomacy_base
+						}
+					}
+					change_variable = { 
+						name = toggle_player_tasks_t
+						multiply = var:toggle_player_tasks_tt
+					}
+					prev = { 
+						set_variable = { 
+							name = toggle_player_tasks_time_factor_diplomacy_manage_court
+							value = prev.var:toggle_player_tasks_tt
+						}
+					}
+				}
+				if = { 
+					limit = { 
+						var:task_template = { 
+							has_variable = task_martial_mult
+						}
+					}
+					set_variable = { 
+						name = toggle_player_tasks_tt
+						value = var:task_template.var:task_martial_mult
+					}
+					change_variable = { 
+						name = toggle_player_tasks_tt
+						multiply = scope:toggle_player_tasks_t.martial
+					}
+					if = { 
+						limit = { 
+							var:task_template = { 
+								has_variable = task_martial_base
+							}
+						}
+						change_variable = { 
+							name = toggle_player_tasks_tt
+							add = var:task_template.var:task_martial_base
+						}
+					}
+					change_variable = { 
+						name = toggle_player_tasks_t
+						multiply = var:toggle_player_tasks_tt
+					}
+					prev = { 
+						set_variable = { 
+							name = toggle_player_tasks_time_factor_martial_manage_court
+							value = prev.var:toggle_player_tasks_tt
+						}
+					}
+				}
+				if = { 
+					limit = { 
+						var:task_template = { 
+							has_variable = task_stewardship_mult
+						}
+					}
+					set_variable = { 
+						name = toggle_player_tasks_tt
+						value = var:task_template.var:task_stewardship_mult
+					}
+					change_variable = { 
+						name = toggle_player_tasks_tt
+						multiply = scope:toggle_player_tasks_t.stewardship
+					}
+					if = { 
+						limit = { 
+							var:task_template = { 
+								has_variable = task_stewardship_base
+							}
+						}
+						change_variable = { 
+							name = toggle_player_tasks_tt
+							add = var:task_template.var:task_stewardship_base
+						}
+					}
+					change_variable = { 
+						name = toggle_player_tasks_t
+						multiply = var:toggle_player_tasks_tt
+					}
+					prev = { 
+						set_variable = { 
+							name = toggle_player_tasks_time_factor_stewardship_manage_court
+							value = prev.var:toggle_player_tasks_tt
+						}
+					}
+				}
+				if = { 
+					limit = { 
+						var:task_template = { 
+							has_variable = task_intrigue_mult
+						}
+					}
+					set_variable = { 
+						name = toggle_player_tasks_tt
+						value = var:task_template.var:task_intrigue_mult
+					}
+					change_variable = { 
+						name = toggle_player_tasks_tt
+						multiply = scope:toggle_player_tasks_t.intrigue
+					}
+					if = { 
+						limit = { 
+							var:task_template = { 
+								has_variable = task_intrigue_base
+							}
+						}
+						change_variable = { 
+							name = toggle_player_tasks_tt
+							add = var:task_template.var:task_intrigue_base
+						}
+					}
+					change_variable = { 
+						name = toggle_player_tasks_t
+						multiply = var:toggle_player_tasks_tt
+					}
+					prev = { 
+						set_variable = { 
+							name = toggle_player_tasks_time_factor_intrigue_manage_court
+							value = prev.var:toggle_player_tasks_tt
+						}
+					}
+				}
+				if = { 
+					limit = { 
+						var:task_template = { 
+							has_variable = task_learning_mult
+						}
+					}
+					set_variable = { 
+						name = toggle_player_tasks_tt
+						value = var:task_template.var:task_learning_mult
+					}
+					change_variable = { 
+						name = toggle_player_tasks_tt
+						multiply = scope:toggle_player_tasks_t.learning
+					}
+					if = { 
+						limit = { 
+							var:task_template = { 
+								has_variable = task_learning_base
+							}
+						}
+						change_variable = { 
+							name = toggle_player_tasks_tt
+							add = var:task_template.var:task_learning_base
+						}
+					}
+					change_variable = { 
+						name = toggle_player_tasks_t
+						multiply = var:toggle_player_tasks_tt
+					}
+					prev = { 
+						set_variable = { 
+							name = toggle_player_tasks_time_factor_learning_manage_court
+							value = prev.var:toggle_player_tasks_tt
+						}
+					}
+				}
+				change_variable = { 
+					name = toggle_player_tasks_t
+					add = 0.05
+				}
+				set_variable = { 
+					name = toggle_player_tasks_tt
+					value = var:task_time_cost
+				}
+				change_variable = { 
+					name = toggle_player_tasks_tt
+					divide = var:toggle_player_tasks_t
+				}
+				set_variable = { 
+					name = toggle_player_tasks_t
+					value = var:toggle_player_tasks_tt
+				}
+				scope:toggle_player_tasks_t = { 
+					change_variable = { 
+						name = toggle_player_tasks_time
+						add = prev.var:toggle_player_tasks_t
+					}
+				}
+				prev = { 
+					set_variable = { 
+						name = toggle_player_tasks_has_manage_court
+						value = 1
+					}
+					set_variable = { 
+						name = toggle_player_tasks_time_manage_court
+						value = prev.var:toggle_player_tasks_t
+					}
+					set_variable = { 
+						name = toggle_player_tasks_time_in_manage_court
+						value = prev.var:task_time_in
+					}
+					set_variable = { 
+						name = toggle_player_tasks_time_cost_manage_court
+						value = prev.var:task_time_cost
+					}
+					set_variable = { 
+						name = toggle_player_tasks_crpt_manage_court
+						value = prev.var:task_crpt
+					}
+				}
+				remove_variable = toggle_player_tasks_t
+				remove_variable = toggle_player_tasks_tt
+			}
+			set_variable = { 
+				name = toggle_player_tasks_has_manage_stockpile
+				value = 0
+			}
+			every_in_list = { 
+				limit = { 
+					var:task_template = global_var:manage_stockpile
+				}
+				variable = task_tasks
+				prev = { 
+					save_temporary_scope_as = toggle_player_tasks_t
+				}
+				if = { 
+					limit = { 
+						OR = { 
+							prev = { 
+								is_councillor = yes
+							}
+							has_variable = task_delegate
+						}
+					}
+					if = { 
+						limit = { 
+							var:task_template.var:task_councillor = flag:spouse
+						}
+						prev = { 
+							primary_spouse = { 
+								save_temporary_scope_as = toggle_player_tasks_t
+							}
+						}
+					}
+					else_if = { 
+						limit = { 
+							var:task_template.var:task_councillor = flag:diplomacy
+						}
+						prev = { 
+							ordered_diplomacy_councillor = { 
+								position = 0
+								save_temporary_scope_as = toggle_player_tasks_t
+							}
+						}
+					}
+					else_if = { 
+						limit = { 
+							var:task_template.var:task_councillor = flag:martial
+						}
+						prev = { 
+							ordered_martial_councillor = { 
+								position = 0
+								save_temporary_scope_as = toggle_player_tasks_t
+							}
+						}
+					}
+					else_if = { 
+						limit = { 
+							var:task_template.var:task_councillor = flag:stewardship
+						}
+						prev = { 
+							ordered_stewardship_councillor = { 
+								position = 0
+								save_temporary_scope_as = toggle_player_tasks_t
+							}
+						}
+					}
+					else_if = { 
+						limit = { 
+							var:task_template.var:task_councillor = flag:intrigue
+						}
+						prev = { 
+							ordered_intrigue_councillor = { 
+								position = 0
+								save_temporary_scope_as = toggle_player_tasks_t
+							}
+						}
+					}
+					else_if = { 
+						limit = { 
+							var:task_template.var:task_councillor = flag:learning
+						}
+						prev = { 
+							ordered_learning_councillor = { 
+								position = 0
+								save_temporary_scope_as = toggle_player_tasks_t
+							}
+						}
+					}
+				}
+				set_variable = { 
+					name = toggle_player_tasks_t
+					value = 1
+				}
+				if = { 
+					limit = { 
+						var:task_template = { 
+							has_variable = task_diplomacy_mult
+						}
+					}
+					set_variable = { 
+						name = toggle_player_tasks_tt
+						value = var:task_template.var:task_diplomacy_mult
+					}
+					change_variable = { 
+						name = toggle_player_tasks_tt
+						multiply = scope:toggle_player_tasks_t.diplomacy
+					}
+					if = { 
+						limit = { 
+							var:task_template = { 
+								has_variable = task_diplomacy_base
+							}
+						}
+						change_variable = { 
+							name = toggle_player_tasks_tt
+							add = var:task_template.var:task_diplomacy_base
+						}
+					}
+					change_variable = { 
+						name = toggle_player_tasks_t
+						multiply = var:toggle_player_tasks_tt
+					}
+					prev = { 
+						set_variable = { 
+							name = toggle_player_tasks_time_factor_diplomacy_manage_stockpile
+							value = prev.var:toggle_player_tasks_tt
+						}
+					}
+				}
+				if = { 
+					limit = { 
+						var:task_template = { 
+							has_variable = task_martial_mult
+						}
+					}
+					set_variable = { 
+						name = toggle_player_tasks_tt
+						value = var:task_template.var:task_martial_mult
+					}
+					change_variable = { 
+						name = toggle_player_tasks_tt
+						multiply = scope:toggle_player_tasks_t.martial
+					}
+					if = { 
+						limit = { 
+							var:task_template = { 
+								has_variable = task_martial_base
+							}
+						}
+						change_variable = { 
+							name = toggle_player_tasks_tt
+							add = var:task_template.var:task_martial_base
+						}
+					}
+					change_variable = { 
+						name = toggle_player_tasks_t
+						multiply = var:toggle_player_tasks_tt
+					}
+					prev = { 
+						set_variable = { 
+							name = toggle_player_tasks_time_factor_martial_manage_stockpile
+							value = prev.var:toggle_player_tasks_tt
+						}
+					}
+				}
+				if = { 
+					limit = { 
+						var:task_template = { 
+							has_variable = task_stewardship_mult
+						}
+					}
+					set_variable = { 
+						name = toggle_player_tasks_tt
+						value = var:task_template.var:task_stewardship_mult
+					}
+					change_variable = { 
+						name = toggle_player_tasks_tt
+						multiply = scope:toggle_player_tasks_t.stewardship
+					}
+					if = { 
+						limit = { 
+							var:task_template = { 
+								has_variable = task_stewardship_base
+							}
+						}
+						change_variable = { 
+							name = toggle_player_tasks_tt
+							add = var:task_template.var:task_stewardship_base
+						}
+					}
+					change_variable = { 
+						name = toggle_player_tasks_t
+						multiply = var:toggle_player_tasks_tt
+					}
+					prev = { 
+						set_variable = { 
+							name = toggle_player_tasks_time_factor_stewardship_manage_stockpile
+							value = prev.var:toggle_player_tasks_tt
+						}
+					}
+				}
+				if = { 
+					limit = { 
+						var:task_template = { 
+							has_variable = task_intrigue_mult
+						}
+					}
+					set_variable = { 
+						name = toggle_player_tasks_tt
+						value = var:task_template.var:task_intrigue_mult
+					}
+					change_variable = { 
+						name = toggle_player_tasks_tt
+						multiply = scope:toggle_player_tasks_t.intrigue
+					}
+					if = { 
+						limit = { 
+							var:task_template = { 
+								has_variable = task_intrigue_base
+							}
+						}
+						change_variable = { 
+							name = toggle_player_tasks_tt
+							add = var:task_template.var:task_intrigue_base
+						}
+					}
+					change_variable = { 
+						name = toggle_player_tasks_t
+						multiply = var:toggle_player_tasks_tt
+					}
+					prev = { 
+						set_variable = { 
+							name = toggle_player_tasks_time_factor_intrigue_manage_stockpile
+							value = prev.var:toggle_player_tasks_tt
+						}
+					}
+				}
+				if = { 
+					limit = { 
+						var:task_template = { 
+							has_variable = task_learning_mult
+						}
+					}
+					set_variable = { 
+						name = toggle_player_tasks_tt
+						value = var:task_template.var:task_learning_mult
+					}
+					change_variable = { 
+						name = toggle_player_tasks_tt
+						multiply = scope:toggle_player_tasks_t.learning
+					}
+					if = { 
+						limit = { 
+							var:task_template = { 
+								has_variable = task_learning_base
+							}
+						}
+						change_variable = { 
+							name = toggle_player_tasks_tt
+							add = var:task_template.var:task_learning_base
+						}
+					}
+					change_variable = { 
+						name = toggle_player_tasks_t
+						multiply = var:toggle_player_tasks_tt
+					}
+					prev = { 
+						set_variable = { 
+							name = toggle_player_tasks_time_factor_learning_manage_stockpile
+							value = prev.var:toggle_player_tasks_tt
+						}
+					}
+				}
+				change_variable = { 
+					name = toggle_player_tasks_t
+					add = 0.05
+				}
+				set_variable = { 
+					name = toggle_player_tasks_tt
+					value = var:task_time_cost
+				}
+				change_variable = { 
+					name = toggle_player_tasks_tt
+					divide = var:toggle_player_tasks_t
+				}
+				set_variable = { 
+					name = toggle_player_tasks_t
+					value = var:toggle_player_tasks_tt
+				}
+				scope:toggle_player_tasks_t = { 
+					change_variable = { 
+						name = toggle_player_tasks_time
+						add = prev.var:toggle_player_tasks_t
+					}
+				}
+				prev = { 
+					set_variable = { 
+						name = toggle_player_tasks_has_manage_stockpile
+						value = 1
+					}
+					set_variable = { 
+						name = toggle_player_tasks_time_manage_stockpile
+						value = prev.var:toggle_player_tasks_t
+					}
+					set_variable = { 
+						name = toggle_player_tasks_time_in_manage_stockpile
+						value = prev.var:task_time_in
+					}
+					set_variable = { 
+						name = toggle_player_tasks_time_cost_manage_stockpile
+						value = prev.var:task_time_cost
+					}
+					set_variable = { 
+						name = toggle_player_tasks_crpt_manage_stockpile
+						value = prev.var:task_crpt
+					}
+				}
+				remove_variable = toggle_player_tasks_t
+				remove_variable = toggle_player_tasks_tt
+			}
+			set_variable = { 
+				name = toggle_player_tasks_has_manage_oversight
+				value = 0
+			}
+			every_in_list = { 
+				limit = { 
+					var:task_template = global_var:manage_oversight
+				}
+				variable = task_tasks
+				prev = { 
+					save_temporary_scope_as = toggle_player_tasks_t
+				}
+				if = { 
+					limit = { 
+						OR = { 
+							prev = { 
+								is_councillor = yes
+							}
+							has_variable = task_delegate
+						}
+					}
+					if = { 
+						limit = { 
+							var:task_template.var:task_councillor = flag:spouse
+						}
+						prev = { 
+							primary_spouse = { 
+								save_temporary_scope_as = toggle_player_tasks_t
+							}
+						}
+					}
+					else_if = { 
+						limit = { 
+							var:task_template.var:task_councillor = flag:diplomacy
+						}
+						prev = { 
+							ordered_diplomacy_councillor = { 
+								position = 0
+								save_temporary_scope_as = toggle_player_tasks_t
+							}
+						}
+					}
+					else_if = { 
+						limit = { 
+							var:task_template.var:task_councillor = flag:martial
+						}
+						prev = { 
+							ordered_martial_councillor = { 
+								position = 0
+								save_temporary_scope_as = toggle_player_tasks_t
+							}
+						}
+					}
+					else_if = { 
+						limit = { 
+							var:task_template.var:task_councillor = flag:stewardship
+						}
+						prev = { 
+							ordered_stewardship_councillor = { 
+								position = 0
+								save_temporary_scope_as = toggle_player_tasks_t
+							}
+						}
+					}
+					else_if = { 
+						limit = { 
+							var:task_template.var:task_councillor = flag:intrigue
+						}
+						prev = { 
+							ordered_intrigue_councillor = { 
+								position = 0
+								save_temporary_scope_as = toggle_player_tasks_t
+							}
+						}
+					}
+					else_if = { 
+						limit = { 
+							var:task_template.var:task_councillor = flag:learning
+						}
+						prev = { 
+							ordered_learning_councillor = { 
+								position = 0
+								save_temporary_scope_as = toggle_player_tasks_t
+							}
+						}
+					}
+				}
+				set_variable = { 
+					name = toggle_player_tasks_t
+					value = 1
+				}
+				if = { 
+					limit = { 
+						var:task_template = { 
+							has_variable = task_diplomacy_mult
+						}
+					}
+					set_variable = { 
+						name = toggle_player_tasks_tt
+						value = var:task_template.var:task_diplomacy_mult
+					}
+					change_variable = { 
+						name = toggle_player_tasks_tt
+						multiply = scope:toggle_player_tasks_t.diplomacy
+					}
+					if = { 
+						limit = { 
+							var:task_template = { 
+								has_variable = task_diplomacy_base
+							}
+						}
+						change_variable = { 
+							name = toggle_player_tasks_tt
+							add = var:task_template.var:task_diplomacy_base
+						}
+					}
+					change_variable = { 
+						name = toggle_player_tasks_t
+						multiply = var:toggle_player_tasks_tt
+					}
+					prev = { 
+						set_variable = { 
+							name = toggle_player_tasks_time_factor_diplomacy_manage_oversight
+							value = prev.var:toggle_player_tasks_tt
+						}
+					}
+				}
+				if = { 
+					limit = { 
+						var:task_template = { 
+							has_variable = task_martial_mult
+						}
+					}
+					set_variable = { 
+						name = toggle_player_tasks_tt
+						value = var:task_template.var:task_martial_mult
+					}
+					change_variable = { 
+						name = toggle_player_tasks_tt
+						multiply = scope:toggle_player_tasks_t.martial
+					}
+					if = { 
+						limit = { 
+							var:task_template = { 
+								has_variable = task_martial_base
+							}
+						}
+						change_variable = { 
+							name = toggle_player_tasks_tt
+							add = var:task_template.var:task_martial_base
+						}
+					}
+					change_variable = { 
+						name = toggle_player_tasks_t
+						multiply = var:toggle_player_tasks_tt
+					}
+					prev = { 
+						set_variable = { 
+							name = toggle_player_tasks_time_factor_martial_manage_oversight
+							value = prev.var:toggle_player_tasks_tt
+						}
+					}
+				}
+				if = { 
+					limit = { 
+						var:task_template = { 
+							has_variable = task_stewardship_mult
+						}
+					}
+					set_variable = { 
+						name = toggle_player_tasks_tt
+						value = var:task_template.var:task_stewardship_mult
+					}
+					change_variable = { 
+						name = toggle_player_tasks_tt
+						multiply = scope:toggle_player_tasks_t.stewardship
+					}
+					if = { 
+						limit = { 
+							var:task_template = { 
+								has_variable = task_stewardship_base
+							}
+						}
+						change_variable = { 
+							name = toggle_player_tasks_tt
+							add = var:task_template.var:task_stewardship_base
+						}
+					}
+					change_variable = { 
+						name = toggle_player_tasks_t
+						multiply = var:toggle_player_tasks_tt
+					}
+					prev = { 
+						set_variable = { 
+							name = toggle_player_tasks_time_factor_stewardship_manage_oversight
+							value = prev.var:toggle_player_tasks_tt
+						}
+					}
+				}
+				if = { 
+					limit = { 
+						var:task_template = { 
+							has_variable = task_intrigue_mult
+						}
+					}
+					set_variable = { 
+						name = toggle_player_tasks_tt
+						value = var:task_template.var:task_intrigue_mult
+					}
+					change_variable = { 
+						name = toggle_player_tasks_tt
+						multiply = scope:toggle_player_tasks_t.intrigue
+					}
+					if = { 
+						limit = { 
+							var:task_template = { 
+								has_variable = task_intrigue_base
+							}
+						}
+						change_variable = { 
+							name = toggle_player_tasks_tt
+							add = var:task_template.var:task_intrigue_base
+						}
+					}
+					change_variable = { 
+						name = toggle_player_tasks_t
+						multiply = var:toggle_player_tasks_tt
+					}
+					prev = { 
+						set_variable = { 
+							name = toggle_player_tasks_time_factor_intrigue_manage_oversight
+							value = prev.var:toggle_player_tasks_tt
+						}
+					}
+				}
+				if = { 
+					limit = { 
+						var:task_template = { 
+							has_variable = task_learning_mult
+						}
+					}
+					set_variable = { 
+						name = toggle_player_tasks_tt
+						value = var:task_template.var:task_learning_mult
+					}
+					change_variable = { 
+						name = toggle_player_tasks_tt
+						multiply = scope:toggle_player_tasks_t.learning
+					}
+					if = { 
+						limit = { 
+							var:task_template = { 
+								has_variable = task_learning_base
+							}
+						}
+						change_variable = { 
+							name = toggle_player_tasks_tt
+							add = var:task_template.var:task_learning_base
+						}
+					}
+					change_variable = { 
+						name = toggle_player_tasks_t
+						multiply = var:toggle_player_tasks_tt
+					}
+					prev = { 
+						set_variable = { 
+							name = toggle_player_tasks_time_factor_learning_manage_oversight
+							value = prev.var:toggle_player_tasks_tt
+						}
+					}
+				}
+				change_variable = { 
+					name = toggle_player_tasks_t
+					add = 0.05
+				}
+				set_variable = { 
+					name = toggle_player_tasks_tt
+					value = var:task_time_cost
+				}
+				change_variable = { 
+					name = toggle_player_tasks_tt
+					divide = var:toggle_player_tasks_t
+				}
+				set_variable = { 
+					name = toggle_player_tasks_t
+					value = var:toggle_player_tasks_tt
+				}
+				scope:toggle_player_tasks_t = { 
+					change_variable = { 
+						name = toggle_player_tasks_time
+						add = prev.var:toggle_player_tasks_t
+					}
+				}
+				prev = { 
+					set_variable = { 
+						name = toggle_player_tasks_has_manage_oversight
+						value = 1
+					}
+					set_variable = { 
+						name = toggle_player_tasks_time_manage_oversight
+						value = prev.var:toggle_player_tasks_t
+					}
+					set_variable = { 
+						name = toggle_player_tasks_time_in_manage_oversight
+						value = prev.var:task_time_in
+					}
+					set_variable = { 
+						name = toggle_player_tasks_time_cost_manage_oversight
+						value = prev.var:task_time_cost
+					}
+					set_variable = { 
+						name = toggle_player_tasks_crpt_manage_oversight
+						value = prev.var:task_crpt
+					}
+				}
+				remove_variable = toggle_player_tasks_t
+				remove_variable = toggle_player_tasks_tt
+			}
+			set_variable = { 
+				name = toggle_player_tasks_time_remain
+				value = 20
+			}
+			change_variable = { 
+				name = toggle_player_tasks_time_remain
+				subtract = var:toggle_player_tasks_time
+			}
+			every_councillor = { 
+				set_variable = { 
+					name = toggle_player_tasks_time_remain
+					value = 20
+				}
+				change_variable = { 
+					name = toggle_player_tasks_time_remain
+					subtract = var:toggle_player_tasks_time
+				}
+			}
+			ordered_diplomacy_councillor = { 
+				position = 0
+				set_variable = { 
+					name = toggle_player_tasks_time_remain
+					value = 20
+				}
+				change_variable = { 
+					name = toggle_player_tasks_time_remain
+					subtract = var:toggle_player_tasks_time
+				}
+			}
+			ordered_martial_councillor = { 
+				position = 0
+				set_variable = { 
+					name = toggle_player_tasks_time_remain
+					value = 20
+				}
+				change_variable = { 
+					name = toggle_player_tasks_time_remain
+					subtract = var:toggle_player_tasks_time
+				}
+			}
+			ordered_stewardship_councillor = { 
+				position = 0
+				set_variable = { 
+					name = toggle_player_tasks_time_remain
+					value = 20
+				}
+				change_variable = { 
+					name = toggle_player_tasks_time_remain
+					subtract = var:toggle_player_tasks_time
+				}
+			}
+			ordered_intrigue_councillor = { 
+				position = 0
+				set_variable = { 
+					name = toggle_player_tasks_time_remain
+					value = 20
+				}
+				change_variable = { 
+					name = toggle_player_tasks_time_remain
+					subtract = var:toggle_player_tasks_time
+				}
+			}
+			ordered_learning_councillor = { 
+				position = 0
+				set_variable = { 
+					name = toggle_player_tasks_time_remain
+					value = 20
+				}
+				change_variable = { 
+					name = toggle_player_tasks_time_remain
+					subtract = var:toggle_player_tasks_time
+				}
+			}
+		}
+	}
+}
+close_player_tasks = { 
+	scope = character
+	is_shown = { 
+		always = yes
+	}
+	is_valid = { 
+		always = yes
+	}
+	effect = { 
+		if = { 
+			limit = { 
+				has_variable = toggled_player_tasks
+			}
+			remove_variable = toggled_player_tasks
+			remove_variable = toggle_player_tasks_time
+			remove_variable = toggle_player_tasks_time_remain
+			if = { 
+				limit = { 
+					has_variable = toggle_player_tasks_councillor_diplomacy
+				}
+				var:toggle_player_tasks_councillor_diplomacy = { 
+					remove_variable = toggle_player_tasks_time
+					remove_variable = toggle_player_tasks_time_remain
+				}
+			}
+			remove_variable = toggle_player_tasks_councillor_diplomacy
+			remove_variable = toggle_player_tasks_councillor_has_diplomacy
+			if = { 
+				limit = { 
+					has_variable = toggle_player_tasks_councillor_martial
+				}
+				var:toggle_player_tasks_councillor_martial = { 
+					remove_variable = toggle_player_tasks_time
+					remove_variable = toggle_player_tasks_time_remain
+				}
+			}
+			remove_variable = toggle_player_tasks_councillor_martial
+			remove_variable = toggle_player_tasks_councillor_has_martial
+			if = { 
+				limit = { 
+					has_variable = toggle_player_tasks_councillor_stewardship
+				}
+				var:toggle_player_tasks_councillor_stewardship = { 
+					remove_variable = toggle_player_tasks_time
+					remove_variable = toggle_player_tasks_time_remain
+				}
+			}
+			remove_variable = toggle_player_tasks_councillor_stewardship
+			remove_variable = toggle_player_tasks_councillor_has_stewardship
+			if = { 
+				limit = { 
+					has_variable = toggle_player_tasks_councillor_intrigue
+				}
+				var:toggle_player_tasks_councillor_intrigue = { 
+					remove_variable = toggle_player_tasks_time
+					remove_variable = toggle_player_tasks_time_remain
+				}
+			}
+			remove_variable = toggle_player_tasks_councillor_intrigue
+			remove_variable = toggle_player_tasks_councillor_has_intrigue
+			if = { 
+				limit = { 
+					has_variable = toggle_player_tasks_councillor_learning
+				}
+				var:toggle_player_tasks_councillor_learning = { 
+					remove_variable = toggle_player_tasks_time
+					remove_variable = toggle_player_tasks_time_remain
+				}
+			}
+			remove_variable = toggle_player_tasks_councillor_learning
+			remove_variable = toggle_player_tasks_councillor_has_learning
+			remove_variable = toggle_player_tasks_has_manage_domain
+			remove_variable = toggle_player_tasks_time_manage_domain
+			remove_variable = toggle_player_tasks_time_in_manage_domain
+			remove_variable = toggle_player_tasks_time_cost_manage_domain
+			remove_variable = toggle_player_tasks_crpt_manage_domain
+			remove_variable = toggle_player_tasks_time_factor_diplomacy_manage_domain
+			remove_variable = toggle_player_tasks_time_factor_martial_manage_domain
+			remove_variable = toggle_player_tasks_time_factor_stewardship_manage_domain
+			remove_variable = toggle_player_tasks_time_factor_intrigue_manage_domain
+			remove_variable = toggle_player_tasks_time_factor_learning_manage_domain
+			remove_variable = toggle_player_tasks_has_manage_realm
+			remove_variable = toggle_player_tasks_time_manage_realm
+			remove_variable = toggle_player_tasks_time_in_manage_realm
+			remove_variable = toggle_player_tasks_time_cost_manage_realm
+			remove_variable = toggle_player_tasks_crpt_manage_realm
+			remove_variable = toggle_player_tasks_time_factor_diplomacy_manage_realm
+			remove_variable = toggle_player_tasks_time_factor_martial_manage_realm
+			remove_variable = toggle_player_tasks_time_factor_stewardship_manage_realm
+			remove_variable = toggle_player_tasks_time_factor_intrigue_manage_realm
+			remove_variable = toggle_player_tasks_time_factor_learning_manage_realm
+			remove_variable = toggle_player_tasks_has_manage_logistics
+			remove_variable = toggle_player_tasks_time_manage_logistics
+			remove_variable = toggle_player_tasks_time_in_manage_logistics
+			remove_variable = toggle_player_tasks_time_cost_manage_logistics
+			remove_variable = toggle_player_tasks_crpt_manage_logistics
+			remove_variable = toggle_player_tasks_time_factor_diplomacy_manage_logistics
+			remove_variable = toggle_player_tasks_time_factor_martial_manage_logistics
+			remove_variable = toggle_player_tasks_time_factor_stewardship_manage_logistics
+			remove_variable = toggle_player_tasks_time_factor_intrigue_manage_logistics
+			remove_variable = toggle_player_tasks_time_factor_learning_manage_logistics
+			remove_variable = toggle_player_tasks_has_manage_court
+			remove_variable = toggle_player_tasks_time_manage_court
+			remove_variable = toggle_player_tasks_time_in_manage_court
+			remove_variable = toggle_player_tasks_time_cost_manage_court
+			remove_variable = toggle_player_tasks_crpt_manage_court
+			remove_variable = toggle_player_tasks_time_factor_diplomacy_manage_court
+			remove_variable = toggle_player_tasks_time_factor_martial_manage_court
+			remove_variable = toggle_player_tasks_time_factor_stewardship_manage_court
+			remove_variable = toggle_player_tasks_time_factor_intrigue_manage_court
+			remove_variable = toggle_player_tasks_time_factor_learning_manage_court
+			remove_variable = toggle_player_tasks_has_manage_stockpile
+			remove_variable = toggle_player_tasks_time_manage_stockpile
+			remove_variable = toggle_player_tasks_time_in_manage_stockpile
+			remove_variable = toggle_player_tasks_time_cost_manage_stockpile
+			remove_variable = toggle_player_tasks_crpt_manage_stockpile
+			remove_variable = toggle_player_tasks_time_factor_diplomacy_manage_stockpile
+			remove_variable = toggle_player_tasks_time_factor_martial_manage_stockpile
+			remove_variable = toggle_player_tasks_time_factor_stewardship_manage_stockpile
+			remove_variable = toggle_player_tasks_time_factor_intrigue_manage_stockpile
+			remove_variable = toggle_player_tasks_time_factor_learning_manage_stockpile
+			remove_variable = toggle_player_tasks_has_manage_oversight
+			remove_variable = toggle_player_tasks_time_manage_oversight
+			remove_variable = toggle_player_tasks_time_in_manage_oversight
+			remove_variable = toggle_player_tasks_time_cost_manage_oversight
+			remove_variable = toggle_player_tasks_crpt_manage_oversight
+			remove_variable = toggle_player_tasks_time_factor_diplomacy_manage_oversight
+			remove_variable = toggle_player_tasks_time_factor_martial_manage_oversight
+			remove_variable = toggle_player_tasks_time_factor_stewardship_manage_oversight
+			remove_variable = toggle_player_tasks_time_factor_intrigue_manage_oversight
+			remove_variable = toggle_player_tasks_time_factor_learning_manage_oversight
+		}
+	}
+}

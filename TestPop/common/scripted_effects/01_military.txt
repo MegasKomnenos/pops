@@ -286,14 +286,6 @@ mil_maa_player = {
 }
 
 mil_main = {
-	every_ruler = {
-		limit = {
-			is_character = yes
-			is_landed = yes
-		}
-		set_variable = { name = mil_levy_field value = 0 }
-	}
-	
 	every_province = {
 		limit = {
 			is_valid_prov = yes
@@ -302,24 +294,19 @@ mil_main = {
 		mil_refresh_levy = yes
 	}
 	
-	every_army = {
-		army_owner = {
-			if = {
-				limit = {
-					is_character = yes
-					is_landed = yes
-					is_ruler = yes
-				}
-				change_variable = { name = mil_levy_field add = prev.army_max_size }
-			}
-		}
-	}
-	
 	every_ruler = {
 		limit = {
 			is_character = yes
 			is_landed = yes
 		}
+		set_variable = { name = mil_levy_field value = 0 }
+		
+		every_army = {
+			prev = {
+				change_variable = { name = mil_levy_field add = prev.army_max_size }
+			}
+		}
+		
 		if = {
 			limit = {
 				has_variable = mil_levy_field

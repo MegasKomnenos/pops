@@ -4,7 +4,92 @@
 			is_character = yes
 			is_landed = yes
 		}
+		save_temporary_scope_as = setup_rulers_t
+		
 		set_variable = { name = is_character value = 1 }
+		
+		capital_province = {
+			^^goods^
+				every_in_list = {
+					variable = trade_dat_&goods&
+					
+					prev = {
+						add_to_variable_list = { name = trade_dat_&goods& target = prev }
+					}
+				}
+				every_in_list = {
+					variable = array_trade_dat_&goods&
+					
+					prev = {
+						add_to_variable_list = { name = array_trade_dat_&goods& target = prev }
+					}
+				}
+				prev = {	
+					set_variable = { name = trade_has_&goods& value = prev.var:trade_has_&goods& }
+					set_variable = { name = trade_want_&goods& value = prev.var:trade_want_&goods& }
+					set_variable = { name = trade_in_&goods& value = prev.var:trade_in_&goods& }
+					set_variable = { name = trade_out_&goods& value = prev.var:trade_out_&goods& }
+					set_variable = { name = trade_earn_&goods& value = prev.var:trade_earn_&goods& }
+					set_variable = { name = trade_pay_&goods& value = prev.var:trade_pay_&goods& }
+					set_variable = { name = trade_sply_&goods& value = prev.var:trade_sply_&goods& }
+					set_variable = { name = trade_dmnd_&goods& value = prev.var:trade_dmnd_&goods& }
+					set_variable = { name = trade_price_&goods& value = prev.var:trade_price_&goods& }
+				}
+			^
+			
+			prev = {
+				set_variable = { name = trade_gold value = prev.var:trade_gold }
+				set_variable = { name = mil_maa value = prev.var:trade_maa }
+				set_variable = { name = mil_maintain value = prev.var:trade_maintain }
+			}
+			
+			every_in_list = {
+				variable = task_tasks
+				
+				scope:setup_rulers_t = {
+					add_to_variable_list = { name = task_tasks target = prev }
+				}
+			}
+			
+			set_variable = { name = setup_rulers_t value = 1 }
+			
+			every_in_global_list = {
+				variable = trade_merchants
+				
+				^^goods^
+					set_global_variable = { name = setup_rulers_t value = 0 }
+					
+					every_in_list = {
+						variable = trade_dat_&goods&
+						
+						if = {
+							limit = {
+								has_variable = setup_rulers_t
+							}
+							prev = {
+								remove_list_variable = { name = trade_dat_&goods& target = prev }
+								add_to_variable_list = { name = trade_dat_&goods& target = scope:setup_rulers_t }
+								
+								ordered_in_list = {
+									variable = array_trade_dat_&goods&
+									position = global_var:setup_rulers_t
+									
+									prev = {
+										remove_list_variable = { name = array_trade_dat_&goods& target = prev }
+										add_to_variable_list = { name = array_trade_dat_&goods& target = prev }
+									}
+								}
+							}
+						}
+						else = {
+							change_global_variable = { name = setup_rulers_t add = 1 }
+						}
+					}
+				^
+			}
+			
+			remove_variable = setup_rulers_t
+		}
 		
 		if = {
 			limit = {
@@ -12,17 +97,33 @@
 				
 				var:trade_gold > 0
 			}
-			remove_short_term_gold = 100000
-			
 			eff_binary_1_16 = { name = trade_gold eff = add_gold }
 		}
 		
-		set_variable = { name = mil_maa value = var:trade_maa }
-		set_variable = { name = mil_maintain value = var:trade_maintain }
+		remove_variable = trade_gold
+	}
+	
+	every_province = {
+		^^goods^
+			remove_variable = trade_has_&goods&
+			remove_variable = trade_want_&goods&
+			remove_variable = trade_in_&goods&
+			remove_variable = trade_out_&goods&
+			remove_variable = trade_earn_&goods&
+			remove_variable = trade_pay_&goods&
+			remove_variable = trade_sply_&goods&
+			remove_variable = trade_dmnd_&goods&
+			remove_variable = trade_price_&goods&
+			
+			clear_variable_list = trade_dat_&goods&
+			array_clear = { name = trade_dat_&goods& }
+		^
 		
 		remove_variable = trade_gold
 		remove_variable = mil_maa
 		remove_variable = mil_maintain
+		
+		clear_variable_list = task_tasks
 	}
 	
 	modi_refresh = yes
@@ -34,4 +135,5 @@
 	task_ai = yes
 	
 	remove_global_variable = sim_i
+	remove_global_variable = setup_rulers_t
 }

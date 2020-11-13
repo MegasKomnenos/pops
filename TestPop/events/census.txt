@@ -83989,16 +83989,6 @@ census.10 = {
 	immediate = { 
 		while = { 
 			count = 12
-			every_ruler = { 
-				limit = { 
-					is_character = yes
-					is_landed = yes
-				}
-				set_variable = { 
-					name = mil_levy_field
-					value = 0
-				}
-			}
 			every_province = { 
 				limit = { 
 					is_valid_prov = yes
@@ -84110,25 +84100,22 @@ census.10 = {
 					subtract = var:mil_levy_field
 				}
 			}
-			every_army = { 
-				army_owner = { 
-					if = { 
-						limit = { 
-							is_character = yes
-							is_landed = yes
-							is_ruler = yes
-						}
+			every_ruler = { 
+				limit = { 
+					is_character = yes
+					is_landed = yes
+				}
+				set_variable = { 
+					name = mil_levy_field
+					value = 0
+				}
+				every_army = { 
+					prev = { 
 						change_variable = { 
 							name = mil_levy_field
 							add = prev.army_max_size
 						}
 					}
-				}
-			}
-			every_ruler = { 
-				limit = { 
-					is_character = yes
-					is_landed = yes
 				}
 				if = { 
 					limit = { 
@@ -89080,16 +89067,6 @@ census.12 = {
 	type = empty
 	hidden = yes
 	immediate = { 
-		every_ruler = { 
-			limit = { 
-				is_character = yes
-				is_landed = yes
-			}
-			set_variable = { 
-				name = mil_levy_field
-				value = 0
-			}
-		}
 		every_province = { 
 			limit = { 
 				is_valid_prov = yes
@@ -89201,25 +89178,22 @@ census.12 = {
 				subtract = var:mil_levy_field
 			}
 		}
-		every_army = { 
-			army_owner = { 
-				if = { 
-					limit = { 
-						is_character = yes
-						is_landed = yes
-						is_ruler = yes
-					}
+		every_ruler = { 
+			limit = { 
+				is_character = yes
+				is_landed = yes
+			}
+			set_variable = { 
+				name = mil_levy_field
+				value = 0
+			}
+			every_army = { 
+				prev = { 
 					change_variable = { 
 						name = mil_levy_field
 						add = prev.army_max_size
 					}
 				}
-			}
-		}
-		every_ruler = { 
-			limit = { 
-				is_character = yes
-				is_landed = yes
 			}
 			if = { 
 				limit = { 
@@ -92128,16 +92102,1617 @@ census.99 = {
 				is_character = yes
 				is_landed = yes
 			}
+			save_temporary_scope_as = setup_rulers_t
 			set_variable = { 
 				name = is_character
 				value = 1
+			}
+			capital_province = { 
+				every_in_list = { 
+					variable = trade_dat_food
+					prev = { 
+						add_to_variable_list = { 
+							name = trade_dat_food
+							target = prev
+						}
+					}
+				}
+				every_in_list = { 
+					variable = array_trade_dat_food
+					prev = { 
+						add_to_variable_list = { 
+							name = array_trade_dat_food
+							target = prev
+						}
+					}
+				}
+				prev = { 
+					set_variable = { 
+						name = trade_has_food
+						value = prev.var:trade_has_food
+					}
+					set_variable = { 
+						name = trade_want_food
+						value = prev.var:trade_want_food
+					}
+					set_variable = { 
+						name = trade_in_food
+						value = prev.var:trade_in_food
+					}
+					set_variable = { 
+						name = trade_out_food
+						value = prev.var:trade_out_food
+					}
+					set_variable = { 
+						name = trade_earn_food
+						value = prev.var:trade_earn_food
+					}
+					set_variable = { 
+						name = trade_pay_food
+						value = prev.var:trade_pay_food
+					}
+					set_variable = { 
+						name = trade_sply_food
+						value = prev.var:trade_sply_food
+					}
+					set_variable = { 
+						name = trade_dmnd_food
+						value = prev.var:trade_dmnd_food
+					}
+					set_variable = { 
+						name = trade_price_food
+						value = prev.var:trade_price_food
+					}
+				}
+				every_in_list = { 
+					variable = trade_dat_cereal
+					prev = { 
+						add_to_variable_list = { 
+							name = trade_dat_cereal
+							target = prev
+						}
+					}
+				}
+				every_in_list = { 
+					variable = array_trade_dat_cereal
+					prev = { 
+						add_to_variable_list = { 
+							name = array_trade_dat_cereal
+							target = prev
+						}
+					}
+				}
+				prev = { 
+					set_variable = { 
+						name = trade_has_cereal
+						value = prev.var:trade_has_cereal
+					}
+					set_variable = { 
+						name = trade_want_cereal
+						value = prev.var:trade_want_cereal
+					}
+					set_variable = { 
+						name = trade_in_cereal
+						value = prev.var:trade_in_cereal
+					}
+					set_variable = { 
+						name = trade_out_cereal
+						value = prev.var:trade_out_cereal
+					}
+					set_variable = { 
+						name = trade_earn_cereal
+						value = prev.var:trade_earn_cereal
+					}
+					set_variable = { 
+						name = trade_pay_cereal
+						value = prev.var:trade_pay_cereal
+					}
+					set_variable = { 
+						name = trade_sply_cereal
+						value = prev.var:trade_sply_cereal
+					}
+					set_variable = { 
+						name = trade_dmnd_cereal
+						value = prev.var:trade_dmnd_cereal
+					}
+					set_variable = { 
+						name = trade_price_cereal
+						value = prev.var:trade_price_cereal
+					}
+				}
+				every_in_list = { 
+					variable = trade_dat_salted
+					prev = { 
+						add_to_variable_list = { 
+							name = trade_dat_salted
+							target = prev
+						}
+					}
+				}
+				every_in_list = { 
+					variable = array_trade_dat_salted
+					prev = { 
+						add_to_variable_list = { 
+							name = array_trade_dat_salted
+							target = prev
+						}
+					}
+				}
+				prev = { 
+					set_variable = { 
+						name = trade_has_salted
+						value = prev.var:trade_has_salted
+					}
+					set_variable = { 
+						name = trade_want_salted
+						value = prev.var:trade_want_salted
+					}
+					set_variable = { 
+						name = trade_in_salted
+						value = prev.var:trade_in_salted
+					}
+					set_variable = { 
+						name = trade_out_salted
+						value = prev.var:trade_out_salted
+					}
+					set_variable = { 
+						name = trade_earn_salted
+						value = prev.var:trade_earn_salted
+					}
+					set_variable = { 
+						name = trade_pay_salted
+						value = prev.var:trade_pay_salted
+					}
+					set_variable = { 
+						name = trade_sply_salted
+						value = prev.var:trade_sply_salted
+					}
+					set_variable = { 
+						name = trade_dmnd_salted
+						value = prev.var:trade_dmnd_salted
+					}
+					set_variable = { 
+						name = trade_price_salted
+						value = prev.var:trade_price_salted
+					}
+				}
+				every_in_list = { 
+					variable = trade_dat_salt
+					prev = { 
+						add_to_variable_list = { 
+							name = trade_dat_salt
+							target = prev
+						}
+					}
+				}
+				every_in_list = { 
+					variable = array_trade_dat_salt
+					prev = { 
+						add_to_variable_list = { 
+							name = array_trade_dat_salt
+							target = prev
+						}
+					}
+				}
+				prev = { 
+					set_variable = { 
+						name = trade_has_salt
+						value = prev.var:trade_has_salt
+					}
+					set_variable = { 
+						name = trade_want_salt
+						value = prev.var:trade_want_salt
+					}
+					set_variable = { 
+						name = trade_in_salt
+						value = prev.var:trade_in_salt
+					}
+					set_variable = { 
+						name = trade_out_salt
+						value = prev.var:trade_out_salt
+					}
+					set_variable = { 
+						name = trade_earn_salt
+						value = prev.var:trade_earn_salt
+					}
+					set_variable = { 
+						name = trade_pay_salt
+						value = prev.var:trade_pay_salt
+					}
+					set_variable = { 
+						name = trade_sply_salt
+						value = prev.var:trade_sply_salt
+					}
+					set_variable = { 
+						name = trade_dmnd_salt
+						value = prev.var:trade_dmnd_salt
+					}
+					set_variable = { 
+						name = trade_price_salt
+						value = prev.var:trade_price_salt
+					}
+				}
+				every_in_list = { 
+					variable = trade_dat_mud
+					prev = { 
+						add_to_variable_list = { 
+							name = trade_dat_mud
+							target = prev
+						}
+					}
+				}
+				every_in_list = { 
+					variable = array_trade_dat_mud
+					prev = { 
+						add_to_variable_list = { 
+							name = array_trade_dat_mud
+							target = prev
+						}
+					}
+				}
+				prev = { 
+					set_variable = { 
+						name = trade_has_mud
+						value = prev.var:trade_has_mud
+					}
+					set_variable = { 
+						name = trade_want_mud
+						value = prev.var:trade_want_mud
+					}
+					set_variable = { 
+						name = trade_in_mud
+						value = prev.var:trade_in_mud
+					}
+					set_variable = { 
+						name = trade_out_mud
+						value = prev.var:trade_out_mud
+					}
+					set_variable = { 
+						name = trade_earn_mud
+						value = prev.var:trade_earn_mud
+					}
+					set_variable = { 
+						name = trade_pay_mud
+						value = prev.var:trade_pay_mud
+					}
+					set_variable = { 
+						name = trade_sply_mud
+						value = prev.var:trade_sply_mud
+					}
+					set_variable = { 
+						name = trade_dmnd_mud
+						value = prev.var:trade_dmnd_mud
+					}
+					set_variable = { 
+						name = trade_price_mud
+						value = prev.var:trade_price_mud
+					}
+				}
+				every_in_list = { 
+					variable = trade_dat_fuel
+					prev = { 
+						add_to_variable_list = { 
+							name = trade_dat_fuel
+							target = prev
+						}
+					}
+				}
+				every_in_list = { 
+					variable = array_trade_dat_fuel
+					prev = { 
+						add_to_variable_list = { 
+							name = array_trade_dat_fuel
+							target = prev
+						}
+					}
+				}
+				prev = { 
+					set_variable = { 
+						name = trade_has_fuel
+						value = prev.var:trade_has_fuel
+					}
+					set_variable = { 
+						name = trade_want_fuel
+						value = prev.var:trade_want_fuel
+					}
+					set_variable = { 
+						name = trade_in_fuel
+						value = prev.var:trade_in_fuel
+					}
+					set_variable = { 
+						name = trade_out_fuel
+						value = prev.var:trade_out_fuel
+					}
+					set_variable = { 
+						name = trade_earn_fuel
+						value = prev.var:trade_earn_fuel
+					}
+					set_variable = { 
+						name = trade_pay_fuel
+						value = prev.var:trade_pay_fuel
+					}
+					set_variable = { 
+						name = trade_sply_fuel
+						value = prev.var:trade_sply_fuel
+					}
+					set_variable = { 
+						name = trade_dmnd_fuel
+						value = prev.var:trade_dmnd_fuel
+					}
+					set_variable = { 
+						name = trade_price_fuel
+						value = prev.var:trade_price_fuel
+					}
+				}
+				every_in_list = { 
+					variable = trade_dat_fiber
+					prev = { 
+						add_to_variable_list = { 
+							name = trade_dat_fiber
+							target = prev
+						}
+					}
+				}
+				every_in_list = { 
+					variable = array_trade_dat_fiber
+					prev = { 
+						add_to_variable_list = { 
+							name = array_trade_dat_fiber
+							target = prev
+						}
+					}
+				}
+				prev = { 
+					set_variable = { 
+						name = trade_has_fiber
+						value = prev.var:trade_has_fiber
+					}
+					set_variable = { 
+						name = trade_want_fiber
+						value = prev.var:trade_want_fiber
+					}
+					set_variable = { 
+						name = trade_in_fiber
+						value = prev.var:trade_in_fiber
+					}
+					set_variable = { 
+						name = trade_out_fiber
+						value = prev.var:trade_out_fiber
+					}
+					set_variable = { 
+						name = trade_earn_fiber
+						value = prev.var:trade_earn_fiber
+					}
+					set_variable = { 
+						name = trade_pay_fiber
+						value = prev.var:trade_pay_fiber
+					}
+					set_variable = { 
+						name = trade_sply_fiber
+						value = prev.var:trade_sply_fiber
+					}
+					set_variable = { 
+						name = trade_dmnd_fiber
+						value = prev.var:trade_dmnd_fiber
+					}
+					set_variable = { 
+						name = trade_price_fiber
+						value = prev.var:trade_price_fiber
+					}
+				}
+				every_in_list = { 
+					variable = trade_dat_timber
+					prev = { 
+						add_to_variable_list = { 
+							name = trade_dat_timber
+							target = prev
+						}
+					}
+				}
+				every_in_list = { 
+					variable = array_trade_dat_timber
+					prev = { 
+						add_to_variable_list = { 
+							name = array_trade_dat_timber
+							target = prev
+						}
+					}
+				}
+				prev = { 
+					set_variable = { 
+						name = trade_has_timber
+						value = prev.var:trade_has_timber
+					}
+					set_variable = { 
+						name = trade_want_timber
+						value = prev.var:trade_want_timber
+					}
+					set_variable = { 
+						name = trade_in_timber
+						value = prev.var:trade_in_timber
+					}
+					set_variable = { 
+						name = trade_out_timber
+						value = prev.var:trade_out_timber
+					}
+					set_variable = { 
+						name = trade_earn_timber
+						value = prev.var:trade_earn_timber
+					}
+					set_variable = { 
+						name = trade_pay_timber
+						value = prev.var:trade_pay_timber
+					}
+					set_variable = { 
+						name = trade_sply_timber
+						value = prev.var:trade_sply_timber
+					}
+					set_variable = { 
+						name = trade_dmnd_timber
+						value = prev.var:trade_dmnd_timber
+					}
+					set_variable = { 
+						name = trade_price_timber
+						value = prev.var:trade_price_timber
+					}
+				}
+				every_in_list = { 
+					variable = trade_dat_metal
+					prev = { 
+						add_to_variable_list = { 
+							name = trade_dat_metal
+							target = prev
+						}
+					}
+				}
+				every_in_list = { 
+					variable = array_trade_dat_metal
+					prev = { 
+						add_to_variable_list = { 
+							name = array_trade_dat_metal
+							target = prev
+						}
+					}
+				}
+				prev = { 
+					set_variable = { 
+						name = trade_has_metal
+						value = prev.var:trade_has_metal
+					}
+					set_variable = { 
+						name = trade_want_metal
+						value = prev.var:trade_want_metal
+					}
+					set_variable = { 
+						name = trade_in_metal
+						value = prev.var:trade_in_metal
+					}
+					set_variable = { 
+						name = trade_out_metal
+						value = prev.var:trade_out_metal
+					}
+					set_variable = { 
+						name = trade_earn_metal
+						value = prev.var:trade_earn_metal
+					}
+					set_variable = { 
+						name = trade_pay_metal
+						value = prev.var:trade_pay_metal
+					}
+					set_variable = { 
+						name = trade_sply_metal
+						value = prev.var:trade_sply_metal
+					}
+					set_variable = { 
+						name = trade_dmnd_metal
+						value = prev.var:trade_dmnd_metal
+					}
+					set_variable = { 
+						name = trade_price_metal
+						value = prev.var:trade_price_metal
+					}
+				}
+				every_in_list = { 
+					variable = trade_dat_exotics_w
+					prev = { 
+						add_to_variable_list = { 
+							name = trade_dat_exotics_w
+							target = prev
+						}
+					}
+				}
+				every_in_list = { 
+					variable = array_trade_dat_exotics_w
+					prev = { 
+						add_to_variable_list = { 
+							name = array_trade_dat_exotics_w
+							target = prev
+						}
+					}
+				}
+				prev = { 
+					set_variable = { 
+						name = trade_has_exotics_w
+						value = prev.var:trade_has_exotics_w
+					}
+					set_variable = { 
+						name = trade_want_exotics_w
+						value = prev.var:trade_want_exotics_w
+					}
+					set_variable = { 
+						name = trade_in_exotics_w
+						value = prev.var:trade_in_exotics_w
+					}
+					set_variable = { 
+						name = trade_out_exotics_w
+						value = prev.var:trade_out_exotics_w
+					}
+					set_variable = { 
+						name = trade_earn_exotics_w
+						value = prev.var:trade_earn_exotics_w
+					}
+					set_variable = { 
+						name = trade_pay_exotics_w
+						value = prev.var:trade_pay_exotics_w
+					}
+					set_variable = { 
+						name = trade_sply_exotics_w
+						value = prev.var:trade_sply_exotics_w
+					}
+					set_variable = { 
+						name = trade_dmnd_exotics_w
+						value = prev.var:trade_dmnd_exotics_w
+					}
+					set_variable = { 
+						name = trade_price_exotics_w
+						value = prev.var:trade_price_exotics_w
+					}
+				}
+				every_in_list = { 
+					variable = trade_dat_exotics_e
+					prev = { 
+						add_to_variable_list = { 
+							name = trade_dat_exotics_e
+							target = prev
+						}
+					}
+				}
+				every_in_list = { 
+					variable = array_trade_dat_exotics_e
+					prev = { 
+						add_to_variable_list = { 
+							name = array_trade_dat_exotics_e
+							target = prev
+						}
+					}
+				}
+				prev = { 
+					set_variable = { 
+						name = trade_has_exotics_e
+						value = prev.var:trade_has_exotics_e
+					}
+					set_variable = { 
+						name = trade_want_exotics_e
+						value = prev.var:trade_want_exotics_e
+					}
+					set_variable = { 
+						name = trade_in_exotics_e
+						value = prev.var:trade_in_exotics_e
+					}
+					set_variable = { 
+						name = trade_out_exotics_e
+						value = prev.var:trade_out_exotics_e
+					}
+					set_variable = { 
+						name = trade_earn_exotics_e
+						value = prev.var:trade_earn_exotics_e
+					}
+					set_variable = { 
+						name = trade_pay_exotics_e
+						value = prev.var:trade_pay_exotics_e
+					}
+					set_variable = { 
+						name = trade_sply_exotics_e
+						value = prev.var:trade_sply_exotics_e
+					}
+					set_variable = { 
+						name = trade_dmnd_exotics_e
+						value = prev.var:trade_dmnd_exotics_e
+					}
+					set_variable = { 
+						name = trade_price_exotics_e
+						value = prev.var:trade_price_exotics_e
+					}
+				}
+				every_in_list = { 
+					variable = trade_dat_exotics_g
+					prev = { 
+						add_to_variable_list = { 
+							name = trade_dat_exotics_g
+							target = prev
+						}
+					}
+				}
+				every_in_list = { 
+					variable = array_trade_dat_exotics_g
+					prev = { 
+						add_to_variable_list = { 
+							name = array_trade_dat_exotics_g
+							target = prev
+						}
+					}
+				}
+				prev = { 
+					set_variable = { 
+						name = trade_has_exotics_g
+						value = prev.var:trade_has_exotics_g
+					}
+					set_variable = { 
+						name = trade_want_exotics_g
+						value = prev.var:trade_want_exotics_g
+					}
+					set_variable = { 
+						name = trade_in_exotics_g
+						value = prev.var:trade_in_exotics_g
+					}
+					set_variable = { 
+						name = trade_out_exotics_g
+						value = prev.var:trade_out_exotics_g
+					}
+					set_variable = { 
+						name = trade_earn_exotics_g
+						value = prev.var:trade_earn_exotics_g
+					}
+					set_variable = { 
+						name = trade_pay_exotics_g
+						value = prev.var:trade_pay_exotics_g
+					}
+					set_variable = { 
+						name = trade_sply_exotics_g
+						value = prev.var:trade_sply_exotics_g
+					}
+					set_variable = { 
+						name = trade_dmnd_exotics_g
+						value = prev.var:trade_dmnd_exotics_g
+					}
+					set_variable = { 
+						name = trade_price_exotics_g
+						value = prev.var:trade_price_exotics_g
+					}
+				}
+				every_in_list = { 
+					variable = trade_dat_textile
+					prev = { 
+						add_to_variable_list = { 
+							name = trade_dat_textile
+							target = prev
+						}
+					}
+				}
+				every_in_list = { 
+					variable = array_trade_dat_textile
+					prev = { 
+						add_to_variable_list = { 
+							name = array_trade_dat_textile
+							target = prev
+						}
+					}
+				}
+				prev = { 
+					set_variable = { 
+						name = trade_has_textile
+						value = prev.var:trade_has_textile
+					}
+					set_variable = { 
+						name = trade_want_textile
+						value = prev.var:trade_want_textile
+					}
+					set_variable = { 
+						name = trade_in_textile
+						value = prev.var:trade_in_textile
+					}
+					set_variable = { 
+						name = trade_out_textile
+						value = prev.var:trade_out_textile
+					}
+					set_variable = { 
+						name = trade_earn_textile
+						value = prev.var:trade_earn_textile
+					}
+					set_variable = { 
+						name = trade_pay_textile
+						value = prev.var:trade_pay_textile
+					}
+					set_variable = { 
+						name = trade_sply_textile
+						value = prev.var:trade_sply_textile
+					}
+					set_variable = { 
+						name = trade_dmnd_textile
+						value = prev.var:trade_dmnd_textile
+					}
+					set_variable = { 
+						name = trade_price_textile
+						value = prev.var:trade_price_textile
+					}
+				}
+				every_in_list = { 
+					variable = trade_dat_pottery
+					prev = { 
+						add_to_variable_list = { 
+							name = trade_dat_pottery
+							target = prev
+						}
+					}
+				}
+				every_in_list = { 
+					variable = array_trade_dat_pottery
+					prev = { 
+						add_to_variable_list = { 
+							name = array_trade_dat_pottery
+							target = prev
+						}
+					}
+				}
+				prev = { 
+					set_variable = { 
+						name = trade_has_pottery
+						value = prev.var:trade_has_pottery
+					}
+					set_variable = { 
+						name = trade_want_pottery
+						value = prev.var:trade_want_pottery
+					}
+					set_variable = { 
+						name = trade_in_pottery
+						value = prev.var:trade_in_pottery
+					}
+					set_variable = { 
+						name = trade_out_pottery
+						value = prev.var:trade_out_pottery
+					}
+					set_variable = { 
+						name = trade_earn_pottery
+						value = prev.var:trade_earn_pottery
+					}
+					set_variable = { 
+						name = trade_pay_pottery
+						value = prev.var:trade_pay_pottery
+					}
+					set_variable = { 
+						name = trade_sply_pottery
+						value = prev.var:trade_sply_pottery
+					}
+					set_variable = { 
+						name = trade_dmnd_pottery
+						value = prev.var:trade_dmnd_pottery
+					}
+					set_variable = { 
+						name = trade_price_pottery
+						value = prev.var:trade_price_pottery
+					}
+				}
+				every_in_list = { 
+					variable = trade_dat_tools
+					prev = { 
+						add_to_variable_list = { 
+							name = trade_dat_tools
+							target = prev
+						}
+					}
+				}
+				every_in_list = { 
+					variable = array_trade_dat_tools
+					prev = { 
+						add_to_variable_list = { 
+							name = array_trade_dat_tools
+							target = prev
+						}
+					}
+				}
+				prev = { 
+					set_variable = { 
+						name = trade_has_tools
+						value = prev.var:trade_has_tools
+					}
+					set_variable = { 
+						name = trade_want_tools
+						value = prev.var:trade_want_tools
+					}
+					set_variable = { 
+						name = trade_in_tools
+						value = prev.var:trade_in_tools
+					}
+					set_variable = { 
+						name = trade_out_tools
+						value = prev.var:trade_out_tools
+					}
+					set_variable = { 
+						name = trade_earn_tools
+						value = prev.var:trade_earn_tools
+					}
+					set_variable = { 
+						name = trade_pay_tools
+						value = prev.var:trade_pay_tools
+					}
+					set_variable = { 
+						name = trade_sply_tools
+						value = prev.var:trade_sply_tools
+					}
+					set_variable = { 
+						name = trade_dmnd_tools
+						value = prev.var:trade_dmnd_tools
+					}
+					set_variable = { 
+						name = trade_price_tools
+						value = prev.var:trade_price_tools
+					}
+				}
+				every_in_list = { 
+					variable = trade_dat_armaments
+					prev = { 
+						add_to_variable_list = { 
+							name = trade_dat_armaments
+							target = prev
+						}
+					}
+				}
+				every_in_list = { 
+					variable = array_trade_dat_armaments
+					prev = { 
+						add_to_variable_list = { 
+							name = array_trade_dat_armaments
+							target = prev
+						}
+					}
+				}
+				prev = { 
+					set_variable = { 
+						name = trade_has_armaments
+						value = prev.var:trade_has_armaments
+					}
+					set_variable = { 
+						name = trade_want_armaments
+						value = prev.var:trade_want_armaments
+					}
+					set_variable = { 
+						name = trade_in_armaments
+						value = prev.var:trade_in_armaments
+					}
+					set_variable = { 
+						name = trade_out_armaments
+						value = prev.var:trade_out_armaments
+					}
+					set_variable = { 
+						name = trade_earn_armaments
+						value = prev.var:trade_earn_armaments
+					}
+					set_variable = { 
+						name = trade_pay_armaments
+						value = prev.var:trade_pay_armaments
+					}
+					set_variable = { 
+						name = trade_sply_armaments
+						value = prev.var:trade_sply_armaments
+					}
+					set_variable = { 
+						name = trade_dmnd_armaments
+						value = prev.var:trade_dmnd_armaments
+					}
+					set_variable = { 
+						name = trade_price_armaments
+						value = prev.var:trade_price_armaments
+					}
+				}
+				prev = { 
+					set_variable = { 
+						name = trade_gold
+						value = prev.var:trade_gold
+					}
+					set_variable = { 
+						name = mil_maa
+						value = prev.var:trade_maa
+					}
+					set_variable = { 
+						name = mil_maintain
+						value = prev.var:trade_maintain
+					}
+				}
+				every_in_list = { 
+					variable = task_tasks
+					scope:setup_rulers_t = { 
+						add_to_variable_list = { 
+							name = task_tasks
+							target = prev
+						}
+					}
+				}
+				set_variable = { 
+					name = setup_rulers_t
+					value = 1
+				}
+				every_in_global_list = { 
+					variable = trade_merchants
+					set_global_variable = { 
+						name = setup_rulers_t
+						value = 0
+					}
+					every_in_list = { 
+						variable = trade_dat_food
+						if = { 
+							limit = { 
+								has_variable = setup_rulers_t
+							}
+							prev = { 
+								remove_list_variable = { 
+									name = trade_dat_food
+									target = prev
+								}
+								add_to_variable_list = { 
+									name = trade_dat_food
+									target = scope:setup_rulers_t
+								}
+								ordered_in_list = { 
+									variable = array_trade_dat_food
+									position = global_var:setup_rulers_t
+									prev = { 
+										remove_list_variable = { 
+											name = array_trade_dat_food
+											target = prev
+										}
+										add_to_variable_list = { 
+											name = array_trade_dat_food
+											target = prev
+										}
+									}
+								}
+							}
+						}
+						else = { 
+							change_global_variable = { 
+								name = setup_rulers_t
+								add = 1
+							}
+						}
+					}
+					set_global_variable = { 
+						name = setup_rulers_t
+						value = 0
+					}
+					every_in_list = { 
+						variable = trade_dat_cereal
+						if = { 
+							limit = { 
+								has_variable = setup_rulers_t
+							}
+							prev = { 
+								remove_list_variable = { 
+									name = trade_dat_cereal
+									target = prev
+								}
+								add_to_variable_list = { 
+									name = trade_dat_cereal
+									target = scope:setup_rulers_t
+								}
+								ordered_in_list = { 
+									variable = array_trade_dat_cereal
+									position = global_var:setup_rulers_t
+									prev = { 
+										remove_list_variable = { 
+											name = array_trade_dat_cereal
+											target = prev
+										}
+										add_to_variable_list = { 
+											name = array_trade_dat_cereal
+											target = prev
+										}
+									}
+								}
+							}
+						}
+						else = { 
+							change_global_variable = { 
+								name = setup_rulers_t
+								add = 1
+							}
+						}
+					}
+					set_global_variable = { 
+						name = setup_rulers_t
+						value = 0
+					}
+					every_in_list = { 
+						variable = trade_dat_salted
+						if = { 
+							limit = { 
+								has_variable = setup_rulers_t
+							}
+							prev = { 
+								remove_list_variable = { 
+									name = trade_dat_salted
+									target = prev
+								}
+								add_to_variable_list = { 
+									name = trade_dat_salted
+									target = scope:setup_rulers_t
+								}
+								ordered_in_list = { 
+									variable = array_trade_dat_salted
+									position = global_var:setup_rulers_t
+									prev = { 
+										remove_list_variable = { 
+											name = array_trade_dat_salted
+											target = prev
+										}
+										add_to_variable_list = { 
+											name = array_trade_dat_salted
+											target = prev
+										}
+									}
+								}
+							}
+						}
+						else = { 
+							change_global_variable = { 
+								name = setup_rulers_t
+								add = 1
+							}
+						}
+					}
+					set_global_variable = { 
+						name = setup_rulers_t
+						value = 0
+					}
+					every_in_list = { 
+						variable = trade_dat_salt
+						if = { 
+							limit = { 
+								has_variable = setup_rulers_t
+							}
+							prev = { 
+								remove_list_variable = { 
+									name = trade_dat_salt
+									target = prev
+								}
+								add_to_variable_list = { 
+									name = trade_dat_salt
+									target = scope:setup_rulers_t
+								}
+								ordered_in_list = { 
+									variable = array_trade_dat_salt
+									position = global_var:setup_rulers_t
+									prev = { 
+										remove_list_variable = { 
+											name = array_trade_dat_salt
+											target = prev
+										}
+										add_to_variable_list = { 
+											name = array_trade_dat_salt
+											target = prev
+										}
+									}
+								}
+							}
+						}
+						else = { 
+							change_global_variable = { 
+								name = setup_rulers_t
+								add = 1
+							}
+						}
+					}
+					set_global_variable = { 
+						name = setup_rulers_t
+						value = 0
+					}
+					every_in_list = { 
+						variable = trade_dat_mud
+						if = { 
+							limit = { 
+								has_variable = setup_rulers_t
+							}
+							prev = { 
+								remove_list_variable = { 
+									name = trade_dat_mud
+									target = prev
+								}
+								add_to_variable_list = { 
+									name = trade_dat_mud
+									target = scope:setup_rulers_t
+								}
+								ordered_in_list = { 
+									variable = array_trade_dat_mud
+									position = global_var:setup_rulers_t
+									prev = { 
+										remove_list_variable = { 
+											name = array_trade_dat_mud
+											target = prev
+										}
+										add_to_variable_list = { 
+											name = array_trade_dat_mud
+											target = prev
+										}
+									}
+								}
+							}
+						}
+						else = { 
+							change_global_variable = { 
+								name = setup_rulers_t
+								add = 1
+							}
+						}
+					}
+					set_global_variable = { 
+						name = setup_rulers_t
+						value = 0
+					}
+					every_in_list = { 
+						variable = trade_dat_fuel
+						if = { 
+							limit = { 
+								has_variable = setup_rulers_t
+							}
+							prev = { 
+								remove_list_variable = { 
+									name = trade_dat_fuel
+									target = prev
+								}
+								add_to_variable_list = { 
+									name = trade_dat_fuel
+									target = scope:setup_rulers_t
+								}
+								ordered_in_list = { 
+									variable = array_trade_dat_fuel
+									position = global_var:setup_rulers_t
+									prev = { 
+										remove_list_variable = { 
+											name = array_trade_dat_fuel
+											target = prev
+										}
+										add_to_variable_list = { 
+											name = array_trade_dat_fuel
+											target = prev
+										}
+									}
+								}
+							}
+						}
+						else = { 
+							change_global_variable = { 
+								name = setup_rulers_t
+								add = 1
+							}
+						}
+					}
+					set_global_variable = { 
+						name = setup_rulers_t
+						value = 0
+					}
+					every_in_list = { 
+						variable = trade_dat_fiber
+						if = { 
+							limit = { 
+								has_variable = setup_rulers_t
+							}
+							prev = { 
+								remove_list_variable = { 
+									name = trade_dat_fiber
+									target = prev
+								}
+								add_to_variable_list = { 
+									name = trade_dat_fiber
+									target = scope:setup_rulers_t
+								}
+								ordered_in_list = { 
+									variable = array_trade_dat_fiber
+									position = global_var:setup_rulers_t
+									prev = { 
+										remove_list_variable = { 
+											name = array_trade_dat_fiber
+											target = prev
+										}
+										add_to_variable_list = { 
+											name = array_trade_dat_fiber
+											target = prev
+										}
+									}
+								}
+							}
+						}
+						else = { 
+							change_global_variable = { 
+								name = setup_rulers_t
+								add = 1
+							}
+						}
+					}
+					set_global_variable = { 
+						name = setup_rulers_t
+						value = 0
+					}
+					every_in_list = { 
+						variable = trade_dat_timber
+						if = { 
+							limit = { 
+								has_variable = setup_rulers_t
+							}
+							prev = { 
+								remove_list_variable = { 
+									name = trade_dat_timber
+									target = prev
+								}
+								add_to_variable_list = { 
+									name = trade_dat_timber
+									target = scope:setup_rulers_t
+								}
+								ordered_in_list = { 
+									variable = array_trade_dat_timber
+									position = global_var:setup_rulers_t
+									prev = { 
+										remove_list_variable = { 
+											name = array_trade_dat_timber
+											target = prev
+										}
+										add_to_variable_list = { 
+											name = array_trade_dat_timber
+											target = prev
+										}
+									}
+								}
+							}
+						}
+						else = { 
+							change_global_variable = { 
+								name = setup_rulers_t
+								add = 1
+							}
+						}
+					}
+					set_global_variable = { 
+						name = setup_rulers_t
+						value = 0
+					}
+					every_in_list = { 
+						variable = trade_dat_metal
+						if = { 
+							limit = { 
+								has_variable = setup_rulers_t
+							}
+							prev = { 
+								remove_list_variable = { 
+									name = trade_dat_metal
+									target = prev
+								}
+								add_to_variable_list = { 
+									name = trade_dat_metal
+									target = scope:setup_rulers_t
+								}
+								ordered_in_list = { 
+									variable = array_trade_dat_metal
+									position = global_var:setup_rulers_t
+									prev = { 
+										remove_list_variable = { 
+											name = array_trade_dat_metal
+											target = prev
+										}
+										add_to_variable_list = { 
+											name = array_trade_dat_metal
+											target = prev
+										}
+									}
+								}
+							}
+						}
+						else = { 
+							change_global_variable = { 
+								name = setup_rulers_t
+								add = 1
+							}
+						}
+					}
+					set_global_variable = { 
+						name = setup_rulers_t
+						value = 0
+					}
+					every_in_list = { 
+						variable = trade_dat_exotics_w
+						if = { 
+							limit = { 
+								has_variable = setup_rulers_t
+							}
+							prev = { 
+								remove_list_variable = { 
+									name = trade_dat_exotics_w
+									target = prev
+								}
+								add_to_variable_list = { 
+									name = trade_dat_exotics_w
+									target = scope:setup_rulers_t
+								}
+								ordered_in_list = { 
+									variable = array_trade_dat_exotics_w
+									position = global_var:setup_rulers_t
+									prev = { 
+										remove_list_variable = { 
+											name = array_trade_dat_exotics_w
+											target = prev
+										}
+										add_to_variable_list = { 
+											name = array_trade_dat_exotics_w
+											target = prev
+										}
+									}
+								}
+							}
+						}
+						else = { 
+							change_global_variable = { 
+								name = setup_rulers_t
+								add = 1
+							}
+						}
+					}
+					set_global_variable = { 
+						name = setup_rulers_t
+						value = 0
+					}
+					every_in_list = { 
+						variable = trade_dat_exotics_e
+						if = { 
+							limit = { 
+								has_variable = setup_rulers_t
+							}
+							prev = { 
+								remove_list_variable = { 
+									name = trade_dat_exotics_e
+									target = prev
+								}
+								add_to_variable_list = { 
+									name = trade_dat_exotics_e
+									target = scope:setup_rulers_t
+								}
+								ordered_in_list = { 
+									variable = array_trade_dat_exotics_e
+									position = global_var:setup_rulers_t
+									prev = { 
+										remove_list_variable = { 
+											name = array_trade_dat_exotics_e
+											target = prev
+										}
+										add_to_variable_list = { 
+											name = array_trade_dat_exotics_e
+											target = prev
+										}
+									}
+								}
+							}
+						}
+						else = { 
+							change_global_variable = { 
+								name = setup_rulers_t
+								add = 1
+							}
+						}
+					}
+					set_global_variable = { 
+						name = setup_rulers_t
+						value = 0
+					}
+					every_in_list = { 
+						variable = trade_dat_exotics_g
+						if = { 
+							limit = { 
+								has_variable = setup_rulers_t
+							}
+							prev = { 
+								remove_list_variable = { 
+									name = trade_dat_exotics_g
+									target = prev
+								}
+								add_to_variable_list = { 
+									name = trade_dat_exotics_g
+									target = scope:setup_rulers_t
+								}
+								ordered_in_list = { 
+									variable = array_trade_dat_exotics_g
+									position = global_var:setup_rulers_t
+									prev = { 
+										remove_list_variable = { 
+											name = array_trade_dat_exotics_g
+											target = prev
+										}
+										add_to_variable_list = { 
+											name = array_trade_dat_exotics_g
+											target = prev
+										}
+									}
+								}
+							}
+						}
+						else = { 
+							change_global_variable = { 
+								name = setup_rulers_t
+								add = 1
+							}
+						}
+					}
+					set_global_variable = { 
+						name = setup_rulers_t
+						value = 0
+					}
+					every_in_list = { 
+						variable = trade_dat_textile
+						if = { 
+							limit = { 
+								has_variable = setup_rulers_t
+							}
+							prev = { 
+								remove_list_variable = { 
+									name = trade_dat_textile
+									target = prev
+								}
+								add_to_variable_list = { 
+									name = trade_dat_textile
+									target = scope:setup_rulers_t
+								}
+								ordered_in_list = { 
+									variable = array_trade_dat_textile
+									position = global_var:setup_rulers_t
+									prev = { 
+										remove_list_variable = { 
+											name = array_trade_dat_textile
+											target = prev
+										}
+										add_to_variable_list = { 
+											name = array_trade_dat_textile
+											target = prev
+										}
+									}
+								}
+							}
+						}
+						else = { 
+							change_global_variable = { 
+								name = setup_rulers_t
+								add = 1
+							}
+						}
+					}
+					set_global_variable = { 
+						name = setup_rulers_t
+						value = 0
+					}
+					every_in_list = { 
+						variable = trade_dat_pottery
+						if = { 
+							limit = { 
+								has_variable = setup_rulers_t
+							}
+							prev = { 
+								remove_list_variable = { 
+									name = trade_dat_pottery
+									target = prev
+								}
+								add_to_variable_list = { 
+									name = trade_dat_pottery
+									target = scope:setup_rulers_t
+								}
+								ordered_in_list = { 
+									variable = array_trade_dat_pottery
+									position = global_var:setup_rulers_t
+									prev = { 
+										remove_list_variable = { 
+											name = array_trade_dat_pottery
+											target = prev
+										}
+										add_to_variable_list = { 
+											name = array_trade_dat_pottery
+											target = prev
+										}
+									}
+								}
+							}
+						}
+						else = { 
+							change_global_variable = { 
+								name = setup_rulers_t
+								add = 1
+							}
+						}
+					}
+					set_global_variable = { 
+						name = setup_rulers_t
+						value = 0
+					}
+					every_in_list = { 
+						variable = trade_dat_tools
+						if = { 
+							limit = { 
+								has_variable = setup_rulers_t
+							}
+							prev = { 
+								remove_list_variable = { 
+									name = trade_dat_tools
+									target = prev
+								}
+								add_to_variable_list = { 
+									name = trade_dat_tools
+									target = scope:setup_rulers_t
+								}
+								ordered_in_list = { 
+									variable = array_trade_dat_tools
+									position = global_var:setup_rulers_t
+									prev = { 
+										remove_list_variable = { 
+											name = array_trade_dat_tools
+											target = prev
+										}
+										add_to_variable_list = { 
+											name = array_trade_dat_tools
+											target = prev
+										}
+									}
+								}
+							}
+						}
+						else = { 
+							change_global_variable = { 
+								name = setup_rulers_t
+								add = 1
+							}
+						}
+					}
+					set_global_variable = { 
+						name = setup_rulers_t
+						value = 0
+					}
+					every_in_list = { 
+						variable = trade_dat_armaments
+						if = { 
+							limit = { 
+								has_variable = setup_rulers_t
+							}
+							prev = { 
+								remove_list_variable = { 
+									name = trade_dat_armaments
+									target = prev
+								}
+								add_to_variable_list = { 
+									name = trade_dat_armaments
+									target = scope:setup_rulers_t
+								}
+								ordered_in_list = { 
+									variable = array_trade_dat_armaments
+									position = global_var:setup_rulers_t
+									prev = { 
+										remove_list_variable = { 
+											name = array_trade_dat_armaments
+											target = prev
+										}
+										add_to_variable_list = { 
+											name = array_trade_dat_armaments
+											target = prev
+										}
+									}
+								}
+							}
+						}
+						else = { 
+							change_global_variable = { 
+								name = setup_rulers_t
+								add = 1
+							}
+						}
+					}
+				}
+				remove_variable = setup_rulers_t
 			}
 			if = { 
 				limit = { 
 					has_variable = trade_gold
 					var:trade_gold > 0
 				}
-				remove_short_term_gold = 100000
 				if = { 
 					limit = { 
 						has_variable = trade_gold
@@ -92315,17 +93890,189 @@ census.99 = {
 					}
 				}
 			}
-			set_variable = { 
-				name = mil_maa
-				value = var:trade_maa
-			}
-			set_variable = { 
-				name = mil_maintain
-				value = var:trade_maintain
-			}
+			remove_variable = trade_gold
+		}
+		every_province = { 
+			remove_variable = trade_has_food
+			remove_variable = trade_want_food
+			remove_variable = trade_in_food
+			remove_variable = trade_out_food
+			remove_variable = trade_earn_food
+			remove_variable = trade_pay_food
+			remove_variable = trade_sply_food
+			remove_variable = trade_dmnd_food
+			remove_variable = trade_price_food
+			clear_variable_list = trade_dat_food
+			clear_variable_list = array_trade_dat_food
+			remove_variable = trade_has_cereal
+			remove_variable = trade_want_cereal
+			remove_variable = trade_in_cereal
+			remove_variable = trade_out_cereal
+			remove_variable = trade_earn_cereal
+			remove_variable = trade_pay_cereal
+			remove_variable = trade_sply_cereal
+			remove_variable = trade_dmnd_cereal
+			remove_variable = trade_price_cereal
+			clear_variable_list = trade_dat_cereal
+			clear_variable_list = array_trade_dat_cereal
+			remove_variable = trade_has_salted
+			remove_variable = trade_want_salted
+			remove_variable = trade_in_salted
+			remove_variable = trade_out_salted
+			remove_variable = trade_earn_salted
+			remove_variable = trade_pay_salted
+			remove_variable = trade_sply_salted
+			remove_variable = trade_dmnd_salted
+			remove_variable = trade_price_salted
+			clear_variable_list = trade_dat_salted
+			clear_variable_list = array_trade_dat_salted
+			remove_variable = trade_has_salt
+			remove_variable = trade_want_salt
+			remove_variable = trade_in_salt
+			remove_variable = trade_out_salt
+			remove_variable = trade_earn_salt
+			remove_variable = trade_pay_salt
+			remove_variable = trade_sply_salt
+			remove_variable = trade_dmnd_salt
+			remove_variable = trade_price_salt
+			clear_variable_list = trade_dat_salt
+			clear_variable_list = array_trade_dat_salt
+			remove_variable = trade_has_mud
+			remove_variable = trade_want_mud
+			remove_variable = trade_in_mud
+			remove_variable = trade_out_mud
+			remove_variable = trade_earn_mud
+			remove_variable = trade_pay_mud
+			remove_variable = trade_sply_mud
+			remove_variable = trade_dmnd_mud
+			remove_variable = trade_price_mud
+			clear_variable_list = trade_dat_mud
+			clear_variable_list = array_trade_dat_mud
+			remove_variable = trade_has_fuel
+			remove_variable = trade_want_fuel
+			remove_variable = trade_in_fuel
+			remove_variable = trade_out_fuel
+			remove_variable = trade_earn_fuel
+			remove_variable = trade_pay_fuel
+			remove_variable = trade_sply_fuel
+			remove_variable = trade_dmnd_fuel
+			remove_variable = trade_price_fuel
+			clear_variable_list = trade_dat_fuel
+			clear_variable_list = array_trade_dat_fuel
+			remove_variable = trade_has_fiber
+			remove_variable = trade_want_fiber
+			remove_variable = trade_in_fiber
+			remove_variable = trade_out_fiber
+			remove_variable = trade_earn_fiber
+			remove_variable = trade_pay_fiber
+			remove_variable = trade_sply_fiber
+			remove_variable = trade_dmnd_fiber
+			remove_variable = trade_price_fiber
+			clear_variable_list = trade_dat_fiber
+			clear_variable_list = array_trade_dat_fiber
+			remove_variable = trade_has_timber
+			remove_variable = trade_want_timber
+			remove_variable = trade_in_timber
+			remove_variable = trade_out_timber
+			remove_variable = trade_earn_timber
+			remove_variable = trade_pay_timber
+			remove_variable = trade_sply_timber
+			remove_variable = trade_dmnd_timber
+			remove_variable = trade_price_timber
+			clear_variable_list = trade_dat_timber
+			clear_variable_list = array_trade_dat_timber
+			remove_variable = trade_has_metal
+			remove_variable = trade_want_metal
+			remove_variable = trade_in_metal
+			remove_variable = trade_out_metal
+			remove_variable = trade_earn_metal
+			remove_variable = trade_pay_metal
+			remove_variable = trade_sply_metal
+			remove_variable = trade_dmnd_metal
+			remove_variable = trade_price_metal
+			clear_variable_list = trade_dat_metal
+			clear_variable_list = array_trade_dat_metal
+			remove_variable = trade_has_exotics_w
+			remove_variable = trade_want_exotics_w
+			remove_variable = trade_in_exotics_w
+			remove_variable = trade_out_exotics_w
+			remove_variable = trade_earn_exotics_w
+			remove_variable = trade_pay_exotics_w
+			remove_variable = trade_sply_exotics_w
+			remove_variable = trade_dmnd_exotics_w
+			remove_variable = trade_price_exotics_w
+			clear_variable_list = trade_dat_exotics_w
+			clear_variable_list = array_trade_dat_exotics_w
+			remove_variable = trade_has_exotics_e
+			remove_variable = trade_want_exotics_e
+			remove_variable = trade_in_exotics_e
+			remove_variable = trade_out_exotics_e
+			remove_variable = trade_earn_exotics_e
+			remove_variable = trade_pay_exotics_e
+			remove_variable = trade_sply_exotics_e
+			remove_variable = trade_dmnd_exotics_e
+			remove_variable = trade_price_exotics_e
+			clear_variable_list = trade_dat_exotics_e
+			clear_variable_list = array_trade_dat_exotics_e
+			remove_variable = trade_has_exotics_g
+			remove_variable = trade_want_exotics_g
+			remove_variable = trade_in_exotics_g
+			remove_variable = trade_out_exotics_g
+			remove_variable = trade_earn_exotics_g
+			remove_variable = trade_pay_exotics_g
+			remove_variable = trade_sply_exotics_g
+			remove_variable = trade_dmnd_exotics_g
+			remove_variable = trade_price_exotics_g
+			clear_variable_list = trade_dat_exotics_g
+			clear_variable_list = array_trade_dat_exotics_g
+			remove_variable = trade_has_textile
+			remove_variable = trade_want_textile
+			remove_variable = trade_in_textile
+			remove_variable = trade_out_textile
+			remove_variable = trade_earn_textile
+			remove_variable = trade_pay_textile
+			remove_variable = trade_sply_textile
+			remove_variable = trade_dmnd_textile
+			remove_variable = trade_price_textile
+			clear_variable_list = trade_dat_textile
+			clear_variable_list = array_trade_dat_textile
+			remove_variable = trade_has_pottery
+			remove_variable = trade_want_pottery
+			remove_variable = trade_in_pottery
+			remove_variable = trade_out_pottery
+			remove_variable = trade_earn_pottery
+			remove_variable = trade_pay_pottery
+			remove_variable = trade_sply_pottery
+			remove_variable = trade_dmnd_pottery
+			remove_variable = trade_price_pottery
+			clear_variable_list = trade_dat_pottery
+			clear_variable_list = array_trade_dat_pottery
+			remove_variable = trade_has_tools
+			remove_variable = trade_want_tools
+			remove_variable = trade_in_tools
+			remove_variable = trade_out_tools
+			remove_variable = trade_earn_tools
+			remove_variable = trade_pay_tools
+			remove_variable = trade_sply_tools
+			remove_variable = trade_dmnd_tools
+			remove_variable = trade_price_tools
+			clear_variable_list = trade_dat_tools
+			clear_variable_list = array_trade_dat_tools
+			remove_variable = trade_has_armaments
+			remove_variable = trade_want_armaments
+			remove_variable = trade_in_armaments
+			remove_variable = trade_out_armaments
+			remove_variable = trade_earn_armaments
+			remove_variable = trade_pay_armaments
+			remove_variable = trade_sply_armaments
+			remove_variable = trade_dmnd_armaments
+			remove_variable = trade_price_armaments
+			clear_variable_list = trade_dat_armaments
+			clear_variable_list = array_trade_dat_armaments
 			remove_variable = trade_gold
 			remove_variable = mil_maa
 			remove_variable = mil_maintain
+			clear_variable_list = task_tasks
 		}
 		every_county = { 
 			limit = { 
@@ -92998,16 +94745,6 @@ census.99 = {
 			name = sim_i
 			value = 1
 		}
-		every_ruler = { 
-			limit = { 
-				is_character = yes
-				is_landed = yes
-			}
-			set_variable = { 
-				name = mil_levy_field
-				value = 0
-			}
-		}
 		every_province = { 
 			limit = { 
 				is_valid_prov = yes
@@ -93119,25 +94856,22 @@ census.99 = {
 				subtract = var:mil_levy_field
 			}
 		}
-		every_army = { 
-			army_owner = { 
-				if = { 
-					limit = { 
-						is_character = yes
-						is_landed = yes
-						is_ruler = yes
-					}
+		every_ruler = { 
+			limit = { 
+				is_character = yes
+				is_landed = yes
+			}
+			set_variable = { 
+				name = mil_levy_field
+				value = 0
+			}
+			every_army = { 
+				prev = { 
 					change_variable = { 
 						name = mil_levy_field
 						add = prev.army_max_size
 					}
 				}
-			}
-		}
-		every_ruler = { 
-			limit = { 
-				is_character = yes
-				is_landed = yes
 			}
 			if = { 
 				limit = { 
@@ -97916,6 +99650,7 @@ census.99 = {
 			}
 		}
 		remove_global_variable = sim_i
+		remove_global_variable = setup_rulers_t
 		every_province = { 
 			limit = { 
 				is_valid_prov = yes
