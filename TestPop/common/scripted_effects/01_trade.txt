@@ -2489,6 +2489,8 @@ trade_update_price = {
 			is_landed = yes
 		}
 		^^goods^
+			set_variable = { name = trade_update_price_ttt value = var:trade_price_&goods& }
+			
 			set_variable = { name = trade_update_price_tt value = var:trade_sply_&goods& }
 			change_variable = { name = trade_update_price_tt subtract = var:trade_dmnd_&goods& }
 			
@@ -2568,16 +2570,48 @@ trade_update_price = {
 				}
 				set_variable = { name = trade_price_&goods& value = 0.5 }
 			}
+			
+			if = {
+				limit = {
+					NOT = {
+						has_variable = trade_price_trend_&goods&
+					}
+				}
+				set_variable = { name = trade_price_trend_&goods& value = 0 }
+			}
+			
+			change_variable = { name = trade_price_trend_&goods& multiply = 0.8 }
+			
+			if = {
+				limit = {
+					var:trade_update_price_ttt = {
+						compare_value >= prev.var:trade_price_&goods&
+					}
+				}
+				set_variable = { name = trade_update_price_t value = var:trade_update_price_ttt }
+				change_variable = { name = trade_update_price_t divide = var:trade_price_&goods& }
+				change_variable = { name = trade_update_price_t subtract = 1 }
+				change_variable = { name = trade_price_trend_&goods& subtract = var:trade_update_price_t }
+			}
+			else = {
+				set_variable = { name = trade_update_price_t value = var:trade_price_&goods& }
+				change_variable = { name = trade_update_price_t divide = var:trade_update_price_ttt }
+				change_variable = { name = trade_update_price_t subtract = 1 }
+				change_variable = { name = trade_price_trend_&goods& add = var:trade_update_price_t }
+			}
 		^
 		
 		remove_variable = trade_update_price_t
 		remove_variable = trade_update_price_tt
+		remove_variable = trade_update_price_ttt
 	}
 	every_county = {
 		limit = {
 			is_valid_prov = yes
 		}
 		^^goods^
+			set_variable = { name = trade_update_price_ttt value = var:trade_price_&goods& }
+			
 			set_variable = { name = trade_update_price_tt value = var:trade_sply_&goods& }
 			change_variable = { name = trade_update_price_tt subtract = var:trade_dmnd_&goods& }
 			
@@ -2657,16 +2691,48 @@ trade_update_price = {
 				}
 				set_variable = { name = trade_price_&goods& value = 0.5 }
 			}
+			
+			if = {
+				limit = {
+					NOT = {
+						has_variable = trade_price_trend_&goods&
+					}
+				}
+				set_variable = { name = trade_price_trend_&goods& value = 0 }
+			}
+			
+			change_variable = { name = trade_price_trend_&goods& multiply = 0.8 }
+			
+			if = {
+				limit = {
+					var:trade_update_price_ttt = {
+						compare_value >= prev.var:trade_price_&goods&
+					}
+				}
+				set_variable = { name = trade_update_price_t value = var:trade_update_price_ttt }
+				change_variable = { name = trade_update_price_t divide = var:trade_price_&goods& }
+				change_variable = { name = trade_update_price_t subtract = 1 }
+				change_variable = { name = trade_price_trend_&goods& subtract = var:trade_update_price_t }
+			}
+			else = {
+				set_variable = { name = trade_update_price_t value = var:trade_price_&goods& }
+				change_variable = { name = trade_update_price_t divide = var:trade_update_price_ttt }
+				change_variable = { name = trade_update_price_t subtract = 1 }
+				change_variable = { name = trade_price_trend_&goods& add = var:trade_update_price_t }
+			}
 		^
 		
 		remove_variable = trade_update_price_t
 		remove_variable = trade_update_price_tt
+		remove_variable = trade_update_price_ttt
 	}
 	
 	every_in_global_list = {
 		variable = trade_merchants
 		
 		^^goods^
+			set_variable = { name = trade_update_price_ttt value = var:trade_price_&goods& }
+			
 			trade_update_price_helper_1 = { good = &goods& }
 			
 			if = {
@@ -2681,9 +2747,40 @@ trade_update_price = {
 				}
 				set_variable = { name = trade_price_&goods& value = 0.5 }
 			}
+			
+			if = {
+				limit = {
+					NOT = {
+						has_variable = trade_price_trend_&goods&
+					}
+				}
+				set_variable = { name = trade_price_trend_&goods& value = 0 }
+			}
+			
+			change_variable = { name = trade_price_trend_&goods& multiply = 0.8 }
+			
+			if = {
+				limit = {
+					var:trade_update_price_ttt = {
+						compare_value >= prev.var:trade_price_&goods&
+					}
+				}
+				set_variable = { name = trade_update_price_t value = var:trade_update_price_ttt }
+				change_variable = { name = trade_update_price_t divide = var:trade_price_&goods& }
+				change_variable = { name = trade_update_price_t subtract = 1 }
+				change_variable = { name = trade_price_trend_&goods& subtract = var:trade_update_price_t }
+			}
+			else = {
+				set_variable = { name = trade_update_price_t value = var:trade_price_&goods& }
+				change_variable = { name = trade_update_price_t divide = var:trade_update_price_ttt }
+				change_variable = { name = trade_update_price_t subtract = 1 }
+				change_variable = { name = trade_price_trend_&goods& add = var:trade_update_price_t }
+			}
 		^
 		
 		remove_variable = trade_update_price_t
+		remove_variable = trade_update_price_tt
+		remove_variable = trade_update_price_ttt
 	}
 }
 

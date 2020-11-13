@@ -10694,7 +10694,7 @@ census.03 = {
 				if = { 
 					limit = { 
 						NOT = { 
-							want_variable = trade_want_food
+							has_variable = trade_want_food
 						}
 					}
 					set_variable = { 
@@ -10754,7 +10754,7 @@ census.03 = {
 				if = { 
 					limit = { 
 						NOT = { 
-							want_variable = trade_want_cereal
+							has_variable = trade_want_cereal
 						}
 					}
 					set_variable = { 
@@ -10814,7 +10814,7 @@ census.03 = {
 				if = { 
 					limit = { 
 						NOT = { 
-							want_variable = trade_want_salted
+							has_variable = trade_want_salted
 						}
 					}
 					set_variable = { 
@@ -10874,7 +10874,7 @@ census.03 = {
 				if = { 
 					limit = { 
 						NOT = { 
-							want_variable = trade_want_salt
+							has_variable = trade_want_salt
 						}
 					}
 					set_variable = { 
@@ -10934,7 +10934,7 @@ census.03 = {
 				if = { 
 					limit = { 
 						NOT = { 
-							want_variable = trade_want_mud
+							has_variable = trade_want_mud
 						}
 					}
 					set_variable = { 
@@ -10994,7 +10994,7 @@ census.03 = {
 				if = { 
 					limit = { 
 						NOT = { 
-							want_variable = trade_want_fuel
+							has_variable = trade_want_fuel
 						}
 					}
 					set_variable = { 
@@ -11054,7 +11054,7 @@ census.03 = {
 				if = { 
 					limit = { 
 						NOT = { 
-							want_variable = trade_want_fiber
+							has_variable = trade_want_fiber
 						}
 					}
 					set_variable = { 
@@ -11114,7 +11114,7 @@ census.03 = {
 				if = { 
 					limit = { 
 						NOT = { 
-							want_variable = trade_want_timber
+							has_variable = trade_want_timber
 						}
 					}
 					set_variable = { 
@@ -11174,7 +11174,7 @@ census.03 = {
 				if = { 
 					limit = { 
 						NOT = { 
-							want_variable = trade_want_metal
+							has_variable = trade_want_metal
 						}
 					}
 					set_variable = { 
@@ -11234,7 +11234,7 @@ census.03 = {
 				if = { 
 					limit = { 
 						NOT = { 
-							want_variable = trade_want_exotics_w
+							has_variable = trade_want_exotics_w
 						}
 					}
 					set_variable = { 
@@ -11294,7 +11294,7 @@ census.03 = {
 				if = { 
 					limit = { 
 						NOT = { 
-							want_variable = trade_want_exotics_e
+							has_variable = trade_want_exotics_e
 						}
 					}
 					set_variable = { 
@@ -11354,7 +11354,7 @@ census.03 = {
 				if = { 
 					limit = { 
 						NOT = { 
-							want_variable = trade_want_exotics_g
+							has_variable = trade_want_exotics_g
 						}
 					}
 					set_variable = { 
@@ -11414,7 +11414,7 @@ census.03 = {
 				if = { 
 					limit = { 
 						NOT = { 
-							want_variable = trade_want_textile
+							has_variable = trade_want_textile
 						}
 					}
 					set_variable = { 
@@ -11474,7 +11474,7 @@ census.03 = {
 				if = { 
 					limit = { 
 						NOT = { 
-							want_variable = trade_want_pottery
+							has_variable = trade_want_pottery
 						}
 					}
 					set_variable = { 
@@ -11534,7 +11534,7 @@ census.03 = {
 				if = { 
 					limit = { 
 						NOT = { 
-							want_variable = trade_want_tools
+							has_variable = trade_want_tools
 						}
 					}
 					set_variable = { 
@@ -11594,7 +11594,7 @@ census.03 = {
 				if = { 
 					limit = { 
 						NOT = { 
-							want_variable = trade_want_armaments
+							has_variable = trade_want_armaments
 						}
 					}
 					set_variable = { 
@@ -31328,18 +31328,6 @@ census.06 = {
 						name = trade_do_trade_tt
 						value = var:trade_sell_food
 					}
-					set_variable = { 
-						name = trade_do_trade_tttt
-						value = var:trade_do_trade_tt
-					}
-					change_variable = { 
-						name = trade_do_trade_tttt
-						divide = 20
-					}
-					change_variable = { 
-						name = trade_do_trade_tttt
-						add = 0.1
-					}
 					while = { 
 						limit = { 
 							has_variable = trade_do_trade_t
@@ -31431,9 +31419,7 @@ census.06 = {
 									NOT = { 
 										has_variable = trade_do_trade_ttt
 									}
-									var:trade_do_trade_ttt = { 
-										compare_value < prev.var:trade_do_trade_tttt
-									}
+									var:trade_do_trade_ttt < 0.2
 								}
 							}
 							set_variable = { 
@@ -31566,18 +31552,6 @@ census.06 = {
 						name = trade_do_trade_tt
 						value = var:trade_sell_cereal
 					}
-					set_variable = { 
-						name = trade_do_trade_tttt
-						value = var:trade_do_trade_tt
-					}
-					change_variable = { 
-						name = trade_do_trade_tttt
-						divide = 20
-					}
-					change_variable = { 
-						name = trade_do_trade_tttt
-						add = 0.1
-					}
 					while = { 
 						limit = { 
 							has_variable = trade_do_trade_t
@@ -31669,9 +31643,7 @@ census.06 = {
 									NOT = { 
 										has_variable = trade_do_trade_ttt
 									}
-									var:trade_do_trade_ttt = { 
-										compare_value < prev.var:trade_do_trade_tttt
-									}
+									var:trade_do_trade_ttt < 0.2
 								}
 							}
 							set_variable = { 
@@ -31804,18 +31776,6 @@ census.06 = {
 						name = trade_do_trade_tt
 						value = var:trade_sell_salted
 					}
-					set_variable = { 
-						name = trade_do_trade_tttt
-						value = var:trade_do_trade_tt
-					}
-					change_variable = { 
-						name = trade_do_trade_tttt
-						divide = 20
-					}
-					change_variable = { 
-						name = trade_do_trade_tttt
-						add = 0.1
-					}
 					while = { 
 						limit = { 
 							has_variable = trade_do_trade_t
@@ -31907,9 +31867,7 @@ census.06 = {
 									NOT = { 
 										has_variable = trade_do_trade_ttt
 									}
-									var:trade_do_trade_ttt = { 
-										compare_value < prev.var:trade_do_trade_tttt
-									}
+									var:trade_do_trade_ttt < 0.2
 								}
 							}
 							set_variable = { 
@@ -32042,18 +32000,6 @@ census.06 = {
 						name = trade_do_trade_tt
 						value = var:trade_sell_salt
 					}
-					set_variable = { 
-						name = trade_do_trade_tttt
-						value = var:trade_do_trade_tt
-					}
-					change_variable = { 
-						name = trade_do_trade_tttt
-						divide = 20
-					}
-					change_variable = { 
-						name = trade_do_trade_tttt
-						add = 0.1
-					}
 					while = { 
 						limit = { 
 							has_variable = trade_do_trade_t
@@ -32145,9 +32091,7 @@ census.06 = {
 									NOT = { 
 										has_variable = trade_do_trade_ttt
 									}
-									var:trade_do_trade_ttt = { 
-										compare_value < prev.var:trade_do_trade_tttt
-									}
+									var:trade_do_trade_ttt < 0.2
 								}
 							}
 							set_variable = { 
@@ -32280,18 +32224,6 @@ census.06 = {
 						name = trade_do_trade_tt
 						value = var:trade_sell_mud
 					}
-					set_variable = { 
-						name = trade_do_trade_tttt
-						value = var:trade_do_trade_tt
-					}
-					change_variable = { 
-						name = trade_do_trade_tttt
-						divide = 20
-					}
-					change_variable = { 
-						name = trade_do_trade_tttt
-						add = 0.1
-					}
 					while = { 
 						limit = { 
 							has_variable = trade_do_trade_t
@@ -32383,9 +32315,7 @@ census.06 = {
 									NOT = { 
 										has_variable = trade_do_trade_ttt
 									}
-									var:trade_do_trade_ttt = { 
-										compare_value < prev.var:trade_do_trade_tttt
-									}
+									var:trade_do_trade_ttt < 0.2
 								}
 							}
 							set_variable = { 
@@ -32518,18 +32448,6 @@ census.06 = {
 						name = trade_do_trade_tt
 						value = var:trade_sell_fuel
 					}
-					set_variable = { 
-						name = trade_do_trade_tttt
-						value = var:trade_do_trade_tt
-					}
-					change_variable = { 
-						name = trade_do_trade_tttt
-						divide = 20
-					}
-					change_variable = { 
-						name = trade_do_trade_tttt
-						add = 0.1
-					}
 					while = { 
 						limit = { 
 							has_variable = trade_do_trade_t
@@ -32621,9 +32539,7 @@ census.06 = {
 									NOT = { 
 										has_variable = trade_do_trade_ttt
 									}
-									var:trade_do_trade_ttt = { 
-										compare_value < prev.var:trade_do_trade_tttt
-									}
+									var:trade_do_trade_ttt < 0.2
 								}
 							}
 							set_variable = { 
@@ -32756,18 +32672,6 @@ census.06 = {
 						name = trade_do_trade_tt
 						value = var:trade_sell_fiber
 					}
-					set_variable = { 
-						name = trade_do_trade_tttt
-						value = var:trade_do_trade_tt
-					}
-					change_variable = { 
-						name = trade_do_trade_tttt
-						divide = 20
-					}
-					change_variable = { 
-						name = trade_do_trade_tttt
-						add = 0.1
-					}
 					while = { 
 						limit = { 
 							has_variable = trade_do_trade_t
@@ -32859,9 +32763,7 @@ census.06 = {
 									NOT = { 
 										has_variable = trade_do_trade_ttt
 									}
-									var:trade_do_trade_ttt = { 
-										compare_value < prev.var:trade_do_trade_tttt
-									}
+									var:trade_do_trade_ttt < 0.2
 								}
 							}
 							set_variable = { 
@@ -32994,18 +32896,6 @@ census.06 = {
 						name = trade_do_trade_tt
 						value = var:trade_sell_timber
 					}
-					set_variable = { 
-						name = trade_do_trade_tttt
-						value = var:trade_do_trade_tt
-					}
-					change_variable = { 
-						name = trade_do_trade_tttt
-						divide = 20
-					}
-					change_variable = { 
-						name = trade_do_trade_tttt
-						add = 0.1
-					}
 					while = { 
 						limit = { 
 							has_variable = trade_do_trade_t
@@ -33097,9 +32987,7 @@ census.06 = {
 									NOT = { 
 										has_variable = trade_do_trade_ttt
 									}
-									var:trade_do_trade_ttt = { 
-										compare_value < prev.var:trade_do_trade_tttt
-									}
+									var:trade_do_trade_ttt < 0.2
 								}
 							}
 							set_variable = { 
@@ -33232,18 +33120,6 @@ census.06 = {
 						name = trade_do_trade_tt
 						value = var:trade_sell_metal
 					}
-					set_variable = { 
-						name = trade_do_trade_tttt
-						value = var:trade_do_trade_tt
-					}
-					change_variable = { 
-						name = trade_do_trade_tttt
-						divide = 20
-					}
-					change_variable = { 
-						name = trade_do_trade_tttt
-						add = 0.1
-					}
 					while = { 
 						limit = { 
 							has_variable = trade_do_trade_t
@@ -33335,9 +33211,7 @@ census.06 = {
 									NOT = { 
 										has_variable = trade_do_trade_ttt
 									}
-									var:trade_do_trade_ttt = { 
-										compare_value < prev.var:trade_do_trade_tttt
-									}
+									var:trade_do_trade_ttt < 0.2
 								}
 							}
 							set_variable = { 
@@ -33470,18 +33344,6 @@ census.06 = {
 						name = trade_do_trade_tt
 						value = var:trade_sell_exotics_w
 					}
-					set_variable = { 
-						name = trade_do_trade_tttt
-						value = var:trade_do_trade_tt
-					}
-					change_variable = { 
-						name = trade_do_trade_tttt
-						divide = 20
-					}
-					change_variable = { 
-						name = trade_do_trade_tttt
-						add = 0.1
-					}
 					while = { 
 						limit = { 
 							has_variable = trade_do_trade_t
@@ -33573,9 +33435,7 @@ census.06 = {
 									NOT = { 
 										has_variable = trade_do_trade_ttt
 									}
-									var:trade_do_trade_ttt = { 
-										compare_value < prev.var:trade_do_trade_tttt
-									}
+									var:trade_do_trade_ttt < 0.2
 								}
 							}
 							set_variable = { 
@@ -33708,18 +33568,6 @@ census.06 = {
 						name = trade_do_trade_tt
 						value = var:trade_sell_exotics_e
 					}
-					set_variable = { 
-						name = trade_do_trade_tttt
-						value = var:trade_do_trade_tt
-					}
-					change_variable = { 
-						name = trade_do_trade_tttt
-						divide = 20
-					}
-					change_variable = { 
-						name = trade_do_trade_tttt
-						add = 0.1
-					}
 					while = { 
 						limit = { 
 							has_variable = trade_do_trade_t
@@ -33811,9 +33659,7 @@ census.06 = {
 									NOT = { 
 										has_variable = trade_do_trade_ttt
 									}
-									var:trade_do_trade_ttt = { 
-										compare_value < prev.var:trade_do_trade_tttt
-									}
+									var:trade_do_trade_ttt < 0.2
 								}
 							}
 							set_variable = { 
@@ -33946,18 +33792,6 @@ census.06 = {
 						name = trade_do_trade_tt
 						value = var:trade_sell_exotics_g
 					}
-					set_variable = { 
-						name = trade_do_trade_tttt
-						value = var:trade_do_trade_tt
-					}
-					change_variable = { 
-						name = trade_do_trade_tttt
-						divide = 20
-					}
-					change_variable = { 
-						name = trade_do_trade_tttt
-						add = 0.1
-					}
 					while = { 
 						limit = { 
 							has_variable = trade_do_trade_t
@@ -34049,9 +33883,7 @@ census.06 = {
 									NOT = { 
 										has_variable = trade_do_trade_ttt
 									}
-									var:trade_do_trade_ttt = { 
-										compare_value < prev.var:trade_do_trade_tttt
-									}
+									var:trade_do_trade_ttt < 0.2
 								}
 							}
 							set_variable = { 
@@ -34184,18 +34016,6 @@ census.06 = {
 						name = trade_do_trade_tt
 						value = var:trade_sell_textile
 					}
-					set_variable = { 
-						name = trade_do_trade_tttt
-						value = var:trade_do_trade_tt
-					}
-					change_variable = { 
-						name = trade_do_trade_tttt
-						divide = 20
-					}
-					change_variable = { 
-						name = trade_do_trade_tttt
-						add = 0.1
-					}
 					while = { 
 						limit = { 
 							has_variable = trade_do_trade_t
@@ -34287,9 +34107,7 @@ census.06 = {
 									NOT = { 
 										has_variable = trade_do_trade_ttt
 									}
-									var:trade_do_trade_ttt = { 
-										compare_value < prev.var:trade_do_trade_tttt
-									}
+									var:trade_do_trade_ttt < 0.2
 								}
 							}
 							set_variable = { 
@@ -34422,18 +34240,6 @@ census.06 = {
 						name = trade_do_trade_tt
 						value = var:trade_sell_pottery
 					}
-					set_variable = { 
-						name = trade_do_trade_tttt
-						value = var:trade_do_trade_tt
-					}
-					change_variable = { 
-						name = trade_do_trade_tttt
-						divide = 20
-					}
-					change_variable = { 
-						name = trade_do_trade_tttt
-						add = 0.1
-					}
 					while = { 
 						limit = { 
 							has_variable = trade_do_trade_t
@@ -34525,9 +34331,7 @@ census.06 = {
 									NOT = { 
 										has_variable = trade_do_trade_ttt
 									}
-									var:trade_do_trade_ttt = { 
-										compare_value < prev.var:trade_do_trade_tttt
-									}
+									var:trade_do_trade_ttt < 0.2
 								}
 							}
 							set_variable = { 
@@ -34660,18 +34464,6 @@ census.06 = {
 						name = trade_do_trade_tt
 						value = var:trade_sell_tools
 					}
-					set_variable = { 
-						name = trade_do_trade_tttt
-						value = var:trade_do_trade_tt
-					}
-					change_variable = { 
-						name = trade_do_trade_tttt
-						divide = 20
-					}
-					change_variable = { 
-						name = trade_do_trade_tttt
-						add = 0.1
-					}
 					while = { 
 						limit = { 
 							has_variable = trade_do_trade_t
@@ -34763,9 +34555,7 @@ census.06 = {
 									NOT = { 
 										has_variable = trade_do_trade_ttt
 									}
-									var:trade_do_trade_ttt = { 
-										compare_value < prev.var:trade_do_trade_tttt
-									}
+									var:trade_do_trade_ttt < 0.2
 								}
 							}
 							set_variable = { 
@@ -34898,18 +34688,6 @@ census.06 = {
 						name = trade_do_trade_tt
 						value = var:trade_sell_armaments
 					}
-					set_variable = { 
-						name = trade_do_trade_tttt
-						value = var:trade_do_trade_tt
-					}
-					change_variable = { 
-						name = trade_do_trade_tttt
-						divide = 20
-					}
-					change_variable = { 
-						name = trade_do_trade_tttt
-						add = 0.1
-					}
 					while = { 
 						limit = { 
 							has_variable = trade_do_trade_t
@@ -35001,9 +34779,7 @@ census.06 = {
 									NOT = { 
 										has_variable = trade_do_trade_ttt
 									}
-									var:trade_do_trade_ttt = { 
-										compare_value < prev.var:trade_do_trade_tttt
-									}
+									var:trade_do_trade_ttt < 0.2
 								}
 							}
 							set_variable = { 
@@ -35136,18 +34912,6 @@ census.06 = {
 						name = trade_do_trade_tt
 						value = var:trade_buy_food
 					}
-					set_variable = { 
-						name = trade_do_trade_tttt
-						value = var:trade_do_trade_tt
-					}
-					change_variable = { 
-						name = trade_do_trade_tttt
-						divide = 20
-					}
-					change_variable = { 
-						name = trade_do_trade_tttt
-						add = 0.1
-					}
 					while = { 
 						limit = { 
 							has_variable = trade_do_trade_t
@@ -35239,9 +35003,7 @@ census.06 = {
 									NOT = { 
 										has_variable = trade_do_trade_ttt
 									}
-									var:trade_do_trade_ttt = { 
-										compare_value < prev.var:trade_do_trade_tttt
-									}
+									var:trade_do_trade_ttt < 0.2
 								}
 							}
 							set_variable = { 
@@ -35374,18 +35136,6 @@ census.06 = {
 						name = trade_do_trade_tt
 						value = var:trade_buy_cereal
 					}
-					set_variable = { 
-						name = trade_do_trade_tttt
-						value = var:trade_do_trade_tt
-					}
-					change_variable = { 
-						name = trade_do_trade_tttt
-						divide = 20
-					}
-					change_variable = { 
-						name = trade_do_trade_tttt
-						add = 0.1
-					}
 					while = { 
 						limit = { 
 							has_variable = trade_do_trade_t
@@ -35477,9 +35227,7 @@ census.06 = {
 									NOT = { 
 										has_variable = trade_do_trade_ttt
 									}
-									var:trade_do_trade_ttt = { 
-										compare_value < prev.var:trade_do_trade_tttt
-									}
+									var:trade_do_trade_ttt < 0.2
 								}
 							}
 							set_variable = { 
@@ -35612,18 +35360,6 @@ census.06 = {
 						name = trade_do_trade_tt
 						value = var:trade_buy_salted
 					}
-					set_variable = { 
-						name = trade_do_trade_tttt
-						value = var:trade_do_trade_tt
-					}
-					change_variable = { 
-						name = trade_do_trade_tttt
-						divide = 20
-					}
-					change_variable = { 
-						name = trade_do_trade_tttt
-						add = 0.1
-					}
 					while = { 
 						limit = { 
 							has_variable = trade_do_trade_t
@@ -35715,9 +35451,7 @@ census.06 = {
 									NOT = { 
 										has_variable = trade_do_trade_ttt
 									}
-									var:trade_do_trade_ttt = { 
-										compare_value < prev.var:trade_do_trade_tttt
-									}
+									var:trade_do_trade_ttt < 0.2
 								}
 							}
 							set_variable = { 
@@ -35850,18 +35584,6 @@ census.06 = {
 						name = trade_do_trade_tt
 						value = var:trade_buy_salt
 					}
-					set_variable = { 
-						name = trade_do_trade_tttt
-						value = var:trade_do_trade_tt
-					}
-					change_variable = { 
-						name = trade_do_trade_tttt
-						divide = 20
-					}
-					change_variable = { 
-						name = trade_do_trade_tttt
-						add = 0.1
-					}
 					while = { 
 						limit = { 
 							has_variable = trade_do_trade_t
@@ -35953,9 +35675,7 @@ census.06 = {
 									NOT = { 
 										has_variable = trade_do_trade_ttt
 									}
-									var:trade_do_trade_ttt = { 
-										compare_value < prev.var:trade_do_trade_tttt
-									}
+									var:trade_do_trade_ttt < 0.2
 								}
 							}
 							set_variable = { 
@@ -36088,18 +35808,6 @@ census.06 = {
 						name = trade_do_trade_tt
 						value = var:trade_buy_mud
 					}
-					set_variable = { 
-						name = trade_do_trade_tttt
-						value = var:trade_do_trade_tt
-					}
-					change_variable = { 
-						name = trade_do_trade_tttt
-						divide = 20
-					}
-					change_variable = { 
-						name = trade_do_trade_tttt
-						add = 0.1
-					}
 					while = { 
 						limit = { 
 							has_variable = trade_do_trade_t
@@ -36191,9 +35899,7 @@ census.06 = {
 									NOT = { 
 										has_variable = trade_do_trade_ttt
 									}
-									var:trade_do_trade_ttt = { 
-										compare_value < prev.var:trade_do_trade_tttt
-									}
+									var:trade_do_trade_ttt < 0.2
 								}
 							}
 							set_variable = { 
@@ -36326,18 +36032,6 @@ census.06 = {
 						name = trade_do_trade_tt
 						value = var:trade_buy_fuel
 					}
-					set_variable = { 
-						name = trade_do_trade_tttt
-						value = var:trade_do_trade_tt
-					}
-					change_variable = { 
-						name = trade_do_trade_tttt
-						divide = 20
-					}
-					change_variable = { 
-						name = trade_do_trade_tttt
-						add = 0.1
-					}
 					while = { 
 						limit = { 
 							has_variable = trade_do_trade_t
@@ -36429,9 +36123,7 @@ census.06 = {
 									NOT = { 
 										has_variable = trade_do_trade_ttt
 									}
-									var:trade_do_trade_ttt = { 
-										compare_value < prev.var:trade_do_trade_tttt
-									}
+									var:trade_do_trade_ttt < 0.2
 								}
 							}
 							set_variable = { 
@@ -36564,18 +36256,6 @@ census.06 = {
 						name = trade_do_trade_tt
 						value = var:trade_buy_fiber
 					}
-					set_variable = { 
-						name = trade_do_trade_tttt
-						value = var:trade_do_trade_tt
-					}
-					change_variable = { 
-						name = trade_do_trade_tttt
-						divide = 20
-					}
-					change_variable = { 
-						name = trade_do_trade_tttt
-						add = 0.1
-					}
 					while = { 
 						limit = { 
 							has_variable = trade_do_trade_t
@@ -36667,9 +36347,7 @@ census.06 = {
 									NOT = { 
 										has_variable = trade_do_trade_ttt
 									}
-									var:trade_do_trade_ttt = { 
-										compare_value < prev.var:trade_do_trade_tttt
-									}
+									var:trade_do_trade_ttt < 0.2
 								}
 							}
 							set_variable = { 
@@ -36802,18 +36480,6 @@ census.06 = {
 						name = trade_do_trade_tt
 						value = var:trade_buy_timber
 					}
-					set_variable = { 
-						name = trade_do_trade_tttt
-						value = var:trade_do_trade_tt
-					}
-					change_variable = { 
-						name = trade_do_trade_tttt
-						divide = 20
-					}
-					change_variable = { 
-						name = trade_do_trade_tttt
-						add = 0.1
-					}
 					while = { 
 						limit = { 
 							has_variable = trade_do_trade_t
@@ -36905,9 +36571,7 @@ census.06 = {
 									NOT = { 
 										has_variable = trade_do_trade_ttt
 									}
-									var:trade_do_trade_ttt = { 
-										compare_value < prev.var:trade_do_trade_tttt
-									}
+									var:trade_do_trade_ttt < 0.2
 								}
 							}
 							set_variable = { 
@@ -37040,18 +36704,6 @@ census.06 = {
 						name = trade_do_trade_tt
 						value = var:trade_buy_metal
 					}
-					set_variable = { 
-						name = trade_do_trade_tttt
-						value = var:trade_do_trade_tt
-					}
-					change_variable = { 
-						name = trade_do_trade_tttt
-						divide = 20
-					}
-					change_variable = { 
-						name = trade_do_trade_tttt
-						add = 0.1
-					}
 					while = { 
 						limit = { 
 							has_variable = trade_do_trade_t
@@ -37143,9 +36795,7 @@ census.06 = {
 									NOT = { 
 										has_variable = trade_do_trade_ttt
 									}
-									var:trade_do_trade_ttt = { 
-										compare_value < prev.var:trade_do_trade_tttt
-									}
+									var:trade_do_trade_ttt < 0.2
 								}
 							}
 							set_variable = { 
@@ -37278,18 +36928,6 @@ census.06 = {
 						name = trade_do_trade_tt
 						value = var:trade_buy_exotics_w
 					}
-					set_variable = { 
-						name = trade_do_trade_tttt
-						value = var:trade_do_trade_tt
-					}
-					change_variable = { 
-						name = trade_do_trade_tttt
-						divide = 20
-					}
-					change_variable = { 
-						name = trade_do_trade_tttt
-						add = 0.1
-					}
 					while = { 
 						limit = { 
 							has_variable = trade_do_trade_t
@@ -37381,9 +37019,7 @@ census.06 = {
 									NOT = { 
 										has_variable = trade_do_trade_ttt
 									}
-									var:trade_do_trade_ttt = { 
-										compare_value < prev.var:trade_do_trade_tttt
-									}
+									var:trade_do_trade_ttt < 0.2
 								}
 							}
 							set_variable = { 
@@ -37516,18 +37152,6 @@ census.06 = {
 						name = trade_do_trade_tt
 						value = var:trade_buy_exotics_e
 					}
-					set_variable = { 
-						name = trade_do_trade_tttt
-						value = var:trade_do_trade_tt
-					}
-					change_variable = { 
-						name = trade_do_trade_tttt
-						divide = 20
-					}
-					change_variable = { 
-						name = trade_do_trade_tttt
-						add = 0.1
-					}
 					while = { 
 						limit = { 
 							has_variable = trade_do_trade_t
@@ -37619,9 +37243,7 @@ census.06 = {
 									NOT = { 
 										has_variable = trade_do_trade_ttt
 									}
-									var:trade_do_trade_ttt = { 
-										compare_value < prev.var:trade_do_trade_tttt
-									}
+									var:trade_do_trade_ttt < 0.2
 								}
 							}
 							set_variable = { 
@@ -37754,18 +37376,6 @@ census.06 = {
 						name = trade_do_trade_tt
 						value = var:trade_buy_exotics_g
 					}
-					set_variable = { 
-						name = trade_do_trade_tttt
-						value = var:trade_do_trade_tt
-					}
-					change_variable = { 
-						name = trade_do_trade_tttt
-						divide = 20
-					}
-					change_variable = { 
-						name = trade_do_trade_tttt
-						add = 0.1
-					}
 					while = { 
 						limit = { 
 							has_variable = trade_do_trade_t
@@ -37857,9 +37467,7 @@ census.06 = {
 									NOT = { 
 										has_variable = trade_do_trade_ttt
 									}
-									var:trade_do_trade_ttt = { 
-										compare_value < prev.var:trade_do_trade_tttt
-									}
+									var:trade_do_trade_ttt < 0.2
 								}
 							}
 							set_variable = { 
@@ -37992,18 +37600,6 @@ census.06 = {
 						name = trade_do_trade_tt
 						value = var:trade_buy_textile
 					}
-					set_variable = { 
-						name = trade_do_trade_tttt
-						value = var:trade_do_trade_tt
-					}
-					change_variable = { 
-						name = trade_do_trade_tttt
-						divide = 20
-					}
-					change_variable = { 
-						name = trade_do_trade_tttt
-						add = 0.1
-					}
 					while = { 
 						limit = { 
 							has_variable = trade_do_trade_t
@@ -38095,9 +37691,7 @@ census.06 = {
 									NOT = { 
 										has_variable = trade_do_trade_ttt
 									}
-									var:trade_do_trade_ttt = { 
-										compare_value < prev.var:trade_do_trade_tttt
-									}
+									var:trade_do_trade_ttt < 0.2
 								}
 							}
 							set_variable = { 
@@ -38230,18 +37824,6 @@ census.06 = {
 						name = trade_do_trade_tt
 						value = var:trade_buy_pottery
 					}
-					set_variable = { 
-						name = trade_do_trade_tttt
-						value = var:trade_do_trade_tt
-					}
-					change_variable = { 
-						name = trade_do_trade_tttt
-						divide = 20
-					}
-					change_variable = { 
-						name = trade_do_trade_tttt
-						add = 0.1
-					}
 					while = { 
 						limit = { 
 							has_variable = trade_do_trade_t
@@ -38333,9 +37915,7 @@ census.06 = {
 									NOT = { 
 										has_variable = trade_do_trade_ttt
 									}
-									var:trade_do_trade_ttt = { 
-										compare_value < prev.var:trade_do_trade_tttt
-									}
+									var:trade_do_trade_ttt < 0.2
 								}
 							}
 							set_variable = { 
@@ -38468,18 +38048,6 @@ census.06 = {
 						name = trade_do_trade_tt
 						value = var:trade_buy_tools
 					}
-					set_variable = { 
-						name = trade_do_trade_tttt
-						value = var:trade_do_trade_tt
-					}
-					change_variable = { 
-						name = trade_do_trade_tttt
-						divide = 20
-					}
-					change_variable = { 
-						name = trade_do_trade_tttt
-						add = 0.1
-					}
 					while = { 
 						limit = { 
 							has_variable = trade_do_trade_t
@@ -38571,9 +38139,7 @@ census.06 = {
 									NOT = { 
 										has_variable = trade_do_trade_ttt
 									}
-									var:trade_do_trade_ttt = { 
-										compare_value < prev.var:trade_do_trade_tttt
-									}
+									var:trade_do_trade_ttt < 0.2
 								}
 							}
 							set_variable = { 
@@ -38706,18 +38272,6 @@ census.06 = {
 						name = trade_do_trade_tt
 						value = var:trade_buy_armaments
 					}
-					set_variable = { 
-						name = trade_do_trade_tttt
-						value = var:trade_do_trade_tt
-					}
-					change_variable = { 
-						name = trade_do_trade_tttt
-						divide = 20
-					}
-					change_variable = { 
-						name = trade_do_trade_tttt
-						add = 0.1
-					}
 					while = { 
 						limit = { 
 							has_variable = trade_do_trade_t
@@ -38809,9 +38363,7 @@ census.06 = {
 									NOT = { 
 										has_variable = trade_do_trade_ttt
 									}
-									var:trade_do_trade_ttt = { 
-										compare_value < prev.var:trade_do_trade_tttt
-									}
+									var:trade_do_trade_ttt < 0.2
 								}
 							}
 							set_variable = { 
@@ -39974,18 +39526,6 @@ census.06 = {
 					set_variable = { 
 						name = trade_do_trade_tt
 						value = var:trade_power_t
-					}
-					set_variable = { 
-						name = trade_do_trade_tttt
-						value = var:trade_do_trade_tt
-					}
-					change_variable = { 
-						name = trade_do_trade_tttt
-						divide = 20
-					}
-					change_variable = { 
-						name = trade_do_trade_tttt
-						add = 2.5
 					}
 					while = { 
 						limit = { 
@@ -41568,9 +41108,7 @@ census.06 = {
 									NOT = { 
 										has_variable = trade_do_trade_ttt
 									}
-									var:trade_do_trade_ttt = { 
-										compare_value < prev.var:trade_do_trade_tttt
-									}
+									var:trade_do_trade_ttt < 2.5
 								}
 							}
 							set_variable = { 
@@ -54766,7 +54304,6 @@ census.06 = {
 			remove_variable = trade_do_trade_t
 			remove_variable = trade_do_trade_tt
 			remove_variable = trade_do_trade_ttt
-			remove_variable = trade_do_trade_tttt
 		}
 		remove_global_variable = trade_do_trade_t
 		remove_global_variable = trade_do_trade_tt
@@ -65133,6 +64670,10 @@ census.07 = {
 				is_landed = yes
 			}
 			set_variable = { 
+				name = trade_update_price_ttt
+				value = var:trade_price_food
+			}
+			set_variable = { 
 				name = trade_update_price_tt
 				value = var:trade_sply_food
 			}
@@ -65280,6 +64821,66 @@ census.07 = {
 					name = trade_price_food
 					value = 0.5
 				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_price_trend_food
+					}
+				}
+				set_variable = { 
+					name = trade_price_trend_food
+					value = 0
+				}
+			}
+			change_variable = { 
+				name = trade_price_trend_food
+				multiply = 0.8
+			}
+			if = { 
+				limit = { 
+					var:trade_update_price_ttt = { 
+						compare_value >= prev.var:trade_price_food
+					}
+				}
+				set_variable = { 
+					name = trade_update_price_t
+					value = var:trade_update_price_ttt
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					divide = var:trade_price_food
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					subtract = 1
+				}
+				change_variable = { 
+					name = trade_price_trend_food
+					subtract = var:trade_update_price_t
+				}
+			}
+			else = { 
+				set_variable = { 
+					name = trade_update_price_t
+					value = var:trade_price_food
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					divide = var:trade_update_price_ttt
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					subtract = 1
+				}
+				change_variable = { 
+					name = trade_price_trend_food
+					add = var:trade_update_price_t
+				}
+			}
+			set_variable = { 
+				name = trade_update_price_ttt
+				value = var:trade_price_cereal
 			}
 			set_variable = { 
 				name = trade_update_price_tt
@@ -65430,6 +65031,66 @@ census.07 = {
 					value = 0.5
 				}
 			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_price_trend_cereal
+					}
+				}
+				set_variable = { 
+					name = trade_price_trend_cereal
+					value = 0
+				}
+			}
+			change_variable = { 
+				name = trade_price_trend_cereal
+				multiply = 0.8
+			}
+			if = { 
+				limit = { 
+					var:trade_update_price_ttt = { 
+						compare_value >= prev.var:trade_price_cereal
+					}
+				}
+				set_variable = { 
+					name = trade_update_price_t
+					value = var:trade_update_price_ttt
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					divide = var:trade_price_cereal
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					subtract = 1
+				}
+				change_variable = { 
+					name = trade_price_trend_cereal
+					subtract = var:trade_update_price_t
+				}
+			}
+			else = { 
+				set_variable = { 
+					name = trade_update_price_t
+					value = var:trade_price_cereal
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					divide = var:trade_update_price_ttt
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					subtract = 1
+				}
+				change_variable = { 
+					name = trade_price_trend_cereal
+					add = var:trade_update_price_t
+				}
+			}
+			set_variable = { 
+				name = trade_update_price_ttt
+				value = var:trade_price_salted
+			}
 			set_variable = { 
 				name = trade_update_price_tt
 				value = var:trade_sply_salted
@@ -65578,6 +65239,66 @@ census.07 = {
 					name = trade_price_salted
 					value = 0.5
 				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_price_trend_salted
+					}
+				}
+				set_variable = { 
+					name = trade_price_trend_salted
+					value = 0
+				}
+			}
+			change_variable = { 
+				name = trade_price_trend_salted
+				multiply = 0.8
+			}
+			if = { 
+				limit = { 
+					var:trade_update_price_ttt = { 
+						compare_value >= prev.var:trade_price_salted
+					}
+				}
+				set_variable = { 
+					name = trade_update_price_t
+					value = var:trade_update_price_ttt
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					divide = var:trade_price_salted
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					subtract = 1
+				}
+				change_variable = { 
+					name = trade_price_trend_salted
+					subtract = var:trade_update_price_t
+				}
+			}
+			else = { 
+				set_variable = { 
+					name = trade_update_price_t
+					value = var:trade_price_salted
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					divide = var:trade_update_price_ttt
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					subtract = 1
+				}
+				change_variable = { 
+					name = trade_price_trend_salted
+					add = var:trade_update_price_t
+				}
+			}
+			set_variable = { 
+				name = trade_update_price_ttt
+				value = var:trade_price_salt
 			}
 			set_variable = { 
 				name = trade_update_price_tt
@@ -65728,6 +65449,66 @@ census.07 = {
 					value = 0.5
 				}
 			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_price_trend_salt
+					}
+				}
+				set_variable = { 
+					name = trade_price_trend_salt
+					value = 0
+				}
+			}
+			change_variable = { 
+				name = trade_price_trend_salt
+				multiply = 0.8
+			}
+			if = { 
+				limit = { 
+					var:trade_update_price_ttt = { 
+						compare_value >= prev.var:trade_price_salt
+					}
+				}
+				set_variable = { 
+					name = trade_update_price_t
+					value = var:trade_update_price_ttt
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					divide = var:trade_price_salt
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					subtract = 1
+				}
+				change_variable = { 
+					name = trade_price_trend_salt
+					subtract = var:trade_update_price_t
+				}
+			}
+			else = { 
+				set_variable = { 
+					name = trade_update_price_t
+					value = var:trade_price_salt
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					divide = var:trade_update_price_ttt
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					subtract = 1
+				}
+				change_variable = { 
+					name = trade_price_trend_salt
+					add = var:trade_update_price_t
+				}
+			}
+			set_variable = { 
+				name = trade_update_price_ttt
+				value = var:trade_price_mud
+			}
 			set_variable = { 
 				name = trade_update_price_tt
 				value = var:trade_sply_mud
@@ -65876,6 +65657,66 @@ census.07 = {
 					name = trade_price_mud
 					value = 0.5
 				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_price_trend_mud
+					}
+				}
+				set_variable = { 
+					name = trade_price_trend_mud
+					value = 0
+				}
+			}
+			change_variable = { 
+				name = trade_price_trend_mud
+				multiply = 0.8
+			}
+			if = { 
+				limit = { 
+					var:trade_update_price_ttt = { 
+						compare_value >= prev.var:trade_price_mud
+					}
+				}
+				set_variable = { 
+					name = trade_update_price_t
+					value = var:trade_update_price_ttt
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					divide = var:trade_price_mud
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					subtract = 1
+				}
+				change_variable = { 
+					name = trade_price_trend_mud
+					subtract = var:trade_update_price_t
+				}
+			}
+			else = { 
+				set_variable = { 
+					name = trade_update_price_t
+					value = var:trade_price_mud
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					divide = var:trade_update_price_ttt
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					subtract = 1
+				}
+				change_variable = { 
+					name = trade_price_trend_mud
+					add = var:trade_update_price_t
+				}
+			}
+			set_variable = { 
+				name = trade_update_price_ttt
+				value = var:trade_price_fuel
 			}
 			set_variable = { 
 				name = trade_update_price_tt
@@ -66026,6 +65867,66 @@ census.07 = {
 					value = 0.5
 				}
 			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_price_trend_fuel
+					}
+				}
+				set_variable = { 
+					name = trade_price_trend_fuel
+					value = 0
+				}
+			}
+			change_variable = { 
+				name = trade_price_trend_fuel
+				multiply = 0.8
+			}
+			if = { 
+				limit = { 
+					var:trade_update_price_ttt = { 
+						compare_value >= prev.var:trade_price_fuel
+					}
+				}
+				set_variable = { 
+					name = trade_update_price_t
+					value = var:trade_update_price_ttt
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					divide = var:trade_price_fuel
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					subtract = 1
+				}
+				change_variable = { 
+					name = trade_price_trend_fuel
+					subtract = var:trade_update_price_t
+				}
+			}
+			else = { 
+				set_variable = { 
+					name = trade_update_price_t
+					value = var:trade_price_fuel
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					divide = var:trade_update_price_ttt
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					subtract = 1
+				}
+				change_variable = { 
+					name = trade_price_trend_fuel
+					add = var:trade_update_price_t
+				}
+			}
+			set_variable = { 
+				name = trade_update_price_ttt
+				value = var:trade_price_fiber
+			}
 			set_variable = { 
 				name = trade_update_price_tt
 				value = var:trade_sply_fiber
@@ -66174,6 +66075,66 @@ census.07 = {
 					name = trade_price_fiber
 					value = 0.5
 				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_price_trend_fiber
+					}
+				}
+				set_variable = { 
+					name = trade_price_trend_fiber
+					value = 0
+				}
+			}
+			change_variable = { 
+				name = trade_price_trend_fiber
+				multiply = 0.8
+			}
+			if = { 
+				limit = { 
+					var:trade_update_price_ttt = { 
+						compare_value >= prev.var:trade_price_fiber
+					}
+				}
+				set_variable = { 
+					name = trade_update_price_t
+					value = var:trade_update_price_ttt
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					divide = var:trade_price_fiber
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					subtract = 1
+				}
+				change_variable = { 
+					name = trade_price_trend_fiber
+					subtract = var:trade_update_price_t
+				}
+			}
+			else = { 
+				set_variable = { 
+					name = trade_update_price_t
+					value = var:trade_price_fiber
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					divide = var:trade_update_price_ttt
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					subtract = 1
+				}
+				change_variable = { 
+					name = trade_price_trend_fiber
+					add = var:trade_update_price_t
+				}
+			}
+			set_variable = { 
+				name = trade_update_price_ttt
+				value = var:trade_price_timber
 			}
 			set_variable = { 
 				name = trade_update_price_tt
@@ -66324,6 +66285,66 @@ census.07 = {
 					value = 0.5
 				}
 			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_price_trend_timber
+					}
+				}
+				set_variable = { 
+					name = trade_price_trend_timber
+					value = 0
+				}
+			}
+			change_variable = { 
+				name = trade_price_trend_timber
+				multiply = 0.8
+			}
+			if = { 
+				limit = { 
+					var:trade_update_price_ttt = { 
+						compare_value >= prev.var:trade_price_timber
+					}
+				}
+				set_variable = { 
+					name = trade_update_price_t
+					value = var:trade_update_price_ttt
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					divide = var:trade_price_timber
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					subtract = 1
+				}
+				change_variable = { 
+					name = trade_price_trend_timber
+					subtract = var:trade_update_price_t
+				}
+			}
+			else = { 
+				set_variable = { 
+					name = trade_update_price_t
+					value = var:trade_price_timber
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					divide = var:trade_update_price_ttt
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					subtract = 1
+				}
+				change_variable = { 
+					name = trade_price_trend_timber
+					add = var:trade_update_price_t
+				}
+			}
+			set_variable = { 
+				name = trade_update_price_ttt
+				value = var:trade_price_metal
+			}
 			set_variable = { 
 				name = trade_update_price_tt
 				value = var:trade_sply_metal
@@ -66472,6 +66493,66 @@ census.07 = {
 					name = trade_price_metal
 					value = 0.5
 				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_price_trend_metal
+					}
+				}
+				set_variable = { 
+					name = trade_price_trend_metal
+					value = 0
+				}
+			}
+			change_variable = { 
+				name = trade_price_trend_metal
+				multiply = 0.8
+			}
+			if = { 
+				limit = { 
+					var:trade_update_price_ttt = { 
+						compare_value >= prev.var:trade_price_metal
+					}
+				}
+				set_variable = { 
+					name = trade_update_price_t
+					value = var:trade_update_price_ttt
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					divide = var:trade_price_metal
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					subtract = 1
+				}
+				change_variable = { 
+					name = trade_price_trend_metal
+					subtract = var:trade_update_price_t
+				}
+			}
+			else = { 
+				set_variable = { 
+					name = trade_update_price_t
+					value = var:trade_price_metal
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					divide = var:trade_update_price_ttt
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					subtract = 1
+				}
+				change_variable = { 
+					name = trade_price_trend_metal
+					add = var:trade_update_price_t
+				}
+			}
+			set_variable = { 
+				name = trade_update_price_ttt
+				value = var:trade_price_exotics_w
 			}
 			set_variable = { 
 				name = trade_update_price_tt
@@ -66622,6 +66703,66 @@ census.07 = {
 					value = 0.5
 				}
 			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_price_trend_exotics_w
+					}
+				}
+				set_variable = { 
+					name = trade_price_trend_exotics_w
+					value = 0
+				}
+			}
+			change_variable = { 
+				name = trade_price_trend_exotics_w
+				multiply = 0.8
+			}
+			if = { 
+				limit = { 
+					var:trade_update_price_ttt = { 
+						compare_value >= prev.var:trade_price_exotics_w
+					}
+				}
+				set_variable = { 
+					name = trade_update_price_t
+					value = var:trade_update_price_ttt
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					divide = var:trade_price_exotics_w
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					subtract = 1
+				}
+				change_variable = { 
+					name = trade_price_trend_exotics_w
+					subtract = var:trade_update_price_t
+				}
+			}
+			else = { 
+				set_variable = { 
+					name = trade_update_price_t
+					value = var:trade_price_exotics_w
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					divide = var:trade_update_price_ttt
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					subtract = 1
+				}
+				change_variable = { 
+					name = trade_price_trend_exotics_w
+					add = var:trade_update_price_t
+				}
+			}
+			set_variable = { 
+				name = trade_update_price_ttt
+				value = var:trade_price_exotics_e
+			}
 			set_variable = { 
 				name = trade_update_price_tt
 				value = var:trade_sply_exotics_e
@@ -66770,6 +66911,66 @@ census.07 = {
 					name = trade_price_exotics_e
 					value = 0.5
 				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_price_trend_exotics_e
+					}
+				}
+				set_variable = { 
+					name = trade_price_trend_exotics_e
+					value = 0
+				}
+			}
+			change_variable = { 
+				name = trade_price_trend_exotics_e
+				multiply = 0.8
+			}
+			if = { 
+				limit = { 
+					var:trade_update_price_ttt = { 
+						compare_value >= prev.var:trade_price_exotics_e
+					}
+				}
+				set_variable = { 
+					name = trade_update_price_t
+					value = var:trade_update_price_ttt
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					divide = var:trade_price_exotics_e
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					subtract = 1
+				}
+				change_variable = { 
+					name = trade_price_trend_exotics_e
+					subtract = var:trade_update_price_t
+				}
+			}
+			else = { 
+				set_variable = { 
+					name = trade_update_price_t
+					value = var:trade_price_exotics_e
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					divide = var:trade_update_price_ttt
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					subtract = 1
+				}
+				change_variable = { 
+					name = trade_price_trend_exotics_e
+					add = var:trade_update_price_t
+				}
+			}
+			set_variable = { 
+				name = trade_update_price_ttt
+				value = var:trade_price_exotics_g
 			}
 			set_variable = { 
 				name = trade_update_price_tt
@@ -66920,6 +67121,66 @@ census.07 = {
 					value = 0.5
 				}
 			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_price_trend_exotics_g
+					}
+				}
+				set_variable = { 
+					name = trade_price_trend_exotics_g
+					value = 0
+				}
+			}
+			change_variable = { 
+				name = trade_price_trend_exotics_g
+				multiply = 0.8
+			}
+			if = { 
+				limit = { 
+					var:trade_update_price_ttt = { 
+						compare_value >= prev.var:trade_price_exotics_g
+					}
+				}
+				set_variable = { 
+					name = trade_update_price_t
+					value = var:trade_update_price_ttt
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					divide = var:trade_price_exotics_g
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					subtract = 1
+				}
+				change_variable = { 
+					name = trade_price_trend_exotics_g
+					subtract = var:trade_update_price_t
+				}
+			}
+			else = { 
+				set_variable = { 
+					name = trade_update_price_t
+					value = var:trade_price_exotics_g
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					divide = var:trade_update_price_ttt
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					subtract = 1
+				}
+				change_variable = { 
+					name = trade_price_trend_exotics_g
+					add = var:trade_update_price_t
+				}
+			}
+			set_variable = { 
+				name = trade_update_price_ttt
+				value = var:trade_price_textile
+			}
 			set_variable = { 
 				name = trade_update_price_tt
 				value = var:trade_sply_textile
@@ -67068,6 +67329,66 @@ census.07 = {
 					name = trade_price_textile
 					value = 0.5
 				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_price_trend_textile
+					}
+				}
+				set_variable = { 
+					name = trade_price_trend_textile
+					value = 0
+				}
+			}
+			change_variable = { 
+				name = trade_price_trend_textile
+				multiply = 0.8
+			}
+			if = { 
+				limit = { 
+					var:trade_update_price_ttt = { 
+						compare_value >= prev.var:trade_price_textile
+					}
+				}
+				set_variable = { 
+					name = trade_update_price_t
+					value = var:trade_update_price_ttt
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					divide = var:trade_price_textile
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					subtract = 1
+				}
+				change_variable = { 
+					name = trade_price_trend_textile
+					subtract = var:trade_update_price_t
+				}
+			}
+			else = { 
+				set_variable = { 
+					name = trade_update_price_t
+					value = var:trade_price_textile
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					divide = var:trade_update_price_ttt
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					subtract = 1
+				}
+				change_variable = { 
+					name = trade_price_trend_textile
+					add = var:trade_update_price_t
+				}
+			}
+			set_variable = { 
+				name = trade_update_price_ttt
+				value = var:trade_price_pottery
 			}
 			set_variable = { 
 				name = trade_update_price_tt
@@ -67218,6 +67539,66 @@ census.07 = {
 					value = 0.5
 				}
 			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_price_trend_pottery
+					}
+				}
+				set_variable = { 
+					name = trade_price_trend_pottery
+					value = 0
+				}
+			}
+			change_variable = { 
+				name = trade_price_trend_pottery
+				multiply = 0.8
+			}
+			if = { 
+				limit = { 
+					var:trade_update_price_ttt = { 
+						compare_value >= prev.var:trade_price_pottery
+					}
+				}
+				set_variable = { 
+					name = trade_update_price_t
+					value = var:trade_update_price_ttt
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					divide = var:trade_price_pottery
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					subtract = 1
+				}
+				change_variable = { 
+					name = trade_price_trend_pottery
+					subtract = var:trade_update_price_t
+				}
+			}
+			else = { 
+				set_variable = { 
+					name = trade_update_price_t
+					value = var:trade_price_pottery
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					divide = var:trade_update_price_ttt
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					subtract = 1
+				}
+				change_variable = { 
+					name = trade_price_trend_pottery
+					add = var:trade_update_price_t
+				}
+			}
+			set_variable = { 
+				name = trade_update_price_ttt
+				value = var:trade_price_tools
+			}
 			set_variable = { 
 				name = trade_update_price_tt
 				value = var:trade_sply_tools
@@ -67366,6 +67747,66 @@ census.07 = {
 					name = trade_price_tools
 					value = 0.5
 				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_price_trend_tools
+					}
+				}
+				set_variable = { 
+					name = trade_price_trend_tools
+					value = 0
+				}
+			}
+			change_variable = { 
+				name = trade_price_trend_tools
+				multiply = 0.8
+			}
+			if = { 
+				limit = { 
+					var:trade_update_price_ttt = { 
+						compare_value >= prev.var:trade_price_tools
+					}
+				}
+				set_variable = { 
+					name = trade_update_price_t
+					value = var:trade_update_price_ttt
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					divide = var:trade_price_tools
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					subtract = 1
+				}
+				change_variable = { 
+					name = trade_price_trend_tools
+					subtract = var:trade_update_price_t
+				}
+			}
+			else = { 
+				set_variable = { 
+					name = trade_update_price_t
+					value = var:trade_price_tools
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					divide = var:trade_update_price_ttt
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					subtract = 1
+				}
+				change_variable = { 
+					name = trade_price_trend_tools
+					add = var:trade_update_price_t
+				}
+			}
+			set_variable = { 
+				name = trade_update_price_ttt
+				value = var:trade_price_armaments
 			}
 			set_variable = { 
 				name = trade_update_price_tt
@@ -67516,14 +67957,75 @@ census.07 = {
 					value = 0.5
 				}
 			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_price_trend_armaments
+					}
+				}
+				set_variable = { 
+					name = trade_price_trend_armaments
+					value = 0
+				}
+			}
+			change_variable = { 
+				name = trade_price_trend_armaments
+				multiply = 0.8
+			}
+			if = { 
+				limit = { 
+					var:trade_update_price_ttt = { 
+						compare_value >= prev.var:trade_price_armaments
+					}
+				}
+				set_variable = { 
+					name = trade_update_price_t
+					value = var:trade_update_price_ttt
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					divide = var:trade_price_armaments
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					subtract = 1
+				}
+				change_variable = { 
+					name = trade_price_trend_armaments
+					subtract = var:trade_update_price_t
+				}
+			}
+			else = { 
+				set_variable = { 
+					name = trade_update_price_t
+					value = var:trade_price_armaments
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					divide = var:trade_update_price_ttt
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					subtract = 1
+				}
+				change_variable = { 
+					name = trade_price_trend_armaments
+					add = var:trade_update_price_t
+				}
+			}
 			remove_variable = trade_update_price_t
 			remove_variable = trade_update_price_tt
+			remove_variable = trade_update_price_ttt
 		}
 		every_county = { 
 			limit = { 
 				is_valid_prov = yes
 			}
 			set_variable = { 
+				name = trade_update_price_ttt
+				value = var:trade_price_food
+			}
+			set_variable = { 
 				name = trade_update_price_tt
 				value = var:trade_sply_food
 			}
@@ -67671,6 +68173,66 @@ census.07 = {
 					name = trade_price_food
 					value = 0.5
 				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_price_trend_food
+					}
+				}
+				set_variable = { 
+					name = trade_price_trend_food
+					value = 0
+				}
+			}
+			change_variable = { 
+				name = trade_price_trend_food
+				multiply = 0.8
+			}
+			if = { 
+				limit = { 
+					var:trade_update_price_ttt = { 
+						compare_value >= prev.var:trade_price_food
+					}
+				}
+				set_variable = { 
+					name = trade_update_price_t
+					value = var:trade_update_price_ttt
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					divide = var:trade_price_food
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					subtract = 1
+				}
+				change_variable = { 
+					name = trade_price_trend_food
+					subtract = var:trade_update_price_t
+				}
+			}
+			else = { 
+				set_variable = { 
+					name = trade_update_price_t
+					value = var:trade_price_food
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					divide = var:trade_update_price_ttt
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					subtract = 1
+				}
+				change_variable = { 
+					name = trade_price_trend_food
+					add = var:trade_update_price_t
+				}
+			}
+			set_variable = { 
+				name = trade_update_price_ttt
+				value = var:trade_price_cereal
 			}
 			set_variable = { 
 				name = trade_update_price_tt
@@ -67821,6 +68383,66 @@ census.07 = {
 					value = 0.5
 				}
 			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_price_trend_cereal
+					}
+				}
+				set_variable = { 
+					name = trade_price_trend_cereal
+					value = 0
+				}
+			}
+			change_variable = { 
+				name = trade_price_trend_cereal
+				multiply = 0.8
+			}
+			if = { 
+				limit = { 
+					var:trade_update_price_ttt = { 
+						compare_value >= prev.var:trade_price_cereal
+					}
+				}
+				set_variable = { 
+					name = trade_update_price_t
+					value = var:trade_update_price_ttt
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					divide = var:trade_price_cereal
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					subtract = 1
+				}
+				change_variable = { 
+					name = trade_price_trend_cereal
+					subtract = var:trade_update_price_t
+				}
+			}
+			else = { 
+				set_variable = { 
+					name = trade_update_price_t
+					value = var:trade_price_cereal
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					divide = var:trade_update_price_ttt
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					subtract = 1
+				}
+				change_variable = { 
+					name = trade_price_trend_cereal
+					add = var:trade_update_price_t
+				}
+			}
+			set_variable = { 
+				name = trade_update_price_ttt
+				value = var:trade_price_salted
+			}
 			set_variable = { 
 				name = trade_update_price_tt
 				value = var:trade_sply_salted
@@ -67969,6 +68591,66 @@ census.07 = {
 					name = trade_price_salted
 					value = 0.5
 				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_price_trend_salted
+					}
+				}
+				set_variable = { 
+					name = trade_price_trend_salted
+					value = 0
+				}
+			}
+			change_variable = { 
+				name = trade_price_trend_salted
+				multiply = 0.8
+			}
+			if = { 
+				limit = { 
+					var:trade_update_price_ttt = { 
+						compare_value >= prev.var:trade_price_salted
+					}
+				}
+				set_variable = { 
+					name = trade_update_price_t
+					value = var:trade_update_price_ttt
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					divide = var:trade_price_salted
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					subtract = 1
+				}
+				change_variable = { 
+					name = trade_price_trend_salted
+					subtract = var:trade_update_price_t
+				}
+			}
+			else = { 
+				set_variable = { 
+					name = trade_update_price_t
+					value = var:trade_price_salted
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					divide = var:trade_update_price_ttt
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					subtract = 1
+				}
+				change_variable = { 
+					name = trade_price_trend_salted
+					add = var:trade_update_price_t
+				}
+			}
+			set_variable = { 
+				name = trade_update_price_ttt
+				value = var:trade_price_salt
 			}
 			set_variable = { 
 				name = trade_update_price_tt
@@ -68119,6 +68801,66 @@ census.07 = {
 					value = 0.5
 				}
 			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_price_trend_salt
+					}
+				}
+				set_variable = { 
+					name = trade_price_trend_salt
+					value = 0
+				}
+			}
+			change_variable = { 
+				name = trade_price_trend_salt
+				multiply = 0.8
+			}
+			if = { 
+				limit = { 
+					var:trade_update_price_ttt = { 
+						compare_value >= prev.var:trade_price_salt
+					}
+				}
+				set_variable = { 
+					name = trade_update_price_t
+					value = var:trade_update_price_ttt
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					divide = var:trade_price_salt
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					subtract = 1
+				}
+				change_variable = { 
+					name = trade_price_trend_salt
+					subtract = var:trade_update_price_t
+				}
+			}
+			else = { 
+				set_variable = { 
+					name = trade_update_price_t
+					value = var:trade_price_salt
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					divide = var:trade_update_price_ttt
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					subtract = 1
+				}
+				change_variable = { 
+					name = trade_price_trend_salt
+					add = var:trade_update_price_t
+				}
+			}
+			set_variable = { 
+				name = trade_update_price_ttt
+				value = var:trade_price_mud
+			}
 			set_variable = { 
 				name = trade_update_price_tt
 				value = var:trade_sply_mud
@@ -68267,6 +69009,66 @@ census.07 = {
 					name = trade_price_mud
 					value = 0.5
 				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_price_trend_mud
+					}
+				}
+				set_variable = { 
+					name = trade_price_trend_mud
+					value = 0
+				}
+			}
+			change_variable = { 
+				name = trade_price_trend_mud
+				multiply = 0.8
+			}
+			if = { 
+				limit = { 
+					var:trade_update_price_ttt = { 
+						compare_value >= prev.var:trade_price_mud
+					}
+				}
+				set_variable = { 
+					name = trade_update_price_t
+					value = var:trade_update_price_ttt
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					divide = var:trade_price_mud
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					subtract = 1
+				}
+				change_variable = { 
+					name = trade_price_trend_mud
+					subtract = var:trade_update_price_t
+				}
+			}
+			else = { 
+				set_variable = { 
+					name = trade_update_price_t
+					value = var:trade_price_mud
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					divide = var:trade_update_price_ttt
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					subtract = 1
+				}
+				change_variable = { 
+					name = trade_price_trend_mud
+					add = var:trade_update_price_t
+				}
+			}
+			set_variable = { 
+				name = trade_update_price_ttt
+				value = var:trade_price_fuel
 			}
 			set_variable = { 
 				name = trade_update_price_tt
@@ -68417,6 +69219,66 @@ census.07 = {
 					value = 0.5
 				}
 			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_price_trend_fuel
+					}
+				}
+				set_variable = { 
+					name = trade_price_trend_fuel
+					value = 0
+				}
+			}
+			change_variable = { 
+				name = trade_price_trend_fuel
+				multiply = 0.8
+			}
+			if = { 
+				limit = { 
+					var:trade_update_price_ttt = { 
+						compare_value >= prev.var:trade_price_fuel
+					}
+				}
+				set_variable = { 
+					name = trade_update_price_t
+					value = var:trade_update_price_ttt
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					divide = var:trade_price_fuel
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					subtract = 1
+				}
+				change_variable = { 
+					name = trade_price_trend_fuel
+					subtract = var:trade_update_price_t
+				}
+			}
+			else = { 
+				set_variable = { 
+					name = trade_update_price_t
+					value = var:trade_price_fuel
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					divide = var:trade_update_price_ttt
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					subtract = 1
+				}
+				change_variable = { 
+					name = trade_price_trend_fuel
+					add = var:trade_update_price_t
+				}
+			}
+			set_variable = { 
+				name = trade_update_price_ttt
+				value = var:trade_price_fiber
+			}
 			set_variable = { 
 				name = trade_update_price_tt
 				value = var:trade_sply_fiber
@@ -68565,6 +69427,66 @@ census.07 = {
 					name = trade_price_fiber
 					value = 0.5
 				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_price_trend_fiber
+					}
+				}
+				set_variable = { 
+					name = trade_price_trend_fiber
+					value = 0
+				}
+			}
+			change_variable = { 
+				name = trade_price_trend_fiber
+				multiply = 0.8
+			}
+			if = { 
+				limit = { 
+					var:trade_update_price_ttt = { 
+						compare_value >= prev.var:trade_price_fiber
+					}
+				}
+				set_variable = { 
+					name = trade_update_price_t
+					value = var:trade_update_price_ttt
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					divide = var:trade_price_fiber
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					subtract = 1
+				}
+				change_variable = { 
+					name = trade_price_trend_fiber
+					subtract = var:trade_update_price_t
+				}
+			}
+			else = { 
+				set_variable = { 
+					name = trade_update_price_t
+					value = var:trade_price_fiber
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					divide = var:trade_update_price_ttt
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					subtract = 1
+				}
+				change_variable = { 
+					name = trade_price_trend_fiber
+					add = var:trade_update_price_t
+				}
+			}
+			set_variable = { 
+				name = trade_update_price_ttt
+				value = var:trade_price_timber
 			}
 			set_variable = { 
 				name = trade_update_price_tt
@@ -68715,6 +69637,66 @@ census.07 = {
 					value = 0.5
 				}
 			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_price_trend_timber
+					}
+				}
+				set_variable = { 
+					name = trade_price_trend_timber
+					value = 0
+				}
+			}
+			change_variable = { 
+				name = trade_price_trend_timber
+				multiply = 0.8
+			}
+			if = { 
+				limit = { 
+					var:trade_update_price_ttt = { 
+						compare_value >= prev.var:trade_price_timber
+					}
+				}
+				set_variable = { 
+					name = trade_update_price_t
+					value = var:trade_update_price_ttt
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					divide = var:trade_price_timber
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					subtract = 1
+				}
+				change_variable = { 
+					name = trade_price_trend_timber
+					subtract = var:trade_update_price_t
+				}
+			}
+			else = { 
+				set_variable = { 
+					name = trade_update_price_t
+					value = var:trade_price_timber
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					divide = var:trade_update_price_ttt
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					subtract = 1
+				}
+				change_variable = { 
+					name = trade_price_trend_timber
+					add = var:trade_update_price_t
+				}
+			}
+			set_variable = { 
+				name = trade_update_price_ttt
+				value = var:trade_price_metal
+			}
 			set_variable = { 
 				name = trade_update_price_tt
 				value = var:trade_sply_metal
@@ -68863,6 +69845,66 @@ census.07 = {
 					name = trade_price_metal
 					value = 0.5
 				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_price_trend_metal
+					}
+				}
+				set_variable = { 
+					name = trade_price_trend_metal
+					value = 0
+				}
+			}
+			change_variable = { 
+				name = trade_price_trend_metal
+				multiply = 0.8
+			}
+			if = { 
+				limit = { 
+					var:trade_update_price_ttt = { 
+						compare_value >= prev.var:trade_price_metal
+					}
+				}
+				set_variable = { 
+					name = trade_update_price_t
+					value = var:trade_update_price_ttt
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					divide = var:trade_price_metal
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					subtract = 1
+				}
+				change_variable = { 
+					name = trade_price_trend_metal
+					subtract = var:trade_update_price_t
+				}
+			}
+			else = { 
+				set_variable = { 
+					name = trade_update_price_t
+					value = var:trade_price_metal
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					divide = var:trade_update_price_ttt
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					subtract = 1
+				}
+				change_variable = { 
+					name = trade_price_trend_metal
+					add = var:trade_update_price_t
+				}
+			}
+			set_variable = { 
+				name = trade_update_price_ttt
+				value = var:trade_price_exotics_w
 			}
 			set_variable = { 
 				name = trade_update_price_tt
@@ -69013,6 +70055,66 @@ census.07 = {
 					value = 0.5
 				}
 			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_price_trend_exotics_w
+					}
+				}
+				set_variable = { 
+					name = trade_price_trend_exotics_w
+					value = 0
+				}
+			}
+			change_variable = { 
+				name = trade_price_trend_exotics_w
+				multiply = 0.8
+			}
+			if = { 
+				limit = { 
+					var:trade_update_price_ttt = { 
+						compare_value >= prev.var:trade_price_exotics_w
+					}
+				}
+				set_variable = { 
+					name = trade_update_price_t
+					value = var:trade_update_price_ttt
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					divide = var:trade_price_exotics_w
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					subtract = 1
+				}
+				change_variable = { 
+					name = trade_price_trend_exotics_w
+					subtract = var:trade_update_price_t
+				}
+			}
+			else = { 
+				set_variable = { 
+					name = trade_update_price_t
+					value = var:trade_price_exotics_w
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					divide = var:trade_update_price_ttt
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					subtract = 1
+				}
+				change_variable = { 
+					name = trade_price_trend_exotics_w
+					add = var:trade_update_price_t
+				}
+			}
+			set_variable = { 
+				name = trade_update_price_ttt
+				value = var:trade_price_exotics_e
+			}
 			set_variable = { 
 				name = trade_update_price_tt
 				value = var:trade_sply_exotics_e
@@ -69161,6 +70263,66 @@ census.07 = {
 					name = trade_price_exotics_e
 					value = 0.5
 				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_price_trend_exotics_e
+					}
+				}
+				set_variable = { 
+					name = trade_price_trend_exotics_e
+					value = 0
+				}
+			}
+			change_variable = { 
+				name = trade_price_trend_exotics_e
+				multiply = 0.8
+			}
+			if = { 
+				limit = { 
+					var:trade_update_price_ttt = { 
+						compare_value >= prev.var:trade_price_exotics_e
+					}
+				}
+				set_variable = { 
+					name = trade_update_price_t
+					value = var:trade_update_price_ttt
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					divide = var:trade_price_exotics_e
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					subtract = 1
+				}
+				change_variable = { 
+					name = trade_price_trend_exotics_e
+					subtract = var:trade_update_price_t
+				}
+			}
+			else = { 
+				set_variable = { 
+					name = trade_update_price_t
+					value = var:trade_price_exotics_e
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					divide = var:trade_update_price_ttt
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					subtract = 1
+				}
+				change_variable = { 
+					name = trade_price_trend_exotics_e
+					add = var:trade_update_price_t
+				}
+			}
+			set_variable = { 
+				name = trade_update_price_ttt
+				value = var:trade_price_exotics_g
 			}
 			set_variable = { 
 				name = trade_update_price_tt
@@ -69311,6 +70473,66 @@ census.07 = {
 					value = 0.5
 				}
 			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_price_trend_exotics_g
+					}
+				}
+				set_variable = { 
+					name = trade_price_trend_exotics_g
+					value = 0
+				}
+			}
+			change_variable = { 
+				name = trade_price_trend_exotics_g
+				multiply = 0.8
+			}
+			if = { 
+				limit = { 
+					var:trade_update_price_ttt = { 
+						compare_value >= prev.var:trade_price_exotics_g
+					}
+				}
+				set_variable = { 
+					name = trade_update_price_t
+					value = var:trade_update_price_ttt
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					divide = var:trade_price_exotics_g
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					subtract = 1
+				}
+				change_variable = { 
+					name = trade_price_trend_exotics_g
+					subtract = var:trade_update_price_t
+				}
+			}
+			else = { 
+				set_variable = { 
+					name = trade_update_price_t
+					value = var:trade_price_exotics_g
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					divide = var:trade_update_price_ttt
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					subtract = 1
+				}
+				change_variable = { 
+					name = trade_price_trend_exotics_g
+					add = var:trade_update_price_t
+				}
+			}
+			set_variable = { 
+				name = trade_update_price_ttt
+				value = var:trade_price_textile
+			}
 			set_variable = { 
 				name = trade_update_price_tt
 				value = var:trade_sply_textile
@@ -69459,6 +70681,66 @@ census.07 = {
 					name = trade_price_textile
 					value = 0.5
 				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_price_trend_textile
+					}
+				}
+				set_variable = { 
+					name = trade_price_trend_textile
+					value = 0
+				}
+			}
+			change_variable = { 
+				name = trade_price_trend_textile
+				multiply = 0.8
+			}
+			if = { 
+				limit = { 
+					var:trade_update_price_ttt = { 
+						compare_value >= prev.var:trade_price_textile
+					}
+				}
+				set_variable = { 
+					name = trade_update_price_t
+					value = var:trade_update_price_ttt
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					divide = var:trade_price_textile
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					subtract = 1
+				}
+				change_variable = { 
+					name = trade_price_trend_textile
+					subtract = var:trade_update_price_t
+				}
+			}
+			else = { 
+				set_variable = { 
+					name = trade_update_price_t
+					value = var:trade_price_textile
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					divide = var:trade_update_price_ttt
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					subtract = 1
+				}
+				change_variable = { 
+					name = trade_price_trend_textile
+					add = var:trade_update_price_t
+				}
+			}
+			set_variable = { 
+				name = trade_update_price_ttt
+				value = var:trade_price_pottery
 			}
 			set_variable = { 
 				name = trade_update_price_tt
@@ -69609,6 +70891,66 @@ census.07 = {
 					value = 0.5
 				}
 			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_price_trend_pottery
+					}
+				}
+				set_variable = { 
+					name = trade_price_trend_pottery
+					value = 0
+				}
+			}
+			change_variable = { 
+				name = trade_price_trend_pottery
+				multiply = 0.8
+			}
+			if = { 
+				limit = { 
+					var:trade_update_price_ttt = { 
+						compare_value >= prev.var:trade_price_pottery
+					}
+				}
+				set_variable = { 
+					name = trade_update_price_t
+					value = var:trade_update_price_ttt
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					divide = var:trade_price_pottery
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					subtract = 1
+				}
+				change_variable = { 
+					name = trade_price_trend_pottery
+					subtract = var:trade_update_price_t
+				}
+			}
+			else = { 
+				set_variable = { 
+					name = trade_update_price_t
+					value = var:trade_price_pottery
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					divide = var:trade_update_price_ttt
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					subtract = 1
+				}
+				change_variable = { 
+					name = trade_price_trend_pottery
+					add = var:trade_update_price_t
+				}
+			}
+			set_variable = { 
+				name = trade_update_price_ttt
+				value = var:trade_price_tools
+			}
 			set_variable = { 
 				name = trade_update_price_tt
 				value = var:trade_sply_tools
@@ -69757,6 +71099,66 @@ census.07 = {
 					name = trade_price_tools
 					value = 0.5
 				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_price_trend_tools
+					}
+				}
+				set_variable = { 
+					name = trade_price_trend_tools
+					value = 0
+				}
+			}
+			change_variable = { 
+				name = trade_price_trend_tools
+				multiply = 0.8
+			}
+			if = { 
+				limit = { 
+					var:trade_update_price_ttt = { 
+						compare_value >= prev.var:trade_price_tools
+					}
+				}
+				set_variable = { 
+					name = trade_update_price_t
+					value = var:trade_update_price_ttt
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					divide = var:trade_price_tools
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					subtract = 1
+				}
+				change_variable = { 
+					name = trade_price_trend_tools
+					subtract = var:trade_update_price_t
+				}
+			}
+			else = { 
+				set_variable = { 
+					name = trade_update_price_t
+					value = var:trade_price_tools
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					divide = var:trade_update_price_ttt
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					subtract = 1
+				}
+				change_variable = { 
+					name = trade_price_trend_tools
+					add = var:trade_update_price_t
+				}
+			}
+			set_variable = { 
+				name = trade_update_price_ttt
+				value = var:trade_price_armaments
 			}
 			set_variable = { 
 				name = trade_update_price_tt
@@ -69907,11 +71309,72 @@ census.07 = {
 					value = 0.5
 				}
 			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_price_trend_armaments
+					}
+				}
+				set_variable = { 
+					name = trade_price_trend_armaments
+					value = 0
+				}
+			}
+			change_variable = { 
+				name = trade_price_trend_armaments
+				multiply = 0.8
+			}
+			if = { 
+				limit = { 
+					var:trade_update_price_ttt = { 
+						compare_value >= prev.var:trade_price_armaments
+					}
+				}
+				set_variable = { 
+					name = trade_update_price_t
+					value = var:trade_update_price_ttt
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					divide = var:trade_price_armaments
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					subtract = 1
+				}
+				change_variable = { 
+					name = trade_price_trend_armaments
+					subtract = var:trade_update_price_t
+				}
+			}
+			else = { 
+				set_variable = { 
+					name = trade_update_price_t
+					value = var:trade_price_armaments
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					divide = var:trade_update_price_ttt
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					subtract = 1
+				}
+				change_variable = { 
+					name = trade_price_trend_armaments
+					add = var:trade_update_price_t
+				}
+			}
 			remove_variable = trade_update_price_t
 			remove_variable = trade_update_price_tt
+			remove_variable = trade_update_price_ttt
 		}
 		every_in_global_list = { 
 			variable = trade_merchants
+			set_variable = { 
+				name = trade_update_price_ttt
+				value = var:trade_price_food
+			}
 			if = { 
 				limit = { 
 					has_variable = trade_want_food
@@ -69988,6 +71451,66 @@ census.07 = {
 					name = trade_price_food
 					value = 0.5
 				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_price_trend_food
+					}
+				}
+				set_variable = { 
+					name = trade_price_trend_food
+					value = 0
+				}
+			}
+			change_variable = { 
+				name = trade_price_trend_food
+				multiply = 0.8
+			}
+			if = { 
+				limit = { 
+					var:trade_update_price_ttt = { 
+						compare_value >= prev.var:trade_price_food
+					}
+				}
+				set_variable = { 
+					name = trade_update_price_t
+					value = var:trade_update_price_ttt
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					divide = var:trade_price_food
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					subtract = 1
+				}
+				change_variable = { 
+					name = trade_price_trend_food
+					subtract = var:trade_update_price_t
+				}
+			}
+			else = { 
+				set_variable = { 
+					name = trade_update_price_t
+					value = var:trade_price_food
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					divide = var:trade_update_price_ttt
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					subtract = 1
+				}
+				change_variable = { 
+					name = trade_price_trend_food
+					add = var:trade_update_price_t
+				}
+			}
+			set_variable = { 
+				name = trade_update_price_ttt
+				value = var:trade_price_cereal
 			}
 			if = { 
 				limit = { 
@@ -70068,6 +71591,66 @@ census.07 = {
 			}
 			if = { 
 				limit = { 
+					NOT = { 
+						has_variable = trade_price_trend_cereal
+					}
+				}
+				set_variable = { 
+					name = trade_price_trend_cereal
+					value = 0
+				}
+			}
+			change_variable = { 
+				name = trade_price_trend_cereal
+				multiply = 0.8
+			}
+			if = { 
+				limit = { 
+					var:trade_update_price_ttt = { 
+						compare_value >= prev.var:trade_price_cereal
+					}
+				}
+				set_variable = { 
+					name = trade_update_price_t
+					value = var:trade_update_price_ttt
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					divide = var:trade_price_cereal
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					subtract = 1
+				}
+				change_variable = { 
+					name = trade_price_trend_cereal
+					subtract = var:trade_update_price_t
+				}
+			}
+			else = { 
+				set_variable = { 
+					name = trade_update_price_t
+					value = var:trade_price_cereal
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					divide = var:trade_update_price_ttt
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					subtract = 1
+				}
+				change_variable = { 
+					name = trade_price_trend_cereal
+					add = var:trade_update_price_t
+				}
+			}
+			set_variable = { 
+				name = trade_update_price_ttt
+				value = var:trade_price_salted
+			}
+			if = { 
+				limit = { 
 					has_variable = trade_want_salted
 					var:trade_want_salted > 0
 				}
@@ -70142,6 +71725,66 @@ census.07 = {
 					name = trade_price_salted
 					value = 0.5
 				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_price_trend_salted
+					}
+				}
+				set_variable = { 
+					name = trade_price_trend_salted
+					value = 0
+				}
+			}
+			change_variable = { 
+				name = trade_price_trend_salted
+				multiply = 0.8
+			}
+			if = { 
+				limit = { 
+					var:trade_update_price_ttt = { 
+						compare_value >= prev.var:trade_price_salted
+					}
+				}
+				set_variable = { 
+					name = trade_update_price_t
+					value = var:trade_update_price_ttt
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					divide = var:trade_price_salted
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					subtract = 1
+				}
+				change_variable = { 
+					name = trade_price_trend_salted
+					subtract = var:trade_update_price_t
+				}
+			}
+			else = { 
+				set_variable = { 
+					name = trade_update_price_t
+					value = var:trade_price_salted
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					divide = var:trade_update_price_ttt
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					subtract = 1
+				}
+				change_variable = { 
+					name = trade_price_trend_salted
+					add = var:trade_update_price_t
+				}
+			}
+			set_variable = { 
+				name = trade_update_price_ttt
+				value = var:trade_price_salt
 			}
 			if = { 
 				limit = { 
@@ -70222,6 +71865,66 @@ census.07 = {
 			}
 			if = { 
 				limit = { 
+					NOT = { 
+						has_variable = trade_price_trend_salt
+					}
+				}
+				set_variable = { 
+					name = trade_price_trend_salt
+					value = 0
+				}
+			}
+			change_variable = { 
+				name = trade_price_trend_salt
+				multiply = 0.8
+			}
+			if = { 
+				limit = { 
+					var:trade_update_price_ttt = { 
+						compare_value >= prev.var:trade_price_salt
+					}
+				}
+				set_variable = { 
+					name = trade_update_price_t
+					value = var:trade_update_price_ttt
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					divide = var:trade_price_salt
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					subtract = 1
+				}
+				change_variable = { 
+					name = trade_price_trend_salt
+					subtract = var:trade_update_price_t
+				}
+			}
+			else = { 
+				set_variable = { 
+					name = trade_update_price_t
+					value = var:trade_price_salt
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					divide = var:trade_update_price_ttt
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					subtract = 1
+				}
+				change_variable = { 
+					name = trade_price_trend_salt
+					add = var:trade_update_price_t
+				}
+			}
+			set_variable = { 
+				name = trade_update_price_ttt
+				value = var:trade_price_mud
+			}
+			if = { 
+				limit = { 
 					has_variable = trade_want_mud
 					var:trade_want_mud > 0
 				}
@@ -70296,6 +71999,66 @@ census.07 = {
 					name = trade_price_mud
 					value = 0.5
 				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_price_trend_mud
+					}
+				}
+				set_variable = { 
+					name = trade_price_trend_mud
+					value = 0
+				}
+			}
+			change_variable = { 
+				name = trade_price_trend_mud
+				multiply = 0.8
+			}
+			if = { 
+				limit = { 
+					var:trade_update_price_ttt = { 
+						compare_value >= prev.var:trade_price_mud
+					}
+				}
+				set_variable = { 
+					name = trade_update_price_t
+					value = var:trade_update_price_ttt
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					divide = var:trade_price_mud
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					subtract = 1
+				}
+				change_variable = { 
+					name = trade_price_trend_mud
+					subtract = var:trade_update_price_t
+				}
+			}
+			else = { 
+				set_variable = { 
+					name = trade_update_price_t
+					value = var:trade_price_mud
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					divide = var:trade_update_price_ttt
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					subtract = 1
+				}
+				change_variable = { 
+					name = trade_price_trend_mud
+					add = var:trade_update_price_t
+				}
+			}
+			set_variable = { 
+				name = trade_update_price_ttt
+				value = var:trade_price_fuel
 			}
 			if = { 
 				limit = { 
@@ -70376,6 +72139,66 @@ census.07 = {
 			}
 			if = { 
 				limit = { 
+					NOT = { 
+						has_variable = trade_price_trend_fuel
+					}
+				}
+				set_variable = { 
+					name = trade_price_trend_fuel
+					value = 0
+				}
+			}
+			change_variable = { 
+				name = trade_price_trend_fuel
+				multiply = 0.8
+			}
+			if = { 
+				limit = { 
+					var:trade_update_price_ttt = { 
+						compare_value >= prev.var:trade_price_fuel
+					}
+				}
+				set_variable = { 
+					name = trade_update_price_t
+					value = var:trade_update_price_ttt
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					divide = var:trade_price_fuel
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					subtract = 1
+				}
+				change_variable = { 
+					name = trade_price_trend_fuel
+					subtract = var:trade_update_price_t
+				}
+			}
+			else = { 
+				set_variable = { 
+					name = trade_update_price_t
+					value = var:trade_price_fuel
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					divide = var:trade_update_price_ttt
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					subtract = 1
+				}
+				change_variable = { 
+					name = trade_price_trend_fuel
+					add = var:trade_update_price_t
+				}
+			}
+			set_variable = { 
+				name = trade_update_price_ttt
+				value = var:trade_price_fiber
+			}
+			if = { 
+				limit = { 
 					has_variable = trade_want_fiber
 					var:trade_want_fiber > 0
 				}
@@ -70450,6 +72273,66 @@ census.07 = {
 					name = trade_price_fiber
 					value = 0.5
 				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_price_trend_fiber
+					}
+				}
+				set_variable = { 
+					name = trade_price_trend_fiber
+					value = 0
+				}
+			}
+			change_variable = { 
+				name = trade_price_trend_fiber
+				multiply = 0.8
+			}
+			if = { 
+				limit = { 
+					var:trade_update_price_ttt = { 
+						compare_value >= prev.var:trade_price_fiber
+					}
+				}
+				set_variable = { 
+					name = trade_update_price_t
+					value = var:trade_update_price_ttt
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					divide = var:trade_price_fiber
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					subtract = 1
+				}
+				change_variable = { 
+					name = trade_price_trend_fiber
+					subtract = var:trade_update_price_t
+				}
+			}
+			else = { 
+				set_variable = { 
+					name = trade_update_price_t
+					value = var:trade_price_fiber
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					divide = var:trade_update_price_ttt
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					subtract = 1
+				}
+				change_variable = { 
+					name = trade_price_trend_fiber
+					add = var:trade_update_price_t
+				}
+			}
+			set_variable = { 
+				name = trade_update_price_ttt
+				value = var:trade_price_timber
 			}
 			if = { 
 				limit = { 
@@ -70530,6 +72413,66 @@ census.07 = {
 			}
 			if = { 
 				limit = { 
+					NOT = { 
+						has_variable = trade_price_trend_timber
+					}
+				}
+				set_variable = { 
+					name = trade_price_trend_timber
+					value = 0
+				}
+			}
+			change_variable = { 
+				name = trade_price_trend_timber
+				multiply = 0.8
+			}
+			if = { 
+				limit = { 
+					var:trade_update_price_ttt = { 
+						compare_value >= prev.var:trade_price_timber
+					}
+				}
+				set_variable = { 
+					name = trade_update_price_t
+					value = var:trade_update_price_ttt
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					divide = var:trade_price_timber
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					subtract = 1
+				}
+				change_variable = { 
+					name = trade_price_trend_timber
+					subtract = var:trade_update_price_t
+				}
+			}
+			else = { 
+				set_variable = { 
+					name = trade_update_price_t
+					value = var:trade_price_timber
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					divide = var:trade_update_price_ttt
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					subtract = 1
+				}
+				change_variable = { 
+					name = trade_price_trend_timber
+					add = var:trade_update_price_t
+				}
+			}
+			set_variable = { 
+				name = trade_update_price_ttt
+				value = var:trade_price_metal
+			}
+			if = { 
+				limit = { 
 					has_variable = trade_want_metal
 					var:trade_want_metal > 0
 				}
@@ -70604,6 +72547,66 @@ census.07 = {
 					name = trade_price_metal
 					value = 0.5
 				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_price_trend_metal
+					}
+				}
+				set_variable = { 
+					name = trade_price_trend_metal
+					value = 0
+				}
+			}
+			change_variable = { 
+				name = trade_price_trend_metal
+				multiply = 0.8
+			}
+			if = { 
+				limit = { 
+					var:trade_update_price_ttt = { 
+						compare_value >= prev.var:trade_price_metal
+					}
+				}
+				set_variable = { 
+					name = trade_update_price_t
+					value = var:trade_update_price_ttt
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					divide = var:trade_price_metal
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					subtract = 1
+				}
+				change_variable = { 
+					name = trade_price_trend_metal
+					subtract = var:trade_update_price_t
+				}
+			}
+			else = { 
+				set_variable = { 
+					name = trade_update_price_t
+					value = var:trade_price_metal
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					divide = var:trade_update_price_ttt
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					subtract = 1
+				}
+				change_variable = { 
+					name = trade_price_trend_metal
+					add = var:trade_update_price_t
+				}
+			}
+			set_variable = { 
+				name = trade_update_price_ttt
+				value = var:trade_price_exotics_w
 			}
 			if = { 
 				limit = { 
@@ -70684,6 +72687,66 @@ census.07 = {
 			}
 			if = { 
 				limit = { 
+					NOT = { 
+						has_variable = trade_price_trend_exotics_w
+					}
+				}
+				set_variable = { 
+					name = trade_price_trend_exotics_w
+					value = 0
+				}
+			}
+			change_variable = { 
+				name = trade_price_trend_exotics_w
+				multiply = 0.8
+			}
+			if = { 
+				limit = { 
+					var:trade_update_price_ttt = { 
+						compare_value >= prev.var:trade_price_exotics_w
+					}
+				}
+				set_variable = { 
+					name = trade_update_price_t
+					value = var:trade_update_price_ttt
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					divide = var:trade_price_exotics_w
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					subtract = 1
+				}
+				change_variable = { 
+					name = trade_price_trend_exotics_w
+					subtract = var:trade_update_price_t
+				}
+			}
+			else = { 
+				set_variable = { 
+					name = trade_update_price_t
+					value = var:trade_price_exotics_w
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					divide = var:trade_update_price_ttt
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					subtract = 1
+				}
+				change_variable = { 
+					name = trade_price_trend_exotics_w
+					add = var:trade_update_price_t
+				}
+			}
+			set_variable = { 
+				name = trade_update_price_ttt
+				value = var:trade_price_exotics_e
+			}
+			if = { 
+				limit = { 
 					has_variable = trade_want_exotics_e
 					var:trade_want_exotics_e > 0
 				}
@@ -70758,6 +72821,66 @@ census.07 = {
 					name = trade_price_exotics_e
 					value = 0.5
 				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_price_trend_exotics_e
+					}
+				}
+				set_variable = { 
+					name = trade_price_trend_exotics_e
+					value = 0
+				}
+			}
+			change_variable = { 
+				name = trade_price_trend_exotics_e
+				multiply = 0.8
+			}
+			if = { 
+				limit = { 
+					var:trade_update_price_ttt = { 
+						compare_value >= prev.var:trade_price_exotics_e
+					}
+				}
+				set_variable = { 
+					name = trade_update_price_t
+					value = var:trade_update_price_ttt
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					divide = var:trade_price_exotics_e
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					subtract = 1
+				}
+				change_variable = { 
+					name = trade_price_trend_exotics_e
+					subtract = var:trade_update_price_t
+				}
+			}
+			else = { 
+				set_variable = { 
+					name = trade_update_price_t
+					value = var:trade_price_exotics_e
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					divide = var:trade_update_price_ttt
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					subtract = 1
+				}
+				change_variable = { 
+					name = trade_price_trend_exotics_e
+					add = var:trade_update_price_t
+				}
+			}
+			set_variable = { 
+				name = trade_update_price_ttt
+				value = var:trade_price_exotics_g
 			}
 			if = { 
 				limit = { 
@@ -70838,6 +72961,66 @@ census.07 = {
 			}
 			if = { 
 				limit = { 
+					NOT = { 
+						has_variable = trade_price_trend_exotics_g
+					}
+				}
+				set_variable = { 
+					name = trade_price_trend_exotics_g
+					value = 0
+				}
+			}
+			change_variable = { 
+				name = trade_price_trend_exotics_g
+				multiply = 0.8
+			}
+			if = { 
+				limit = { 
+					var:trade_update_price_ttt = { 
+						compare_value >= prev.var:trade_price_exotics_g
+					}
+				}
+				set_variable = { 
+					name = trade_update_price_t
+					value = var:trade_update_price_ttt
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					divide = var:trade_price_exotics_g
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					subtract = 1
+				}
+				change_variable = { 
+					name = trade_price_trend_exotics_g
+					subtract = var:trade_update_price_t
+				}
+			}
+			else = { 
+				set_variable = { 
+					name = trade_update_price_t
+					value = var:trade_price_exotics_g
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					divide = var:trade_update_price_ttt
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					subtract = 1
+				}
+				change_variable = { 
+					name = trade_price_trend_exotics_g
+					add = var:trade_update_price_t
+				}
+			}
+			set_variable = { 
+				name = trade_update_price_ttt
+				value = var:trade_price_textile
+			}
+			if = { 
+				limit = { 
 					has_variable = trade_want_textile
 					var:trade_want_textile > 0
 				}
@@ -70912,6 +73095,66 @@ census.07 = {
 					name = trade_price_textile
 					value = 0.5
 				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_price_trend_textile
+					}
+				}
+				set_variable = { 
+					name = trade_price_trend_textile
+					value = 0
+				}
+			}
+			change_variable = { 
+				name = trade_price_trend_textile
+				multiply = 0.8
+			}
+			if = { 
+				limit = { 
+					var:trade_update_price_ttt = { 
+						compare_value >= prev.var:trade_price_textile
+					}
+				}
+				set_variable = { 
+					name = trade_update_price_t
+					value = var:trade_update_price_ttt
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					divide = var:trade_price_textile
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					subtract = 1
+				}
+				change_variable = { 
+					name = trade_price_trend_textile
+					subtract = var:trade_update_price_t
+				}
+			}
+			else = { 
+				set_variable = { 
+					name = trade_update_price_t
+					value = var:trade_price_textile
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					divide = var:trade_update_price_ttt
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					subtract = 1
+				}
+				change_variable = { 
+					name = trade_price_trend_textile
+					add = var:trade_update_price_t
+				}
+			}
+			set_variable = { 
+				name = trade_update_price_ttt
+				value = var:trade_price_pottery
 			}
 			if = { 
 				limit = { 
@@ -70992,6 +73235,66 @@ census.07 = {
 			}
 			if = { 
 				limit = { 
+					NOT = { 
+						has_variable = trade_price_trend_pottery
+					}
+				}
+				set_variable = { 
+					name = trade_price_trend_pottery
+					value = 0
+				}
+			}
+			change_variable = { 
+				name = trade_price_trend_pottery
+				multiply = 0.8
+			}
+			if = { 
+				limit = { 
+					var:trade_update_price_ttt = { 
+						compare_value >= prev.var:trade_price_pottery
+					}
+				}
+				set_variable = { 
+					name = trade_update_price_t
+					value = var:trade_update_price_ttt
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					divide = var:trade_price_pottery
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					subtract = 1
+				}
+				change_variable = { 
+					name = trade_price_trend_pottery
+					subtract = var:trade_update_price_t
+				}
+			}
+			else = { 
+				set_variable = { 
+					name = trade_update_price_t
+					value = var:trade_price_pottery
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					divide = var:trade_update_price_ttt
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					subtract = 1
+				}
+				change_variable = { 
+					name = trade_price_trend_pottery
+					add = var:trade_update_price_t
+				}
+			}
+			set_variable = { 
+				name = trade_update_price_ttt
+				value = var:trade_price_tools
+			}
+			if = { 
+				limit = { 
 					has_variable = trade_want_tools
 					var:trade_want_tools > 0
 				}
@@ -71066,6 +73369,66 @@ census.07 = {
 					name = trade_price_tools
 					value = 0.5
 				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_price_trend_tools
+					}
+				}
+				set_variable = { 
+					name = trade_price_trend_tools
+					value = 0
+				}
+			}
+			change_variable = { 
+				name = trade_price_trend_tools
+				multiply = 0.8
+			}
+			if = { 
+				limit = { 
+					var:trade_update_price_ttt = { 
+						compare_value >= prev.var:trade_price_tools
+					}
+				}
+				set_variable = { 
+					name = trade_update_price_t
+					value = var:trade_update_price_ttt
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					divide = var:trade_price_tools
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					subtract = 1
+				}
+				change_variable = { 
+					name = trade_price_trend_tools
+					subtract = var:trade_update_price_t
+				}
+			}
+			else = { 
+				set_variable = { 
+					name = trade_update_price_t
+					value = var:trade_price_tools
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					divide = var:trade_update_price_ttt
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					subtract = 1
+				}
+				change_variable = { 
+					name = trade_price_trend_tools
+					add = var:trade_update_price_t
+				}
+			}
+			set_variable = { 
+				name = trade_update_price_ttt
+				value = var:trade_price_armaments
 			}
 			if = { 
 				limit = { 
@@ -71144,7 +73507,65 @@ census.07 = {
 					value = 0.5
 				}
 			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = trade_price_trend_armaments
+					}
+				}
+				set_variable = { 
+					name = trade_price_trend_armaments
+					value = 0
+				}
+			}
+			change_variable = { 
+				name = trade_price_trend_armaments
+				multiply = 0.8
+			}
+			if = { 
+				limit = { 
+					var:trade_update_price_ttt = { 
+						compare_value >= prev.var:trade_price_armaments
+					}
+				}
+				set_variable = { 
+					name = trade_update_price_t
+					value = var:trade_update_price_ttt
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					divide = var:trade_price_armaments
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					subtract = 1
+				}
+				change_variable = { 
+					name = trade_price_trend_armaments
+					subtract = var:trade_update_price_t
+				}
+			}
+			else = { 
+				set_variable = { 
+					name = trade_update_price_t
+					value = var:trade_price_armaments
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					divide = var:trade_update_price_ttt
+				}
+				change_variable = { 
+					name = trade_update_price_t
+					subtract = 1
+				}
+				change_variable = { 
+					name = trade_price_trend_armaments
+					add = var:trade_update_price_t
+				}
+			}
 			remove_variable = trade_update_price_t
+			remove_variable = trade_update_price_tt
+			remove_variable = trade_update_price_ttt
 		}
 	}
 	option = { }
