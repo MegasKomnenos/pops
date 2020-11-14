@@ -1,115 +1,384 @@
-﻿mil_refresh_mp = {
-	set_variable = { name = mil_mp_goal value = var:pop_total }
-	change_variable = { name = mil_mp_goal multiply = 0.25 }
+﻿mil_levy_prov = {
+	set_variable = { name = mil_levy value = 100 }
+	change_variable = { name = mil_levy subtract = var:pop_freedom }
+	change_variable = { name = mil_levy multiply = var:pop_total }
+	change_variable = { name = mil_levy divide = 10000 }
 	
-	if = {
-		limit = {
-			NOT = {
-				has_variable = mil_mp_cur
-			}
-		}
-		set_variable = { name = mil_mp_cur value = 0 }
-	}
+	set_variable = { name = mil_supply value = 100 }
+	change_variable = { name = mil_supply subtract = var:pop_freedom }
+	change_variable = { name = mil_supply multiply = var:pop_wealth }
+	change_variable = { name = mil_supply divide = 40000 }
 	
-	set_variable = { name = mil_mp_change value = var:mil_mp_goal }
-	change_variable = { name = mil_mp_change subtract = var:mil_mp_cur }
-	change_variable = { name = mil_mp_change divide = 10 }
-	change_variable = { name = mil_mp_change divide = 12 }
-	
-	change_variable = { name = mil_mp_cur add = var:mil_mp_change }
-}
-mil_refresh_levy = {
-	set_variable = { name = mil_levy_goal value = 1 }
-	change_variable = { name = mil_levy_goal subtract = var:pop_freedom }
-	change_variable = { name = mil_levy_goal multiply = 20 }
-	change_variable = { name = mil_levy_goal multiply = var:mil_mp_cur }
-	change_variable = { name = mil_levy_goal divide = 100 }
-	
-	if = {
-		limit = {
-			NOT = {
-				has_variable = mil_levy_cur
-			}
-		}
-		set_variable = { name = mil_levy_cur value = 0 }
-	}
-	
-	set_variable = { name = mil_levy_change value = var:mil_levy_goal }
-	change_variable = { name = mil_levy_change subtract = var:mil_levy_cur }
-	change_variable = { name = mil_levy_change divide = 5 }
-	change_variable = { name = mil_levy_change divide = 12 }
-	
-	change_variable = { name = mil_levy_cur add = var:mil_levy_change }
-	
-	set_variable = { name = mil_levy_field value = var:mil_levy_cur }
-	change_variable = { name = mil_levy_field multiply = 0.5 }
-	
-	set_variable = { name = mil_levy_garrison value = var:mil_levy_cur }
-	change_variable = { name = mil_levy_garrison subtract = var:mil_levy_field }
+	mil_set_supply = { name = mil_supply wealth = var:mil_supply price = county.var:trade_price rate = province_owner.mil_supply }
 }
 
-mil_recruit_maa = {
-	set_variable = { name = mil_recruit_maa_t value = 0 }
+mil_set_supply = {
+	set_variable = { name = mil_set_supply_t value = $wealth$ }
+	set_variable = { name = mil_set_supply_tt value = 0 }
 	
 	^^goods^
-		set_variable = { name = mil_maa_recruit_&goods& value = mil_maa_recruit_&goods& }
-		change_variable = { name = mil_maa_recruit_&goods& multiply = 10 }
-		change_variable = { name = mil_maa_recruit_&goods& divide = var:trade_price_&goods& }
-		change_variable = { name = mil_maa_recruit_&goods& multiply = var:mil_maa_recruit_&goods& }
-		change_variable = { name = mil_recruit_maa_t add = var:mil_maa_recruit_&goods& }
+		set_variable = { name = $name$_&goods& value = $rate$_&goods& }
+		change_variable = { name = $name$_&goods& multiply = 10 }
+		change_variable = { name = $name$_&goods& divide = $price$_&goods& }
+		change_variable = { name = $name$_&goods& multiply = var:$name$_&goods& }
+		change_variable = { name = mil_set_supply_tt add = var:$name$_&goods& }
 	^
+	
+	set_variable = { name = mil_set_supply_ttt value = 0 }
 	
 	^^goods^
-		change_variable = { name = mil_maa_recruit_&goods& multiply = 100 }
-		change_variable = { name = mil_maa_recruit_&goods& divide = var:mil_recruit_maa_t }
-		change_variable = { name = mil_maa_recruit_&goods& multiply = $size$ }
-		change_variable = { name = mil_maa_recruit_&goods& divide = 100 }
-		change_variable = { name = mil_maa_recruit_&goods& divide = mil_maa_recruit_&goods& }
+		change_variable = { name = $name$_&goods& multiply = 100 }
+		change_variable = { name = $name$_&goods& divide = var:mil_set_supply_tt }
+		change_variable = { name = $name$_&goods& divide = 10 }
+		change_variable = { name = $name$_&goods& divide = $rate$_&goods& }
+		
+		set_variable = { name = mil_set_supply_tttt value = var:$name$_&goods& }
+		change_variable = { name = mil_set_supply_tttt multiply = $price$_&goods& }
+		change_variable = { name = mil_set_supply_ttt add = var:mil_set_supply_tttt }
 	^
 	
-	remove_variable = mil_recruit_maa_t
+	change_variable = { name = mil_set_supply_t divide = var:mil_set_supply_ttt }
+	
+	^^goods^
+		change_variable = { name = $name$_&goods& multiply = var:mil_set_supply_t }
+	^
+	
+	remove_variable = mil_set_supply_t
+	remove_variable = mil_set_supply_tt
+	remove_variable = mil_set_supply_ttt
+	remove_variable = mil_set_supply_tttt
 }
-mil_maintain_maa = {
-	set_variable = { name = mil_maintain_maa_t value = 0 }
+
+mil_main_0 = {
+	every_ruler = {
+		limit = {
+			is_character = yes
+			is_landed = yes
+		}
+		set_variable = { name = mil_main_t value = 1 }
+		
+		modi_mil = yes
+		
+		^^goods^ set_variable = { name = mil_supply_&goods& value = 0 } ^
+		
+		mil_maa_ai = yes
+	}
+	every_ruler = {
+		limit = {
+			is_character = yes
+			is_landed = yes
+		}
+		every_vassal = {
+			limit = {
+				is_landed = yes
+				
+				NOT = {
+					has_variable = mil_main_t
+				}
+			}
+			modi_mil = yes
+		}
+	}
+	every_ruler = {
+		remove_variable = mil_main_t
+	}
 	
-	^^goods^
-		set_variable = { name = mil_maa_maintain_&goods& value = mil_maa_maintain_&goods& }
-		change_variable = { name = mil_maa_maintain_&goods& multiply = 10 }
-		change_variable = { name = mil_maa_maintain_&goods& divide = var:trade_price_&goods& }
-		change_variable = { name = mil_maa_maintain_&goods& multiply = var:mil_maa_maintain_&goods& }
-		change_variable = { name = mil_maintain_maa_t add = var:mil_maa_maintain_&goods& }
-	^
-	
-	^^goods^
-		change_variable = { name = mil_maa_maintain_&goods& multiply = 100 }
-		change_variable = { name = mil_maa_maintain_&goods& divide = var:mil_maintain_maa_t }
-		change_variable = { name = mil_maa_maintain_&goods& multiply = $size$ }
-		change_variable = { name = mil_maa_maintain_&goods& divide = 100 }
-		change_variable = { name = mil_maa_maintain_&goods& divide = mil_maa_maintain_&goods& }
-	^
-	
-	remove_variable = mil_maintain_maa_t
+	every_province = {
+		limit = {
+			is_valid_prov = yes
+			
+			is_city = yes
+		}
+		set_variable = { name = mil_supply_has value = 1 }
+		
+		^^goods^ set_variable = { name = mil_supply_in_&goods& value = 0 } ^
+		
+		mil_levy_prov = yes
+	}
 }
-mil_maintain_levy = {
-	set_variable = { name = mil_maintain_levy_t value = 0 }
+
+mil_main_1 = {
+	every_ruler = {
+		limit = {
+			is_character = yes
+			is_landed = yes
+		}
+		set_variable = { name = mil_mp_levy value = 0 }
+		set_variable = { name = mil_supply_levy value = 0 }
+		set_variable = { name = mil_mp_liege value = 0 }
+		set_variable = { name = mil_supply_liege value = 0 }
+		set_variable = { name = mil_supply_stockpile value = 0 }
+		
+		^^goods^
+			if = {
+				limit = {
+					has_variable = mil_supply_&goods&
+					has_variable = trade_has_&goods&
+				}
+				if = {
+					limit = {
+						var:mil_supply_&goods& = {
+							compare_value > prev.var:trade_has_&goods&
+						}
+					}
+					set_variable = { name = mil_main_t value = var:trade_has_&goods& }
+				}
+				else = {
+					set_variable = { name = mil_main_t value = var:mil_supply_&goods& }
+				}
+				
+				change_variable = { name = trade_has_&goods& subtract = var:mil_main_t }
+				
+				change_variable = { name = mil_main_t multiply = mil_supply_&goods& }
+				change_variable = { name = mil_supply_stockpile add = var:mil_main_t }
+			}
+		^
+		
+		set_variable = { name = mil_main_t value = 1 }
+		
+		if = {
+			limit = {
+				is_independent_ruler = no
+			}
+			get_levy_obligation = { return = mil_main_t }
+		}
+	}
+	every_ruler = {
+		limit = {
+			is_character = yes
+			is_landed = yes
+		}
+		every_vassal = {
+			limit = {
+				is_landed = yes
+				
+				NOT = {
+					has_variable = mil_main_t
+				}
+			}
+			set_variable = { name = mil_mp_levy value = 0 }
+			set_variable = { name = mil_supply_levy value = 0 }
+			set_variable = { name = mil_mp_liege value = 0 }
+			set_variable = { name = mil_supply_liege value = 0 }
+			set_variable = { name = mil_supply_stockpile value = 0 }
+			
+			get_levy_obligation = { return = mil_main_t }
+		}
+	}
 	
-	^^goods^
-		set_variable = { name = mil_levy_maintain_&goods& value = mil_maa_maintain_&goods& }
-		change_variable = { name = mil_levy_maintain_&goods& multiply = 10 }
-		change_variable = { name = mil_levy_maintain_&goods& divide = var:trade_price_&goods& }
-		change_variable = { name = mil_levy_maintain_&goods& multiply = var:mil_levy_maintain_&goods& }
-		change_variable = { name = mil_maintain_levy_t add = var:mil_levy_maintain_&goods& }
-	^
+	every_province = {
+		limit = {
+			has_variable = mil_supply_has
+		}
+		remove_variable = mil_supply_has
+		
+		set_variable = { name = mil_supply value = 0 }
+		
+		^^goods^
+			set_variable = { name = mil_main_t value = var:mil_supply_in_&goods& }
+			change_variable = { name = mil_main_t multiply = province_owner.mil_supply_&goods& }
+			change_variable = { name = mil_supply add = var:mil_main_t }
+		^
+		
+		province_owner = {
+			change_variable = { name = mil_mp_levy add = prev.var:mil_levy }
+			change_variable = { name = mil_supply_levy add = prev.var:mil_supply }
+		}
+		
+		remove_variable = mil_main_t
+	}
 	
-	^^goods^
-		change_variable = { name = mil_levy_maintain_&goods& multiply = 100 }
-		change_variable = { name = mil_levy_maintain_&goods& divide = var:mil_maintain_levy_t }
-		change_variable = { name = mil_levy_maintain_&goods& multiply = var:mil_levy_field }
-		change_variable = { name = mil_levy_maintain_&goods& divide = 100 }
-		change_variable = { name = mil_levy_maintain_&goods& divide = mil_maa_maintain_&goods& }
-	^
+	every_independent_ruler = {
+		limit = {
+			is_character = yes
+			is_landed = yes
+		}
+		every_vassal = {
+			limit = {
+				is_landed = yes
+			}
+			every_vassal = {
+				limit = {
+					is_landed = yes
+				}
+				every_vassal = {
+					limit = {
+						is_landed = yes
+					}
+					every_vassal = {
+						limit = {
+							is_landed = yes
+						}
+						set_variable = { name = mil_mp_liege value = var:mil_mp_levy }
+						set_variable = { name = mil_supply_liege value = var:mil_supply_levy }
+						
+						change_variable = { name = mil_mp_liege multiply = var:mil_main_t }
+						change_variable = { name = mil_supply_liege multiply = var:mil_main_t }
+						
+						prev = {
+							change_variable = { name = mil_mp_levy add = prev.var:mil_mp_liege }
+							change_variable = { name = mil_supply_levy add = prev.var:mil_supply_liege }
+						}
+						
+						remove_variable = mil_main_t
+					}
+					set_variable = { name = mil_mp_liege value = var:mil_mp_levy }
+					set_variable = { name = mil_supply_liege value = var:mil_supply_levy }
+					change_variable = { name = mil_supply_liege add = var:mil_supply_stockpile }
+					
+					change_variable = { name = mil_mp_liege multiply = var:mil_main_t }
+					change_variable = { name = mil_supply_liege multiply = var:mil_main_t }
+					
+					prev = {
+						change_variable = { name = mil_mp_levy add = prev.var:mil_mp_liege }
+						change_variable = { name = mil_supply_levy add = prev.var:mil_supply_liege }
+					}
+					
+					remove_variable = mil_main_t
+				}
+				set_variable = { name = mil_mp_liege value = var:mil_mp_levy }
+				set_variable = { name = mil_supply_liege value = var:mil_supply_levy }
+				change_variable = { name = mil_supply_liege add = var:mil_supply_stockpile }
+				
+				change_variable = { name = mil_mp_liege multiply = var:mil_main_t }
+				change_variable = { name = mil_supply_liege multiply = var:mil_main_t }
+				
+				prev = {
+					change_variable = { name = mil_mp_levy add = prev.var:mil_mp_liege }
+					change_variable = { name = mil_supply_levy add = prev.var:mil_supply_liege }
+				}
+				
+				remove_variable = mil_main_t
+			}
+			set_variable = { name = mil_mp_liege value = var:mil_mp_levy }
+			set_variable = { name = mil_supply_liege value = var:mil_supply_levy }
+			change_variable = { name = mil_supply_liege add = var:mil_supply_stockpile }
+			
+			change_variable = { name = mil_mp_liege multiply = var:mil_main_t }
+			change_variable = { name = mil_supply_liege multiply = var:mil_main_t }
+			
+			prev = {
+				change_variable = { name = mil_mp_levy add = prev.var:mil_mp_liege }
+				change_variable = { name = mil_supply_levy add = prev.var:mil_supply_liege }
+			}
+			
+			remove_variable = mil_main_t
+		}
+		
+		remove_variable = mil_main_t
+	}
 	
-	remove_variable = mil_maintain_levy_t
+	every_ruler = {
+		limit = {
+			is_character = yes
+			is_landed = yes
+		}
+		set_variable = { name = mil_main_t value = 1 }
+		
+		if = {
+			limit = {
+				NOT = {
+					has_variable = mil_mp
+				}
+			}
+			set_variable = { name = mil_mp value = 0 }
+		}
+		if = {
+			limit = {
+				NOT = {
+					has_variable = mil_supply
+				}
+			}
+			set_variable = { name = mil_supply value = 0 }
+		}
+		
+		change_variable = { name = mil_mp multiply = 0.9 }
+		
+		set_variable = { name = mil_main_tt value = var:mil_supply }
+		change_variable = { name = mil_main_tt multiply = 0.05 }
+		change_variable = { name = mil_main_tt divide = 2 }
+		change_variable = { name = mil_mp add = var:mil_main_tt }
+		
+		change_variable = { name = mil_supply multiply = 0.95 }
+		
+		if = {
+			limit = {
+				has_variable = task_manage_logistics
+			}
+			set_variable = { name = mil_main_tt value = 100 }
+			change_variable = { name = mil_main_tt subtract = var:task_manage_logistics.var:task_time_in }
+			change_variable = { name = mil_main_tt divide = 2000 }
+			
+			set_variable = { name = mil_main_ttt value = var:mil_mp }
+			change_variable = { name = mil_main_ttt multiply = var:mil_main_tt }
+			change_variable = { name = mil_mp subtract = var:mil_main_ttt }
+			
+			set_variable = { name = mil_main_ttt value = var:mil_supply }
+			change_variable = { name = mil_main_ttt multiply = var:mil_main_tt }
+			change_variable = { name = mil_supply subtract = var:mil_main_ttt }
+			
+			remove_variable = mil_main_ttt
+		}
+		
+		change_variable = { name = mil_mp add = var:mil_mp_levy }
+		change_variable = { name = mil_supply add = var:mil_supply_levy }
+		change_variable = { name = mil_supply add = var:mil_supply_stockpile }
+		
+		change_variable = { name = mil_mp subtract = var:mil_mp_liege }
+		change_variable = { name = mil_supply subtract = var:mil_supply_liege }
+	}
+	every_ruler = {
+		limit = {
+			is_character = yes
+			is_landed = yes
+		}
+		every_vassal = {
+			limit = {
+				is_landed = yes
+				
+				NOT = {
+					has_variable = mil_main_t
+				}
+			}
+			if = {
+				limit = {
+					NOT = {
+						has_variable = mil_mp
+					}
+				}
+				set_variable = { name = mil_mp value = 0 }
+			}
+			if = {
+				limit = {
+					NOT = {
+						has_variable = mil_supply
+					}
+				}
+				set_variable = { name = mil_supply value = 0 }
+			}
+			
+			change_variable = { name = mil_mp multiply = 0.9 }
+			
+			set_variable = { name = mil_main_t value = var:mil_supply }
+			change_variable = { name = mil_main_t multiply = 0.05 }
+			change_variable = { name = mil_main_t divide = 2 }
+			change_variable = { name = mil_mp add = var:mil_main_t }
+			
+			change_variable = { name = mil_supply multiply = 0.95 }
+			
+			change_variable = { name = mil_mp add = var:mil_mp_levy }
+			change_variable = { name = mil_supply add = var:mil_supply_levy }
+			
+			change_variable = { name = mil_mp subtract = var:mil_mp_liege }
+			change_variable = { name = mil_supply subtract = var:mil_supply_liege }
+			
+			remove_variable = mil_main_t
+		}
+	}
+	every_ruler = {
+		remove_variable = mil_main_t
+		remove_variable = mil_main_tt
+	}
 }
 
 mil_rank_up_handler = {
@@ -117,18 +386,23 @@ mil_rank_up_handler = {
 		limit = {
 			is_ruler = yes
 			is_landed = yes
-			
-			OR = {
+		}
+		if = {
+			limit = {
 				NOT = {
-					has_variable = mil_maa
-				}
-				NOT = {
-					has_variable = mil_maintain
+					has_variable = mil_mp
 				}
 			}
+			set_variable = { name = mil_mp value = 0 }
 		}
-		set_variable = { name = mil_maa value = 0 }
-		set_variable = { name = mil_maintain value = 1 }
+		if = {
+			limit = {
+				NOT = {
+					has_variable = mil_supply
+				}
+			}
+			set_variable = { name = mil_supply value = 0 }
+		}
 	}
 }
 
@@ -140,297 +414,58 @@ mil_death_handler = {
 		if = {
 			limit = {
 				NOT = {
-					has_variable = mil_maa
+					has_variable = mil_mp
 				}
 			}
-			set_variable = { name = mil_maa value = 0 }
+			set_variable = { name = mil_mp value = 0 }
+		}
+		if = {
+			limit = {
+				NOT = {
+					has_variable = mil_supply
+				}
+			}
+			set_variable = { name = mil_supply value = 0 }
 		}
 		
 		primary_heir = {
 			if = {
 				limit = {
 					NOT = {
-						has_variable = mil_maa
+						has_variable = mil_mp
 					}
 				}
-				set_variable = { name = mil_maa value = 0 }
+				set_variable = { name = mil_mp value = 0 }
+			}
+			if = {
+				limit = {
+					NOT = {
+						has_variable = mil_supply
+					}
+				}
+				set_variable = { name = mil_supply value = 0 }
 			}
 			
-			change_variable = { name = mil_maa add = prev.var:mil_maa }
+			change_variable = { name = mil_mp add = prev.var:mil_mp }
+			change_variable = { name = mil_supply add = prev.var:mil_supply }
 		}
 	}
 }
 
 mil_maa_ai = {
-	every_ruler = {
+	if = {
 		limit = {
-			is_character = yes
-			is_landed = yes
-			
 			OR = {
 				is_ai = yes
 				
 				has_global_variable = sim_i
 			}
 		}
-		mil_maintain_maa = { size = 1 }
-
-		set_variable = { name = mil_maa_ai_t value = 0 }
+		set_variable = { name = mil_maa_ai_t value = gold }
+		change_variable = { name = mil_maa_ai_t multiply = 0.1 }
 		
-		^^goods^
-			change_variable = { name = mil_maa_maintain_&goods& multiply = var:trade_price_&goods& }
-			change_variable = { name = mil_maa_ai_t add = var:mil_maa_maintain_&goods& }
-		^
-		
-		if = {
-			limit = {
-				has_variable = sim_income
-			}
-			set_variable = { name = mil_maa_ai_tt value = var:sim_income }
-			change_variable = { name = mil_maa_ai_tt divide = 12 }
-		}
-		else = {
-			set_variable = { name = mil_maa_ai_tt value = 0 }
-		}
-		
-		if = {
-			limit = {
-				NOT = {
-					has_global_variable = sim_i
-				}
-			}
-			change_variable = { name = mil_maa_ai_tt add = monthly_character_income }
-		}
-		
-		change_variable = { name = mil_maa_ai_tt multiply = 20 }
-		change_variable = { name = mil_maa_ai_tt add = gold }
-		change_variable = { name = mil_maa_ai_tt divide = 100 }
-		change_variable = { name = mil_maa_ai_tt divide = var:mil_maa_ai_t }
-		
-		if = {
-			limit = {
-				OR = {
-					NOT = {
-						has_variable = mil_maa_ai_tt
-					}
-					
-					var:mil_maa_ai_tt < 0
-				}
-			}
-			set_variable = { name = mil_maa_ai_tt value = 0 }
-		}
-		
-		if = {
-			limit = {
-				NOT = {
-					has_variable = mil_maa
-				}
-			}
-			set_variable = { name = mil_maa value = 0 }
-		}
-		
-		if = {
-			limit = {
-				has_variable = mil_maa_ai_tt
-				
-				var:mil_maa_ai_tt = {
-					compare_value > prev.var:mil_maa
-				}
-			}
-			change_variable = { name = mil_maa_ai_tt subtract = var:mil_maa }
-			change_variable = { name = mil_maa_ai_tt divide = 12 }
-			
-			mil_recruit_maa = { size = var:mil_maa_ai_tt }
-		}
-		else = {
-			if = {
-				limit = {
-					is_at_war = no
-				}
-				change_variable = { name = mil_maa add = var:mil_maa_ai_tt }
-				change_variable = { name = mil_maa divide = 2 }
-			}
-			
-			^^goods^ set_variable = { name = mil_maa_recruit_&goods& value = 0 } ^
-		}
-		
-		mil_maintain_maa = { size = var:mil_maa }
-		
-		if = {
-			limit = {
-				has_raised_armies = yes
-			}
-			^^goods^ change_variable = { name = mil_maa_maintain_&goods& multiply = 2 } ^
-		}
+		mil_set_supply = { name = mil_supply wealth = var:mil_maa_ai_t price = var:trade_price rate = mil_supply }
 		
 		remove_variable = mil_maa_ai_t
-		remove_variable = mil_maa_ai_tt
-	}
-}
-mil_maa_player = {
-	if = {
-		limit = {
-			NOT = {
-				has_variable = mil_maa_recruit
-			}
-		}
-		set_variable = { name = mil_maa_recruit value = 0 }
-	}
-	
-	set_variable = { name = mil_maa_player_t value = var:mil_maa_recruit }
-	change_variable = { name = mil_maa_player_t divide = 12 }
-	
-	mil_recruit_maa = { size = var:mil_maa_player_t }
-	
-	remove_variable = mil_maa_player_t
-}
-
-mil_main = {
-	every_province = {
-		limit = {
-			is_valid_prov = yes
-		}
-		mil_refresh_mp = yes
-		mil_refresh_levy = yes
-	}
-	
-	every_ruler = {
-		limit = {
-			is_character = yes
-			is_landed = yes
-		}
-		set_variable = { name = mil_levy_field value = 0 }
-		
-		every_army = {
-			prev = {
-				set_variable = { name = mil_main_t value = prev.army_max_size }
-				change_variable = { name = mil_main_t divide = 1000 }
-				change_variable = { name = mil_levy_field add = var:mil_main_t }
-			}
-		}
-		
-		if = {
-			limit = {
-				has_variable = mil_levy_field
-				
-				var:mil_levy_field > 0
-			}
-			change_variable = { name = mil_levy_field multiply = 10 }
-			change_variable = { name = mil_levy_field subtract = number_of_maa_regiments }
-			change_variable = { name = mil_levy_field divide = 10 }
-		}
-		
-		change_variable = { name = mil_maa multiply = 0.998 }
-		
-		set_variable = { name = mil_maa_tt value = 0 }
-		
-		^^goods^
-			if = {
-				limit = {
-					has_variable = mil_maa_recruit_&goods&
-				}
-				if = {
-					limit = {
-						var:mil_maa_recruit_&goods& = {
-							compare_value > prev.var:trade_has_&goods&
-						}
-					}
-					set_variable = { name = mil_main_t value = var:trade_has_&goods& }
-				}
-				else = {
-					set_variable = { name = mil_main_t value = var:mil_maa_recruit_&goods& }
-				}
-				
-				change_variable = { name = trade_has_&goods& subtract = var:mil_main_t }
-				
-				change_variable = { name = mil_main_t multiply = mil_maa_recruit_&goods& }
-				change_variable = { name = mil_main_t divide = 10 }
-				change_variable = { name = mil_maa_tt add = var:mil_main_t }
-			}
-		^
-		
-		if = {
-			limit = {
-				has_variable = task_manage_logistics
-			}
-			change_variable = { name = mil_maa_tt multiply = var:task_manage_logistics.var:task_time_in }
-			change_variable = { name = mil_maa_tt divide = 100 }
-		}
-		
-		change_variable = { name = mil_maa add = var:mil_maa_tt }
-		
-		remove_variable = mil_main_t
-		remove_variable = mil_maa_tt
-		
-		mil_maintain_maa = { size = var:mil_maa }
-		
-		if = {
-			limit = {
-				has_raised_armies = yes
-			}
-			^^goods^ change_variable = { name = mil_maa_maintain_&goods& multiply = 2 } ^
-			
-			mil_maintain_levy = yes
-		}
-		else = {
-			^^goods^ set_variable = { name = mil_levy_maintain_&goods& value = 0 } ^
-		}
-		
-		set_variable = { name = mil_maintain_t value = 0 }
-		set_variable = { name = mil_maintain_tt value = 0 }
-		
-		^^goods^
-			set_variable = { name = mil_maintain_&goods& value = var:mil_maa_maintain_&goods& }
-			change_variable = { name = mil_maintain_&goods& add = var:mil_levy_maintain_&goods& }
-			
-			set_variable = { name = mil_maintain_ttt value = var:mil_maintain_&goods& }
-			change_variable = { name = mil_maintain_ttt multiply = mil_maa_maintain_&goods& }
-			change_variable = { name = mil_maintain_t add = var:mil_maintain_ttt }
-			
-			if = {
-				limit = {
-					has_variable = mil_maintain_&goods&
-					
-					var:mil_maintain_&goods& = {
-						compare_value > prev.var:trade_has_&goods&
-					}
-				}
-				set_variable = { name = mil_maintain_&goods& value = var:trade_has_&goods& }
-			}
-			
-			change_variable = { name = trade_has_&goods& subtract = var:mil_maintain_&goods& }
-			
-			set_variable = { name = mil_maintain_ttt value = var:mil_maintain_&goods& }
-			change_variable = { name = mil_maintain_ttt multiply = mil_maa_maintain_&goods& }
-			change_variable = { name = mil_maintain_tt add = var:mil_maintain_ttt }
-		^
-		
-		remove_variable = mil_maintain_ttt
-		
-		if = {
-			limit = {
-				has_variable = mil_maintain_t
-				
-				var:mil_maintain_t > 0
-			}
-			change_variable = { name = mil_maintain_tt multiply = 10 }
-			change_variable = { name = mil_maintain_tt divide = var:mil_maintain_t }
-			
-			set_variable = { name = mil_maintain value = var:mil_maintain_tt }
-		}
-		else = {
-			set_variable = { name = mil_maintain value = 10 }
-		}
-		
-		if = {
-			limit = {
-				has_variable = task_manage_logistics
-			}
-			change_variable = { name = mil_maintain multiply = var:task_manage_logistics.var:task_time_in }
-			change_variable = { name = mil_maintain divide = 100 }
-		}
-		
-		remove_variable = mil_maintain_t
-		remove_variable = mil_maintain_tt
 	}
 }

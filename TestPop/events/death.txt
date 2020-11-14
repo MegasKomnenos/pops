@@ -6838,11 +6838,22 @@ death.01 = {
 			if = { 
 				limit = { 
 					NOT = { 
-						has_variable = mil_maa
+						has_variable = mil_mp
 					}
 				}
 				set_variable = { 
-					name = mil_maa
+					name = mil_mp
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = mil_supply
+					}
+				}
+				set_variable = { 
+					name = mil_supply
 					value = 0
 				}
 			}
@@ -6850,17 +6861,32 @@ death.01 = {
 				if = { 
 					limit = { 
 						NOT = { 
-							has_variable = mil_maa
+							has_variable = mil_mp
 						}
 					}
 					set_variable = { 
-						name = mil_maa
+						name = mil_mp
+						value = 0
+					}
+				}
+				if = { 
+					limit = { 
+						NOT = { 
+							has_variable = mil_supply
+						}
+					}
+					set_variable = { 
+						name = mil_supply
 						value = 0
 					}
 				}
 				change_variable = { 
-					name = mil_maa
-					add = prev.var:mil_maa
+					name = mil_mp
+					add = prev.var:mil_mp
+				}
+				change_variable = { 
+					name = mil_supply
+					add = prev.var:mil_supply
 				}
 			}
 		}
@@ -8547,22 +8573,28 @@ death.02 = {
 			limit = { 
 				is_ruler = yes
 				is_landed = yes
-				OR = { 
+			}
+			if = { 
+				limit = { 
 					NOT = { 
-						has_variable = mil_maa
-					}
-					NOT = { 
-						has_variable = mil_maintain
+						has_variable = mil_mp
 					}
 				}
+				set_variable = { 
+					name = mil_mp
+					value = 0
+				}
 			}
-			set_variable = { 
-				name = mil_maa
-				value = 0
-			}
-			set_variable = { 
-				name = mil_maintain
-				value = 1
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = mil_supply
+					}
+				}
+				set_variable = { 
+					name = mil_supply
+					value = 0
+				}
 			}
 		}
 	}

@@ -6,13 +6,8 @@ task_check_cond_manage_realm = {
 }
 task_check_cond_manage_logistics = {
 	OR = {
-		has_raised_armies = yes
-		
-		AND = {
-			has_variable = mil_maa
-			
-			var:mil_maa > 0
-		}
+		has_variable = mil_mp
+		has_variable = mil_supply
 	}
 }
 task_check_cond_manage_court = {

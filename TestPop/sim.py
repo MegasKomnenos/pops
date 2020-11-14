@@ -753,8 +753,8 @@ sim_run.02 = {
 					set_variable = { name = trade_dmnd_&goods& value = prev.var:trade_dmnd_&goods& }
 					set_variable = { name = trade_price_&goods& value = prev.var:trade_price_&goods& }
 					set_variable = { name = trade_gold value = prev.gold }
-					set_variable = { name = trade_maa value = prev.var:mil_maa }
-					set_variable = { name = trade_maintain value = prev.var:mil_maintain }
+					set_variable = { name = trade_mp value = prev.var:mil_mp }
+					set_variable = { name = trade_supply value = prev.var:mil_supply }
 				}
 				
 				clear_variable_list = trade_dat_&goods&

@@ -10,23 +10,56 @@
 		set_variable = { name = stat_main_t value = var:stat_tax }
 		change_variable = { name = stat_main_t divide = 12 }
 		
+		if = {
+			limit = {
+				has_variable = stat_main_t
+				
+				var:stat_main_t > 0
+			}
+			mod_assign_2_16 = { type = province name = stat_tax var = stat_main_t }
+		}
+		
 		mod_assign_2_16 = { type = province name = stat_tax var = stat_main_t }
 		
-		set_variable = { name = stat_levy value = var:mil_levy_field }
+		set_variable = { name = stat_levy value = 0 }
+		
+		if = {
+			limit = {
+				NOT = {
+					province_owner = county.holder
+				}
+			}
+			set_variable = { name = stat_levy value = var:mil_levy }
+			change_variable = { name = stat_levy multiply = 5 }
+		}
 		
 		set_variable = { name = stat_main_t value = var:stat_levy }
-		change_variable = { name = stat_main_t divide = 0.1 }
+		change_variable = { name = stat_main_t multiply = 10 }
 		
 		add_province_modifier = stat_levy
-		mod_assign_2_20 = { type = province name = stat_levy var = stat_main_t }
+		if = {
+			limit = {
+				has_variable = stat_main_t
+				
+				var:stat_main_t > 0
+			}
+			mod_assign_2_20 = { type = province name = stat_levy var = stat_main_t }
+		}
 		
-		set_variable = { name = stat_garrison value = var:mil_levy_garrison }
+		set_variable = { name = stat_garrison value = var:stat_levy }
 		
 		set_variable = { name = stat_main_t value = var:stat_garrison }
-		change_variable = { name = stat_main_t divide = 0.1 }
+		change_variable = { name = stat_main_t multiply = 10 }
 		
 		add_province_modifier = stat_garrison
-		mod_assign_2_20 = { type = province name = stat_garrison var = stat_main_t }
+		if = {
+			limit = {
+				has_variable = stat_main_t
+				
+				var:stat_main_t > 0
+			}
+			mod_assign_2_20 = { type = province name = stat_garrison var = stat_main_t }
+		}
 		
 		remove_variable = stat_main_t
 	}
@@ -36,12 +69,24 @@
 			is_character = yes
 			is_landed = yes
 		}
-		set_variable = { name = stat_maa value = var:mil_maa }
+		set_variable = { name = stat_main_t value = var:mil_mp }
+		change_variable = { name = stat_main_t multiply = var:mil_supply }
 		
-		set_variable = { name = stat_main_t value = var:stat_maa }
+		sqrt_effect = {
+			inp = var:stat_main_t
+			return = stat_main_t
+		}
+		
 		change_variable = { name = stat_main_t multiply = 10 }
 		
-		mod_assign_0_12 = { type = character name = stat_maa var = stat_main_t }
+		if = {
+			limit = {
+				has_variable = stat_main_t
+				
+				var:stat_main_t > 0
+			}
+			mod_assign_0_12 = { type = character name = stat_maa var = stat_main_t }
+		}
 		
 		remove_variable = stat_main_t
 	}

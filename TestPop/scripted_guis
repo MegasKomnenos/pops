@@ -240,6 +240,23 @@ toggle_prov_economy = {
 					}
 					change_variable = { name = toggle_prov_economy_in_pop_&goods& add = var:pop_luxury_actual_&goods& }
 				}
+				
+				if = {
+					limit = {
+						has_variable = mil_supply_&goods&
+						
+						var:mil_supply_&goods& > 0
+					}
+					change_variable = { name = toggle_prov_economy_dmnd_pop_&goods& add = var:mil_supply_&goods& }
+				}
+				if = {
+					limit = {
+						has_variable = mil_supply_in_&goods&
+						
+						var:mil_supply_in_&goods& > 0
+					}
+					change_variable = { name = toggle_prov_economy_in_pop_&goods& add = var:mil_supply_in_&goods& }
+				}
 
 				
 				every_in_list = {
@@ -1107,21 +1124,17 @@ toggle_player_stockpile = {
 				if = { limit = { NOT = { has_variable = trade_price_&goods& } } set_variable = { name = trade_price_&goods& value = capital_county.var:trade_price_&goods& } }
 				if = { limit = { NOT = { has_variable = trade_sply_&goods& } } set_variable = { name = trade_sply_&goods& value = 0 } }
 				if = { limit = { NOT = { has_variable = trade_dmnd_&goods& } } set_variable = { name = trade_dmnd_&goods& value = 0 } }
-				if = { limit = { NOT = { has_variable = mil_maa_recruit_&goods& } } set_variable = { name = mil_maa_recruit_&goods& value = 0 } }
-				if = { limit = { NOT = { has_variable = mil_maa_maintain_&goods& } } set_variable = { name = mil_maa_maintain_&goods& value = 0 } }
-				if = { limit = { NOT = { has_variable = mil_levy_maintain_&goods& } } set_variable = { name = mil_levy_maintain_&goods& value = 0 } }
+				if = { limit = { NOT = { has_variable = mil_supply_&goods& } } set_variable = { name = mil_supply_&goods& value = 0 } }
 				
-				set_variable = { name = info_player_stockpile_maa_recruit_&goods& value = var:mil_maa_recruit_&goods& }
-				set_variable = { name = info_player_stockpile_maa_maintain_&goods& value = var:mil_maa_maintain_&goods& }
-				set_variable = { name = info_player_stockpile_levy_maintain_&goods& value = var:mil_levy_maintain_&goods& }
+				set_variable = { name = info_player_stockpile_maa_recruit_&goods& value = var:mil_supply_&goods& }
+				set_variable = { name = info_player_stockpile_maa_maintain_&goods& value = var:mil_supply_&goods& }
+				set_variable = { name = info_player_stockpile_levy_maintain_&goods& value = var:mil_supply_&goods& }
 				
 				change_variable = { name = info_player_stockpile_maa_recruit_&goods& multiply = 12 }
 				change_variable = { name = info_player_stockpile_maa_maintain_&goods& multiply = 12 }
 				change_variable = { name = info_player_stockpile_levy_maintain_&goods& multiply = 12 }
 				
 				set_variable = { name = info_player_stockpile_dmnd_&goods& value = var:info_player_stockpile_maa_recruit_&goods& }
-				change_variable = { name = info_player_stockpile_dmnd_&goods& add = var:info_player_stockpile_maa_maintain_&goods& }
-				change_variable = { name = info_player_stockpile_dmnd_&goods& add = var:info_player_stockpile_levy_maintain_&goods& }
 			^
 		}
 	}

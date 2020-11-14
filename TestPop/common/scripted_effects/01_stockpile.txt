@@ -17,24 +17,12 @@
 			
 			if = {
 				limit = {
-					has_variable = mil_maa_maintain_&goods&
+					has_variable = mil_supply_&goods&
 				}
-				change_variable = { name = trade_want_&goods& add = var:mil_maa_maintain_&goods& }
-			}
-			if = {
-				limit = {
-					has_variable = mil_levy_maintain_&goods&
-				}
-				change_variable = { name = trade_want_&goods& add = var:mil_levy_maintain_&goods& }
-			}
-			if = {
-				limit = {
-					has_variable = mil_maa_recruit_&goods&
-				}
-				change_variable = { name = trade_want_&goods& add = var:mil_maa_recruit_&goods& }
+				change_variable = { name = trade_want_&goods& add = var:mil_supply_&goods& }
 			}
 			
-			change_variable = { name = trade_want_&goods& multiply = 24 }
+			change_variable = { name = trade_want_&goods& multiply = 36 }
 			
 			if = {
 				limit = {

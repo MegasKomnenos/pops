@@ -281,6 +281,106 @@ mod_assign_0_16 = {
 	mod_assign_0_12 = { type = $type$ name = $name$ var = $var$ }
 }
 
+get_levy_obligation = {
+	set_variable = { name = get_levy_obligation_t value = 0 }
+			
+	switch = {
+		trigger = has_government
+		
+		feudal_government = {
+			if = {
+				limit = {
+					vassal_contract_obligation_level:feudal_government_levies >= 4
+				}
+				set_variable = { name = get_levy_obligation_t value = 0.5 }
+			}
+			if = {
+				limit = {
+					vassal_contract_obligation_level:feudal_government_levies >= 3
+				}
+				set_variable = { name = get_levy_obligation_t value = 0.35 }
+			}
+			if = {
+				limit = {
+					vassal_contract_obligation_level:feudal_government_levies >= 2
+				}
+				set_variable = { name = get_levy_obligation_t value = 0.25 }
+			}
+			if = {
+				limit = {
+					vassal_contract_obligation_level:feudal_government_levies >= 1
+				}
+				set_variable = { name = get_levy_obligation_t value = 0.1 }
+			}
+			else = {
+				set_variable = { name = get_levy_obligation_t value = 0 }
+			}
+		}
+		republic_government = {
+			set_variable = { name = get_levy_obligation_t value = 0.1 }
+		}
+		theocracy_government = {
+			if = {
+				limit = { 
+					NOT = { 
+						liege.faith = faith 
+					} 
+				}
+				set_variable = { name = get_levy_obligation_t value = 0.1 }
+			}
+			else = {
+				set_variable = { name = get_levy_obligation_t value = 0.1 }
+				change_variable = { name = get_levy_obligation_t multiply = liege.piety_level }
+			}
+		}
+		clan_government = {
+			if = {
+				limit = {
+					is_ai = yes
+				}
+				set_variable = { name = get_levy_obligation_t value = clan_government_levies_default }
+				
+				export_opinion = { target = liege return = get_levy_obligation_tt }
+				
+				if = {
+					limit = {
+						has_variable = get_levy_obligation_tt
+						
+						var:get_levy_obligation_tt > 0
+					}
+					change_variable = { name = get_levy_obligation_tt multiply = clan_government_levies_opinion_scale_positive }
+					change_variable = { name = get_levy_obligation_t add = var:get_levy_obligation_tt }
+				}
+				else = {
+					change_variable = { name = get_levy_obligation_tt multiply = clan_government_levies_opinion_scale_negative }
+					change_variable = { name = get_levy_obligation_t add = var:get_levy_obligation_tt }
+				}
+			}
+			else = { # is a player
+				set_variable = { name = get_levy_obligation_t value = clan_government_levies_player }
+			}
+		}
+		tribal_government = {
+			set_variable = { name = get_levy_obligation_t value = liege.prestige_level }
+			change_variable = { name = get_levy_obligation_t multiply = 0.2 }
+			
+			if = {
+				limit = {
+					has_variable = get_levy_obligation_t
+					
+					var:get_levy_obligation_t > 0.5
+				}
+				set_variable = { name = get_levy_obligation_t value = 0.5 }
+			}
+		}
+	}
+	
+	set_variable = { name = $return$ value = var:get_levy_obligation_t }
+	
+	remove_variable = get_levy_obligation_t
+	remove_variable = get_levy_obligation_tt
+}
+
 export_opinion = {
 	if = {
 		limit = {

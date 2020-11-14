@@ -656,32 +656,22 @@ task_set_cost_manage_logistics = {
 	set_variable = { name = task_time_cost value = 0 }
 	
 	var:task_owner = {
-		^^goods^
-			if = {
-				limit = {
-					has_variable = mil_maa_recruit_&goods&
-				}
-				prev = {
-					change_variable = { name = task_time_cost add = prev.var:mil_maa_recruit_&goods& }
-				}
+		if = {
+			limit = {
+				has_variable = mil_mp
 			}
-			if = {
-				limit = {
-					has_variable = mil_maa_maintain_&goods&
-				}
-				prev = {
-					change_variable = { name = task_time_cost add = prev.var:mil_maa_maintain_&goods& }
-				}
+			prev = {
+				change_variable = { name = task_time_cost add = prev.var:mil_mp }
 			}
-			if = {
-				limit = {
-					has_variable = mil_levy_maintain_&goods&
-				}
-				prev = {
-					change_variable = { name = task_time_cost add = prev.var:mil_levy_maintain_&goods& }
-				}
+		}
+		if = {
+			limit = {
+				has_variable = mil_supply
 			}
-		^
+			prev = {
+				change_variable = { name = task_time_cost add = prev.var:mil_supply }
+			}
+		}
 	}
 	
 	sqrt_effect = {

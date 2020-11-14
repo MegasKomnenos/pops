@@ -757,6 +757,17 @@ every_county = {
 		}
 		if = { 
 			limit = { 
+				has_variable = mil_supply_food
+			}
+			scope:trade_do_trade_select = { 
+				change_variable = { 
+					name = trade_dmnd_food
+					add = prev.var:mil_supply_food
+				}
+			}
+		}
+		if = { 
+			limit = { 
 				has_variable = pop_calorie_cereal
 			}
 			scope:trade_do_trade_select = { 
@@ -796,6 +807,17 @@ every_county = {
 				change_variable = { 
 					name = trade_dmnd_cereal
 					add = prev.var:pop_luxury_cereal
+				}
+			}
+		}
+		if = { 
+			limit = { 
+				has_variable = mil_supply_cereal
+			}
+			scope:trade_do_trade_select = { 
+				change_variable = { 
+					name = trade_dmnd_cereal
+					add = prev.var:mil_supply_cereal
 				}
 			}
 		}
@@ -845,6 +867,17 @@ every_county = {
 		}
 		if = { 
 			limit = { 
+				has_variable = mil_supply_salted
+			}
+			scope:trade_do_trade_select = { 
+				change_variable = { 
+					name = trade_dmnd_salted
+					add = prev.var:mil_supply_salted
+				}
+			}
+		}
+		if = { 
+			limit = { 
 				has_variable = pop_calorie_salt
 			}
 			scope:trade_do_trade_select = { 
@@ -884,6 +917,17 @@ every_county = {
 				change_variable = { 
 					name = trade_dmnd_salt
 					add = prev.var:pop_luxury_salt
+				}
+			}
+		}
+		if = { 
+			limit = { 
+				has_variable = mil_supply_salt
+			}
+			scope:trade_do_trade_select = { 
+				change_variable = { 
+					name = trade_dmnd_salt
+					add = prev.var:mil_supply_salt
 				}
 			}
 		}
@@ -933,6 +977,17 @@ every_county = {
 		}
 		if = { 
 			limit = { 
+				has_variable = mil_supply_mud
+			}
+			scope:trade_do_trade_select = { 
+				change_variable = { 
+					name = trade_dmnd_mud
+					add = prev.var:mil_supply_mud
+				}
+			}
+		}
+		if = { 
+			limit = { 
 				has_variable = pop_calorie_fuel
 			}
 			scope:trade_do_trade_select = { 
@@ -972,6 +1027,17 @@ every_county = {
 				change_variable = { 
 					name = trade_dmnd_fuel
 					add = prev.var:pop_luxury_fuel
+				}
+			}
+		}
+		if = { 
+			limit = { 
+				has_variable = mil_supply_fuel
+			}
+			scope:trade_do_trade_select = { 
+				change_variable = { 
+					name = trade_dmnd_fuel
+					add = prev.var:mil_supply_fuel
 				}
 			}
 		}
@@ -1021,6 +1087,17 @@ every_county = {
 		}
 		if = { 
 			limit = { 
+				has_variable = mil_supply_fiber
+			}
+			scope:trade_do_trade_select = { 
+				change_variable = { 
+					name = trade_dmnd_fiber
+					add = prev.var:mil_supply_fiber
+				}
+			}
+		}
+		if = { 
+			limit = { 
 				has_variable = pop_calorie_timber
 			}
 			scope:trade_do_trade_select = { 
@@ -1060,6 +1137,17 @@ every_county = {
 				change_variable = { 
 					name = trade_dmnd_timber
 					add = prev.var:pop_luxury_timber
+				}
+			}
+		}
+		if = { 
+			limit = { 
+				has_variable = mil_supply_timber
+			}
+			scope:trade_do_trade_select = { 
+				change_variable = { 
+					name = trade_dmnd_timber
+					add = prev.var:mil_supply_timber
 				}
 			}
 		}
@@ -1109,6 +1197,17 @@ every_county = {
 		}
 		if = { 
 			limit = { 
+				has_variable = mil_supply_metal
+			}
+			scope:trade_do_trade_select = { 
+				change_variable = { 
+					name = trade_dmnd_metal
+					add = prev.var:mil_supply_metal
+				}
+			}
+		}
+		if = { 
+			limit = { 
 				has_variable = pop_calorie_exotics_w
 			}
 			scope:trade_do_trade_select = { 
@@ -1148,6 +1247,17 @@ every_county = {
 				change_variable = { 
 					name = trade_dmnd_exotics_w
 					add = prev.var:pop_luxury_exotics_w
+				}
+			}
+		}
+		if = { 
+			limit = { 
+				has_variable = mil_supply_exotics_w
+			}
+			scope:trade_do_trade_select = { 
+				change_variable = { 
+					name = trade_dmnd_exotics_w
+					add = prev.var:mil_supply_exotics_w
 				}
 			}
 		}
@@ -1197,6 +1307,17 @@ every_county = {
 		}
 		if = { 
 			limit = { 
+				has_variable = mil_supply_exotics_e
+			}
+			scope:trade_do_trade_select = { 
+				change_variable = { 
+					name = trade_dmnd_exotics_e
+					add = prev.var:mil_supply_exotics_e
+				}
+			}
+		}
+		if = { 
+			limit = { 
 				has_variable = pop_calorie_exotics_g
 			}
 			scope:trade_do_trade_select = { 
@@ -1236,6 +1357,17 @@ every_county = {
 				change_variable = { 
 					name = trade_dmnd_exotics_g
 					add = prev.var:pop_luxury_exotics_g
+				}
+			}
+		}
+		if = { 
+			limit = { 
+				has_variable = mil_supply_exotics_g
+			}
+			scope:trade_do_trade_select = { 
+				change_variable = { 
+					name = trade_dmnd_exotics_g
+					add = prev.var:mil_supply_exotics_g
 				}
 			}
 		}
@@ -1285,6 +1417,17 @@ every_county = {
 		}
 		if = { 
 			limit = { 
+				has_variable = mil_supply_textile
+			}
+			scope:trade_do_trade_select = { 
+				change_variable = { 
+					name = trade_dmnd_textile
+					add = prev.var:mil_supply_textile
+				}
+			}
+		}
+		if = { 
+			limit = { 
 				has_variable = pop_calorie_pottery
 			}
 			scope:trade_do_trade_select = { 
@@ -1324,6 +1467,17 @@ every_county = {
 				change_variable = { 
 					name = trade_dmnd_pottery
 					add = prev.var:pop_luxury_pottery
+				}
+			}
+		}
+		if = { 
+			limit = { 
+				has_variable = mil_supply_pottery
+			}
+			scope:trade_do_trade_select = { 
+				change_variable = { 
+					name = trade_dmnd_pottery
+					add = prev.var:mil_supply_pottery
 				}
 			}
 		}
@@ -1373,6 +1527,17 @@ every_county = {
 		}
 		if = { 
 			limit = { 
+				has_variable = mil_supply_tools
+			}
+			scope:trade_do_trade_select = { 
+				change_variable = { 
+					name = trade_dmnd_tools
+					add = prev.var:mil_supply_tools
+				}
+			}
+		}
+		if = { 
+			limit = { 
 				has_variable = pop_calorie_armaments
 			}
 			scope:trade_do_trade_select = { 
@@ -1412,6 +1577,17 @@ every_county = {
 				change_variable = { 
 					name = trade_dmnd_armaments
 					add = prev.var:pop_luxury_armaments
+				}
+			}
+		}
+		if = { 
+			limit = { 
+				has_variable = mil_supply_armaments
+			}
+			scope:trade_do_trade_select = { 
+				change_variable = { 
+					name = trade_dmnd_armaments
+					add = prev.var:mil_supply_armaments
 				}
 			}
 		}

@@ -1656,6 +1656,14 @@ trade_do_trade_helper_0 = {
 					change_variable = { name = trade_dmnd_&goods& add = prev.var:pop_luxury_&goods& }
 				}
 			}
+			if = {
+				limit = {
+					has_variable = mil_supply_&goods&
+				}
+				scope:trade_do_trade_select = {
+					change_variable = { name = trade_dmnd_&goods& add = prev.var:mil_supply_&goods& }
+				}
+			}
 		^
 	}
 	
@@ -1970,6 +1978,7 @@ trade_resolve_trade = {
 		set_variable = { name = pop_pay_nutrient value = 0 }
 		set_variable = { name = pop_pay_comfort value = 0 }
 		set_variable = { name = pop_pay_luxury value = 0 }
+		set_variable = { name = pop_pay_supply value = 0 }
 		
 		^^goods^set_variable = { name = prod_earn_&goods& value = 0 }^
 	}
@@ -2143,6 +2152,8 @@ trade_resolve_trade = {
 		change_variable = { name = pop_pay_free add = var:pop_pay_luxury }
 		change_variable = { name = pop_pay_free subtract = var:trade_resolve_trade_t }
 		change_variable = { name = pop_pay_serf add = var:trade_resolve_trade_t }
+		
+		change_variable = { name = pop_pay_free add = var:pop_pay_supply }
 		
 		if = {
 			limit = {
@@ -2398,6 +2409,19 @@ trade_resolve_trade_helper_1 = {
 			trade_resolve_trade_helper_1_helper = { type = nutrient good = $good$ }
 			trade_resolve_trade_helper_1_helper = { type = comfort good = $good$ }
 			trade_resolve_trade_helper_1_helper = { type = luxury good = $good$ }
+		
+			if = {
+				limit = {
+					has_variable = mil_supply_$good$
+				}
+				set_variable = { name = mil_supply_in_$good$ value = var:mil_supply_$good$ }
+				change_variable = { name = mil_supply_in_$good$ multiply = prev.var:trade_resolve_trade_tt }
+				change_variable = { name = mil_supply_in_$good$ divide = 100 }
+				
+				set_variable = { name = trade_resolve_trade_t value = var:mil_supply_$good$ }
+				change_variable = { name = trade_resolve_trade_t multiply = prev.var:trade_resolve_trade_t }
+				change_variable = { name = pop_pay_supply add = var:trade_resolve_trade_t }
+			}
 			
 			set_variable = { name = trade_resolve_trade_t value = prev.var:trade_resolve_trade_t }
 			set_variable = { name = trade_resolve_trade_tt value = prev.var:trade_resolve_trade_tt }

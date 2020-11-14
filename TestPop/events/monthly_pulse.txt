@@ -13,7 +13,8 @@ monthly_pulse.01 = {
 		trigger_event = { id = census.07 days = 10 }
 		trigger_event = { id = census.08 days = 12 }
 		trigger_event = { id = census.09 days = 14 }
-		trigger_event = { id = census.11 days = 16 }
+		trigger_event = { id = census.10 days = 16 }
+		trigger_event = { id = census.11 days = 18 }
 	}
 	
 	option = {
@@ -29,9 +30,7 @@ monthly_pulse.02 = {
 				is_valid_prov = yes
 			}
 			change_variable = { name = pop_wealth add = var:pop_earn_free } 
-			change_variable = { name = pop_wealth add = var:pop_earn_serf }
 			change_variable = { name = pop_wealth subtract = var:pop_pay_free }
-			change_variable = { name = pop_wealth subtract = var:pop_pay_serf }
 		}
 		
 		trigger_event = { id = census.05 }
@@ -155,7 +154,6 @@ monthly_pulse.14 = {
 	hidden = yes
 	
 	immediate = {
-		trigger_event = { id = census.12 }
 	}
 	
 	option = {
