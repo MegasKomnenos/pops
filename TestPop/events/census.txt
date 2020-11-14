@@ -22115,48 +22115,27 @@ census.05 = {
 						}
 						prev = { 
 							add_to_variable_list = { 
-								name = trade_periph
+								name = trade_set_link_t
 								target = prev.county
 							}
-							set_variable = { 
-								name = array_add_t
-								value = prev.var:trade_set_link_dist
-							}
-							change_variable = { 
-								name = array_add_t
-								multiply = 10
-							}
+						}
+						county = { 
 							if = { 
-								limit = { 
-									NOT = { 
-										has_variable_list = array_trade_periph
-									}
-								}
-								add_to_variable_list = { 
-									name = array_trade_periph
-									target = var:array_add_t
-								}
-							}
-							else = { 
-								while = { 
-									limit = { 
-										is_target_in_variable_list = { 
-											name = array_trade_periph
-											target = var:array_add_t
+								liimit = { 
+									OR = { 
+										NOT = { 
+											has_variable = trade_set_link_dist
+										}
+										prev.var:trade_set_link_dist = { 
+											compare_value < prev.var:trade_set_link_dist
 										}
 									}
-									count = 10
-									change_variable = { 
-										name = array_add_t
-										add = 0.001
-									}
 								}
-								add_to_variable_list = { 
-									name = array_trade_periph
-									target = var:array_add_t
+								set_variable = { 
+									name = trade_set_link_dist
+									value = prev.var:trade_set_link_dist
 								}
 							}
-							remove_variable = array_add_t
 						}
 					}
 					every_in_list = { 
@@ -22230,6 +22209,56 @@ census.05 = {
 						}
 					}
 				}
+				every_in_list = { 
+					variable = trade_set_link_t
+					prev = { 
+						add_to_variable_list = { 
+							name = trade_periph
+							target = prev
+						}
+						set_variable = { 
+							name = array_add_t
+							value = prev.var:trade_set_link_dist
+						}
+						change_variable = { 
+							name = array_add_t
+							multiply = 10
+						}
+						if = { 
+							limit = { 
+								NOT = { 
+									has_variable_list = array_trade_periph
+								}
+							}
+							add_to_variable_list = { 
+								name = array_trade_periph
+								target = var:array_add_t
+							}
+						}
+						else = { 
+							while = { 
+								limit = { 
+									is_target_in_variable_list = { 
+										name = array_trade_periph
+										target = var:array_add_t
+									}
+								}
+								count = 10
+								change_variable = { 
+									name = array_add_t
+									add = 0.001
+								}
+							}
+							add_to_variable_list = { 
+								name = array_trade_periph
+								target = var:array_add_t
+							}
+						}
+						remove_variable = array_add_t
+					}
+					remove_variable = trade_set_link_dist
+				}
+				clear_variable_list = trade_set_link_t
 				every_in_global_list = { 
 					limit = { 
 						has_variable = trade_set_link_t
