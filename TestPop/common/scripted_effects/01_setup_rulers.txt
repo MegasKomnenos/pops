@@ -46,6 +46,9 @@
 			every_in_list = {
 				variable = task_tasks
 				
+				set_variable = { name = task_owner value = scope:setup_rulers_t }
+				set_variable = { name = task_worker value = scope:setup_rulers_t }
+				
 				scope:setup_rulers_t = {
 					add_to_variable_list = { name = task_tasks target = prev }
 				}
