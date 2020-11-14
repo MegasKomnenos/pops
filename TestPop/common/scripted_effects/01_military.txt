@@ -130,6 +130,7 @@ mil_main_1 = {
 				change_variable = { name = trade_has_&goods& subtract = var:mil_main_t }
 				
 				change_variable = { name = mil_main_t multiply = mil_supply_&goods& }
+				change_variable = { name = mil_main_t divide = 10 }
 				change_variable = { name = mil_supply_stockpile add = var:mil_main_t }
 			}
 		^
@@ -177,6 +178,7 @@ mil_main_1 = {
 		^^goods^
 			set_variable = { name = mil_main_t value = var:mil_supply_in_&goods& }
 			change_variable = { name = mil_main_t multiply = province_owner.mil_supply_&goods& }
+			change_variable = { name = mil_main_t divide = 10 }
 			change_variable = { name = mil_supply add = var:mil_main_t }
 		^
 		

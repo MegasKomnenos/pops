@@ -10525,6 +10525,93 @@ while = {
 			value = 0
 		}
 		every_in_list = { 
+			variable = trade_periph
+			if = { 
+				limit = { 
+					NOT = { 
+						is_target_in_global_variable_list = { 
+							name = trade_do_trade_list
+							target = this
+						}
+					}
+				}
+				add_to_global_variable_list = { 
+					name = trade_do_trade_list
+					target = this
+				}
+				prev = { 
+					set_global_variable = { 
+						name = array_get_t
+						value = global_var:trade_do_trade_t
+					}
+					if = { 
+						limit = { 
+							OR = { 
+								NOT = { 
+									has_global_variable = array_get_t
+								}
+								global_var:array_get_t = 0
+							}
+						}
+						ordered_in_list = { 
+							variable = array_trade_periph
+							position = 0
+							prev = { 
+								set_variable = { 
+									name = trade_do_trade_t
+									value = prev
+								}
+							}
+						}
+					}
+					else = { 
+						ordered_in_list = { 
+							variable = array_trade_periph
+							position = global_var:array_get_t.compare_value
+							prev = { 
+								set_variable = { 
+									name = trade_do_trade_t
+									value = prev
+								}
+							}
+						}
+					}
+					change_variable = { 
+						name = trade_do_trade_t
+						divide = 10
+					}
+					remove_global_variable = array_get_t
+				}
+				set_variable = { 
+					name = trade_do_trade_dist
+					value = prev.var:trade_do_trade_t
+				}
+				if = { 
+					limit = { 
+						has_variable = trade_do_trade_capital
+					}
+					var:trade_do_trade_capital = { 
+						add_to_global_variable_list = { 
+							name = trade_do_trade_list
+							target = this
+						}
+						set_variable = { 
+							name = trade_do_trade_dist
+							value = prev.var:trade_do_trade_dist
+						}
+					}
+				}
+			}
+			change_global_variable = { 
+				name = trade_do_trade_t
+				add = 1
+			}
+		}
+		set_global_variable = { 
+			name = trade_do_trade_t
+			value = 0
+		}
+		every_in_list = { 
 			variable = trade_link
 			if = { 
 				limit = { 

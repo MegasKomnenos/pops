@@ -8343,7 +8343,7 @@ census.02 = {
 			}
 			change_variable = { 
 				name = trade_want_food
-				multiply = 36
+				multiply = 3
 			}
 			if = { 
 				limit = { 
@@ -8409,7 +8409,7 @@ census.02 = {
 			}
 			change_variable = { 
 				name = trade_want_cereal
-				multiply = 36
+				multiply = 3
 			}
 			if = { 
 				limit = { 
@@ -8475,7 +8475,7 @@ census.02 = {
 			}
 			change_variable = { 
 				name = trade_want_salted
-				multiply = 36
+				multiply = 3
 			}
 			if = { 
 				limit = { 
@@ -8541,7 +8541,7 @@ census.02 = {
 			}
 			change_variable = { 
 				name = trade_want_salt
-				multiply = 36
+				multiply = 3
 			}
 			if = { 
 				limit = { 
@@ -8607,7 +8607,7 @@ census.02 = {
 			}
 			change_variable = { 
 				name = trade_want_mud
-				multiply = 36
+				multiply = 3
 			}
 			if = { 
 				limit = { 
@@ -8673,7 +8673,7 @@ census.02 = {
 			}
 			change_variable = { 
 				name = trade_want_fuel
-				multiply = 36
+				multiply = 3
 			}
 			if = { 
 				limit = { 
@@ -8739,7 +8739,7 @@ census.02 = {
 			}
 			change_variable = { 
 				name = trade_want_fiber
-				multiply = 36
+				multiply = 3
 			}
 			if = { 
 				limit = { 
@@ -8805,7 +8805,7 @@ census.02 = {
 			}
 			change_variable = { 
 				name = trade_want_timber
-				multiply = 36
+				multiply = 3
 			}
 			if = { 
 				limit = { 
@@ -8871,7 +8871,7 @@ census.02 = {
 			}
 			change_variable = { 
 				name = trade_want_metal
-				multiply = 36
+				multiply = 3
 			}
 			if = { 
 				limit = { 
@@ -8937,7 +8937,7 @@ census.02 = {
 			}
 			change_variable = { 
 				name = trade_want_exotics_w
-				multiply = 36
+				multiply = 3
 			}
 			if = { 
 				limit = { 
@@ -9003,7 +9003,7 @@ census.02 = {
 			}
 			change_variable = { 
 				name = trade_want_exotics_e
-				multiply = 36
+				multiply = 3
 			}
 			if = { 
 				limit = { 
@@ -9069,7 +9069,7 @@ census.02 = {
 			}
 			change_variable = { 
 				name = trade_want_exotics_g
-				multiply = 36
+				multiply = 3
 			}
 			if = { 
 				limit = { 
@@ -9135,7 +9135,7 @@ census.02 = {
 			}
 			change_variable = { 
 				name = trade_want_textile
-				multiply = 36
+				multiply = 3
 			}
 			if = { 
 				limit = { 
@@ -9201,7 +9201,7 @@ census.02 = {
 			}
 			change_variable = { 
 				name = trade_want_pottery
-				multiply = 36
+				multiply = 3
 			}
 			if = { 
 				limit = { 
@@ -9267,7 +9267,7 @@ census.02 = {
 			}
 			change_variable = { 
 				name = trade_want_tools
-				multiply = 36
+				multiply = 3
 			}
 			if = { 
 				limit = { 
@@ -9333,7 +9333,7 @@ census.02 = {
 			}
 			change_variable = { 
 				name = trade_want_armaments
-				multiply = 36
+				multiply = 3
 			}
 			if = { 
 				limit = { 
@@ -11542,7 +11542,7 @@ census.03 = {
 				remove_variable = math_sqrt_i
 				change_variable = { 
 					name = task_time_cost
-					divide = 2
+					divide = 4
 				}
 				change_variable = { 
 					name = task_time_cost
@@ -21565,6 +21565,8 @@ census.05 = {
 				variable = trade_merchants
 				clear_variable_list = trade_link
 				clear_variable_list = array_trade_link
+				clear_variable_list = trade_periph
+				clear_variable_list = array_trade_periph
 				add_to_global_variable_list = { 
 					name = trade_set_link_t
 					target = var:trade_location
@@ -22100,6 +22102,61 @@ census.05 = {
 						var:trade_set_link_prev = prev.var:trade_location
 					}
 					variable = trade_set_link_list
+					if = { 
+						limit = { 
+							OR = { 
+								NOT = { 
+									has_variable = trade_set_link_dist
+								}
+								var:trade_set_link_dist <= 600
+							}
+						}
+						prev = { 
+							add_to_variable_list = { 
+								name = trade_periph
+								target = prev
+							}
+							set_variable = { 
+								name = array_add_t
+								value = prev.var:trade_set_link_dist
+							}
+							change_variable = { 
+								name = array_add_t
+								multiply = 10
+							}
+							if = { 
+								limit = { 
+									NOT = { 
+										has_variable_list = array_trade_periph
+									}
+								}
+								add_to_variable_list = { 
+									name = array_trade_periph
+									target = var:array_add_t
+								}
+							}
+							else = { 
+								while = { 
+									limit = { 
+										is_target_in_variable_list = { 
+											name = array_trade_periph
+											target = var:array_add_t
+										}
+									}
+									count = 10
+									change_variable = { 
+										name = array_add_t
+										add = 0.001
+									}
+								}
+								add_to_variable_list = { 
+									name = array_trade_periph
+									target = var:array_add_t
+								}
+							}
+							remove_variable = array_add_t
+						}
+					}
 					every_in_list = { 
 						limit = { 
 							has_variable = trade_set_link_prev
@@ -33127,6 +33184,93 @@ census.06 = {
 							set_variable = { 
 								name = trade_do_trade_dist
 								value = prev.var:trade_do_trade_dist
+							}
+						}
+					}
+					change_global_variable = { 
+						name = trade_do_trade_t
+						add = 1
+					}
+				}
+				set_global_variable = { 
+					name = trade_do_trade_t
+					value = 0
+				}
+				every_in_list = { 
+					variable = trade_periph
+					if = { 
+						limit = { 
+							NOT = { 
+								is_target_in_global_variable_list = { 
+									name = trade_do_trade_list
+									target = this
+								}
+							}
+						}
+						add_to_global_variable_list = { 
+							name = trade_do_trade_list
+							target = this
+						}
+						prev = { 
+							set_global_variable = { 
+								name = array_get_t
+								value = global_var:trade_do_trade_t
+							}
+							if = { 
+								limit = { 
+									OR = { 
+										NOT = { 
+											has_global_variable = array_get_t
+										}
+										global_var:array_get_t = 0
+									}
+								}
+								ordered_in_list = { 
+									variable = array_trade_periph
+									position = 0
+									prev = { 
+										set_variable = { 
+											name = trade_do_trade_t
+											value = prev
+										}
+									}
+								}
+							}
+							else = { 
+								ordered_in_list = { 
+									variable = array_trade_periph
+									position = global_var:array_get_t.compare_value
+									prev = { 
+										set_variable = { 
+											name = trade_do_trade_t
+											value = prev
+										}
+									}
+								}
+							}
+							change_variable = { 
+								name = trade_do_trade_t
+								divide = 10
+							}
+							remove_global_variable = array_get_t
+						}
+						set_variable = { 
+							name = trade_do_trade_dist
+							value = prev.var:trade_do_trade_t
+						}
+						if = { 
+							limit = { 
+								has_variable = trade_do_trade_capital
+							}
+							var:trade_do_trade_capital = { 
+								add_to_global_variable_list = { 
+									name = trade_do_trade_list
+									target = this
+								}
+								set_variable = { 
+									name = trade_do_trade_dist
+									value = prev.var:trade_do_trade_dist
+								}
 							}
 						}
 					}
@@ -82838,6 +82982,10 @@ census.10 = {
 					multiply = mil_supply_food
 				}
 				change_variable = { 
+					name = mil_main_t
+					divide = 10
+				}
+				change_variable = { 
 					name = mil_supply_stockpile
 					add = var:mil_main_t
 				}
@@ -82871,6 +83019,10 @@ census.10 = {
 				change_variable = { 
 					name = mil_main_t
 					multiply = mil_supply_cereal
+				}
+				change_variable = { 
+					name = mil_main_t
+					divide = 10
 				}
 				change_variable = { 
 					name = mil_supply_stockpile
@@ -82908,6 +83060,10 @@ census.10 = {
 					multiply = mil_supply_salted
 				}
 				change_variable = { 
+					name = mil_main_t
+					divide = 10
+				}
+				change_variable = { 
 					name = mil_supply_stockpile
 					add = var:mil_main_t
 				}
@@ -82941,6 +83097,10 @@ census.10 = {
 				change_variable = { 
 					name = mil_main_t
 					multiply = mil_supply_salt
+				}
+				change_variable = { 
+					name = mil_main_t
+					divide = 10
 				}
 				change_variable = { 
 					name = mil_supply_stockpile
@@ -82978,6 +83138,10 @@ census.10 = {
 					multiply = mil_supply_mud
 				}
 				change_variable = { 
+					name = mil_main_t
+					divide = 10
+				}
+				change_variable = { 
 					name = mil_supply_stockpile
 					add = var:mil_main_t
 				}
@@ -83011,6 +83175,10 @@ census.10 = {
 				change_variable = { 
 					name = mil_main_t
 					multiply = mil_supply_fuel
+				}
+				change_variable = { 
+					name = mil_main_t
+					divide = 10
 				}
 				change_variable = { 
 					name = mil_supply_stockpile
@@ -83048,6 +83216,10 @@ census.10 = {
 					multiply = mil_supply_fiber
 				}
 				change_variable = { 
+					name = mil_main_t
+					divide = 10
+				}
+				change_variable = { 
 					name = mil_supply_stockpile
 					add = var:mil_main_t
 				}
@@ -83081,6 +83253,10 @@ census.10 = {
 				change_variable = { 
 					name = mil_main_t
 					multiply = mil_supply_timber
+				}
+				change_variable = { 
+					name = mil_main_t
+					divide = 10
 				}
 				change_variable = { 
 					name = mil_supply_stockpile
@@ -83118,6 +83294,10 @@ census.10 = {
 					multiply = mil_supply_metal
 				}
 				change_variable = { 
+					name = mil_main_t
+					divide = 10
+				}
+				change_variable = { 
 					name = mil_supply_stockpile
 					add = var:mil_main_t
 				}
@@ -83151,6 +83331,10 @@ census.10 = {
 				change_variable = { 
 					name = mil_main_t
 					multiply = mil_supply_exotics_w
+				}
+				change_variable = { 
+					name = mil_main_t
+					divide = 10
 				}
 				change_variable = { 
 					name = mil_supply_stockpile
@@ -83188,6 +83372,10 @@ census.10 = {
 					multiply = mil_supply_exotics_e
 				}
 				change_variable = { 
+					name = mil_main_t
+					divide = 10
+				}
+				change_variable = { 
 					name = mil_supply_stockpile
 					add = var:mil_main_t
 				}
@@ -83221,6 +83409,10 @@ census.10 = {
 				change_variable = { 
 					name = mil_main_t
 					multiply = mil_supply_exotics_g
+				}
+				change_variable = { 
+					name = mil_main_t
+					divide = 10
 				}
 				change_variable = { 
 					name = mil_supply_stockpile
@@ -83258,6 +83450,10 @@ census.10 = {
 					multiply = mil_supply_textile
 				}
 				change_variable = { 
+					name = mil_main_t
+					divide = 10
+				}
+				change_variable = { 
 					name = mil_supply_stockpile
 					add = var:mil_main_t
 				}
@@ -83291,6 +83487,10 @@ census.10 = {
 				change_variable = { 
 					name = mil_main_t
 					multiply = mil_supply_pottery
+				}
+				change_variable = { 
+					name = mil_main_t
+					divide = 10
 				}
 				change_variable = { 
 					name = mil_supply_stockpile
@@ -83328,6 +83528,10 @@ census.10 = {
 					multiply = mil_supply_tools
 				}
 				change_variable = { 
+					name = mil_main_t
+					divide = 10
+				}
+				change_variable = { 
 					name = mil_supply_stockpile
 					add = var:mil_main_t
 				}
@@ -83361,6 +83565,10 @@ census.10 = {
 				change_variable = { 
 					name = mil_main_t
 					multiply = mil_supply_armaments
+				}
+				change_variable = { 
+					name = mil_main_t
+					divide = 10
 				}
 				change_variable = { 
 					name = mil_supply_stockpile
@@ -89331,6 +89539,10 @@ census.10 = {
 				multiply = province_owner.mil_supply_food
 			}
 			change_variable = { 
+				name = mil_main_t
+				divide = 10
+			}
+			change_variable = { 
 				name = mil_supply
 				add = var:mil_main_t
 			}
@@ -89341,6 +89553,10 @@ census.10 = {
 			change_variable = { 
 				name = mil_main_t
 				multiply = province_owner.mil_supply_cereal
+			}
+			change_variable = { 
+				name = mil_main_t
+				divide = 10
 			}
 			change_variable = { 
 				name = mil_supply
@@ -89355,6 +89571,10 @@ census.10 = {
 				multiply = province_owner.mil_supply_salted
 			}
 			change_variable = { 
+				name = mil_main_t
+				divide = 10
+			}
+			change_variable = { 
 				name = mil_supply
 				add = var:mil_main_t
 			}
@@ -89365,6 +89585,10 @@ census.10 = {
 			change_variable = { 
 				name = mil_main_t
 				multiply = province_owner.mil_supply_salt
+			}
+			change_variable = { 
+				name = mil_main_t
+				divide = 10
 			}
 			change_variable = { 
 				name = mil_supply
@@ -89379,6 +89603,10 @@ census.10 = {
 				multiply = province_owner.mil_supply_mud
 			}
 			change_variable = { 
+				name = mil_main_t
+				divide = 10
+			}
+			change_variable = { 
 				name = mil_supply
 				add = var:mil_main_t
 			}
@@ -89389,6 +89617,10 @@ census.10 = {
 			change_variable = { 
 				name = mil_main_t
 				multiply = province_owner.mil_supply_fuel
+			}
+			change_variable = { 
+				name = mil_main_t
+				divide = 10
 			}
 			change_variable = { 
 				name = mil_supply
@@ -89403,6 +89635,10 @@ census.10 = {
 				multiply = province_owner.mil_supply_fiber
 			}
 			change_variable = { 
+				name = mil_main_t
+				divide = 10
+			}
+			change_variable = { 
 				name = mil_supply
 				add = var:mil_main_t
 			}
@@ -89413,6 +89649,10 @@ census.10 = {
 			change_variable = { 
 				name = mil_main_t
 				multiply = province_owner.mil_supply_timber
+			}
+			change_variable = { 
+				name = mil_main_t
+				divide = 10
 			}
 			change_variable = { 
 				name = mil_supply
@@ -89427,6 +89667,10 @@ census.10 = {
 				multiply = province_owner.mil_supply_metal
 			}
 			change_variable = { 
+				name = mil_main_t
+				divide = 10
+			}
+			change_variable = { 
 				name = mil_supply
 				add = var:mil_main_t
 			}
@@ -89437,6 +89681,10 @@ census.10 = {
 			change_variable = { 
 				name = mil_main_t
 				multiply = province_owner.mil_supply_exotics_w
+			}
+			change_variable = { 
+				name = mil_main_t
+				divide = 10
 			}
 			change_variable = { 
 				name = mil_supply
@@ -89451,6 +89699,10 @@ census.10 = {
 				multiply = province_owner.mil_supply_exotics_e
 			}
 			change_variable = { 
+				name = mil_main_t
+				divide = 10
+			}
+			change_variable = { 
 				name = mil_supply
 				add = var:mil_main_t
 			}
@@ -89461,6 +89713,10 @@ census.10 = {
 			change_variable = { 
 				name = mil_main_t
 				multiply = province_owner.mil_supply_exotics_g
+			}
+			change_variable = { 
+				name = mil_main_t
+				divide = 10
 			}
 			change_variable = { 
 				name = mil_supply
@@ -89475,6 +89731,10 @@ census.10 = {
 				multiply = province_owner.mil_supply_textile
 			}
 			change_variable = { 
+				name = mil_main_t
+				divide = 10
+			}
+			change_variable = { 
 				name = mil_supply
 				add = var:mil_main_t
 			}
@@ -89485,6 +89745,10 @@ census.10 = {
 			change_variable = { 
 				name = mil_main_t
 				multiply = province_owner.mil_supply_pottery
+			}
+			change_variable = { 
+				name = mil_main_t
+				divide = 10
 			}
 			change_variable = { 
 				name = mil_supply
@@ -89499,6 +89763,10 @@ census.10 = {
 				multiply = province_owner.mil_supply_tools
 			}
 			change_variable = { 
+				name = mil_main_t
+				divide = 10
+			}
+			change_variable = { 
 				name = mil_supply
 				add = var:mil_main_t
 			}
@@ -89509,6 +89777,10 @@ census.10 = {
 			change_variable = { 
 				name = mil_main_t
 				multiply = province_owner.mil_supply_armaments
+			}
+			change_variable = { 
+				name = mil_main_t
+				divide = 10
 			}
 			change_variable = { 
 				name = mil_supply
@@ -90368,470 +90640,6 @@ census.11 = {
 						}
 						add_province_modifier = stat_tax_0.01
 					}
-				}
-			}
-			if = { 
-				limit = { 
-					has_province_modifier = stat_tax_327.68
-				}
-				if = { 
-					limit = { 
-						var:stat_main_t >= 327.68
-					}
-					change_variable = { 
-						name = stat_main_t
-						subtract = 327.68
-					}
-				}
-				else = { 
-					remove_province_modifier = stat_tax_327.68
-				}
-			}
-			else = { 
-				if = { 
-					limit = { 
-						var:stat_main_t >= 327.68
-					}
-					change_variable = { 
-						name = stat_main_t
-						subtract = 327.68
-					}
-					add_province_modifier = stat_tax_327.68
-				}
-			}
-			if = { 
-				limit = { 
-					has_province_modifier = stat_tax_163.84
-				}
-				if = { 
-					limit = { 
-						var:stat_main_t >= 163.84
-					}
-					change_variable = { 
-						name = stat_main_t
-						subtract = 163.84
-					}
-				}
-				else = { 
-					remove_province_modifier = stat_tax_163.84
-				}
-			}
-			else = { 
-				if = { 
-					limit = { 
-						var:stat_main_t >= 163.84
-					}
-					change_variable = { 
-						name = stat_main_t
-						subtract = 163.84
-					}
-					add_province_modifier = stat_tax_163.84
-				}
-			}
-			if = { 
-				limit = { 
-					has_province_modifier = stat_tax_81.92
-				}
-				if = { 
-					limit = { 
-						var:stat_main_t >= 81.92
-					}
-					change_variable = { 
-						name = stat_main_t
-						subtract = 81.92
-					}
-				}
-				else = { 
-					remove_province_modifier = stat_tax_81.92
-				}
-			}
-			else = { 
-				if = { 
-					limit = { 
-						var:stat_main_t >= 81.92
-					}
-					change_variable = { 
-						name = stat_main_t
-						subtract = 81.92
-					}
-					add_province_modifier = stat_tax_81.92
-				}
-			}
-			if = { 
-				limit = { 
-					has_province_modifier = stat_tax_40.96
-				}
-				if = { 
-					limit = { 
-						var:stat_main_t >= 40.96
-					}
-					change_variable = { 
-						name = stat_main_t
-						subtract = 40.96
-					}
-				}
-				else = { 
-					remove_province_modifier = stat_tax_40.96
-				}
-			}
-			else = { 
-				if = { 
-					limit = { 
-						var:stat_main_t >= 40.96
-					}
-					change_variable = { 
-						name = stat_main_t
-						subtract = 40.96
-					}
-					add_province_modifier = stat_tax_40.96
-				}
-			}
-			if = { 
-				limit = { 
-					has_province_modifier = stat_tax_20.48
-				}
-				if = { 
-					limit = { 
-						var:stat_main_t >= 20.48
-					}
-					change_variable = { 
-						name = stat_main_t
-						subtract = 20.48
-					}
-				}
-				else = { 
-					remove_province_modifier = stat_tax_20.48
-				}
-			}
-			else = { 
-				if = { 
-					limit = { 
-						var:stat_main_t >= 20.48
-					}
-					change_variable = { 
-						name = stat_main_t
-						subtract = 20.48
-					}
-					add_province_modifier = stat_tax_20.48
-				}
-			}
-			if = { 
-				limit = { 
-					has_province_modifier = stat_tax_10.24
-				}
-				if = { 
-					limit = { 
-						var:stat_main_t >= 10.24
-					}
-					change_variable = { 
-						name = stat_main_t
-						subtract = 10.24
-					}
-				}
-				else = { 
-					remove_province_modifier = stat_tax_10.24
-				}
-			}
-			else = { 
-				if = { 
-					limit = { 
-						var:stat_main_t >= 10.24
-					}
-					change_variable = { 
-						name = stat_main_t
-						subtract = 10.24
-					}
-					add_province_modifier = stat_tax_10.24
-				}
-			}
-			if = { 
-				limit = { 
-					has_province_modifier = stat_tax_5.12
-				}
-				if = { 
-					limit = { 
-						var:stat_main_t >= 5.12
-					}
-					change_variable = { 
-						name = stat_main_t
-						subtract = 5.12
-					}
-				}
-				else = { 
-					remove_province_modifier = stat_tax_5.12
-				}
-			}
-			else = { 
-				if = { 
-					limit = { 
-						var:stat_main_t >= 5.12
-					}
-					change_variable = { 
-						name = stat_main_t
-						subtract = 5.12
-					}
-					add_province_modifier = stat_tax_5.12
-				}
-			}
-			if = { 
-				limit = { 
-					has_province_modifier = stat_tax_2.56
-				}
-				if = { 
-					limit = { 
-						var:stat_main_t >= 2.56
-					}
-					change_variable = { 
-						name = stat_main_t
-						subtract = 2.56
-					}
-				}
-				else = { 
-					remove_province_modifier = stat_tax_2.56
-				}
-			}
-			else = { 
-				if = { 
-					limit = { 
-						var:stat_main_t >= 2.56
-					}
-					change_variable = { 
-						name = stat_main_t
-						subtract = 2.56
-					}
-					add_province_modifier = stat_tax_2.56
-				}
-			}
-			if = { 
-				limit = { 
-					has_province_modifier = stat_tax_1.28
-				}
-				if = { 
-					limit = { 
-						var:stat_main_t >= 1.28
-					}
-					change_variable = { 
-						name = stat_main_t
-						subtract = 1.28
-					}
-				}
-				else = { 
-					remove_province_modifier = stat_tax_1.28
-				}
-			}
-			else = { 
-				if = { 
-					limit = { 
-						var:stat_main_t >= 1.28
-					}
-					change_variable = { 
-						name = stat_main_t
-						subtract = 1.28
-					}
-					add_province_modifier = stat_tax_1.28
-				}
-			}
-			if = { 
-				limit = { 
-					has_province_modifier = stat_tax_0.64
-				}
-				if = { 
-					limit = { 
-						var:stat_main_t >= 0.64
-					}
-					change_variable = { 
-						name = stat_main_t
-						subtract = 0.64
-					}
-				}
-				else = { 
-					remove_province_modifier = stat_tax_0.64
-				}
-			}
-			else = { 
-				if = { 
-					limit = { 
-						var:stat_main_t >= 0.64
-					}
-					change_variable = { 
-						name = stat_main_t
-						subtract = 0.64
-					}
-					add_province_modifier = stat_tax_0.64
-				}
-			}
-			if = { 
-				limit = { 
-					has_province_modifier = stat_tax_0.32
-				}
-				if = { 
-					limit = { 
-						var:stat_main_t >= 0.32
-					}
-					change_variable = { 
-						name = stat_main_t
-						subtract = 0.32
-					}
-				}
-				else = { 
-					remove_province_modifier = stat_tax_0.32
-				}
-			}
-			else = { 
-				if = { 
-					limit = { 
-						var:stat_main_t >= 0.32
-					}
-					change_variable = { 
-						name = stat_main_t
-						subtract = 0.32
-					}
-					add_province_modifier = stat_tax_0.32
-				}
-			}
-			if = { 
-				limit = { 
-					has_province_modifier = stat_tax_0.16
-				}
-				if = { 
-					limit = { 
-						var:stat_main_t >= 0.16
-					}
-					change_variable = { 
-						name = stat_main_t
-						subtract = 0.16
-					}
-				}
-				else = { 
-					remove_province_modifier = stat_tax_0.16
-				}
-			}
-			else = { 
-				if = { 
-					limit = { 
-						var:stat_main_t >= 0.16
-					}
-					change_variable = { 
-						name = stat_main_t
-						subtract = 0.16
-					}
-					add_province_modifier = stat_tax_0.16
-				}
-			}
-			if = { 
-				limit = { 
-					has_province_modifier = stat_tax_0.08
-				}
-				if = { 
-					limit = { 
-						var:stat_main_t >= 0.08
-					}
-					change_variable = { 
-						name = stat_main_t
-						subtract = 0.08
-					}
-				}
-				else = { 
-					remove_province_modifier = stat_tax_0.08
-				}
-			}
-			else = { 
-				if = { 
-					limit = { 
-						var:stat_main_t >= 0.08
-					}
-					change_variable = { 
-						name = stat_main_t
-						subtract = 0.08
-					}
-					add_province_modifier = stat_tax_0.08
-				}
-			}
-			if = { 
-				limit = { 
-					has_province_modifier = stat_tax_0.04
-				}
-				if = { 
-					limit = { 
-						var:stat_main_t >= 0.04
-					}
-					change_variable = { 
-						name = stat_main_t
-						subtract = 0.04
-					}
-				}
-				else = { 
-					remove_province_modifier = stat_tax_0.04
-				}
-			}
-			else = { 
-				if = { 
-					limit = { 
-						var:stat_main_t >= 0.04
-					}
-					change_variable = { 
-						name = stat_main_t
-						subtract = 0.04
-					}
-					add_province_modifier = stat_tax_0.04
-				}
-			}
-			if = { 
-				limit = { 
-					has_province_modifier = stat_tax_0.02
-				}
-				if = { 
-					limit = { 
-						var:stat_main_t >= 0.02
-					}
-					change_variable = { 
-						name = stat_main_t
-						subtract = 0.02
-					}
-				}
-				else = { 
-					remove_province_modifier = stat_tax_0.02
-				}
-			}
-			else = { 
-				if = { 
-					limit = { 
-						var:stat_main_t >= 0.02
-					}
-					change_variable = { 
-						name = stat_main_t
-						subtract = 0.02
-					}
-					add_province_modifier = stat_tax_0.02
-				}
-			}
-			if = { 
-				limit = { 
-					has_province_modifier = stat_tax_0.01
-				}
-				if = { 
-					limit = { 
-						var:stat_main_t >= 0.01
-					}
-					change_variable = { 
-						name = stat_main_t
-						subtract = 0.01
-					}
-				}
-				else = { 
-					remove_province_modifier = stat_tax_0.01
-				}
-			}
-			else = { 
-				if = { 
-					limit = { 
-						var:stat_main_t >= 0.01
-					}
-					change_variable = { 
-						name = stat_main_t
-						subtract = 0.01
-					}
-					add_province_modifier = stat_tax_0.01
 				}
 			}
 			set_variable = { 

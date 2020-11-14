@@ -59,6 +59,9 @@ trade_set_link = {
 		clear_variable_list = trade_link
 		array_clear = { name = trade_link }
 		
+		clear_variable_list = trade_periph
+		array_clear = { name = trade_periph }
+		
 		add_to_global_variable_list = { name = trade_set_link_t target = var:trade_location }
 	}
 	
@@ -82,6 +85,22 @@ trade_set_link = {
 				var:trade_set_link_prev = prev.var:trade_location
 			}
 			variable = trade_set_link_list
+			
+			if = {
+				limit = {
+					OR = {
+						NOT = {
+							has_variable = trade_set_link_dist
+						}
+						
+						var:trade_set_link_dist <= 600
+					}
+				}
+				prev = {
+					add_to_variable_list = { name = trade_periph target = prev }
+					array_add = { name = trade_periph value = prev.var:trade_set_link_dist dec = 10 }
+				}
+			}
 			
 			every_in_list = {
 				limit = {
@@ -334,7 +353,7 @@ trade_set_core = {
 	
 	travel_distance_dijkstra_opti = {
 		start = var:trade_location
-		max = 400
+		max = 200
 		return_dist = trade_set_core_dist
 		return_prev = trade_set_core_prev
 		return_list = trade_set_core_list
@@ -836,6 +855,40 @@ trade_do_trade = {
 						add_to_global_variable_list = { name = trade_do_trade_list target = this }
 						
 						set_variable = { name = trade_do_trade_dist value = prev.var:trade_do_trade_dist }
+					}
+				}
+				
+				change_global_variable = { name = trade_do_trade_t add = 1 }
+			}
+			
+			set_global_variable = { name = trade_do_trade_t value = 0 }
+			
+			every_in_list = {
+				variable = trade_periph
+				
+				if = {
+					limit = {
+						NOT = {
+							is_target_in_global_variable_list = { name = trade_do_trade_list target = this }
+						}
+					}
+					add_to_global_variable_list = { name = trade_do_trade_list target = this }
+				
+					prev = {
+						array_get = { name = trade_periph value = global_var:trade_do_trade_t return = trade_do_trade_t dec = 10 }
+					}
+					
+					set_variable = { name = trade_do_trade_dist value = prev.var:trade_do_trade_t }
+					
+					if = {
+						limit = {
+							has_variable = trade_do_trade_capital
+						}
+						var:trade_do_trade_capital = {
+							add_to_global_variable_list = { name = trade_do_trade_list target = this }
+							
+							set_variable = { name = trade_do_trade_dist value = prev.var:trade_do_trade_dist }
+						}
 					}
 				}
 				
