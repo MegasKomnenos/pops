@@ -90,6 +90,8 @@ trade_set_link = {
 				limit = {
 					is_valid_prov = yes
 					
+					var:prov_sea = 1
+					
 					OR = {
 						NOT = {
 							has_variable = trade_set_link_dist
@@ -99,7 +101,7 @@ trade_set_link = {
 					}
 				}
 				prev = {
-					add_to_variable_list = { name = trade_periph target = prev }
+					add_to_variable_list = { name = trade_periph target = prev.county }
 					array_add = { name = trade_periph value = prev.var:trade_set_link_dist dec = 10 }
 				}
 			}

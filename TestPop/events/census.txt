@@ -22105,6 +22105,7 @@ census.05 = {
 					if = { 
 						limit = { 
 							is_valid_prov = yes
+							var:prov_sea = 1
 							OR = { 
 								NOT = { 
 									has_variable = trade_set_link_dist
@@ -22115,7 +22116,7 @@ census.05 = {
 						prev = { 
 							add_to_variable_list = { 
 								name = trade_periph
-								target = prev
+								target = prev.county
 							}
 							set_variable = { 
 								name = array_add_t
