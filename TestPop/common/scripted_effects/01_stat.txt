@@ -28,7 +28,13 @@
 				}
 			}
 			set_variable = { name = stat_levy value = var:mil_levy }
-			change_variable = { name = stat_levy multiply = 5 }
+			change_variable = { name = stat_levy multiply = 25 }
+			change_variable = { name = stat_levy multiply = var:mil_supply }
+			
+			sqrt_effect = {
+				inp = var:stat_levy
+				return = stat_levy
+			}
 		}
 		
 		set_variable = { name = stat_main_t value = var:stat_levy }

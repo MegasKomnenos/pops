@@ -2,12 +2,12 @@
 	set_variable = { name = mil_levy value = 100 }
 	change_variable = { name = mil_levy subtract = var:pop_freedom }
 	change_variable = { name = mil_levy multiply = var:pop_total }
-	change_variable = { name = mil_levy divide = 10000 }
+	change_variable = { name = mil_levy divide = 20000 }
 	
 	set_variable = { name = mil_supply value = 100 }
 	change_variable = { name = mil_supply subtract = var:pop_freedom }
 	change_variable = { name = mil_supply multiply = var:pop_wealth }
-	change_variable = { name = mil_supply divide = 40000 }
+	change_variable = { name = mil_supply divide = 20000 }
 	
 	mil_set_supply = { name = mil_supply wealth = var:mil_supply price = county.var:trade_price rate = province_owner.mil_supply }
 }
@@ -37,10 +37,12 @@ mil_set_supply = {
 		change_variable = { name = mil_set_supply_ttt add = var:mil_set_supply_tttt }
 	^
 	
+	change_variable = { name = mil_set_supply_t multiply = 100 }
 	change_variable = { name = mil_set_supply_t divide = var:mil_set_supply_ttt }
 	
 	^^goods^
 		change_variable = { name = $name$_&goods& multiply = var:mil_set_supply_t }
+		change_variable = { name = $name$_&goods& divide = 100 }
 	^
 	
 	remove_variable = mil_set_supply_t
@@ -130,7 +132,7 @@ mil_main_1 = {
 				change_variable = { name = trade_has_&goods& subtract = var:mil_main_t }
 				
 				change_variable = { name = mil_main_t multiply = mil_supply_&goods& }
-				change_variable = { name = mil_main_t divide = 10 }
+				change_variable = { name = mil_main_t divide = 20 }
 				change_variable = { name = mil_supply_stockpile add = var:mil_main_t }
 			}
 		^
@@ -301,7 +303,7 @@ mil_main_1 = {
 		change_variable = { name = mil_main_tt divide = 2 }
 		change_variable = { name = mil_mp add = var:mil_main_tt }
 		
-		change_variable = { name = mil_supply multiply = 0.95 }
+		change_variable = { name = mil_supply multiply = 0.9 }
 		
 		if = {
 			limit = {
@@ -309,7 +311,7 @@ mil_main_1 = {
 			}
 			set_variable = { name = mil_main_tt value = 100 }
 			change_variable = { name = mil_main_tt subtract = var:task_manage_logistics.var:task_time_in }
-			change_variable = { name = mil_main_tt divide = 2000 }
+			change_variable = { name = mil_main_tt divide = 666.667 }
 			
 			set_variable = { name = mil_main_ttt value = var:mil_mp }
 			change_variable = { name = mil_main_ttt multiply = var:mil_main_tt }

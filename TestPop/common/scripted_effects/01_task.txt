@@ -679,7 +679,7 @@ task_set_cost_manage_logistics = {
 		return = task_time_cost
 	}
 	
-	change_variable = { name = task_time_cost divide = 4 }
+	change_variable = { name = task_time_cost divide = 2 }
 	change_variable = { name = task_time_cost add = 1 }
 }
 task_set_cost_manage_court = {
@@ -697,13 +697,13 @@ task_set_cost_manage_stockpile = {
 		return = task_time_cost
 	}
 	
-	change_variable = { name = task_time_cost divide = 8 }
+	change_variable = { name = task_time_cost divide = 4 }
 	change_variable = { name = task_time_cost add = 1 }
 }
 task_set_cost_manage_oversight = {
 	save_temporary_scope_as = task_set_cost_manage_oversight_t
 	
-	set_variable = { name = task_time_cost value = 0.5 }
+	set_variable = { name = task_time_cost value = 0 }
 	
 	var:task_owner = {
 		every_in_list = {
@@ -713,9 +713,14 @@ task_set_cost_manage_oversight = {
 			variable = task_tasks
 			
 			scope:task_set_cost_manage_oversight_t = {
-				change_variable = { name = task_time_cost add = 0.5 }
+				change_variable = { name = task_time_cost add = prev.var:task_time_cost }
 			}
 		}
+	}
+	
+	sqrt_effect = {
+		inp = var:task_time_cost
+		return = task_time_cost
 	}
 }
 
