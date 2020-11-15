@@ -4,6 +4,8 @@
 			is_valid_prov = yes
 			is_city = yes
 		}
+		add_province_modifier = base_prov
+		
 		set_variable = { name = stat_tax value = var:pop_earn_serf }
 		change_variable = { name = stat_tax subtract = var:pop_pay_serf }
 		
@@ -40,7 +42,6 @@
 		set_variable = { name = stat_main_t value = var:stat_levy }
 		change_variable = { name = stat_main_t multiply = 10 }
 		
-		add_province_modifier = stat_levy
 		if = {
 			limit = {
 				has_variable = stat_main_t
@@ -55,7 +56,6 @@
 		set_variable = { name = stat_main_t value = var:stat_garrison }
 		change_variable = { name = stat_main_t multiply = 10 }
 		
-		add_province_modifier = stat_garrison
 		if = {
 			limit = {
 				has_variable = stat_main_t
@@ -73,25 +73,33 @@
 			is_character = yes
 			is_landed = yes
 		}
-		set_variable = { name = stat_main_t value = var:mil_mp }
-		change_variable = { name = stat_main_t multiply = var:mil_supply }
-		
-		sqrt_effect = {
-			inp = var:stat_main_t
-			return = stat_main_t
-		}
-		
-		change_variable = { name = stat_main_t multiply = 10 }
+		add_character_modifier = base_lord
 		
 		if = {
 			limit = {
-				has_variable = stat_main_t
-				
-				var:stat_main_t > 0
+				is_ai = yes
 			}
-			mod_assign_0_12 = { type = character name = stat_maa var = stat_main_t }
+			set_variable = { name = stat_main_t value = var:mil_mp }
+			change_variable = { name = stat_main_t multiply = var:mil_supply }
+			
+			sqrt_effect = {
+				inp = var:stat_main_t
+				return = stat_main_t
+			}
+			
+			change_variable = { name = stat_main_t multiply = 5 }
+			
+			set_variable = { name = mil_mp_cur value = 0 }
+			set_variable = { name = mil_supply_cur value = 0 }
+		}
+		else = {
+			trigger_event = {
+				id = regiments.01
+			}
+			
+			set_variable = { name = stat_main_t value = 10000 }
 		}
 		
-		remove_variable = stat_main_t
+		mod_assign_0_12 = { type = character name = stat_maa var = stat_main_t }
 	}
 }

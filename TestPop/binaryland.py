@@ -11,9 +11,9 @@ def btree(lst, form, body):
                        btree(lst[:int(len(lst)/2)], form.replace('\n', '\n\t'), body))
         
 if __name__ == "__main__":
-        cond = 'opinion = { value >= %s target = $target$ }'
+        cond = 'max_number_maa_soldiers_of_base_type = { type = $type$ value >= %s }'
         body = 'set_variable = { name = $return$ value = %s }'
         form = 'if = {\n\tlimit = {\n\t\t%s\n\t}\n\t%s\n}\nelse = {\n\t%s\n}' % (cond, '%s', '%s')
 
         with open('output.txt', 'w') as f:
-                f.write(btree([i for i in range(-100, 101)], form, body))
+                f.write(btree([i * 50 for i in range(2048)], form, body))

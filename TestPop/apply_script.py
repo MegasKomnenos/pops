@@ -244,8 +244,8 @@ if __name__ == '__main__':
         for macro in file:
             macros[macro[0]] = macro[2]
 
-    paths = ['scripted_guis', 'run.txt', 'census', 'death']
-    outpaths = ['common\\scripted_guis\\01_economy.txt', 'out.txt', 'events\\census.txt', 'events\\death.txt']
+    paths = ['scripted_guis', 'run.txt', 'census', 'death', 'regiments']
+    outpaths = ['common\\scripted_guis\\01_economy.txt', 'out.txt', 'events\\census.txt', 'events\\death.txt', 'events\\regiments.txt']
     files = [parse_file(path) for path in paths]
 
     check = [True]

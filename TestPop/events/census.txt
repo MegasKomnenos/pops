@@ -12003,7 +12003,12 @@ census.03 = {
 						}
 						prev = { 
 							primary_spouse = { 
-								save_temporary_scope_as = task_main_t
+								if = { 
+									limit = { 
+										is_alive = yes
+									}
+									save_temporary_scope_as = task_main_t
+								}
 							}
 						}
 					}
@@ -12013,6 +12018,9 @@ census.03 = {
 						}
 						prev = { 
 							ordered_diplomacy_councillor = { 
+								limit = { 
+									is_alive = yes
+								}
 								position = 0
 								save_temporary_scope_as = task_main_t
 							}
@@ -12024,6 +12032,9 @@ census.03 = {
 						}
 						prev = { 
 							ordered_martial_councillor = { 
+								limit = { 
+									is_alive = yes
+								}
 								position = 0
 								save_temporary_scope_as = task_main_t
 							}
@@ -12035,6 +12046,9 @@ census.03 = {
 						}
 						prev = { 
 							ordered_stewardship_councillor = { 
+								limit = { 
+									is_alive = yes
+								}
 								position = 0
 								save_temporary_scope_as = task_main_t
 							}
@@ -12046,6 +12060,9 @@ census.03 = {
 						}
 						prev = { 
 							ordered_intrigue_councillor = { 
+								limit = { 
+									is_alive = yes
+								}
 								position = 0
 								save_temporary_scope_as = task_main_t
 							}
@@ -12057,6 +12074,9 @@ census.03 = {
 						}
 						prev = { 
 							ordered_learning_councillor = { 
+								limit = { 
+									is_alive = yes
+								}
 								position = 0
 								save_temporary_scope_as = task_main_t
 							}
@@ -90510,6 +90530,7 @@ census.11 = {
 				is_valid_prov = yes
 				is_city = yes
 			}
+			add_province_modifier = base_prov
 			set_variable = { 
 				name = stat_tax
 				value = var:pop_earn_serf
@@ -91106,7 +91127,6 @@ census.11 = {
 				name = stat_main_t
 				multiply = 10
 			}
-			add_province_modifier = stat_levy
 			if = { 
 				limit = { 
 					has_variable = stat_main_t
@@ -91705,7 +91725,6 @@ census.11 = {
 				name = stat_main_t
 				multiply = 10
 			}
-			add_province_modifier = stat_garrison
 			if = { 
 				limit = { 
 					has_variable = stat_main_t
@@ -92299,63 +92318,39 @@ census.11 = {
 				is_character = yes
 				is_landed = yes
 			}
-			set_variable = { 
-				name = stat_main_t
-				value = var:mil_mp
-			}
-			change_variable = { 
-				name = stat_main_t
-				multiply = var:mil_supply
-			}
-			set_variable = { 
-				name = math_sqrt_i
-				value = var:stat_main_t
-			}
+			add_character_modifier = base_lord
 			if = { 
 				limit = { 
-					has_variable = math_sqrt_i
-					var:math_sqrt_i > 0
+					is_ai = yes
 				}
 				set_variable = { 
-					name = math_sqrt_x
-					value = var:math_sqrt_i
-				}
-				set_variable = { 
-					name = math_sqrt_n
-					value = var:math_sqrt_i
+					name = stat_main_t
+					value = var:mil_mp
 				}
 				change_variable = { 
-					name = math_sqrt_n
-					divide = 2
+					name = stat_main_t
+					divide = 4
+				}
+				change_variable = { 
+					name = stat_main_t
+					multiply = var:mil_supply
 				}
 				set_variable = { 
-					name = math_sqrt_tt
-					value = 0.5
+					name = math_sqrt_i
+					value = var:stat_main_t
 				}
-				while = { 
+				if = { 
 					limit = { 
-						has_variable = math_sqrt_n
-						var:math_sqrt_n > 0
-						OR = { 
-							var:math_sqrt_tt < 0.995
-							var:math_sqrt_tt > 1.005
-						}
+						has_variable = math_sqrt_i
+						var:math_sqrt_i > 0
 					}
 					set_variable = { 
 						name = math_sqrt_x
-						value = var:math_sqrt_n
-					}
-					set_variable = { 
-						name = math_sqrt_t
 						value = var:math_sqrt_i
 					}
-					change_variable = { 
-						name = math_sqrt_t
-						divide = var:math_sqrt_n
-					}
-					change_variable = { 
+					set_variable = { 
 						name = math_sqrt_n
-						add = var:math_sqrt_t
+						value = var:math_sqrt_i
 					}
 					change_variable = { 
 						name = math_sqrt_n
@@ -92363,388 +92358,428 @@ census.11 = {
 					}
 					set_variable = { 
 						name = math_sqrt_tt
-						value = var:math_sqrt_x
+						value = 0.5
 					}
-					change_variable = { 
-						name = math_sqrt_tt
-						divide = var:math_sqrt_n
+					while = { 
+						limit = { 
+							has_variable = math_sqrt_n
+							var:math_sqrt_n > 0
+							OR = { 
+								var:math_sqrt_tt < 0.995
+								var:math_sqrt_tt > 1.005
+							}
+						}
+						set_variable = { 
+							name = math_sqrt_x
+							value = var:math_sqrt_n
+						}
+						set_variable = { 
+							name = math_sqrt_t
+							value = var:math_sqrt_i
+						}
+						change_variable = { 
+							name = math_sqrt_t
+							divide = var:math_sqrt_n
+						}
+						change_variable = { 
+							name = math_sqrt_n
+							add = var:math_sqrt_t
+						}
+						change_variable = { 
+							name = math_sqrt_n
+							divide = 2
+						}
+						set_variable = { 
+							name = math_sqrt_tt
+							value = var:math_sqrt_x
+						}
+						change_variable = { 
+							name = math_sqrt_tt
+							divide = var:math_sqrt_n
+						}
+					}
+					set_variable = { 
+						name = stat_main_t
+						value = var:math_sqrt_n
+					}
+					remove_variable = math_sqrt_x
+					remove_variable = math_sqrt_t
+					remove_variable = math_sqrt_n
+					remove_variable = math_sqrt_tt
+				}
+				else = { 
+					set_variable = { 
+						name = stat_main_t
+						value = 0
 					}
 				}
+				remove_variable = math_sqrt_i
 				set_variable = { 
-					name = stat_main_t
-					value = var:math_sqrt_n
+					name = mil_mp_cur
+					value = 0
 				}
-				remove_variable = math_sqrt_x
-				remove_variable = math_sqrt_t
-				remove_variable = math_sqrt_n
-				remove_variable = math_sqrt_tt
-			}
-			else = { 
 				set_variable = { 
-					name = stat_main_t
+					name = mil_supply_cur
 					value = 0
 				}
 			}
-			remove_variable = math_sqrt_i
-			change_variable = { 
-				name = stat_main_t
-				multiply = 10
+			else = { 
+				trigger_event = { 
+					id = regiments.01
+				}
+				set_variable = { 
+					name = stat_main_t
+					value = 10000
+				}
 			}
 			if = { 
 				limit = { 
-					has_variable = stat_main_t
-					var:stat_main_t > 0
+					has_character_modifier = stat_maa_2048
 				}
 				if = { 
 					limit = { 
-						has_character_modifier = stat_maa_2048
+						var:stat_main_t >= 2048
 					}
-					if = { 
-						limit = { 
-							var:stat_main_t >= 2048
-						}
-						change_variable = { 
-							name = stat_main_t
-							subtract = 2048
-						}
-					}
-					else = { 
-						remove_character_modifier = stat_maa_2048
+					change_variable = { 
+						name = stat_main_t
+						subtract = 2048
 					}
 				}
 				else = { 
-					if = { 
-						limit = { 
-							var:stat_main_t >= 2048
-						}
-						change_variable = { 
-							name = stat_main_t
-							subtract = 2048
-						}
-						add_character_modifier = stat_maa_2048
-					}
-				}
-				if = { 
-					limit = { 
-						has_character_modifier = stat_maa_1024
-					}
-					if = { 
-						limit = { 
-							var:stat_main_t >= 1024
-						}
-						change_variable = { 
-							name = stat_main_t
-							subtract = 1024
-						}
-					}
-					else = { 
-						remove_character_modifier = stat_maa_1024
-					}
-				}
-				else = { 
-					if = { 
-						limit = { 
-							var:stat_main_t >= 1024
-						}
-						change_variable = { 
-							name = stat_main_t
-							subtract = 1024
-						}
-						add_character_modifier = stat_maa_1024
-					}
-				}
-				if = { 
-					limit = { 
-						has_character_modifier = stat_maa_512
-					}
-					if = { 
-						limit = { 
-							var:stat_main_t >= 512
-						}
-						change_variable = { 
-							name = stat_main_t
-							subtract = 512
-						}
-					}
-					else = { 
-						remove_character_modifier = stat_maa_512
-					}
-				}
-				else = { 
-					if = { 
-						limit = { 
-							var:stat_main_t >= 512
-						}
-						change_variable = { 
-							name = stat_main_t
-							subtract = 512
-						}
-						add_character_modifier = stat_maa_512
-					}
-				}
-				if = { 
-					limit = { 
-						has_character_modifier = stat_maa_256
-					}
-					if = { 
-						limit = { 
-							var:stat_main_t >= 256
-						}
-						change_variable = { 
-							name = stat_main_t
-							subtract = 256
-						}
-					}
-					else = { 
-						remove_character_modifier = stat_maa_256
-					}
-				}
-				else = { 
-					if = { 
-						limit = { 
-							var:stat_main_t >= 256
-						}
-						change_variable = { 
-							name = stat_main_t
-							subtract = 256
-						}
-						add_character_modifier = stat_maa_256
-					}
-				}
-				if = { 
-					limit = { 
-						has_character_modifier = stat_maa_128
-					}
-					if = { 
-						limit = { 
-							var:stat_main_t >= 128
-						}
-						change_variable = { 
-							name = stat_main_t
-							subtract = 128
-						}
-					}
-					else = { 
-						remove_character_modifier = stat_maa_128
-					}
-				}
-				else = { 
-					if = { 
-						limit = { 
-							var:stat_main_t >= 128
-						}
-						change_variable = { 
-							name = stat_main_t
-							subtract = 128
-						}
-						add_character_modifier = stat_maa_128
-					}
-				}
-				if = { 
-					limit = { 
-						has_character_modifier = stat_maa_64
-					}
-					if = { 
-						limit = { 
-							var:stat_main_t >= 64
-						}
-						change_variable = { 
-							name = stat_main_t
-							subtract = 64
-						}
-					}
-					else = { 
-						remove_character_modifier = stat_maa_64
-					}
-				}
-				else = { 
-					if = { 
-						limit = { 
-							var:stat_main_t >= 64
-						}
-						change_variable = { 
-							name = stat_main_t
-							subtract = 64
-						}
-						add_character_modifier = stat_maa_64
-					}
-				}
-				if = { 
-					limit = { 
-						has_character_modifier = stat_maa_32
-					}
-					if = { 
-						limit = { 
-							var:stat_main_t >= 32
-						}
-						change_variable = { 
-							name = stat_main_t
-							subtract = 32
-						}
-					}
-					else = { 
-						remove_character_modifier = stat_maa_32
-					}
-				}
-				else = { 
-					if = { 
-						limit = { 
-							var:stat_main_t >= 32
-						}
-						change_variable = { 
-							name = stat_main_t
-							subtract = 32
-						}
-						add_character_modifier = stat_maa_32
-					}
-				}
-				if = { 
-					limit = { 
-						has_character_modifier = stat_maa_16
-					}
-					if = { 
-						limit = { 
-							var:stat_main_t >= 16
-						}
-						change_variable = { 
-							name = stat_main_t
-							subtract = 16
-						}
-					}
-					else = { 
-						remove_character_modifier = stat_maa_16
-					}
-				}
-				else = { 
-					if = { 
-						limit = { 
-							var:stat_main_t >= 16
-						}
-						change_variable = { 
-							name = stat_main_t
-							subtract = 16
-						}
-						add_character_modifier = stat_maa_16
-					}
-				}
-				if = { 
-					limit = { 
-						has_character_modifier = stat_maa_8
-					}
-					if = { 
-						limit = { 
-							var:stat_main_t >= 8
-						}
-						change_variable = { 
-							name = stat_main_t
-							subtract = 8
-						}
-					}
-					else = { 
-						remove_character_modifier = stat_maa_8
-					}
-				}
-				else = { 
-					if = { 
-						limit = { 
-							var:stat_main_t >= 8
-						}
-						change_variable = { 
-							name = stat_main_t
-							subtract = 8
-						}
-						add_character_modifier = stat_maa_8
-					}
-				}
-				if = { 
-					limit = { 
-						has_character_modifier = stat_maa_4
-					}
-					if = { 
-						limit = { 
-							var:stat_main_t >= 4
-						}
-						change_variable = { 
-							name = stat_main_t
-							subtract = 4
-						}
-					}
-					else = { 
-						remove_character_modifier = stat_maa_4
-					}
-				}
-				else = { 
-					if = { 
-						limit = { 
-							var:stat_main_t >= 4
-						}
-						change_variable = { 
-							name = stat_main_t
-							subtract = 4
-						}
-						add_character_modifier = stat_maa_4
-					}
-				}
-				if = { 
-					limit = { 
-						has_character_modifier = stat_maa_2
-					}
-					if = { 
-						limit = { 
-							var:stat_main_t >= 2
-						}
-						change_variable = { 
-							name = stat_main_t
-							subtract = 2
-						}
-					}
-					else = { 
-						remove_character_modifier = stat_maa_2
-					}
-				}
-				else = { 
-					if = { 
-						limit = { 
-							var:stat_main_t >= 2
-						}
-						change_variable = { 
-							name = stat_main_t
-							subtract = 2
-						}
-						add_character_modifier = stat_maa_2
-					}
-				}
-				if = { 
-					limit = { 
-						has_character_modifier = stat_maa_1
-					}
-					if = { 
-						limit = { 
-							var:stat_main_t >= 1
-						}
-						change_variable = { 
-							name = stat_main_t
-							subtract = 1
-						}
-					}
-					else = { 
-						remove_character_modifier = stat_maa_1
-					}
-				}
-				else = { 
-					if = { 
-						limit = { 
-							var:stat_main_t >= 1
-						}
-						change_variable = { 
-							name = stat_main_t
-							subtract = 1
-						}
-						add_character_modifier = stat_maa_1
-					}
+					remove_character_modifier = stat_maa_2048
 				}
 			}
-			remove_variable = stat_main_t
+			else = { 
+				if = { 
+					limit = { 
+						var:stat_main_t >= 2048
+					}
+					change_variable = { 
+						name = stat_main_t
+						subtract = 2048
+					}
+					add_character_modifier = stat_maa_2048
+				}
+			}
+			if = { 
+				limit = { 
+					has_character_modifier = stat_maa_1024
+				}
+				if = { 
+					limit = { 
+						var:stat_main_t >= 1024
+					}
+					change_variable = { 
+						name = stat_main_t
+						subtract = 1024
+					}
+				}
+				else = { 
+					remove_character_modifier = stat_maa_1024
+				}
+			}
+			else = { 
+				if = { 
+					limit = { 
+						var:stat_main_t >= 1024
+					}
+					change_variable = { 
+						name = stat_main_t
+						subtract = 1024
+					}
+					add_character_modifier = stat_maa_1024
+				}
+			}
+			if = { 
+				limit = { 
+					has_character_modifier = stat_maa_512
+				}
+				if = { 
+					limit = { 
+						var:stat_main_t >= 512
+					}
+					change_variable = { 
+						name = stat_main_t
+						subtract = 512
+					}
+				}
+				else = { 
+					remove_character_modifier = stat_maa_512
+				}
+			}
+			else = { 
+				if = { 
+					limit = { 
+						var:stat_main_t >= 512
+					}
+					change_variable = { 
+						name = stat_main_t
+						subtract = 512
+					}
+					add_character_modifier = stat_maa_512
+				}
+			}
+			if = { 
+				limit = { 
+					has_character_modifier = stat_maa_256
+				}
+				if = { 
+					limit = { 
+						var:stat_main_t >= 256
+					}
+					change_variable = { 
+						name = stat_main_t
+						subtract = 256
+					}
+				}
+				else = { 
+					remove_character_modifier = stat_maa_256
+				}
+			}
+			else = { 
+				if = { 
+					limit = { 
+						var:stat_main_t >= 256
+					}
+					change_variable = { 
+						name = stat_main_t
+						subtract = 256
+					}
+					add_character_modifier = stat_maa_256
+				}
+			}
+			if = { 
+				limit = { 
+					has_character_modifier = stat_maa_128
+				}
+				if = { 
+					limit = { 
+						var:stat_main_t >= 128
+					}
+					change_variable = { 
+						name = stat_main_t
+						subtract = 128
+					}
+				}
+				else = { 
+					remove_character_modifier = stat_maa_128
+				}
+			}
+			else = { 
+				if = { 
+					limit = { 
+						var:stat_main_t >= 128
+					}
+					change_variable = { 
+						name = stat_main_t
+						subtract = 128
+					}
+					add_character_modifier = stat_maa_128
+				}
+			}
+			if = { 
+				limit = { 
+					has_character_modifier = stat_maa_64
+				}
+				if = { 
+					limit = { 
+						var:stat_main_t >= 64
+					}
+					change_variable = { 
+						name = stat_main_t
+						subtract = 64
+					}
+				}
+				else = { 
+					remove_character_modifier = stat_maa_64
+				}
+			}
+			else = { 
+				if = { 
+					limit = { 
+						var:stat_main_t >= 64
+					}
+					change_variable = { 
+						name = stat_main_t
+						subtract = 64
+					}
+					add_character_modifier = stat_maa_64
+				}
+			}
+			if = { 
+				limit = { 
+					has_character_modifier = stat_maa_32
+				}
+				if = { 
+					limit = { 
+						var:stat_main_t >= 32
+					}
+					change_variable = { 
+						name = stat_main_t
+						subtract = 32
+					}
+				}
+				else = { 
+					remove_character_modifier = stat_maa_32
+				}
+			}
+			else = { 
+				if = { 
+					limit = { 
+						var:stat_main_t >= 32
+					}
+					change_variable = { 
+						name = stat_main_t
+						subtract = 32
+					}
+					add_character_modifier = stat_maa_32
+				}
+			}
+			if = { 
+				limit = { 
+					has_character_modifier = stat_maa_16
+				}
+				if = { 
+					limit = { 
+						var:stat_main_t >= 16
+					}
+					change_variable = { 
+						name = stat_main_t
+						subtract = 16
+					}
+				}
+				else = { 
+					remove_character_modifier = stat_maa_16
+				}
+			}
+			else = { 
+				if = { 
+					limit = { 
+						var:stat_main_t >= 16
+					}
+					change_variable = { 
+						name = stat_main_t
+						subtract = 16
+					}
+					add_character_modifier = stat_maa_16
+				}
+			}
+			if = { 
+				limit = { 
+					has_character_modifier = stat_maa_8
+				}
+				if = { 
+					limit = { 
+						var:stat_main_t >= 8
+					}
+					change_variable = { 
+						name = stat_main_t
+						subtract = 8
+					}
+				}
+				else = { 
+					remove_character_modifier = stat_maa_8
+				}
+			}
+			else = { 
+				if = { 
+					limit = { 
+						var:stat_main_t >= 8
+					}
+					change_variable = { 
+						name = stat_main_t
+						subtract = 8
+					}
+					add_character_modifier = stat_maa_8
+				}
+			}
+			if = { 
+				limit = { 
+					has_character_modifier = stat_maa_4
+				}
+				if = { 
+					limit = { 
+						var:stat_main_t >= 4
+					}
+					change_variable = { 
+						name = stat_main_t
+						subtract = 4
+					}
+				}
+				else = { 
+					remove_character_modifier = stat_maa_4
+				}
+			}
+			else = { 
+				if = { 
+					limit = { 
+						var:stat_main_t >= 4
+					}
+					change_variable = { 
+						name = stat_main_t
+						subtract = 4
+					}
+					add_character_modifier = stat_maa_4
+				}
+			}
+			if = { 
+				limit = { 
+					has_character_modifier = stat_maa_2
+				}
+				if = { 
+					limit = { 
+						var:stat_main_t >= 2
+					}
+					change_variable = { 
+						name = stat_main_t
+						subtract = 2
+					}
+				}
+				else = { 
+					remove_character_modifier = stat_maa_2
+				}
+			}
+			else = { 
+				if = { 
+					limit = { 
+						var:stat_main_t >= 2
+					}
+					change_variable = { 
+						name = stat_main_t
+						subtract = 2
+					}
+					add_character_modifier = stat_maa_2
+				}
+			}
+			if = { 
+				limit = { 
+					has_character_modifier = stat_maa_1
+				}
+				if = { 
+					limit = { 
+						var:stat_main_t >= 1
+					}
+					change_variable = { 
+						name = stat_main_t
+						subtract = 1
+					}
+				}
+				else = { 
+					remove_character_modifier = stat_maa_1
+				}
+			}
+			else = { 
+				if = { 
+					limit = { 
+						var:stat_main_t >= 1
+					}
+					change_variable = { 
+						name = stat_main_t
+						subtract = 1
+					}
+					add_character_modifier = stat_maa_1
+				}
+			}
 		}
 	}
 	option = { }

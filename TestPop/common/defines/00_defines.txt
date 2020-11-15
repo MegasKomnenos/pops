@@ -498,7 +498,7 @@ NArmy = {
 	MOVEMENT_SPEED_BONUS_FRIENDLY_AREA = 0.2		# In friendly areas you get a 20% speed bonus
 	REGIMENT_MONTHLY_REINFORCE_SPEED = 0.1			# Monthly reinforcement percentage of unraised chunks [0-1]
 	REGIMENT_MONTHLY_MAA_REINFORCE_SPEED = 1		# Monthly reinforcement percentage of unraised MAA chunks [0-1]
-	GOLD_COST_PER_SOLDIER = 0.0						# Gold maintenance cost per soldier
+	GOLD_COST_PER_SOLDIER = 0						# Gold maintenance cost per soldier
 	RAID_ARMY_COST_MULT = 1							# Maintenance of raid armies is multiplied by this
 	MOVEMENT_LOCKED = 0.5							# Percentage after which movement is locked
 	COUNTY_MOVEMENT_ATTRITION_PERCENTAGE = 0.05
@@ -508,7 +508,7 @@ NArmy = {
 	REGIMENT_MAA_CAP_BY_TIER = { 0 0 0 0 0 0 }
 	REGIMENT_MAA_EXTRA_BY_CAP = 0.0					# Percentage [0-1] applied to each MAA regiment by each regiment above the cap
 	REGIMENT_MAA_SHOW_INFO_PERCENTAGE = 0.3
-	REGIMENT_MAA_STARTING_COUNT = 100
+	REGIMENT_MAA_STARTING_COUNT = 20
 
 	FULL_SUPPLY = 100								# Fully supplied units' supply value
 	SUPPLY_LOSS_AT_SEA = 8							# This is the supply loss at sea after the ATTRITION_AFTER_DAYS grace period
@@ -933,9 +933,9 @@ NCulture = {
 }
 
 NMercenary = {
-	LEVELS = { 0 7 14 }						# Defines how many different sizes of mercenary companies are there and how many are spawned for a given culture
+	LEVELS = { 0 0 0 }						# Defines how many different sizes of mercenary companies are there and how many are spawned for a given culture
 											# The numbers correspond to numbers of counties of the culture. No company exists if the number is lower than the first value specified here.
-	HIRE_RANGE = 500						# The maximum distance of mercenaries that can be hired (capital to mercenary location)
+	HIRE_RANGE = 0							# The maximum distance of mercenaries that can be hired (capital to mercenary location)
 	LEVIES = { 400 800 1200 }				# The base numbers of levies for levels of mercenary bands
 	MAA_REGIMENTS = { 1 2 3 }				# The number of MAA regiments for levels of mercenary bands
 	NUM_KNIGHTS = { 2 3 4 }					# The number of knights for levels of mercenary bands
@@ -953,7 +953,7 @@ NMercenary = {
 	
 	REINFORCEMENT_FACTOR = 3.0				# How much faster do mercenary regiments reinforce than regular regiments
 
-	COUNTY_REMOVAL_FACTOR = 1.2				# When removing mercenaries from shrinking cultures, first multiply culture size with this
+	COUNTY_REMOVAL_FACTOR = 0				# When removing mercenaries from shrinking cultures, first multiply culture size with this
 }
 
 NHolyOrder = {
@@ -978,7 +978,7 @@ NHolyOrder = {
 	PATRON_HIRE_COST_MULT = 0				# The patron pays only a fraction for hiring a holy order. Set to 0 to make it free.
 
 	# One character can hire up to this many holy orders. Set to -1 to disable the limit.
-	HIRE_LIMIT = 1
+	HIRE_LIMIT = 0
 
 	# Must be at war with someone with at least this hostility level to be able to hire holy orders. Once hired hey can be used against all enemies, though.
 	ENEMY_MIN_HOSTILITY_LEVEL = 2

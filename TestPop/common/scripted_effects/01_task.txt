@@ -128,6 +128,22 @@ task_death_handler = {
 	}
 }
 
+task_rank_down_handler = {
+	if = {
+		limit = {
+			OR = {
+				is_ruler = no
+				is_landed = no
+			}
+		}
+		every_in_list = {
+			variable = task_tasks
+			
+			task_pop_task = yes
+		}
+	}
+}
+
 task_ai = {
 	every_ruler = {
 		limit = {
@@ -429,6 +445,7 @@ task_main = {
 					OR = {
 						prev = {
 							is_councillor = yes
+							is_alive = no
 						}
 						
 						has_variable = task_delegate
@@ -440,7 +457,12 @@ task_main = {
 					}
 					prev = {
 						primary_spouse = {
-							save_temporary_scope_as = task_main_t
+							if = {
+								limit = {
+									is_alive = yes
+								}
+								save_temporary_scope_as = task_main_t
+							}
 						}
 					}
 				}
@@ -450,6 +472,9 @@ task_main = {
 					}
 					prev = {
 						ordered_&skills&_councillor = {
+							limit = {
+								is_alive = yes
+							}
 							position = 0
 							
 							save_temporary_scope_as = task_main_t

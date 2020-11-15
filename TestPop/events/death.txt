@@ -6888,6 +6888,70 @@ death.01 = {
 					name = mil_supply
 					add = prev.var:mil_supply
 				}
+				set_variable = { 
+					name = modi_mil_supply_food
+					value = 1
+				}
+				set_variable = { 
+					name = modi_mil_supply_cereal
+					value = 1
+				}
+				set_variable = { 
+					name = modi_mil_supply_salted
+					value = 1
+				}
+				set_variable = { 
+					name = modi_mil_supply_salt
+					value = 1
+				}
+				set_variable = { 
+					name = modi_mil_supply_mud
+					value = 1
+				}
+				set_variable = { 
+					name = modi_mil_supply_fuel
+					value = 1
+				}
+				set_variable = { 
+					name = modi_mil_supply_fiber
+					value = 1
+				}
+				set_variable = { 
+					name = modi_mil_supply_timber
+					value = 1
+				}
+				set_variable = { 
+					name = modi_mil_supply_metal
+					value = 1
+				}
+				set_variable = { 
+					name = modi_mil_supply_exotics_w
+					value = 1
+				}
+				set_variable = { 
+					name = modi_mil_supply_exotics_e
+					value = 1
+				}
+				set_variable = { 
+					name = modi_mil_supply_exotics_g
+					value = 1
+				}
+				set_variable = { 
+					name = modi_mil_supply_textile
+					value = 1
+				}
+				set_variable = { 
+					name = modi_mil_supply_pottery
+					value = 1
+				}
+				set_variable = { 
+					name = modi_mil_supply_tools
+					value = 1
+				}
+				set_variable = { 
+					name = modi_mil_supply_armaments
+					value = 1
+				}
 			}
 		}
 		if = { 
@@ -6963,6 +7027,7 @@ death.02 = {
 			name = is_character
 			value = 1
 		}
+		add_character_modifier = base_lord
 		if = { 
 			limit = { 
 				is_ruler = yes
@@ -8595,6 +8660,147 @@ death.02 = {
 					name = mil_supply
 					value = 0
 				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = mil_supply_stockpile
+					}
+				}
+				set_variable = { 
+					name = mil_supply_stockpile
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = mil_supply_vassal
+					}
+				}
+				set_variable = { 
+					name = mil_supply_vassal
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = mil_mp_vassal
+					}
+				}
+				set_variable = { 
+					name = mil_mp_vassal
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = mil_supply_liege
+					}
+				}
+				set_variable = { 
+					name = mil_supply_liege
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = mil_mp_liege
+					}
+				}
+				set_variable = { 
+					name = mil_mp_liege
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = mil_supply_levy
+					}
+				}
+				set_variable = { 
+					name = mil_supply_levy
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = mil_mp_levy
+					}
+				}
+				set_variable = { 
+					name = mil_mp_levy
+					value = 0
+				}
+			}
+			set_variable = { 
+				name = modi_mil_supply_food
+				value = 1
+			}
+			set_variable = { 
+				name = modi_mil_supply_cereal
+				value = 1
+			}
+			set_variable = { 
+				name = modi_mil_supply_salted
+				value = 1
+			}
+			set_variable = { 
+				name = modi_mil_supply_salt
+				value = 1
+			}
+			set_variable = { 
+				name = modi_mil_supply_mud
+				value = 1
+			}
+			set_variable = { 
+				name = modi_mil_supply_fuel
+				value = 1
+			}
+			set_variable = { 
+				name = modi_mil_supply_fiber
+				value = 1
+			}
+			set_variable = { 
+				name = modi_mil_supply_timber
+				value = 1
+			}
+			set_variable = { 
+				name = modi_mil_supply_metal
+				value = 1
+			}
+			set_variable = { 
+				name = modi_mil_supply_exotics_w
+				value = 1
+			}
+			set_variable = { 
+				name = modi_mil_supply_exotics_e
+				value = 1
+			}
+			set_variable = { 
+				name = modi_mil_supply_exotics_g
+				value = 1
+			}
+			set_variable = { 
+				name = modi_mil_supply_textile
+				value = 1
+			}
+			set_variable = { 
+				name = modi_mil_supply_pottery
+				value = 1
+			}
+			set_variable = { 
+				name = modi_mil_supply_tools
+				value = 1
+			}
+			set_variable = { 
+				name = modi_mil_supply_armaments
+				value = 1
 			}
 		}
 	}

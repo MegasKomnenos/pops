@@ -1,0 +1,43 @@
+﻿mil_create = {
+	scope = character
+	
+	is_shown = {
+		always = yes
+	}
+	is_valid = {
+		always = yes
+	}
+	
+	effect = {
+		if = {
+			limit = {
+				is_ai = no
+			}
+			trigger_event = {
+				id = regiments.01
+			}
+		}
+	}
+}
+mil_destroy = {
+	scope = character
+	
+	is_shown = {
+		always = yes
+	}
+	is_valid = {
+		always = yes
+	}
+	
+	effect = {
+		if = {
+			limit = {
+				is_ai = no
+			}
+			trigger_event = {
+				id = regiments.01
+				days = 1
+			}
+		}
+	}
+}

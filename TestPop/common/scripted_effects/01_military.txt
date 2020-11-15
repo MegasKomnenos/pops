@@ -431,6 +431,64 @@ mil_rank_up_handler = {
 			}
 			set_variable = { name = mil_supply value = 0 }
 		}
+		if = {
+			limit = {
+				NOT = {
+					has_variable = mil_supply_stockpile
+				}
+			}
+			set_variable = { name = mil_supply_stockpile value = 0 }
+		}
+		if = {
+			limit = {
+				NOT = {
+					has_variable = mil_supply_vassal
+				}
+			}
+			set_variable = { name = mil_supply_vassal value = 0 }
+		}
+		if = {
+			limit = {
+				NOT = {
+					has_variable = mil_mp_vassal
+				}
+			}
+			set_variable = { name = mil_mp_vassal value = 0 }
+		}
+		if = {
+			limit = {
+				NOT = {
+					has_variable = mil_supply_liege
+				}
+			}
+			set_variable = { name = mil_supply_liege value = 0 }
+		}
+		if = {
+			limit = {
+				NOT = {
+					has_variable = mil_mp_liege
+				}
+			}
+			set_variable = { name = mil_mp_liege value = 0 }
+		}
+		if = {
+			limit = {
+				NOT = {
+					has_variable = mil_supply_levy
+				}
+			}
+			set_variable = { name = mil_supply_levy value = 0 }
+		}
+		if = {
+			limit = {
+				NOT = {
+					has_variable = mil_mp_levy
+				}
+			}
+			set_variable = { name = mil_mp_levy value = 0 }
+		}
+		
+		modi_mil = yes
 	}
 }
 
@@ -438,6 +496,7 @@ mil_death_handler = {
 	if = {
 		limit = {
 			is_ruler = yes
+			is_landed = yes
 		}
 		if = {
 			limit = {
@@ -476,6 +535,8 @@ mil_death_handler = {
 			
 			change_variable = { name = mil_mp add = prev.var:mil_mp }
 			change_variable = { name = mil_supply add = prev.var:mil_supply }
+			
+			modi_mil = yes
 		}
 	}
 }

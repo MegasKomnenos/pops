@@ -21,8 +21,22 @@ death.02 = {
 	immediate = { 
 		set_variable = { name = is_character value = 1 }
 		
+		add_character_modifier = base_lord
+		
 		trade_rank_up_handler = yes
 		mil_rank_up_handler = yes
+	}
+	
+	option = {
+	}
+}
+
+death.03 = { 
+	type = empty
+	hidden = yes
+	
+	immediate = { 
+		task_rank_down_handler = yes
 	}
 	
 	option = {

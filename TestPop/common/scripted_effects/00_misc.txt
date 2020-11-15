@@ -381,6 +381,39 @@ get_levy_obligation = {
 	remove_variable = get_levy_obligation_tt
 }
 
+set_usage_mp = {
+	set_variable = { name = mil_mp_cur value = 0 }
+	
+	^^regiment_base_types^
+		if = {
+			limit = {
+				has_variable = &regiment_base_types&_total
+			}
+			set_variable = { name = set_usage_mp_t value = var:&regiment_base_types&_total }
+			change_variable = { name = set_usage_mp_t multiply = &regiment_base_types&_mp }
+			change_variable = { name = mil_mp_cur add = var:set_usage_mp_t }
+		}
+	^
+	
+	remove_variable = set_usage_mp_t
+}
+set_usage_supply = {
+	set_variable = { name = mil_supply_cur value = 0 }
+	
+	^^regiment_base_types^
+		if = {
+			limit = {
+				has_variable = &regiment_base_types&_total
+			}
+			set_variable = { name = set_usage_supply_t value = var:&regiment_base_types&_total }
+			change_variable = { name = set_usage_supply_t multiply = &regiment_base_types&_supply }
+			change_variable = { name = mil_supply_cur add = var:set_usage_supply_t }
+		}
+	^
+	
+	remove_variable = set_usage_supply_t
+}
+
 export_opinion = {
 	if = {
 		limit = {
