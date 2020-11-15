@@ -179,7 +179,14 @@ on_game_start_after_lobby = {
 				id = sim_run.01
 			}
 		}
-		else = {
+		else_if = {
+			limit = {
+				NOT = {
+					has_global_variable = save_data_set
+				}
+			}
+			set_global_variable = save_data_set
+			
 			trigger_event = {
 				id = save_data.01
 			}
