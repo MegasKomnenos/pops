@@ -11993,6 +11993,7 @@ census.03 = {
 						OR = { 
 							prev = { 
 								is_councillor = yes
+								is_alive = no
 							}
 							has_variable = task_delegate
 						}
@@ -92329,10 +92330,6 @@ census.11 = {
 				}
 				change_variable = { 
 					name = stat_main_t
-					divide = 4
-				}
-				change_variable = { 
-					name = stat_main_t
 					multiply = var:mil_supply
 				}
 				set_variable = { 
@@ -92414,6 +92411,10 @@ census.11 = {
 					}
 				}
 				remove_variable = math_sqrt_i
+				change_variable = { 
+					name = stat_main_t
+					multiply = 5
+				}
 				set_variable = { 
 					name = mil_mp_cur
 					value = 0

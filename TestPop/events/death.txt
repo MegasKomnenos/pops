@@ -6,6 +6,7 @@ death.01 = {
 		if = { 
 			limit = { 
 				is_ruler = yes
+				is_landed = yes
 			}
 			primary_heir = { 
 				if = { 
@@ -6834,6 +6835,7 @@ death.01 = {
 		if = { 
 			limit = { 
 				is_ruler = yes
+				is_landed = yes
 			}
 			if = { 
 				limit = { 
@@ -8801,6 +8803,51 @@ death.02 = {
 			set_variable = { 
 				name = modi_mil_supply_armaments
 				value = 1
+			}
+		}
+	}
+	option = { }
+}
+death.03 = { 
+	type = empty
+	hidden = yes
+	immediate = { 
+		if = { 
+			limit = { 
+				OR = { 
+					is_ruler = no
+					is_landed = no
+				}
+			}
+			every_in_list = { 
+				variable = task_tasks
+				remove_list_global_variable = { 
+					name = task_tasks_active
+					target = this
+				}
+				add_to_global_variable_list = { 
+					name = task_tasks
+					target = this
+				}
+				var:task_owner = { 
+					remove_list_variable = { 
+						name = task_tasks
+						target = prev
+					}
+				}
+				var:task_template = { 
+					remove_list_variable = { 
+						name = task_tasks
+						target = prev
+					}
+				}
+				remove_variable = task_owner
+				remove_variable = task_worker
+				remove_variable = task_template
+				remove_variable = task_delegate
+				remove_variable = task_time_cost
+				remove_variable = task_time_in
+				remove_variable = task_crpt
 			}
 		}
 	}
