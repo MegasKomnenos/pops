@@ -335,19 +335,21 @@ mil_main_1 = {
 			set_variable = { name = mil_supply_mismanage value = 0 }
 		}
 		
-		change_variable = { name = mil_mp add = var:mil_mp_supply }
-		change_variable = { name = mil_mp add = var:mil_mp_levy }
-		change_variable = { name = mil_mp add = var:mil_mp_vassal }
-		change_variable = { name = mil_mp add = var:mil_mp_liege }
-		change_variable = { name = mil_mp subtract = var:mil_mp_decay }
-		change_variable = { name = mil_mp subtract = var:mil_mp_mismanage }
+		set_variable = { name = mil_mp_balance value = var:mil_mp_supply }
+		change_variable = { name = mil_mp_balance add = var:mil_mp_levy }
+		change_variable = { name = mil_mp_balance add = var:mil_mp_vassal }
+		change_variable = { name = mil_mp_balance subtract = var:mil_mp_liege }
+		change_variable = { name = mil_mp_balance subtract = var:mil_mp_decay }
+		change_variable = { name = mil_mp_balance subtract = var:mil_mp_mismanage }
+		change_variable = { name = mil_mp add = var:mil_mp_balance }
 		
-		change_variable = { name = mil_supply add = var:mil_supply_stockpile }
-		change_variable = { name = mil_supply add = var:mil_supply_levy }
-		change_variable = { name = mil_supply add = var:mil_supply_vassal }
-		change_variable = { name = mil_supply subtract = var:mil_supply_liege }
-		change_variable = { name = mil_supply subtract = var:mil_supply_decay }
-		change_variable = { name = mil_supply subtract = var:mil_supply_mismanage }
+		set_variable = { name = mil_supply_balance value = var:mil_supply_stockpile }
+		change_variable = { name = mil_supply_balance add = var:mil_supply_levy }
+		change_variable = { name = mil_supply_balance add = var:mil_supply_vassal }
+		change_variable = { name = mil_supply_balance subtract = var:mil_supply_liege }
+		change_variable = { name = mil_supply_balance subtract = var:mil_supply_decay }
+		change_variable = { name = mil_supply_balance subtract = var:mil_supply_mismanage }
+		change_variable = { name = mil_supply add = var:mil_supply_balance }
 	}
 	every_ruler = {
 		limit = {
@@ -389,14 +391,16 @@ mil_main_1 = {
 			change_variable = { name = mil_mp_decay multiply = var:mil_mp }
 			change_variable = { name = mil_supply_decay multiply = var:mil_supply }
 			
-			change_variable = { name = mil_mp add = var:mil_mp_supply }
-			change_variable = { name = mil_mp add = var:mil_mp_levy }
-			change_variable = { name = mil_mp add = var:mil_mp_liege }
-			change_variable = { name = mil_mp subtract = var:mil_mp_decay }
+			set_variable = { name = mil_mp_balance value = var:mil_mp_supply }
+			change_variable = { name = mil_mp_balance add = var:mil_mp_levy }
+			change_variable = { name = mil_mp_balance subtract = var:mil_mp_liege }
+			change_variable = { name = mil_mp_balance subtract = var:mil_mp_decay }
+			change_variable = { name = mil_mp add = var:mil_mp_balance }
 			
-			change_variable = { name = mil_supply add = var:mil_supply_levy }
-			change_variable = { name = mil_supply subtract = var:mil_supply_liege }
-			change_variable = { name = mil_supply subtract = var:mil_supply_decay }
+			set_variable = { name = mil_supply_balance value = var:mil_supply_levy }
+			change_variable = { name = mil_supply_balance subtract = var:mil_supply_liege }
+			change_variable = { name = mil_supply_balance subtract = var:mil_supply_decay }
+			change_variable = { name = mil_supply add = var:mil_supply_balance }
 		}
 	}
 	every_ruler = {
