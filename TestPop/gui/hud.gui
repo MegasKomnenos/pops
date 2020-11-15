@@ -1516,9 +1516,7 @@ widget = {
 
 				hbox = {
 					name = "military"
-					datacontext = "[GetPlayer]"
-					datacontext = "[GetPlayerArmyComposition]"
-					spacing = 5
+					spacing = 4
 					margin_left = 10
 					margin_bottom = 3
 
@@ -1535,13 +1533,10 @@ widget = {
 					}
 
 					button_group = {
-						onclick = "[ToggleGameViewData('military', GetPlayer.GetID)]"
-						tooltip = "[ArmyComposition.GetArmyCompositionTooltip]"
+						tooltip = "MIL_MP_BALANCE"
 						using = tooltip_ne
 
 						hbox = {
-							margin = { 4 4 }
-
 							icon = {
 								name = "icon_soldier"
 								texture = "gfx/interface/icons/icon_soldier.dds"
@@ -1556,67 +1551,53 @@ widget = {
 								direction = vertical
 								min_width = 65
 
-								flowcontainer = {
-									spacing = 2
-
-									text_single = {
-										name = "strength"
-										text = "[ArmyComposition.GetSoldierCountString]"
-										default_format = "#high"
-										align = nobaseline
-									}
-
-									army_quality_icon = {
-										tooltip_enabled = no
-									}
+								text_single = {
+									name = "strength"
+									text = "[GetPlayer.MakeScope.Var('mil_mp').GetValue]k"
+									default_format = "#high"
+									align = nobaseline
 								}
-
-								progressbar_standard = {
-									name = "soldiers_max"
-									size = { 40 8 }
-									visible = "[And( NotEqualTo_int32(ArmyComposition.GetCurrentNumberOfSoldiers, ArmyComposition.GetMaxNumberOfSoldiers), NotEqualTo_int32(ArmyComposition.GetMaxNumberOfSoldiers, '(int32)0' ) )]"
-
-									min = 0
-									max = "[IntToFloat(ArmyComposition.GetMaxNumberOfSoldiers)]"
-									value = "[IntToFloat(ArmyComposition.GetCurrentNumberOfSoldiers)]"
+								text_single = {
+									name = "strength_balance"
+									text = "[GetPlayer.MakeScope.Var('mil_mp_balance').GetValue]k"
+									default_format = "#low"
+									align = nobaseline
 								}
 							}
 						}
 					}
-
-					button = {
-						name = "domain_limit"
-						layoutpolicy_vertical = expanding
-
-						minimumsize = { 60 0 }
-
-						margin_left = 3
-						margin_bottom = 3
-
-						tooltip = "[Character.GetDomainLimitTooltip]"
+					
+					button_group = {
+						tooltip = "MIL_SUPPLY_BALANCE"
 						using = tooltip_ne
-
-						onclick = "[ToggleGameView('my_realm')]"
-
-						background = {
-							visible = "[GreaterThan_int32( Character.GetDomainSize, Character.GetDomainLimit )]"
-							using = Status_Bad
-							margin_bottom = -3
-						}
 
 						hbox = {
 							icon = {
+								name = "icon_supply"
 								texture = "gfx/interface/icons/icon_domain.dds"
 								size = { 25 25 }
 							}
 
-							text_single = {
-								name = "value"
-								text = "[Character.GetDomainSize]/[Character.GetDomainLimit]"
-								align = nobaseline
-								margin_bottom = 1
+							spacer = {
+								size = { 5 0 }
+							}
 
-								max_width = 110
+							flowcontainer = {
+								direction = vertical
+								min_width = 65
+
+								text_single = {
+									name = "supply"
+									text = "[GetPlayer.MakeScope.Var('mil_supply').GetValue]"
+									default_format = "#high"
+									align = nobaseline
+								}
+								text_single = {
+									name = "supply_balance"
+									text = "[GetPlayer.MakeScope.Var('mil_supply_balance').GetValue]"
+									default_format = "#low"
+									align = nobaseline
+								}
 							}
 						}
 					}
