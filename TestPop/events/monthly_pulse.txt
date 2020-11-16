@@ -15,6 +15,7 @@ monthly_pulse.01 = {
 		trigger_event = { id = census.09 days = 14 }
 		trigger_event = { id = census.10 days = 16 }
 		trigger_event = { id = census.11 days = 18 }
+		trigger_event = { id = census.12 days = 20 }
 	}
 	
 	option = {
@@ -25,14 +26,6 @@ monthly_pulse.02 = {
 	hidden = yes
 	
 	immediate = {
-		every_province = {
-			limit = {
-				is_valid_prov = yes
-			}
-			change_variable = { name = pop_wealth add = var:pop_earn_free } 
-			change_variable = { name = pop_wealth subtract = var:pop_pay_free }
-		}
-		
 		trigger_event = { id = census.05 }
 	}
 	

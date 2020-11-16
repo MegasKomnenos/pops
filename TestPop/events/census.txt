@@ -93406,6 +93406,10 @@ census.11 = {
 			}
 			every_in_global_list = { 
 				variable = stat_main_t
+				set_variable = { 
+					name = stat_main_t
+					value = var:mil_point
+				}
 				change_variable = { 
 					name = stat_main_t
 					multiply = 100
@@ -94685,6 +94689,54 @@ census.11 = {
 			remove_variable = stat_main_t
 			remove_variable = stat_main_tt
 			remove_variable = stat_main_ttt
+		}
+	}
+	option = { }
+}
+census.12 = { 
+	type = empty
+	hidden = yes
+	immediate = { 
+		every_province = { 
+			limit = { 
+				is_valid_prov = yes
+			}
+			set_variable = { 
+				name = pop_earn_base
+				value = 4
+			}
+			change_variable = { 
+				name = pop_earn_base
+				subtract = var:pop_calorie
+			}
+			change_variable = { 
+				name = pop_earn_base
+				subtract = var:pop_nutrient
+			}
+			change_variable = { 
+				name = pop_earn_base
+				subtract = var:pop_comfort
+			}
+			change_variable = { 
+				name = pop_earn_base
+				subtract = var:pop_luxury
+			}
+			change_variable = { 
+				name = pop_earn_base
+				divide = 40
+			}
+			change_variable = { 
+				name = pop_wealth
+				add = var:pop_earn_free
+			}
+			change_variable = { 
+				name = pop_wealth
+				add = var:pop_earn_base
+			}
+			change_variable = { 
+				name = pop_wealth
+				subtract = var:pop_pay_free
+			}
 		}
 	}
 	option = { }

@@ -190,6 +190,32 @@ census.11 = {
 	}
 }
 
+census.12 = {
+	type = empty
+	hidden = yes
+	
+	immediate = {
+		every_province = {
+			limit = {
+				is_valid_prov = yes
+			}
+			set_variable = { name = pop_earn_base value = 4 }
+			change_variable = { name = pop_earn_base subtract = var:pop_calorie }
+			change_variable = { name = pop_earn_base subtract = var:pop_nutrient }
+			change_variable = { name = pop_earn_base subtract = var:pop_comfort }
+			change_variable = { name = pop_earn_base subtract = var:pop_luxury }
+			change_variable = { name = pop_earn_base divide = 40 }
+			
+			change_variable = { name = pop_wealth add = var:pop_earn_free } 
+			change_variable = { name = pop_wealth add = var:pop_earn_base } 
+			change_variable = { name = pop_wealth subtract = var:pop_pay_free }
+		}
+	}
+	
+	option = {
+	}
+}
+
 census.99 = {
 	type = empty
 	hidden = yes
