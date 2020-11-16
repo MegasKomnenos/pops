@@ -186,6 +186,8 @@ mil_main_1 = {
 			change_variable = { name = mil_main_t multiply = province_owner.mil_supply_&goods& }
 			change_variable = { name = mil_main_t divide = 10 }
 			change_variable = { name = mil_supply add = var:mil_main_t }
+			
+			remove_variable = mil_supply_in_&goods&
 		^
 		
 		province_owner = {
@@ -557,4 +559,8 @@ mil_maa_ai = {
 		
 		remove_variable = mil_maa_ai_t
 	}
+}
+
+mil_prov_point = {
+	set_variable = { name = mil_point value = var:pop_total }
 }

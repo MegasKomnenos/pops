@@ -172,6 +172,8 @@ mod_assign = {
 		}
 		if = {
 			limit = {
+				has_variable = $var$
+				
 				var:$var$ >= $value$
 			}
 			change_variable = { name = $var$ subtract = $value$ }
@@ -183,6 +185,8 @@ mod_assign = {
 	else = {
 		if = {
 			limit = {
+				has_variable = $var$
+				
 				var:$var$ >= $value$
 			}
 			change_variable = { name = $var$ subtract = $value$ }

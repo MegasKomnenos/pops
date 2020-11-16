@@ -1,6 +1,6 @@
 ﻿NAI = {
 	SHORT_TASK_TICK = {									# Number of days between recalculating short  tasks (per tier)
-		30
+		60
 		30
 		14
 		7
@@ -9,7 +9,7 @@
 	}
 	
 	MEDIUM_TASK_TICK = {								# Number of days between recalculating medium tasks (per tier)
-		180
+		360
 		180
 		60
 		30
@@ -18,7 +18,7 @@
 	}
 	
 	LONG_TASK_TICK = {									# Number of days between recalculating long tasks (per tier)
-		360
+		720
 		360
 		180
 		60
@@ -27,7 +27,7 @@
 	}
 	
 	RARE_TASK_TICK = {									# Number of days between recalculating rare tasks (per tier)
-		720
+		1440
 		720
 		360
 		180
@@ -36,7 +36,7 @@
 	}
 
 	STRATEGY_TASK_TICK = {									# Number of days between recalculating strategy tasks (per tier)
-		720
+		1440
 		720
 		360
 		180
@@ -45,7 +45,7 @@
 	}
 
 	TITLE_AND_VASSAL_GRANT_TICK = {						# Number of days between checking title and vassal grants (per tier). If a grant happens, it'll always get rechecked on the next day
-		720
+		1440
 		720
 		720
 		90
@@ -54,7 +54,7 @@
 	}
 
 	REVOKE_TITLE_TICK = {						# Number of days between checking title revocations (per tier). If a revocation happens, it'll always get rechecked on the next day. Imprisoning a vassal will also cause a check on the next day
-		720
+		1440
 		720
 		720
 		360
@@ -81,42 +81,42 @@
 	}
 	
 	BUDGET_CATEGORY_SHORT_TERM_MIN = {					# Under this amount of short term gold the AI will be hesitant to spend/save on other categories (per tier)
-		25
-		25
-		50
-		100
-		200
-		300
+		0
+		0
+		0
+		0
+		0
+		0
 	}
 	
 	MIN_RESERVED_GOLD_SPIRITUAL_HEAD_OF_FAITH = 750		# Character will avoid actively using gold if under this value
 	MIN_RESERVED_GOLD_HOLY_ORDER = 500					# Character will avoid actively using gold if under this value
 	MIN_WAR_CHEST = {									# The desired war chest will always be at least this much money, by tier
-		25
-		25
-		50
-		100
-		200
-		300
+		0
+		0
+		0
+		0
+		0
+		0
 	}
-	MONTHS_OF_MAINTENANCE_IN_WAR_CHEST = 18				# The AI will want this many months of max maintenance in their war chest, if that's more than what MIN_WAR_CHEST says
+	MONTHS_OF_MAINTENANCE_IN_WAR_CHEST = 0				# The AI will want this many months of max maintenance in their war chest, if that's more than what MIN_WAR_CHEST says
 	PERCENTAGE_INTO_WAR_CHEST = 0.75					# When the war chest hasn't been filled, the AI will put this much of the money it earns into the war chest (reserved gold still gets filled first)
 	BUILDING_MIN_SCORE_COMPARED_TO_BEST = 0.8			# Any potential building with a score lower than this ratio of the best available building (even if the AI can't afford it right now) will be discarded
 	
 	GOALS_PER_TYPE = {									# Number goals per type (per tier)
 		0
 		0
-		1
 		2
-		3
-		3
+		4
+		5
+		5
 	}
 
 	MEN_AT_ARMS_EXPENSE_GOAL = 1						# The AI will try to spend this much of its income on MAA maintenance
 	MEN_AT_ARMS_EXPENSE_MAX = 1						# The AI will disband MAA if it ends up spending more than this amount of its income on maintenance
 
-	MEN_AT_ARMS_PRESTIGE_EXPENSE_GOAL = 0.4				# The AI will try to spend this much of its prestige income on MAA maintenance
-	MEN_AT_ARMS_PRESTIGE_EXPENSE_MAX = 0.6				# The AI will disband MAA if it ends up spending more than this amount of its prestige income on maintenance
+	MEN_AT_ARMS_PRESTIGE_EXPENSE_GOAL = 1				# The AI will try to spend this much of its prestige income on MAA maintenance
+	MEN_AT_ARMS_PRESTIGE_EXPENSE_MAX = 1				# The AI will disband MAA if it ends up spending more than this amount of its prestige income on maintenance
 	MEN_AT_ARMS_CHANCE_EXPENSE_ZERO = 1					# Chance the AI will prefer MaA to buildings when spending nothing on MaA
 	MEN_AT_ARMS_CHANCE_EXPENSE_MIN = 1					# Chance the AI will prefer MaA to buildings when spending the goal amount on MaA. For values between that and zero, we interpolate
 	MEN_AT_ARMS_REALM_SIZE_FOR_COST_EFFECTIVENESS_START = 5	# At realm sizes of this and below, men at arms quality is based on stat points compared to cost
@@ -211,7 +211,7 @@
 	MERC_OVERMATCHING_TARGET = 1.25						# The AI will try to outnumber the enemy by this ratio if it can afford it based on its warchest
 	MAX_WAR_CHEST_EXPENDITURE_MERC_OVERMATCHING = 0.7	# The AI will use up to this much of its warchest when trying to outnumber the enemy
 	MIN_HIRING_GOAL = 500								# If missing less than this amount to outnumber its enemies, the AI will hire as if were actually missing this amount
-	MAX_HIRING_GOAL_OVERFLOW_RATIO = 1.5				# The AI won't hire more than this times as many men as it is missing (using MERC_OVERMATCHING_TARGET). It'll hire the most expensive merc that fits within this. E.G., this means that if the AI is missing 1000 men, it'll hire the most expensive merc with less than 2000 men
+	MAX_HIRING_GOAL_OVERFLOW_RATIO = 0					# The AI won't hire more than this times as many men as it is missing (using MERC_OVERMATCHING_TARGET). It'll hire the most expensive merc that fits within this. E.G., this means that if the AI is missing 1000 men, it'll hire the most expensive merc with less than 2000 men
 	MONTHS_BEFORE_CONTRACT_END_TO_REHIRE = 3			# This many months before a merc contract ends, the AI will rehire mercs if it can afford it and thinks it still needs them
 
 	TITLE_GRANT_HATE_THRESHOLD = -25					# The AI will mostly avoid giving titles to people whose opinion of them is below this
@@ -224,8 +224,8 @@
 	PURSUIT_SCORE_MULT = 2
 	SCREEN_SCORE_MULT = 1
 	SIEGE_VALUE_SCORE_MULT = 1000
-	NEGATIVE_SCORE_PER_EXISTING_REGIMENT = 100			# How much is the score of the regiment type reduced per existing subregiment of that type?
-	RANDOM_REGIMENT_SCORE_MAX = 0.5						# How much extra score can the AI randomly give to this regiment? Will always be the same for the same character + regiment. 0.2 means 0-20% extra
+	NEGATIVE_SCORE_PER_EXISTING_REGIMENT = 200			# How much is the score of the regiment type reduced per existing subregiment of that type?
+	RANDOM_REGIMENT_SCORE_MAX = 0.2						# How much extra score can the AI randomly give to this regiment? Will always be the same for the same character + regiment. 0.2 means 0-20% extra
 	NORMAL_SUB_REGIMENTS_PER_SIEGE_SUB_REGIMENT = 5		# How many non-siege regiments should there be for each siege regiment? Siege will always be the first sub-regiment purchased, and the AI will maintain this ratio
 	SUBTRACT_NORMAL_SUB_REGIMENTS_FOR_SIEGE_PURPOSES = 3# Ignore this many normal regiments when buying siege sub-regiments. This effectively means the AI will buy their first siege weapon after this many normal ones, and then one more for every NORMAL_SUB_REGIMENTS_PER_SIEGE_SUB_REGIMENT additional normal sub-regiments
 	REGIMENT_OBSOLETION_SCORE_DIFFERENCE = 20			# The AI will disband a regiment if it is this much worse than the best available regiment, and it is unable to hire more regiments (due to cost or being at cap). Quick math: 10 damage * 100 men / 200 cost = 5 score difference

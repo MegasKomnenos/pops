@@ -381,7 +381,23 @@ sim_run.02 = {
 				
 				trigger_event = { id = census.04 }
 				trigger_event = { id = census.05 }
+				
+				debug_log = "Trade Start"
 				trigger_event = { id = census.06 }
+				debug_log = "Trade End"
+				
+				set_variable = { name = t_disp value = 0 }
+				
+				every_in_global_list = {
+					variable = trade_merchants
+					
+					prev = {
+						change_variable = { name = t_disp add = 1 }
+					}
+				}
+				
+				debug_log = "Num of Merchants: [THIS.Var('t_disp').GetValue]"
+				
 				trigger_event = { id = census.07 }
 				trigger_event = { id = census.08 }
 				trigger_event = { id = census.09 }
