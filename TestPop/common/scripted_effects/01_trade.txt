@@ -2039,7 +2039,7 @@ trade_do_trade_helper_2 = {
 trade_do_trade_helper_4 = {
 	if = {
 		limit = {
-			has_variable = trade_point_&goods&
+			has_variable = trade_point_$good$
 		}
 		set_variable = { name = trade_do_trade_t value = var:trade_price_$good$ }
 		change_variable = { name = trade_do_trade_t add = prev.var:trade_price_$good$ }
