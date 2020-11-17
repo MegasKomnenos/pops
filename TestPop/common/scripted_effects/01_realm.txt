@@ -107,28 +107,28 @@ realm_init_members = {
 		limit = {
 			is_valid_prov = yes
 		}
-		add_to_global_variable_list = { name = realm_init_members_t target = prev }
+		add_to_global_variable_list = { name = realm_init_members_t target = this }
 	}
 	every_duchy = {
 		limit = {
 			is_title_created = yes
 			is_titular = no
 		}
-		add_to_global_variable_list = { name = realm_init_members_t target = prev }
+		add_to_global_variable_list = { name = realm_init_members_t target = this }
 	}
 	every_kingdom = {
 		limit = {
 			is_title_created = yes
 			is_titular = no
 		}
-		add_to_global_variable_list = { name = realm_init_members_t target = prev }
+		add_to_global_variable_list = { name = realm_init_members_t target = this }
 	}
 	every_empire = {
 		limit = {
 			is_title_created = yes
 			is_titular = no
 		}
-		add_to_global_variable_list = { name = realm_init_members_t target = prev }
+		add_to_global_variable_list = { name = realm_init_members_t target = this }
 	}
 	every_province = {
 		limit = {
@@ -137,7 +137,7 @@ realm_init_members = {
 			is_city = yes
 		}
 		barony = {
-			add_to_global_variable_list = { name = realm_init_members_t target = prev }
+			add_to_global_variable_list = { name = realm_init_members_t target = this }
 		}
 	}
 	
