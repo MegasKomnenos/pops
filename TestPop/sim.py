@@ -417,21 +417,7 @@ sim_run.02 = {
 						is_character = yes
 						is_landed = yes
 					}
-					every_vassal = {
-						limit = {
-							is_character = yes
-							is_landed = yes
-							
-							primary_title.tier = tier_barony
-						}
-						primary_title.title_province = {
-							change_variable = { name = pop_wealth add = prev.var:stat_tax_earn }
-							change_variable = { name = pop_wealth subtract = prev.var:stat_tax_pay }
-						}
-					}
-					
-					set_variable = { name = sim_balance value = var:stat_tax_earn }
-					change_variable = { name = sim_balance subtract = var:stat_tax_pay }
+					set_variable = { name = sim_balance value = yearly_character_balance }
 					change_variable = { name = sim_balance add = var:trade_earn }
 					change_variable = { name = sim_balance subtract = var:trade_pay }
 					

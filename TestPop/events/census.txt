@@ -85325,6 +85325,31 @@ census.10 = {
 				}
 			}
 		}
+		if = { 
+			limit = { 
+				has_global_variable = sim_t
+			}
+			every_barony = { 
+				limit = { 
+					has_variable = realm_liege
+					OR = { 
+						holder.primary_title.tier = tier_barony
+						exists = lessee
+						lessee.primary_title.tier = tier_barony
+					}
+				}
+				title_province = { 
+					change_variable = { 
+						name = pop_wealth
+						add = var:realm_tax_domain
+					}
+					change_variable = { 
+						name = pop_wealth
+						subtract = prev.var:realm_tax_liege
+					}
+				}
+			}
+		}
 		every_ruler = { 
 			limit = { 
 				is_character = yes
@@ -86144,11 +86169,7 @@ census.11 = {
 			add_province_modifier = base_prov
 			set_variable = { 
 				name = stat_tax
-				value = var:pop_earn_serf
-			}
-			change_variable = { 
-				name = stat_tax
-				subtract = var:pop_pay_serf
+				value = var:realm_tax_domain
 			}
 			set_variable = { 
 				name = stat_main_t
@@ -86736,17 +86757,6 @@ census.11 = {
 					}
 				}
 			}
-			if = { 
-				limit = { 
-					has_variable = realm_tax_domain
-				}
-				scope:mil_main_t = { 
-					change_variable = { 
-						name = stat_tax_earn
-						add = prev.var:realm_tax_domain
-					}
-				}
-			}
 		}
 		every_county = { 
 			limit = { 
@@ -86796,17 +86806,6 @@ census.11 = {
 					change_variable = { 
 						name = stat_tax_earn
 						add = prev.var:realm_tax_liege
-					}
-				}
-			}
-			if = { 
-				limit = { 
-					has_variable = realm_tax_domain
-				}
-				scope:mil_main_t = { 
-					change_variable = { 
-						name = stat_tax_earn
-						add = prev.var:realm_tax_domain
 					}
 				}
 			}
@@ -86862,17 +86861,6 @@ census.11 = {
 					}
 				}
 			}
-			if = { 
-				limit = { 
-					has_variable = realm_tax_domain
-				}
-				scope:mil_main_t = { 
-					change_variable = { 
-						name = stat_tax_earn
-						add = prev.var:realm_tax_domain
-					}
-				}
-			}
 		}
 		every_kingdom = { 
 			limit = { 
@@ -86922,17 +86910,6 @@ census.11 = {
 					change_variable = { 
 						name = stat_tax_earn
 						add = prev.var:realm_tax_liege
-					}
-				}
-			}
-			if = { 
-				limit = { 
-					has_variable = realm_tax_domain
-				}
-				scope:mil_main_t = { 
-					change_variable = { 
-						name = stat_tax_earn
-						add = prev.var:realm_tax_domain
 					}
 				}
 			}
@@ -86988,17 +86965,6 @@ census.11 = {
 					}
 				}
 			}
-			if = { 
-				limit = { 
-					has_variable = realm_tax_domain
-				}
-				scope:mil_main_t = { 
-					change_variable = { 
-						name = stat_tax_earn
-						add = prev.var:realm_tax_domain
-					}
-				}
-			}
 		}
 		every_ruler = { 
 			limit = { 
@@ -87009,6 +86975,10 @@ census.11 = {
 			set_variable = { 
 				name = stat_main_t
 				value = var:stat_tax_earn
+			}
+			change_variable = { 
+				name = stat_main_t
+				divide = 12
 			}
 			if = { 
 				limit = { 
@@ -87633,6 +87603,10 @@ census.11 = {
 			set_variable = { 
 				name = stat_main_t
 				value = var:stat_tax_pay
+			}
+			change_variable = { 
+				name = stat_main_t
+				divide = 12
 			}
 			if = { 
 				limit = { 
@@ -90218,6 +90192,10 @@ census.11 = {
 					name = stat_main_t
 					value = var:stat_tax_earn
 				}
+				change_variable = { 
+					name = stat_main_t
+					divide = 12
+				}
 				if = { 
 					limit = { 
 						has_character_modifier = stat_tax_5242.88
@@ -90841,6 +90819,10 @@ census.11 = {
 				set_variable = { 
 					name = stat_main_t
 					value = var:stat_tax_pay
+				}
+				change_variable = { 
+					name = stat_main_t
+					divide = 12
 				}
 				if = { 
 					limit = { 

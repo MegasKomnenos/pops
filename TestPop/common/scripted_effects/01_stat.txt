@@ -6,8 +6,7 @@
 		}
 		add_province_modifier = base_prov
 		
-		set_variable = { name = stat_tax value = var:pop_earn_serf }
-		change_variable = { name = stat_tax subtract = var:pop_pay_serf }
+		set_variable = { name = stat_tax value = var:realm_tax_domain }
 		
 		set_variable = { name = stat_main_t value = var:stat_tax }
 		change_variable = { name = stat_main_t divide = 12 }
@@ -84,15 +83,6 @@
 					change_variable = { name = stat_tax_earn add = prev.var:realm_tax_liege }
 				}
 			}
-			
-			if = {
-				limit = {
-					has_variable = realm_tax_domain
-				}
-				scope:mil_main_t = {
-					change_variable = { name = stat_tax_earn add = prev.var:realm_tax_domain }
-				}
-			}
 		}
 	^
 	
@@ -104,10 +94,12 @@
 		add_character_modifier = base_lord
 		
 		set_variable = { name = stat_main_t value = var:stat_tax_earn }
+		change_variable = { name = stat_main_t divide = 12 }
 		
 		mod_assign_2_20 = { type = character name = stat_tax var = stat_main_t }
 		
 		set_variable = { name = stat_main_t value = var:stat_tax_pay }
+		change_variable = { name = stat_main_t divide = 12 }
 		
 		mod_assign_2_20 = { type = character name = stat_tax_pay var = stat_main_t }
 		
@@ -247,10 +239,12 @@
 				primary_title.tier = tier_barony
 			}
 			set_variable = { name = stat_main_t value = var:stat_tax_earn }
+			change_variable = { name = stat_main_t divide = 12 }
 		
 			mod_assign_2_20 = { type = character name = stat_tax var = stat_main_t }
 			
 			set_variable = { name = stat_main_t value = var:stat_tax_pay }
+			change_variable = { name = stat_main_t divide = 12 }
 			
 			mod_assign_2_20 = { type = character name = stat_tax_pay var = stat_main_t }
 			

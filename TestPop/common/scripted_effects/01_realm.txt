@@ -54,6 +54,28 @@
 			}
 		}
 	^
+	
+	if = {
+		limit = {
+			has_global_variable = sim_t
+		}
+		every_barony = {
+			limit = {
+				has_variable = realm_liege
+				
+				OR = {
+					holder.primary_title.tier = tier_barony
+					
+					exists = lessee
+					lessee.primary_title.tier = tier_barony
+				}
+			}
+			title_province = {
+				change_variable = { name = pop_wealth add = var:realm_tax_domain }
+				change_variable = { name = pop_wealth subtract = prev.var:realm_tax_liege }
+			}
+		}
+	}
 }
 
 realm_set_tax_prov = {
