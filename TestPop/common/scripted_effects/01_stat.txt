@@ -16,24 +16,37 @@
 		remove_variable = stat_main_t
 	}
 	
-	every_ruler = {
+	every_province = {
 		limit = {
-			is_character = yes
-			is_landed = yes
+			is_valid_prov = yes
+			is_city = yes
 		}
+		if = {
+			limit = {
+				barony = {
+					is_leased_out = yes
+				}
+			}
+			barony.lessee = {
+				add_to_global_variable_list = { name = stat_main_t target = this }
+				
+				add_to_variable_list = { name = stat_main_t target = prev }
+			}
+		}
+		else = {
+			province_owner = {
+				add_to_global_variable_list = { name = stat_main_t target = this }
+				
+				add_to_variable_list = { name = stat_main_t target = prev }
+			}
+		}
+	}
+	
+	every_in_global_list = {
+		variable = stat_main_t
+		
 		set_variable = { name = stat_tax_earn value = 0 }
 		set_variable = { name = stat_tax_pay value = 0 }
-		
-		every_vassal = {
-			limit = {
-				is_character = yes
-				is_landed = yes
-				
-				primary_title.tier = tier_barony
-			}
-			set_variable = { name = stat_tax_earn value = 0 }
-			set_variable = { name = stat_tax_pay value = 0 }
-		}
 	}
 	
 	^^title_tiers^
@@ -86,11 +99,9 @@
 		}
 	^
 	
-	every_ruler = {
-		limit = {
-			is_character = yes
-			is_landed = yes
-		}
+	every_in_global_list = {
+		variable = stat_main_t
+
 		add_character_modifier = base_lord
 		
 		set_variable = { name = stat_main_t value = var:stat_tax_earn }
@@ -180,20 +191,9 @@
 		
 		mod_assign_0_12 = { type = character name = stat_maa var = stat_main_t }
 		
-		every_held_title = {
-			limit = {
-				tier = tier_barony
-				
-				is_leased_out = no
-			}
-			title_province = {
-				add_to_global_variable_list = { name = stat_main_t target = this }
-			}
-		}
-		
 		set_variable = { name = stat_main_t value = 0.001 }
 		
-		every_in_global_list = {
+		every_in_list = {
 			variable = stat_main_t
 			
 			mil_prov_point = yes
@@ -202,7 +202,7 @@
 				change_variable = { name = stat_main_t add = prev.var:mil_point }
 			}
 		}
-		every_in_global_list = {
+		every_in_list = {
 			variable = stat_main_t
 			
 			set_variable = { name = stat_main_t value = var:mil_point }
@@ -225,175 +225,14 @@
 			remove_variable = stat_main_tt
 		}
 		
-		clear_global_variable_list = stat_main_t
+		clear_variable_list = stat_main_t
 		
 		remove_variable = stat_main_t
 		remove_variable = stat_main_tt
 		remove_variable = stat_main_ttt
-		
-		every_vassal = {
-			limit = {
-				is_character = yes
-				is_landed = yes
-				
-				primary_title.tier = tier_barony
-			}
-			set_variable = { name = stat_main_t value = var:stat_tax_earn }
-			change_variable = { name = stat_main_t divide = 12 }
-		
-			mod_assign_2_20 = { type = character name = stat_tax var = stat_main_t }
-			
-			set_variable = { name = stat_main_t value = var:stat_tax_pay }
-			change_variable = { name = stat_main_t divide = 12 }
-			
-			mod_assign_2_20 = { type = character name = stat_tax_pay var = stat_main_t }
-			
-			if = {
-				limit = {
-					is_ai = yes
-				}
-				set_variable = { name = stat_main_t value = var:mil_mp }
-				change_variable = { name = stat_main_t multiply = var:mil_supply }
-				
-				sqrt_effect = {
-					inp = var:stat_main_t
-					return = stat_main_t
-				}
-				
-				set_variable = { name = stat_main_tt value = var:stat_main_t }
-				set_variable = { name = stat_main_ttt value = var:stat_main_t }
-				
-				change_variable = { name = stat_main_t multiply = 1.5 }
-				
-				set_variable = { name = mil_mp_cur value = 0 }
-				set_variable = { name = mil_supply_cur value = 0 }
-			}
-			else = {
-				trigger_event = {
-					id = regiments.01
-				}
-				
-				set_variable = { name = stat_main_t value = 10000 }
-				
-				set_variable = { name = stat_main_tt value = var:mil_mp }
-				change_variable = { name = stat_main_tt subtract = var:mil_mp_cur }
-				
-				if = {
-					limit = {
-						OR = {
-							NOT = {
-								has_variable = stat_main_tt
-							}
-							
-							var:stat_main_tt < 0
-						}
-					}
-					set_variable = { name = stat_main_tt value = 0 }
-				}
-				else = {
-					set_variable = { name = stat_main_ttt value = var:mil_supply }
-					change_variable = { name = stat_main_ttt subtract = var:mil_supply_cur }
-					
-					if = {
-						limit = {
-							OR = {
-								NOT = {
-									has_variable = stat_main_ttt
-								}
-								
-								var:stat_main_ttt < 0
-							}
-						}
-						set_variable = { name = stat_main_tt value = 0 }
-						set_variable = { name = stat_main_ttt value = 0 }
-					}
-					else = {
-						change_variable = { name = stat_main_tt multiply = var:stat_main_ttt }
-					}
-				}
-				
-				sqrt_effect = {
-					inp = var:stat_main_tt
-					return = stat_main_tt
-				}
-				
-				set_variable = { name = stat_main_ttt value = var:stat_main_tt }
-				
-				change_variable = { name = stat_main_tt multiply = 0.5 }
-				change_variable = { name = stat_main_ttt multiply = 0.5 }
-			}
-			
-			mod_assign_0_12 = { type = character name = stat_maa var = stat_main_t }
-			
-			every_held_title = {
-				limit = {
-					tier = tier_barony
-					
-					is_leased_out = no
-				}
-				title_province = {
-					add_to_global_variable_list = { name = stat_main_t target = this }
-				}
-			}
-			
-			save_temporary_scope_as = stat_main_t
-			
-			prev = {
-				every_held_title = {
-					limit = {
-						tier = tier_barony
-						
-						is_leased_out = yes
-						
-						lessee = scope:stat_main_t
-					}
-					title_province = {
-						add_to_global_variable_list = { name = stat_main_t target = this }
-					}
-				}
-			}
-			
-			set_variable = { name = stat_main_t value = 0.001 }
-			
-			every_in_global_list = {
-				variable = stat_main_t
-				
-				mil_prov_point = yes
-				
-				prev = {
-					change_variable = { name = stat_main_t add = prev.var:mil_point }
-				}
-			}
-			every_in_global_list = {
-				variable = stat_main_t
-				
-				set_variable = { name = stat_main_t value = var:mil_point }
-				change_variable = { name = stat_main_t multiply = 100 }
-				change_variable = { name = stat_main_t divide = prev.var:stat_main_t }
-				
-				set_variable = { name = stat_main_tt value = var:stat_main_t }
-				change_variable = { name = stat_main_tt multiply = prev.var:stat_main_tt }
-				change_variable = { name = stat_main_tt divide = 10 }
-				
-				mod_assign_2_20 = { type = province name = stat_levy var = stat_main_tt }
-				
-				set_variable = { name = stat_main_tt value = var:stat_main_t }
-				change_variable = { name = stat_main_tt multiply = prev.var:stat_main_ttt }
-				change_variable = { name = stat_main_tt divide = 10 }
-				
-				mod_assign_2_20 = { type = province name = stat_garrison var = stat_main_tt }
-				
-				remove_variable = stat_main_t
-				remove_variable = stat_main_tt
-			}
-			
-			clear_global_variable_list = stat_main_t
-			
-			remove_variable = stat_main_t
-			remove_variable = stat_main_tt
-			remove_variable = stat_main_ttt
-		}
 	}
+	
+	clear_global_variable_list = stat_main_t
 }
 
 stat_rank_down_handler = {

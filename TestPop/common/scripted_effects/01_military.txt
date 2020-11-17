@@ -88,7 +88,6 @@ mil_main_0 = {
 	every_province = {
 		limit = {
 			is_valid_prov = yes
-			
 			is_city = yes
 		}
 		set_variable = { name = mil_supply_has value = 1 }
@@ -168,32 +167,37 @@ mil_main_1 = {
 }
 
 mil_main_2 = {
-	every_ruler = {
+	every_province = {
 		limit = {
-			is_character = yes
-			is_landed = yes
+			is_valid_prov = yes
+			is_city = yes
 		}
+		if = {
+			limit = {
+				barony = {
+					is_leased_out = yes
+				}
+			}
+			barony.lessee = {
+				add_to_global_variable_list = { name = mil_main_t target = this }
+			}
+		}
+		else = {
+			province_owner = {
+				add_to_global_variable_list = { name = mil_main_t target = this }
+			}
+		}
+	}
+	
+	every_in_global_list = {
+		variable = mil_main_t
+		
 		set_variable = { name = mil_mp_levy value = 0 }
 		set_variable = { name = mil_supply_levy value = 0 }
 		set_variable = { name = mil_mp_liege value = 0 }
 		set_variable = { name = mil_supply_liege value = 0 }
 		set_variable = { name = mil_mp_vassal value = 0 }
 		set_variable = { name = mil_supply_vassal value = 0 }
-		
-		every_vassal = {
-			limit = {
-				is_character = yes
-				is_landed = yes
-				
-				primary_title.tier = tier_barony
-			}
-			set_variable = { name = mil_mp_levy value = 0 }
-			set_variable = { name = mil_supply_levy value = 0 }
-			set_variable = { name = mil_mp_liege value = 0 }
-			set_variable = { name = mil_supply_liege value = 0 }
-			set_variable = { name = mil_mp_vassal value = 0 }
-			set_variable = { name = mil_supply_vassal value = 0 }
-		}
 	}
 	
 	^^title_tiers^
@@ -266,11 +270,9 @@ mil_main_2 = {
 		}
 	^
 	
-	every_ruler = {
-		limit = {
-			is_character = yes
-			is_landed = yes
-		}
+	every_in_global_list = {
+		variable = mil_main_t
+		
 		if = {
 			limit = {
 				NOT = {
@@ -340,85 +342,9 @@ mil_main_2 = {
 		change_variable = { name = mil_supply_balance subtract = var:mil_supply_decay }
 		change_variable = { name = mil_supply_balance subtract = var:mil_supply_mismanage }
 		change_variable = { name = mil_supply add = var:mil_supply_balance }
-		
-		every_vassal = {
-			limit = {
-				is_character = yes
-				is_landed = yes
-				
-				primary_title.tier = tier_barony
-			}
-			if = {
-				limit = {
-					NOT = {
-						has_variable = mil_mp
-					}
-				}
-				set_variable = { name = mil_mp value = 0 }
-			}
-			if = {
-				limit = {
-					NOT = {
-						has_variable = mil_supply
-					}
-				}
-				set_variable = { name = mil_supply value = 0 }
-			}
-			if = {
-				limit = {
-					NOT = {
-						has_variable = mil_supply_stockpile
-					}
-				}
-				set_variable = { name = mil_supply_stockpile value = 0 }
-			}
-			
-			set_variable = { name = mil_mp_supply value = 0.05 }
-			change_variable = { name = mil_mp_supply multiply = var:mil_supply }
-			change_variable = { name = mil_mp_supply divide = 2 }
-			
-			set_variable = { name = mil_mp_decay value = 0.1 }
-			set_variable = { name = mil_supply_decay value = 0.1 }
-			
-			change_variable = { name = mil_mp_decay multiply = var:mil_mp }
-			change_variable = { name = mil_supply_decay multiply = var:mil_supply }
-			
-			if = {
-				limit = {
-					has_variable = task_manage_logistics
-				}
-				set_variable = { name = mil_main_tt value = 100 }
-				change_variable = { name = mil_main_tt subtract = var:task_manage_logistics.var:task_time_in }
-				change_variable = { name = mil_main_tt divide = 666.667 }
-				
-				set_variable = { name = mil_mp_mismanage value = var:mil_main_tt }
-				set_variable = { name = mil_supply_mismanage value = var:mil_main_tt }
-				
-				change_variable = { name = mil_mp_mismanage multiply = var:mil_mp }
-				change_variable = { name = mil_supply_mismanage multiply = var:mil_supply }
-			}
-			else = {
-				set_variable = { name = mil_mp_mismanage value = 0 }
-				set_variable = { name = mil_supply_mismanage value = 0 }
-			}
-			
-			set_variable = { name = mil_mp_balance value = var:mil_mp_supply }
-			change_variable = { name = mil_mp_balance add = var:mil_mp_levy }
-			change_variable = { name = mil_mp_balance add = var:mil_mp_vassal }
-			change_variable = { name = mil_mp_balance subtract = var:mil_mp_liege }
-			change_variable = { name = mil_mp_balance subtract = var:mil_mp_decay }
-			change_variable = { name = mil_mp_balance subtract = var:mil_mp_mismanage }
-			change_variable = { name = mil_mp add = var:mil_mp_balance }
-			
-			set_variable = { name = mil_supply_balance value = var:mil_supply_stockpile }
-			change_variable = { name = mil_supply_balance add = var:mil_supply_levy }
-			change_variable = { name = mil_supply_balance add = var:mil_supply_vassal }
-			change_variable = { name = mil_supply_balance subtract = var:mil_supply_liege }
-			change_variable = { name = mil_supply_balance subtract = var:mil_supply_decay }
-			change_variable = { name = mil_supply_balance subtract = var:mil_supply_mismanage }
-			change_variable = { name = mil_supply add = var:mil_supply_balance }
-		}
 	}
+	
+	clear_global_variable_list = mil_main_t
 }
 
 mil_rank_up_handler = {

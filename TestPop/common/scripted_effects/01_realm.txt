@@ -66,8 +66,10 @@
 				OR = {
 					holder.primary_title.tier = tier_barony
 					
-					exists = lessee
-					lessee.primary_title.tier = tier_barony
+					AND = {
+						exists = lessee
+						lessee.primary_title.tier = tier_barony
+					}
 				}
 			}
 			title_province = {
