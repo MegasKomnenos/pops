@@ -86736,6 +86736,17 @@ census.11 = {
 					}
 				}
 			}
+			if = { 
+				limit = { 
+					has_variable = realm_tax_domain
+				}
+				scope:mil_main_t = { 
+					change_variable = { 
+						name = stat_tax_earn
+						add = prev.var:realm_tax_domain
+					}
+				}
+			}
 		}
 		every_county = { 
 			limit = { 
@@ -86785,6 +86796,17 @@ census.11 = {
 					change_variable = { 
 						name = stat_tax_earn
 						add = prev.var:realm_tax_liege
+					}
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = realm_tax_domain
+				}
+				scope:mil_main_t = { 
+					change_variable = { 
+						name = stat_tax_earn
+						add = prev.var:realm_tax_domain
 					}
 				}
 			}
@@ -86840,6 +86862,17 @@ census.11 = {
 					}
 				}
 			}
+			if = { 
+				limit = { 
+					has_variable = realm_tax_domain
+				}
+				scope:mil_main_t = { 
+					change_variable = { 
+						name = stat_tax_earn
+						add = prev.var:realm_tax_domain
+					}
+				}
+			}
 		}
 		every_kingdom = { 
 			limit = { 
@@ -86892,6 +86925,17 @@ census.11 = {
 					}
 				}
 			}
+			if = { 
+				limit = { 
+					has_variable = realm_tax_domain
+				}
+				scope:mil_main_t = { 
+					change_variable = { 
+						name = stat_tax_earn
+						add = prev.var:realm_tax_domain
+					}
+				}
+			}
 		}
 		every_empire = { 
 			limit = { 
@@ -86941,6 +86985,17 @@ census.11 = {
 					change_variable = { 
 						name = stat_tax_earn
 						add = prev.var:realm_tax_liege
+					}
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = realm_tax_domain
+				}
+				scope:mil_main_t = { 
+					change_variable = { 
+						name = stat_tax_earn
+						add = prev.var:realm_tax_domain
 					}
 				}
 			}
