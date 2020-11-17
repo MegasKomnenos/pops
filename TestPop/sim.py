@@ -293,7 +293,7 @@ sim_run.02 = {
 		set_global_variable = { name = sim_i value = 0 }
 
 		while = {
-			count = 300
+			count = 200
 			
 			global_var:arhat = {
 				change_global_variable = { name = sim_i add = 1 }
@@ -404,48 +404,12 @@ sim_run.02 = {
 				trigger_event = { id = census.10 }
 				trigger_event = { id = census.11 }
 
-				every_ruler = {
-					limit = {
-						is_character = yes
-						is_landed = yes
-					}
-					set_variable = { name = sim_income value = 0 }
-				}
-				
 				every_province = {
 					limit = {
 						is_valid_prov = yes
 					}
 					change_variable = { name = pop_wealth add = var:pop_earn_free } 
 					change_variable = { name = pop_wealth subtract = var:pop_pay_free }
-
-					if = {
-						limit = {
-							is_city = yes
-						}
-						province_owner = {
-							if = {
-								limit = {
-									is_character = yes
-									is_ruler = yes
-									is_landed = yes
-									has_variable = sim_income
-								}
-								change_variable = { name = sim_income add = prev.var:pop_earn_serf }
-								change_variable = { name = sim_income subtract = prev.var:pop_pay_serf }
-							}
-							else = {
-								prev = {
-									change_variable = { name = pop_wealth add = var:pop_earn_serf }
-									change_variable = { name = pop_wealth subtract = var:pop_pay_serf }
-								}
-							}
-						}
-					}
-					else = {
-						change_variable = { name = pop_wealth add = var:pop_earn_serf }
-						change_variable = { name = pop_wealth subtract = var:pop_pay_serf }
-					}
 				}
 
 				every_ruler = {
@@ -453,7 +417,21 @@ sim_run.02 = {
 						is_character = yes
 						is_landed = yes
 					}
-					set_variable = { name = sim_balance value = var:sim_income }
+					every_vassal = {
+						limit = {
+							is_character = yes
+							is_landed = yes
+							
+							primary_title.tier = tier_barony
+						}
+						primary_title.title_province = {
+							change_variable = { name = pop_wealth add = prev.var:stat_tax_earn }
+							change_variable = { name = pop_wealth subtract = prev.var:stat_tax_pay }
+						}
+					}
+					
+					set_variable = { name = sim_balance value = var:stat_tax_earn }
+					change_variable = { name = sim_balance subtract = var:stat_tax_pay }
 					change_variable = { name = sim_balance add = var:trade_earn }
 					change_variable = { name = sim_balance subtract = var:trade_pay }
 					
@@ -473,6 +451,7 @@ sim_run.02 = {
 
 					remove_variable = sim_balance
 				}
+				
 				set_variable = { name = t_disp value = global_var:sim_i }
 				
 				debug_log = "Logging Start: [THIS.Var('t_disp').GetValue]"

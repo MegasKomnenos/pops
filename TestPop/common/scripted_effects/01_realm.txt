@@ -1,0 +1,137 @@
+﻿realm_set_tax_levy = {
+	every_province = {
+		limit = {
+			is_valid_prov = yes
+		}
+		realm_set_tax_prov = yes
+		realm_set_levy_prov = yes
+	}
+	
+	^^title_tiers^
+		every_&title_tiers& = {
+			limit = {
+				has_variable = realm_liege
+			}
+			set_variable = { name = realm_tax_vassal value = 0 }
+			set_variable = { name = realm_mp_vassal value = 0 }
+			set_variable = { name = realm_supply_vassal value = 0 }
+			
+			set_variable = { name = realm_tax_liege value = 0 }
+			set_variable = { name = realm_mp_liege value = 0 }
+			set_variable = { name = realm_supply_liege value = 0 }
+			
+			every_in_list = {
+				variable = realm_members
+				
+				realm_set_tax_title = yes
+				realm_set_levy_title = yes
+				
+				set_variable = { name = realm_tax_liege value = 0 }
+				set_variable = { name = realm_mp_liege value = 0 }
+				set_variable = { name = realm_supply_liege value = 0 }
+				
+				if = { limit = { has_variable = realm_tax_domain } change_variable = { name = realm_tax_liege add = var:realm_tax_domain } }
+				if = { limit = { has_variable = realm_mp_domain } change_variable = { name = realm_mp_liege add = var:realm_mp_domain } }
+				if = { limit = { has_variable = realm_supply_domain } change_variable = { name = realm_supply_liege add = var:realm_supply_domain } }
+				
+				if = { limit = { has_variable = realm_tax_vassal } change_variable = { name = realm_tax_liege add = var:realm_tax_vassal } }
+				if = { limit = { has_variable = realm_mp_vassal } change_variable = { name = realm_mp_liege add = var:realm_mp_vassal } }
+				if = { limit = { has_variable = realm_supply_vassal } change_variable = { name = realm_supply_liege add = var:realm_supply_vassal } }
+				
+				if = { limit = { has_variable = mil_supply_stockpile } change_variable = { name = realm_supply_liege add = var:mil_supply_stockpile } }
+				
+				change_variable = { name = realm_tax_liege multiply = var:realm_tax_rate }
+				change_variable = { name = realm_mp_liege multiply = var:realm_levy_rate }
+				change_variable = { name = realm_supply_liege multiply = var:realm_levy_rate }
+				
+				prev = {
+					change_variable = { name = realm_tax_vassal add = prev.var:realm_tax_liege }
+					change_variable = { name = realm_mp_vassal add = prev.var:realm_mp_liege }
+					change_variable = { name = realm_supply_vassal add = prev.var:realm_supply_liege }
+				}
+			}
+		}
+	^
+}
+
+realm_set_tax_prov = {
+	set_variable = { name = realm_tax_domain value = var:pop_earn_serf }
+	change_variable = { name = realm_tax_domain subtract = var:pop_pay_serf }
+	
+	barony = {
+		set_variable = { name = realm_tax_domain value = prev.var:realm_tax_domain }
+	}
+}
+realm_set_levy_prov = {
+	set_variable = { name = realm_mp_domain value = var:mil_levy }
+	set_variable = { name = realm_supply_domain value = var:mil_supply }
+	
+	barony = {
+		set_variable = { name = realm_mp_domain value = prev.var:realm_mp_domain }
+		set_variable = { name = realm_supply_domain value = prev.var:realm_supply_domain }
+	}
+}
+realm_set_tax_title = {
+	set_variable = { name = realm_tax_rate value = 0.2 }
+}
+realm_set_levy_title = {
+	set_variable = { name = realm_levy_rate value = 0.2 }
+}
+
+realm_init_members = {
+	every_county = {
+		limit = {
+			is_valid_prov = yes
+		}
+		add_to_global_variable_list = { name = realm_init_members_t target = prev }
+	}
+	every_duchy = {
+		limit = {
+			is_title_created = yes
+			is_titular = no
+		}
+		add_to_global_variable_list = { name = realm_init_members_t target = prev }
+	}
+	every_kingdom = {
+		limit = {
+			is_title_created = yes
+			is_titular = no
+		}
+		add_to_global_variable_list = { name = realm_init_members_t target = prev }
+	}
+	every_empire = {
+		limit = {
+			is_title_created = yes
+			is_titular = no
+		}
+		add_to_global_variable_list = { name = realm_init_members_t target = prev }
+	}
+	every_province = {
+		limit = {
+			is_valid_prov = yes
+		}
+		barony = {
+			add_to_global_variable_list = { name = realm_init_members_t target = prev }
+		}
+	}
+	
+	every_in_global_list = {
+		variable = realm_init_members_t
+		
+		if = {
+			limit = {
+				exists = de_facto_liege
+			}
+			set_variable = { name = realm_liege value = de_facto_liege }
+			
+			de_facto_liege = {
+				add_to_variable_list = { name = realm_members target = prev }
+			}
+		}
+		else = {
+			set_variable = { name = realm_liege value = this }
+		}
+	}
+	
+	clear_global_variable_list = realm_init_members_t
+}
