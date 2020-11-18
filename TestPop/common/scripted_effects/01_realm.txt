@@ -57,18 +57,17 @@
 	
 	if = {
 		limit = {
-			has_global_variable = sim_t
+			has_global_variable = sim_i
 		}
 		every_barony = {
 			limit = {
 				has_variable = realm_liege
 				
 				OR = {
-					holder.primary_title.tier = tier_barony
+					is_leased_out = yes
 					
-					AND = {
-						exists = lessee
-						lessee.primary_title.tier = tier_barony
+					NOT = {
+						de_facto_liege.holder = holder
 					}
 				}
 			}

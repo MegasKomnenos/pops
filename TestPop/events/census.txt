@@ -85327,16 +85327,15 @@ census.10 = {
 		}
 		if = { 
 			limit = { 
-				has_global_variable = sim_t
+				has_global_variable = sim_i
 			}
 			every_barony = { 
 				limit = { 
 					has_variable = realm_liege
 					OR = { 
-						holder.primary_title.tier = tier_barony
-						AND = { 
-							exists = lessee
-							lessee.primary_title.tier = tier_barony
+						is_leased_out = yes
+						NOT = { 
+							de_facto_liege.holder = holder
 						}
 					}
 				}
@@ -86558,12 +86557,12 @@ census.11 = {
 					is_leased_out = yes
 				}
 				lessee = { 
-					save_temporary_scope_as = mil_main_t
+					save_temporary_scope_as = stat_main_t
 				}
 			}
 			else = { 
 				holder = { 
-					save_temporary_scope_as = mil_main_t
+					save_temporary_scope_as = stat_main_t
 				}
 			}
 			var:realm_liege = { 
@@ -86572,28 +86571,28 @@ census.11 = {
 						is_leased_out = yes
 					}
 					lessee = { 
-						save_temporary_scope_as = mil_main_tt
+						save_temporary_scope_as = stat_main_tt
 					}
 				}
 				else = { 
 					holder = { 
-						save_temporary_scope_as = mil_main_tt
+						save_temporary_scope_as = stat_main_tt
 					}
 				}
 			}
 			if = { 
 				limit = { 
 					NOT = { 
-						scope:mil_main_t = scope:mil_main_tt
+						scope:stat_main_t = scope:stat_main_tt
 					}
 				}
-				scope:mil_main_t = { 
+				scope:stat_main_t = { 
 					change_variable = { 
 						name = stat_tax_pay
 						add = prev.var:realm_tax_liege
 					}
 				}
-				scope:mil_main_tt = { 
+				scope:stat_main_tt = { 
 					change_variable = { 
 						name = stat_tax_earn
 						add = prev.var:realm_tax_liege
@@ -86610,12 +86609,12 @@ census.11 = {
 					is_leased_out = yes
 				}
 				lessee = { 
-					save_temporary_scope_as = mil_main_t
+					save_temporary_scope_as = stat_main_t
 				}
 			}
 			else = { 
 				holder = { 
-					save_temporary_scope_as = mil_main_t
+					save_temporary_scope_as = stat_main_t
 				}
 			}
 			var:realm_liege = { 
@@ -86624,28 +86623,28 @@ census.11 = {
 						is_leased_out = yes
 					}
 					lessee = { 
-						save_temporary_scope_as = mil_main_tt
+						save_temporary_scope_as = stat_main_tt
 					}
 				}
 				else = { 
 					holder = { 
-						save_temporary_scope_as = mil_main_tt
+						save_temporary_scope_as = stat_main_tt
 					}
 				}
 			}
 			if = { 
 				limit = { 
 					NOT = { 
-						scope:mil_main_t = scope:mil_main_tt
+						scope:stat_main_t = scope:stat_main_tt
 					}
 				}
-				scope:mil_main_t = { 
+				scope:stat_main_t = { 
 					change_variable = { 
 						name = stat_tax_pay
 						add = prev.var:realm_tax_liege
 					}
 				}
-				scope:mil_main_tt = { 
+				scope:stat_main_tt = { 
 					change_variable = { 
 						name = stat_tax_earn
 						add = prev.var:realm_tax_liege
@@ -86662,12 +86661,12 @@ census.11 = {
 					is_leased_out = yes
 				}
 				lessee = { 
-					save_temporary_scope_as = mil_main_t
+					save_temporary_scope_as = stat_main_t
 				}
 			}
 			else = { 
 				holder = { 
-					save_temporary_scope_as = mil_main_t
+					save_temporary_scope_as = stat_main_t
 				}
 			}
 			var:realm_liege = { 
@@ -86676,28 +86675,28 @@ census.11 = {
 						is_leased_out = yes
 					}
 					lessee = { 
-						save_temporary_scope_as = mil_main_tt
+						save_temporary_scope_as = stat_main_tt
 					}
 				}
 				else = { 
 					holder = { 
-						save_temporary_scope_as = mil_main_tt
+						save_temporary_scope_as = stat_main_tt
 					}
 				}
 			}
 			if = { 
 				limit = { 
 					NOT = { 
-						scope:mil_main_t = scope:mil_main_tt
+						scope:stat_main_t = scope:stat_main_tt
 					}
 				}
-				scope:mil_main_t = { 
+				scope:stat_main_t = { 
 					change_variable = { 
 						name = stat_tax_pay
 						add = prev.var:realm_tax_liege
 					}
 				}
-				scope:mil_main_tt = { 
+				scope:stat_main_tt = { 
 					change_variable = { 
 						name = stat_tax_earn
 						add = prev.var:realm_tax_liege
@@ -86714,12 +86713,12 @@ census.11 = {
 					is_leased_out = yes
 				}
 				lessee = { 
-					save_temporary_scope_as = mil_main_t
+					save_temporary_scope_as = stat_main_t
 				}
 			}
 			else = { 
 				holder = { 
-					save_temporary_scope_as = mil_main_t
+					save_temporary_scope_as = stat_main_t
 				}
 			}
 			var:realm_liege = { 
@@ -86728,28 +86727,28 @@ census.11 = {
 						is_leased_out = yes
 					}
 					lessee = { 
-						save_temporary_scope_as = mil_main_tt
+						save_temporary_scope_as = stat_main_tt
 					}
 				}
 				else = { 
 					holder = { 
-						save_temporary_scope_as = mil_main_tt
+						save_temporary_scope_as = stat_main_tt
 					}
 				}
 			}
 			if = { 
 				limit = { 
 					NOT = { 
-						scope:mil_main_t = scope:mil_main_tt
+						scope:stat_main_t = scope:stat_main_tt
 					}
 				}
-				scope:mil_main_t = { 
+				scope:stat_main_t = { 
 					change_variable = { 
 						name = stat_tax_pay
 						add = prev.var:realm_tax_liege
 					}
 				}
-				scope:mil_main_tt = { 
+				scope:stat_main_tt = { 
 					change_variable = { 
 						name = stat_tax_earn
 						add = prev.var:realm_tax_liege
@@ -86766,12 +86765,12 @@ census.11 = {
 					is_leased_out = yes
 				}
 				lessee = { 
-					save_temporary_scope_as = mil_main_t
+					save_temporary_scope_as = stat_main_t
 				}
 			}
 			else = { 
 				holder = { 
-					save_temporary_scope_as = mil_main_t
+					save_temporary_scope_as = stat_main_t
 				}
 			}
 			var:realm_liege = { 
@@ -86780,28 +86779,28 @@ census.11 = {
 						is_leased_out = yes
 					}
 					lessee = { 
-						save_temporary_scope_as = mil_main_tt
+						save_temporary_scope_as = stat_main_tt
 					}
 				}
 				else = { 
 					holder = { 
-						save_temporary_scope_as = mil_main_tt
+						save_temporary_scope_as = stat_main_tt
 					}
 				}
 			}
 			if = { 
 				limit = { 
 					NOT = { 
-						scope:mil_main_t = scope:mil_main_tt
+						scope:stat_main_t = scope:stat_main_tt
 					}
 				}
-				scope:mil_main_t = { 
+				scope:stat_main_t = { 
 					change_variable = { 
 						name = stat_tax_pay
 						add = prev.var:realm_tax_liege
 					}
 				}
-				scope:mil_main_tt = { 
+				scope:stat_main_tt = { 
 					change_variable = { 
 						name = stat_tax_earn
 						add = prev.var:realm_tax_liege

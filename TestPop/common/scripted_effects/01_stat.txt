@@ -59,12 +59,12 @@
 					is_leased_out = yes
 				}
 				lessee = {
-					save_temporary_scope_as = mil_main_t
+					save_temporary_scope_as = stat_main_t
 				}
 			}
 			else = {
 				holder = {
-					save_temporary_scope_as = mil_main_t
+					save_temporary_scope_as = stat_main_t
 				}
 			}
 			var:realm_liege = {
@@ -73,12 +73,12 @@
 						is_leased_out = yes
 					}
 					lessee = {
-						save_temporary_scope_as = mil_main_tt
+						save_temporary_scope_as = stat_main_tt
 					}
 				}
 				else = {
 					holder = {
-						save_temporary_scope_as = mil_main_tt
+						save_temporary_scope_as = stat_main_tt
 					}
 				}
 			}
@@ -86,13 +86,13 @@
 			if = {
 				limit = {
 					NOT = {
-						scope:mil_main_t = scope:mil_main_tt
+						scope:stat_main_t = scope:stat_main_tt
 					}
 				}
-				scope:mil_main_t = {
+				scope:stat_main_t = {
 					change_variable = { name = stat_tax_pay add = prev.var:realm_tax_liege }
 				}
-				scope:mil_main_tt = {
+				scope:stat_main_tt = {
 					change_variable = { name = stat_tax_earn add = prev.var:realm_tax_liege }
 				}
 			}
