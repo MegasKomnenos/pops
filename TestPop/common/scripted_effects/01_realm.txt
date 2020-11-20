@@ -259,6 +259,71 @@ realm_update_obligation = {
 	clear_global_variable_list = realm_update_tax_base_t
 }
 
+realm_base_cost_prov = {
+	set_variable = { name = $return$ value = 4 }
+		
+	if = {
+		limit = {
+			culture = $holder$.culture
+		}
+		change_variable = { name = $return$ divide = 2 }
+	}
+	else_if = {
+		limit = {
+			culture_group = $holder$.culture_group
+		}
+		change_variable = { name = $return$ divide = 1.5 }
+	}
+	
+	if = {
+		limit = {
+			faith = $holder$.faith
+		}
+		change_variable = { name = $return$ divide = 2 }
+	}
+	else_if = {
+		limit = {
+			religion = $holder$.religion
+		}
+		change_variable = { name = $return$ divide = 1.5 }
+	}
+}
+
+realm_base_cost_vassal = {
+	set_variable = { name = $return$ value = 16 }
+		
+	save_temporary_scope_as = realm_base_cost_vassal_t
+	
+	if = {
+		limit = {
+			exists = liege
+		}
+		if = {
+			limit = {
+				exists = scope:realm_base_cost_vassal_t.primary_title
+			
+				liege = {
+					any_held_title = {
+						is_de_jure_liege_or_above_target = scope:realm_base_cost_vassal_t.primary_title
+					}
+				}
+			}
+			change_variable = { name = $return$ divide = 2 }
+		}
+		
+		set_variable = { name = realm_base_cost_vassal_t value = var:realm_authority }
+		change_variable = { name = realm_base_cost_vassal_t divide = liege.var:realm_authority }
+		change_variable = { name = realm_base_cost_vassal_t add = 1 }
+		change_variable = { name = realm_base_cost_vassal_t divide = 2 }
+		change_variable = { name = $return$ multiply = var:realm_base_cost_vassal_t }
+		change_variable = { name = $return$ multiply = var:realm_base_cost_vassal_t }
+		
+		remove_variable = realm_base_cost_vassal_t
+	}
+	
+	change_variable = { name = $return$ add = 4 }
+}
+
 realm_ai = {
 	every_province = {
 		limit = {
@@ -291,33 +356,7 @@ realm_ai = {
 		set_variable = { name = realm_mp_obligation value = 0 }
 		set_variable = { name = realm_supply_obligation value = 0 }
 		
-		set_variable = { name = realm_ai_t value = 4 }
-		
-		if = {
-			limit = {
-				culture = scope:realm_ai_t.culture
-			}
-			change_variable = { name = realm_ai_t divide = 2 }
-		}
-		else_if = {
-			limit = {
-				culture_group = scope:realm_ai_t.culture_group
-			}
-			change_variable = { name = realm_ai_t divide = 1.5 }
-		}
-		
-		if = {
-			limit = {
-				faith = scope:realm_ai_t.faith
-			}
-			change_variable = { name = realm_ai_t divide = 2 }
-		}
-		else_if = {
-			limit = {
-				religion = scope:realm_ai_t.religion
-			}
-			change_variable = { name = realm_ai_t divide = 1.5 }
-		}
+		realm_base_cost_prov = { holder = scope:realm_ai_t return = realm_ai_t }
 		
 		set_variable = { name = realm_ai_tt value = var:realm_tax_base }
 		set_variable = { name = realm_ai_ttt value = var:realm_mp_base }
@@ -350,36 +389,7 @@ realm_ai = {
 			limit = {
 				is_independent_ruler = no
 			}
-			set_variable = { name = realm_ai_t value = 16 }
-		
-			save_temporary_scope_as = realm_ai_t
-			
-			if = {
-				limit = {
-					exists = liege
-				}
-				if = {
-					limit = {
-						exists = scope:realm_ai_t.primary_title
-					
-						liege = {
-							any_held_title = {
-								is_de_jure_liege_or_above_target = scope:realm_ai_t.primary_title
-							}
-						}
-					}
-					change_variable = { name = realm_ai_t divide = 2 }
-				}
-				
-				set_variable = { name = realm_ai_tt value = var:realm_authority }
-				change_variable = { name = realm_ai_tt divide = liege.var:realm_authority }
-				change_variable = { name = realm_ai_tt add = 1 }
-				change_variable = { name = realm_ai_tt divide = 2 }
-				change_variable = { name = realm_ai_t multiply = var:realm_ai_tt }
-				change_variable = { name = realm_ai_t multiply = var:realm_ai_tt }
-			}
-			
-			change_variable = { name = realm_ai_t add = 4 }
+			realm_base_cost_vassal = { return = realm_ai_t }
 			
 			set_variable = { name = realm_ai_tt value = var:realm_tax_base }
 			set_variable = { name = realm_ai_ttt value = var:realm_mp_base }
