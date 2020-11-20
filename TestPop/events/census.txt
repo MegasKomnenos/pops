@@ -2009,6 +2009,18 @@ census.01 = {
 					has_variable = prod_update_instances_t
 					var:prod_update_instances_t > 0
 				}
+				set_variable = { 
+					name = prod_update_instances_tt
+					value = var:mil_levy_earn
+				}
+				change_variable = { 
+					name = prod_update_instances_tt
+					multiply = -20
+				}
+				change_variable = { 
+					name = prod_update_instances_tt
+					add = var:pop_total
+				}
 				every_in_list = { 
 					variable = prod_instances
 					change_variable = { 
@@ -2021,13 +2033,14 @@ census.01 = {
 					}
 					change_variable = { 
 						name = prod_labor
-						multiply = prev.var:pop_total
+						multiply = prev.var:prod_update_instances_tt
 					}
 					change_variable = { 
 						name = prod_labor
 						divide = 100
 					}
 				}
+				remove_variable = prod_update_instances_tt
 			}
 			else = { 
 				every_in_list = { 
@@ -6791,11 +6804,11 @@ census.02 = {
 				}
 				change_variable = { 
 					name = mil_supply_food
-					divide = 10
+					divide = mil_supply_food
 				}
 				change_variable = { 
 					name = mil_supply_food
-					divide = mil_supply_food
+					divide = 100
 				}
 				set_variable = { 
 					name = mil_set_supply_tttt
@@ -6819,11 +6832,11 @@ census.02 = {
 				}
 				change_variable = { 
 					name = mil_supply_cereal
-					divide = 10
+					divide = mil_supply_cereal
 				}
 				change_variable = { 
 					name = mil_supply_cereal
-					divide = mil_supply_cereal
+					divide = 100
 				}
 				set_variable = { 
 					name = mil_set_supply_tttt
@@ -6847,11 +6860,11 @@ census.02 = {
 				}
 				change_variable = { 
 					name = mil_supply_salted
-					divide = 10
+					divide = mil_supply_salted
 				}
 				change_variable = { 
 					name = mil_supply_salted
-					divide = mil_supply_salted
+					divide = 100
 				}
 				set_variable = { 
 					name = mil_set_supply_tttt
@@ -6875,11 +6888,11 @@ census.02 = {
 				}
 				change_variable = { 
 					name = mil_supply_salt
-					divide = 10
+					divide = mil_supply_salt
 				}
 				change_variable = { 
 					name = mil_supply_salt
-					divide = mil_supply_salt
+					divide = 100
 				}
 				set_variable = { 
 					name = mil_set_supply_tttt
@@ -6903,11 +6916,11 @@ census.02 = {
 				}
 				change_variable = { 
 					name = mil_supply_mud
-					divide = 10
+					divide = mil_supply_mud
 				}
 				change_variable = { 
 					name = mil_supply_mud
-					divide = mil_supply_mud
+					divide = 100
 				}
 				set_variable = { 
 					name = mil_set_supply_tttt
@@ -6931,11 +6944,11 @@ census.02 = {
 				}
 				change_variable = { 
 					name = mil_supply_fuel
-					divide = 10
+					divide = mil_supply_fuel
 				}
 				change_variable = { 
 					name = mil_supply_fuel
-					divide = mil_supply_fuel
+					divide = 100
 				}
 				set_variable = { 
 					name = mil_set_supply_tttt
@@ -6959,11 +6972,11 @@ census.02 = {
 				}
 				change_variable = { 
 					name = mil_supply_fiber
-					divide = 10
+					divide = mil_supply_fiber
 				}
 				change_variable = { 
 					name = mil_supply_fiber
-					divide = mil_supply_fiber
+					divide = 100
 				}
 				set_variable = { 
 					name = mil_set_supply_tttt
@@ -6987,11 +7000,11 @@ census.02 = {
 				}
 				change_variable = { 
 					name = mil_supply_timber
-					divide = 10
+					divide = mil_supply_timber
 				}
 				change_variable = { 
 					name = mil_supply_timber
-					divide = mil_supply_timber
+					divide = 100
 				}
 				set_variable = { 
 					name = mil_set_supply_tttt
@@ -7015,11 +7028,11 @@ census.02 = {
 				}
 				change_variable = { 
 					name = mil_supply_metal
-					divide = 10
+					divide = mil_supply_metal
 				}
 				change_variable = { 
 					name = mil_supply_metal
-					divide = mil_supply_metal
+					divide = 100
 				}
 				set_variable = { 
 					name = mil_set_supply_tttt
@@ -7043,11 +7056,11 @@ census.02 = {
 				}
 				change_variable = { 
 					name = mil_supply_exotics_w
-					divide = 10
+					divide = mil_supply_exotics_w
 				}
 				change_variable = { 
 					name = mil_supply_exotics_w
-					divide = mil_supply_exotics_w
+					divide = 100
 				}
 				set_variable = { 
 					name = mil_set_supply_tttt
@@ -7071,11 +7084,11 @@ census.02 = {
 				}
 				change_variable = { 
 					name = mil_supply_exotics_e
-					divide = 10
+					divide = mil_supply_exotics_e
 				}
 				change_variable = { 
 					name = mil_supply_exotics_e
-					divide = mil_supply_exotics_e
+					divide = 100
 				}
 				set_variable = { 
 					name = mil_set_supply_tttt
@@ -7099,11 +7112,11 @@ census.02 = {
 				}
 				change_variable = { 
 					name = mil_supply_exotics_g
-					divide = 10
+					divide = mil_supply_exotics_g
 				}
 				change_variable = { 
 					name = mil_supply_exotics_g
-					divide = mil_supply_exotics_g
+					divide = 100
 				}
 				set_variable = { 
 					name = mil_set_supply_tttt
@@ -7127,11 +7140,11 @@ census.02 = {
 				}
 				change_variable = { 
 					name = mil_supply_textile
-					divide = 10
+					divide = mil_supply_textile
 				}
 				change_variable = { 
 					name = mil_supply_textile
-					divide = mil_supply_textile
+					divide = 100
 				}
 				set_variable = { 
 					name = mil_set_supply_tttt
@@ -7155,11 +7168,11 @@ census.02 = {
 				}
 				change_variable = { 
 					name = mil_supply_pottery
-					divide = 10
+					divide = mil_supply_pottery
 				}
 				change_variable = { 
 					name = mil_supply_pottery
-					divide = mil_supply_pottery
+					divide = 100
 				}
 				set_variable = { 
 					name = mil_set_supply_tttt
@@ -7183,11 +7196,11 @@ census.02 = {
 				}
 				change_variable = { 
 					name = mil_supply_tools
-					divide = 10
+					divide = mil_supply_tools
 				}
 				change_variable = { 
 					name = mil_supply_tools
-					divide = mil_supply_tools
+					divide = 100
 				}
 				set_variable = { 
 					name = mil_set_supply_tttt
@@ -7211,11 +7224,11 @@ census.02 = {
 				}
 				change_variable = { 
 					name = mil_supply_armaments
-					divide = 10
+					divide = mil_supply_armaments
 				}
 				change_variable = { 
 					name = mil_supply_armaments
-					divide = mil_supply_armaments
+					divide = 100
 				}
 				set_variable = { 
 					name = mil_set_supply_tttt
@@ -7549,32 +7562,76 @@ census.02 = {
 				}
 			}
 			set_variable = { 
+				name = mil_levy_decay
+				value = 0.05
+			}
+			set_variable = { 
+				name = mil_supply_decay
+				value = 0.05
+			}
+			change_variable = { 
+				name = mil_levy_decay
+				multiply = var:mil_levy
+			}
+			change_variable = { 
+				name = mil_supply_decay
+				multiply = var:mil_supply
+			}
+			change_variable = { 
+				name = mil_levy
+				subtract = var:mil_levy_decay
+			}
+			change_variable = { 
+				name = mil_supply
+				subtract = var:mil_supply_decay
+			}
+			set_variable = { 
+				name = mil_levy_earn
+				value = var:pop_total
+			}
+			change_variable = { 
+				name = mil_levy_earn
+				divide = 10
+			}
+			change_variable = { 
+				name = mil_levy_earn
+				subtract = var:mil_levy
+			}
+			change_variable = { 
+				name = mil_levy_earn
+				divide = 10
+			}
+			change_variable = { 
+				name = mil_levy
+				add = var:mil_levy_earn
+			}
+			set_variable = { 
 				name = mil_main_t
 				value = var:pop_total
 			}
 			change_variable = { 
 				name = mil_main_t
-				divide = 200
+				divide = 20
 			}
 			change_variable = { 
-				name = mil_levy
-				multiply = 0.9
+				name = mil_main_t
+				subtract = var:mil_supply
 			}
 			change_variable = { 
-				name = mil_levy
-				add = var:mil_main_t
+				name = mil_main_t
+				divide = 10
 			}
 			set_variable = { 
-				name = mil_main_t
+				name = mil_main_tt
 				value = var:pop_wealth
 			}
 			change_variable = { 
-				name = mil_main_t
+				name = mil_main_tt
 				divide = 100
 			}
 			set_variable = { 
 				name = mil_set_supply_t
-				value = var:mil_main_t
+				value = var:mil_main_tt
 			}
 			set_variable = { 
 				name = mil_set_supply_tt
@@ -7914,11 +7971,11 @@ census.02 = {
 			}
 			change_variable = { 
 				name = mil_supply_food
-				divide = 10
+				divide = province_owner.mil_supply_food
 			}
 			change_variable = { 
 				name = mil_supply_food
-				divide = province_owner.mil_supply_food
+				divide = 100
 			}
 			set_variable = { 
 				name = mil_set_supply_tttt
@@ -7942,11 +7999,11 @@ census.02 = {
 			}
 			change_variable = { 
 				name = mil_supply_cereal
-				divide = 10
+				divide = province_owner.mil_supply_cereal
 			}
 			change_variable = { 
 				name = mil_supply_cereal
-				divide = province_owner.mil_supply_cereal
+				divide = 100
 			}
 			set_variable = { 
 				name = mil_set_supply_tttt
@@ -7970,11 +8027,11 @@ census.02 = {
 			}
 			change_variable = { 
 				name = mil_supply_salted
-				divide = 10
+				divide = province_owner.mil_supply_salted
 			}
 			change_variable = { 
 				name = mil_supply_salted
-				divide = province_owner.mil_supply_salted
+				divide = 100
 			}
 			set_variable = { 
 				name = mil_set_supply_tttt
@@ -7998,11 +8055,11 @@ census.02 = {
 			}
 			change_variable = { 
 				name = mil_supply_salt
-				divide = 10
+				divide = province_owner.mil_supply_salt
 			}
 			change_variable = { 
 				name = mil_supply_salt
-				divide = province_owner.mil_supply_salt
+				divide = 100
 			}
 			set_variable = { 
 				name = mil_set_supply_tttt
@@ -8026,11 +8083,11 @@ census.02 = {
 			}
 			change_variable = { 
 				name = mil_supply_mud
-				divide = 10
+				divide = province_owner.mil_supply_mud
 			}
 			change_variable = { 
 				name = mil_supply_mud
-				divide = province_owner.mil_supply_mud
+				divide = 100
 			}
 			set_variable = { 
 				name = mil_set_supply_tttt
@@ -8054,11 +8111,11 @@ census.02 = {
 			}
 			change_variable = { 
 				name = mil_supply_fuel
-				divide = 10
+				divide = province_owner.mil_supply_fuel
 			}
 			change_variable = { 
 				name = mil_supply_fuel
-				divide = province_owner.mil_supply_fuel
+				divide = 100
 			}
 			set_variable = { 
 				name = mil_set_supply_tttt
@@ -8082,11 +8139,11 @@ census.02 = {
 			}
 			change_variable = { 
 				name = mil_supply_fiber
-				divide = 10
+				divide = province_owner.mil_supply_fiber
 			}
 			change_variable = { 
 				name = mil_supply_fiber
-				divide = province_owner.mil_supply_fiber
+				divide = 100
 			}
 			set_variable = { 
 				name = mil_set_supply_tttt
@@ -8110,11 +8167,11 @@ census.02 = {
 			}
 			change_variable = { 
 				name = mil_supply_timber
-				divide = 10
+				divide = province_owner.mil_supply_timber
 			}
 			change_variable = { 
 				name = mil_supply_timber
-				divide = province_owner.mil_supply_timber
+				divide = 100
 			}
 			set_variable = { 
 				name = mil_set_supply_tttt
@@ -8138,11 +8195,11 @@ census.02 = {
 			}
 			change_variable = { 
 				name = mil_supply_metal
-				divide = 10
+				divide = province_owner.mil_supply_metal
 			}
 			change_variable = { 
 				name = mil_supply_metal
-				divide = province_owner.mil_supply_metal
+				divide = 100
 			}
 			set_variable = { 
 				name = mil_set_supply_tttt
@@ -8166,11 +8223,11 @@ census.02 = {
 			}
 			change_variable = { 
 				name = mil_supply_exotics_w
-				divide = 10
+				divide = province_owner.mil_supply_exotics_w
 			}
 			change_variable = { 
 				name = mil_supply_exotics_w
-				divide = province_owner.mil_supply_exotics_w
+				divide = 100
 			}
 			set_variable = { 
 				name = mil_set_supply_tttt
@@ -8194,11 +8251,11 @@ census.02 = {
 			}
 			change_variable = { 
 				name = mil_supply_exotics_e
-				divide = 10
+				divide = province_owner.mil_supply_exotics_e
 			}
 			change_variable = { 
 				name = mil_supply_exotics_e
-				divide = province_owner.mil_supply_exotics_e
+				divide = 100
 			}
 			set_variable = { 
 				name = mil_set_supply_tttt
@@ -8222,11 +8279,11 @@ census.02 = {
 			}
 			change_variable = { 
 				name = mil_supply_exotics_g
-				divide = 10
+				divide = province_owner.mil_supply_exotics_g
 			}
 			change_variable = { 
 				name = mil_supply_exotics_g
-				divide = province_owner.mil_supply_exotics_g
+				divide = 100
 			}
 			set_variable = { 
 				name = mil_set_supply_tttt
@@ -8250,11 +8307,11 @@ census.02 = {
 			}
 			change_variable = { 
 				name = mil_supply_textile
-				divide = 10
+				divide = province_owner.mil_supply_textile
 			}
 			change_variable = { 
 				name = mil_supply_textile
-				divide = province_owner.mil_supply_textile
+				divide = 100
 			}
 			set_variable = { 
 				name = mil_set_supply_tttt
@@ -8278,11 +8335,11 @@ census.02 = {
 			}
 			change_variable = { 
 				name = mil_supply_pottery
-				divide = 10
+				divide = province_owner.mil_supply_pottery
 			}
 			change_variable = { 
 				name = mil_supply_pottery
-				divide = province_owner.mil_supply_pottery
+				divide = 100
 			}
 			set_variable = { 
 				name = mil_set_supply_tttt
@@ -8306,11 +8363,11 @@ census.02 = {
 			}
 			change_variable = { 
 				name = mil_supply_tools
-				divide = 10
+				divide = province_owner.mil_supply_tools
 			}
 			change_variable = { 
 				name = mil_supply_tools
-				divide = province_owner.mil_supply_tools
+				divide = 100
 			}
 			set_variable = { 
 				name = mil_set_supply_tttt
@@ -8334,11 +8391,11 @@ census.02 = {
 			}
 			change_variable = { 
 				name = mil_supply_armaments
-				divide = 10
+				divide = province_owner.mil_supply_armaments
 			}
 			change_variable = { 
 				name = mil_supply_armaments
-				divide = province_owner.mil_supply_armaments
+				divide = 100
 			}
 			set_variable = { 
 				name = mil_set_supply_tttt
@@ -8359,6 +8416,13 @@ census.02 = {
 			change_variable = { 
 				name = mil_set_supply_t
 				divide = var:mil_set_supply_ttt
+			}
+			change_variable = { 
+				name = mil_set_supply_t
+				add = { 
+					value = var:mil_main_t
+					multiply = 100
+				}
 			}
 			change_variable = { 
 				name = mil_supply_food
@@ -8493,6 +8557,7 @@ census.02 = {
 			remove_variable = mil_set_supply_ttt
 			remove_variable = mil_set_supply_tttt
 			remove_variable = mil_main_t
+			remove_variable = mil_main_tt
 		}
 		every_ruler = { 
 			limit = { 
@@ -84333,9 +84398,9 @@ census.10 = {
 				has_variable = mil_supply_has
 			}
 			remove_variable = mil_supply_has
-			change_variable = { 
-				name = mil_supply
-				multiply = 0.9
+			set_variable = { 
+				name = mil_supply_earn
+				value = 0
 			}
 			set_variable = { 
 				name = mil_main_t
@@ -84350,7 +84415,7 @@ census.10 = {
 				divide = 10
 			}
 			change_variable = { 
-				name = mil_supply
+				name = mil_supply_earn
 				add = var:mil_main_t
 			}
 			remove_variable = mil_supply_in_food
@@ -84367,7 +84432,7 @@ census.10 = {
 				divide = 10
 			}
 			change_variable = { 
-				name = mil_supply
+				name = mil_supply_earn
 				add = var:mil_main_t
 			}
 			remove_variable = mil_supply_in_cereal
@@ -84384,7 +84449,7 @@ census.10 = {
 				divide = 10
 			}
 			change_variable = { 
-				name = mil_supply
+				name = mil_supply_earn
 				add = var:mil_main_t
 			}
 			remove_variable = mil_supply_in_salted
@@ -84401,7 +84466,7 @@ census.10 = {
 				divide = 10
 			}
 			change_variable = { 
-				name = mil_supply
+				name = mil_supply_earn
 				add = var:mil_main_t
 			}
 			remove_variable = mil_supply_in_salt
@@ -84418,7 +84483,7 @@ census.10 = {
 				divide = 10
 			}
 			change_variable = { 
-				name = mil_supply
+				name = mil_supply_earn
 				add = var:mil_main_t
 			}
 			remove_variable = mil_supply_in_mud
@@ -84435,7 +84500,7 @@ census.10 = {
 				divide = 10
 			}
 			change_variable = { 
-				name = mil_supply
+				name = mil_supply_earn
 				add = var:mil_main_t
 			}
 			remove_variable = mil_supply_in_fuel
@@ -84452,7 +84517,7 @@ census.10 = {
 				divide = 10
 			}
 			change_variable = { 
-				name = mil_supply
+				name = mil_supply_earn
 				add = var:mil_main_t
 			}
 			remove_variable = mil_supply_in_fiber
@@ -84469,7 +84534,7 @@ census.10 = {
 				divide = 10
 			}
 			change_variable = { 
-				name = mil_supply
+				name = mil_supply_earn
 				add = var:mil_main_t
 			}
 			remove_variable = mil_supply_in_timber
@@ -84486,7 +84551,7 @@ census.10 = {
 				divide = 10
 			}
 			change_variable = { 
-				name = mil_supply
+				name = mil_supply_earn
 				add = var:mil_main_t
 			}
 			remove_variable = mil_supply_in_metal
@@ -84503,7 +84568,7 @@ census.10 = {
 				divide = 10
 			}
 			change_variable = { 
-				name = mil_supply
+				name = mil_supply_earn
 				add = var:mil_main_t
 			}
 			remove_variable = mil_supply_in_exotics_w
@@ -84520,7 +84585,7 @@ census.10 = {
 				divide = 10
 			}
 			change_variable = { 
-				name = mil_supply
+				name = mil_supply_earn
 				add = var:mil_main_t
 			}
 			remove_variable = mil_supply_in_exotics_e
@@ -84537,7 +84602,7 @@ census.10 = {
 				divide = 10
 			}
 			change_variable = { 
-				name = mil_supply
+				name = mil_supply_earn
 				add = var:mil_main_t
 			}
 			remove_variable = mil_supply_in_exotics_g
@@ -84554,7 +84619,7 @@ census.10 = {
 				divide = 10
 			}
 			change_variable = { 
-				name = mil_supply
+				name = mil_supply_earn
 				add = var:mil_main_t
 			}
 			remove_variable = mil_supply_in_textile
@@ -84571,7 +84636,7 @@ census.10 = {
 				divide = 10
 			}
 			change_variable = { 
-				name = mil_supply
+				name = mil_supply_earn
 				add = var:mil_main_t
 			}
 			remove_variable = mil_supply_in_pottery
@@ -84588,7 +84653,7 @@ census.10 = {
 				divide = 10
 			}
 			change_variable = { 
-				name = mil_supply
+				name = mil_supply_earn
 				add = var:mil_main_t
 			}
 			remove_variable = mil_supply_in_tools
@@ -84605,10 +84670,14 @@ census.10 = {
 				divide = 10
 			}
 			change_variable = { 
-				name = mil_supply
+				name = mil_supply_earn
 				add = var:mil_main_t
 			}
 			remove_variable = mil_supply_in_armaments
+			change_variable = { 
+				name = mil_supply
+				add = var:mil_supply_earn
+			}
 			remove_variable = mil_main_t
 		}
 		every_province = { 
@@ -84926,17 +84995,17 @@ census.10 = {
 					name = realm_ai_t
 					value = 16
 				}
-				save_temporary_scope_as = realm_ai_t
+				save_temporary_scope_as = realm_base_cost_vassal_t
 				if = { 
 					limit = { 
 						exists = liege
 					}
 					if = { 
 						limit = { 
-							exists = scope:realm_ai_t.primary_title
+							exists = scope:realm_base_cost_vassal_t.primary_title
 							liege = { 
 								any_held_title = { 
-									is_de_jure_liege_or_above_target = scope:realm_ai_t.primary_title
+									is_de_jure_liege_or_above_target = scope:realm_base_cost_vassal_t.primary_title
 								}
 							}
 						}
@@ -84946,29 +85015,30 @@ census.10 = {
 						}
 					}
 					set_variable = { 
-						name = realm_ai_tt
+						name = realm_base_cost_vassal_t
 						value = var:realm_authority
 					}
 					change_variable = { 
-						name = realm_ai_tt
+						name = realm_base_cost_vassal_t
 						divide = liege.var:realm_authority
 					}
 					change_variable = { 
-						name = realm_ai_tt
+						name = realm_base_cost_vassal_t
 						add = 1
 					}
 					change_variable = { 
-						name = realm_ai_tt
+						name = realm_base_cost_vassal_t
 						divide = 2
 					}
 					change_variable = { 
 						name = realm_ai_t
-						multiply = var:realm_ai_tt
+						multiply = var:realm_base_cost_vassal_t
 					}
 					change_variable = { 
 						name = realm_ai_t
-						multiply = var:realm_ai_tt
+						multiply = var:realm_base_cost_vassal_t
 					}
+					remove_variable = realm_base_cost_vassal_t
 				}
 				change_variable = { 
 					name = realm_ai_t

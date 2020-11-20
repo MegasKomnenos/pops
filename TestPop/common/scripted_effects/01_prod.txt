@@ -617,14 +617,20 @@ prod_update_instances_helper_3 = {
 			
 			var:prod_update_instances_t > 0
 		}
+		set_variable = { name = prod_update_instances_tt value = var:mil_levy_earn }
+		change_variable = { name = prod_update_instances_tt multiply = -20 }
+		change_variable = { name = prod_update_instances_tt add = var:pop_total }
+		
 		every_in_list = {
 			variable = prod_instances
 			
 			change_variable = { name = prod_labor multiply = 100 }
 			change_variable = { name = prod_labor divide = prev.var:prod_update_instances_t }
-			change_variable = { name = prod_labor multiply = prev.var:pop_total }
+			change_variable = { name = prod_labor multiply = prev.var:prod_update_instances_tt }
 			change_variable = { name = prod_labor divide = 100 }
 		}
+		
+		remove_variable = prod_update_instances_tt
 	}
 	else = {
 		every_in_list = {

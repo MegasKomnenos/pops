@@ -15,8 +15,8 @@
 	^^goods^
 		change_variable = { name = $name$_&goods& multiply = 100 }
 		change_variable = { name = $name$_&goods& divide = var:mil_set_supply_tt }
-		change_variable = { name = $name$_&goods& divide = 10 }
 		change_variable = { name = $name$_&goods& divide = $rate$_&goods& }
+		change_variable = { name = $name$_&goods& divide = 100 }
 		
 		set_variable = { name = mil_set_supply_tttt value = var:$name$_&goods& }
 		change_variable = { name = mil_set_supply_tttt multiply = $price$_&goods& }
@@ -25,6 +25,7 @@
 	
 	change_variable = { name = mil_set_supply_t multiply = 100 }
 	change_variable = { name = mil_set_supply_t divide = var:mil_set_supply_ttt }
+	[[size] change_variable = { name = mil_set_supply_t add = { value = $size$ multiply = 100 } } ]
 	
 	^^goods^
 		change_variable = { name = $name$_&goods& multiply = var:mil_set_supply_t }
@@ -97,17 +98,33 @@ mil_main_0 = {
 			set_variable = { name = mil_supply value = 0 }
 		}
 		
+		set_variable = { name = mil_levy_decay value = 0.05 }
+		set_variable = { name = mil_supply_decay value = 0.05 }
+		
+		change_variable = { name = mil_levy_decay multiply = var:mil_levy }
+		change_variable = { name = mil_supply_decay multiply = var:mil_supply }
+		
+		change_variable = { name = mil_levy subtract = var:mil_levy_decay }
+		change_variable = { name = mil_supply subtract = var:mil_supply_decay }
+		
+		set_variable = { name = mil_levy_earn value = var:pop_total }
+		change_variable = { name = mil_levy_earn divide = 10 }
+		change_variable = { name = mil_levy_earn subtract = var:mil_levy }
+		change_variable = { name = mil_levy_earn divide = 10 }
+		change_variable = { name = mil_levy add = var:mil_levy_earn }
+		
 		set_variable = { name = mil_main_t value = var:pop_total }
-		change_variable = { name = mil_main_t divide = 200 }
-		change_variable = { name = mil_levy multiply = 0.9 }
-		change_variable = { name = mil_levy add = var:mil_main_t }
+		change_variable = { name = mil_main_t divide = 20 }
+		change_variable = { name = mil_main_t subtract = var:mil_supply }
+		change_variable = { name = mil_main_t divide = 10 }
 		
-		set_variable = { name = mil_main_t value = var:pop_wealth }
-		change_variable = { name = mil_main_t divide = 100 }
+		set_variable = { name = mil_main_tt value = var:pop_wealth }
+		change_variable = { name = mil_main_tt divide = 100 }
 		
-		mil_set_supply = { name = mil_supply wealth = var:mil_main_t price = county.var:trade_price rate = province_owner.mil_supply }
+		mil_set_supply = { name = mil_supply size = var:mil_main_t wealth = var:mil_main_tt price = county.var:trade_price rate = province_owner.mil_supply }
 		
 		remove_variable = mil_main_t
+		remove_variable = mil_main_tt
 	}
 }
 
@@ -164,16 +181,18 @@ mil_main_1 = {
 		}
 		remove_variable = mil_supply_has
 		
-		change_variable = { name = mil_supply multiply = 0.9 }
+		set_variable = { name = mil_supply_earn value = 0 }
 		
 		^^goods^
 			set_variable = { name = mil_main_t value = var:mil_supply_in_&goods& }
 			change_variable = { name = mil_main_t multiply = province_owner.mil_supply_&goods& }
 			change_variable = { name = mil_main_t divide = 10 }
-			change_variable = { name = mil_supply add = var:mil_main_t }
+			change_variable = { name = mil_supply_earn add = var:mil_main_t }
 			
 			remove_variable = mil_supply_in_&goods&
 		^
+		
+		change_variable = { name = mil_supply add = var:mil_supply_earn }
 		
 		remove_variable = mil_main_t
 	}
