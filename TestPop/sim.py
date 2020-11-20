@@ -431,6 +431,28 @@ sim_run.02 = {
 								}
 							}
 							change_variable = { name = pop_wealth add = var:realm_tax_pay }
+							
+							if = {
+								limit = {
+									barony = {
+										is_leased_out = yes
+									}
+								}
+								set_variable = { name = sim_t value = 0.01 }
+								change_variable = { name = sim_t multiply = barony.lessee.var:realm_tax_obligation }
+								change_variable = { name = sim_t multiply = var:realm_tax_base }
+								change_variable = { name = sim_t divide = 4 }
+								change_variable = { name = pop_wealth subtract = var:sim_t }
+							}
+							else = {
+								set_variable = { name = sim_t value = 0.01 }
+								change_variable = { name = sim_t multiply = barony.holder.var:realm_tax_obligation }
+								change_variable = { name = sim_t multiply = var:realm_tax_base }
+								change_variable = { name = sim_t divide = 4 }
+								change_variable = { name = pop_wealth subtract = var:sim_t }
+							}
+							
+							remove_variable = sim_t
 						}
 					}
 				}
