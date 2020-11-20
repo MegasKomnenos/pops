@@ -172,7 +172,9 @@ census.10 = {
 	
 	immediate = {
 		mil_main_1 = yes
-		realm_set_tax_levy = yes
+		realm_update_tax_base = yes
+		realm_ai = yes
+		realm_update_obligation = yes
 		mil_main_2 = yes
 	}
 	
@@ -211,7 +213,54 @@ census.12 = {
 			
 			change_variable = { name = pop_wealth add = var:pop_earn_free } 
 			change_variable = { name = pop_wealth add = var:pop_earn_base } 
+			change_variable = { name = pop_wealth subtract = var:realm_tax_pay } 
 			change_variable = { name = pop_wealth subtract = var:pop_pay_free }
+		}
+		
+		every_in_global_list = {
+			variable = trade_merchants
+			
+			change_variable = { name = trade_wealth add = var:trade_earn }
+			change_variable = { name = trade_wealth subtract = var:trade_pay }
+			
+			if = {
+				limit = {
+					OR = {
+						NOT = {
+							has_variable = trade_wealth
+						}
+						
+						var:trade_wealth <= 0
+					}
+				}
+				set_variable = { name = trade_wealth value = 0 }
+			}
+		}
+	}
+	
+	option = {
+	}
+}
+
+census.13 = {
+	type = empty
+	hidden = yes
+	
+	immediate = {
+		every_independent_ruler = {
+			limit = {
+				is_character = yes
+				is_landed = yes
+			}
+			realm_update_authority = yes
+			
+			every_vassal_or_below = {
+				limit = {
+					is_character = yes
+					is_landed = yes
+				}
+				realm_update_authority = yes
+			}
 		}
 	}
 	

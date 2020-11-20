@@ -6,7 +6,7 @@
 		}
 		add_province_modifier = base_prov
 		
-		set_variable = { name = stat_tax value = var:realm_tax_domain }
+		set_variable = { name = stat_tax value = var:realm_tax_pay }
 		
 		set_variable = { name = stat_main_t value = var:stat_tax }
 		change_variable = { name = stat_main_t divide = 12 }
@@ -45,73 +45,49 @@
 	every_in_global_list = {
 		variable = stat_main_t
 		
-		set_variable = { name = stat_tax_earn value = 0 }
-		set_variable = { name = stat_tax_pay value = 0 }
-	}
-	
-	^^title_tiers^
-		every_&title_tiers& = {
+		if = {
 			limit = {
-				has_variable = realm_liege
+				has_variable = realm_tax_earn
 			}
-			if = {
-				limit = {
-					is_leased_out = yes
-				}
-				lessee = {
-					save_temporary_scope_as = stat_main_t
-				}
-			}
-			else = {
-				holder = {
-					save_temporary_scope_as = stat_main_t
-				}
-			}
-			var:realm_liege = {
-				if = {
-					limit = {
-						is_leased_out = yes
-					}
-					lessee = {
-						save_temporary_scope_as = stat_main_tt
-					}
-				}
-				else = {
-					holder = {
-						save_temporary_scope_as = stat_main_tt
-					}
-				}
-			}
-			
-			if = {
-				limit = {
-					NOT = {
-						scope:stat_main_t = scope:stat_main_tt
-					}
-				}
-				scope:stat_main_t = {
-					change_variable = { name = stat_tax_pay add = prev.var:realm_tax_liege }
-				}
-				scope:stat_main_tt = {
-					change_variable = { name = stat_tax_earn add = prev.var:realm_tax_liege }
-				}
-			}
+			set_variable = { name = stat_tax_earn value = var:realm_tax_earn }
 		}
-	^
-	
-	every_in_global_list = {
-		variable = stat_main_t
-
+		else = {
+			set_variable = { name = stat_tax_earn value = 0 }
+		}
+		if = {
+			limit = {
+				has_variable = realm_tax_pay
+			}
+			set_variable = { name = stat_tax_pay value = var:realm_tax_pay }
+		}
+		else = {
+			set_variable = { name = stat_tax_pay value = 0 }
+		}
+		
 		add_character_modifier = base_lord
 		
 		set_variable = { name = stat_main_t value = var:stat_tax_earn }
-		change_variable = { name = stat_main_t divide = 12 }
 		
+		if = {
+			limit = {
+				has_variable = trade_earn
+			}
+			change_variable = { name = stat_main_t add = var:trade_earn }
+		}
+		
+		change_variable = { name = stat_main_t divide = 12 }
 		mod_assign_2_20 = { type = character name = stat_tax var = stat_main_t }
 		
 		set_variable = { name = stat_main_t value = var:stat_tax_pay }
-		change_variable = { name = stat_main_t divide = 12 }
 		
+		if = {
+			limit = {
+				has_variable = trade_pay
+			}
+			change_variable = { name = stat_main_t add = var:trade_pay }
+		}
+		
+		change_variable = { name = stat_main_t divide = 12 }
 		mod_assign_2_20 = { type = character name = stat_tax_pay var = stat_main_t }
 		
 		if = {

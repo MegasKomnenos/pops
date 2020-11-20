@@ -403,6 +403,7 @@ sim_run.02 = {
 				trigger_event = { id = census.09 }
 				trigger_event = { id = census.10 }
 				trigger_event = { id = census.11 }
+				trigger_event = { id = census.13 }
 
 				every_province = {
 					limit = {
@@ -410,6 +411,47 @@ sim_run.02 = {
 					}
 					change_variable = { name = pop_wealth add = var:pop_earn_free } 
 					change_variable = { name = pop_wealth subtract = var:pop_pay_free }
+					
+					if = {
+						limit = {
+							is_city = yes
+						}
+						change_variable = { name = pop_wealth subtract = var:realm_tax_pay }
+						
+						if = {
+							limit = {
+								barony = {
+									OR = {
+										is_leased_out = yes
+										
+										NOT = {
+											de_facto_liege.holder = holder
+										}
+									}
+								}
+							}
+							change_variable = { name = pop_wealth add = var:realm_tax_pay }
+						}
+					}
+				}
+				every_in_global_list = {
+					variable = trade_merchants
+					
+					change_variable = { name = trade_wealth add = var:trade_earn }
+					change_variable = { name = trade_wealth subtract = var:trade_pay }
+					
+					if = {
+						limit = {
+							OR = {
+								NOT = {
+									has_variable = trade_wealth
+								}
+								
+								var:trade_wealth <= 0
+							}
+						}
+						set_variable = { name = trade_wealth value = 0 }
+					}
 				}
 
 				every_ruler = {
@@ -418,8 +460,6 @@ sim_run.02 = {
 						is_landed = yes
 					}
 					set_variable = { name = sim_balance value = yearly_character_balance }
-					change_variable = { name = sim_balance add = var:trade_earn }
-					change_variable = { name = sim_balance subtract = var:trade_pay }
 					
 					if = {
 						limit = {

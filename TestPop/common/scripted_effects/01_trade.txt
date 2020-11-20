@@ -2347,15 +2347,8 @@ trade_resolve_trade = {
 			}
 		}
 		
-		change_variable = { name = trade_resolve_trade_t divide = 2 }
-		
-		set_variable = { name = pop_earn_free value = var:pop_freedom }
-		change_variable = { name = pop_earn_free multiply = var:trade_resolve_trade_t }
-		
-		set_variable = { name = pop_earn_serf value = var:trade_resolve_trade_t }
-		change_variable = { name = pop_earn_serf subtract = var:pop_earn_free }
-		
-		change_variable = { name = pop_earn_free add = var:trade_resolve_trade_t }
+		set_variable = { name = pop_earn_free value = var:trade_resolve_trade_t }
+		set_variable = { name = pop_earn_serf value = 0 }
 		
 		remove_variable = trade_resolve_trade_t
 		remove_variable = trade_resolve_trade_tt
@@ -2372,26 +2365,9 @@ trade_resolve_trade = {
 			change_variable = { name = trade_pay add = var:trade_pay_&goods& }
 		^
 		
-		change_variable = { name = trade_wealth add = var:trade_earn }
-		change_variable = { name = trade_wealth subtract = var:trade_pay }
-		
-		if = {
-			limit = {
-				OR = {
-					NOT = {
-						has_variable = trade_wealth
-					}
-					
-					var:trade_wealth <= 0
-				}
-			}
-			set_variable = { name = trade_wealth value = 0 }
-		}
-		
 		set_variable = { name = trade_retire_pay value = var:trade_retire }
 		change_variable = { name = trade_retire_pay multiply = var:trade_wealth }
 		change_variable = { name = trade_retire_pay divide = 100 }
-		change_variable = { name = trade_wealth subtract = var:trade_retire_pay }
 		change_variable = { name = trade_pay add = var:trade_retire_pay }
 		var:trade_location = { change_variable = { name = pop_earn_free add = prev.var:trade_retire_pay } }
 		

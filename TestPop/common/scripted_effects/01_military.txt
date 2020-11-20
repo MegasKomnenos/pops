@@ -1,18 +1,4 @@
-﻿mil_levy_prov = {
-	set_variable = { name = mil_levy value = 100 }
-	change_variable = { name = mil_levy subtract = var:pop_freedom }
-	change_variable = { name = mil_levy multiply = var:pop_total }
-	change_variable = { name = mil_levy divide = 20000 }
-	
-	set_variable = { name = mil_supply value = 100 }
-	change_variable = { name = mil_supply subtract = var:pop_freedom }
-	change_variable = { name = mil_supply multiply = var:pop_wealth }
-	change_variable = { name = mil_supply divide = 20000 }
-	
-	mil_set_supply = { name = mil_supply wealth = var:mil_supply price = county.var:trade_price rate = province_owner.mil_supply }
-}
-
-mil_set_supply = {
+﻿mil_set_supply = {
 	set_variable = { name = mil_set_supply_t value = $wealth$ }
 	set_variable = { name = mil_set_supply_tt value = 0 }
 	
@@ -94,7 +80,34 @@ mil_main_0 = {
 		
 		^^goods^ set_variable = { name = mil_supply_in_&goods& value = 0 } ^
 		
-		mil_levy_prov = yes
+		if = {
+			limit = {
+				NOT = {
+					has_variable = mil_levy
+				}
+			}
+			set_variable = { name = mil_levy value = 0 }
+		}
+		if = {
+			limit = {
+				NOT = {
+					has_variable = mil_supply
+				}
+			}
+			set_variable = { name = mil_supply value = 0 }
+		}
+		
+		set_variable = { name = mil_main_t value = var:pop_total }
+		change_variable = { name = mil_main_t divide = 200 }
+		change_variable = { name = mil_levy multiply = 0.9 }
+		change_variable = { name = mil_levy add = var:mil_main_t }
+		
+		set_variable = { name = mil_main_t value = var:pop_wealth }
+		change_variable = { name = mil_main_t divide = 100 }
+		
+		mil_set_supply = { name = mil_supply wealth = var:mil_main_t price = county.var:trade_price rate = province_owner.mil_supply }
+		
+		remove_variable = mil_main_t
 	}
 }
 
@@ -151,7 +164,7 @@ mil_main_1 = {
 		}
 		remove_variable = mil_supply_has
 		
-		set_variable = { name = mil_supply value = 0 }
+		change_variable = { name = mil_supply multiply = 0.9 }
 		
 		^^goods^
 			set_variable = { name = mil_main_t value = var:mil_supply_in_&goods& }
@@ -172,6 +185,9 @@ mil_main_2 = {
 			is_valid_prov = yes
 			is_city = yes
 		}
+		change_variable = { name = mil_levy subtract = var:realm_mp_pay }
+		change_variable = { name = mil_supply subtract = var:realm_supply_pay }
+		
 		if = {
 			limit = {
 				barony = {
@@ -188,87 +204,6 @@ mil_main_2 = {
 			}
 		}
 	}
-	
-	every_in_global_list = {
-		variable = mil_main_t
-		
-		set_variable = { name = mil_mp_levy value = 0 }
-		set_variable = { name = mil_supply_levy value = 0 }
-		set_variable = { name = mil_mp_liege value = 0 }
-		set_variable = { name = mil_supply_liege value = 0 }
-		set_variable = { name = mil_mp_vassal value = 0 }
-		set_variable = { name = mil_supply_vassal value = 0 }
-	}
-	
-	^^title_tiers^
-		every_&title_tiers& = {
-			limit = {
-				has_variable = realm_liege
-			}
-			if = {
-				limit = {
-					is_leased_out = yes
-				}
-				lessee = {
-					save_temporary_scope_as = mil_main_t
-				}
-			}
-			else = {
-				holder = {
-					save_temporary_scope_as = mil_main_t
-				}
-			}
-			
-			var:realm_liege = {
-				if = {
-					limit = {
-						is_leased_out = yes
-					}
-					lessee = {
-						save_temporary_scope_as = mil_main_tt
-					}
-				}
-				else = {
-					holder = {
-						save_temporary_scope_as = mil_main_tt
-					}
-				}
-			}
-			
-			if = {
-				limit = {
-					NOT = {
-						scope:mil_main_t = scope:mil_main_tt
-					}
-				}
-				scope:mil_main_t = {
-					change_variable = { name = mil_mp_liege add = prev.var:realm_mp_liege }
-					change_variable = { name = mil_supply_liege add = prev.var:realm_supply_liege }
-				}
-				scope:mil_main_tt = {
-					change_variable = { name = mil_mp_vassal add = prev.var:realm_mp_liege }
-					change_variable = { name = mil_supply_vassal add = prev.var:realm_supply_liege }
-				}
-			}
-			
-			if = {
-				limit = {
-					has_variable = realm_mp_domain
-				}
-				scope:mil_main_t = {
-					change_variable = { name = mil_mp_levy add = prev.var:realm_mp_domain }
-				}
-			}
-			if = {
-				limit = {
-					has_variable = realm_supply_domain
-				}
-				scope:mil_main_t = {
-					change_variable = { name = mil_supply_levy add = prev.var:realm_supply_domain }
-				}
-			}
-		}
-	^
 	
 	every_in_global_list = {
 		variable = mil_main_t
@@ -328,17 +263,15 @@ mil_main_2 = {
 		}
 		
 		set_variable = { name = mil_mp_balance value = var:mil_mp_supply }
-		change_variable = { name = mil_mp_balance add = var:mil_mp_levy }
-		change_variable = { name = mil_mp_balance add = var:mil_mp_vassal }
-		change_variable = { name = mil_mp_balance subtract = var:mil_mp_liege }
+		change_variable = { name = mil_mp_balance add = var:realm_mp_earn }
+		change_variable = { name = mil_mp_balance subtract = var:realm_mp_pay }
 		change_variable = { name = mil_mp_balance subtract = var:mil_mp_decay }
 		change_variable = { name = mil_mp_balance subtract = var:mil_mp_mismanage }
 		change_variable = { name = mil_mp add = var:mil_mp_balance }
 		
 		set_variable = { name = mil_supply_balance value = var:mil_supply_stockpile }
-		change_variable = { name = mil_supply_balance add = var:mil_supply_levy }
-		change_variable = { name = mil_supply_balance add = var:mil_supply_vassal }
-		change_variable = { name = mil_supply_balance subtract = var:mil_supply_liege }
+		change_variable = { name = mil_supply_balance add = var:realm_supply_earn }
+		change_variable = { name = mil_supply_balance subtract = var:realm_supply_pay }
 		change_variable = { name = mil_supply_balance subtract = var:mil_supply_decay }
 		change_variable = { name = mil_supply_balance subtract = var:mil_supply_mismanage }
 		change_variable = { name = mil_supply add = var:mil_supply_balance }
@@ -376,54 +309,6 @@ mil_rank_up_handler = {
 				}
 			}
 			set_variable = { name = mil_supply_stockpile value = 0 }
-		}
-		if = {
-			limit = {
-				NOT = {
-					has_variable = mil_supply_vassal
-				}
-			}
-			set_variable = { name = mil_supply_vassal value = 0 }
-		}
-		if = {
-			limit = {
-				NOT = {
-					has_variable = mil_mp_vassal
-				}
-			}
-			set_variable = { name = mil_mp_vassal value = 0 }
-		}
-		if = {
-			limit = {
-				NOT = {
-					has_variable = mil_supply_liege
-				}
-			}
-			set_variable = { name = mil_supply_liege value = 0 }
-		}
-		if = {
-			limit = {
-				NOT = {
-					has_variable = mil_mp_liege
-				}
-			}
-			set_variable = { name = mil_mp_liege value = 0 }
-		}
-		if = {
-			limit = {
-				NOT = {
-					has_variable = mil_supply_levy
-				}
-			}
-			set_variable = { name = mil_supply_levy value = 0 }
-		}
-		if = {
-			limit = {
-				NOT = {
-					has_variable = mil_mp_levy
-				}
-			}
-			set_variable = { name = mil_mp_levy value = 0 }
 		}
 		
 		modi_mil = yes
