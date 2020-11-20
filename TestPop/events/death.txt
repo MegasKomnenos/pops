@@ -8753,15 +8753,15 @@ death.02 = {
 				value = 1
 			}
 			set_variable = { 
-				name = realm_authority
+				name = realm_authority_mil
 				value = var:mil_mp
 			}
 			change_variable = { 
-				name = realm_authority
+				name = realm_authority_mil
 				add = 1
 			}
 			change_variable = { 
-				name = realm_authority
+				name = realm_authority_mil
 				multiply = { 
 					value = var:mil_supply
 					add = 1
@@ -8769,7 +8769,7 @@ death.02 = {
 			}
 			set_variable = { 
 				name = math_sqrt_i
-				value = var:realm_authority
+				value = var:realm_authority_mil
 			}
 			if = { 
 				limit = { 
@@ -8831,7 +8831,7 @@ death.02 = {
 					}
 				}
 				set_variable = { 
-					name = realm_authority
+					name = realm_authority_mil
 					value = var:math_sqrt_n
 				}
 				remove_variable = math_sqrt_x
@@ -8841,18 +8841,101 @@ death.02 = {
 			}
 			else = { 
 				set_variable = { 
-					name = realm_authority
+					name = realm_authority_mil
+					value = 0
+				}
+			}
+			remove_variable = math_sqrt_i
+			set_variable = { 
+				name = math_sqrt_i
+				value = prestige
+			}
+			if = { 
+				limit = { 
+					has_variable = math_sqrt_i
+					var:math_sqrt_i > 0
+				}
+				set_variable = { 
+					name = math_sqrt_x
+					value = var:math_sqrt_i
+				}
+				set_variable = { 
+					name = math_sqrt_n
+					value = var:math_sqrt_i
+				}
+				change_variable = { 
+					name = math_sqrt_n
+					divide = 2
+				}
+				set_variable = { 
+					name = math_sqrt_tt
+					value = 0.5
+				}
+				while = { 
+					limit = { 
+						has_variable = math_sqrt_n
+						var:math_sqrt_n > 0
+						OR = { 
+							var:math_sqrt_tt < 0.995
+							var:math_sqrt_tt > 1.005
+						}
+					}
+					set_variable = { 
+						name = math_sqrt_x
+						value = var:math_sqrt_n
+					}
+					set_variable = { 
+						name = math_sqrt_t
+						value = var:math_sqrt_i
+					}
+					change_variable = { 
+						name = math_sqrt_t
+						divide = var:math_sqrt_n
+					}
+					change_variable = { 
+						name = math_sqrt_n
+						add = var:math_sqrt_t
+					}
+					change_variable = { 
+						name = math_sqrt_n
+						divide = 2
+					}
+					set_variable = { 
+						name = math_sqrt_tt
+						value = var:math_sqrt_x
+					}
+					change_variable = { 
+						name = math_sqrt_tt
+						divide = var:math_sqrt_n
+					}
+				}
+				set_variable = { 
+					name = realm_authority_prestige
+					value = var:math_sqrt_n
+				}
+				remove_variable = math_sqrt_x
+				remove_variable = math_sqrt_t
+				remove_variable = math_sqrt_n
+				remove_variable = math_sqrt_tt
+			}
+			else = { 
+				set_variable = { 
+					name = realm_authority_prestige
 					value = 0
 				}
 			}
 			remove_variable = math_sqrt_i
 			change_variable = { 
+				name = realm_authority_prestige
+				divide = 10
+			}
+			set_variable = { 
 				name = realm_authority
-				multiply = { 
-					value = prestige_level
-					add = 1
-					divide = 2
-				}
+				value = var:realm_authority_mil
+			}
+			change_variable = { 
+				name = realm_authority
+				add = var:realm_authority_prestige
 			}
 			change_variable = { 
 				name = realm_authority

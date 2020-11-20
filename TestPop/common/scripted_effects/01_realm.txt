@@ -1,22 +1,22 @@
 ﻿realm_update_authority = {
-	set_variable = { name = realm_authority value = var:mil_mp }
-	change_variable = { name = realm_authority add = 1 }
-	change_variable = { name = realm_authority multiply = { value = var:mil_supply add = 1  } }
+	set_variable = { name = realm_authority_mil value = var:mil_mp }
+	change_variable = { name = realm_authority_mil add = 1 }
+	change_variable = { name = realm_authority_mil multiply = { value = var:mil_supply add = 1  } }
 	
 	sqrt_effect = {
-		inp = var:realm_authority
-		return = realm_authority
+		inp = var:realm_authority_mil
+		return = realm_authority_mil
 	}
 	
-	change_variable = {
-		name = realm_authority
-		multiply = {
-			value = prestige_level
-			add = 1
-			divide = 2
-		}
+	sqrt_effect = {
+		inp = prestige
+		return = realm_authority_prestige
 	}
 	
+	change_variable = { name = realm_authority_prestige divide = 10 }
+	
+	set_variable = { name = realm_authority value = var:realm_authority_mil }
+	change_variable = { name = realm_authority add = var:realm_authority_prestige }
 	change_variable = { name = realm_authority multiply = var:modi_authority_culture }
 	change_variable = { name = realm_authority multiply = var:modi_authority_faith }
 }
@@ -291,7 +291,7 @@ realm_ai = {
 		set_variable = { name = realm_mp_obligation value = 0 }
 		set_variable = { name = realm_supply_obligation value = 0 }
 		
-		set_variable = { name = realm_ai_t value = 10 }
+		set_variable = { name = realm_ai_t value = 4 }
 		
 		if = {
 			limit = {
@@ -323,7 +323,7 @@ realm_ai = {
 		set_variable = { name = realm_ai_ttt value = var:realm_mp_base }
 		set_variable = { name = realm_ai_tttt value = var:realm_supply_base }
 		
-		change_variable = { name = realm_ai_tt divide = 96 }
+		change_variable = { name = realm_ai_tt divide = 200 }
 		
 		change_variable = { name = realm_ai_tt add = 0.01 }
 		change_variable = { name = realm_ai_ttt add = 0.01 }
@@ -350,29 +350,42 @@ realm_ai = {
 			limit = {
 				is_independent_ruler = no
 			}
-			set_variable = { name = realm_ai_t value = 20 }
+			set_variable = { name = realm_ai_t value = 16 }
 		
 			save_temporary_scope_as = realm_ai_t
 			
 			if = {
 				limit = {
 					exists = liege
-					exists = scope:realm_ai_t.primary_title
+				}
+				if = {
+					limit = {
+						exists = scope:realm_ai_t.primary_title
 					
-					liege = {
-						any_held_title = {
-							is_de_jure_liege_or_above_target = scope:realm_ai_t.primary_title
+						liege = {
+							any_held_title = {
+								is_de_jure_liege_or_above_target = scope:realm_ai_t.primary_title
+							}
 						}
 					}
+					change_variable = { name = realm_ai_t divide = 2 }
 				}
-				change_variable = { name = realm_ai_t divide = 2 }
+				
+				set_variable = { name = realm_ai_tt value = var:realm_authority }
+				change_variable = { name = realm_ai_tt divide = liege.var:realm_authority }
+				change_variable = { name = realm_ai_tt add = 1 }
+				change_variable = { name = realm_ai_tt divide = 2 }
+				change_variable = { name = realm_ai_t multiply = var:realm_ai_tt }
+				change_variable = { name = realm_ai_t multiply = var:realm_ai_tt }
 			}
+			
+			change_variable = { name = realm_ai_t add = 4 }
 			
 			set_variable = { name = realm_ai_tt value = var:realm_tax_base }
 			set_variable = { name = realm_ai_ttt value = var:realm_mp_base }
 			set_variable = { name = realm_ai_tttt value = var:realm_supply_base }
 			
-			change_variable = { name = realm_ai_tt divide = 96 }
+			change_variable = { name = realm_ai_tt divide = 200 }
 			
 			change_variable = { name = realm_ai_tt add = 0.01 }
 			change_variable = { name = realm_ai_ttt add = 0.01 }
@@ -454,7 +467,7 @@ realm_ai = {
 						}
 						
 						change_variable = { name = realm_ai_ttttt multiply = var:realm_tax_base }
-						change_variable = { name = realm_ai_ttttt divide = 24 }
+						change_variable = { name = realm_ai_ttttt divide = 200 }
 						change_variable = { name = realm_ai_ttttt multiply = var:realm_ai_t }
 						
 						prev = {
@@ -462,7 +475,7 @@ realm_ai = {
 						}
 						
 						change_variable = { name = realm_tax_obligation add = 1 }
-						change_variable = { name = realm_ai_t multiply = 1.5 }
+						change_variable = { name = realm_ai_t multiply = 2 }
 					}
 					else_if = {
 						limit = {
@@ -497,7 +510,7 @@ realm_ai = {
 						}
 						
 						change_variable = { name = realm_mp_obligation add = 1 }
-						change_variable = { name = realm_ai_t multiply = 1.5 }
+						change_variable = { name = realm_ai_t multiply = 2 }
 					}
 					else = {
 						change_variable = { name = realm_ai_tttt divide = 2 }
@@ -516,7 +529,7 @@ realm_ai = {
 						}
 						
 						change_variable = { name = realm_supply_obligation add = 1 }
-						change_variable = { name = realm_ai_t multiply = 1.5 }
+						change_variable = { name = realm_ai_t multiply = 2 }
 					}
 				}
 			}
