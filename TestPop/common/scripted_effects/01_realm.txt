@@ -1,7 +1,7 @@
 ﻿realm_update_authority = {
 	set_variable = { name = realm_authority_mil value = var:mil_mp }
-	change_variable = { name = realm_authority_mil add = 1 }
-	change_variable = { name = realm_authority_mil multiply = { value = var:mil_supply add = 1  } }
+	change_variable = { name = realm_authority_mil add = 0.1 }
+	change_variable = { name = realm_authority_mil multiply = { value = var:mil_supply add = 0.1  } }
 	
 	sqrt_effect = {
 		inp = var:realm_authority_mil
@@ -31,9 +31,9 @@ realm_update_tax_base = {
 		set_variable = { name = realm_mp_base value = var:mil_levy }
 		set_variable = { name = realm_supply_base value = var:mil_supply }
 		
-		change_variable = { name = realm_tax_base multiply = 0.03 }
-		change_variable = { name = realm_mp_base multiply = 0.15 }
-		change_variable = { name = realm_supply_base multiply = 0.15 }
+		change_variable = { name = realm_tax_base multiply = 0.04 }
+		change_variable = { name = realm_mp_base multiply = 0.2 }
+		change_variable = { name = realm_supply_base multiply = 0.2 }
 		
 		if = {
 			limit = {
@@ -170,7 +170,7 @@ realm_update_obligation = {
 				has_variable = realm_tax_obligation
 			}
 			set_variable = { name = realm_update_obligation_t value = var:realm_tax_obligation }
-			change_variable = { name = realm_update_obligation_t divide = 3 }
+			change_variable = { name = realm_update_obligation_t divide = 8 }
 			change_variable = { name = realm_update_obligation_t multiply = var:realm_tax_base }
 			
 			change_variable = { name = realm_tax_pay add = var:realm_update_obligation_t }
@@ -184,7 +184,7 @@ realm_update_obligation = {
 				has_variable = realm_mp_obligation
 			}
 			set_variable = { name = realm_update_obligation_t value = var:realm_mp_obligation }
-			change_variable = { name = realm_update_obligation_t divide = 3 }
+			change_variable = { name = realm_update_obligation_t divide = 8 }
 			change_variable = { name = realm_update_obligation_t multiply = var:realm_mp_base }
 			
 			change_variable = { name = realm_mp_pay add = var:realm_update_obligation_t }
@@ -198,7 +198,7 @@ realm_update_obligation = {
 				has_variable = realm_supply_obligation
 			}
 			set_variable = { name = realm_update_obligation_t value = var:realm_supply_obligation }
-			change_variable = { name = realm_update_obligation_t divide = 3 }
+			change_variable = { name = realm_update_obligation_t divide = 8 }
 			change_variable = { name = realm_update_obligation_t multiply = var:realm_supply_base }
 			
 			change_variable = { name = realm_supply_pay add = var:realm_update_obligation_t }
@@ -216,7 +216,7 @@ realm_update_obligation = {
 					has_variable = realm_tax_obligation
 				}
 				set_variable = { name = realm_update_obligation_t value = var:realm_tax_obligation }
-				change_variable = { name = realm_update_obligation_t divide = 3 }
+				change_variable = { name = realm_update_obligation_t divide = 8 }
 				change_variable = { name = realm_update_obligation_t multiply = var:realm_tax_base }
 				
 				change_variable = { name = realm_tax_pay add = var:realm_update_obligation_t }
@@ -226,7 +226,7 @@ realm_update_obligation = {
 					has_variable = realm_mp_obligation
 				}
 				set_variable = { name = realm_update_obligation_t value = var:realm_mp_obligation }
-				change_variable = { name = realm_update_obligation_t divide = 3 }
+				change_variable = { name = realm_update_obligation_t divide = 8 }
 				change_variable = { name = realm_update_obligation_t multiply = var:realm_mp_base }
 				
 				change_variable = { name = realm_mp_pay add = var:realm_update_obligation_t }
@@ -240,7 +240,7 @@ realm_update_obligation = {
 					has_variable = realm_supply_obligation
 				}
 				set_variable = { name = realm_update_obligation_t value = var:realm_supply_obligation }
-				change_variable = { name = realm_update_obligation_t divide = 3 }
+				change_variable = { name = realm_update_obligation_t divide = 8 }
 				change_variable = { name = realm_update_obligation_t multiply = var:realm_supply_base }
 				
 				change_variable = { name = realm_supply_pay add = var:realm_update_obligation_t }
@@ -260,7 +260,7 @@ realm_update_obligation = {
 }
 
 realm_base_cost_prov = {
-	set_variable = { name = $return$ value = 2 }
+	set_variable = { name = $return$ value = 1 }
 		
 	if = {
 		limit = {
@@ -292,12 +292,12 @@ realm_base_cost_prov = {
 		limit = {
 			this = $holder$.capital_province
 		}
-		change_variable = { name = $return$ divide = 2 }
+		change_variable = { name = $return$ divide = 1.25 }
 	}
 }
 
 realm_base_cost_vassal = {
-	set_variable = { name = $return$ value = 6 }
+	set_variable = { name = $return$ value = 2 }
 		
 	save_temporary_scope_as = realm_base_cost_vassal_t
 	
@@ -328,7 +328,7 @@ realm_base_cost_vassal = {
 		remove_variable = realm_base_cost_vassal_t
 	}
 	
-	change_variable = { name = $return$ add = 2 }
+	change_variable = { name = $return$ add = 1 }
 }
 
 realm_ai = {
@@ -415,10 +415,10 @@ realm_ai = {
 		
 		set_variable = { name = realm_ai_ttttt value = var:realm_authority }
 		
-		set_variable = { name = realm_ai_tttttt value = 1 }
-		set_variable = { name = realm_ai_ttttttt value = 1 }
-		set_variable = { name = realm_ai_tttttttt value = 1 }
-		set_variable = { name = realm_ai_ttttttttt value = 3 }
+		set_variable = { name = realm_ai_tttttt value = 0.1 }
+		set_variable = { name = realm_ai_ttttttt value = 0.1 }
+		set_variable = { name = realm_ai_tttttttt value = 0.1 }
+		set_variable = { name = realm_ai_ttttttttt value = 0.3 }
 		
 		while = {
 			limit = {
@@ -479,9 +479,9 @@ realm_ai = {
 						has_variable = realm_mp_obligation
 						has_variable = realm_supply_obligation
 						
-						var:realm_tax_obligation = 3
-						var:realm_mp_obligation = 3
-						var:realm_supply_obligation = 3
+						var:realm_tax_obligation = 8
+						var:realm_mp_obligation = 8
+						var:realm_supply_obligation = 8
 					}
 					remove_variable = realm_ai_t
 					remove_variable = realm_ai_tt
@@ -501,24 +501,24 @@ realm_ai = {
 									has_variable = realm_tax_obligation
 								}
 								
-								var:realm_tax_obligation < 3
+								var:realm_tax_obligation < 8
 							}
 							
 							var:realm_ai_tttttt = {
 								OR = {
-									prev.var:realm_mp_obligation = 3
+									prev.var:realm_mp_obligation = 8
 									compare_value >= prev.var:realm_ai_ttttttt
 								}
 								OR = {
-									prev.var:realm_supply_obligation = 3
+									prev.var:realm_supply_obligation = 8
 									compare_value >= prev.var:realm_ai_tttttttt
 								}
 							}
 						}
-						change_variable = { name = realm_ai_tt divide = 2 }
+						change_variable = { name = realm_ai_tt divide = 1.189 }
 						
 						pow_effect = {
-							inp = 2
+							inp = 1.189
 							exp = var:realm_tax_obligation
 							return = realm_ai_ttttt
 						}
@@ -530,11 +530,11 @@ realm_ai = {
 						prev = {
 							change_variable = { name = realm_ai_ttttt subtract = prev.var:realm_ai_ttttt }
 							change_variable = { name = realm_ai_tttttt add = prev.var:realm_ai_ttttt }
-							change_variable = { name = realm_ai_ttttttttt add = prev.var:realm_ai_ttttt }
+							change_variable = { name = realm_ai_ttttttttt add = { value = prev.var:realm_tax_base divide = 200 } }
 						}
 						
 						change_variable = { name = realm_tax_obligation add = 1 }
-						change_variable = { name = realm_ai_t multiply = 2 }
+						change_variable = { name = realm_ai_t multiply = 1.189 }
 					}
 					else_if = {
 						limit = {
@@ -543,20 +543,20 @@ realm_ai = {
 									has_variable = realm_mp_obligation
 								}
 								
-								var:realm_mp_obligation < 3
+								var:realm_mp_obligation < 8
 							}
 							
 							var:realm_ai_ttttttt = {
 								OR = {
-									prev.var:realm_supply_obligation = 3
+									prev.var:realm_supply_obligation = 8
 									compare_value >= prev.var:realm_ai_tttttttt
 								}
 							}
 						}
-						change_variable = { name = realm_ai_ttt divide = 2 }
+						change_variable = { name = realm_ai_ttt divide = 1.189 }
 						
 						pow_effect = {
-							inp = 2
+							inp = 1.189
 							exp = var:realm_mp_obligation
 							return = realm_ai_ttttt
 						}
@@ -567,17 +567,17 @@ realm_ai = {
 						prev = {
 							change_variable = { name = realm_ai_ttttt subtract = prev.var:realm_ai_ttttt }
 							change_variable = { name = realm_ai_ttttttt add = prev.var:realm_ai_ttttt }
-							change_variable = { name = realm_ai_ttttttttt add = prev.var:realm_ai_ttttt }
+							change_variable = { name = realm_ai_ttttttttt add = prev.var:realm_mp_base }
 						}
 						
 						change_variable = { name = realm_mp_obligation add = 1 }
-						change_variable = { name = realm_ai_t multiply = 2 }
+						change_variable = { name = realm_ai_t multiply = 1.189 }
 					}
 					else = {
-						change_variable = { name = realm_ai_tttt divide = 2 }
+						change_variable = { name = realm_ai_tttt divide = 1.189 }
 						
 						pow_effect = {
-							inp = 2
+							inp = 1.189
 							exp = var:realm_supply_obligation
 							return = realm_ai_ttttt
 						}
@@ -588,11 +588,11 @@ realm_ai = {
 						prev = {
 							change_variable = { name = realm_ai_ttttt subtract = prev.var:realm_ai_ttttt }
 							change_variable = { name = realm_ai_tttttttt add = prev.var:realm_ai_ttttt }
-							change_variable = { name = realm_ai_ttttttttt add = prev.var:realm_ai_ttttt }
+							change_variable = { name = realm_ai_ttttttttt add = prev.var:realm_supply_base }
 						}
 						
 						change_variable = { name = realm_supply_obligation add = 1 }
-						change_variable = { name = realm_ai_t multiply = 2 }
+						change_variable = { name = realm_ai_t multiply = 1.189 }
 					}
 				}
 				

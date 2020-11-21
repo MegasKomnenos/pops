@@ -84699,15 +84699,15 @@ census.10 = {
 			}
 			change_variable = { 
 				name = realm_tax_base
-				multiply = 0.03
+				multiply = 0.04
 			}
 			change_variable = { 
 				name = realm_mp_base
-				multiply = 0.15
+				multiply = 0.2
 			}
 			change_variable = { 
 				name = realm_supply_base
-				multiply = 0.15
+				multiply = 0.2
 			}
 			if = { 
 				limit = { 
@@ -84892,7 +84892,7 @@ census.10 = {
 			}
 			set_variable = { 
 				name = realm_ai_t
-				value = 4
+				value = 1
 			}
 			if = { 
 				limit = { 
@@ -84900,7 +84900,7 @@ census.10 = {
 				}
 				change_variable = { 
 					name = realm_ai_t
-					divide = 2
+					divide = 1.414
 				}
 			}
 			else_if = { 
@@ -84909,7 +84909,7 @@ census.10 = {
 				}
 				change_variable = { 
 					name = realm_ai_t
-					divide = 1.5
+					divide = 1.225
 				}
 			}
 			if = { 
@@ -84918,7 +84918,7 @@ census.10 = {
 				}
 				change_variable = { 
 					name = realm_ai_t
-					divide = 2
+					divide = 1.414
 				}
 			}
 			else_if = { 
@@ -84927,7 +84927,16 @@ census.10 = {
 				}
 				change_variable = { 
 					name = realm_ai_t
-					divide = 1.5
+					divide = 1.225
+				}
+			}
+			if = { 
+				limit = { 
+					this = scope:realm_ai_t.capital_province
+				}
+				change_variable = { 
+					name = realm_ai_t
+					divide = 1.25
 				}
 			}
 			set_variable = { 
@@ -84993,7 +85002,7 @@ census.10 = {
 				}
 				set_variable = { 
 					name = realm_ai_t
-					value = 8
+					value = 2
 				}
 				save_temporary_scope_as = realm_base_cost_vassal_t
 				if = { 
@@ -85024,11 +85033,11 @@ census.10 = {
 					}
 					change_variable = { 
 						name = realm_base_cost_vassal_t
-						add = 1
+						add = 0.25
 					}
 					change_variable = { 
 						name = realm_base_cost_vassal_t
-						divide = 2
+						divide = 1.25
 					}
 					change_variable = { 
 						name = realm_ai_t
@@ -85042,7 +85051,7 @@ census.10 = {
 				}
 				change_variable = { 
 					name = realm_ai_t
-					add = 3
+					add = 1
 				}
 				set_variable = { 
 					name = realm_ai_tt
@@ -85082,19 +85091,19 @@ census.10 = {
 			}
 			set_variable = { 
 				name = realm_ai_tttttt
-				value = 1
+				value = 0.1
 			}
 			set_variable = { 
 				name = realm_ai_ttttttt
-				value = 1
+				value = 0.1
 			}
 			set_variable = { 
 				name = realm_ai_tttttttt
-				value = 1
+				value = 0.1
 			}
 			set_variable = { 
 				name = realm_ai_ttttttttt
-				value = 3
+				value = 0.3
 			}
 			while = { 
 				limit = { 
@@ -85161,9 +85170,9 @@ census.10 = {
 							has_variable = realm_tax_obligation
 							has_variable = realm_mp_obligation
 							has_variable = realm_supply_obligation
-							var:realm_tax_obligation = 3
-							var:realm_mp_obligation = 3
-							var:realm_supply_obligation = 3
+							var:realm_tax_obligation = 8
+							var:realm_mp_obligation = 8
+							var:realm_supply_obligation = 8
 						}
 						remove_variable = realm_ai_t
 						remove_variable = realm_ai_tt
@@ -85184,26 +85193,26 @@ census.10 = {
 									NOT = { 
 										has_variable = realm_tax_obligation
 									}
-									var:realm_tax_obligation < 3
+									var:realm_tax_obligation < 8
 								}
 								var:realm_ai_tttttt = { 
 									OR = { 
-										prev.var:realm_mp_obligation = 3
+										prev.var:realm_mp_obligation = 8
 										compare_value >= prev.var:realm_ai_ttttttt
 									}
 									OR = { 
-										prev.var:realm_supply_obligation = 3
+										prev.var:realm_supply_obligation = 8
 										compare_value >= prev.var:realm_ai_tttttttt
 									}
 								}
 							}
 							change_variable = { 
 								name = realm_ai_tt
-								divide = 2
+								divide = 1.189
 							}
 							set_variable = { 
 								name = math_pow_base
-								value = 2
+								value = 1.189
 							}
 							set_variable = { 
 								name = math_pow_exp
@@ -85678,7 +85687,10 @@ census.10 = {
 								}
 								change_variable = { 
 									name = realm_ai_ttttttttt
-									add = prev.var:realm_ai_ttttt
+									add = { 
+										value = prev.var:realm_tax_base
+										divide = 200
+									}
 								}
 							}
 							change_variable = { 
@@ -85687,7 +85699,7 @@ census.10 = {
 							}
 							change_variable = { 
 								name = realm_ai_t
-								multiply = 2
+								multiply = 1.189
 							}
 						}
 						else_if = { 
@@ -85696,22 +85708,22 @@ census.10 = {
 									NOT = { 
 										has_variable = realm_mp_obligation
 									}
-									var:realm_mp_obligation < 3
+									var:realm_mp_obligation < 8
 								}
 								var:realm_ai_ttttttt = { 
 									OR = { 
-										prev.var:realm_supply_obligation = 3
+										prev.var:realm_supply_obligation = 8
 										compare_value >= prev.var:realm_ai_tttttttt
 									}
 								}
 							}
 							change_variable = { 
 								name = realm_ai_ttt
-								divide = 2
+								divide = 1.189
 							}
 							set_variable = { 
 								name = math_pow_base
-								value = 2
+								value = 1.189
 							}
 							set_variable = { 
 								name = math_pow_exp
@@ -86182,7 +86194,7 @@ census.10 = {
 								}
 								change_variable = { 
 									name = realm_ai_ttttttttt
-									add = prev.var:realm_ai_ttttt
+									add = prev.var:realm_mp_base
 								}
 							}
 							change_variable = { 
@@ -86191,17 +86203,17 @@ census.10 = {
 							}
 							change_variable = { 
 								name = realm_ai_t
-								multiply = 2
+								multiply = 1.189
 							}
 						}
 						else = { 
 							change_variable = { 
 								name = realm_ai_tttt
-								divide = 2
+								divide = 1.189
 							}
 							set_variable = { 
 								name = math_pow_base
-								value = 2
+								value = 1.189
 							}
 							set_variable = { 
 								name = math_pow_exp
@@ -86672,7 +86684,7 @@ census.10 = {
 								}
 								change_variable = { 
 									name = realm_ai_ttttttttt
-									add = prev.var:realm_ai_ttttt
+									add = prev.var:realm_supply_base
 								}
 							}
 							change_variable = { 
@@ -86681,7 +86693,7 @@ census.10 = {
 							}
 							change_variable = { 
 								name = realm_ai_t
-								multiply = 2
+								multiply = 1.189
 							}
 						}
 					}
@@ -86689,6 +86701,14 @@ census.10 = {
 					remove_variable = realm_ai_ttttttt
 					remove_variable = realm_ai_tttttttt
 				}
+			}
+			set_variable = { 
+				name = realm_authority_usage
+				value = var:realm_authority
+			}
+			change_variable = { 
+				name = realm_authority_usage
+				subtract = var:realm_ai_ttttt
 			}
 			remove_variable = realm_ai_ttttt
 			remove_variable = realm_ai_tttttt
@@ -86792,7 +86812,7 @@ census.10 = {
 				}
 				change_variable = { 
 					name = realm_update_obligation_t
-					divide = 3
+					divide = 8
 				}
 				change_variable = { 
 					name = realm_update_obligation_t
@@ -86819,7 +86839,7 @@ census.10 = {
 				}
 				change_variable = { 
 					name = realm_update_obligation_t
-					divide = 3
+					divide = 8
 				}
 				change_variable = { 
 					name = realm_update_obligation_t
@@ -86846,7 +86866,7 @@ census.10 = {
 				}
 				change_variable = { 
 					name = realm_update_obligation_t
-					divide = 3
+					divide = 8
 				}
 				change_variable = { 
 					name = realm_update_obligation_t
@@ -86875,7 +86895,7 @@ census.10 = {
 					}
 					change_variable = { 
 						name = realm_update_obligation_t
-						divide = 3
+						divide = 8
 					}
 					change_variable = { 
 						name = realm_update_obligation_t
@@ -86896,7 +86916,7 @@ census.10 = {
 					}
 					change_variable = { 
 						name = realm_update_obligation_t
-						divide = 3
+						divide = 8
 					}
 					change_variable = { 
 						name = realm_update_obligation_t
@@ -86923,7 +86943,7 @@ census.10 = {
 					}
 					change_variable = { 
 						name = realm_update_obligation_t
-						divide = 3
+						divide = 8
 					}
 					change_variable = { 
 						name = realm_update_obligation_t
@@ -91044,13 +91064,13 @@ census.13 = {
 			}
 			change_variable = { 
 				name = realm_authority_mil
-				add = 1
+				add = 0.1
 			}
 			change_variable = { 
 				name = realm_authority_mil
 				multiply = { 
 					value = var:mil_supply
-					add = 1
+					add = 0.1
 				}
 			}
 			set_variable = { 
@@ -91242,13 +91262,13 @@ census.13 = {
 				}
 				change_variable = { 
 					name = realm_authority_mil
-					add = 1
+					add = 0.1
 				}
 				change_variable = { 
 					name = realm_authority_mil
 					multiply = { 
 						value = var:mil_supply
-						add = 1
+						add = 0.1
 					}
 				}
 				set_variable = { 
