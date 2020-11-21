@@ -408,6 +408,11 @@ realm_ai = {
 		
 		set_variable = { name = realm_ai_ttttt value = var:realm_authority }
 		
+		set_variable = { name = realm_ai_tttttt value = 1 }
+		set_variable = { name = realm_ai_ttttttt value = 1 }
+		set_variable = { name = realm_ai_tttttttt value = 1 }
+		set_variable = { name = realm_ai_ttttttttt value = 3 }
+		
 		while = {
 			limit = {
 				has_variable = realm_ai_ttttt
@@ -425,6 +430,41 @@ realm_ai = {
 					multiply = -1
 				}
 				position = 0
+				
+				set_variable = { name = realm_ai_tttttt value = var:realm_ai_tt }
+				set_variable = { name = realm_ai_ttttttt value = var:realm_ai_ttt }
+				set_variable = { name = realm_ai_tttttttt value = var:realm_ai_tttt }
+				
+				change_variable = { 
+					name = realm_ai_tttttt 
+					multiply = { 
+						value = 1 
+						subtract = { 
+							value = prev.var:realm_ai_tttttt 
+							divide = prev.var:realm_ai_ttttttttt 
+						} 
+					} 
+				}
+				change_variable = { 
+					name = realm_ai_ttttttt 
+					multiply = { 
+						value = 1 
+						subtract = { 
+							value = prev.var:realm_ai_ttttttt 
+							divide = prev.var:realm_ai_ttttttttt 
+						} 
+					} 
+				}
+				change_variable = { 
+					name = realm_ai_tttttttt
+					multiply = { 
+						value = 1 
+						subtract = { 
+							value = prev.var:realm_ai_tttttttt
+							divide = prev.var:realm_ai_ttttttttt 
+						} 
+					} 
+				}
 				
 				if = {
 					limit = {
@@ -457,14 +497,14 @@ realm_ai = {
 								var:realm_tax_obligation < 3
 							}
 							
-							var:realm_ai_tt = {
+							var:realm_ai_tttttt = {
 								OR = {
 									prev.var:realm_mp_obligation = 3
-									compare_value >= prev.var:realm_ai_ttt
+									compare_value >= prev.var:realm_ai_ttttttt
 								}
 								OR = {
 									prev.var:realm_supply_obligation = 3
-									compare_value >= prev.var:realm_ai_tttt
+									compare_value >= prev.var:realm_ai_ttttttt
 								}
 							}
 						}
@@ -482,6 +522,8 @@ realm_ai = {
 						
 						prev = {
 							change_variable = { name = realm_ai_ttttt subtract = prev.var:realm_ai_ttttt }
+							change_variable = { name = realm_ai_tttttt add = prev.var:realm_ai_ttttt }
+							change_variable = { name = realm_ai_ttttttttt add = prev.var:realm_ai_ttttt }
 						}
 						
 						change_variable = { name = realm_tax_obligation add = 1 }
@@ -497,10 +539,10 @@ realm_ai = {
 								var:realm_mp_obligation < 3
 							}
 							
-							var:realm_ai_ttt = {
+							var:realm_ai_ttttttt = {
 								OR = {
 									prev.var:realm_supply_obligation = 3
-									compare_value >= prev.var:realm_ai_tttt
+									compare_value >= prev.var:realm_ai_ttttttt
 								}
 							}
 						}
@@ -517,6 +559,8 @@ realm_ai = {
 						
 						prev = {
 							change_variable = { name = realm_ai_ttttt subtract = prev.var:realm_ai_ttttt }
+							change_variable = { name = realm_ai_ttttttt add = prev.var:realm_ai_ttttt }
+							change_variable = { name = realm_ai_ttttttttt add = prev.var:realm_ai_ttttt }
 						}
 						
 						change_variable = { name = realm_mp_obligation add = 1 }
@@ -536,14 +580,26 @@ realm_ai = {
 						
 						prev = {
 							change_variable = { name = realm_ai_ttttt subtract = prev.var:realm_ai_ttttt }
+							change_variable = { name = realm_ai_tttttttt add = prev.var:realm_ai_ttttt }
+							change_variable = { name = realm_ai_ttttttttt add = prev.var:realm_ai_ttttt }
 						}
 						
 						change_variable = { name = realm_supply_obligation add = 1 }
 						change_variable = { name = realm_ai_t multiply = 2 }
 					}
 				}
+				
+				remove_variable = realm_ai_tttttt
+				remove_variable = realm_ai_ttttttt
+				remove_variable = realm_ai_tttttttt
 			}
 		}
+		
+		remove_variable = realm_ai_ttttt
+		remove_variable = realm_ai_tttttt
+		remove_variable = realm_ai_ttttttt
+		remove_variable = realm_ai_tttttttt
+		remove_variable = realm_ai_ttttttttt
 		
 		every_in_list = {
 			variable = realm_ai_t
@@ -554,8 +610,6 @@ realm_ai = {
 			remove_variable = realm_ai_tttt
 			remove_variable = realm_ai_ttttt
 		}
-		
-		remove_variable = realm_ai_ttttt
 		
 		clear_variable_list = realm_ai_t
 	}

@@ -85080,6 +85080,22 @@ census.10 = {
 				name = realm_ai_ttttt
 				value = var:realm_authority
 			}
+			set_variable = { 
+				name = realm_ai_tttttt
+				value = 1
+			}
+			set_variable = { 
+				name = realm_ai_ttttttt
+				value = 1
+			}
+			set_variable = { 
+				name = realm_ai_tttttttt
+				value = 1
+			}
+			set_variable = { 
+				name = realm_ai_ttttttttt
+				value = 3
+			}
 			while = { 
 				limit = { 
 					has_variable = realm_ai_ttttt
@@ -85098,6 +85114,48 @@ census.10 = {
 						multiply = -1
 					}
 					position = 0
+					set_variable = { 
+						name = realm_ai_tttttt
+						value = var:realm_ai_tt
+					}
+					set_variable = { 
+						name = realm_ai_ttttttt
+						value = var:realm_ai_ttt
+					}
+					set_variable = { 
+						name = realm_ai_tttttttt
+						value = var:realm_ai_tttt
+					}
+					change_variable = { 
+						name = realm_ai_tttttt
+						multiply = { 
+							value = 1
+							subtract = { 
+								value = prev.var:realm_ai_tttttt
+								divide = prev.var:realm_ai_ttttttttt
+							}
+						}
+					}
+					change_variable = { 
+						name = realm_ai_ttttttt
+						multiply = { 
+							value = 1
+							subtract = { 
+								value = prev.var:realm_ai_ttttttt
+								divide = prev.var:realm_ai_ttttttttt
+							}
+						}
+					}
+					change_variable = { 
+						name = realm_ai_tttttttt
+						multiply = { 
+							value = 1
+							subtract = { 
+								value = prev.var:realm_ai_tttttttt
+								divide = prev.var:realm_ai_ttttttttt
+							}
+						}
+					}
 					if = { 
 						limit = { 
 							has_variable = realm_tax_obligation
@@ -85128,14 +85186,14 @@ census.10 = {
 									}
 									var:realm_tax_obligation < 3
 								}
-								var:realm_ai_tt = { 
+								var:realm_ai_tttttt = { 
 									OR = { 
 										prev.var:realm_mp_obligation = 3
-										compare_value >= prev.var:realm_ai_ttt
+										compare_value >= prev.var:realm_ai_ttttttt
 									}
 									OR = { 
 										prev.var:realm_supply_obligation = 3
-										compare_value >= prev.var:realm_ai_tttt
+										compare_value >= prev.var:realm_ai_ttttttt
 									}
 								}
 							}
@@ -85614,6 +85672,14 @@ census.10 = {
 									name = realm_ai_ttttt
 									subtract = prev.var:realm_ai_ttttt
 								}
+								change_variable = { 
+									name = realm_ai_tttttt
+									add = prev.var:realm_ai_ttttt
+								}
+								change_variable = { 
+									name = realm_ai_ttttttttt
+									add = prev.var:realm_ai_ttttt
+								}
 							}
 							change_variable = { 
 								name = realm_tax_obligation
@@ -85632,10 +85698,10 @@ census.10 = {
 									}
 									var:realm_mp_obligation < 3
 								}
-								var:realm_ai_ttt = { 
+								var:realm_ai_ttttttt = { 
 									OR = { 
 										prev.var:realm_supply_obligation = 3
-										compare_value >= prev.var:realm_ai_tttt
+										compare_value >= prev.var:realm_ai_ttttttt
 									}
 								}
 							}
@@ -86109,6 +86175,14 @@ census.10 = {
 								change_variable = { 
 									name = realm_ai_ttttt
 									subtract = prev.var:realm_ai_ttttt
+								}
+								change_variable = { 
+									name = realm_ai_ttttttt
+									add = prev.var:realm_ai_ttttt
+								}
+								change_variable = { 
+									name = realm_ai_ttttttttt
+									add = prev.var:realm_ai_ttttt
 								}
 							}
 							change_variable = { 
@@ -86592,6 +86666,14 @@ census.10 = {
 									name = realm_ai_ttttt
 									subtract = prev.var:realm_ai_ttttt
 								}
+								change_variable = { 
+									name = realm_ai_tttttttt
+									add = prev.var:realm_ai_ttttt
+								}
+								change_variable = { 
+									name = realm_ai_ttttttttt
+									add = prev.var:realm_ai_ttttt
+								}
 							}
 							change_variable = { 
 								name = realm_supply_obligation
@@ -86603,8 +86685,16 @@ census.10 = {
 							}
 						}
 					}
+					remove_variable = realm_ai_tttttt
+					remove_variable = realm_ai_ttttttt
+					remove_variable = realm_ai_tttttttt
 				}
 			}
+			remove_variable = realm_ai_ttttt
+			remove_variable = realm_ai_tttttt
+			remove_variable = realm_ai_ttttttt
+			remove_variable = realm_ai_tttttttt
+			remove_variable = realm_ai_ttttttttt
 			every_in_list = { 
 				variable = realm_ai_t
 				remove_variable = realm_ai_t
@@ -86613,7 +86703,6 @@ census.10 = {
 				remove_variable = realm_ai_tttt
 				remove_variable = realm_ai_ttttt
 			}
-			remove_variable = realm_ai_ttttt
 			clear_variable_list = realm_ai_t
 		}
 		clear_global_variable_list = realm_ai_t
