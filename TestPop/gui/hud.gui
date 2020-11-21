@@ -1225,14 +1225,13 @@ widget = {
 
 		background = {
 			texture = "gfx/interface/hud/hud_bg_top_right.dds"
-			margin_left = 0
 			margin_bottom = 8
 		}
 
 		## Resources
 		hbox = {
 			name = "resources"
-			margin_left = 20
+			position = { 20 0 }
 
 			hbox = {
 				name = "spendables"
@@ -1516,8 +1515,8 @@ widget = {
 
 				hbox = {
 					name = "military"
-					spacing = 4
-					margin_left = 10
+					spacing = 2
+					margin_left = 6
 					margin_bottom = 3
 
 					background = {
@@ -1531,6 +1530,41 @@ widget = {
 
 						using = Mask_Rough_Edges
 					}
+					
+					button_group = {
+						tooltip = "MIL_AUTH_TOOLTIP"
+						using = tooltip_ne
+
+						hbox = {
+							icon = {
+								name = "icon_dread"
+								texture = "gfx/interface/icons/icon_dread.dds"
+								size = { 20 20 }
+							}
+
+							spacer = {
+								size = { 4 0 }
+							}
+
+							flowcontainer = {
+								direction = vertical
+								min_width = 40
+
+								text_single = {
+									name = "strength"
+									text = "[GetPlayer.MakeScope.Var('realm_authority').GetValue]"
+									default_format = "#high"
+									align = nobaseline
+								}
+								text_single = {
+									name = "strength_balance"
+									text = "[GetPlayer.MakeScope.Var('realm_authority_usage').GetValue]"
+									default_format = "#low"
+									align = nobaseline
+								}
+							}
+						}
+					}
 
 					button_group = {
 						tooltip = "MIL_MP_BALANCE"
@@ -1540,16 +1574,16 @@ widget = {
 							icon = {
 								name = "icon_soldier"
 								texture = "gfx/interface/icons/icon_soldier.dds"
-								size = { 25 25 }
+								size = { 20 20 }
 							}
 
 							spacer = {
-								size = { 5 0 }
+								size = { 4 0 }
 							}
 
 							flowcontainer = {
 								direction = vertical
-								min_width = 65
+								min_width = 55
 
 								text_single = {
 									name = "strength"
@@ -1575,11 +1609,11 @@ widget = {
 							icon = {
 								name = "icon_supply"
 								texture = "gfx/interface/icons/icon_domain.dds"
-								size = { 25 25 }
+								size = { 20 20 }
 							}
 
 							spacer = {
-								size = { 5 0 }
+								size = { 4 0 }
 							}
 
 							flowcontainer = {
