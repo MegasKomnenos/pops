@@ -260,37 +260,44 @@ realm_update_obligation = {
 }
 
 realm_base_cost_prov = {
-	set_variable = { name = $return$ value = 4 }
+	set_variable = { name = $return$ value = 2 }
 		
 	if = {
 		limit = {
 			culture = $holder$.culture
 		}
-		change_variable = { name = $return$ divide = 2 }
+		change_variable = { name = $return$ divide = 1.414 }
 	}
 	else_if = {
 		limit = {
 			culture_group = $holder$.culture_group
 		}
-		change_variable = { name = $return$ divide = 1.5 }
+		change_variable = { name = $return$ divide = 1.225 }
 	}
 	
 	if = {
 		limit = {
 			faith = $holder$.faith
 		}
-		change_variable = { name = $return$ divide = 2 }
+		change_variable = { name = $return$ divide = 1.414 }
 	}
 	else_if = {
 		limit = {
 			religion = $holder$.religion
 		}
-		change_variable = { name = $return$ divide = 1.5 }
+		change_variable = { name = $return$ divide = 1.225 }
+	}
+	
+	if = {
+		limit = {
+			this = $holder$.capital_province
+		}
+		change_variable = { name = $return$ divide = 2 }
 	}
 }
 
 realm_base_cost_vassal = {
-	set_variable = { name = $return$ value = 8 }
+	set_variable = { name = $return$ value = 6 }
 		
 	save_temporary_scope_as = realm_base_cost_vassal_t
 	
@@ -313,15 +320,15 @@ realm_base_cost_vassal = {
 		
 		set_variable = { name = realm_base_cost_vassal_t value = var:realm_authority }
 		change_variable = { name = realm_base_cost_vassal_t divide = liege.var:realm_authority }
-		change_variable = { name = realm_base_cost_vassal_t add = 1 }
-		change_variable = { name = realm_base_cost_vassal_t divide = 2 }
+		change_variable = { name = realm_base_cost_vassal_t add = 0.25 }
+		change_variable = { name = realm_base_cost_vassal_t divide = 1.25 }
 		change_variable = { name = $return$ multiply = var:realm_base_cost_vassal_t }
 		change_variable = { name = $return$ multiply = var:realm_base_cost_vassal_t }
 		
 		remove_variable = realm_base_cost_vassal_t
 	}
 	
-	change_variable = { name = $return$ add = 3 }
+	change_variable = { name = $return$ add = 2 }
 }
 
 realm_ai = {
