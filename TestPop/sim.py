@@ -430,29 +430,7 @@ sim_run.02 = {
 									}
 								}
 							}
-							change_variable = { name = pop_wealth add = var:realm_tax_pay }
-							
-							if = {
-								limit = {
-									barony = {
-										is_leased_out = yes
-									}
-								}
-								set_variable = { name = sim_t value = 0.333 }
-								change_variable = { name = sim_t multiply = barony.lessee.var:realm_tax_obligation }
-								change_variable = { name = sim_t multiply = var:realm_tax_base }
-								change_variable = { name = sim_t divide = 4 }
-								change_variable = { name = pop_wealth subtract = var:sim_t }
-							}
-							else = {
-								set_variable = { name = sim_t value = 0.333 }
-								change_variable = { name = sim_t multiply = barony.holder.var:realm_tax_obligation }
-								change_variable = { name = sim_t multiply = var:realm_tax_base }
-								change_variable = { name = sim_t divide = 4 }
-								change_variable = { name = pop_wealth subtract = var:sim_t }
-							}
-							
-							remove_variable = sim_t
+							change_variable = { name = pop_wealth add = { value = var:realm_tax_pay divide = 1.5 } }
 						}
 					}
 				}
@@ -482,6 +460,8 @@ sim_run.02 = {
 						is_landed = yes
 					}
 					set_variable = { name = sim_balance value = yearly_character_balance }
+					if = { limit = { has_variable = trade_earn } change_variable = { name = sim_balance add = var:trade_earn } }
+					if = { limit = { has_variable = trade_pay } change_variable = { name = sim_balance subtract = var:trade_pay } }
 					
 					if = {
 						limit = {

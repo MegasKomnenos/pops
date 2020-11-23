@@ -418,6 +418,33 @@ set_usage_supply = {
 	remove_variable = set_usage_supply_t
 }
 
+remove_list_variable_return_index = {
+	set_variable = { name = remove_list_variable_return_index_t value = 0 }
+	set_variable = { name = remove_list_variable_return_index_tt value = $target$ }
+	
+	every_in_list = {
+		variable = $name$
+		
+		if = {
+			limit = {
+				this = prev.var:remove_list_variable_return_index_tt
+			}
+			prev = {
+				set_global_variable = { name = $return$ value = var:remove_list_variable_return_index_t }
+				
+				remove_list_variable = { name = $name$ target = var:remove_list_variable_return_index_tt }
+			}
+		}
+		
+		prev = {
+			change_variable = { name = remove_list_variable_return_index_t add = 1 }
+		}
+	}
+	
+	remove_variable = remove_list_variable_return_index_t
+	remove_variable = remove_list_variable_return_index_tt
+}
+
 export_opinion = {
 	if = {
 		limit = {

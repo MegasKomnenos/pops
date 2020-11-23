@@ -24,6 +24,23 @@ theocracy_lease = {
 
 	tax = {
 		lease_liege = 0
+		
+		rest = {
+			max = 50  # when updating the weights also update this value. It is used in the tooltip and should be the maximin posible weight
+			weight = {
+				base = 0
+				modifier = {
+					scope:lessee = {
+						has_variable = realm_control
+					}
+					
+					add = {
+						value = scope:lessee.var:realm_control
+						divide = 2
+					}
+				}
+			}
+		}
 	}
 
 	levy = {

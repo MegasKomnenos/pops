@@ -224,11 +224,11 @@ travel_distance_dijkstra = {
 	every_in_global_list = {
 		variable = travel_distance_visited
 		limit = {
-			var:prov_sea = 2
+			var:prov_sea >= 2
 		}
 		while = {
 			limit = {
-				var:travel_distance_prev.var:prov_sea = 2
+				var:travel_distance_prev.var:prov_sea >= 2
 			}
 			set_variable = { name = travel_distance_prev value = var:travel_distance_prev.var:travel_distance_prev }
 		}
@@ -240,7 +240,7 @@ travel_distance_dijkstra = {
 		}
 		while = {
 			limit = {
-				var:travel_distance_prev.var:prov_sea = 2
+				var:travel_distance_prev.var:prov_sea >= 2
 			}
 			set_variable = { name = travel_distance_prev value = var:travel_distance_prev.var:travel_distance_prev }
 		}

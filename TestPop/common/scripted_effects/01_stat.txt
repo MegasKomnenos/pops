@@ -45,57 +45,29 @@
 	every_in_global_list = {
 		variable = stat_main_t
 		
-		if = {
-			limit = {
-				has_variable = realm_tax_earn
-			}
-			set_variable = { name = stat_tax_earn value = var:realm_tax_earn }
-		}
-		else = {
-			set_variable = { name = stat_tax_earn value = 0 }
-		}
-		if = {
-			limit = {
-				has_variable = realm_tax_pay
-			}
-			set_variable = { name = stat_tax_pay value = var:realm_tax_pay }
-		}
-		else = {
-			set_variable = { name = stat_tax_pay value = 0 }
-		}
-		
 		add_character_modifier = base_lord
-		
-		set_variable = { name = stat_main_t value = var:stat_tax_earn }
-		
-		if = {
-			limit = {
-				has_variable = trade_earn
-			}
-			change_variable = { name = stat_main_t add = var:trade_earn }
-		}
-		
-		change_variable = { name = stat_main_t divide = 12 }
-		mod_assign_2_20 = { type = character name = stat_tax var = stat_main_t }
-		
-		set_variable = { name = stat_main_t value = var:stat_tax_pay }
-		
-		if = {
-			limit = {
-				has_variable = trade_pay
-			}
-			change_variable = { name = stat_main_t add = var:trade_pay }
-		}
-		
-		change_variable = { name = stat_main_t divide = 12 }
-		mod_assign_2_20 = { type = character name = stat_tax_pay var = stat_main_t }
 		
 		if = {
 			limit = {
 				is_ai = yes
 			}
 			set_variable = { name = stat_main_t value = var:mil_mp }
-			change_variable = { name = stat_main_t multiply = var:mil_supply }
+			
+			if = {
+				limit = {
+					has_variable = mil_mp_garrison
+				}
+				change_variable = { name = stat_main_t subtract = var:mil_mp_garrison }
+			}
+			if = {
+				limit = {
+					has_variable = mil_supply_garrison
+				}
+				change_variable = { name = stat_main_t multiply = { value = var:mil_supply subtract = var:mil_supply_garrison } }
+			}
+			else = {
+				change_variable = { name = stat_main_t multiply = var:mil_supply }
+			}
 			
 			sqrt_effect = {
 				inp = var:stat_main_t
@@ -122,6 +94,13 @@
 			
 			if = {
 				limit = {
+					has_variable = mil_mp_garrison
+				}
+				change_variable = { name = stat_main_tt subtract = var:mil_mp_garrison }
+			}
+			
+			if = {
+				limit = {
 					OR = {
 						NOT = {
 							has_variable = stat_main_tt
@@ -135,6 +114,13 @@
 			else = {
 				set_variable = { name = stat_main_ttt value = var:mil_supply }
 				change_variable = { name = stat_main_ttt subtract = var:mil_supply_cur }
+				
+				if = {
+					limit = {
+						has_variable = mil_supply_garrison
+					}
+					change_variable = { name = stat_main_ttt subtract = var:mil_supply_garrison }
+				}
 				
 				if = {
 					limit = {

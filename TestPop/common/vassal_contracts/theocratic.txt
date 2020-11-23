@@ -5,7 +5,16 @@
 				value = 0
 			}
 			tax = {
-				value = 0
+				value = 0.005
+				
+				scope:vassal = {
+					if = {
+						limit = {
+							has_variable = realm_control
+						}
+						multiply = scope:vassal.var:realm_control
+					}
+				}
 			}
 			contribution_desc = {
 				first_valid = {

@@ -240,6 +240,17 @@ array_get_min = {
 	remove_variable = array_get_min_t
 }
 
+array_remove = {
+	ordered_in_list = {
+		variable = array_$name$
+		position = $ind$
+		
+		prev = {
+			remove_list_variable = { name = array_$name$ target = prev }
+		}
+	}
+}
+
 # Parameters: name
 array_clear = {
 	clear_variable_list = array_$name$

@@ -16,6 +16,7 @@
 	init_tech = yes
 	init_buildings = yes
 	init_task_templates = yes
+	init_region = yes
 	
 	province:2517 = {
 		add_to_variable_list = { name = prov_neighb target = province:2506 }
@@ -157,42 +158,6 @@
 		trade_rank_up_handler = yes
 		mil_rank_up_handler = yes
 	}
-	
-	every_province = {
-		limit = {
-			is_valid_prov = yes
-			is_city = yes
-		}
-		if = {
-			limit = {
-				barony = {
-					is_leased_out = yes
-				}
-			}
-			barony.lessee = {
-				add_to_global_variable_list = { name = init_main_t target = this }
-			}
-		}
-		else = {
-			province_owner = {
-				add_to_global_variable_list = { name = init_main_t target = this }
-			}
-		}
-	}
-	
-	
-	every_in_global_list = {
-		variable = init_main_t
-		
-		modi_realm = yes
-		
-		set_variable = { name = mil_mp value = 1 }
-		set_variable = { name = mil_supply value = 1 }
-		
-		realm_update_authority = yes
-	}
-	
-	clear_global_variable_list = init_main_t
 	
 	every_in_global_list = {
 		variable = trade_merchants
