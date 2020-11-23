@@ -1,0 +1,153 @@
+toggle_player_realm = {
+	scope = character
+	
+	is_shown = {
+		always = yes
+	}
+	is_valid = {
+		always = yes
+	}
+	
+	effect = {
+		every_in_global_list = {
+			limit = {
+				is_target_in_variable_list = { name = region_controls target = prev }
+			}
+			variable = region_regions
+			
+			set_variable = { name = region_control value = -1 }
+			set_variable = { name = region_dist value = -1 }
+			set_variable = { name = region_cost value = -1 }
+			set_variable = { name = region_cost_total value = -1 }
+			set_variable = { name = region_garrison value = -1 }
+			
+			set_global_variable = { name = toggle_player_realm_t value = 0 }
+			
+			every_in_list = {
+				variable = region_controls
+				
+				if = {
+					limit = {
+						this = root
+					}
+					prev = {
+						array_get = { name = region_controls value = global_var:toggle_player_realm_t return = region_control dec = 100 }
+					}
+				}
+				
+				change_global_variable = { name = toggle_player_realm_t add = 1 }
+			}
+			
+			set_global_variable = { name = toggle_player_realm_t value = 0 }
+			
+			every_in_list = {
+				variable = region_dists
+				
+				if = {
+					limit = {
+						this = root
+					}
+					prev = {
+						array_get = { name = region_dists value = global_var:toggle_player_realm_t return = region_dist dec = 10 }
+					}
+				}
+				
+				change_global_variable = { name = toggle_player_realm_t add = 1 }
+			}
+			
+			set_global_variable = { name = toggle_player_realm_t value = 0 }
+			
+			every_in_list = {
+				variable = region_costs
+				
+				if = {
+					limit = {
+						this = root
+					}
+					prev = {
+						array_get = { name = region_costs value = global_var:toggle_player_realm_t return = region_cost dec = 10 }
+					}
+				}
+				
+				change_global_variable = { name = toggle_player_realm_t add = 1 }
+			}
+			
+			set_global_variable = { name = toggle_player_realm_t value = 0 }
+			
+			every_in_list = {
+				variable = region_costs_total
+				
+				if = {
+					limit = {
+						this = root
+					}
+					prev = {
+						array_get = { name = region_costs_total value = global_var:toggle_player_realm_t return = region_cost_total dec = 10 }
+					}
+				}
+				
+				change_global_variable = { name = toggle_player_realm_t add = 1 }
+			}
+			
+			set_global_variable = { name = toggle_player_realm_t value = 0 }
+			
+			every_in_list = {
+				variable = region_garrisons
+				
+				if = {
+					limit = {
+						this = root
+					}
+					prev = {
+						array_get = { name = region_garrisons value = global_var:toggle_player_realm_t return = region_garrison dec = 100 }
+					}
+				}
+				
+				change_global_variable = { name = toggle_player_realm_t add = 1 }
+			}
+			
+			if = {
+				limit = {
+					NOT = {
+						var:region_garrison = -1
+					}
+				}
+				change_variable = { name = region_garrison add = 0.01 }
+			}
+			
+			change_variable = { name = region_dist divide = 1000 }
+			change_variable = { name = region_dist multiply = 10 }
+			
+			prev = {
+				add_to_variable_list = { name = toggle_player_realm_regions target = prev }
+			}
+		}
+		
+		remove_global_variable = toggle_player_realm_t
+	}
+}
+
+close_player_realm = {
+	scope = character
+	
+	is_shown = {
+		always = yes
+	}
+	is_valid = {
+		always = yes
+	}
+	
+	effect = {
+		every_in_list = {
+			variable = toggle_player_realm_regions
+			
+			remove_variable = region_control
+			remove_variable = region_dist
+			remove_variable = region_cost
+			remove_variable = region_cost_total
+			remove_variable = region_garrison
+		}
+		
+		clear_variable_list = toggle_player_realm_regions
+	}
+}
