@@ -274,8 +274,14 @@ census.12 = {
 			
 			change_variable = { name = pop_wealth add = var:pop_earn_free } 
 			change_variable = { name = pop_wealth add = var:pop_earn_base } 
-			change_variable = { name = pop_wealth subtract = var:realm_tax_pay } 
 			change_variable = { name = pop_wealth subtract = var:pop_pay_free }
+			
+			if = {
+				limit = {
+					has_variable = realm_tax_pay
+				}
+				change_variable = { name = pop_wealth subtract = var:realm_tax_pay } 
+			}
 		}
 		
 		every_in_global_list = {
