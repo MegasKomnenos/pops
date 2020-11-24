@@ -132,6 +132,13 @@
 		
 		if = {
 			limit = {
+				has_variable = realm_privilege
+			}
+			change_variable = { name = realm_suppression add = { value = var:realm_privilege multiply = 5 } }
+		}
+		
+		if = {
+			limit = {
 				NOT = {
 					has_variable = realm_resentment
 				}
@@ -223,6 +230,13 @@
 			}
 			
 			change_variable = { name = realm_suppression multiply = 10 }
+			
+			if = {
+				limit = {
+					has_variable = realm_privilege
+				}
+				change_variable = { name = realm_suppression add = { value = var:realm_privilege multiply = 5 } }
+			}
 			
 			if = {
 				limit = {

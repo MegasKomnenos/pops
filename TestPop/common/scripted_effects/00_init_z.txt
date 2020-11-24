@@ -40,11 +40,33 @@
 			is_valid_prov = yes
 		}
 		get_land_cost = { return = prov_cost }
+		
+		every_in_list = {
+			limit = {
+				is_valid_prov = no
+			}
+			variable = prov_neighb
+			
+			prev = {
+				remove_list_variable = { name = prov_neighb target = prev }
+			}
+		}
 	}
 	every_in_global_list = {
 		variable = every_water
 		
 		get_land_cost = { return = prov_cost }
+		
+		every_in_list = {
+			limit = {
+				is_valid_prov = no
+			}
+			variable = prov_port
+			
+			prev = {
+				remove_list_variable = { name = prov_port target = prev }
+			}
+		}
 	}
 	
 	every_county = {
@@ -82,6 +104,38 @@
 			limit = {
 				is_valid_prov = yes
 			}	
+			if = {
+				limit = {
+					is_city = yes
+					
+					OR = {
+						province_owner.capital_province = this
+						
+						AND = {
+							has_variable = workshop_total
+							
+							var:workshop_total > 1
+						}
+					}
+				}
+				set_variable = { name = realm_privilege value = 0 }
+				
+				if = {
+					limit = {
+						province_owner.capital_province = this
+					}
+					change_variable = { name = realm_privilege add = 1 }
+				}
+				if = {
+					limit = {
+						has_variable = workshop_total
+							
+						var:workshop_total > 1
+					}
+					change_variable = { name = realm_privilege add = 1 }
+				}
+			}
+			
 			set_variable = { name = mil_levy_earn value = 0 }
 			
 			set_variable = { name = mil_levy value = 0.1 }
@@ -163,6 +217,72 @@
 		}
 		set_variable = { name = sim_income value = 0 }
 		set_variable = { name = is_character value = 1 }
+		
+		set_variable = { name = init_main_t value = 0 }
+		
+		every_sub_realm_barony = {
+			limit = {
+				title_province = {
+					is_valid_prov = yes
+					is_city = yes
+				}
+			}
+			prev = {
+				change_variable = { name = init_main_t add = prev.title_province.var:pop_total }
+			}
+		}
+		
+		every_vassal = {
+			limit = {
+				is_character = yes
+				is_landed = yes
+			}
+			set_variable = { name = init_main_t value = 0 }
+		
+			every_sub_realm_barony = {
+				limit = {
+					title_province = {
+						is_valid_prov = yes
+						is_city = yes
+					}
+				}
+				prev = {
+					change_variable = { name = init_main_t add = prev.title_province.var:pop_total }
+				}
+			}
+			
+			change_variable = { name = init_main_t divide = prev.var:init_main_t }
+			
+			set_variable = { name = realm_privilege value = 0 }
+			
+			while = {
+				limit = {
+					has_variable = init_main_t
+					
+					var:init_main_t >= 0.1
+				}
+				change_variable = { name = realm_privilege add = 1 }
+				change_variable = { name = init_main_t subtract = 0.1 }
+				change_variable = { name = init_main_t divide = 2 }
+			}
+			
+			if = {
+				limit = {
+					OR = {
+						NOT = {
+							has_variable = realm_privilege
+						}
+						
+						var:realm_privilege = 0
+					}
+				}
+				remove_variable = realm_privilege
+			}
+			
+			remove_variable = init_main_t
+		}
+		
+		remove_variable = init_main_t
 		
 		trade_rank_up_handler = yes
 		mil_rank_up_handler = yes

@@ -85417,6 +85417,18 @@ census.12 = {
 			}
 			if = { 
 				limit = { 
+					has_variable = realm_privilege
+				}
+				change_variable = { 
+					name = realm_suppression
+					add = { 
+						value = var:realm_privilege
+						multiply = 5
+					}
+				}
+			}
+			if = { 
+				limit = { 
 					NOT = { 
 						has_variable = realm_resentment
 					}
@@ -86087,6 +86099,18 @@ census.12 = {
 				change_variable = { 
 					name = realm_suppression
 					multiply = 10
+				}
+				if = { 
+					limit = { 
+						has_variable = realm_privilege
+					}
+					change_variable = { 
+						name = realm_suppression
+						add = { 
+							value = var:realm_privilege
+							multiply = 5
+						}
+					}
 				}
 				if = { 
 					limit = { 
@@ -94351,6 +94375,129 @@ census.99 = {
 	type = empty
 	hidden = yes
 	immediate = { 
+		every_province = { 
+			limit = { 
+				is_valid_prov = yes
+				is_city = yes
+				OR = { 
+					province_owner.capital_province = this
+					AND = { 
+						has_variable = workshop_total
+						var:workshop_total > 1
+					}
+				}
+			}
+			set_variable = { 
+				name = realm_privilege
+				value = 0
+			}
+			if = { 
+				limit = { 
+					province_owner.capital_province = this
+				}
+				change_variable = { 
+					name = realm_privilege
+					add = 1
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = workshop_total
+					var:workshop_total > 1
+				}
+				change_variable = { 
+					name = realm_privilege
+					add = 1
+				}
+			}
+		}
+		every_ruler = { 
+			limit = { 
+				is_character = yes
+				is_landed = yes
+			}
+			set_variable = { 
+				name = init_main_t
+				value = 0
+			}
+			every_sub_realm_barony = { 
+				limit = { 
+					title_province = { 
+						is_valid_prov = yes
+						is_city = yes
+					}
+				}
+				prev = { 
+					change_variable = { 
+						name = init_main_t
+						add = prev.title_province.var:pop_total
+					}
+				}
+			}
+			every_vassal = { 
+				limit = { 
+					is_character = yes
+					is_landed = yes
+				}
+				set_variable = { 
+					name = init_main_t
+					value = 0
+				}
+				every_sub_realm_barony = { 
+					limit = { 
+						title_province = { 
+							is_valid_prov = yes
+							is_city = yes
+						}
+					}
+					prev = { 
+						change_variable = { 
+							name = init_main_t
+							add = prev.title_province.var:pop_total
+						}
+					}
+				}
+				change_variable = { 
+					name = init_main_t
+					divide = prev.var:init_main_t
+				}
+				set_variable = { 
+					name = realm_privilege
+					value = 0
+				}
+				while = { 
+					limit = { 
+						has_variable = init_main_t
+						var:init_main_t >= 0.1
+					}
+					change_variable = { 
+						name = realm_privilege
+						add = 1
+					}
+					change_variable = { 
+						name = init_main_t
+						subtract = 0.1
+					}
+					change_variable = { 
+						name = init_main_t
+						divide = 2
+					}
+				}
+				if = { 
+					limit = { 
+						OR = { 
+							NOT = { 
+								has_variable = realm_privilege
+							}
+							var:realm_privilege = 0
+						}
+					}
+					remove_variable = realm_privilege
+				}
+				remove_variable = init_main_t
+			}
+			remove_variable = init_main_t
+		}
 		every_ruler = { 
 			limit = { 
 				is_character = yes
