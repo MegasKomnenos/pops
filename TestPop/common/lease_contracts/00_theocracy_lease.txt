@@ -29,7 +29,17 @@ theocracy_lease = {
 		rest = {
 			max = 100  # when updating the weights also update this value. It is used in the tooltip and should be the maximin posible weight
 			weight = {
-				base = 100
+				base = 0
+				modifier = {
+					scope:lessee = {
+						has_variable = realm_tax_rate
+					}
+					
+					add = {
+						value = scope:lessee.var:realm_tax_rate
+						multiply = 100
+					}
+				}
 				opinion_modifier = { # Opinion Factor
 					trigger = {
 						scope:lessee = {
@@ -37,19 +47,13 @@ theocracy_lease = {
 								target = scope:ruler
 								value < 0
 							}
+							
+							has_variable = realm_tax_rate
 						}
 					}
 					who = scope:lessee
 					opinion_target = scope:ruler
-				}
-				modifier = {
-					scope:lessee = {
-						has_variable = realm_tax_rate
-					}
-					
-					multiply = {
-						value = scope:lessee.var:realm_tax_rate
-					}
+					multiplier = scope:lessee.var:realm_tax_rate
 				}
 			}
 		}

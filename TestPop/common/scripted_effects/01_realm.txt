@@ -139,7 +139,7 @@
 			set_variable = { name = realm_resentment value = 0 }
 		}
 		
-		set_variable = { name = realm_resentment multiply = 0.99 }
+		change_variable = { name = realm_resentment multiply = 0.99 }
 		
 		set_variable = { name = realm_resentment_goal value = var:realm_tax_rate }
 		change_variable = { name = realm_resentment_goal add = var:realm_levy_rate }
@@ -233,7 +233,7 @@
 				set_variable = { name = realm_resentment value = 0 }
 			}
 			
-			set_variable = { name = realm_resentment multiply = 0.99 }
+			change_variable = { name = realm_resentment multiply = 0.99 }
 			
 			if = {
 				limit = {
@@ -404,7 +404,7 @@ realm_ai = {
 				
 				OR = {
 					holder = prev
-					liege = prev
+					holder.liege = prev
 				}
 			}
 			title_province = {

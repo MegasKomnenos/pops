@@ -1987,7 +1987,7 @@ census.01 = {
 				}
 				change_variable = { 
 					name = prod_update_instances_tt
-					multiply = -20
+					multiply = -300
 				}
 				change_variable = { 
 					name = prod_update_instances_tt
@@ -84290,7 +84290,7 @@ census.10 = {
 				}
 				change_variable = { 
 					name = mil_main_t
-					multiply = province_owner.mil_supply_food
+					multiply = county.mil_supply_food
 				}
 				change_variable = { 
 					name = mil_main_t
@@ -84312,7 +84312,7 @@ census.10 = {
 				}
 				change_variable = { 
 					name = mil_main_t
-					multiply = province_owner.mil_supply_cereal
+					multiply = county.mil_supply_cereal
 				}
 				change_variable = { 
 					name = mil_main_t
@@ -84334,7 +84334,7 @@ census.10 = {
 				}
 				change_variable = { 
 					name = mil_main_t
-					multiply = province_owner.mil_supply_salted
+					multiply = county.mil_supply_salted
 				}
 				change_variable = { 
 					name = mil_main_t
@@ -84356,7 +84356,7 @@ census.10 = {
 				}
 				change_variable = { 
 					name = mil_main_t
-					multiply = province_owner.mil_supply_salt
+					multiply = county.mil_supply_salt
 				}
 				change_variable = { 
 					name = mil_main_t
@@ -84378,7 +84378,7 @@ census.10 = {
 				}
 				change_variable = { 
 					name = mil_main_t
-					multiply = province_owner.mil_supply_mud
+					multiply = county.mil_supply_mud
 				}
 				change_variable = { 
 					name = mil_main_t
@@ -84400,7 +84400,7 @@ census.10 = {
 				}
 				change_variable = { 
 					name = mil_main_t
-					multiply = province_owner.mil_supply_fuel
+					multiply = county.mil_supply_fuel
 				}
 				change_variable = { 
 					name = mil_main_t
@@ -84422,7 +84422,7 @@ census.10 = {
 				}
 				change_variable = { 
 					name = mil_main_t
-					multiply = province_owner.mil_supply_fiber
+					multiply = county.mil_supply_fiber
 				}
 				change_variable = { 
 					name = mil_main_t
@@ -84444,7 +84444,7 @@ census.10 = {
 				}
 				change_variable = { 
 					name = mil_main_t
-					multiply = province_owner.mil_supply_timber
+					multiply = county.mil_supply_timber
 				}
 				change_variable = { 
 					name = mil_main_t
@@ -84466,7 +84466,7 @@ census.10 = {
 				}
 				change_variable = { 
 					name = mil_main_t
-					multiply = province_owner.mil_supply_metal
+					multiply = county.mil_supply_metal
 				}
 				change_variable = { 
 					name = mil_main_t
@@ -84488,7 +84488,7 @@ census.10 = {
 				}
 				change_variable = { 
 					name = mil_main_t
-					multiply = province_owner.mil_supply_exotics_w
+					multiply = county.mil_supply_exotics_w
 				}
 				change_variable = { 
 					name = mil_main_t
@@ -84510,7 +84510,7 @@ census.10 = {
 				}
 				change_variable = { 
 					name = mil_main_t
-					multiply = province_owner.mil_supply_exotics_e
+					multiply = county.mil_supply_exotics_e
 				}
 				change_variable = { 
 					name = mil_main_t
@@ -84532,7 +84532,7 @@ census.10 = {
 				}
 				change_variable = { 
 					name = mil_main_t
-					multiply = province_owner.mil_supply_exotics_g
+					multiply = county.mil_supply_exotics_g
 				}
 				change_variable = { 
 					name = mil_main_t
@@ -84554,7 +84554,7 @@ census.10 = {
 				}
 				change_variable = { 
 					name = mil_main_t
-					multiply = province_owner.mil_supply_textile
+					multiply = county.mil_supply_textile
 				}
 				change_variable = { 
 					name = mil_main_t
@@ -84576,7 +84576,7 @@ census.10 = {
 				}
 				change_variable = { 
 					name = mil_main_t
-					multiply = province_owner.mil_supply_pottery
+					multiply = county.mil_supply_pottery
 				}
 				change_variable = { 
 					name = mil_main_t
@@ -84598,7 +84598,7 @@ census.10 = {
 				}
 				change_variable = { 
 					name = mil_main_t
-					multiply = province_owner.mil_supply_tools
+					multiply = county.mil_supply_tools
 				}
 				change_variable = { 
 					name = mil_main_t
@@ -84620,7 +84620,7 @@ census.10 = {
 				}
 				change_variable = { 
 					name = mil_main_t
-					multiply = province_owner.mil_supply_armaments
+					multiply = county.mil_supply_armaments
 				}
 				change_variable = { 
 					name = mil_main_t
@@ -85426,7 +85426,7 @@ census.12 = {
 					value = 0
 				}
 			}
-			set_variable = { 
+			change_variable = { 
 				name = realm_resentment
 				multiply = 0.99
 			}
@@ -86099,7 +86099,7 @@ census.12 = {
 						value = 0
 					}
 				}
-				set_variable = { 
+				change_variable = { 
 					name = realm_resentment
 					multiply = 0.99
 				}
@@ -91320,11 +91320,11 @@ census.12 = {
 			}
 			change_variable = { 
 				name = stat_main_t
-				value = var:realm_suppression
+				subtract = var:realm_suppression
 			}
 			if = { 
 				limit = { 
-					has_character_modifier = stat_resentment_128
+					has_character_modifier = stat_resentment_lord_128
 				}
 				if = { 
 					limit = { 
@@ -91337,7 +91337,7 @@ census.12 = {
 					}
 				}
 				else = { 
-					remove_character_modifier = stat_resentment_128
+					remove_character_modifier = stat_resentment_lord_128
 				}
 			}
 			else = { 
@@ -91350,12 +91350,12 @@ census.12 = {
 						name = stat_main_t
 						subtract = 128
 					}
-					add_character_modifier = stat_resentment_128
+					add_character_modifier = stat_resentment_lord_128
 				}
 			}
 			if = { 
 				limit = { 
-					has_character_modifier = stat_resentment_64
+					has_character_modifier = stat_resentment_lord_64
 				}
 				if = { 
 					limit = { 
@@ -91368,7 +91368,7 @@ census.12 = {
 					}
 				}
 				else = { 
-					remove_character_modifier = stat_resentment_64
+					remove_character_modifier = stat_resentment_lord_64
 				}
 			}
 			else = { 
@@ -91381,12 +91381,12 @@ census.12 = {
 						name = stat_main_t
 						subtract = 64
 					}
-					add_character_modifier = stat_resentment_64
+					add_character_modifier = stat_resentment_lord_64
 				}
 			}
 			if = { 
 				limit = { 
-					has_character_modifier = stat_resentment_32
+					has_character_modifier = stat_resentment_lord_32
 				}
 				if = { 
 					limit = { 
@@ -91399,7 +91399,7 @@ census.12 = {
 					}
 				}
 				else = { 
-					remove_character_modifier = stat_resentment_32
+					remove_character_modifier = stat_resentment_lord_32
 				}
 			}
 			else = { 
@@ -91412,12 +91412,12 @@ census.12 = {
 						name = stat_main_t
 						subtract = 32
 					}
-					add_character_modifier = stat_resentment_32
+					add_character_modifier = stat_resentment_lord_32
 				}
 			}
 			if = { 
 				limit = { 
-					has_character_modifier = stat_resentment_16
+					has_character_modifier = stat_resentment_lord_16
 				}
 				if = { 
 					limit = { 
@@ -91430,7 +91430,7 @@ census.12 = {
 					}
 				}
 				else = { 
-					remove_character_modifier = stat_resentment_16
+					remove_character_modifier = stat_resentment_lord_16
 				}
 			}
 			else = { 
@@ -91443,12 +91443,12 @@ census.12 = {
 						name = stat_main_t
 						subtract = 16
 					}
-					add_character_modifier = stat_resentment_16
+					add_character_modifier = stat_resentment_lord_16
 				}
 			}
 			if = { 
 				limit = { 
-					has_character_modifier = stat_resentment_8
+					has_character_modifier = stat_resentment_lord_8
 				}
 				if = { 
 					limit = { 
@@ -91461,7 +91461,7 @@ census.12 = {
 					}
 				}
 				else = { 
-					remove_character_modifier = stat_resentment_8
+					remove_character_modifier = stat_resentment_lord_8
 				}
 			}
 			else = { 
@@ -91474,12 +91474,12 @@ census.12 = {
 						name = stat_main_t
 						subtract = 8
 					}
-					add_character_modifier = stat_resentment_8
+					add_character_modifier = stat_resentment_lord_8
 				}
 			}
 			if = { 
 				limit = { 
-					has_character_modifier = stat_resentment_4
+					has_character_modifier = stat_resentment_lord_4
 				}
 				if = { 
 					limit = { 
@@ -91492,7 +91492,7 @@ census.12 = {
 					}
 				}
 				else = { 
-					remove_character_modifier = stat_resentment_4
+					remove_character_modifier = stat_resentment_lord_4
 				}
 			}
 			else = { 
@@ -91505,12 +91505,12 @@ census.12 = {
 						name = stat_main_t
 						subtract = 4
 					}
-					add_character_modifier = stat_resentment_4
+					add_character_modifier = stat_resentment_lord_4
 				}
 			}
 			if = { 
 				limit = { 
-					has_character_modifier = stat_resentment_2
+					has_character_modifier = stat_resentment_lord_2
 				}
 				if = { 
 					limit = { 
@@ -91523,7 +91523,7 @@ census.12 = {
 					}
 				}
 				else = { 
-					remove_character_modifier = stat_resentment_2
+					remove_character_modifier = stat_resentment_lord_2
 				}
 			}
 			else = { 
@@ -91536,12 +91536,12 @@ census.12 = {
 						name = stat_main_t
 						subtract = 2
 					}
-					add_character_modifier = stat_resentment_2
+					add_character_modifier = stat_resentment_lord_2
 				}
 			}
 			if = { 
 				limit = { 
-					has_character_modifier = stat_resentment_1
+					has_character_modifier = stat_resentment_lord_1
 				}
 				if = { 
 					limit = { 
@@ -91554,7 +91554,7 @@ census.12 = {
 					}
 				}
 				else = { 
-					remove_character_modifier = stat_resentment_1
+					remove_character_modifier = stat_resentment_lord_1
 				}
 			}
 			else = { 
@@ -91567,7 +91567,7 @@ census.12 = {
 						name = stat_main_t
 						subtract = 1
 					}
-					add_character_modifier = stat_resentment_1
+					add_character_modifier = stat_resentment_lord_1
 				}
 			}
 			set_variable = { 
@@ -94270,7 +94270,7 @@ census.12 = {
 					}
 					OR = { 
 						holder = prev
-						liege = prev
+						holder.liege = prev
 					}
 				}
 				title_province = { 
