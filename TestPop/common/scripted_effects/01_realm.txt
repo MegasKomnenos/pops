@@ -692,18 +692,13 @@ realm_ai = {
 	every_in_global_list = {
 		variable = realm_ai_t
 		
-		set_variable = { name = mil_mp_garrison value = var:mil_mp }
-		set_variable = { name = mil_supply_garrison value = var:mil_supply }
-		
-		change_variable = { name = mil_mp_garrison divide = 2 }
-		change_variable = { name = mil_supply_garrison divide = 2 }
-		
-		set_variable = { name = realm_garrison value = var:mil_mp_garrison }
-		change_variable = { name = realm_garrison multiply = var:mil_supply_garrison }
-		
-		sqrt_effect = {
-			inp = var:realm_garrison
-			return = realm_garrison
+		if = {
+			limit = {
+				NOT = {
+					has_variable = realm_garrison
+				}
+			}
+			set_variable = { name = realm_garrison value = 0 }
 		}
 		
 		set_global_variable = { name = realm_ai_t value = 0 }

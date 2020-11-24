@@ -8,6 +8,9 @@
 		
 		set_variable = { name = is_character value = 1 }
 		
+		set_variable = { name = mil_mp_garrison_share value = 0.5 }
+		set_variable = { name = mil_supply_garrison_share value = 0.5 }
+		
 		capital_province = {
 			^^goods^
 				every_in_list = {
@@ -41,6 +44,8 @@
 				set_variable = { name = trade_gold value = prev.var:trade_gold }
 				set_variable = { name = mil_mp value = prev.var:trade_mp }
 				set_variable = { name = mil_supply value = prev.var:trade_supply }
+				set_variable = { name = mil_mp_garrison value = prev.var:trade_mp_garrison }
+				set_variable = { name = mil_supply_garrison value = prev.var:trade_supply_garrison }
 			}
 			
 			every_in_list = {
@@ -125,6 +130,8 @@
 		remove_variable = trade_gold
 		remove_variable = trade_mp
 		remove_variable = trade_supply
+		remove_variable = trade_mp_garrison
+		remove_variable = trade_supply_garrison
 		
 		clear_variable_list = task_tasks
 	}

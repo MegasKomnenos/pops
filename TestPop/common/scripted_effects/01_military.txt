@@ -251,16 +251,56 @@ mil_main_2 = {
 			}
 			set_variable = { name = mil_supply_stockpile value = 0 }
 		}
+		if = {
+			limit = {
+				NOT = {
+					has_variable = mil_mp_garrison_share
+				}
+			}
+			set_variable = { name = mil_mp_garrison_share value = 0 }
+		}
+		if = {
+			limit = {
+				NOT = {
+					has_variable = mil_supply_garrison_share
+				}
+			}
+			set_variable = { name = mil_supply_garrison_share value = 0 }
+		}
+		if = {
+			limit = {
+				NOT = {
+					has_variable = mil_mp_garrison
+				}
+			}
+			set_variable = { name = mil_mp_garrison value = 0 }
+		}
+		if = {
+			limit = {
+				NOT = {
+					has_variable = mil_supply_garrison
+				}
+			}
+			set_variable = { name = mil_supply_garrison value = 0 }
+		}
 		
 		set_variable = { name = mil_mp_supply value = 0.05 }
 		change_variable = { name = mil_mp_supply multiply = var:mil_supply }
 		change_variable = { name = mil_mp_supply divide = 2 }
 		
+		set_variable = { name = mil_mp_garrison_supply value = 0.05 }
+		change_variable = { name = mil_mp_garrison_supply multiply = var:mil_supply_garrison }
+		change_variable = { name = mil_mp_garrison_supply divide = 2 }
+		
 		set_variable = { name = mil_mp_decay value = 0.1 }
 		set_variable = { name = mil_supply_decay value = 0.1 }
+		set_variable = { name = mil_mp_garrison_decay value = 0.1 }
+		set_variable = { name = mil_supply_garrison_decay value = 0.1 }
 		
 		change_variable = { name = mil_mp_decay multiply = var:mil_mp }
 		change_variable = { name = mil_supply_decay multiply = var:mil_supply }
+		change_variable = { name = mil_mp_garrison_decay multiply = var:mil_mp_garrison }
+		change_variable = { name = mil_supply_garrison_decay multiply = var:mil_supply_garrison }
 		
 		if = {
 			limit = {
@@ -272,13 +312,19 @@ mil_main_2 = {
 			
 			set_variable = { name = mil_mp_mismanage value = var:mil_main_tt }
 			set_variable = { name = mil_supply_mismanage value = var:mil_main_tt }
+			set_variable = { name = mil_mp_garrison_mismanage value = var:mil_main_tt }
+			set_variable = { name = mil_supply_garrison_mismanage value = var:mil_main_tt }
 			
 			change_variable = { name = mil_mp_mismanage multiply = var:mil_mp }
 			change_variable = { name = mil_supply_mismanage multiply = var:mil_supply }
+			change_variable = { name = mil_mp_garrison_mismanage multiply = var:mil_mp_garrison }
+			change_variable = { name = mil_supply_garrison_mismanage multiply = var:mil_supply_garrison }
 		}
 		else = {
 			set_variable = { name = mil_mp_mismanage value = 0 }
 			set_variable = { name = mil_supply_mismanage value = 0 }
+			set_variable = { name = mil_mp_garrison_mismanage value = 0 }
+			set_variable = { name = mil_supply_garrison_mismanage value = 0 }
 		}
 		
 		set_variable = { name = mil_mp_balance value = var:mil_mp_supply }
@@ -286,14 +332,37 @@ mil_main_2 = {
 		change_variable = { name = mil_mp_balance subtract = var:realm_mp_pay }
 		change_variable = { name = mil_mp_balance subtract = var:mil_mp_decay }
 		change_variable = { name = mil_mp_balance subtract = var:mil_mp_mismanage }
+		set_variable = { name = mil_mp_garrison_earn value = var:mil_mp_garrison_share }
+		change_variable = { name = mil_mp_garrison_earn multiply = var:mil_mp_balance }
+		change_variable = { name = mil_mp_balance subtract = var:mil_mp_garrison_earn }
 		change_variable = { name = mil_mp add = var:mil_mp_balance }
+		set_variable = { name = mil_mp_garrison_balance value = var:mil_mp_garrison_earn }
+		change_variable = { name = mil_mp_garrison_balance add = var:mil_mp_garrison_supply }
+		change_variable = { name = mil_mp_garrison_balance subtract = var:mil_mp_garrison_decay }
+		change_variable = { name = mil_mp_garrison_balance subtract = var:mil_mp_garrison_mismanage }
+		change_variable = { name = mil_mp_garrison add = var:mil_mp_garrison_balance }
 		
 		set_variable = { name = mil_supply_balance value = var:mil_supply_stockpile }
 		change_variable = { name = mil_supply_balance add = var:realm_supply_earn }
 		change_variable = { name = mil_supply_balance subtract = var:realm_supply_pay }
 		change_variable = { name = mil_supply_balance subtract = var:mil_supply_decay }
 		change_variable = { name = mil_supply_balance subtract = var:mil_supply_mismanage }
+		set_variable = { name = mil_supply_garrison_earn value = var:mil_supply_garrison_share }
+		change_variable = { name = mil_supply_garrison_earn multiply = var:mil_supply_balance }
+		change_variable = { name = mil_supply_balance subtract = var:mil_supply_garrison_earn }
 		change_variable = { name = mil_supply add = var:mil_supply_balance }
+		set_variable = { name = mil_supply_garrison_balance value = var:mil_supply_garrison_earn }
+		change_variable = { name = mil_supply_garrison_balance subtract = var:mil_supply_garrison_decay }
+		change_variable = { name = mil_supply_garrison_balance subtract = var:mil_supply_garrison_mismanage }
+		change_variable = { name = mil_supply_garrison add = var:mil_supply_garrison_balance }
+		
+		set_variable = { name = realm_garrison value = var:mil_mp_garrison }
+		change_variable = { name = realm_garrison multiply = var:mil_supply_garrison }
+		
+		sqrt_effect = {
+			inp = var:realm_garrison
+			return = realm_garrison
+		}
 	}
 	
 	clear_global_variable_list = mil_main_t

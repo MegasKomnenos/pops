@@ -358,6 +358,61 @@ window = {
 							}
 						}
 					}
+					
+					vbox = {
+						layoutpolicy_horizontal = expanding
+						margin = { 15 5 }
+
+						vbox = {
+							layoutpolicy_horizontal = expanding
+							margin = { 0 5 }
+
+							background = {
+								using = Background_Area
+								margin = { -20 0 }
+								margin_bottom = 10
+								margin_top = 3
+							}
+
+							hbox = {
+								spacing = 25
+								
+								hbox = {
+									spacing = 5
+									vbox = {
+										text_single = {
+											default_format = "#high"
+											text = "Manpower"
+										}
+										text_single = {
+											text = "[GetPlayer.MakeScope.Var('mil_mp_garrison').GetValue]k"
+										}
+									}
+								}
+								hbox = {
+									spacing = 5
+									vbox = {
+										text_single = {
+											default_format = "#high"
+											text = "Supply"
+										}
+										text_single = {
+											text = "[GetPlayer.MakeScope.Var('mil_supply_garrison').GetValue]"
+										}
+									}
+								}
+								vbox = {
+									text_single = {
+										default_format = "#high"
+										text = "Garrison Size"
+									}
+									text_single = {
+										text = "[GetPlayer.MakeScope.Var('realm_garrison').GetValue]k"
+									}
+								}
+							}
+						}
+					}
 				}
 
 				### VASSALS TAB
@@ -1168,25 +1223,6 @@ window = {
 					margin = { 15 5 }
 					margin_bottom = 15
 					spacing = 8
-
-					hbox = {
-						visible = "[MyRealmWindow.IsShowingDomain]"
-						tooltip = "[GetPlayer.GetDomainLimitTooltip]"
-						spacing = 2
-
-						text_single = {
-							text = "[SelectLocalization(MyRealmWindow.IsOverDomainLimit, 'MY_REALM_WINDOW_DOMAIN_LIMIT_WARNING', 'MY_REALM_WINDOW_DOMAIN_LIMIT')]"
-						}
-
-						icon = {
-							size = { 35 35 }
-							texture = "gfx/interface/icons/icon_domain.dds"
-						}
-
-						text_single = {
-							text = "[SelectLocalization(MyRealmWindow.IsOverDomainLimit, 'MY_REALM_WINDOW_DOMAIN_LIMIT_VALUE_WARNING', 'MY_REALM_WINDOW_DOMAIN_LIMIT_VALUE')]"
-						}
-					}
 
 					vbox = {
 						layoutpolicy_horizontal = expanding

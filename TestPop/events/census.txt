@@ -86979,6 +86979,50 @@ census.10 = {
 					value = 0
 				}
 			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = mil_mp_garrison_share
+					}
+				}
+				set_variable = { 
+					name = mil_mp_garrison_share
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = mil_supply_garrison_share
+					}
+				}
+				set_variable = { 
+					name = mil_supply_garrison_share
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = mil_mp_garrison
+					}
+				}
+				set_variable = { 
+					name = mil_mp_garrison
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
+					NOT = { 
+						has_variable = mil_supply_garrison
+					}
+				}
+				set_variable = { 
+					name = mil_supply_garrison
+					value = 0
+				}
+			}
 			set_variable = { 
 				name = mil_mp_supply
 				value = 0.05
@@ -86992,11 +87036,31 @@ census.10 = {
 				divide = 2
 			}
 			set_variable = { 
+				name = mil_mp_garrison_supply
+				value = 0.05
+			}
+			change_variable = { 
+				name = mil_mp_garrison_supply
+				multiply = var:mil_supply_garrison
+			}
+			change_variable = { 
+				name = mil_mp_garrison_supply
+				divide = 2
+			}
+			set_variable = { 
 				name = mil_mp_decay
 				value = 0.1
 			}
 			set_variable = { 
 				name = mil_supply_decay
+				value = 0.1
+			}
+			set_variable = { 
+				name = mil_mp_garrison_decay
+				value = 0.1
+			}
+			set_variable = { 
+				name = mil_supply_garrison_decay
 				value = 0.1
 			}
 			change_variable = { 
@@ -87006,6 +87070,14 @@ census.10 = {
 			change_variable = { 
 				name = mil_supply_decay
 				multiply = var:mil_supply
+			}
+			change_variable = { 
+				name = mil_mp_garrison_decay
+				multiply = var:mil_mp_garrison
+			}
+			change_variable = { 
+				name = mil_supply_garrison_decay
+				multiply = var:mil_supply_garrison
 			}
 			if = { 
 				limit = { 
@@ -87031,6 +87103,14 @@ census.10 = {
 					name = mil_supply_mismanage
 					value = var:mil_main_tt
 				}
+				set_variable = { 
+					name = mil_mp_garrison_mismanage
+					value = var:mil_main_tt
+				}
+				set_variable = { 
+					name = mil_supply_garrison_mismanage
+					value = var:mil_main_tt
+				}
 				change_variable = { 
 					name = mil_mp_mismanage
 					multiply = var:mil_mp
@@ -87038,6 +87118,14 @@ census.10 = {
 				change_variable = { 
 					name = mil_supply_mismanage
 					multiply = var:mil_supply
+				}
+				change_variable = { 
+					name = mil_mp_garrison_mismanage
+					multiply = var:mil_mp_garrison
+				}
+				change_variable = { 
+					name = mil_supply_garrison_mismanage
+					multiply = var:mil_supply_garrison
 				}
 			}
 			else = { 
@@ -87047,6 +87135,14 @@ census.10 = {
 				}
 				set_variable = { 
 					name = mil_supply_mismanage
+					value = 0
+				}
+				set_variable = { 
+					name = mil_mp_garrison_mismanage
+					value = 0
+				}
+				set_variable = { 
+					name = mil_supply_garrison_mismanage
 					value = 0
 				}
 			}
@@ -87070,9 +87166,41 @@ census.10 = {
 				name = mil_mp_balance
 				subtract = var:mil_mp_mismanage
 			}
+			set_variable = { 
+				name = mil_mp_garrison_earn
+				value = var:mil_mp_garrison_share
+			}
+			change_variable = { 
+				name = mil_mp_garrison_earn
+				multiply = var:mil_mp_balance
+			}
+			change_variable = { 
+				name = mil_mp_balance
+				subtract = var:mil_mp_garrison_earn
+			}
 			change_variable = { 
 				name = mil_mp
 				add = var:mil_mp_balance
+			}
+			set_variable = { 
+				name = mil_mp_garrison_balance
+				value = var:mil_mp_garrison_earn
+			}
+			change_variable = { 
+				name = mil_mp_garrison_balance
+				add = var:mil_mp_garrison_supply
+			}
+			change_variable = { 
+				name = mil_mp_garrison_balance
+				subtract = var:mil_mp_garrison_decay
+			}
+			change_variable = { 
+				name = mil_mp_garrison_balance
+				subtract = var:mil_mp_garrison_mismanage
+			}
+			change_variable = { 
+				name = mil_mp_garrison
+				add = var:mil_mp_garrison_balance
 			}
 			set_variable = { 
 				name = mil_supply_balance
@@ -87094,10 +87222,125 @@ census.10 = {
 				name = mil_supply_balance
 				subtract = var:mil_supply_mismanage
 			}
+			set_variable = { 
+				name = mil_supply_garrison_earn
+				value = var:mil_supply_garrison_share
+			}
+			change_variable = { 
+				name = mil_supply_garrison_earn
+				multiply = var:mil_supply_balance
+			}
+			change_variable = { 
+				name = mil_supply_balance
+				subtract = var:mil_supply_garrison_earn
+			}
 			change_variable = { 
 				name = mil_supply
 				add = var:mil_supply_balance
 			}
+			set_variable = { 
+				name = mil_supply_garrison_balance
+				value = var:mil_supply_garrison_earn
+			}
+			change_variable = { 
+				name = mil_supply_garrison_balance
+				subtract = var:mil_supply_garrison_decay
+			}
+			change_variable = { 
+				name = mil_supply_garrison_balance
+				subtract = var:mil_supply_garrison_mismanage
+			}
+			change_variable = { 
+				name = mil_supply_garrison
+				add = var:mil_supply_garrison_balance
+			}
+			set_variable = { 
+				name = realm_garrison
+				value = var:mil_mp_garrison
+			}
+			change_variable = { 
+				name = realm_garrison
+				multiply = var:mil_supply_garrison
+			}
+			set_variable = { 
+				name = math_sqrt_i
+				value = var:realm_garrison
+			}
+			if = { 
+				limit = { 
+					has_variable = math_sqrt_i
+					var:math_sqrt_i > 0
+				}
+				set_variable = { 
+					name = math_sqrt_x
+					value = var:math_sqrt_i
+				}
+				set_variable = { 
+					name = math_sqrt_n
+					value = var:math_sqrt_i
+				}
+				change_variable = { 
+					name = math_sqrt_n
+					divide = 2
+				}
+				set_variable = { 
+					name = math_sqrt_tt
+					value = 0.5
+				}
+				while = { 
+					limit = { 
+						has_variable = math_sqrt_n
+						var:math_sqrt_n > 0
+						OR = { 
+							var:math_sqrt_tt < 0.995
+							var:math_sqrt_tt > 1.005
+						}
+					}
+					set_variable = { 
+						name = math_sqrt_x
+						value = var:math_sqrt_n
+					}
+					set_variable = { 
+						name = math_sqrt_t
+						value = var:math_sqrt_i
+					}
+					change_variable = { 
+						name = math_sqrt_t
+						divide = var:math_sqrt_n
+					}
+					change_variable = { 
+						name = math_sqrt_n
+						add = var:math_sqrt_t
+					}
+					change_variable = { 
+						name = math_sqrt_n
+						divide = 2
+					}
+					set_variable = { 
+						name = math_sqrt_tt
+						value = var:math_sqrt_x
+					}
+					change_variable = { 
+						name = math_sqrt_tt
+						divide = var:math_sqrt_n
+					}
+				}
+				set_variable = { 
+					name = realm_garrison
+					value = var:math_sqrt_n
+				}
+				remove_variable = math_sqrt_x
+				remove_variable = math_sqrt_t
+				remove_variable = math_sqrt_n
+				remove_variable = math_sqrt_tt
+			}
+			else = { 
+				set_variable = { 
+					name = realm_garrison
+					value = 0
+				}
+			}
+			remove_variable = math_sqrt_i
 		}
 		clear_global_variable_list = mil_main_t
 		every_in_global_list = { 
@@ -87307,109 +87550,17 @@ census.10 = {
 		}
 		every_in_global_list = { 
 			variable = realm_ai_t
-			set_variable = { 
-				name = mil_mp_garrison
-				value = var:mil_mp
-			}
-			set_variable = { 
-				name = mil_supply_garrison
-				value = var:mil_supply
-			}
-			change_variable = { 
-				name = mil_mp_garrison
-				divide = 2
-			}
-			change_variable = { 
-				name = mil_supply_garrison
-				divide = 2
-			}
-			set_variable = { 
-				name = realm_garrison
-				value = var:mil_mp_garrison
-			}
-			change_variable = { 
-				name = realm_garrison
-				multiply = var:mil_supply_garrison
-			}
-			set_variable = { 
-				name = math_sqrt_i
-				value = var:realm_garrison
-			}
 			if = { 
 				limit = { 
-					has_variable = math_sqrt_i
-					var:math_sqrt_i > 0
-				}
-				set_variable = { 
-					name = math_sqrt_x
-					value = var:math_sqrt_i
-				}
-				set_variable = { 
-					name = math_sqrt_n
-					value = var:math_sqrt_i
-				}
-				change_variable = { 
-					name = math_sqrt_n
-					divide = 2
-				}
-				set_variable = { 
-					name = math_sqrt_tt
-					value = 0.5
-				}
-				while = { 
-					limit = { 
-						has_variable = math_sqrt_n
-						var:math_sqrt_n > 0
-						OR = { 
-							var:math_sqrt_tt < 0.995
-							var:math_sqrt_tt > 1.005
-						}
-					}
-					set_variable = { 
-						name = math_sqrt_x
-						value = var:math_sqrt_n
-					}
-					set_variable = { 
-						name = math_sqrt_t
-						value = var:math_sqrt_i
-					}
-					change_variable = { 
-						name = math_sqrt_t
-						divide = var:math_sqrt_n
-					}
-					change_variable = { 
-						name = math_sqrt_n
-						add = var:math_sqrt_t
-					}
-					change_variable = { 
-						name = math_sqrt_n
-						divide = 2
-					}
-					set_variable = { 
-						name = math_sqrt_tt
-						value = var:math_sqrt_x
-					}
-					change_variable = { 
-						name = math_sqrt_tt
-						divide = var:math_sqrt_n
+					NOT = { 
+						has_variable = realm_garrison
 					}
 				}
-				set_variable = { 
-					name = realm_garrison
-					value = var:math_sqrt_n
-				}
-				remove_variable = math_sqrt_x
-				remove_variable = math_sqrt_t
-				remove_variable = math_sqrt_n
-				remove_variable = math_sqrt_tt
-			}
-			else = { 
 				set_variable = { 
 					name = realm_garrison
 					value = 0
 				}
 			}
-			remove_variable = math_sqrt_i
 			set_global_variable = { 
 				name = realm_ai_t
 				value = 0
@@ -90652,6 +90803,14 @@ census.99 = {
 				name = is_character
 				value = 1
 			}
+			set_variable = { 
+				name = mil_mp_garrison_share
+				value = 0.5
+			}
+			set_variable = { 
+				name = mil_supply_garrison_share
+				value = 0.5
+			}
 			capital_province = { 
 				every_in_list = { 
 					variable = trade_dat_food
@@ -91561,6 +91720,14 @@ census.99 = {
 					set_variable = { 
 						name = mil_supply
 						value = prev.var:trade_supply
+					}
+					set_variable = { 
+						name = mil_mp_garrison
+						value = prev.var:trade_mp_garrison
+					}
+					set_variable = { 
+						name = mil_supply_garrison
+						value = prev.var:trade_supply_garrison
 					}
 				}
 				every_in_list = { 
@@ -92625,6 +92792,8 @@ census.99 = {
 			remove_variable = trade_gold
 			remove_variable = trade_mp
 			remove_variable = trade_supply
+			remove_variable = trade_mp_garrison
+			remove_variable = trade_supply_garrison
 			clear_variable_list = task_tasks
 		}
 		every_county = { 

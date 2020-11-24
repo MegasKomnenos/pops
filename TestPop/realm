@@ -9,6 +9,14 @@ toggle_player_realm = {
 	}
 	
 	effect = {
+		set_variable = { name = realm_garrison value = var:mil_mp_garrison }
+		change_variable = { name = realm_garrison multiply = var:mil_supply_garrison }
+		
+		sqrt_effect = {
+			inp = var:realm_garrison
+			return = realm_garrison
+		}
+		
 		every_in_global_list = {
 			limit = {
 				is_target_in_variable_list = { name = region_controls target = prev }

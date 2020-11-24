@@ -778,6 +778,8 @@ sim_run.02 = {
 					set_variable = { name = trade_gold value = prev.gold }
 					set_variable = { name = trade_mp value = prev.var:mil_mp }
 					set_variable = { name = trade_supply value = prev.var:mil_supply }
+					set_variable = { name = trade_mp_garrison value = prev.var:mil_mp_garrison }
+					set_variable = { name = trade_supply_garrison value = prev.var:mil_supply_garrison }
 				}
 				
 				clear_variable_list = trade_dat_&goods&

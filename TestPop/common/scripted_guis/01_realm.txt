@@ -7,6 +7,93 @@
 		always = yes
 	}
 	effect = { 
+		set_variable = { 
+			name = realm_garrison
+			value = var:mil_mp_garrison
+		}
+		change_variable = { 
+			name = realm_garrison
+			multiply = var:mil_supply_garrison
+		}
+		set_variable = { 
+			name = math_sqrt_i
+			value = var:realm_garrison
+		}
+		if = { 
+			limit = { 
+				has_variable = math_sqrt_i
+				var:math_sqrt_i > 0
+			}
+			set_variable = { 
+				name = math_sqrt_x
+				value = var:math_sqrt_i
+			}
+			set_variable = { 
+				name = math_sqrt_n
+				value = var:math_sqrt_i
+			}
+			change_variable = { 
+				name = math_sqrt_n
+				divide = 2
+			}
+			set_variable = { 
+				name = math_sqrt_tt
+				value = 0.5
+			}
+			while = { 
+				limit = { 
+					has_variable = math_sqrt_n
+					var:math_sqrt_n > 0
+					OR = { 
+						var:math_sqrt_tt < 0.995
+						var:math_sqrt_tt > 1.005
+					}
+				}
+				set_variable = { 
+					name = math_sqrt_x
+					value = var:math_sqrt_n
+				}
+				set_variable = { 
+					name = math_sqrt_t
+					value = var:math_sqrt_i
+				}
+				change_variable = { 
+					name = math_sqrt_t
+					divide = var:math_sqrt_n
+				}
+				change_variable = { 
+					name = math_sqrt_n
+					add = var:math_sqrt_t
+				}
+				change_variable = { 
+					name = math_sqrt_n
+					divide = 2
+				}
+				set_variable = { 
+					name = math_sqrt_tt
+					value = var:math_sqrt_x
+				}
+				change_variable = { 
+					name = math_sqrt_tt
+					divide = var:math_sqrt_n
+				}
+			}
+			set_variable = { 
+				name = realm_garrison
+				value = var:math_sqrt_n
+			}
+			remove_variable = math_sqrt_x
+			remove_variable = math_sqrt_t
+			remove_variable = math_sqrt_n
+			remove_variable = math_sqrt_tt
+		}
+		else = { 
+			set_variable = { 
+				name = realm_garrison
+				value = 0
+			}
+		}
+		remove_variable = math_sqrt_i
 		every_in_global_list = { 
 			limit = { 
 				is_target_in_variable_list = { 
