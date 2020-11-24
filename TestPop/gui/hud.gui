@@ -61,76 +61,10 @@ widget = {
 		max_width = 300
 	}
 
-	### Error Horse
-	container = {
-		name = "debug_info_horse"
+	error_horse = {
 		parentanchor = bottom|left
 		position = { 610 -10 }
 		visible = "[And( Not( IsPauseMenuShown ), Not(ReleaseMode) )]"
-
-		using = Animation_ShowHide_Quick
-
-		button = {
-			name = "error_button"
-			visible = "[HasErrors]"
-			position = { 0 2 }
-
-			using = Animation_ShowHide_Standard
-
-			tooltip = "[ErrorTooltip]"
-			onclick = "[OpenErrorLog]"
-			oversound = "event:/SFX/UI/Generic/sfx_ui_generic_pointer_over"
-			clicksound = "event:/SFX/UI/Generic/sfx_ui_generic_select"
-
-			texture = "gfx/interface/_debug/errorhoof.dds"
-			framesize = { 113 113 }
-			size = { 80 80 }
-			frame = "[GetErrorHoofFrame]"
-
-			state = {
-				name = _show
-				start_sound = {
-					soundeffect = "event:/Error/Errorhof"
-				}
-			}
-		}
-
-		flowcontainer = {
-			position = { 100 5 }
-			direction = vertical
-			spacing = 5
-
-			## Low FPS warning
-			text_single = {
-				tooltip = "FPS lower than 30"
-				visible = "[HasLowFps]"
-
-				text = "Low FPS"
-				max_width = 300
-
-				background = {
-					using = Text_Label_Background
-					margin = { 17 3 }
-				}
-			}
-
-			## Error count
-			text_single = {
-				name = "error_text"
-				visible = "[HasErrors]"
-
-				text = "Errors: [NumberOrErrors]"
-				max_width = 300
-
-				using = Animation_ShowHide_Standard
-
-				background = {
-					using = Text_Label_Background
-					shaderfile = "gfx/FX/pdxgui_default.shader"
-					margin = { 17 3 }
-				}
-			}
-		}
 	}
 }
 
@@ -146,1065 +80,8 @@ widget = {
 		parentanchor = top|right
 		position = { -720 0 }
 		spacing = 10
-		scale = 0.7
 
 		using = Animation_ShowHide_Quick
-	}
-	
-	window = {
-		parentanchor = top|right
-		size = { 650 1100 }
-		position = { -300 200 }
-		movable = yes
-		visible = "[EqualTo_CFixedPoint('(CFixedPoint)1', GetPlayer.MakeScope.Var('toggled_player_stockpile').GetValue)]"
-		
-		background = {
-			texture = "gfx/interface/component_tiles/tile_window_background_subwindow.dds"
-			spriteType = Corneredtiled
-			spriteborder = { 18 18 }
-			texture_density = 2
-			
-			modify_texture = {
-				name = "overlay"
-				texture = "gfx/interface/component_overlay/overlay_effect.dds"
-				spriteType = Corneredstretched
-				spriteborder = { 0 0 }
-				blend_mode = overlay
-			}
-		}
-		
-		buttons_window_control = {
-			parentanchor = top|right
-			blockoverride "button_close"
-			{
-				onclick = "[GetScriptedGui('close_player_stockpile').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
-			}
-		}
-		
-		vbox = {
-			margin_left = 20
-			margin_bottom = 15
-			margin_top = 5
-			layoutpolicy_vertical = expanding
-			
-			hbox = {
-				layoutpolicy_horizontal = expanding
-				
-				text_single = {
-					parentanchor = left
-					text = "Stockpile Revenue: [GetPlayer.MakeScope.Var('trade_earn').GetValue]"
-					using = Font_Size_Small
-					layoutpolicy_horizontal = expanding
-				}
-				text_single = {
-					parentanchor = left
-					text = "Stockpile Spending: [GetPlayer.MakeScope.Var('trade_pay').GetValue]"
-					using = Font_Size_Small
-					layoutpolicy_horizontal = expanding
-				}
-			}
-			
-			spacer = {
-				size = { 0 5 }
-			}
-			
-			hbox = {
-				layoutpolicy_horizontal = expanding
-				
-				vbox = {
-					layoutpolicy_horizontal = expanding
-					
-					text_single = {
-						parentanchor = left
-						text = "Food:"
-						using = Font_Size_Small
-						layoutpolicy_horizontal = expanding
-					}
-					text_single = {
-						layoutpolicy_horizontal = expanding
-						text = " - Price: [GetPlayer.MakeScope.Var('trade_price_food').GetValue]"
-						using = Font_Size_Small
-					}
-					text_single = {
-						layoutpolicy_horizontal = expanding
-						text = " - Stockpile, Max: [GetPlayer.MakeScope.Var('trade_has_food').GetValue], [GetPlayer.MakeScope.Var('trade_want_food').GetValue]"
-						using = Font_Size_Small
-					}
-					text_single = {
-						layoutpolicy_horizontal = expanding
-						text = " - Supply, Met, Revenue: [GetPlayer.MakeScope.Var('trade_sply_food').GetValue], [GetPlayer.MakeScope.Var('trade_out_food').GetValue], [GetPlayer.MakeScope.Var('trade_earn_food').GetValue]"
-						using = Font_Size_Small
-					}
-					text_single = {
-						layoutpolicy_horizontal = expanding
-						text = " - Demand, Met, Spending: [GetPlayer.MakeScope.Var('trade_dmnd_food').GetValue], [GetPlayer.MakeScope.Var('trade_in_food').GetValue], [GetPlayer.MakeScope.Var('trade_pay_food').GetValue]"
-						using = Font_Size_Small
-					}
-					text_single = {
-						layoutpolicy_horizontal = expanding
-						text = " - Consumption: [GetPlayer.MakeScope.Var('info_player_stockpile_dmnd_food').GetValue]"
-						using = Font_Size_Small
-						tooltip = "Recruitment, Maintenance, Levy: ([GetPlayer.MakeScope.Var('info_player_stockpile_maa_recruit_food').GetValue], [GetPlayer.MakeScope.Var('info_player_stockpile_maa_maintain_food').GetValue], [GetPlayer.MakeScope.Var('info_player_stockpile_levy_maintain_food').GetValue])"
-					}
-				}
-				vbox = {
-					layoutpolicy_horizontal = expanding
-					
-					text_single = {
-						parentanchor = left
-						text = "Cereal:"
-						using = Font_Size_Small
-						layoutpolicy_horizontal = expanding
-					}
-					text_single = {
-						layoutpolicy_horizontal = expanding
-						text = " - Price: [GetPlayer.MakeScope.Var('trade_price_cereal').GetValue]"
-						using = Font_Size_Small
-					}
-					text_single = {
-						layoutpolicy_horizontal = expanding
-						text = " - Stockpile, Max: [GetPlayer.MakeScope.Var('trade_has_cereal').GetValue], [GetPlayer.MakeScope.Var('trade_want_cereal').GetValue]"
-						using = Font_Size_Small
-					}
-					text_single = {
-						layoutpolicy_horizontal = expanding
-						text = " - Supply, Met, Revenue: [GetPlayer.MakeScope.Var('trade_sply_cereal').GetValue], [GetPlayer.MakeScope.Var('trade_out_cereal').GetValue], [GetPlayer.MakeScope.Var('trade_earn_cereal').GetValue]"
-						using = Font_Size_Small
-					}
-					text_single = {
-						layoutpolicy_horizontal = expanding
-						text = " - Demand, Met, Spending: [GetPlayer.MakeScope.Var('trade_dmnd_cereal').GetValue], [GetPlayer.MakeScope.Var('trade_in_cereal').GetValue], [GetPlayer.MakeScope.Var('trade_pay_cereal').GetValue]"
-						using = Font_Size_Small
-					}
-					text_single = {
-						layoutpolicy_horizontal = expanding
-						text = " - Consumption: [GetPlayer.MakeScope.Var('info_player_stockpile_dmnd_cereal').GetValue]"
-						using = Font_Size_Small
-						tooltip = "Recruitment, Maintenance, Levy: ([GetPlayer.MakeScope.Var('info_player_stockpile_maa_recruit_cereal').GetValue], [GetPlayer.MakeScope.Var('info_player_stockpile_maa_maintain_cereal').GetValue], [GetPlayer.MakeScope.Var('info_player_stockpile_levy_maintain_cereal').GetValue])"
-					}
-				}
-			}
-			hbox = {
-				layoutpolicy_horizontal = expanding
-				
-				vbox = {
-					layoutpolicy_horizontal = expanding
-					
-					text_single = {
-						parentanchor = left
-						text = "Salted:"
-						using = Font_Size_Small
-						layoutpolicy_horizontal = expanding
-					}
-					text_single = {
-						layoutpolicy_horizontal = expanding
-						text = " - Price: [GetPlayer.MakeScope.Var('trade_price_salted').GetValue]"
-						using = Font_Size_Small
-					}
-					text_single = {
-						layoutpolicy_horizontal = expanding
-						text = " - Stockpile, Max: [GetPlayer.MakeScope.Var('trade_has_salted').GetValue], [GetPlayer.MakeScope.Var('trade_want_salted').GetValue]"
-						using = Font_Size_Small
-					}
-					text_single = {
-						layoutpolicy_horizontal = expanding
-						text = " - Supply, Met, Revenue: [GetPlayer.MakeScope.Var('trade_sply_salted').GetValue], [GetPlayer.MakeScope.Var('trade_out_salted').GetValue], [GetPlayer.MakeScope.Var('trade_earn_salted').GetValue]"
-						using = Font_Size_Small
-					}
-					text_single = {
-						layoutpolicy_horizontal = expanding
-						text = " - Demand, Met, Spending: [GetPlayer.MakeScope.Var('trade_dmnd_salted').GetValue], [GetPlayer.MakeScope.Var('trade_in_salted').GetValue], [GetPlayer.MakeScope.Var('trade_pay_salted').GetValue]"
-						using = Font_Size_Small
-					}
-					text_single = {
-						layoutpolicy_horizontal = expanding
-						text = " - Consumption: [GetPlayer.MakeScope.Var('info_player_stockpile_dmnd_salted').GetValue]"
-						using = Font_Size_Small
-						tooltip = "Recruitment, Maintenance, Levy: ([GetPlayer.MakeScope.Var('info_player_stockpile_maa_recruit_salted').GetValue], [GetPlayer.MakeScope.Var('info_player_stockpile_maa_maintain_salted').GetValue], [GetPlayer.MakeScope.Var('info_player_stockpile_levy_maintain_salted').GetValue])"
-					}
-				}
-				vbox = {
-					layoutpolicy_horizontal = expanding
-					
-					text_single = {
-						parentanchor = left
-						text = "Salt:"
-						using = Font_Size_Small
-						layoutpolicy_horizontal = expanding
-					}
-					text_single = {
-						layoutpolicy_horizontal = expanding
-						text = " - Price: [GetPlayer.MakeScope.Var('trade_price_salt').GetValue]"
-						using = Font_Size_Small
-					}
-					text_single = {
-						layoutpolicy_horizontal = expanding
-						text = " - Stockpile, Max: [GetPlayer.MakeScope.Var('trade_has_salt').GetValue], [GetPlayer.MakeScope.Var('trade_want_salt').GetValue]"
-						using = Font_Size_Small
-					}
-					text_single = {
-						layoutpolicy_horizontal = expanding
-						text = " - Supply, Met, Revenue: [GetPlayer.MakeScope.Var('trade_sply_salt').GetValue], [GetPlayer.MakeScope.Var('trade_out_salt').GetValue], [GetPlayer.MakeScope.Var('trade_earn_salt').GetValue]"
-						using = Font_Size_Small
-					}
-					text_single = {
-						layoutpolicy_horizontal = expanding
-						text = " - Demand, Met, Spending: [GetPlayer.MakeScope.Var('trade_dmnd_salt').GetValue], [GetPlayer.MakeScope.Var('trade_in_salt').GetValue], [GetPlayer.MakeScope.Var('trade_pay_salt').GetValue]"
-						using = Font_Size_Small
-					}
-					text_single = {
-						layoutpolicy_horizontal = expanding
-						text = " - Consumption: [GetPlayer.MakeScope.Var('info_player_stockpile_dmnd_salt').GetValue]"
-						using = Font_Size_Small
-						tooltip = "Recruitment, Maintenance, Levy: ([GetPlayer.MakeScope.Var('info_player_stockpile_maa_recruit_salt').GetValue], [GetPlayer.MakeScope.Var('info_player_stockpile_maa_maintain_salt').GetValue], [GetPlayer.MakeScope.Var('info_player_stockpile_levy_maintain_salt').GetValue])"
-					}
-				}
-			}
-			hbox = {
-				layoutpolicy_horizontal = expanding
-				
-				vbox = {
-					layoutpolicy_horizontal = expanding
-					
-					text_single = {
-						parentanchor = left
-						text = "Mud:"
-						using = Font_Size_Small
-						layoutpolicy_horizontal = expanding
-					}
-					text_single = {
-						layoutpolicy_horizontal = expanding
-						text = " - Price: [GetPlayer.MakeScope.Var('trade_price_mud').GetValue]"
-						using = Font_Size_Small
-					}
-					text_single = {
-						layoutpolicy_horizontal = expanding
-						text = " - Stockpile, Max: [GetPlayer.MakeScope.Var('trade_has_mud').GetValue], [GetPlayer.MakeScope.Var('trade_want_mud').GetValue]"
-						using = Font_Size_Small
-					}
-					text_single = {
-						layoutpolicy_horizontal = expanding
-						text = " - Supply, Met, Revenue: [GetPlayer.MakeScope.Var('trade_sply_mud').GetValue], [GetPlayer.MakeScope.Var('trade_out_mud').GetValue], [GetPlayer.MakeScope.Var('trade_earn_mud').GetValue]"
-						using = Font_Size_Small
-					}
-					text_single = {
-						layoutpolicy_horizontal = expanding
-						text = " - Demand, Met, Spending: [GetPlayer.MakeScope.Var('trade_dmnd_mud').GetValue], [GetPlayer.MakeScope.Var('trade_in_mud').GetValue], [GetPlayer.MakeScope.Var('trade_pay_mud').GetValue]"
-						using = Font_Size_Small
-					}
-					text_single = {
-						layoutpolicy_horizontal = expanding
-						text = " - Consumption: [GetPlayer.MakeScope.Var('info_player_stockpile_dmnd_mud').GetValue]"
-						using = Font_Size_Small
-						tooltip = "Recruitment, Maintenance, Levy: ([GetPlayer.MakeScope.Var('info_player_stockpile_maa_recruit_mud').GetValue], [GetPlayer.MakeScope.Var('info_player_stockpile_maa_maintain_mud').GetValue], [GetPlayer.MakeScope.Var('info_player_stockpile_levy_maintain_mud').GetValue])"
-					}
-				}
-				vbox = {
-					layoutpolicy_horizontal = expanding
-					
-					text_single = {
-						parentanchor = left
-						text = "Fuel:"
-						using = Font_Size_Small
-						layoutpolicy_horizontal = expanding
-					}
-					text_single = {
-						layoutpolicy_horizontal = expanding
-						text = " - Price: [GetPlayer.MakeScope.Var('trade_price_fuel').GetValue]"
-						using = Font_Size_Small
-					}
-					text_single = {
-						layoutpolicy_horizontal = expanding
-						text = " - Stockpile, Max: [GetPlayer.MakeScope.Var('trade_has_fuel').GetValue], [GetPlayer.MakeScope.Var('trade_want_fuel').GetValue]"
-						using = Font_Size_Small
-					}
-					text_single = {
-						layoutpolicy_horizontal = expanding
-						text = " - Supply, Met, Revenue: [GetPlayer.MakeScope.Var('trade_sply_fuel').GetValue], [GetPlayer.MakeScope.Var('trade_out_fuel').GetValue], [GetPlayer.MakeScope.Var('trade_earn_fuel').GetValue]"
-						using = Font_Size_Small
-					}
-					text_single = {
-						layoutpolicy_horizontal = expanding
-						text = " - Demand, Met, Spending: [GetPlayer.MakeScope.Var('trade_dmnd_fuel').GetValue], [GetPlayer.MakeScope.Var('trade_in_fuel').GetValue], [GetPlayer.MakeScope.Var('trade_pay_fuel').GetValue]"
-						using = Font_Size_Small
-					}
-					text_single = {
-						layoutpolicy_horizontal = expanding
-						text = " - Consumption: [GetPlayer.MakeScope.Var('info_player_stockpile_dmnd_fuel').GetValue]"
-						using = Font_Size_Small
-						tooltip = "Recruitment, Maintenance, Levy: ([GetPlayer.MakeScope.Var('info_player_stockpile_maa_recruit_fuel').GetValue], [GetPlayer.MakeScope.Var('info_player_stockpile_maa_maintain_fuel').GetValue], [GetPlayer.MakeScope.Var('info_player_stockpile_levy_maintain_fuel').GetValue])"
-					}
-				}
-			}
-			hbox = {
-				layoutpolicy_horizontal = expanding
-				
-				vbox = {
-					layoutpolicy_horizontal = expanding
-					
-					text_single = {
-						parentanchor = left
-						text = "Fiber:"
-						using = Font_Size_Small
-						layoutpolicy_horizontal = expanding
-					}
-					text_single = {
-						layoutpolicy_horizontal = expanding
-						text = " - Price: [GetPlayer.MakeScope.Var('trade_price_fiber').GetValue]"
-						using = Font_Size_Small
-					}
-					text_single = {
-						layoutpolicy_horizontal = expanding
-						text = " - Stockpile, Max: [GetPlayer.MakeScope.Var('trade_has_fiber').GetValue], [GetPlayer.MakeScope.Var('trade_want_fiber').GetValue]"
-						using = Font_Size_Small
-					}
-					text_single = {
-						layoutpolicy_horizontal = expanding
-						text = " - Supply, Met, Revenue: [GetPlayer.MakeScope.Var('trade_sply_fiber').GetValue], [GetPlayer.MakeScope.Var('trade_out_fiber').GetValue], [GetPlayer.MakeScope.Var('trade_earn_fiber').GetValue]"
-						using = Font_Size_Small
-					}
-					text_single = {
-						layoutpolicy_horizontal = expanding
-						text = " - Demand, Met, Spending: [GetPlayer.MakeScope.Var('trade_dmnd_fiber').GetValue], [GetPlayer.MakeScope.Var('trade_in_fiber').GetValue], [GetPlayer.MakeScope.Var('trade_pay_fiber').GetValue]"
-						using = Font_Size_Small
-					}
-					text_single = {
-						layoutpolicy_horizontal = expanding
-						text = " - Consumption: [GetPlayer.MakeScope.Var('info_player_stockpile_dmnd_fiber').GetValue]"
-						using = Font_Size_Small
-						tooltip = "Recruitment, Maintenance, Levy: ([GetPlayer.MakeScope.Var('info_player_stockpile_maa_recruit_fiber').GetValue], [GetPlayer.MakeScope.Var('info_player_stockpile_maa_maintain_fiber').GetValue], [GetPlayer.MakeScope.Var('info_player_stockpile_levy_maintain_fiber').GetValue])"
-					}
-				}
-				vbox = {
-					layoutpolicy_horizontal = expanding
-					
-					text_single = {
-						parentanchor = left
-						text = "Timber:"
-						using = Font_Size_Small
-						layoutpolicy_horizontal = expanding
-					}
-					text_single = {
-						layoutpolicy_horizontal = expanding
-						text = " - Price: [GetPlayer.MakeScope.Var('trade_price_timber').GetValue]"
-						using = Font_Size_Small
-					}
-					text_single = {
-						layoutpolicy_horizontal = expanding
-						text = " - Stockpile, Max: [GetPlayer.MakeScope.Var('trade_has_timber').GetValue], [GetPlayer.MakeScope.Var('trade_want_timber').GetValue]"
-						using = Font_Size_Small
-					}
-					text_single = {
-						layoutpolicy_horizontal = expanding
-						text = " - Supply, Met, Revenue: [GetPlayer.MakeScope.Var('trade_sply_timber').GetValue], [GetPlayer.MakeScope.Var('trade_out_timber').GetValue], [GetPlayer.MakeScope.Var('trade_earn_timber').GetValue]"
-						using = Font_Size_Small
-					}
-					text_single = {
-						layoutpolicy_horizontal = expanding
-						text = " - Demand, Met, Spending: [GetPlayer.MakeScope.Var('trade_dmnd_timber').GetValue], [GetPlayer.MakeScope.Var('trade_in_timber').GetValue], [GetPlayer.MakeScope.Var('trade_pay_timber').GetValue]"
-						using = Font_Size_Small
-					}
-					text_single = {
-						layoutpolicy_horizontal = expanding
-						text = " - Consumption: [GetPlayer.MakeScope.Var('info_player_stockpile_dmnd_timber').GetValue]"
-						using = Font_Size_Small
-						tooltip = "Recruitment, Maintenance, Levy: ([GetPlayer.MakeScope.Var('info_player_stockpile_maa_recruit_timber').GetValue], [GetPlayer.MakeScope.Var('info_player_stockpile_maa_maintain_timber').GetValue], [GetPlayer.MakeScope.Var('info_player_stockpile_levy_maintain_timber').GetValue])"
-					}
-				}
-			}
-			hbox = {
-				layoutpolicy_horizontal = expanding
-				
-				vbox = {
-					layoutpolicy_horizontal = expanding
-					
-					text_single = {
-						parentanchor = left
-						text = "Metal:"
-						using = Font_Size_Small
-						layoutpolicy_horizontal = expanding
-					}
-					text_single = {
-						layoutpolicy_horizontal = expanding
-						text = " - Price: [GetPlayer.MakeScope.Var('trade_price_metal').GetValue]"
-						using = Font_Size_Small
-					}
-					text_single = {
-						layoutpolicy_horizontal = expanding
-						text = " - Stockpile, Max: [GetPlayer.MakeScope.Var('trade_has_metal').GetValue], [GetPlayer.MakeScope.Var('trade_want_metal').GetValue]"
-						using = Font_Size_Small
-					}
-					text_single = {
-						layoutpolicy_horizontal = expanding
-						text = " - Supply, Met, Revenue: [GetPlayer.MakeScope.Var('trade_sply_metal').GetValue], [GetPlayer.MakeScope.Var('trade_out_metal').GetValue], [GetPlayer.MakeScope.Var('trade_earn_metal').GetValue]"
-						using = Font_Size_Small
-					}
-					text_single = {
-						layoutpolicy_horizontal = expanding
-						text = " - Demand, Met, Spending: [GetPlayer.MakeScope.Var('trade_dmnd_metal').GetValue], [GetPlayer.MakeScope.Var('trade_in_metal').GetValue], [GetPlayer.MakeScope.Var('trade_pay_metal').GetValue]"
-						using = Font_Size_Small
-					}
-					text_single = {
-						layoutpolicy_horizontal = expanding
-						text = " - Consumption: [GetPlayer.MakeScope.Var('info_player_stockpile_dmnd_metal').GetValue]"
-						using = Font_Size_Small
-						tooltip = "Recruitment, Maintenance, Levy: ([GetPlayer.MakeScope.Var('info_player_stockpile_maa_recruit_metal').GetValue], [GetPlayer.MakeScope.Var('info_player_stockpile_maa_maintain_metal').GetValue], [GetPlayer.MakeScope.Var('info_player_stockpile_levy_maintain_metal').GetValue])"
-					}
-				}
-				vbox = {
-					layoutpolicy_horizontal = expanding
-					
-					text_single = {
-						parentanchor = left
-						text = "Western Exotics:"
-						using = Font_Size_Small
-						layoutpolicy_horizontal = expanding
-					}
-					text_single = {
-						layoutpolicy_horizontal = expanding
-						text = " - Price: [GetPlayer.MakeScope.Var('trade_price_exotics_w').GetValue]"
-						using = Font_Size_Small
-					}
-					text_single = {
-						layoutpolicy_horizontal = expanding
-						text = " - Stockpile, Max: [GetPlayer.MakeScope.Var('trade_has_exotics_w').GetValue], [GetPlayer.MakeScope.Var('trade_want_exotics_w').GetValue]"
-						using = Font_Size_Small
-					}
-					text_single = {
-						layoutpolicy_horizontal = expanding
-						text = " - Supply, Met, Revenue: [GetPlayer.MakeScope.Var('trade_sply_exotics_w').GetValue], [GetPlayer.MakeScope.Var('trade_out_exotics_w').GetValue], [GetPlayer.MakeScope.Var('trade_earn_exotics_w').GetValue]"
-						using = Font_Size_Small
-					}
-					text_single = {
-						layoutpolicy_horizontal = expanding
-						text = " - Demand, Met, Spending: [GetPlayer.MakeScope.Var('trade_dmnd_exotics_w').GetValue], [GetPlayer.MakeScope.Var('trade_in_exotics_w').GetValue], [GetPlayer.MakeScope.Var('trade_pay_exotics_w').GetValue]"
-						using = Font_Size_Small
-					}
-					text_single = {
-						layoutpolicy_horizontal = expanding
-						text = " - Consumption: [GetPlayer.MakeScope.Var('info_player_stockpile_dmnd_exotics_w').GetValue]"
-						using = Font_Size_Small
-						tooltip = "Recruitment, Maintenance, Levy: ([GetPlayer.MakeScope.Var('info_player_stockpile_maa_recruit_exotics_w').GetValue], [GetPlayer.MakeScope.Var('info_player_stockpile_maa_maintain_exotics_w').GetValue], [GetPlayer.MakeScope.Var('info_player_stockpile_levy_maintain_exotics_w').GetValue])"
-					}
-				}
-			}
-			hbox = {
-				layoutpolicy_horizontal = expanding
-				
-				vbox = {
-					layoutpolicy_horizontal = expanding
-					
-					text_single = {
-						parentanchor = left
-						text = "Eastern Exotics:"
-						using = Font_Size_Small
-						layoutpolicy_horizontal = expanding
-					}
-					text_single = {
-						layoutpolicy_horizontal = expanding
-						text = " - Price: [GetPlayer.MakeScope.Var('trade_price_exotics_e').GetValue]"
-						using = Font_Size_Small
-					}
-					text_single = {
-						layoutpolicy_horizontal = expanding
-						text = " - Stockpile, Max: [GetPlayer.MakeScope.Var('trade_has_exotics_e').GetValue], [GetPlayer.MakeScope.Var('trade_want_exotics_e').GetValue]"
-						using = Font_Size_Small
-					}
-					text_single = {
-						layoutpolicy_horizontal = expanding
-						text = " - Supply, Met, Revenue: [GetPlayer.MakeScope.Var('trade_sply_exotics_e').GetValue], [GetPlayer.MakeScope.Var('trade_out_exotics_e').GetValue], [GetPlayer.MakeScope.Var('trade_earn_exotics_e').GetValue]"
-						using = Font_Size_Small
-					}
-					text_single = {
-						layoutpolicy_horizontal = expanding
-						text = " - Demand, Met, Spending: [GetPlayer.MakeScope.Var('trade_dmnd_exotics_e').GetValue], [GetPlayer.MakeScope.Var('trade_in_exotics_e').GetValue], [GetPlayer.MakeScope.Var('trade_pay_exotics_e').GetValue]"
-						using = Font_Size_Small
-					}
-					text_single = {
-						layoutpolicy_horizontal = expanding
-						text = " - Consumption: [GetPlayer.MakeScope.Var('info_player_stockpile_dmnd_exotics_e').GetValue]"
-						using = Font_Size_Small
-						tooltip = "Recruitment, Maintenance, Levy: ([GetPlayer.MakeScope.Var('info_player_stockpile_maa_recruit_exotics_e').GetValue], [GetPlayer.MakeScope.Var('info_player_stockpile_maa_maintain_exotics_e').GetValue], [GetPlayer.MakeScope.Var('info_player_stockpile_levy_maintain_exotics_e').GetValue])"
-					}
-				}
-				vbox = {
-					layoutpolicy_horizontal = expanding
-					
-					text_single = {
-						parentanchor = left
-						text = "General Exotics:"
-						using = Font_Size_Small
-						layoutpolicy_horizontal = expanding
-					}
-					text_single = {
-						layoutpolicy_horizontal = expanding
-						text = " - Price: [GetPlayer.MakeScope.Var('trade_price_exotics_g').GetValue]"
-						using = Font_Size_Small
-					}
-					text_single = {
-						layoutpolicy_horizontal = expanding
-						text = " - Stockpile, Max: [GetPlayer.MakeScope.Var('trade_has_exotics_g').GetValue], [GetPlayer.MakeScope.Var('trade_want_exotics_g').GetValue]"
-						using = Font_Size_Small
-					}
-					text_single = {
-						layoutpolicy_horizontal = expanding
-						text = " - Supply, Met, Revenue: [GetPlayer.MakeScope.Var('trade_sply_exotics_g').GetValue], [GetPlayer.MakeScope.Var('trade_out_exotics_g').GetValue], [GetPlayer.MakeScope.Var('trade_earn_exotics_g').GetValue]"
-						using = Font_Size_Small
-					}
-					text_single = {
-						layoutpolicy_horizontal = expanding
-						text = " - Demand, Met, Spending: [GetPlayer.MakeScope.Var('trade_dmnd_exotics_g').GetValue], [GetPlayer.MakeScope.Var('trade_in_exotics_g').GetValue], [GetPlayer.MakeScope.Var('trade_pay_exotics_g').GetValue]"
-						using = Font_Size_Small
-					}
-					text_single = {
-						layoutpolicy_horizontal = expanding
-						text = " - Consumption: [GetPlayer.MakeScope.Var('info_player_stockpile_dmnd_exotics_g').GetValue]"
-						using = Font_Size_Small
-						tooltip = "Recruitment, Maintenance, Levy: ([GetPlayer.MakeScope.Var('info_player_stockpile_maa_recruit_exotics_g').GetValue], [GetPlayer.MakeScope.Var('info_player_stockpile_maa_maintain_exotics_g').GetValue], [GetPlayer.MakeScope.Var('info_player_stockpile_levy_maintain_exotics_g').GetValue])"
-					}
-				}
-			}
-			hbox = {
-				layoutpolicy_horizontal = expanding
-				
-				vbox = {
-					layoutpolicy_horizontal = expanding
-					
-					text_single = {
-						parentanchor = left
-						text = "Textile:"
-						using = Font_Size_Small
-						layoutpolicy_horizontal = expanding
-					}
-					text_single = {
-						layoutpolicy_horizontal = expanding
-						text = " - Price: [GetPlayer.MakeScope.Var('trade_price_textile').GetValue]"
-						using = Font_Size_Small
-					}
-					text_single = {
-						layoutpolicy_horizontal = expanding
-						text = " - Stockpile, Max: [GetPlayer.MakeScope.Var('trade_has_textile').GetValue], [GetPlayer.MakeScope.Var('trade_want_textile').GetValue]"
-						using = Font_Size_Small
-					}
-					text_single = {
-						layoutpolicy_horizontal = expanding
-						text = " - Supply, Met, Revenue: [GetPlayer.MakeScope.Var('trade_sply_textile').GetValue], [GetPlayer.MakeScope.Var('trade_out_textile').GetValue], [GetPlayer.MakeScope.Var('trade_earn_textile').GetValue]"
-						using = Font_Size_Small
-					}
-					text_single = {
-						layoutpolicy_horizontal = expanding
-						text = " - Demand, Met, Spending: [GetPlayer.MakeScope.Var('trade_dmnd_textile').GetValue], [GetPlayer.MakeScope.Var('trade_in_textile').GetValue], [GetPlayer.MakeScope.Var('trade_pay_textile').GetValue]"
-						using = Font_Size_Small
-					}
-					text_single = {
-						layoutpolicy_horizontal = expanding
-						text = " - Consumption: [GetPlayer.MakeScope.Var('info_player_stockpile_dmnd_textile').GetValue]"
-						using = Font_Size_Small
-						tooltip = "Recruitment, Maintenance, Levy: ([GetPlayer.MakeScope.Var('info_player_stockpile_maa_recruit_textile').GetValue], [GetPlayer.MakeScope.Var('info_player_stockpile_maa_maintain_textile').GetValue], [GetPlayer.MakeScope.Var('info_player_stockpile_levy_maintain_textile').GetValue])"
-					}
-				}
-				vbox = {
-					layoutpolicy_horizontal = expanding
-					
-					text_single = {
-						parentanchor = left
-						text = "Pottery:"
-						using = Font_Size_Small
-						layoutpolicy_horizontal = expanding
-					}
-					text_single = {
-						layoutpolicy_horizontal = expanding
-						text = " - Price: [GetPlayer.MakeScope.Var('trade_price_pottery').GetValue]"
-						using = Font_Size_Small
-					}
-					text_single = {
-						layoutpolicy_horizontal = expanding
-						text = " - Stockpile, Max: [GetPlayer.MakeScope.Var('trade_has_pottery').GetValue], [GetPlayer.MakeScope.Var('trade_want_pottery').GetValue]"
-						using = Font_Size_Small
-					}
-					text_single = {
-						layoutpolicy_horizontal = expanding
-						text = " - Supply, Met, Revenue: [GetPlayer.MakeScope.Var('trade_sply_pottery').GetValue], [GetPlayer.MakeScope.Var('trade_out_pottery').GetValue], [GetPlayer.MakeScope.Var('trade_earn_pottery').GetValue]"
-						using = Font_Size_Small
-					}
-					text_single = {
-						layoutpolicy_horizontal = expanding
-						text = " - Demand, Met, Spending: [GetPlayer.MakeScope.Var('trade_dmnd_pottery').GetValue], [GetPlayer.MakeScope.Var('trade_in_pottery').GetValue], [GetPlayer.MakeScope.Var('trade_pay_pottery').GetValue]"
-						using = Font_Size_Small
-					}
-					text_single = {
-						layoutpolicy_horizontal = expanding
-						text = " - Consumption: [GetPlayer.MakeScope.Var('info_player_stockpile_dmnd_pottery').GetValue]"
-						using = Font_Size_Small
-						tooltip = "Recruitment, Maintenance, Levy: ([GetPlayer.MakeScope.Var('info_player_stockpile_maa_recruit_pottery').GetValue], [GetPlayer.MakeScope.Var('info_player_stockpile_maa_maintain_pottery').GetValue], [GetPlayer.MakeScope.Var('info_player_stockpile_levy_maintain_pottery').GetValue])"
-					}
-				}
-			}
-			hbox = {
-				layoutpolicy_horizontal = expanding
-				
-				vbox = {
-					layoutpolicy_horizontal = expanding
-					
-					text_single = {
-						parentanchor = left
-						text = "Tools:"
-						using = Font_Size_Small
-						layoutpolicy_horizontal = expanding
-					}
-					text_single = {
-						layoutpolicy_horizontal = expanding
-						text = " - Price: [GetPlayer.MakeScope.Var('trade_price_tools').GetValue]"
-						using = Font_Size_Small
-					}
-					text_single = {
-						layoutpolicy_horizontal = expanding
-						text = " - Stockpile, Max: [GetPlayer.MakeScope.Var('trade_has_tools').GetValue], [GetPlayer.MakeScope.Var('trade_want_tools').GetValue]"
-						using = Font_Size_Small
-					}
-					text_single = {
-						layoutpolicy_horizontal = expanding
-						text = " - Supply, Met, Revenue: [GetPlayer.MakeScope.Var('trade_sply_tools').GetValue], [GetPlayer.MakeScope.Var('trade_out_tools').GetValue], [GetPlayer.MakeScope.Var('trade_earn_tools').GetValue]"
-						using = Font_Size_Small
-					}
-					text_single = {
-						layoutpolicy_horizontal = expanding
-						text = " - Demand, Met, Spending: [GetPlayer.MakeScope.Var('trade_dmnd_tools').GetValue], [GetPlayer.MakeScope.Var('trade_in_tools').GetValue], [GetPlayer.MakeScope.Var('trade_pay_tools').GetValue]"
-						using = Font_Size_Small
-					}
-					text_single = {
-						layoutpolicy_horizontal = expanding
-						text = " - Consumption: [GetPlayer.MakeScope.Var('info_player_stockpile_dmnd_tools').GetValue]"
-						using = Font_Size_Small
-						tooltip = "Recruitment, Maintenance, Levy: ([GetPlayer.MakeScope.Var('info_player_stockpile_maa_recruit_tools').GetValue], [GetPlayer.MakeScope.Var('info_player_stockpile_maa_maintain_tools').GetValue], [GetPlayer.MakeScope.Var('info_player_stockpile_levy_maintain_tools').GetValue])"
-					}
-				}
-				vbox = {
-					layoutpolicy_horizontal = expanding
-					
-					text_single = {
-						parentanchor = left
-						text = "Armaments:"
-						using = Font_Size_Small
-						layoutpolicy_horizontal = expanding
-					}
-					text_single = {
-						layoutpolicy_horizontal = expanding
-						text = " - Price: [GetPlayer.MakeScope.Var('trade_price_armaments').GetValue]"
-						using = Font_Size_Small
-					}
-					text_single = {
-						layoutpolicy_horizontal = expanding
-						text = " - Stockpile, Max: [GetPlayer.MakeScope.Var('trade_has_armaments').GetValue], [GetPlayer.MakeScope.Var('trade_want_armaments').GetValue]"
-						using = Font_Size_Small
-					}
-					text_single = {
-						layoutpolicy_horizontal = expanding
-						text = " - Supply, Met, Revenue: [GetPlayer.MakeScope.Var('trade_sply_armaments').GetValue], [GetPlayer.MakeScope.Var('trade_out_armaments').GetValue], [GetPlayer.MakeScope.Var('trade_earn_armaments').GetValue]"
-						using = Font_Size_Small
-					}
-					text_single = {
-						layoutpolicy_horizontal = expanding
-						text = " - Demand, Met, Spending: [GetPlayer.MakeScope.Var('trade_dmnd_armaments').GetValue], [GetPlayer.MakeScope.Var('trade_in_armaments').GetValue], [GetPlayer.MakeScope.Var('trade_pay_armaments').GetValue]"
-						using = Font_Size_Small
-					}
-					text_single = {
-						layoutpolicy_horizontal = expanding
-						text = " - Consumption: [GetPlayer.MakeScope.Var('info_player_stockpile_dmnd_armaments').GetValue]"
-						using = Font_Size_Small
-						tooltip = "Recruitment, Maintenance, Levy: ([GetPlayer.MakeScope.Var('info_player_stockpile_maa_recruit_armaments').GetValue], [GetPlayer.MakeScope.Var('info_player_stockpile_maa_maintain_armaments').GetValue], [GetPlayer.MakeScope.Var('info_player_stockpile_levy_maintain_armaments').GetValue])"
-					}
-				}
-			}
-		}
-	}
-	
-	window = {
-		parentanchor = right
-		size = { 800 600 }
-		position = { 300 0 }
-		movable = yes
-		visible = "[EqualTo_CFixedPoint('(CFixedPoint)1', GetPlayer.MakeScope.Var('toggled_player_tasks').GetValue)]"
-		
-		background = {
-			texture = "gfx/interface/component_tiles/tile_window_background_subwindow.dds"
-			spriteType = Corneredtiled
-			spriteborder = { 18 18 }
-			texture_density = 2
-			
-			modify_texture = {
-				name = "overlay"
-				texture = "gfx/interface/component_overlay/overlay_effect.dds"
-				spriteType = Corneredstretched
-				spriteborder = { 0 0 }
-				blend_mode = overlay
-			}
-		}
-		
-		buttons_window_control = {
-			parentanchor = top|right
-			position = { -10 10 }
-			blockoverride "button_close"
-			{
-				datacontext = "[GetScriptedGui( 'close_player_tasks' )]"
-				onclick = "[ScriptedGui.Execute( GuiScope.SetRoot( GetPlayer.MakeScope ).End )]"
-				background = {
-					using = Background_Area_Dark
-				}
-			}
-		}
-		
-		text_single = {
-			position = { 30 15 }
-			text = "Task & Time"
-			default_format = "#high"
-			align = nobaseline
-			using = Font_Size_Big
-			max_width = 190
-			fontsize_min = 20
-		}
-		
-		vbox = {
-			margin_top = 70
-			hbox = {
-				spacing = 10
-				vbox = {
-					portrait_head = {
-						name = "tasks_window_player_portrait"
-						datacontext = "[GetPlayer]"
-					}
-					vbox = {
-						text_single = {
-							layoutpolicy_horizontal = expanding
-							text = "Spent: [GetPlayer.MakeScope.Var('toggle_player_tasks_time').GetValue]"
-						}
-						text_single = {
-							layoutpolicy_horizontal = expanding
-							text = "Remain: [GetPlayer.MakeScope.Var('toggle_player_tasks_time_remain').GetValue]"
-						}
-					}
-				}
-				vbox = {
-					visible = "[EqualTo_CFixedPoint('(CFixedPoint)1', GetPlayer.MakeScope.Var('toggle_player_tasks_councillor_has_diplomacy').GetValue)]"
-					portrait_head = {
-						name = "tasks_window_player_portrait"
-						datacontext = "[GetPlayer.MakeScope.Var('toggle_player_tasks_councillor_diplomacy').GetCharacter]"
-					}
-					vbox = {
-						text_single = {
-							layoutpolicy_horizontal = expanding
-							text = "Spent: [GetPlayer.MakeScope.Var('toggle_player_tasks_councillor_diplomacy').Var('toggle_player_tasks_time').GetValue]"
-						}
-						text_single = {
-							layoutpolicy_horizontal = expanding
-							text = "Remain: [GetPlayer.MakeScope.Var('toggle_player_tasks_councillor_diplomacy').Var('toggle_player_tasks_time_remain').GetValue]"
-						}
-					}
-				}
-				vbox = {
-					visible = "[EqualTo_CFixedPoint('(CFixedPoint)1', GetPlayer.MakeScope.Var('toggle_player_tasks_councillor_has_martial').GetValue)]"
-					portrait_head = {
-						name = "tasks_window_player_portrait"
-						datacontext = "[GetPlayer.MakeScope.Var('toggle_player_tasks_councillor_martial').GetCharacter]"
-					}
-					vbox = {
-						text_single = {
-							layoutpolicy_horizontal = expanding
-							text = "Spent: [GetPlayer.MakeScope.Var('toggle_player_tasks_councillor_martial').Var('toggle_player_tasks_time').GetValue]"
-						}
-						text_single = {
-							layoutpolicy_horizontal = expanding
-							text = "Remain: [GetPlayer.MakeScope.Var('toggle_player_tasks_councillor_martial').Var('toggle_player_tasks_time_remain').GetValue]"
-						}
-					}
-				}
-				vbox = {
-					visible = "[EqualTo_CFixedPoint('(CFixedPoint)1', GetPlayer.MakeScope.Var('toggle_player_tasks_councillor_has_stewardship').GetValue)]"
-					portrait_head = {
-						name = "tasks_window_player_portrait"
-						datacontext = "[GetPlayer.MakeScope.Var('toggle_player_tasks_councillor_stewardship').GetCharacter]"
-					}
-					vbox = {
-						text_single = {
-							layoutpolicy_horizontal = expanding
-							text = "Spent: [GetPlayer.MakeScope.Var('toggle_player_tasks_councillor_stewardship').Var('toggle_player_tasks_time').GetValue]"
-						}
-						text_single = {
-							layoutpolicy_horizontal = expanding
-							text = "Remain: [GetPlayer.MakeScope.Var('toggle_player_tasks_councillor_stewardship').Var('toggle_player_tasks_time_remain').GetValue]"
-						}
-					}
-				}
-				vbox = {
-					visible = "[EqualTo_CFixedPoint('(CFixedPoint)1', GetPlayer.MakeScope.Var('toggle_player_tasks_councillor_has_intrigue').GetValue)]"
-					portrait_head = {
-						name = "tasks_window_player_portrait"
-						datacontext = "[GetPlayer.MakeScope.Var('toggle_player_tasks_councillor_intrigue').GetCharacter]"
-					}
-					vbox = {
-						text_single = {
-							layoutpolicy_horizontal = expanding
-							text = "Spent: [GetPlayer.MakeScope.Var('toggle_player_tasks_councillor_intrigue').Var('toggle_player_tasks_time').GetValue]"
-						}
-						text_single = {
-							layoutpolicy_horizontal = expanding
-							text = "Remain: [GetPlayer.MakeScope.Var('toggle_player_tasks_councillor_intrigue').Var('toggle_player_tasks_time_remain').GetValue]"
-						}
-					}
-				}
-				vbox = {
-					visible = "[EqualTo_CFixedPoint('(CFixedPoint)1', GetPlayer.MakeScope.Var('toggle_player_tasks_councillor_has_learning').GetValue)]"
-					portrait_head = {
-						name = "tasks_window_player_portrait"
-						datacontext = "[GetPlayer.MakeScope.Var('toggle_player_tasks_councillor_learning').GetCharacter]"
-					}
-					vbox = {
-						text_single = {
-							layoutpolicy_horizontal = expanding
-							text = "Spent: [GetPlayer.MakeScope.Var('toggle_player_tasks_councillor_learning').Var('toggle_player_tasks_time').GetValue]"
-						}
-						text_single = {
-							layoutpolicy_horizontal = expanding
-							text = "Remain: [GetPlayer.MakeScope.Var('toggle_player_tasks_councillor_learning').Var('toggle_player_tasks_time_remain').GetValue]"
-						}
-					}
-				}
-			}
-			
-			spacer = {
-				size = { 0 10 }
-			}
-			
-			scrollbox = {
-				minimumsize = { 780 300 }
-				maximumsize = { 780 2000 }
-				layoutpolicy_vertical = expanding
-				layoutpolicy_horizontal = expanding
-				
-				blockoverride "scrollbox_content"
-				{
-					vbox = {
-						spacing = 10
-						
-						layoutpolicy_horizontal = expanding
-						hbox = {
-							visible = "[EqualTo_CFixedPoint('(CFixedPoint)1', GetPlayer.MakeScope.Var('toggle_player_tasks_has_manage_domain').GetValue)]"
-							layoutpolicy_horizontal = expanding
-							
-							spacer = {
-								size = { 20 0 }
-							}
-							
-							text_single = {
-								layoutpolicy_horizontal = expanding
-								text = "Domain"
-								min_width = 200
-								max_width = 200
-							}
-							
-							vbox = {
-								layoutpolicy_horizontal = expanding
-								text_single = {
-									layoutpolicy_horizontal = expanding
-									text = "Time Required: [GetPlayer.MakeScope.Var('toggle_player_tasks_time_manage_domain').GetValue]"
-								}
-								text_single = {
-									layoutpolicy_horizontal = expanding
-									text = "Time Receieved: [GetPlayer.MakeScope.Var('toggle_player_tasks_time_in_manage_domain').GetValue]%"
-								}
-								text_single = {
-									layoutpolicy_horizontal = expanding
-									text = "Base Cost: [GetPlayer.MakeScope.Var('toggle_player_tasks_time_cost_manage_domain').GetValue]"
-								}
-								text_single = {
-									layoutpolicy_horizontal = expanding
-									text = "Corruption: [GetPlayer.MakeScope.Var('toggle_player_tasks_crpt_manage_domain').GetValue]%"
-								}
-							}
-						}
-						hbox = {
-							visible = "[EqualTo_CFixedPoint('(CFixedPoint)1', GetPlayer.MakeScope.Var('toggle_player_tasks_has_manage_realm').GetValue)]"
-							layoutpolicy_horizontal = expanding
-							
-							spacer = {
-								size = { 20 0 }
-							}
-							
-							text_single = {
-								layoutpolicy_horizontal = expanding
-								text = "Realm"
-								min_width = 200
-								max_width = 200
-							}
-							
-							vbox = {
-								layoutpolicy_horizontal = expanding
-								text_single = {
-									layoutpolicy_horizontal = expanding
-									text = "Time Required: [GetPlayer.MakeScope.Var('toggle_player_tasks_time_manage_realm').GetValue]"
-								}
-								text_single = {
-									layoutpolicy_horizontal = expanding
-									text = "Time Receieved: [GetPlayer.MakeScope.Var('toggle_player_tasks_time_in_manage_realm').GetValue]%"
-								}
-								text_single = {
-									layoutpolicy_horizontal = expanding
-									text = "Base Cost: [GetPlayer.MakeScope.Var('toggle_player_tasks_time_cost_manage_realm').GetValue]"
-								}
-								text_single = {
-									layoutpolicy_horizontal = expanding
-									text = "Corruption: [GetPlayer.MakeScope.Var('toggle_player_tasks_crpt_manage_realm').GetValue]%"
-								}
-							}
-						}
-						hbox = {
-							visible = "[EqualTo_CFixedPoint('(CFixedPoint)1', GetPlayer.MakeScope.Var('toggle_player_tasks_has_manage_logistics').GetValue)]"
-							layoutpolicy_horizontal = expanding
-							
-							spacer = {
-								size = { 20 0 }
-							}
-							
-							text_single = {
-								layoutpolicy_horizontal = expanding
-								text = "Logistics"
-								min_width = 200
-								max_width = 200
-							}
-							
-							vbox = {
-								layoutpolicy_horizontal = expanding
-								text_single = {
-									layoutpolicy_horizontal = expanding
-									text = "Time Required: [GetPlayer.MakeScope.Var('toggle_player_tasks_time_manage_logistics').GetValue]"
-								}
-								text_single = {
-									layoutpolicy_horizontal = expanding
-									text = "Time Receieved: [GetPlayer.MakeScope.Var('toggle_player_tasks_time_in_manage_logistics').GetValue]%"
-								}
-								text_single = {
-									layoutpolicy_horizontal = expanding
-									text = "Base Cost: [GetPlayer.MakeScope.Var('toggle_player_tasks_time_cost_manage_logistics').GetValue]"
-								}
-								text_single = {
-									layoutpolicy_horizontal = expanding
-									text = "Corruption: [GetPlayer.MakeScope.Var('toggle_player_tasks_crpt_manage_logistics').GetValue]%"
-								}
-							}
-						}
-						hbox = {
-							visible = "[EqualTo_CFixedPoint('(CFixedPoint)1', GetPlayer.MakeScope.Var('toggle_player_tasks_has_manage_court').GetValue)]"
-							layoutpolicy_horizontal = expanding
-							
-							spacer = {
-								size = { 20 0 }
-							}
-							
-							text_single = {
-								layoutpolicy_horizontal = expanding
-								text = "Court"
-								min_width = 200
-								max_width = 200
-							}
-							
-							vbox = {	
-								layoutpolicy_horizontal = expanding
-								text_single = {
-									layoutpolicy_horizontal = expanding
-									text = "Time Required: [GetPlayer.MakeScope.Var('toggle_player_tasks_time_manage_court').GetValue]"
-								}
-								text_single = {
-									layoutpolicy_horizontal = expanding
-									text = "Time Receieved: [GetPlayer.MakeScope.Var('toggle_player_tasks_time_in_manage_court').GetValue]%"
-								}
-								text_single = {
-									layoutpolicy_horizontal = expanding
-									text = "Base Cost: [GetPlayer.MakeScope.Var('toggle_player_tasks_time_cost_manage_court').GetValue]"
-								}
-								text_single = {
-									layoutpolicy_horizontal = expanding
-									text = "Corruption: [GetPlayer.MakeScope.Var('toggle_player_tasks_crpt_manage_court').GetValue]%"
-								}
-							}
-						}
-						hbox = {
-							visible = "[EqualTo_CFixedPoint('(CFixedPoint)1', GetPlayer.MakeScope.Var('toggle_player_tasks_has_manage_stockpile').GetValue)]"
-							layoutpolicy_horizontal = expanding
-							
-							spacer = {
-								size = { 20 0 }
-							}
-							
-							text_single = {
-								layoutpolicy_horizontal = expanding
-								text = "Stockpile"
-								min_width = 200
-								max_width = 200
-							}
-							
-							vbox = {	
-								layoutpolicy_horizontal = expanding
-								text_single = {
-									layoutpolicy_horizontal = expanding
-									text = "Time Required: [GetPlayer.MakeScope.Var('toggle_player_tasks_time_manage_stockpile').GetValue]"
-								}
-								text_single = {
-									layoutpolicy_horizontal = expanding
-									text = "Time Receieved: [GetPlayer.MakeScope.Var('toggle_player_tasks_time_in_manage_stockpile').GetValue]%"
-								}
-								text_single = {
-									layoutpolicy_horizontal = expanding
-									text = "Base Cost: [GetPlayer.MakeScope.Var('toggle_player_tasks_time_cost_manage_stockpile').GetValue]"
-								}
-								text_single = {
-									layoutpolicy_horizontal = expanding
-									text = "Corruption: [GetPlayer.MakeScope.Var('toggle_player_tasks_crpt_manage_stockpile').GetValue]%"
-								}
-							}
-						}
-						hbox = {
-							visible = "[EqualTo_CFixedPoint('(CFixedPoint)1', GetPlayer.MakeScope.Var('toggle_player_tasks_has_manage_oversight').GetValue)]"
-							layoutpolicy_horizontal = expanding
-							
-							spacer = {
-								size = { 20 0 }
-							}
-							
-							text_single = {
-								layoutpolicy_horizontal = expanding
-								text = "Oversight"
-								min_width = 200
-								max_width = 200
-							}
-							
-							vbox = {
-								layoutpolicy_horizontal = expanding
-								text_single = {
-									layoutpolicy_horizontal = expanding
-									text = "Time Required: [GetPlayer.MakeScope.Var('toggle_player_tasks_time_manage_oversight').GetValue]"
-								}
-								text_single = {
-									layoutpolicy_horizontal = expanding
-									text = "Time Receieved: [GetPlayer.MakeScope.Var('toggle_player_tasks_time_in_manage_oversight').GetValue]%"
-								}
-								text_single = {
-									layoutpolicy_horizontal = expanding
-									text = "Base Cost: [GetPlayer.MakeScope.Var('toggle_player_tasks_time_cost_manage_oversight').GetValue]"
-								}
-								text_single = {
-									layoutpolicy_horizontal = expanding
-									text = "Corruption: [GetPlayer.MakeScope.Var('toggle_player_tasks_crpt_manage_oversight').GetValue]%"
-								}
-							}
-						}
-						
-						spacer = {
-							size = { 0 5 }
-						}
-					}
-				}
-			}
-		}
 	}
 
 	######################################################
@@ -1225,13 +102,22 @@ widget = {
 
 		background = {
 			texture = "gfx/interface/hud/hud_bg_top_right.dds"
+			margin_left = 0
 			margin_bottom = 8
+		}
+
+		icon = {
+			parentanchor = bottom|right
+			position = { 7 23 }
+			texture = "gfx/interface/component_decoration/decoration_arch.dds"
+			size = { 30 30 }
+			mirror = vertical
 		}
 
 		## Resources
 		hbox = {
 			name = "resources"
-			position = { 20 0 }
+			margin_left = 20
 
 			hbox = {
 				name = "spendables"
@@ -1245,10 +131,9 @@ widget = {
 					margin_right = 5
 					margin_left = 15
 
-					button = {
+					hbox = {
 						name = "gold"
 						layoutpolicy_vertical = expanding
-						onclick = "[GetScriptedGui('toggle_player_stockpile').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
 						minimumsize = { 90 0 }
 						margin_left = 7
 						margin_right = 5
@@ -1342,9 +227,8 @@ widget = {
 						alpha = 0.8
 					}
 
-					button = {
+					hbox = {
 						name = "prestige"
-						onclick = "[GetScriptedGui('toggle_player_tasks').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
 						datacontext = "[InGameTopbar.GetPrestigeItem]"
 						layoutpolicy_vertical = expanding
 						minimumsize = { 90 0 }
@@ -1515,8 +399,10 @@ widget = {
 
 				hbox = {
 					name = "military"
-					spacing = 2
-					margin_left = 6
+					datacontext = "[GetPlayer]"
+					datacontext = "[GetPlayerArmyComposition]"
+					spacing = 5
+					margin_left = 10
 					margin_bottom = 3
 
 					background = {
@@ -1530,108 +416,90 @@ widget = {
 
 						using = Mask_Rough_Edges
 					}
-					
+
 					button_group = {
-						tooltip = "MIL_AUTH_TOOLTIP"
+						onclick = "[ToggleGameViewData('military', GetPlayer.GetID)]"
+						tooltip = "[ArmyComposition.GetArmyCompositionTooltip]"
 						using = tooltip_ne
 
 						hbox = {
-							icon = {
-								name = "icon_dread"
-								texture = "gfx/interface/icons/icon_dread.dds"
-								size = { 20 20 }
-							}
+							margin = { 4 4 }
 
-							spacer = {
-								size = { 4 0 }
-							}
-
-							flowcontainer = {
-								direction = vertical
-								min_width = 40
-
-								text_single = {
-									name = "authority"
-									text = "[GetPlayer.MakeScope.Var('realm_authority').GetValue]"
-									default_format = "#high"
-									align = nobaseline
-								}
-								text_single = {
-									name = "authority_usage"
-									text = "[GetPlayer.MakeScope.Var('realm_authority_usage').GetValue]"
-									default_format = "#low"
-									align = nobaseline
-								}
-							}
-						}
-					}
-
-					button_group = {
-						tooltip = "MIL_MP_BALANCE"
-						using = tooltip_ne
-
-						hbox = {
 							icon = {
 								name = "icon_soldier"
 								texture = "gfx/interface/icons/icon_soldier.dds"
-								size = { 20 20 }
+								size = { 25 25 }
 							}
 
 							spacer = {
-								size = { 4 0 }
-							}
-
-							flowcontainer = {
-								direction = vertical
-								min_width = 55
-
-								text_single = {
-									name = "strength"
-									text = "[GetPlayer.MakeScope.Var('mil_mp').GetValue]k"
-									default_format = "#high"
-									align = nobaseline
-								}
-								text_single = {
-									name = "strength_balance"
-									text = "[GetPlayer.MakeScope.Var('mil_mp_balance').GetValue]k"
-									default_format = "#low"
-									align = nobaseline
-								}
-							}
-						}
-					}
-					
-					button_group = {
-						tooltip = "MIL_SUPPLY_BALANCE"
-						using = tooltip_ne
-
-						hbox = {
-							icon = {
-								name = "icon_supply"
-								texture = "gfx/interface/icons/icon_domain.dds"
-								size = { 20 20 }
-							}
-
-							spacer = {
-								size = { 4 0 }
+								size = { 5 0 }
 							}
 
 							flowcontainer = {
 								direction = vertical
 								min_width = 65
 
-								text_single = {
-									name = "supply"
-									text = "[GetPlayer.MakeScope.Var('mil_supply').GetValue]"
-									default_format = "#high"
-									align = nobaseline
+								flowcontainer = {
+									spacing = 2
+
+									text_single = {
+										name = "strength"
+										text = "[ArmyComposition.GetSoldierCountString]"
+										default_format = "#high"
+										align = nobaseline
+									}
+
+									army_quality_icon = {
+										tooltip_enabled = no
+									}
 								}
-								text_single = {
-									name = "supply_balance"
-									text = "[GetPlayer.MakeScope.Var('mil_supply_balance').GetValue]"
-									default_format = "#low"
-									align = nobaseline
+
+								progressbar_standard = {
+									name = "soldiers_max"
+									size = { 40 8 }
+									visible = "[And( NotEqualTo_int32(ArmyComposition.GetCurrentNumberOfSoldiers, ArmyComposition.GetMaxNumberOfSoldiers), NotEqualTo_int32(ArmyComposition.GetMaxNumberOfSoldiers, '(int32)0' ) )]"
+
+									min = 0
+									max = "[IntToFloat(ArmyComposition.GetMaxNumberOfSoldiers)]"
+									value = "[IntToFloat(ArmyComposition.GetCurrentNumberOfSoldiers)]"
 								}
+							}
+						}
+					}
+
+					button = {
+						name = "domain_limit"
+						layoutpolicy_vertical = expanding
+
+						minimumsize = { 60 0 }
+
+						margin_left = 3
+						margin_bottom = 3
+
+						tooltip = "[Character.GetDomainLimitTooltip]"
+						using = tooltip_ne
+
+						onclick = "[ToggleGameView('my_realm')]"
+
+						background = {
+							visible = "[GreaterThan_int32( Character.GetDomainSize, Character.GetDomainLimit )]"
+							using = Status_Bad
+							margin_bottom = -3
+						}
+
+						hbox = {
+							icon = {
+								texture = "gfx/interface/icons/icon_domain.dds"
+								size = { 25 25 }
+							}
+
+							text_single = {
+								name = "value"
+								text = "[Character.GetDomainSize]/[Character.GetDomainLimit]"
+								align = nobaseline
+								margin_bottom = 1
+
+								max_width = 110
 							}
 						}
 					}
@@ -1646,7 +514,7 @@ widget = {
 
 	### Outliner Button
 	container = {
-		visible = "[And( Not( IsPauseMenuShown ), And(Not(GetVariableSystem.Exists( 'right_window_open')), IsDefaultGUIMode))]"
+		visible = "[And( Not( IsPauseMenuShown ), And(Not(IsRightWindowOpen), IsDefaultGUIMode))]"
 		parentanchor = top|right
 		position = { -3 55 }
 
@@ -1693,7 +561,7 @@ widget = {
 		using = Animation_ShowHide_Quick
 
 		widget = {
-			visible = "[Not(GetVariableSystem.Exists( 'right_window_open'))]"
+			visible = "[Not(IsRightWindowOpen)]"
 			size = { 100% 100% }
 
 			state = {
@@ -2177,6 +1045,13 @@ icon = {
 	using = Animation_ShowHide_Quick
 
 	icon = {
+		parentanchor = top|right
+		position = { 7 -15}
+		texture = "gfx/interface/component_decoration/decoration_arch.dds"
+		size = { 30 30 }
+	}
+
+	icon = {
 		visible = "[IsManuallyPaused]"
 		size = { 100% 100% }
 		texture = "gfx/interface/hud/hud_pause_indicator.dds"
@@ -2510,7 +1385,7 @@ icon = {
 			hbox = {
 				layoutpolicy_vertical = expanding
 				margin_bottom = -6
-				margin_top = -6
+				margin_top = -4
 				allow_outside = yes
 
 				icon = {
@@ -2555,11 +1430,22 @@ icon = {
 					}
 
 					icon = {
+						parentanchor = right|vcenter
+						position = { 10 0 }
+						size = { 18 90%}
+						using = Background_Area
+
+						color = { 0.17 0.17 0.17 1 }
+					}
+
+					icon = {
 						size = { 100% 100% }
 						texture = "gfx/interface/hud/speed_indicator_frame.dds"
 
 						color = { 0.17 0.17 0.17 1 }
 					}
+
+
 
 					hbox = {
 						margin_left = 6
@@ -3248,7 +2134,9 @@ widget = {
 					progressbar_hud_stress_glow = {
 						texture = "gfx/interface/hud/hud_stress_glow_blue.dds"
 
-						blockoverride "animation_trigger_1" {}
+						blockoverride "animation_trigger_1" {
+							name = "stress_level_decrease"
+						}
 
 						blockoverride "animation_trigger_2"
 						{
@@ -3593,7 +2481,7 @@ widget = {
 	######################################################
 
 	map_modes_debug = {
-		visible = "[And( InDebugMode, And(IsDefaultGUIMode, Not(GetVariableSystem.Exists( 'right_window_open'))))]"
+		visible = "[And( InDebugMode, And(IsDefaultGUIMode, Not(IsRightWindowOpen)))]"
 		parentanchor = bottom|right
 		position = { 0 -220 }
 
@@ -3604,7 +2492,7 @@ widget = {
 
 	### WARS SCHEMES AND MAPMODES
 	flowcontainer = {
-		visible = "[And(IsDefaultGUIMode, Not(GetVariableSystem.Exists( 'right_window_open')))]"
+		visible = "[And(IsDefaultGUIMode, Not(IsRightWindowOpen))]"
 		parentanchor = bottom|right
 		widgetanchor = top|right
 		position = { 0 -155 }
@@ -4413,31 +3301,38 @@ types HUD
 		button_normal = {
 			onclick = "[SetMapMode('dejure_duchies')]"
 			shortcut = "map_mode_9"
+			shortcut = "mapmode_duchies_secondary" 
 		}
 
 		button_normal = {
 			onclick = "[SetMapMode('dejure_kingdoms')]"
 			shortcut = "map_mode_10"
+			shortcut = "mapmode_kingdoms_secondary" 
+
 		}
 
 		button_normal = {
 			onclick = "[SetMapMode('dejure_empires')]"
 			shortcut = "map_mode_11"
+			shortcut = "mapmode_empires_secondary"
 		}
-
+			
 		button_normal = {
 			onclick = "[SetMapMode('religions')]"
 			shortcut = "map_mode_3"
+			shortcut = "mapmode_faith_secondary"
 		}
 
 		button_normal = {
 			onclick = "[SetMapMode('cultures')]"
 			shortcut = "map_mode_2"
+			shortcut = "mapmode_culture_secondary"
 		}
 
 		button_normal = {
 			onclick = "[SetMapMode('houses')]"
 			shortcut = "map_mode_4"
+			shortcut = "mapmode_house_secondary"
 		}
 
 		button_normal = {
@@ -4595,4 +3490,6 @@ types HUD
 			}
 		}
 	}
+
+	
 }

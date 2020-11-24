@@ -425,6 +425,36 @@ on_game_start_after_lobby = {
 						VALUE = yes
 					}
 				}
+				if = {
+					limit = { 
+						exists = character:159137
+						this = character:159137
+					}
+					add_achievement_global_variable = {
+						VARIABLE = started_almost_there_achievement
+						VALUE = yes
+					}
+				}
+				if = {
+					limit = { 
+						exists = character:109607
+						this = character:109607
+					}
+					add_achievement_global_variable = {
+						VARIABLE = started_last_count_first_king_achievement
+						VALUE = yes
+					}
+				}
+				if = {
+					limit = { 
+						exists = character:6878
+						this = character:6878
+					}
+					add_achievement_global_variable = {
+						VARIABLE = started_going_places_achievement
+						VALUE = yes
+					}
+				}
 			}
 		}
 	}

@@ -1,4 +1,4 @@
-﻿feudalize_tribal_holding_interaction = {
+﻿feudalize_tribal_holding_interaction = { 
 	category = interaction_category_uncategorized
 	hidden = yes
 	special_interaction = feudalize_tribal_holding
@@ -6,64 +6,67 @@
 	target_type = title
 	target_filter = actor_domain_titles
 	auto_accept = yes
-	is_shown = {
+	is_shown = { 
 		can_do_normal_interaction = yes
-		scope:actor = {
+		scope:actor = { 
 			this = scope:recipient
-			NOT = {
+			NOT = { 
 				has_government = tribal_government
 			}
 		}
 	}
-	can_be_picked_title = {
-		scope:target = {
+	can_be_picked_title = { 
+		scope:target = { 
 			holder = scope:actor
 			is_capital_barony = no
-			trigger_if = {
-				limit = {
+			trigger_if = { 
+				limit = { 
 					tier <= tier_county
 				}
-				title_province = {
+				title_province = { 
 					has_holding_type = tribal_holding
 				}
 			}
-			trigger_else = {
-				custom_description = {
+			trigger_else = { 
+				custom_description = { 
 					text = "feudalize_tribal_holding_interaction_title_not_county_or_below"
 					always = no
 				}
 			}
 		}
 	}
-	has_valid_target_showing_failures_only = {
-		scope:target = {
-			trigger_if = {
-				limit = {
+	has_valid_target_showing_failures_only = { 
+		scope:target = { 
+			trigger_if = { 
+				limit = { 
 					tier <= tier_county
 				}
 				title_province.barony_controller = scope:actor
 			}
 		}
 	}
-	cost = {
-		gold = {
+	cost = { 
+		gold = { 
 			value = feudalize_tribal_holding_interaction_cost
 		}
 	}
-	on_accept = {
-		scope:actor = {
-			send_interface_toast = {
+	on_accept = { 
+		scope:actor = { 
+			send_interface_toast = { 
 				title = feudalize_tribal_holding_interaction_notification
 				right_icon = scope:actor
-				if = {
-					limit = {
+				if = { 
+					limit = { 
 						exists = scope:target.title_province
 					}
-					scope:target.title_province = {
+					scope:target.title_province = { 
 						set_holding_type = castle_holding
 					}
 				}
 			}
 		}
+	}
+	ai_will_do = { 
+		base = 150
 	}
 }

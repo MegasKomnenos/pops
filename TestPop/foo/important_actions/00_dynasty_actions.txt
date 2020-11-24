@@ -1,26 +1,26 @@
-﻿action_can_choose_dynasty_perk = {
+﻿action_can_choose_dynasty_perk = { 
 	type = alert
-	check_create_action = {
-		if = {
-			limit = {
+	check_create_action = { 
+		if = { 
+			limit = { 
 				is_character = yes
 			}
-			if = {
-				limit = {
+			if = { 
+				limit = { 
 					dynasty.dynast = this
-					dynasty = {
+					dynasty = { 
 						dynasty_can_unlock_relevant_perk = yes
 					}
 				}
-				try_create_important_action = {
+				try_create_important_action = { 
 					important_action_type = action_can_choose_dynasty_perk
 				}
 			}
 		}
 	}
-	effect = {
-		dynasty = {
-			open_view_data = {
+	effect = { 
+		dynasty = { 
+			open_view_data = { 
 				view = dynasty_view
 			}
 		}

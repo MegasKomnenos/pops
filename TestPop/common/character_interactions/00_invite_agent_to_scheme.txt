@@ -1,95 +1,95 @@
-﻿invite_agent_to_scheme_interaction = {
+﻿invite_agent_to_scheme_interaction = { 
 	special_interaction = invite_to_scheme_interaction
 	hidden = yes
-	on_accept = {
-		scope:recipient = {
-			if = {
-				limit = {
-					OR = {
+	on_accept = { 
+		scope:recipient = { 
+			if = { 
+				limit = { 
+					OR = { 
 						always = scope:hook
 						always = scope:gift
 					}
 				}
-				force_add_to_scheme = {
+				force_add_to_scheme = { 
 					scheme = scope:scheme
 					years = 5
 				}
 			}
-			else = {
+			else = { 
 				add_to_scheme = scope:scheme
 			}
 		}
-		if = {
-			limit = {
+		if = { 
+			limit = { 
 				always = scope:gift
 			}
-			scope:actor = {
-				pay_short_term_gold = {
+			scope:actor = { 
+				pay_short_term_gold = { 
 					gold = bribe_value
 					target = scope:recipient
 				}
-				stress_impact = {
+				stress_impact = { 
 					greedy = minor_stress_impact_gain
 				}
 			}
 		}
-		if = {
-			limit = {
+		if = { 
+			limit = { 
 				always = scope:hook
 			}
-			scope:actor = {
+			scope:actor = { 
 				use_hook = scope:recipient
 			}
 		}
-		scope:actor = {
-			stress_impact = {
+		scope:actor = { 
+			stress_impact = { 
 				paranoid = minor_stress_impact_gain
 				honest = minor_stress_impact_gain
 			}
 		}
 	}
-	ai_accept = {
+	ai_accept = { 
 		base = 0
-		scheme_modifier = {
+		scheme_modifier = { 
 			scheme = scope:scheme
 			scope = scope:recipient
 		}
 	}
-	auto_accept = {
-		custom_description = {
+	auto_accept = { 
+		custom_description = { 
 			text = "spending_hook"
 			subject = scope:actor
 			object = scope:recipient
 			scope:hook = yes
-			scope:actor = {
+			scope:actor = { 
 				has_strong_hook = scope:recipient
 			}
 		}
 	}
-	send_option = {
-		is_valid = {
-			scope:actor = {
+	send_option = { 
+		is_valid = { 
+			scope:actor = { 
 				gold >= bribe_value
 			}
-			NOT = {
-				scope:recipient = {
+			NOT = { 
+				scope:recipient = { 
 					is_parent_of = scope:scheme.scheme_target
 				}
 			}
 		}
 		flag = gift
 		localization = SCHEME_AGENT_GOLD
-		current_description = {
+		current_description = { 
 			desc = SCHEME_AGENT_GOLD_VALID
 		}
 	}
-	send_option = {
-		is_valid = {
-			scope:actor = {
+	send_option = { 
+		is_valid = { 
+			scope:actor = { 
 				has_usable_hook = scope:recipient
 			}
-			NOT = {
-				scope:recipient = {
+			NOT = { 
+				scope:recipient = { 
 					is_parent_of = scope:scheme.scheme_target
 				}
 			}
@@ -98,7 +98,7 @@
 		localization = SCHEME_HOOK
 	}
 	send_options_exclusive = no
-	is_shown = {
+	is_shown = { 
 		can_do_normal_interaction = yes
 	}
 }

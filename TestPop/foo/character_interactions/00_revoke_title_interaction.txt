@@ -1,4 +1,4 @@
-﻿revoke_title_interaction = {
+﻿revoke_title_interaction = { 
 	category = interaction_category_vassal
 	common_interaction = yes
 	highlighted_reason = HIGHLIGHTED_HAS_REVOKE_TITLE_REASON
@@ -16,275 +16,280 @@
 	ai_min_reply_days = 4
 	ai_max_reply_days = 9
 	on_decline_summary = general_rebellion_decline_summary
-	is_shown = {
+	is_shown = { 
 		can_do_normal_interaction = yes
-		scope:recipient = {
+		scope:recipient = { 
 			is_landed = yes
 			target_is_liege_or_above = scope:actor
 		}
-		trigger_if = {
-			limit = {
-				scope:actor = {
+		trigger_if = { 
+			limit = { 
+				scope:actor = { 
 					is_ai = yes
 				}
 				scope:recipient.primary_title.tier >= tier_county
 			}
 		}
 	}
-	is_valid_showing_failures_only = {
-		NOT = {
-			scope:actor = {
+	is_valid_showing_failures_only = { 
+		NOT = { 
+			scope:actor = { 
 				is_at_war_with = scope:recipient
 			}
 		}
-		scope:actor = {
-			custom_description = {
+		scope:actor = { 
+			custom_description = { 
 				text = "character_interactions_revoke_title_from_ally_without_reason"
 				object = scope:recipient
-				OR = {
-					NOT = {
+				OR = { 
+					NOT = { 
 						is_allied_to = scope:recipient
 					}
 					has_revoke_title_reason = scope:recipient
 				}
 			}
-			trigger_if = {
-				limit = {
+			trigger_if = { 
+				limit = { 
 					has_government = tribal_government
 				}
-				custom_description = {
+				custom_description = { 
 					text = "has_law_allowing_title_revocation_tribal"
 					has_realm_law_flag = title_revocation_allowed
 				}
 			}
-			trigger_if = {
-				limit = {
-					NOT = {
+			trigger_if = { 
+				limit = { 
+					NOT = { 
 						has_government = tribal_government
 					}
 				}
-				custom_description = {
+				custom_description = { 
 					text = "has_law_allowing_title_revocation_crown"
 					has_realm_law_flag = title_revocation_allowed
 				}
 			}
-			trigger_if = {
-				limit = {
-					scope:recipient = {
+			trigger_if = { 
+				limit = { 
+					scope:recipient = { 
 						vassal_contract_has_flag = vassal_contract_cannot_revoke_titles
 					}
 				}
-				custom_description = {
+				custom_description = { 
 					text = vassal_contract_forbids_revocation
-					scope:recipient = {
-						NOT = {
+					scope:recipient = { 
+						NOT = { 
 							vassal_contract_has_flag = vassal_contract_cannot_revoke_titles
 						}
 					}
 				}
 			}
 		}
-		scope:recipient = {
+		scope:recipient = { 
 			is_vassal_of = scope:actor
 			is_diplomatically_available = yes
-			NOT = {
+			NOT = { 
 				has_strong_hook = scope:actor
 			}
 		}
 	}
-	can_send = {
-		scope:actor = {
-			custom_description = {
+	can_send = { 
+		scope:actor = { 
+			custom_description = { 
 				text = "character_interactions_hostile_actions_disabled_delay"
-				NOT = {
+				NOT = { 
 					has_character_flag = flag_hostile_actions_disabled_delay
 				}
 			}
 		}
 	}
-	is_highlighted = {
-		OR = {
-			scope:actor = {
+	is_highlighted = { 
+		OR = { 
+			scope:actor = { 
 				has_revoke_title_reason = scope:recipient
 			}
-			scope:recipient = {
-				any_held_title = {
-					scope:actor = {
+			scope:recipient = { 
+				any_held_title = { 
+					scope:actor = { 
 						has_claim_on = prev
+					}
+				}
+				NOT = { 
+					any_ally = { 
+						this = scope:actor
 					}
 				}
 			}
 		}
 	}
-	can_be_picked_title = {
-		scope:target = {
+	can_be_picked_title = { 
+		scope:target = { 
 			is_contested = no
-			NOT = {
-				recent_history = {
+			NOT = { 
+				recent_history = { 
 					type = granted
 					years = 1
 				}
 			}
-			custom_description = {
+			custom_description = { 
 				text = "character_interactions_not_rel_head_title"
-				NOT = {
+				NOT = { 
 					exists = controlled_faith
 				}
 			}
 		}
 	}
-	send_option = {
-		is_valid = {
-			scope:actor = {
+	send_option = { 
+		is_valid = { 
+			scope:actor = { 
 				has_usable_hook = scope:recipient
 			}
 		}
 		flag = hook
 		localization = SCHEME_HOOK
 	}
-	should_use_extra_icon = {
-		scope:actor = {
+	should_use_extra_icon = { 
+		scope:actor = { 
 			has_usable_hook = scope:recipient
 		}
 	}
 	extra_icon = "gfx/interface/icons/character_interactions/hook_icon.dds"
 	send_options_exclusive = no
-	on_send = {
-		scope:actor = {
-			add_character_flag = {
+	on_send = { 
+		scope:actor = { 
+			add_character_flag = { 
 				flag = flag_hostile_actions_disabled_delay
 				days = 10
 			}
 		}
 	}
-	on_auto_accept = {
-		scope:recipient = {
+	on_auto_accept = { 
+		scope:recipient = { 
 			trigger_event = char_interaction.0200
 		}
 	}
-	on_accept = {
+	on_accept = { 
 		revoke_title_interaction_effect = yes
-		save_scope_value_as = {
+		save_scope_value_as = { 
 			name = revoke_title_interaction
 			value = yes
 		}
-		scope:actor = {
+		scope:actor = { 
 			trigger_event = char_interaction.0199
 		}
-		if = {
-			limit = {
-				scope:actor = {
+		if = { 
+			limit = { 
+				scope:actor = { 
 					has_character_flag = flag_hostile_actions_disabled_delay
 				}
 			}
-			scope:actor = {
+			scope:actor = { 
 				remove_character_flag = flag_hostile_actions_disabled_delay
 			}
 		}
 	}
-	on_decline = {
-		if = {
-			limit = {
+	on_decline = { 
+		if = { 
+			limit = { 
 				scope:landed_title.tier != tier_barony
 			}
-			scope:actor = {
+			scope:actor = { 
 				revocation_tyranny_effect = yes
 				title_revocation_stress_effect = yes
 			}
 		}
 		war_for_revoke_effect = yes
-		scope:recipient = {
-			add_opinion = {
+		scope:recipient = { 
+			add_opinion = { 
 				target = scope:actor
 				modifier = revoked_title
 			}
 		}
-		if = {
-			limit = {
-				scope:actor = {
+		if = { 
+			limit = { 
+				scope:actor = { 
 					has_realm_law_flag = vassal_refusal_is_treason
 				}
 			}
-			scope:actor = {
-				add_opinion = {
+			scope:actor = { 
+				add_opinion = { 
 					target = scope:recipient
 					modifier = treasonous_revoke_refusal
 				}
 			}
 		}
-		if = {
-			limit = {
-				scope:actor = {
+		if = { 
+			limit = { 
+				scope:actor = { 
 					has_character_flag = flag_hostile_actions_disabled_delay
 				}
 			}
-			scope:actor = {
+			scope:actor = { 
 				remove_character_flag = flag_hostile_actions_disabled_delay
 			}
 		}
 	}
-	auto_accept = {
-		OR = {
-			scope:recipient = {
+	auto_accept = { 
+		OR = { 
+			scope:recipient = { 
 				highest_held_title_tier = tier_barony
 			}
-			scope:recipient = {
+			scope:recipient = { 
 				is_imprisoned_by = scope:actor
 			}
-			custom_description = {
+			custom_description = { 
 				text = "spending_hook"
 				subject = scope:actor
 				object = scope:recipient
 				scope:hook = yes
-				scope:actor = {
+				scope:actor = { 
 					has_strong_hook = scope:recipient
 				}
 			}
 		}
 	}
-	ai_accept = {
+	ai_accept = { 
 		base = 0
-		modifier = {
+		modifier = { 
 			scope:hook = yes
 			add = 40
 			desc = SCHEME_WEAK_HOOK_USED
 		}
-		opinion_modifier = {
+		opinion_modifier = { 
 			who = scope:recipient
 			opinion_target = scope:actor
 			multiplier = 0.8
 			desc = AI_OPINION_REASON
 		}
-		modifier = {
+		modifier = { 
 			add = 20
-			scope:actor = {
+			scope:actor = { 
 				has_realm_law_flag = vassal_refusal_is_treason
 			}
 			desc = AI_REFUSAL_IS_TREASON
 		}
-		modifier = {
+		modifier = { 
 			exists = scope:actor.primary_title.title_capital_county
-			OR = {
+			OR = { 
 				scope:landed_title = scope:actor.primary_title.title_capital_county
 				scope:landed_title = scope:actor.primary_title.title_capital_county.de_jure_liege
 			}
 			add = 50
 			desc = AI_TITLE_IS_REALM_CAPITAL
 		}
-		modifier = {
+		modifier = { 
 			add = 30
-			scope:actor = {
+			scope:actor = { 
 				has_claim_on = scope:landed_title
 			}
 			desc = AI_LIEGE_HAS_CLAIM_ON_TITLE
 		}
-		ai_value_modifier = {
+		ai_value_modifier = { 
 			who = scope:recipient
-			ai_greed = {
-				if = {
-					limit = {
-						scope:recipient = {
-							NOT = {
+			ai_greed = { 
+				if = { 
+					limit = { 
+						scope:recipient = { 
+							NOT = { 
 								ai_greed = 0
 							}
 						}
@@ -292,13 +297,13 @@
 					value = -0.75
 				}
 			}
-			ai_honor = {
-				if = {
-					limit = {
-						scope:recipient = {
+			ai_honor = { 
+				if = { 
+					limit = { 
+						scope:recipient = { 
 							ai_honor > 0
 						}
-						scope:actor = {
+						scope:actor = { 
 							has_realm_law_flag = vassal_refusal_is_treason
 						}
 					}
@@ -306,52 +311,52 @@
 				}
 			}
 		}
-		modifier = {
+		modifier = { 
 			desc = offer_vassalization_interaction_aibehavior_amkingtier_tt
-			trigger = {
-				scope:recipient = {
+			trigger = { 
+				scope:recipient = { 
 					highest_held_title_tier = tier_kingdom
 				}
 			}
 			add = -20
 		}
-		modifier = {
+		modifier = { 
 			add = -25
-			OR = {
-				scope:recipient.primary_title = {
+			OR = { 
+				scope:recipient.primary_title = { 
 					is_de_jure_liege_or_above_target = scope:landed_title
 				}
 				scope:recipient.primary_title = scope:landed_title
 			}
 			desc = AI_REFUSAL_IS_DE_JURE_UNDER
 		}
-		modifier = {
+		modifier = { 
 			add = 25
-			scope:recipient = {
-				has_dread_level_towards = {
+			scope:recipient = { 
+				has_dread_level_towards = { 
 					target = scope:actor
 					level = 1
 				}
 			}
 			desc = INTIMIDATED_REASON
 		}
-		modifier = {
+		modifier = { 
 			add = 50
-			scope:recipient = {
-				has_dread_level_towards = {
+			scope:recipient = { 
+				has_dread_level_towards = { 
 					target = scope:actor
 					level = 2
 				}
 			}
 			desc = COWED_REASON
 		}
-		modifier = {
+		modifier = { 
 			desc = offer_vassalization_interaction_aibehavior_power_tt
-			add = {
+			add = { 
 				value = 1
-				subtract = {
+				subtract = { 
 					value = scope:recipient.max_military_strength
-					divide = {
+					divide = { 
 						value = scope:actor.max_military_strength
 						min = 1
 					}
@@ -360,25 +365,25 @@
 			}
 		}
 	}
-	ai_targets = {
+	ai_targets = { 
 		ai_recipients = vassals
 	}
 	ai_frequency = 0
-	ai_potential = {
+	ai_potential = { 
 		has_realm_law_flag = title_revocation_allowed
 		primary_title.tier > tier_county
 	}
-	ai_will_do = {
+	ai_will_do = { 
 		base = -1000
-		modifier = {
-			scope:actor = {
-				OR = {
-					NOT = {
+		modifier = { 
+			scope:actor = { 
+				OR = { 
+					NOT = { 
 						title_revocation_is_tyrannical_trigger = yes
 					}
-					AND = {
+					AND = { 
 						ai_rationality <= very_high_negative_ai_value
-						OR = {
+						OR = { 
 							has_trait = lunatic
 							has_trait = possessed
 							has_trait = arbitrary
@@ -388,55 +393,55 @@
 			}
 			add = 990
 		}
-		modifier = {
+		modifier = { 
 			exists = scope:actor.primary_title.title_capital_county
-			OR = {
+			OR = { 
 				scope:landed_title = scope:actor.primary_title.title_capital_county
 				scope:landed_title = scope:actor.primary_title.title_capital_county.de_jure_liege
 			}
-			NAND = {
-				scope:landed_title.holder = {
+			NAND = { 
+				scope:landed_title.holder = { 
 					is_ai = no
 				}
-				scope:actor = {
+				scope:actor = { 
 					title_revocation_is_tyrannical_trigger = yes
 				}
 			}
 			add = 1000
 		}
-		modifier = {
+		modifier = { 
 			scope:actor.domain_size < scope:actor.domain_limit
 			scope:landed_title.tier = tier_county
 			scope:landed_title.de_jure_liege.holder = scope:actor
 			add = 500
 		}
-		modifier = {
-			NOT = {
+		modifier = { 
+			NOT = { 
 				scope:actor.faith = scope:recipient.faith
 			}
-			OR = {
-				NOT = {
+			OR = { 
+				NOT = { 
 					scope:actor.faith.religion = scope:recipient.faith.religion
 				}
 				scope:actor.ai_zeal >= low_negative_ai_value
-				NOT = {
-					scope:actor.faith = {
+				NOT = { 
+					scope:actor.faith = { 
 						has_doctrine = doctrine_pluralism_pluralistic
 					}
 				}
 			}
-			OR = {
-				scope:recipient = {
+			OR = { 
+				scope:recipient = { 
 					is_imprisoned_by = scope:actor
 				}
-				NOT = {
-					any_vassal = {
-						NOT = {
+				NOT = { 
+					any_vassal = { 
+						NOT = { 
 							faith = scope:actor.faith
 						}
 						primary_title.tier > tier_barony
 						is_imprisoned_by = scope:actor
-						time_in_prison < {
+						time_in_prison < { 
 							years = 1
 						}
 					}
@@ -444,21 +449,21 @@
 			}
 			add = 100
 		}
-		modifier = {
-			scope:actor = {
-				OR = {
+		modifier = { 
+			scope:actor = { 
+				OR = { 
 					has_relation_rival = scope:recipient
 					has_relation_nemesis = scope:recipient
 				}
 			}
 			add = 100
 		}
-		modifier = {
+		modifier = { 
 			add = scope:landed_title.tier
 		}
-		modifier = {
-			scope:actor = {
-				OR = {
+		modifier = { 
+			scope:actor = { 
+				OR = { 
 					has_relation_friend = scope:recipient
 					has_relation_best_friend = scope:recipient
 					has_relation_lover = scope:recipient
@@ -468,16 +473,16 @@
 			}
 			add = -2000
 		}
-		modifier = {
-			NOT = {
-				scope:recipient = {
+		modifier = { 
+			NOT = { 
+				scope:recipient = { 
 					is_imprisoned_by = scope:actor
 				}
 			}
-			scope:actor = {
-				OR = {
+			scope:actor = { 
+				OR = { 
 					gold < minimum_ai_gold_value_for_tyranny_wars
-					AND = {
+					AND = { 
 						scope:actor.max_military_strength < scope:recipient.max_military_strength
 						gold < comfortable_ai_gold_value_for_tyranny_wars
 					}
@@ -485,23 +490,23 @@
 			}
 			add = -2000
 		}
-		modifier = {
+		modifier = { 
 			scope:hook = yes
 			add = -1
 		}
-		modifier = {
+		modifier = { 
 			add = -2000
-			scope:recipient = {
+			scope:recipient = { 
 				has_character_flag = is_party_baron
 			}
 		}
-		modifier = {
+		modifier = { 
 			factor = 0
-			scope:actor = {
+			scope:actor = { 
 				is_at_war = yes
 			}
-			scope:recipient = {
-				NOT = {
+			scope:recipient = { 
+				NOT = { 
 					is_imprisoned_by = scope:actor
 				}
 			}

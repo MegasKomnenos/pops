@@ -1,6 +1,6 @@
-﻿courting = {
+﻿courting = { 
 	skill = diplomacy
-	cooldown = {
+	cooldown = { 
 		months = 2
 	}
 	is_secret = no
@@ -8,72 +8,72 @@
 	power_per_skill_point = 4
 	resistance_per_skill_point = 0
 	minimum_progress_chance = 20
-	allow = {
+	allow = { 
 		is_character = yes
 		is_adult = yes
-		scope:target = {
+		scope:target = { 
 			is_adult = yes
 		}
-		scope:target = {
-			NOT = {
+		scope:target = { 
+			NOT = { 
 				this = scope:owner
 			}
 		}
-		custom_description = {
+		custom_description = { 
 			text = seduce_blocked
 			object = scope:target
-			NOT = {
-				scope:target = {
-					has_opinion_modifier = {
+			NOT = { 
+				scope:target = { 
+					has_opinion_modifier = { 
 						modifier = seduce_permanent_blocker_opinion
 						target = scope:owner
 					}
 				}
 			}
 		}
-		custom_description = {
+		custom_description = { 
 			text = romance_cooldown
 			object = scope:target
-			NOT = {
-				scope:target = {
-					has_opinion_modifier = {
+			NOT = { 
+				scope:target = { 
+					has_opinion_modifier = { 
 						modifier = seduce_regular_cooldown_opinion
 						target = scope:owner
 					}
 				}
 			}
 		}
-		custom_description = {
+		custom_description = { 
 			text = romance_success_blocked
 			object = scope:target
-			NOT = {
-				scope:target = {
-					has_opinion_modifier = {
+			NOT = { 
+				scope:target = { 
+					has_opinion_modifier = { 
 						modifier = romance_scheme_courtship_opinion
 						target = scope:owner
 					}
 				}
 			}
 		}
-		custom_description = {
+		custom_description = { 
 			text = no_attraction_due_to_gender
 			object = scope:target
 			subject = scope:owner
-			scope:target = {
+			scope:target = { 
 				is_attracted_to_gender_of = scope:owner
 			}
 		}
-		trigger_if = {
-			limit = {
+		trigger_if = { 
+			limit = { 
 				is_ai = yes
 			}
-			trigger_if = {
-				limit = {
-					OR = {
-						any_spouse = {
+			trigger_if = { 
+				limit = { 
+					OR = { 
+						any_spouse = { 
 							count >= 1
 						}
-						any_relation = {
+						any_relation = { 
 							type = lover
 							count >= 1
 						}
@@ -81,162 +81,162 @@
 				}
 				might_cheat_on_every_partner_trigger = yes
 			}
-			scope:target = {
-				trigger_if = {
-					limit = {
+			scope:target = { 
+				trigger_if = { 
+					limit = { 
 						is_ai = no
 					}
-					NOT = {
-						any_targeting_scheme = {
+					NOT = { 
+						any_targeting_scheme = { 
 							scheme_type = courting
 						}
 					}
 				}
 			}
 		}
-		trigger_if = {
-			limit = {
+		trigger_if = { 
+			limit = { 
 				is_ai = yes
 			}
-			NOT = {
-				scope:target = {
+			NOT = { 
+				scope:target = { 
 					has_character_flag = courting_cooldown
 				}
 			}
 		}
 	}
-	valid = {
-		NOT = {
-			custom_description = {
+	valid = { 
+		NOT = { 
+			custom_description = { 
 				text = SCHEME_SEDUCE_UNWILLING_INCEST_TOO_YOUNG
 				object = scope:target
-				guaranteed_under_20_incest_rejection_trigger = {
+				guaranteed_under_20_incest_rejection_trigger = { 
 					TARGET = scope:target
 					SEDUCER = scope:owner
 				}
 			}
 		}
-		scope:owner = {
-			NOT = {
-				custom_description = {
+		scope:owner = { 
+			NOT = { 
+				custom_description = { 
 					text = "romance_already_soulmate"
 					object = scope:target
 					has_relation_soulmate = scope:target
 				}
 			}
 		}
-		custom_description = {
+		custom_description = { 
 			text = seduce_blocked
 			object = scope:target
-			NOT = {
-				scope:owner = {
+			NOT = { 
+				scope:owner = { 
 					has_character_modifier = rejected_from_marriage_bed_modifier
 					is_spouse_of = scope:target
 				}
 			}
 		}
-		NOT = {
-			scope:target = {
+		NOT = { 
+			scope:target = { 
 				has_trait = intellect_bad_3
 			}
 		}
-		NOT = {
-			scope:target = {
+		NOT = { 
+			scope:target = { 
 				has_trait = incapable
 			}
 		}
-		NOT = {
+		NOT = { 
 			has_trait = celibate
 		}
-		scope:target = {
-			NOT = {
+		scope:target = { 
+			NOT = { 
 				has_trait = celibate
 			}
 		}
 		is_imprisoned = no
-		scope:target = {
+		scope:target = { 
 			is_imprisoned = no
 		}
-		scope:target = {
-			OR = {
+		scope:target = { 
+			OR = { 
 				exists = location
 				in_diplomatic_range = scope:owner
 			}
 		}
 	}
-	base_success_chance = {
+	base_success_chance = { 
 		base = 0
-		modifier = {
+		modifier = { 
 			desc = "SCHEME_GALLANT_TRAIT"
-			scope:owner = {
+			scope:owner = { 
 				has_trait = gallant
 			}
 			add = 30
 		}
-		modifier = {
+		modifier = { 
 			desc = "scheme_beauty_good_1"
-			scope:owner = {
+			scope:owner = { 
 				has_trait = beauty_good_1
 			}
 			add = 10
 		}
-		modifier = {
+		modifier = { 
 			desc = "scheme_beauty_good_2"
-			scope:owner = {
+			scope:owner = { 
 				has_trait = beauty_good_2
 			}
 			add = 15
 		}
-		modifier = {
+		modifier = { 
 			desc = "scheme_beauty_good_3"
-			scope:owner = {
+			scope:owner = { 
 				has_trait = beauty_good_3
 			}
 			add = 20
 		}
-		modifier = {
+		modifier = { 
 			desc = "scheme_physique_good_1"
-			scope:owner = {
+			scope:owner = { 
 				has_trait = physique_good_1
 			}
 			add = 5
 		}
-		modifier = {
+		modifier = { 
 			desc = "scheme_physique_good_2"
-			scope:owner = {
+			scope:owner = { 
 				has_trait = physique_good_2
 			}
 			add = 10
 		}
-		modifier = {
+		modifier = { 
 			desc = "scheme_physique_good_3"
-			scope:owner = {
+			scope:owner = { 
 				has_trait = physique_good_3
 			}
 			add = 15
 		}
-		modifier = {
+		modifier = { 
 			desc = "scheme_beauty_bad_1"
-			scope:owner = {
+			scope:owner = { 
 				has_trait = beauty_bad_1
 			}
 			add = -10
 		}
-		modifier = {
+		modifier = { 
 			desc = "scheme_beauty_bad_2"
-			scope:owner = {
+			scope:owner = { 
 				has_trait = beauty_bad_2
 			}
 			add = -15
 		}
-		modifier = {
+		modifier = { 
 			desc = "scheme_beauty_bad_3"
-			scope:owner = {
+			scope:owner = { 
 				has_trait = beauty_bad_3
 			}
 			add = -20
 		}
-		opinion_modifier = {
+		opinion_modifier = { 
 			who = scope:target
 			opinion_target = scope:owner
 			min = -50
@@ -244,235 +244,235 @@
 			multiplier = 1.5
 			step = 5
 		}
-		compatibility_modifier = {
+		compatibility_modifier = { 
 			who = scope:target
 			compatibility_target = scope:owner
 			min = -100
 			max = 80
 			multiplier = 3
 		}
-		modifier = {
+		modifier = { 
 			add = 20
 			desc = "HIGHER_RANK_THAN_SCHEME_TARGET"
-			scope:target = {
+			scope:target = { 
 				personal_scheme_success_compare_target_liege_tier_trigger = no
-				NOT = {
+				NOT = { 
 					is_theocratic_lessee = yes
 				}
 			}
-			scope:owner = {
-				tier_difference = {
+			scope:owner = { 
+				tier_difference = { 
 					target = scope:target
 					value >= 3
 				}
 			}
 		}
-		modifier = {
+		modifier = { 
 			add = 10
 			desc = "HIGHER_RANK_THAN_SCHEME_TARGET"
-			scope:target = {
+			scope:target = { 
 				personal_scheme_success_compare_target_liege_tier_trigger = no
-				NOT = {
+				NOT = { 
 					is_theocratic_lessee = yes
 				}
 			}
-			scope:owner = {
-				tier_difference = {
+			scope:owner = { 
+				tier_difference = { 
 					target = scope:target
 					value = 2
 				}
 			}
 		}
-		modifier = {
+		modifier = { 
 			add = 5
 			desc = "HIGHER_RANK_THAN_SCHEME_TARGET"
-			scope:target = {
+			scope:target = { 
 				personal_scheme_success_compare_target_liege_tier_trigger = no
-				NOT = {
+				NOT = { 
 					is_theocratic_lessee = yes
 				}
 			}
-			scope:owner = {
-				tier_difference = {
+			scope:owner = { 
+				tier_difference = { 
 					target = scope:target
 					value = 1
 				}
 			}
 		}
-		modifier = {
+		modifier = { 
 			add = -5
 			desc = "LOWER_RANK_THAN_SCHEME_TARGET"
-			scope:target = {
+			scope:target = { 
 				personal_scheme_success_compare_target_liege_tier_trigger = no
 			}
-			scope:owner = {
-				tier_difference = {
+			scope:owner = { 
+				tier_difference = { 
 					target = scope:target
 					value = -1
 				}
 			}
 		}
-		modifier = {
+		modifier = { 
 			add = -10
 			desc = "LOWER_RANK_THAN_SCHEME_TARGET"
-			scope:target = {
+			scope:target = { 
 				personal_scheme_success_compare_target_liege_tier_trigger = no
 			}
-			scope:owner = {
-				tier_difference = {
+			scope:owner = { 
+				tier_difference = { 
 					target = scope:target
 					value = -2
 				}
 			}
 		}
-		modifier = {
+		modifier = { 
 			add = -20
 			desc = "LOWER_RANK_THAN_SCHEME_TARGET"
-			scope:target = {
+			scope:target = { 
 				personal_scheme_success_compare_target_liege_tier_trigger = no
 			}
-			scope:owner = {
-				tier_difference = {
+			scope:owner = { 
+				tier_difference = { 
 					target = scope:target
 					value <= -3
 				}
 			}
 		}
-		modifier = {
+		modifier = { 
 			add = 50
 			desc = "HIGHER_RANK_THAN_SCHEME_TARGET_LIEGE"
-			scope:target = {
+			scope:target = { 
 				personal_scheme_success_compare_target_liege_tier_trigger = yes
-				NOT = {
+				NOT = { 
 					is_theocratic_lessee = yes
 				}
 			}
-			scope:owner = {
-				tier_difference = {
+			scope:owner = { 
+				tier_difference = { 
 					target = scope:target.liege
 					value >= 3
 				}
 			}
 		}
-		modifier = {
+		modifier = { 
 			add = 25
 			desc = "HIGHER_RANK_THAN_SCHEME_TARGET_LIEGE"
-			scope:target = {
+			scope:target = { 
 				personal_scheme_success_compare_target_liege_tier_trigger = yes
-				NOT = {
+				NOT = { 
 					is_theocratic_lessee = yes
 				}
 			}
-			scope:owner = {
-				tier_difference = {
+			scope:owner = { 
+				tier_difference = { 
 					target = scope:target.liege
 					value = 2
 				}
 			}
 		}
-		modifier = {
+		modifier = { 
 			add = 10
 			desc = "HIGHER_RANK_THAN_SCHEME_TARGET_LIEGE"
-			scope:target = {
+			scope:target = { 
 				personal_scheme_success_compare_target_liege_tier_trigger = yes
-				NOT = {
+				NOT = { 
 					is_theocratic_lessee = yes
 				}
 			}
-			scope:owner = {
-				tier_difference = {
+			scope:owner = { 
+				tier_difference = { 
 					target = scope:target.liege
 					value = 1
 				}
 			}
 		}
-		modifier = {
+		modifier = { 
 			add = -10
 			desc = "LOWER_RANK_THAN_SCHEME_TARGET_LIEGE"
-			scope:target = {
+			scope:target = { 
 				personal_scheme_success_compare_target_liege_tier_trigger = yes
 			}
-			scope:owner = {
-				tier_difference = {
+			scope:owner = { 
+				tier_difference = { 
 					target = scope:target.liege
 					value = -1
 				}
 			}
 		}
-		modifier = {
+		modifier = { 
 			add = -25
 			desc = "LOWER_RANK_THAN_SCHEME_TARGET_LIEGE"
-			scope:target = {
+			scope:target = { 
 				personal_scheme_success_compare_target_liege_tier_trigger = yes
 			}
-			scope:owner = {
-				tier_difference = {
+			scope:owner = { 
+				tier_difference = { 
 					target = scope:target.liege
 					value = -2
 				}
 			}
 		}
-		modifier = {
+		modifier = { 
 			add = -50
 			desc = "LOWER_RANK_THAN_SCHEME_TARGET_LIEGE"
-			scope:target = {
+			scope:target = { 
 				personal_scheme_success_compare_target_liege_tier_trigger = yes
 			}
-			scope:owner = {
-				tier_difference = {
+			scope:owner = { 
+				tier_difference = { 
 					target = scope:target.liege
 					value <= -3
 				}
 			}
 		}
-		modifier = {
+		modifier = { 
 			add = -50
 			desc = "SCHEME_VS_RELIGIOUS_HEAD"
-			scope:target = {
+			scope:target = { 
 				faith = scope:owner.faith
-				faith = {
+				faith = { 
 					exists = religious_head
-					religious_head = {
+					religious_head = { 
 						this = scope:target
 					}
 				}
 			}
 		}
-		modifier = {
+		modifier = { 
 			add = -25
 			desc = SCHEME_SEDUCE_TABOO_INCEST
-			scope:target = {
-				relation_with_character_is_incestuous_in_my_or_lieges_faith_trigger = {
+			scope:target = { 
+				relation_with_character_is_incestuous_in_my_or_lieges_faith_trigger = { 
 					CHARACTER = scope:owner
 				}
 			}
-			scope:owner = {
-				NOT = {
+			scope:owner = { 
+				NOT = { 
 					has_perk = subtle_desire_perk
 				}
 			}
 		}
-		modifier = {
-			add = {
-				if = {
-					limit = {
-						scope:target = {
+		modifier = { 
+			add = { 
+				if = { 
+					limit = { 
+						scope:target = { 
 							is_close_family_of = scope:owner
 						}
 					}
 					value = -40
 				}
-				else_if = {
-					limit = {
-						scope:target = {
+				else_if = { 
+					limit = { 
+						scope:target = { 
 							is_extended_family_of = scope:owner
 						}
 					}
 					value = -15
 				}
-				if = {
-					limit = {
-						scope:target = {
+				if = { 
+					limit = { 
+						scope:target = { 
 							is_deviant_trigger = yes
 						}
 					}
@@ -480,153 +480,153 @@
 				}
 			}
 			desc = SCHEME_SEDUCE_UNWILLING_INCEST
-			scope:target = {
-				NOT = {
+			scope:target = { 
+				NOT = { 
 					is_consort_of = scope:owner
 				}
 				is_close_or_extended_family_of = scope:owner
-				NOR = {
-					accepts_incest_with_trigger = {
+				NOR = { 
+					accepts_incest_with_trigger = { 
 						CHARACTER = scope:owner
 					}
-					scope:owner = {
+					scope:owner = { 
 						has_perk = subtle_desire_perk
 					}
-					guaranteed_under_20_incest_rejection_trigger = {
+					guaranteed_under_20_incest_rejection_trigger = { 
 						TARGET = scope:target
 						SEDUCER = scope:owner
 					}
 				}
 			}
 		}
-		modifier = {
+		modifier = { 
 			add = -20
 			desc = SCHEME_SEDUCE_TABOO_SODOMY
-			scope:target = {
-				relation_with_character_is_sodomy_in_my_or_lieges_faith_trigger = {
+			scope:target = { 
+				relation_with_character_is_sodomy_in_my_or_lieges_faith_trigger = { 
 					CHARACTER = scope:owner
 				}
-				NOT = {
-					freely_accepts_sodomy_with_trigger = {
+				NOT = { 
+					freely_accepts_sodomy_with_trigger = { 
 						CHARACTER = scope:owner
 					}
 				}
 			}
 		}
-		modifier = {
+		modifier = { 
 			add = courtship_court_success_chance_bonus_value
 			desc = SCHEME_COURTSHIP_PERK
-			scope:owner = {
+			scope:owner = { 
 				has_perk = courtship_perk
 			}
 		}
-		modifier = {
+		modifier = { 
 			add = kin_legacy_4_success_chance
 			desc = KIN_LEGACY_DESC
 			exists = scope:owner.dynasty
-			scope:owner.dynasty = {
+			scope:owner.dynasty = { 
 				has_dynasty_perk = kin_legacy_4
 			}
 			scope:target.dynasty = scope:owner.dynasty
 		}
-		modifier = {
+		modifier = { 
 			add = thicker_than_water_bonus
 			desc = BEFRIEND_THICKER_THAN_WATER_PERK_DESC
-			scope:owner = {
+			scope:owner = { 
 				has_perk = thicker_than_water_perk
 			}
-			scope:target = {
+			scope:target = { 
 				is_close_or_extended_family_of = scope:owner
 			}
 		}
 	}
-	on_ready = {
-		scheme_owner = {
-			save_scope_value_as = {
+	on_ready = { 
+		scheme_owner = { 
+			save_scope_value_as = { 
 				name = discovery_chance
-				value = {
+				value = { 
 					value = 100
 					subtract = scope:scheme.scheme_secrecy
 				}
 			}
-			random = {
+			random = { 
 				chance = scope:discovery_chance
-				save_scope_value_as = {
+				save_scope_value_as = { 
 					name = scheme_discovered
 					value = yes
 				}
 			}
-			random = {
+			random = { 
 				chance = scope:scheme.scheme_success_chance
-				save_scope_value_as = {
+				save_scope_value_as = { 
 					name = scheme_successful
 					value = yes
 				}
 			}
-			if = {
-				limit = {
-					scope:target = {
+			if = { 
+				limit = { 
+					scope:target = { 
 						is_ai = yes
 					}
 				}
-				trigger_event = {
+				trigger_event = { 
 					on_action = court_outcome
 				}
 			}
-			else = {
-				scope:target = {
-					trigger_event = {
+			else = { 
+				scope:target = { 
+					trigger_event = { 
 						id = court_outcome.0003
 					}
 				}
 			}
 		}
 	}
-	on_start = {
-		scheme_owner = {
+	on_start = { 
+		scheme_owner = { 
 			trigger_event = court_ongoing.0501
 		}
 	}
-	on_monthly = {
+	on_monthly = { 
 		save_scope_as = scheme
-		scheme_owner = {
+		scheme_owner = { 
 			save_scope_as = owner
 		}
-		scheme_target = {
+		scheme_target = { 
 			save_scope_as = target
 		}
-		if = {
-			limit = {
-				scheme_owner = {
+		if = { 
+			limit = { 
+				scheme_owner = { 
 					is_available = yes
 				}
-				scheme_target = {
+				scheme_target = { 
 					is_available = yes
 				}
-				player_target_available_for_personal_scheme_ongoing_events_trigger = {
+				player_target_available_for_personal_scheme_ongoing_events_trigger = { 
 					OWNER = scope:owner
 					TARGET = scope:target
 				}
-				OR = {
-					AND = {
+				OR = { 
+					AND = { 
 						scheme_progress >= 2
-						NOT = {
+						NOT = { 
 							exists = var:court_milestone_event
 						}
 					}
-					AND = {
+					AND = { 
 						scheme_progress >= 5
-						OR = {
-							NOT = {
+						OR = { 
+							NOT = { 
 								exists = var:court_milestone_event
 							}
 							var:court_milestone_event < 2
 						}
 					}
-					AND = {
+					AND = { 
 						scheme_progress >= 8
-						OR = {
-							NOT = {
+						OR = { 
+							NOT = { 
 								exists = var:court_milestone_event
 							}
 							var:court_milestone_event < 3
@@ -634,63 +634,63 @@
 					}
 				}
 			}
-			if = {
-				limit = {
-					NOT = {
+			if = { 
+				limit = { 
+					NOT = { 
 						exists = var:court_milestone_event
 					}
 				}
-				set_variable = {
+				set_variable = { 
 					name = court_milestone_event
 					value = 1
 				}
 			}
-			else = {
-				change_variable = {
+			else = { 
+				change_variable = { 
 					name = court_milestone_event
 					add = 1
 				}
 			}
-			scheme_owner = {
-				trigger_event = {
+			scheme_owner = { 
+				trigger_event = { 
 					on_action = court_ongoing
 				}
 			}
 		}
 	}
-	on_invalidated = {
-		if = {
-			limit = {
-				scope:target = {
+	on_invalidated = { 
+		if = { 
+			limit = { 
+				scope:target = { 
 					is_alive = no
 				}
 			}
-			scope:owner = {
-				send_interface_toast = {
+			scope:owner = { 
+				send_interface_toast = { 
 					title = court_scheme_invalidated_title
 					left_icon = scope:target
-					custom_description_no_bullet = {
+					custom_description_no_bullet = { 
 						object = scope:target
 						text = scheme_target_died
 					}
 				}
 			}
 		}
-		if = {
-			limit = {
-				scope:target = {
+		if = { 
+			limit = { 
+				scope:target = { 
 					is_imprisoned = yes
 				}
 			}
-			scope:target.imprisoner = {
+			scope:target.imprisoner = { 
 				save_scope_as = other_imprisoner
 			}
-			scope:owner = {
-				send_interface_toast = {
+			scope:owner = { 
+				send_interface_toast = { 
 					title = court_scheme_invalidated_title
 					left_icon = scope:target
 					right_icon = scope:other_imprisoner
-					custom_description_no_bullet = {
+					custom_description_no_bullet = { 
 						subject = scope:other_imprisoner
 						object = scope:target
 						text = scheme_target_imprisoned_by_other
@@ -698,49 +698,49 @@
 				}
 			}
 		}
-		if = {
-			limit = {
-				NOT = {
+		if = { 
+			limit = { 
+				NOT = { 
 					scheme_progress = 100
 				}
-				scheme_owner = {
+				scheme_owner = { 
 					has_relation_soulmate = scope:scheme.scheme_target
 				}
 			}
-			scheme_owner = {}
+			scheme_owner = { }
 		}
-		else_if = {
-			limit = {
-				OR = {
-					scope:owner = {
+		else_if = { 
+			limit = { 
+				OR = { 
+					scope:owner = { 
 						has_relation_soulmate = scope:target
 					}
-					scope:owner = {
+					scope:owner = { 
 						has_character_modifier = rejected_from_marriage_bed_modifier
 						is_spouse_of = scope:target
 					}
-					scope:owner = {
+					scope:owner = { 
 						has_trait = celibate
 					}
-					scope:target = {
+					scope:target = { 
 						has_trait = celibate
 					}
-					scope:owner = {
+					scope:owner = { 
 						is_imprisoned = yes
 					}
-					scope:target = {
+					scope:target = { 
 						is_imprisoned = yes
 					}
-					scope:target = {
-						NOR = {
+					scope:target = { 
+						NOR = { 
 							exists = location
 							in_diplomatic_range = scope:owner
 						}
 					}
 				}
 			}
-			scheme_owner = {
-				send_interface_message = {
+			scheme_owner = { 
+				send_interface_message = { 
 					type = event_generic_neutral
 					title = courting
 					left_icon = scope:target

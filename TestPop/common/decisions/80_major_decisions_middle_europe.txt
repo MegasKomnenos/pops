@@ -1,25 +1,25 @@
-﻿form_switzerland_kingdom_decision = {
+﻿form_switzerland_kingdom_decision = { 
 	picture = "gfx/interface/illustrations/decisions/decision_dynasty_house.dds"
 	desc = form_switzerland_kingdom_decision_desc
 	selection_tooltip = form_switzerland_kingdom_decision_tooltip
 	major = yes
 	ai_check_interval = 120
-	is_shown = {
+	is_shown = { 
 		is_character = yes
 		is_landed = yes
 		is_independent_ruler = no
-		NOT = {
+		NOT = { 
 			exists = title:k_switzerland.holder
 		}
-		NOT = {
-			is_target_in_global_variable_list = {
+		NOT = { 
+			is_target_in_global_variable_list = { 
 				name = unavailable_unique_decisions
 				target = flag:flag_formed_switzerland_kingdom
 			}
 		}
 		highest_held_title_tier <= tier_duchy
 		top_liege.primary_title.tier >= tier_empire
-		OR = {
+		OR = { 
 			culture_group = culture_group:central_germanic_group
 			has_culture = culture:frankish
 			has_culture = culture:occitan
@@ -27,9 +27,9 @@
 			has_culture = culture:lombard
 			has_culture = culture:cisalpine
 		}
-		any_sub_realm_county = {
-			OR = {
-				title_province = {
+		any_sub_realm_county = { 
+			OR = { 
+				title_province = { 
 					geographical_region = custom_core_switzerland
 				}
 				this = title:c_geneva
@@ -37,161 +37,161 @@
 			}
 		}
 	}
-	is_valid = {
+	is_valid = { 
 		liege = top_liege
 		prestige_level >= high_prestige_level
 		completely_controls_region = custom_core_switzerland
 	}
-	is_valid_showing_failures_only = {
+	is_valid_showing_failures_only = { 
 		is_capable_adult = yes
 		is_imprisoned = no
 		is_independent_ruler = no
 		is_at_war = no
 	}
-	cost = {
+	cost = { 
 		gold = 250
 	}
-	effect = {
-		show_as_tooltip = {
+	effect = { 
+		show_as_tooltip = { 
 			form_switzerland_scripted_effect = yes
 		}
-		trigger_event = {
+		trigger_event = { 
 			id = middle_europe_decisions.0001
 		}
-		hidden_effect = {
-			add_to_global_variable_list = {
+		hidden_effect = { 
+			add_to_global_variable_list = { 
 				name = unavailable_unique_decisions
 				target = flag:flag_formed_switzerland_kingdom
 			}
 		}
 	}
-	ai_potential = {
+	ai_potential = { 
 		always = yes
 	}
-	ai_will_do = {
+	ai_will_do = { 
 		base = 100
 	}
 }
-form_austria_kingdom_decision = {
+form_austria_kingdom_decision = { 
 	picture = "gfx/interface/illustrations/decisions/decision_dynasty_house.dds"
 	desc = form_austria_kingdom_decision_desc
 	selection_tooltip = form_austria_kingdom_decision_tooltip
 	major = yes
 	ai_goal = yes
-	is_shown = {
+	is_shown = { 
 		is_character = yes
 		is_landed = yes
-		NOT = {
+		NOT = { 
 			exists = title:k_austria.holder
 		}
-		NOT = {
-			is_target_in_global_variable_list = {
+		NOT = { 
+			is_target_in_global_variable_list = { 
 				name = unavailable_unique_decisions
 				target = flag:flag_formed_austria_kingdom
 			}
 		}
-		OR = {
-			AND = {
+		OR = { 
+			AND = { 
 				highest_held_title_tier <= tier_duchy
 				is_independent_ruler = no
 			}
 			has_title = title:e_hre
 		}
-		top_liege = {
+		top_liege = { 
 			has_title = title:e_hre
 		}
-		any_held_title = {
+		any_held_title = { 
 			tier = tier_county
-			OR = {
-				title_province = {
+			OR = { 
+				title_province = { 
 					geographical_region = custom_core_austria
 				}
-				title_province = {
+				title_province = { 
 					geographical_region = custom_stretch_austria
 				}
 			}
 		}
 	}
-	is_valid = {
+	is_valid = { 
 		liege = title:e_hre.holder
 		prestige_level >= high_prestige_level
 		completely_controls_region = custom_core_austria
-		OR = {
-			custom_description = {
+		OR = { 
+			custom_description = { 
 				text = "form_austria_hre_dynasty_trigger"
 				dynasty = title:e_hre.holder.dynasty
 			}
 			has_strong_usable_hook = title:e_hre.holder
 		}
 	}
-	is_valid_showing_failures_only = {
+	is_valid_showing_failures_only = { 
 		is_capable_adult = yes
 		is_imprisoned = no
 		is_at_war = no
 		faith = top_liege.faith
 	}
-	cost = {
+	cost = { 
 		gold = 1000
 	}
-	effect = {
-		show_as_tooltip = {
+	effect = { 
+		show_as_tooltip = { 
 			form_austria_scripted_effect = yes
 		}
-		trigger_event = {
+		trigger_event = { 
 			id = middle_europe_decisions.0003
 		}
-		hidden_effect = {
-			add_to_global_variable_list = {
+		hidden_effect = { 
+			add_to_global_variable_list = { 
 				name = unavailable_unique_decisions
 				target = flag:flag_formed_austria_kingdom
 			}
 		}
 	}
-	ai_potential = {
+	ai_potential = { 
 		always = yes
 	}
-	ai_will_do = {
+	ai_will_do = { 
 		base = 0
-		modifier = {
+		modifier = { 
 			add = 20
-			capital_county.title_province = {
+			capital_county.title_province = { 
 				geographical_region = custom_core_austria
 			}
 		}
-		ai_value_modifier = {
+		ai_value_modifier = { 
 			ai_boldness = 0.75
 			ai_greed = 0.25
 		}
 	}
 }
-reform_carolingian_empire_decision = {
+reform_carolingian_empire_decision = { 
 	picture = "gfx/interface/illustrations/decisions/decision_dynasty_house.dds"
 	desc = reform_carolingian_empire_decision_desc
 	selection_tooltip = reform_carolingian_empire_decision_tooltip
 	major = yes
 	ai_check_interval = 120
-	is_shown = {
+	is_shown = { 
 		is_character = yes
 		faith.religion = faith:catholic.religion
 		is_ruler = yes
 		is_landed = yes
-		NOT = {
-			is_target_in_global_variable_list = {
+		NOT = { 
+			is_target_in_global_variable_list = { 
 				name = unavailable_unique_decisions
 				target = flag:flag_reformed_carolingian_empire
 			}
 		}
 		is_independent_ruler = yes
 		has_culture = culture:french
-		capital_province = {
+		capital_province = { 
 			geographical_region = world_europe_west
 		}
 		exists = title:e_hre.holder
-		NOT = {
+		NOT = { 
 			has_title = title:e_hre
 		}
 	}
-	is_valid = {
+	is_valid = { 
 		prestige_level >= high_prestige_level
 		has_title = title:e_france
 		completely_controls_region = custom_carolingian_francia
@@ -202,86 +202,86 @@ reform_carolingian_empire_decision = {
 		completely_controls_region = custom_carolingian_iberia
 		completely_controls_region = custom_northern_italy
 	}
-	is_valid_showing_failures_only = {
+	is_valid_showing_failures_only = { 
 		is_capable_adult = yes
 		is_imprisoned = no
 		is_independent_ruler = yes
 		is_at_war = no
 	}
-	effect = {
+	effect = { 
 		custom_tooltip = reform_carolingian_empire_decision_effect_tooltip
-		show_as_tooltip = {
+		show_as_tooltip = { 
 			form_carolingian_empire_scripted_effect = yes
 		}
-		trigger_event = {
+		trigger_event = { 
 			id = middle_europe_decisions.0005
 		}
-		hidden_effect = {
-			add_to_global_variable_list = {
+		hidden_effect = { 
+			add_to_global_variable_list = { 
 				name = unavailable_unique_decisions
 				target = flag:flag_reformed_carolingian_empire
 			}
 		}
 	}
-	ai_potential = {
+	ai_potential = { 
 		always = yes
 	}
-	ai_will_do = {
+	ai_will_do = { 
 		base = 100
 	}
 }
-unify_burgundy_kingdom_decision = {
+unify_burgundy_kingdom_decision = { 
 	picture = "gfx/interface/illustrations/decisions/decision_dynasty_house.dds"
 	desc = unify_burgundy_kingdom_decision_desc
 	selection_tooltip = unify_burgundy_kingdom_decision_tooltip
 	major = yes
 	ai_goal = yes
-	is_shown = {
+	is_shown = { 
 		is_character = yes
-		OR = {
+		OR = { 
 			has_culture = culture:occitan
 			has_culture = culture:french
 		}
 		is_ruler = yes
 		is_landed = yes
-		NOT = {
+		NOT = { 
 			exists = title:k_burgundy.holder
 		}
-		NOT = {
-			is_target_in_global_variable_list = {
+		NOT = { 
+			is_target_in_global_variable_list = { 
 				name = unavailable_unique_decisions
 				target = flag:flag_unified_burgundy_kingdom
 			}
 		}
 		highest_held_title_tier < 4
-		top_liege = {
-			OR = {
+		top_liege = { 
+			OR = { 
 				has_title = title:k_france
 				has_title = title:e_france
 				has_title = title:e_hre
 			}
 		}
-		capital_province = {
+		capital_province = { 
 			geographical_region = custom_burgundy
 		}
 	}
-	is_valid = {
+	is_valid = { 
 		prestige_level >= high_prestige_level
 		completely_controls_region = custom_burgundy
 	}
-	is_valid_showing_failures_only = {
+	is_valid_showing_failures_only = { 
 		is_capable_adult = yes
 		is_imprisoned = no
 		is_independent_ruler = no
 		is_at_war = no
 	}
-	cost = {
+	cost = { 
 		gold = 1000
 	}
-	effect = {
-		if = {
-			limit = {
-				NOT = {
+	effect = { 
+		if = { 
+			limit = { 
+				NOT = { 
 					has_culture = culture:occitan
 				}
 			}
@@ -289,383 +289,386 @@ unify_burgundy_kingdom_decision = {
 			add_character_flag = converted_culture_this_lifetime
 		}
 		custom_tooltip = unify_burgundy_kingdom_decision_effect_tooltip
-		show_as_tooltip = {
+		show_as_tooltip = { 
 			unite_burgundies_scripted_effect = yes
 		}
-		trigger_event = {
+		trigger_event = { 
 			id = middle_europe_decisions.0007
 		}
-		hidden_effect = {
-			add_to_global_variable_list = {
+		hidden_effect = { 
+			add_to_global_variable_list = { 
 				name = unavailable_unique_decisions
 				target = flag:flag_unified_burgundy_kingdom
 			}
 		}
 	}
-	ai_potential = {
+	ai_potential = { 
 		always = yes
 	}
-	ai_will_do = {
+	ai_will_do = { 
 		base = 5
-		ai_value_modifier = {
+		ai_value_modifier = { 
 			ai_boldness = 1.0
 		}
 	}
 }
-empower_sicilian_parliament_decision = {
+empower_sicilian_parliament_decision = { 
 	picture = "gfx/interface/illustrations/decisions/decision_realm.dds"
 	desc = empower_sicilian_parliament_decision_desc
 	selection_tooltip = empower_sicilian_parliament_decision_tooltip
 	major = yes
 	ai_goal = yes
-	is_shown = {
+	is_shown = { 
 		is_character = yes
-		OR = {
+		OR = { 
 			has_culture_group = culture_group:latin_group
 			has_culture_group = culture_group:central_germanic_group
 			has_culture_group = culture_group:iberian_group
 		}
 		is_ruler = yes
 		is_landed = yes
-		NOT = {
-			is_target_in_global_variable_list = {
+		NOT = { 
+			is_target_in_global_variable_list = { 
 				name = unavailable_unique_decisions
 				target = flag:flag_empowered_sicilian_parliament
 			}
 		}
 		highest_held_title_tier >= 4
 		is_independent_ruler = yes
-		capital_province = {
+		capital_province = { 
 			geographical_region = custom_sicily
 		}
 		has_government = feudal_government
 	}
-	is_valid = {
+	is_valid = { 
 		prestige_level >= 3
 		learning >= 10
-		NOT = {
+		NOT = { 
 			has_realm_law = crown_authority_0
 		}
-		OR = {
+		OR = { 
 			has_title = title:k_sicily
 			has_title = title:k_naples
 			has_title = title:k_trinacria
 		}
-		OR = {
+		OR = { 
 			completely_controls = title:d_sicily
 			completely_controls = title:d_capua
 		}
 	}
-	is_valid_showing_failures_only = {
+	is_valid_showing_failures_only = { 
 		is_capable_adult = yes
 		is_imprisoned = no
 		is_independent_ruler = yes
 		is_at_war = no
 	}
-	cost = {
+	cost = { 
 		gold = 1500
 		prestige = 3000
 	}
-	effect = {
-		show_as_tooltip = {
-			if = {
-				limit = {
+	effect = { 
+		show_as_tooltip = { 
+			if = { 
+				limit = { 
 					completely_controls = title:d_sicily
 				}
-				title:c_palermo = {
+				title:c_palermo = { 
 					sicilian_parliament_building_scripted_effect = yes
 				}
 			}
-			else_if = {
-				limit = {
+			else_if = { 
+				limit = { 
 					completely_controls = title:d_capua
 				}
-				title:c_napoli = {
+				title:c_napoli = { 
 					sicilian_parliament_building_scripted_effect = yes
 				}
 			}
 			empower_sicilian_parliament_decision_scripted_effect = yes
 		}
-		trigger_event = {
+		trigger_event = { 
 			id = middle_europe_decisions.0010
 		}
-		hidden_effect = {
-			add_to_global_variable_list = {
+		hidden_effect = { 
+			add_to_global_variable_list = { 
 				name = unavailable_unique_decisions
 				target = flag:flag_empowered_sicilian_parliament
 			}
 		}
 	}
-	ai_potential = {
+	ai_potential = { 
 		always = yes
 	}
-	ai_will_do = {
+	ai_will_do = { 
 		base = 15
-		ai_value_modifier = {
+		ai_value_modifier = { 
 			ai_boldness = 1.0
 		}
 	}
 }
-promote_gothic_innovations_decision = {
+promote_gothic_innovations_decision = { 
 	picture = "gfx/interface/illustrations/decisions/decision_misc.dds"
 	desc = promote_gothic_innovations_decision_desc
 	selection_tooltip = promote_gothic_innovations_decision_tooltip
 	major = yes
 	ai_goal = yes
-	is_shown = {
+	is_shown = { 
 		is_character = yes
-		has_culture_group = culture_group:latin_group
-		NOT = {
+		OR = { 
+			has_culture_group = culture_group:latin_group
+			has_culture_group = culture_group:frankish_group
+		}
+		NOT = { 
 			has_culture = culture:italian
 		}
 		is_ruler = yes
 		is_landed = yes
-		root.culture = {
+		root.culture = { 
 			has_cultural_era_or_later = culture_era_early_medieval
 		}
-		NOT = {
-			is_target_in_global_variable_list = {
+		NOT = { 
+			is_target_in_global_variable_list = { 
 				name = unavailable_unique_decisions
 				target = flag:flag_promoted_gothic_innovations
 			}
 		}
 		highest_held_title_tier >= 4
-		OR = {
+		OR = { 
 			has_title = title:k_france
 			has_title = title:e_france
 			has_title = title:k_burgundy
 		}
-		NOR = {
+		NOR = { 
 			has_government = theocracy_government
 			has_government = clan_government
 			has_government = tribal_government
 		}
 	}
-	is_valid = {
+	is_valid = { 
 		prestige_level >= 4
 		learning >= 10
-		NOT = {
+		NOT = { 
 			has_realm_law = crown_authority_0
 		}
-		OR = {
-			AND = {
+		OR = { 
+			AND = { 
 				completely_controls = title:d_valois
 				completely_controls = title:d_orleans
 			}
-			AND = {
+			AND = { 
 				completely_controls = title:d_provence
 				completely_controls = title:d_toulouse
 			}
 		}
-		root.culture = {
+		root.culture = { 
 			has_innovation = innovation_royal_prerogative
 			has_innovation = innovation_knighthood
 			has_innovation = innovation_windmills
 		}
 	}
-	is_valid_showing_failures_only = {
+	is_valid_showing_failures_only = { 
 		is_capable_adult = yes
 		is_imprisoned = no
 		is_at_war = no
 	}
-	cost = {
+	cost = { 
 		gold = 500
 		prestige = 3000
 	}
-	effect = {
-		show_as_tooltip = {
+	effect = { 
+		show_as_tooltip = { 
 			promote_gothic_innovations_decision_scripted_effect = yes
 		}
-		trigger_event = {
+		trigger_event = { 
 			id = middle_europe_decisions.0012
 		}
-		hidden_effect = {
-			add_to_global_variable_list = {
+		hidden_effect = { 
+			add_to_global_variable_list = { 
 				name = unavailable_unique_decisions
 				target = flag:flag_promoted_gothic_innovations
 			}
 		}
 	}
-	ai_potential = {
+	ai_potential = { 
 		always = yes
 	}
-	ai_will_do = {
+	ai_will_do = { 
 		base = 15
-		ai_value_modifier = {
+		ai_value_modifier = { 
 			ai_boldness = 1.0
 		}
 	}
 }
-restore_holy_roman_empire_decision = {
+restore_holy_roman_empire_decision = { 
 	picture = "gfx/interface/illustrations/decisions/decision_dynasty_house.dds"
 	major = yes
 	ai_check_interval = 120
 	desc = restore_holy_roman_empire_decision_desc
 	selection_tooltip = restore_holy_roman_empire_decision_tooltip
-	is_shown = {
+	is_shown = { 
 		is_character = yes
 		is_landed = yes
 		exists = dynasty
-		NOR = {
+		NOR = { 
 			exists = title:e_hre.holder
 			exists = title:e_france.holder
 			highest_held_title_tier = tier_empire
 		}
-		AND = {
-			NOT = {
+		AND = { 
+			NOT = { 
 				this = faith.religious_head
 			}
-			faith = {
+			faith = { 
 				religion_tag = christianity_religion
 				has_doctrine_parameter = spiritual_head_of_faith
 			}
-			NAND = {
+			NAND = { 
 				exists = title:e_byzantium.holder
 				faith = title:e_byzantium.holder.faith
 			}
 		}
-		OR = {
+		OR = { 
 			has_government = feudal_government
 			has_government = clan_government
 		}
 		exists = faith.religious_head
 	}
-	is_valid = {
+	is_valid = { 
 		is_independent_ruler = yes
 		prestige_level >= high_prestige_level
-		AND = {
+		AND = { 
 			has_title = title:k_east_francia
-			custom_description = {
+			custom_description = { 
 				text = decision_refound_hre_own_three_kingdoms.tt
-				any_held_title = {
+				any_held_title = { 
 					tier = tier_kingdom
 					count >= 3
 				}
 			}
 			sub_realm_size >= 140
 		}
-		OR = {
-			faith.religious_head = {
-				opinion = {
+		OR = { 
+			faith.religious_head = { 
+				opinion = { 
 					target = root
 					value >= high_positive_opinion
 				}
 			}
-			root = {
+			root = { 
 				has_strong_usable_hook = faith.religious_head
 			}
-			root = {
+			root = { 
 				has_weak_hook = faith.religious_head
 			}
 		}
 	}
-	is_valid_showing_failures_only = {
+	is_valid_showing_failures_only = { 
 		is_available_adult = yes
-		faith.religious_head = {
+		faith.religious_head = { 
 			is_available_adult = yes
 		}
-		NOR = {
+		NOR = { 
 			has_trait = excommunicated
 			is_at_war_with = faith.religious_head
 		}
 	}
-	effect = {
-		show_as_tooltip = {
+	effect = { 
+		show_as_tooltip = { 
 			restore_holy_roman_empire_decision_scripted_effect = yes
 		}
 		save_scope_as = founder
-		faith.religious_head = {
+		faith.religious_head = { 
 			save_scope_as = founder_hof
 		}
-		if = {
-			limit = {
-				faith.religious_head = {
+		if = { 
+			limit = { 
+				faith.religious_head = { 
 					is_landed = yes
 				}
 			}
-			faith.religious_head.capital_province = {
+			faith.religious_head.capital_province = { 
 				save_scope_as = ceremony_locale
 			}
 		}
-		else = {
-			capital_province = {
+		else = { 
+			capital_province = { 
 				save_scope_as = ceremony_locale
 			}
 		}
-		trigger_event = {
+		trigger_event = { 
 			id = middle_europe_decisions.0015
 		}
-		every_player = {
-			limit = {
-				NOT = {
+		every_player = { 
+			limit = { 
+				NOT = { 
 					this = root
 				}
-				is_within_diplo_range = {
+				is_within_diplo_range = { 
 					CHARACTER = root
 				}
 			}
 			trigger_event = middle_europe_decisions.0016
 		}
 	}
-	cost = {
+	cost = { 
 		gold = 500
 		piety = 200
 	}
-	ai_potential = {
+	ai_potential = { 
 		always = yes
 	}
-	ai_will_do = {
+	ai_will_do = { 
 		base = 100
 	}
 }
-establish_norman_culture_decision = {
+establish_norman_culture_decision = { 
 	picture = "gfx/interface/illustrations/decisions/decision_realm.dds"
 	major = yes
 	ai_check_interval = 120
 	desc = establish_norman_culture_decision_desc
 	selection_tooltip = establish_norman_culture_decision_tooltip
-	is_shown = {
+	is_shown = { 
 		is_character = yes
 		culture = culture:norse
-		any_sub_realm_county = {
+		any_sub_realm_county = { 
 			target_is_de_jure_liege_or_above = title:d_normandy
 			culture = culture:french
 		}
-		NOT = {
-			is_target_in_global_variable_list = {
+		NOT = { 
+			is_target_in_global_variable_list = { 
 				name = unavailable_unique_decisions
 				target = flag:flag_formed_normandy_decision
 			}
 		}
 	}
-	is_valid = {
+	is_valid = { 
 		culture = culture:norse
 		completely_controls = title:d_normandy
 	}
-	is_valid_showing_failures_only = {
+	is_valid_showing_failures_only = { 
 		is_at_war = no
 		is_imprisoned = no
 	}
-	effect = {
-		hidden_effect = {
-			title:d_normandy = {
-				every_in_de_jure_hierarchy = {
-					limit = {
+	effect = { 
+		hidden_effect = { 
+			title:d_normandy = { 
+				every_in_de_jure_hierarchy = { 
+					limit = { 
 						tier = tier_county
 					}
 					add_to_list = norman_counties
 				}
 			}
-			every_sub_realm_title = {
-				limit = {
+			every_sub_realm_title = { 
+				limit = { 
 					tier = tier_county
 				}
-				if = {
-					limit = {
-						title_province = {
+				if = { 
+					limit = { 
+						title_province = { 
 							geographical_region = custom_normandy_and_adjacent
 						}
-						OR = {
+						OR = { 
 							culture = culture:french
 							culture = culture:norse
 						}
@@ -673,9 +676,9 @@ establish_norman_culture_decision = {
 					add_to_list = norman_counties
 				}
 			}
-			every_in_list = {
+			every_in_list = { 
 				list = norman_counties
-				merge_cultures_in_region_effect = {
+				merge_cultures_in_region_effect = { 
 					OLD_CULTURE_1 = culture:norse
 					OLD_CULTURE_2 = culture:french
 					NEW_CULTURE = culture:norman
@@ -683,44 +686,44 @@ establish_norman_culture_decision = {
 				}
 			}
 			save_scope_as = norman_founder
-			culture:norse = {
+			culture:norse = { 
 				save_scope_as = old_culture_1
 			}
-			culture:french = {
+			culture:french = { 
 				save_scope_as = old_culture_2
 			}
-			culture:norman = {
+			culture:norman = { 
 				get_all_innovations_from = scope:old_culture_1
 				get_all_innovations_from = scope:old_culture_2
 				save_scope_as = new_culture
 			}
-			every_player = {
-				if = {
-					limit = {
-						NOT = {
+			every_player = { 
+				if = { 
+					limit = { 
+						NOT = { 
 							this = root
 						}
-						OR = {
+						OR = { 
 							culture = culture:french
 							culture = culture:norse
 						}
 						exists = capital_province
-						capital_province = {
+						capital_province = { 
 							geographical_region = custom_normandy_and_adjacent
 						}
 					}
 					trigger_event = global_culture.3002
 				}
-				else_if = {
-					limit = {
+				else_if = { 
+					limit = { 
 						this = root
 					}
 					trigger_event = global_culture.3003
 				}
-				else_if = {
-					limit = {
+				else_if = { 
+					limit = { 
 						exists = capital_province
-						capital_province = {
+						capital_province = { 
 							geographical_region = world_europe
 						}
 					}
@@ -730,27 +733,27 @@ establish_norman_culture_decision = {
 		}
 		set_culture = culture:norman
 		add_character_flag = converted_culture_this_lifetime
-		hidden_effect = {
-			every_in_list = {
+		hidden_effect = { 
+			every_in_list = { 
 				list = norman_counties
-				limit = {
-					holder.capital_county = {
+				limit = { 
+					holder.capital_county = { 
 						is_in_list = norman_counties
 					}
 				}
-				holder = {
+				holder = { 
 					add_to_list = mass_melting_pot_list
-					every_courtier = {
+					every_courtier = { 
 						add_to_list = mass_melting_pot_list
 					}
-					every_courtier_away = {
+					every_courtier_away = { 
 						add_to_list = mass_melting_pot_list
 					}
 				}
-				every_in_list = {
+				every_in_list = { 
 					list = mass_melting_pot_list
-					limit = {
-						OR = {
+					limit = { 
+						OR = { 
 							culture = culture:french
 							culture = culture:norse
 						}
@@ -759,106 +762,106 @@ establish_norman_culture_decision = {
 				}
 			}
 		}
-		show_as_tooltip = {
+		show_as_tooltip = { 
 			custom_tooltip = establish_norman_culture_decision_effect.tt
-			culture:norman = {
+			culture:norman = { 
 				get_all_innovations_from = scope:old_culture_1
 				get_all_innovations_from = scope:old_culture_2
 			}
 		}
-		title:d_normandy = {
+		title:d_normandy = { 
 			save_scope_as = normandy_title
-			hidden_effect = {
+			hidden_effect = { 
 				set_title_name = d_normandy
 			}
 			custom_tooltip = establish_norman_culture_decision_effect.tt.2
 		}
-		add_to_global_variable_list = {
+		add_to_global_variable_list = { 
 			name = unavailable_unique_decisions
 			target = flag:flag_formed_normandy_decision
 		}
 	}
-	cost = {}
-	ai_potential = {
+	cost = { }
+	ai_potential = { 
 		always = yes
 	}
-	ai_will_do = {
+	ai_will_do = { 
 		base = 0
-		modifier = {
+		modifier = { 
 			add = 100
-			any_sub_realm_county = {
+			any_sub_realm_county = { 
 				percent >= 0.5
 				culture = culture:french
 			}
 		}
 	}
 }
-form_the_kingdom_of_aragon_decision = {
+form_the_kingdom_of_aragon_decision = { 
 	picture = "gfx/interface/illustrations/decisions/decision_dynasty_house.dds"
 	major = yes
 	ai_check_interval = 120
 	desc = form_the_kingdom_of_aragon_decision_desc
 	selection_tooltip = form_the_kingdom_of_aragon_decision_tooltip
-	is_shown = {
+	is_shown = { 
 		is_character = yes
 		game_start_date <= 867.1.1
 		highest_held_title_tier <= tier_duchy
-		any_sub_realm_county = {
-			OR = {
+		any_sub_realm_county = { 
+			OR = { 
 				target_is_de_jure_liege_or_above = title:d_aragon
 				target_is_de_jure_liege_or_above = title:d_barcelona
 			}
 		}
-		NOT = {
-			is_target_in_global_variable_list = {
+		NOT = { 
+			is_target_in_global_variable_list = { 
 				name = unavailable_unique_decisions
 				target = flag:flag_formed_kingdom_of_aragon
 			}
 		}
 	}
-	is_valid = {
+	is_valid = { 
 		is_independent_ruler = yes
 		completely_controls = title:d_aragon
 		completely_controls = title:d_barcelona
 	}
-	is_valid_showing_failures_only = {}
-	effect = {
-		title:d_aragon = {
+	is_valid_showing_failures_only = { }
+	effect = { 
+		title:d_aragon = { 
 			set_de_jure_liege_title = title:k_aragon
 		}
-		title:d_barcelona = {
+		title:d_barcelona = { 
 			set_de_jure_liege_title = title:k_aragon
 		}
-		hidden_effect = {
-			title:k_aragon = {
+		hidden_effect = { 
+			title:k_aragon = { 
 				set_de_jure_liege_title = title:e_spain
 			}
 		}
-		create_title_and_vassal_change = {
+		create_title_and_vassal_change = { 
 			type = created
 			save_scope_as = change
 			add_claim_on_loss = no
 		}
-		title:k_aragon = {
-			change_title_holder = {
+		title:k_aragon = { 
+			change_title_holder = { 
 				holder = root
 				change = scope:change
 			}
 		}
 		resolve_title_and_vassal_change = scope:change
 		add_prestige = major_prestige_gain
-		add_to_global_variable_list = {
+		add_to_global_variable_list = { 
 			name = unavailable_unique_decisions
 			target = flag:flag_formed_kingdom_of_aragon
 		}
 	}
-	cost = {
+	cost = { 
 		gold = 200
 	}
-	ai_potential = {
+	ai_potential = { 
 		always = yes
 	}
-	ai_will_do = {
+	ai_will_do = { 
 		base = 100
 	}
 }

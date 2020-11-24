@@ -74,14 +74,14 @@ window = {
 			{
 				vbox = {
 					name = "types_grid"
-					datamodel = "[MenAtArmsTypeView.GetRegimentTypes]"
+					datamodel = "[MenAtArmsTypeView.GetMenAtArmsTypes]"
 					layoutpolicy_horizontal = expanding
 					spacing = 3
 
 					item = {
 						button_standard = {
 							name = "select"
-							datacontext = "[MenAtArmsTypeViewTypeItem.GetRegimentType]"
+							datacontext = "[MenAtArmsTypeViewTypeItem.GetMenAtArmsType]"
 							layoutpolicy_horizontal = expanding
 							size = { 0 42 }
 
@@ -94,19 +94,19 @@ window = {
 								highlight_icon = {
 									name = "men_at_arms_icon"
 									size = { 35 35 }
-									texture = "[RegimentType.GetIcon]"
+									texture = "[MenAtArmsType.GetIcon]"
 								}
 
 								text_single = {
 									name = "men_at_arms_name"
 									layoutpolicy_horizontal = expanding
-									text = "[RegimentType.GetNameNoTooltip]"
+									text = "[MenAtArmsType.GetNameNoTooltip]"
 									default_format = "#high"
 								}
 
 								text_single = {
 									name = "men_at_arms_cost"
-									text = "[RegimentType.GetCostString( GetPlayer )]"
+									text = "[MenAtArmsType.GetCostString( GetPlayer )]"
 									default_format = "#high"
 
 									tooltip = "[MenAtArmsTypeViewTypeItem.GetCreateWarning]"
@@ -121,13 +121,13 @@ window = {
 							}
 
 							button_normal = {
-								visible = "[Not(MenAtArmsTypeView.IsAnyRegimentTypeSelected)]"
+								visible = "[Not(MenAtArmsTypeView.IsAnyMenAtArmsTypeSelected)]"
 								size = { 100% 100% }
 								onclick = "[MenAtArmsTypeViewTypeItem.OnClick]"
 							}
 
 							button_normal = {
-								visible = "[MenAtArmsTypeView.IsAnyRegimentTypeSelected]"
+								visible = "[MenAtArmsTypeView.IsAnyMenAtArmsTypeSelected]"
 								size = { 100% 100% }
 								onclick = "[PdxGuiTriggerAllAnimations('add_maa_change')]"
 
@@ -145,19 +145,19 @@ window = {
 
 		widget = {
 			name = "selected_maa"
-			datacontext = "[MenAtArmsTypeView.GetSelectedRegimentType]"
-			visible = "[MenAtArmsTypeView.IsAnyRegimentTypeSelected]"
+			datacontext = "[MenAtArmsTypeView.GetSelectedMenAtArmsType]"
+			visible = "[MenAtArmsTypeView.IsAnyMenAtArmsTypeSelected]"
 			layoutpolicy_horizontal = expanding
 			size = { 0 0 }
 			scissor = yes
 
 			widget = {
-				visible = "[MenAtArmsTypeView.IsAnyRegimentTypeSelected]"
+				visible = "[MenAtArmsTypeView.IsAnyMenAtArmsTypeSelected]"
 				parentanchor = bottom
 				size = { 100% 250 }
 
 				background = {
-					texture = "[RegimentType.GetHorizontalImage]"
+					texture = "[MenAtArmsType.GetHorizontalImage]"
 					alpha = 0.8
 					margin = { -4 0 }
 
@@ -248,14 +248,14 @@ window = {
 						size = { 10 10 }
 					}
 
-					button_primary = { 
-						size = { 200 40}
+					button_primary = {
+						size = { 200 40 }
 						text = "[MenAtArmsTypeView.GetCostString( GetPlayer )]"
 						onclick = "[MenAtArmsTypeView.Create]"
-						onclick = "[GetScriptedGui('mil_create').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
 						enabled = "[MenAtArmsTypeView.CanCreate]"
 						tooltip = "[MenAtArmsTypeView.GetCreateTooltip]"
-						background = { 
+
+						background = {
 							using = Background_Area
 						}
 					}
@@ -277,7 +277,7 @@ types MenAtArms
 {
 	type vbox_maa_stats_numbers = vbox {
 		vbox = {
-			visible = "[Not( RegimentType.FightsInMainPhase )]"
+			visible = "[Not( MenAtArmsType.FightsInMainPhase )]"
 			layoutpolicy_horizontal = expanding
 			margin = { 15 0 }
 			margin_bottom = 5
@@ -326,7 +326,7 @@ types MenAtArms
 
 		hbox = {
 			name = "stats"
-			visible = "[RegimentType.FightsInMainPhase]"
+			visible = "[MenAtArmsType.FightsInMainPhase]"
 			layoutpolicy_horizontal = expanding
 			margin = { 5 5 }
 
@@ -352,7 +352,7 @@ types MenAtArms
 					name = "label"
 					block "damage_stat"
 					{
-						text = "[RegimentType.GetStat( GetPlayer, 'damage' )|0]"
+						text = "[MenAtArmsType.GetStat( GetPlayer, 'damage' )|0]"
 					}
 					default_format = "#high"
 					using = Font_Size_Medium
@@ -379,7 +379,7 @@ types MenAtArms
 					name = "label"
 					block "toughness_stat"
 					{
-						text = "[RegimentType.GetStat( GetPlayer, 'toughness' )|0]"
+						text = "[MenAtArmsType.GetStat( GetPlayer, 'toughness' )|0]"
 					}
 					default_format = "#high"
 					using = Font_Size_Medium
@@ -393,7 +393,7 @@ types MenAtArms
 				{
 					tooltip = "REGIMENT_PURSUIT_TT"
 					# fade out if 0
-					alpha = "[Select_float(GreaterThan_CFixedPoint(RegimentType.GetStat( GetPlayer, 'pursuit' ),'(CFixedPoint)0'), '(float)1.0','(float)0.4'))]"
+					alpha = "[Select_float(GreaterThan_CFixedPoint(MenAtArmsType.GetStat( GetPlayer, 'pursuit' ),'(CFixedPoint)0'), '(float)1.0','(float)0.4'))]"
 				}
 				using = tooltip_se
 				spacing = 3
@@ -409,7 +409,7 @@ types MenAtArms
 					name = "label"
 					block "pursuit_stat"
 					{
-						text = "[RegimentType.GetStat( GetPlayer, 'pursuit' )|0]"
+						text = "[MenAtArmsType.GetStat( GetPlayer, 'pursuit' )|0]"
 					}
 					default_format = "#high"
 					using = Font_Size_Medium
@@ -423,7 +423,7 @@ types MenAtArms
 				{
 					tooltip = "REGIMENT_SCREEN_TT"
 					# fade out if 0
-					alpha = "[Select_float(GreaterThan_CFixedPoint(RegimentType.GetStat( GetPlayer, 'screen' ),'(CFixedPoint)0'), '(float)1.0','(float)0.4'))]"
+					alpha = "[Select_float(GreaterThan_CFixedPoint(MenAtArmsType.GetStat( GetPlayer, 'screen' ),'(CFixedPoint)0'), '(float)1.0','(float)0.4'))]"
 				}
 				using = tooltip_se
 				spacing = 3
@@ -438,7 +438,7 @@ types MenAtArms
 					name = "label"
 					block "screen_stat"
 					{
-						text = "[RegimentType.GetStat( GetPlayer, 'screen' )|0]"
+						text = "[MenAtArmsType.GetStat( GetPlayer, 'screen' )|0]"
 					}
 					default_format = "#high"
 					using = Font_Size_Medium
@@ -456,7 +456,7 @@ types MenAtArms
 
 		text_single = {
 			name = "type"
-			text = "REGIMENT_TYPE_NAME"
+			text = "MEN_AT_ARMS_TYPE_NAME"
 			align = nobaseline
 		}
 
@@ -466,7 +466,7 @@ types MenAtArms
 
 	type vbox_maa_stats = vbox {
 		margin_bottom = 5
-		
+
 		background = {
 			using = Background_Area_With_Header
 		}
@@ -477,7 +477,7 @@ types MenAtArms
 
 			text_single = {
 				name = "title"
-				text = "[RegimentType.GetNameNoTooltip]"
+				text = "[MenAtArmsType.GetNameNoTooltip]"
 				using = Font_Size_Medium
 
 			}
@@ -505,13 +505,16 @@ types MenAtArms
 			layoutpolicy_horizontal = expanding
 		}
 
-		hbox_maa_type_text = {
-			layoutpolicy_horizontal = expanding
+		block "type_text"
+		{
+			hbox_maa_type_text = {
+				layoutpolicy_horizontal = expanding
+			}
 		}
 	}
 
 	type vbox_maa_info = vbox {
-		visible = "[RegimentType.FightsInMainPhase]"
+		visible = "[MenAtArmsType.FightsInMainPhase]"
 		margin = { 15 0 }
 		spacing = 5
 
@@ -520,7 +523,7 @@ types MenAtArms
 
 			text_multi = {
 				name = "counters"
-				visible = "[RegimentType.FightsInMainPhase]"
+				visible = "[MenAtArmsType.FightsInMainPhase]"
 				layoutpolicy_horizontal = growing
 				autoresize = yes
 				max_width = 320
@@ -537,11 +540,11 @@ types MenAtArms
 
 		hbox = {
 			layoutpolicy_horizontal = expanding
-			visible = "[Not(IsDataModelEmpty(RegimentType.GetTerrainModifiers))]"
+			visible = "[Not(IsDataModelEmpty(MenAtArmsType.GetTerrainModifiers))]"
 
 			hbox = {
 				name = "terrain_grid"
-				datamodel = "[RegimentType.GetTerrainModifiers]"
+				datamodel = "[MenAtArmsType.GetTerrainModifiers]"
 				spacing = 5
 
 				item = {
@@ -576,7 +579,7 @@ types MenAtArms
 
 		text_single = {
 			name = "no_terrains"
-			visible = "[IsDataModelEmpty(RegimentType.GetTerrainModifiers)]"
+			visible = "[IsDataModelEmpty(MenAtArmsType.GetTerrainModifiers)]"
 
 			text = "REGIMENT_TERRAIN_BONUS_NONE"
 			minimumsize = { 0 44 }
@@ -584,7 +587,7 @@ types MenAtArms
 	}
 
 	type maa_regiment_info = widget {
-		# Needs a RegimentType Datacontext
+		# Needs a MenAtArmsType Datacontext
 		size = { 380 410 }
 
 		vbox = {
@@ -602,7 +605,7 @@ types MenAtArms
 			text_multi = {
 				layoutpolicy_horizontal = expanding
 				size = { 0 75 }
-				text = "[RegimentType.GetFlavorString]"
+				text = "[MenAtArmsType.GetFlavorString]"
 				margin = { 15 5 }
 			}
 
@@ -612,11 +615,11 @@ types MenAtArms
 				margin_bottom = 15
 
 				text_label_center = {
-					text = "[RegimentType.GetReinforcementCostString( GetPlayer )]"
+					text = "[MenAtArmsType.GetReinforcementCostString( GetPlayer )]"
 				}
 
 				text_label_center = {
-					text = "[RegimentType.GetFullStrengthMaintenanceCostForPlayerString]"
+					text = "[MenAtArmsType.GetFullStrengthMaintenanceCostForPlayerString]"
 				}
 			}
 		}

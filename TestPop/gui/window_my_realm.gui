@@ -18,9 +18,6 @@ window = {
 		using = Animation_FadeIn_Quick
 		using = Sound_WindowShow_Standard
 		using = Window_Position_MainTab
-
-		on_start = "[GetVariableSystem.Set( 'right_window_open', 'true' )]"
-		on_start = "[GetScriptedGui('toggle_player_realm').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
 	}
 
 	state = {
@@ -28,9 +25,6 @@ window = {
 		using = Animation_FadeOut_Quick
 		using = Sound_WindowHide_Standard
 		using = Window_Position_MainTab_Hide
-
-		on_start = "[GetVariableSystem.Clear( 'right_window_open' )]"
-		on_start = "[GetScriptedGui('close_player_realm').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
 	}
 
 	state = {
@@ -45,7 +39,7 @@ window = {
 		margin = { 0 26 }
 		margin_right = 20
 
-		using = Window_Background
+		# using = Window_Background
 
 		widget = {
 			size = { 100% 100% }
@@ -321,93 +315,378 @@ window = {
 					visible = "[MyRealmWindow.IsShowingDomain]"
 
 					using = Animation_Tab_Switch
-					
+
 					scrollbox = {
 						layoutpolicy_horizontal = expanding
 						layoutpolicy_vertical = expanding
 
 						blockoverride "scrollbox_content" {
 							vbox = {
-								datamodel = "[GetPlayer.MakeScope.GetList('toggle_player_realm_regions')]"
+								datamodel = "[MyRealmWindow.GetDomainItems]"
 								layoutpolicy_horizontal = expanding
 								spacing = 25
-								
+
 								item = {
 									vbox = {
-										text_single = {
-											text = "Region of [Scope.Var('region_name').GetLandedTitle.GetBaseNameNoTierNoTooltip]:"
-										}
-										text_single = {
-											text = " - Control: [Scope.Var('region_control').GetValue]%"
-										}
-										text_single = {
-											text = " - Distance: [Scope.Var('region_dist').GetValue] days"
-										}
-										text_single = {
-											text = " - Garrison, Req: [Scope.Var('region_cost_total').GetValue]k"
-										}
-										text_single = {
-											text = " - Garrison, Cost: [Scope.Var('region_cost').GetValue]x"
-										}
-										text_single = {
-											visible = "[Not(EqualTo_CFixedPoint('(CFixedPoint)-1', Scope.Var('region_garrison').GetValue))]"
-											text = " - Garrison, Deployed: [Scope.Var('region_garrison').GetValue]k"
-										}
-									}
-								}
-							}
-						}
-					}
-					
-					vbox = {
-						layoutpolicy_horizontal = expanding
-						margin = { 15 5 }
+										layoutpolicy_horizontal = expanding
+										name = "duchy_group"
 
-						vbox = {
-							layoutpolicy_horizontal = expanding
-							margin = { 0 5 }
+										hbox = {
+											layoutpolicy_horizontal = expanding
 
-							background = {
-								using = Background_Area
-								margin = { -20 0 }
-								margin_bottom = 10
-								margin_top = 3
-							}
+											background = {
+												using = Background_Area_Light
+											}
 
-							hbox = {
-								spacing = 25
-								
-								hbox = {
-									spacing = 5
-									vbox = {
-										text_single = {
-											default_format = "#high"
-											text = "Manpower"
+											hbox = {
+												spacing = 10
+
+												coa_title_tiny_crown = {
+													datacontext = "[DuchyGroup.GetDuchy]"
+													using = tooltip_ws
+												}
+
+												text_single = {
+													text = "[DuchyGroup.GetDuchy.GetNameNoTooltip]"
+													using = Font_Size_Medium
+													default_format = "#low"
+												}
+											}
 										}
-										text_single = {
-											text = "[GetPlayer.MakeScope.Var('mil_mp_garrison').GetValue]k"
+
+										vbox = {
+											name = "county_group"
+											datamodel = "[DuchyGroup.GetCounties]"
+											layoutpolicy_horizontal = expanding
+											margin = { 0 5 }
+											spacing = 20
+
+											item = {
+												vbox = {
+													layoutpolicy_horizontal = expanding
+													spacing = 5
+													datacontext = "[CountyGroup.GetCounty]"
+													datacontext = "[CountyGroup.GetCapitalProvince.GetCounty]"
+
+													hbox = {
+														layoutpolicy_horizontal = expanding
+														margin = { 5 0 }
+														spacing = 7
+
+														background = {
+															using = Background_Area
+															margin_right = 3
+															margin_left = 3
+														}
+
+														coa_title_tiny = {}
+
+														text_single = {
+															layoutpolicy_horizontal = expanding
+															text = "[Title.GetNameNoTooltip]"
+														}
+
+														text_single = {
+															name = "development"
+															text = "MY_REALM_WINDOW_DEVELOPMENT"
+															tooltip = "COUNTY_DEVELOPMENT_TOOLTIP"
+														}
+
+														text_single = {
+															name = "tutorial_highlight_control"
+															text = "[CountyGroup.GetCountyControlColored]"
+															tooltip = "MY_REALM_WINDOW_CONTROL_TOOLTIP"
+														}
+													}
+
+													vbox = {
+														datamodel = "[CountyGroup.GetHoldings]"
+														layoutpolicy_horizontal = expanding
+														margin_left = 25
+														margin_bottom = 5
+														spacing = 3
+
+														item = {
+															vbox = {
+																layoutpolicy_horizontal = expanding
+																datacontext = "[HoldingItem.GetHolding]"
+
+																background = {
+																	fittype = centercrop
+																	alpha = 0.7
+																	texture = "[HoldingItem.GetHolding.GetIllustration]"
+
+																	modify_texture = {
+																		texture = "gfx/interface/component_masks/mask_fade_horizontal_right.dds"
+																		blend_mode = alphamultiply
+																		rotate_uv = 180
+																	}
+
+																	modify_texture = {
+																		texture = "gfx/interface/component_overlay/overlay_effect.dds"
+																		blend_mode = overlay
+																	}
+																}
+
+																button_standard_clean = {
+																	layoutpolicy_horizontal = expanding
+																	size = { 0 80 }
+
+																	onclick = "[HoldingItem.OnClick]"
+
+																	tooltipwidget = { holding_tooltip_click = {} }
+
+																	background = {
+																		using = Background_Button_Illustration
+																		visible = "[Holding.IsSelected]"
+																	}
+
+																	using = Background_Vignette_Button
+																	using = Holding_Mouse_Entry
+
+																	vbox = {
+																		layoutpolicy_horizontal = expanding
+																		margin = { 10 2 }
+
+																		hbox = {
+																			name = "holding_header"
+																			layoutpolicy_horizontal = expanding
+																			spacing = 6
+
+																			hbox = {
+																				spacing = 6
+
+																				background = {
+																					margin_left = 15
+																					margin_right = 25
+																					margin_top = 0
+																					margin_bottom = 5
+
+																					texture = "gfx/interface/component_tiles/tile_title_bg_01.dds"
+																					spriteType = Corneredtiled
+																					spriteborder = { 40 8 }
+																					texture_density = 2
+
+																					modify_texture = {
+																						name = "mask"
+																						texture = "gfx/interface/component_masks/mask_fade_horizontal_right.dds"
+																						blend_mode = alphamultiply
+																					}
+																				}
+
+																				icon = {
+																					name = "realm_capital_icon"
+																					size = { 25 25 }
+																					framesize = { 63 63 }
+																					texture = "gfx/interface/icons/icon_capital.dds"
+																					visible = "[HoldingItem.IsRealmCapital]"
+																					frame = 2
+																					tooltip = "REALM_CAPITAL_TOOLTIP"
+																				}
+
+																				text_single = {
+																					text = "MY_REALM_WINDOW_HOLDING_NAME"
+																				}
+																			}
+
+																			expand = {}
+
+																			text_single = {
+																				alwaystransparent = yes
+																				default_format = "#high"
+																				minimumsize = { 60 0}
+
+																				text = "MY_REALM_WINDOW_HOLDING_TAX"
+																				tooltip = "[Holding.GetTaxTooltip]"
+																			}
+
+																			text_single = {
+																				alwaystransparent = yes
+																				margin_left = 4
+																				minimumsize = { 70 0}
+																				text = "MY_REALM_WINDOW_HOLDING_LEVY"
+																				default_format = "#high"
+																				tooltip = "[Holding.GetLeviesTooltip]"
+																			}
+																		}
+
+																		hbox = {
+																			layoutpolicy_horizontal = expanding
+																			name = "holding_buildings"
+
+																			minimumsize = { 0 40 }
+
+																			vbox = {
+																				tooltip = "MY_REALM_WINDOW_BUILDING_CONSTRUCTION_TT"
+																				using = tooltip_ne
+
+
+																				text_single = {
+																					text = "[HoldingItem.GetStatusText]"
+																					align = nobaseline
+																				}
+
+																				hbox = {
+																					layoutpolicy_horizontal = expanding
+
+																					progressbar_standard = {
+																						name = "building_progressbar"
+																						visible = "[HoldingItem.GetHolding.IsConstructionInProgress]"
+																						alwaystransparent = yes
+
+																						layoutpolicy_horizontal = expanding
+																						maximumsize = { -1 15 }
+																						value = "[HoldingItem.GetHolding.GetConstructionProgress]"
+																						direction = horizontal
+																					}
+
+																					expand = {}
+																				}
+																			}
+
+																			text_single = {
+																				layoutpolicy_horizontal = expanding
+																				visible = "[HoldingItem.GetHolding.CanConstructAnyBuilding(GetPlayer)]"
+																				text = "MY_REALM_WINDOW_CONSTRUCT_BUILDING"
+																				default_format = "#P"
+																			}
+
+																			expand = {}
+
+																		}
+																	}
+																}
+															}
+														}
+													}
+
+													vbox = {
+														layoutpolicy_horizontal = expanding
+														visible = "[DataModelHasItems(CountyGroup.GetEmptyHoldings)]"
+														spacing = 5
+														margin_left = 25
+
+														button_group = {
+															onclick = "[CountyGroup.ToggleExpanded]"
+															layoutpolicy_horizontal = expanding
+
+															flowcontainer = {
+																spacing = 5
+
+																widget = {
+																	size = { 18 22 }
+
+																	button_expand = {
+																		frame = "[Select_int32( CountyGroup.IsExpanded, '(int32)2', '(int32)1' )]"
+																		parentanchor = center
+																	}
+																}
+
+																text_single = {
+																	text = "ME_REALM_WINDOW_EMPTY_HOLDINGS"
+																	default_format = "#low"
+																	align = nobaseline
+																}
+															}
+														}
+
+														expand = {}
+
+														vbox = {
+															datamodel = "[CountyGroup.GetEmptyHoldings]"
+															visible = "[CountyGroup.IsExpanded]"
+															layoutpolicy_horizontal = expanding
+															margin_left = 23
+															margin_bottom = 5
+															spacing = 4
+
+															item = {
+																vbox = {
+																	layoutpolicy_horizontal = expanding
+																	datacontext = "[HoldingItem.GetHolding]"
+
+																	button_standard = {
+																		datacontext = "[HoldingItem.GetHolding]"
+																		onclick = "[HoldingItem.OnClick]"
+																		down = "[Holding.IsSelected]"
+
+																		using = Holding_Mouse_Entry
+																		tooltipwidget = { holding_tooltip_click = {} }
+
+																		layoutpolicy_horizontal = expanding
+																		layoutpolicy_vertical = expanding
+																		minimumsize = { 0 45 }
+
+																		widget = {
+																			scissor = yes
+																			size = { 350 43 }
+																			parentanchor = right|top
+
+																			icon = {
+																				name = "illustration"
+																				parentanchor = right|top
+																				size = { 150 75 }
+																				mirror = horizontal
+																				texture = "[HoldingItem.GetHolding.GetProvince.GetTerrain.GetIllustration]"
+																				alpha = 0.7
+
+																				using = Mask_Rough_Edges
+
+																				modify_texture = {
+																					texture = "gfx/interface/component_masks/mask_fade_horizontal_extended.dds"
+																					blend_mode = alphamultiply
+																				}
+																			}
+																		}
+
+																		hbox = {
+																			layoutpolicy_horizontal = expanding
+																			layoutpolicy_vertical = expanding
+																			margin = { 10 2 }
+																			spacing = 5
+
+																			vbox = {
+																				layoutpolicy_vertical = expanding
+
+																				text_single = {
+																					layoutpolicy_horizontal = expanding
+																					text = "[HoldingItem.GetStatusText]"
+																				}
+
+																				progressbar_standard = {
+																					name = "building_progressbar"
+																					visible = "[HoldingItem.GetHolding.IsConstructionInProgress]"
+																					alwaystransparent = yes
+																					size = { 180 15 }
+																					value = "[HoldingItem.GetHolding.GetConstructionProgress]"
+																					direction = horizontal
+																				}
+																			}
+
+																			text_label_left = {
+																				default_format = "#low"
+																				text = "[HoldingItem.GetBarony.GetNameNoTierNoTooltip]"
+																			}
+
+																			expand = {}
+
+																			text_label_right = {
+																				visible = "[HoldingItem.GetHolding.CanConstructAnyBuilding(GetPlayer)]"
+																				layoutpolicy_vertical = fixed
+																				text = "MY_REALM_WINDOW_CONSTRUCT_HOLDING"
+																				default_format = "#P"
+																			}
+																		}
+																	}
+																}
+															}
+														}
+													}
+
+													expand = {}
+												}
+											}
 										}
-									}
-								}
-								hbox = {
-									spacing = 5
-									vbox = {
-										text_single = {
-											default_format = "#high"
-											text = "Supply"
-										}
-										text_single = {
-											text = "[GetPlayer.MakeScope.Var('mil_supply_garrison').GetValue]"
-										}
-									}
-								}
-								vbox = {
-									text_single = {
-										default_format = "#high"
-										text = "Garrison Size"
-									}
-									text_single = {
-										text = "[GetPlayer.MakeScope.Var('realm_garrison').GetValue]k"
 									}
 								}
 							}
@@ -575,6 +854,7 @@ window = {
 							visible = "[EqualTo_int32( MyRealmWindow.GetVassalCount, '(int32)0' )]"
 							text_single = {
 								text = "NO_VASSALS_TO_DISPLAY"
+								default_format = "#weak"
 							}
 						}
 					}
@@ -1004,10 +1284,11 @@ window = {
 
 															icon = {
 																name = "has_laws"
+																visible = "[TitleItem.GetTitle.HasLaws]"
 																parentanchor = bottom|right
-																visible = [TitleItem.GetTitle.HasLaws]
-																size = { 10 10 }
-																texture = "gfx/interface/icons/flat_icons/menu.dds"
+																size = { 25 25 }
+																position = { 5 0 }
+																texture = "gfx/interface/icons/title_status/icon_title_law.dds"
 															}
 														}
 													}
@@ -1052,6 +1333,9 @@ window = {
 											vbox = {
 												portrait_head = {
 													name = "primary_spouse_portrait"
+													blockoverride "portrait_button" {
+														using = tooltip_ws
+													}													
 												}
 
 												expand = {}
@@ -1223,6 +1507,25 @@ window = {
 					margin = { 15 5 }
 					margin_bottom = 15
 					spacing = 8
+
+					hbox = {
+						visible = "[MyRealmWindow.IsShowingDomain]"
+						tooltip = "[GetPlayer.GetDomainLimitTooltip]"
+						spacing = 2
+
+						text_single = {
+							text = "[SelectLocalization(MyRealmWindow.IsOverDomainLimit, 'MY_REALM_WINDOW_DOMAIN_LIMIT_WARNING', 'MY_REALM_WINDOW_DOMAIN_LIMIT')]"
+						}
+
+						icon = {
+							size = { 35 35 }
+							texture = "gfx/interface/icons/icon_domain.dds"
+						}
+
+						text_single = {
+							text = "[SelectLocalization(MyRealmWindow.IsOverDomainLimit, 'MY_REALM_WINDOW_DOMAIN_LIMIT_VALUE_WARNING', 'MY_REALM_WINDOW_DOMAIN_LIMIT_VALUE')]"
+						}
+					}
 
 					vbox = {
 						layoutpolicy_horizontal = expanding

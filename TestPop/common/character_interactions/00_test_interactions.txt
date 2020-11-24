@@ -1,16 +1,16 @@
-﻿debug_make_hate_me_interaction = {
+﻿debug_make_hate_me_interaction = { 
 	category = interaction_debug_main
 	common_interaction = yes
 	auto_accept = yes
 	use_diplomatic_range = no
 	ignores_pending_interaction_block = yes
-	is_shown = {
+	is_shown = { 
 		can_do_normal_interaction = yes
 		debug_only = yes
 	}
-	on_accept = {
-		scope:recipient = {
-			add_opinion = {
+	on_accept = { 
+		scope:recipient = { 
+			add_opinion = { 
 				modifier = hate_opinion
 				target = scope:actor
 				opinion = -200
@@ -18,19 +18,19 @@
 		}
 	}
 }
-debug_make_love_me_interaction = {
+debug_make_love_me_interaction = { 
 	category = interaction_debug_main
 	common_interaction = yes
 	auto_accept = yes
 	use_diplomatic_range = no
 	ignores_pending_interaction_block = yes
-	is_shown = {
+	is_shown = { 
 		can_do_normal_interaction = yes
 		debug_only = yes
 	}
-	on_accept = {
-		scope:recipient = {
-			add_opinion = {
+	on_accept = { 
+		scope:recipient = { 
+			add_opinion = { 
 				modifier = love_opinion
 				target = scope:actor
 				opinion = 200
@@ -38,18 +38,18 @@ debug_make_love_me_interaction = {
 		}
 	}
 }
-debug_make_like_me_interaction = {
+debug_make_like_me_interaction = { 
 	category = interaction_debug_main
 	auto_accept = yes
 	use_diplomatic_range = no
 	ignores_pending_interaction_block = yes
-	is_shown = {
+	is_shown = { 
 		can_do_normal_interaction = yes
 		debug_only = yes
 	}
-	on_accept = {
-		scope:recipient = {
-			add_opinion = {
+	on_accept = { 
+		scope:recipient = { 
+			add_opinion = { 
 				modifier = friendliness_opinion
 				target = scope:actor
 				opinion = 100
@@ -57,18 +57,18 @@ debug_make_like_me_interaction = {
 		}
 	}
 }
-debug_make_dislike_me_interaction = {
+debug_make_dislike_me_interaction = { 
 	category = interaction_debug_main
 	auto_accept = yes
 	use_diplomatic_range = no
 	ignores_pending_interaction_block = yes
-	is_shown = {
+	is_shown = { 
 		can_do_normal_interaction = yes
 		debug_only = yes
 	}
-	on_accept = {
-		scope:recipient = {
-			add_opinion = {
+	on_accept = { 
+		scope:recipient = { 
+			add_opinion = { 
 				modifier = angry_opinion
 				target = scope:actor
 				opinion = -100
@@ -76,68 +76,68 @@ debug_make_dislike_me_interaction = {
 		}
 	}
 }
-make_lover_interaction = {
+make_lover_interaction = { 
 	category = interaction_debug_main
 	use_diplomatic_range = no
 	ignores_pending_interaction_block = yes
-	is_shown = {
+	is_shown = { 
 		can_do_normal_interaction = yes
 		debug_only = yes
-		NOT = {
+		NOT = { 
 			scope:recipient = scope:actor
 		}
-		NOT = {
-			scope:actor = {
+		NOT = { 
+			scope:actor = { 
 				has_relation_lover = scope:recipient
 			}
 		}
 	}
 	auto_accept = yes
-	on_accept = {
-		scope:actor = {
+	on_accept = { 
+		scope:actor = { 
 			set_relation_lover = scope:recipient
 		}
 	}
 }
-make_soulmate_interaction = {
+make_soulmate_interaction = { 
 	category = interaction_debug_main
 	use_diplomatic_range = no
 	ignores_pending_interaction_block = yes
-	is_shown = {
+	is_shown = { 
 		can_do_normal_interaction = yes
 		debug_only = yes
-		NOT = {
+		NOT = { 
 			scope:recipient = scope:actor
 		}
-		scope:actor = {
+		scope:actor = { 
 			has_relation_lover = scope:recipient
 		}
-		NOT = {
-			scope:actor = {
+		NOT = { 
+			scope:actor = { 
 				has_relation_soulmate = scope:recipient
 			}
 		}
 	}
 	auto_accept = yes
-	on_accept = {
-		scope:actor = {
+	on_accept = { 
+		scope:actor = { 
 			set_relation_soulmate = scope:recipient
 		}
 	}
 }
-make_rival_interaction = {
+make_rival_interaction = { 
 	category = interaction_debug_main
 	use_diplomatic_range = no
 	ignores_pending_interaction_block = yes
-	is_shown = {
+	is_shown = { 
 		can_do_normal_interaction = yes
 		debug_only = yes
-		NOT = {
+		NOT = { 
 			scope:recipient = scope:actor
 		}
-		NOT = {
-			scope:actor = {
-				any_relation = {
+		NOT = { 
+			scope:actor = { 
+				any_relation = { 
 					type = rival
 					this = scope:recipient
 				}
@@ -145,46 +145,46 @@ make_rival_interaction = {
 		}
 	}
 	auto_accept = yes
-	on_accept = {
-		scope:actor = {
+	on_accept = { 
+		scope:actor = { 
 			set_relation_rival = scope:recipient
 		}
 	}
 }
-remove_rival_interaction = {
+remove_rival_interaction = { 
 	category = interaction_debug_main
 	use_diplomatic_range = no
 	ignores_pending_interaction_block = yes
-	is_shown = {
+	is_shown = { 
 		can_do_normal_interaction = yes
 		debug_only = yes
-		NOT = {
+		NOT = { 
 			scope:recipient = scope:actor
 		}
-		scope:actor = {
+		scope:actor = { 
 			has_relation_rival = scope:recipient
 		}
 	}
 	auto_accept = yes
-	on_accept = {
-		scope:actor = {
+	on_accept = { 
+		scope:actor = { 
 			remove_relation_rival = scope:recipient
 		}
 	}
 }
-make_friend_interaction = {
+make_friend_interaction = { 
 	category = interaction_debug_main
 	use_diplomatic_range = no
 	ignores_pending_interaction_block = yes
-	is_shown = {
+	is_shown = { 
 		can_do_normal_interaction = yes
 		debug_only = yes
-		NOT = {
+		NOT = { 
 			scope:recipient = scope:actor
 		}
-		NOT = {
-			scope:actor = {
-				any_relation = {
+		NOT = { 
+			scope:actor = { 
+				any_relation = { 
 					type = friend
 					this = scope:recipient
 				}
@@ -192,41 +192,41 @@ make_friend_interaction = {
 		}
 	}
 	auto_accept = yes
-	on_accept = {
-		scope:actor = {
+	on_accept = { 
+		scope:actor = { 
 			set_relation_friend = scope:recipient
 		}
 	}
 }
-learn_secrets_interaction = {
+learn_secrets_interaction = { 
 	category = interaction_debug_main
 	use_diplomatic_range = no
 	ignores_pending_interaction_block = yes
-	is_shown = {
+	is_shown = { 
 		can_do_normal_interaction = yes
 		debug_only = yes
 	}
-	on_accept = {
-		scope:recipient = {
-			every_secret = {
+	on_accept = { 
+		scope:recipient = { 
+			every_secret = { 
 				reveal_to = scope:actor
 			}
 		}
 	}
 	auto_accept = yes
 }
-expose_known_secrets_interaction = {
+expose_known_secrets_interaction = { 
 	category = interaction_debug_main
 	use_diplomatic_range = no
 	ignores_pending_interaction_block = yes
-	is_shown = {
+	is_shown = { 
 		can_do_normal_interaction = yes
 		debug_only = yes
 	}
-	on_accept = {
-		scope:actor = {
-			every_known_secret = {
-				limit = {
+	on_accept = { 
+		scope:actor = { 
+			every_known_secret = { 
+				limit = { 
 					secret_owner = scope:recipient
 				}
 				expose_secret = scope:actor
@@ -235,26 +235,26 @@ expose_known_secrets_interaction = {
 	}
 	auto_accept = yes
 }
-take_title_interaction = {
+take_title_interaction = { 
 	category = interaction_debug_main
 	use_diplomatic_range = no
 	ignores_pending_interaction_block = yes
-	is_shown = {
+	is_shown = { 
 		can_do_normal_interaction = yes
 		debug_only = yes
-		scope:recipient = {
+		scope:recipient = { 
 			is_landed = yes
 		}
 	}
 	auto_accept = yes
-	on_accept = {
-		create_title_and_vassal_change = {
+	on_accept = { 
+		create_title_and_vassal_change = { 
 			type = conquest
 			save_scope_as = change
 			add_claim_on_loss = no
 		}
-		scope:recipient.primary_title = {
-			change_title_holder = {
+		scope:recipient.primary_title = { 
+			change_title_holder = { 
 				holder = scope:actor
 				change = scope:change
 			}
@@ -262,26 +262,26 @@ take_title_interaction = {
 		resolve_title_and_vassal_change = scope:change
 	}
 }
-take_title_and_vassals_interaction = {
+take_title_and_vassals_interaction = { 
 	category = interaction_debug_main
 	common_interaction = yes
 	use_diplomatic_range = no
 	ignores_pending_interaction_block = yes
-	is_shown = {
+	is_shown = { 
 		can_do_normal_interaction = yes
 		debug_only = yes
-		scope:recipient = {
+		scope:recipient = { 
 			is_landed = yes
 		}
 	}
 	auto_accept = yes
-	on_accept = {
-		create_title_and_vassal_change = {
+	on_accept = { 
+		create_title_and_vassal_change = { 
 			type = conquest
 			save_scope_as = change
 		}
-		scope:recipient.primary_title = {
-			change_title_holder_include_vassals = {
+		scope:recipient.primary_title = { 
+			change_title_holder_include_vassals = { 
 				holder = scope:actor
 				change = scope:change
 			}
@@ -289,271 +289,271 @@ take_title_and_vassals_interaction = {
 		resolve_title_and_vassal_change = scope:change
 	}
 }
-start_pregnancy_interaction = {
+start_pregnancy_interaction = { 
 	category = interaction_debug_main
 	use_diplomatic_range = no
 	ignores_pending_interaction_block = yes
-	is_shown = {
+	is_shown = { 
 		can_do_normal_interaction = yes
 		debug_only = yes
-		scope:recipient = {
+		scope:recipient = { 
 			is_adult = yes
 		}
-		scope:actor = {
+		scope:actor = { 
 			is_adult = yes
 		}
-		scope:recipient = {
+		scope:recipient = { 
 			is_pregnant = no
 		}
-		scope:actor = {
+		scope:actor = { 
 			is_pregnant = no
 		}
-		OR = {
-			AND = {
-				scope:recipient = {
+		OR = { 
+			AND = { 
+				scope:recipient = { 
 					is_female = yes
 				}
-				scope:actor = {
+				scope:actor = { 
 					is_male = yes
 				}
 			}
-			AND = {
-				scope:recipient = {
+			AND = { 
+				scope:recipient = { 
 					is_male = yes
 				}
-				scope:actor = {
+				scope:actor = { 
 					is_female = yes
 				}
 			}
 		}
 	}
-	on_accept = {
-		scope:actor = {
+	on_accept = { 
+		scope:actor = { 
 			trigger_event = debug.0002
 		}
 	}
 	auto_accept = yes
 }
-get_claim_interaction = {
+get_claim_interaction = { 
 	category = interaction_debug_main
 	use_diplomatic_range = no
 	ignores_pending_interaction_block = yes
-	is_shown = {
+	is_shown = { 
 		can_do_normal_interaction = yes
 		debug_only = yes
-		scope:recipient = {
+		scope:recipient = { 
 			is_landed = yes
 		}
 	}
 	auto_accept = yes
-	on_accept = {
-		scope:actor = {
+	on_accept = { 
+		scope:actor = { 
 			add_pressed_claim = scope:recipient.primary_title
 		}
 	}
 }
-get_claim_on_all_creatable_interaction = {
+get_claim_on_all_creatable_interaction = { 
 	category = interaction_debug_main
 	use_diplomatic_range = no
 	ignores_pending_interaction_block = yes
-	is_shown = {
+	is_shown = { 
 		can_do_normal_interaction = yes
 		debug_only = yes
 		scope:recipient = scope:actor
 	}
 	auto_accept = yes
-	on_accept = {
-		scope:actor = {
-			every_alert_creatable_title = {
-				scope:actor = {
+	on_accept = { 
+		scope:actor = { 
+			every_alert_creatable_title = { 
+				scope:actor = { 
 					add_pressed_claim = prev
 				}
 			}
 		}
 	}
 }
-test_dynasty_prestige_interaction = {
+test_dynasty_prestige_interaction = { 
 	category = interaction_debug_main
 	use_diplomatic_range = no
 	ignores_pending_interaction_block = yes
-	is_shown = {
+	is_shown = { 
 		can_do_normal_interaction = yes
 		debug_only = yes
 		scope:recipient = scope:actor
 	}
 	auto_accept = yes
-	on_accept = {
-		scope:actor.dynasty = {
+	on_accept = { 
+		scope:actor.dynasty = { 
 			add_dynasty_prestige_level = 1
 			add_dynasty_prestige = 1000
 		}
 	}
 }
-debug_start_era_of_crusades_interaction = {
+debug_start_era_of_crusades_interaction = { 
 	category = interaction_debug_main
 	use_diplomatic_range = no
 	ignores_pending_interaction_block = yes
-	is_shown = {
+	is_shown = { 
 		can_do_normal_interaction = yes
 		debug_only = yes
-		faith:catholic = {
-			NOT = {
-				religion = {
+		faith:catholic = { 
+			NOT = { 
+				religion = { 
 					exists = var:variable_ghw_unlocked
 				}
 			}
 		}
 	}
 	auto_accept = yes
-	on_accept = {
-		faith:catholic = {
+	on_accept = { 
+		faith:catholic = { 
 			change_fervor = 200
 			save_scope_as = awakening_faith
-			if = {
-				limit = {
+			if = { 
+				limit = { 
 					exists = religious_head
 				}
-				religious_head = {
+				religious_head = { 
 					save_scope_as = ghw_first_sponsor
 				}
 			}
-			else = {
-				random_theocratic_ruler = {
-					limit = {
+			else = { 
+				random_theocratic_ruler = { 
+					limit = { 
 						faith = root
 					}
 					save_scope_as = ghw_first_sponsor
 				}
 			}
-			if = {
-				limit = {
-					NOT = {
+			if = { 
+				limit = { 
+					NOT = { 
 						exists = scope:ghw_first_sponsor
 					}
 				}
-				random_ruler = {
-					limit = {
+				random_ruler = { 
+					limit = { 
 						faith = root
 					}
 					save_scope_as = ghw_first_sponsor
 				}
 			}
-			religion = {
-				set_variable = {
+			religion = { 
+				set_variable = { 
 					name = variable_ghw_unlocked
 					value = yes
 				}
 			}
-			every_player = {
+			every_player = { 
 				trigger_event = great_holy_war.0011
 			}
 		}
 	}
 }
-debug_launch_natural_crusade_interaction = {
+debug_launch_natural_crusade_interaction = { 
 	category = interaction_debug_main
 	use_diplomatic_range = no
 	ignores_pending_interaction_block = yes
-	is_shown = {
+	is_shown = { 
 		can_do_normal_interaction = yes
 		debug_only = yes
-		faith:catholic = {
-			NOR = {
+		faith:catholic = { 
+			NOR = { 
 				exists = great_holy_war
 				exists = var:variable_ghw_cooldown
-				religion = {
+				religion = { 
 					exists = var:variable_first_ghw_cooldown
 				}
 			}
-			religion = {
+			religion = { 
 				exists = var:variable_ghw_unlocked
 			}
 		}
 	}
 	auto_accept = yes
-	on_accept = {
-		faith:catholic = {
+	on_accept = { 
+		faith:catholic = { 
 			change_fervor = 200
 			trigger_event = great_holy_war.0001
 		}
 	}
 }
-debug_start_era_of_jihads_interaction = {
+debug_start_era_of_jihads_interaction = { 
 	category = interaction_debug_main
 	use_diplomatic_range = no
 	ignores_pending_interaction_block = yes
-	is_shown = {
+	is_shown = { 
 		can_do_normal_interaction = yes
 		debug_only = yes
-		faith:ashari = {
-			NOT = {
-				religion = {
+		faith:ashari = { 
+			NOT = { 
+				religion = { 
 					exists = var:variable_ghw_unlocked
 				}
 			}
 		}
 	}
 	auto_accept = yes
-	on_accept = {
-		faith:ashari = {
+	on_accept = { 
+		faith:ashari = { 
 			change_fervor = 200
 			save_scope_as = awakening_faith
-			if = {
-				limit = {
+			if = { 
+				limit = { 
 					exists = religious_head
 				}
-				religious_head = {
+				religious_head = { 
 					save_scope_as = ghw_first_sponsor
 				}
 			}
-			else = {
-				random_theocratic_ruler = {
-					limit = {
+			else = { 
+				random_theocratic_ruler = { 
+					limit = { 
 						faith = root
 					}
 					save_scope_as = ghw_first_sponsor
 				}
 			}
-			if = {
-				limit = {
-					NOT = {
+			if = { 
+				limit = { 
+					NOT = { 
 						exists = scope:ghw_first_sponsor
 					}
 				}
-				random_ruler = {
-					limit = {
+				random_ruler = { 
+					limit = { 
 						faith = root
 					}
 					save_scope_as = ghw_first_sponsor
 				}
 			}
-			religion = {
-				set_variable = {
+			religion = { 
+				set_variable = { 
 					name = variable_ghw_unlocked
 					value = yes
 				}
 			}
-			every_player = {
+			every_player = { 
 				trigger_event = great_holy_war.0011
 			}
 		}
 	}
 }
-debug_start_great_holy_war_interaction = {
+debug_start_great_holy_war_interaction = { 
 	category = interaction_debug_main
 	use_diplomatic_range = no
 	ignores_pending_interaction_block = yes
-	is_shown = {
+	is_shown = { 
 		can_do_normal_interaction = yes
 		debug_only = yes
-		NOT = {
+		NOT = { 
 			scope:recipient.faith = scope:actor.faith
 		}
 	}
 	auto_accept = yes
-	on_accept = {
-		scope:actor.faith = {
-			start_great_holy_war = {
+	on_accept = { 
+		scope:actor.faith = { 
+			start_great_holy_war = { 
 				target_character = scope:recipient
 				target_title = scope:recipient.primary_title
 				delay = 30
@@ -561,29 +561,29 @@ debug_start_great_holy_war_interaction = {
 		}
 	}
 }
-debug_change_council_task_interaction = {
+debug_change_council_task_interaction = { 
 	category = interaction_debug_main
 	use_diplomatic_range = no
 	ignores_pending_interaction_block = yes
-	is_valid_showing_failures_only = {
-		scope:actor = {
-			cp:councillor_spymaster = {
-				NOT = {
+	is_valid_showing_failures_only = { 
+		scope:actor = { 
+			cp:councillor_spymaster = { 
+				NOT = { 
 					councillor_task_target = scope:recipient
 				}
 			}
 		}
 	}
-	is_shown = {
+	is_shown = { 
 		can_do_normal_interaction = yes
 		debug_only = yes
 		exists = scope:actor.cp:councillor_spymaster.councillor_task_target
 	}
 	auto_accept = yes
-	on_accept = {
-		scope:actor = {
-			cp:councillor_spymaster = {
-				set_council_task = {
+	on_accept = { 
+		scope:actor = { 
+			cp:councillor_spymaster = { 
+				set_council_task = { 
 					task_type = task_find_secrets
 					target = scope:recipient
 				}
@@ -591,12 +591,12 @@ debug_change_council_task_interaction = {
 		}
 	}
 }
-debug_trigger_localization_testing_interaction = {
+debug_trigger_localization_testing_interaction = { 
 	category = interaction_debug_main
 	use_diplomatic_range = no
 	ignores_pending_interaction_block = yes
-	is_valid_showing_failures_only = {}
-	is_valid = {
+	is_valid_showing_failures_only = { }
+	is_valid = { 
 		scope:actor.father = scope:actor.father
 		scope:actor.father.killer = scope:actor
 		scope:actor.capital_county.holder = scope:actor
@@ -605,48 +605,48 @@ debug_trigger_localization_testing_interaction = {
 		scope:actor.capital_county.kingdom = title:k_england
 		scope:recipient.liege = scope:actor
 	}
-	is_shown = {
+	is_shown = { 
 		can_do_normal_interaction = yes
 		always = no
 		debug_only = yes
 	}
 	auto_accept = yes
-	on_accept = {
+	on_accept = { 
 		add_gold = 100
 	}
 }
-create_betrothal_interaction = {
+create_betrothal_interaction = { 
 	category = interaction_debug_main
-	is_shown = {
+	is_shown = { 
 		can_do_normal_interaction = yes
 		debug_only = yes
-		scope:actor = {
+		scope:actor = { 
 			is_married = no
 			is_betrothed = no
 			sex_opposite_of = scope:recipient
-			OR = {
+			OR = { 
 				is_adult = no
-				scope:recipient = {
+				scope:recipient = { 
 					is_adult = no
 				}
 			}
-			scope:recipient = {
+			scope:recipient = { 
 				is_married = no
 				is_betrothed = no
 			}
 		}
 	}
-	on_accept = {
-		scope:actor = {
+	on_accept = { 
+		scope:actor = { 
 			create_betrothal = scope:recipient
 		}
 	}
-	ai_accept = {
+	ai_accept = { 
 		base = 70
-		modifier = {
+		modifier = { 
 			add = 100
-			scope:recipient = {
-				opinion = {
+			scope:recipient = { 
+				opinion = { 
 					target = scope:actor
 					value >= 0
 				}

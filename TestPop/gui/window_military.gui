@@ -21,7 +21,6 @@ window = {
 		using = Window_Position_MainTab
 
 		on_start = "[GetVariableSystem.Set( 'military_view_tabs', 'troops' )]"
-		on_start = "[GetVariableSystem.Set( 'right_window_open', 'true' )]"
 	}
 
 	state = {
@@ -29,8 +28,6 @@ window = {
 		using = Animation_FadeOut_Quick
 		using = Sound_WindowHide_Standard
 		using = Window_Position_MainTab_Hide
-
-		on_start = "[GetVariableSystem.Clear( 'right_window_open' )]"
 	}
 
 	margin_widget = {
@@ -38,7 +35,7 @@ window = {
 		margin = { 0 26 }
 		margin_right = 20
 		
-		using = Window_Background
+		# using = Window_Background
 
 
 		widget = {
@@ -470,6 +467,7 @@ window = {
 
 									vbox = {
 										layoutpolicy_horizontal = expanding
+										margin = { 0 5 }
 										spacing = 5
 
 										hbox = {
@@ -477,27 +475,15 @@ window = {
 											spacing = 3
 
 											text_single = {
-												text = "Manpower: "
+												text = "BANNER_MEN_AT_ARMS_LABEL"
 											}
 
 											text_single = {
 												layoutpolicy_horizontal = expanding
-												text = "[GetPlayer.MakeScope.Var('mil_mp_cur').GetValue] / [GetPlayer.MakeScope.Var('mil_mp').GetValue]"
+												text = "[MilitaryView.GetMAACountAndCapString]"
 												default_format = "#high"
-											}
-										}
-										hbox = {
-											layoutpolicy_horizontal = expanding
-											spacing = 3
-
-											text_single = {
-												text = "Supply: "
-											}
-
-											text_single = {
-												layoutpolicy_horizontal = expanding
-												text = "[GetPlayer.MakeScope.Var('mil_supply_cur').GetValue] / [GetPlayer.MakeScope.Var('mil_supply').GetValue]"
-												default_format = "#high"
+												tooltip = "[MilitaryView.GetMAACountAndCapTooltip]"
+												using = tooltip_ne
 											}
 										}
 
@@ -513,11 +499,11 @@ window = {
 
 											onclick = "[MilitaryItem.OnClick]"
 											tooltip = "CREATE_MAA_TOOLTIP"
-											enabled = "[And(GreaterThan_CFixedPoint(GetPlayer.MakeScope.Var('mil_mp').GetValue, GetPlayer.MakeScope.Var('mil_mp_cur').GetValue), GreaterThan_CFixedPoint(GetPlayer.MakeScope.Var('mil_supply').GetValue, GetPlayer.MakeScope.Var('mil_supply_cur').GetValue))]"
+											#enabled = "[MilitaryItem.MaACanBeCreated]"
 											down = "[MilitaryItem.IsOpen]"
 											button_plus = {
 												name = "can_be_created"
-												visible = "[And(GreaterThan_CFixedPoint(GetPlayer.MakeScope.Var('mil_mp').GetValue, GetPlayer.MakeScope.Var('mil_mp_cur').GetValue), GreaterThan_CFixedPoint(GetPlayer.MakeScope.Var('mil_supply').GetValue, GetPlayer.MakeScope.Var('mil_supply_cur').GetValue))]"
+												visible = "[MilitaryItem.CanCreateAnyMAAType]"
 												parentanchor = vcenter
 												alwaystransparent = yes
 											}
@@ -528,7 +514,7 @@ window = {
 
 											icon = {
 												name = "at_cap"
-												visible = "[Not(And(GreaterThan_CFixedPoint(GetPlayer.MakeScope.Var('mil_mp').GetValue, GetPlayer.MakeScope.Var('mil_mp_cur').GetValue), GreaterThan_CFixedPoint(GetPlayer.MakeScope.Var('mil_supply').GetValue, GetPlayer.MakeScope.Var('mil_supply_cur').GetValue)))]"
+												visible = "[Not(MilitaryItem.MaACanBeCreated)]"
 												parentanchor = left|vcenter
 												position = { 10 0 }
 												size = { 29 29 }
@@ -550,12 +536,12 @@ window = {
 
 											item = {
 												container = {
-													datacontext = "[MAAItem.GetRegimentType]"
+													datacontext = "[MAAItem.GetMenAtArmsType]"
 													datacontext = "[MAAItem.GetRegiment]"
 													using = tooltip_ne
 
 													background = {
-														texture = "[MAAItem.GetRegimentType.GetHorizontalImage]"
+														texture = "[MAAItem.GetMenAtArmsType.GetHorizontalImage]"
 														alpha = 0.7
 													}
 
@@ -638,19 +624,17 @@ window = {
 															visible = "[And( Not(MAAItem.GetRegiment.IsRaised), GetPlayer.IsAtWar)]"
 															text = "MAA_UNRAISED"
 															using = Font_Size_Small
-															align = right
+															default_format = "#X"
 															parentanchor = top|right
-															position = { -10 2 }
+															position = {-10 1}
 														}
 
 														text_label_right = {
 															visible = "[Not(And( Not(MAAItem.GetRegiment.IsRaised), GetPlayer.IsAtWar))]"
 															text = "MAA_CURRENT_SIZE"
 															using = Font_Size_Small
-															default_format = "#low"
-															align = right
 															parentanchor = top|right
-															position = {-4 2}
+															position = {-10 1}
 														}
 
 														button_normal = {
@@ -728,7 +712,7 @@ window = {
 												datacontext = "[HiredTroopItem.GetMercenaryCompany]"
 												layoutpolicy_horizontal = expanding
 
-												blockoverride "HiredTroopRegimentTypesDataModel"
+												blockoverride "HiredTroopMenAtArmsTypesDataModel"
 												{
 													datamodel = "[HiredTroopItem.GetRegiments]"
 												}
@@ -758,7 +742,7 @@ window = {
 												datacontext = "[HiredTroopItem.GetHolyOrder]"
 												layoutpolicy_horizontal = expanding
 
-												blockoverride "HiredTroopRegimentTypesDataModel"
+												blockoverride "HiredTroopMenAtArmsTypesDataModel"
 												{
 													datamodel = "[HiredTroopItem.GetRegiments]"
 												}
@@ -1053,7 +1037,7 @@ window = {
 										layoutpolicy_horizontal = expanding
 										size = { 430 110 }
 
-										blockoverride "HiredTroopRegimentTypesDataModel"
+										blockoverride "HiredTroopMenAtArmsTypesDataModel"
 										{
 											datamodel = "[HiredTroopItem.GetRegiments]"
 										}
@@ -1065,7 +1049,7 @@ window = {
 										layoutpolicy_horizontal = expanding
 										size = { 430 90 }
 
-										blockoverride "HiredTroopRegimentTypesDataModel"
+										blockoverride "HiredTroopMenAtArmsTypesDataModel"
 										{
 											datamodel = "[HiredTroopItem.GetRegiments]"
 										}
@@ -1096,7 +1080,7 @@ window = {
 						texture = "gfx/interface/illustrations/event_scenes/church.dds"
 						margin = { -5 0 }
 						fittype = centercrop
-						alpha = 0.8
+						alpha = 0.5
 
 						modify_texture = {
 							texture = "gfx/interface/component_masks/mask_fade_vertical_up.dds"
@@ -1153,7 +1137,7 @@ window = {
 										datacontext = "[HiredTroopItem.GetHolyOrder]"
 										layoutpolicy_horizontal = expanding
 	
-										blockoverride "HiredTroopRegimentTypesDataModel"
+										blockoverride "HiredTroopMenAtArmsTypesDataModel"
 										{
 											datamodel = "[HiredTroopItem.GetRegiments]"
 										}
@@ -1165,7 +1149,7 @@ window = {
 										datacontext = "[HiredTroopItem.GetHolyOrder]"
 										layoutpolicy_horizontal = expanding
 	
-										blockoverride "HiredTroopRegimentTypesDataModel"
+										blockoverride "HiredTroopMenAtArmsTypesDataModel"
 										{
 											datamodel = "[HiredTroopItem.GetRegiments]"
 										}
@@ -1343,6 +1327,10 @@ types HiredTroops
 	type button_mercenary_list_item = button_standard_clean {
 		enabled = "[Or(Not(MercenaryCompany.IsHired), MercenaryCompany.IsHiredByLocalPlayer)]"
 		size = { 430 110 }
+		
+		background = {
+			using = Background_Area
+		}
 
 		tooltip = "HIRED_TROOPS_VIEW_LIST_MC_BUTTON_TOOLTIP"
 		tooltip_enabled = "[Or(Not(MercenaryCompany.IsHired), MercenaryCompany.IsHiredByLocalPlayer)]"
@@ -1402,6 +1390,7 @@ types HiredTroops
 							text = "[MercenaryCompany.GetName]"
 							default_format = "#high"
 							using = Font_Size_Medium
+							autoresize = no
 						}
 
 						hbox = {
@@ -1453,7 +1442,7 @@ types HiredTroops
 							margin = { 10 2 }
 						}
 
-						block "HiredTroopRegimentTypesDataModel" {}
+						block "HiredTroopMenAtArmsTypesDataModel" {}
 
 						item = {
 							icon = {
@@ -1507,8 +1496,11 @@ types HiredTroops
 
 	type button_holyorder_list_item = button_standard_clean {
 		enabled = "[Or(Not(HolyOrder.IsHired), HolyOrder.IsHiredByLocalPlayer)]"
-		
 		size = { 430 110 }
+		
+		background = {
+			using = Background_Area
+		}
 
 		tooltip = "HIRED_TROOPS_VIEW_LIST_HO_BUTTON_TOOLTIP"
 
@@ -1623,7 +1615,7 @@ types HiredTroops
 						margin = { 10 2 }
 					}
 
-					block "HiredTroopRegimentTypesDataModel" {}
+					block "HiredTroopMenAtArmsTypesDataModel" {}
 
 					item = {
 
@@ -1631,7 +1623,7 @@ types HiredTroops
 							datacontext = "[Regiment.GetMAAType]"
 							name = "men_at_arms_icon"
 							size = { 35 35 }
-							texture = "[RegimentType.GetIcon]"
+							texture = "[MenAtArmsType.GetIcon]"
 							tooltipwidget = regiment_container_tooltip
 
 						}

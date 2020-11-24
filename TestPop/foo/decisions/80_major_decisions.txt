@@ -1,71 +1,71 @@
-﻿convert_to_feudalism_liege_converted_decision = {
+﻿convert_to_feudalism_liege_converted_decision = { 
 	picture = "gfx/interface/illustrations/decisions/decision_realm.dds"
 	major = yes
 	desc = convert_to_feudalism_liege_converted_decision_desc
 	ai_check_interval = 36
-	is_shown = {
+	is_shown = { 
 		is_character = yes
 		has_government = tribal_government
-		liege = {
-			OR = {
+		liege = { 
+			OR = { 
 				has_government = feudal_government
 				has_government = clan_government
 			}
 		}
 	}
-	is_valid = {
-		OR = {
+	is_valid = { 
+		OR = { 
 			has_realm_law = tribal_authority_1
 			has_realm_law = tribal_authority_2
 			has_realm_law = tribal_authority_3
 		}
-		custom_description = {
+		custom_description = { 
 			text = faith_is_reformed
 			subject = root
-			faith = {
-				NOT = {
+			faith = { 
+				NOT = { 
 					has_doctrine_parameter = unreformed
 				}
 			}
 		}
 	}
-	cost = {
+	cost = { 
 		prestige = 150
 	}
-	effect = {
+	effect = { 
 		trigger_event = major_decisions.0001
 		save_scope_as = actor
 		convert_whole_realm_to_feudalism_effect = yes
-		hidden_effect = {
-			every_vassal = {
-				trigger_event = {
+		hidden_effect = { 
+			every_vassal = { 
+				trigger_event = { 
 					id = major_decisions.0002
 					days = 3
 				}
 			}
 		}
 	}
-	ai_potential = {
+	ai_potential = { 
 		always = yes
 	}
-	ai_will_do = {
+	ai_will_do = { 
 		base = 100
 	}
 }
-convert_whole_realm_to_feudalism_decision = {
+convert_whole_realm_to_feudalism_decision = { 
 	picture = "gfx/interface/illustrations/decisions/decision_realm.dds"
 	major = yes
 	desc = convert_whole_realm_to_feudalism_decision_desc
 	ai_check_interval = 36
-	is_shown = {
+	is_shown = { 
 		is_character = yes
 		has_government = tribal_government
-		OR = {
+		OR = { 
 			is_independent_ruler = yes
-			AND = {
+			AND = { 
 				is_independent_ruler = no
-				liege = {
-					NOR = {
+				liege = { 
+					NOR = { 
 						has_government = feudal_government
 						has_government = clan_government
 					}
@@ -73,25 +73,25 @@ convert_whole_realm_to_feudalism_decision = {
 			}
 		}
 	}
-	is_valid = {
+	is_valid = { 
 		has_realm_law = tribal_authority_3
-		custom_description = {
+		custom_description = { 
 			text = faith_is_reformed
 			subject = root
-			faith = {
-				NOT = {
+			faith = { 
+				NOT = { 
 					has_doctrine_parameter = unreformed
 				}
 			}
 		}
 		prestige_level >= 2
-		capital_province.county = {
+		capital_province.county = { 
 			development_level >= convert_to_feudalism_development_requirement
 		}
-		custom_description = {
+		custom_description = { 
 			text = has_all_tribal_innovations
 			subject = root.culture
-			culture = {
+			culture = { 
 				has_innovation = innovation_motte
 				has_innovation = innovation_catapult
 				has_innovation = innovation_barracks
@@ -107,46 +107,46 @@ convert_whole_realm_to_feudalism_decision = {
 			}
 		}
 	}
-	cost = {
+	cost = { 
 		prestige = 200
 	}
-	effect = {
+	effect = { 
 		trigger_event = major_decisions.0001
 		save_scope_as = actor
 		convert_whole_realm_to_feudalism_effect = yes
-		hidden_effect = {
-			every_vassal = {
-				trigger_event = {
+		hidden_effect = { 
+			every_vassal = { 
+				trigger_event = { 
 					id = major_decisions.0002
 					days = 3
 				}
 			}
 		}
 	}
-	ai_potential = {
-		NOT = {
+	ai_potential = { 
+		NOT = { 
 			has_title = title:e_mongol_empire
 		}
 	}
-	ai_will_do = {
+	ai_will_do = { 
 		base = 100
 	}
 }
-declare_bloodline_holy_decision = {
+declare_bloodline_holy_decision = { 
 	picture = "gfx/interface/illustrations/decisions/decision_dynasty_house.dds"
 	major = yes
 	desc = declare_bloodline_holy_decision_desc
 	ai_check_interval = 120
-	is_shown = {
+	is_shown = { 
 		is_character = yes
 		is_lowborn = no
 		highest_held_title_tier >= 3
-		NOT = {
-			faith = {
+		NOT = { 
+			faith = { 
 				exists = var:variable_savior_found
 			}
 		}
-		NOR = {
+		NOR = { 
 			has_trait = saoshyant
 			has_trait = saoshyant_descendant
 			has_trait = sayyid
@@ -157,67 +157,67 @@ declare_bloodline_holy_decision = {
 			has_trait = consecrated_blood
 			faith.religion = faith:ashari.religion
 			faith.religion = faith:mazdayasna.religion
-			dynasty = {
+			dynasty = { 
 				exists = var:variable_made_bloodline_holy
 			}
 		}
-		OR = {
-			root.faith = {
+		OR = { 
+			root.faith = { 
 				has_doctrine = doctrine_temporal_head
 			}
-			NOT = {
+			NOT = { 
 				root = root.faith.religious_head
 			}
 		}
-		OR = {
-			root.faith = {
+		OR = { 
+			root.faith = { 
 				has_doctrine = doctrine_no_head
 			}
-			AND = {
-				faith = {
+			AND = { 
+				faith = { 
 					has_doctrine = doctrine_temporal_head
 				}
 				root = root.faith.religious_head
 			}
-			AND = {
+			AND = { 
 				exists = root.faith.religious_head
-				NOT = {
+				NOT = { 
 					root = root.faith.religious_head
 				}
 			}
 		}
 	}
-	is_valid = {
-		trigger_if = {
-			limit = {
+	is_valid = { 
+		trigger_if = { 
+			limit = { 
 				exists = root.faith.religious_head
-				NOT = {
+				NOT = { 
 					root = root.faith.religious_head
 				}
 			}
-			root.faith.religious_head = {
-				opinion = {
+			root.faith.religious_head = { 
+				opinion = { 
 					target = root
 					value >= 75
 				}
 			}
 		}
-		custom_description = {
+		custom_description = { 
 			text = faith_is_reformed
 			subject = root
-			faith = {
-				NOT = {
+			faith = { 
+				NOT = { 
 					has_doctrine_parameter = unreformed
 				}
 			}
 		}
-		custom_description = {
+		custom_description = { 
 			text = "consecrate_bloodline_holy_site"
-			faith = {
-				any_holy_site = {
-					OR = {
+			faith = { 
+				any_holy_site = { 
+					OR = { 
 						county.holder = root
-						county.holder.top_liege = {
+						county.holder.top_liege = { 
 							this = root
 						}
 					}
@@ -227,55 +227,55 @@ declare_bloodline_holy_decision = {
 		}
 		piety_level >= 5
 	}
-	cost = {
+	cost = { 
 		piety = 2500
 	}
-	effect = {
+	effect = { 
 		trigger_event = major_decisions.0100
-		show_as_tooltip = {
+		show_as_tooltip = { 
 			declare_bloodline_holy_decision_effect = yes
 		}
-		stress_impact = {
+		stress_impact = { 
 			content = massive_stress_impact_gain
 			humble = massive_stress_impact_gain
 		}
 	}
-	ai_potential = {
+	ai_potential = { 
 		always = yes
 	}
-	ai_will_do = {
+	ai_will_do = { 
 		base = 100
 	}
 }
-strengthen_bloodline_decision = {
+strengthen_bloodline_decision = { 
 	picture = "gfx/interface/illustrations/decisions/decision_dynasty_house.dds"
 	major = yes
 	desc = strengthen_bloodline_decision_desc
 	ai_check_interval = 120
-	is_shown = {
+	is_shown = { 
 		is_character = yes
 		is_lowborn = no
-		NOT = {
-			dynasty = {
+		NOT = { 
+			dynasty = { 
 				has_dynasty_modifier = strong_blood
 			}
 		}
-		OR = {
+		OR = { 
 			has_trait = intellect_good
 			has_trait = beauty_good
 			has_trait = physique_good
-			any_child = {
+			any_child = { 
 				dynasty = root.dynasty
-				OR = {
+				OR = { 
 					has_trait = intellect_good
 					has_trait = beauty_good
 					has_trait = physique_good
 				}
 			}
-			AND = {
+			AND = { 
 				exists = player_heir
-				player_heir = {
-					OR = {
+				player_heir = { 
+					OR = { 
 						has_trait = intellect_good
 						has_trait = beauty_good
 						has_trait = physique_good
@@ -284,132 +284,132 @@ strengthen_bloodline_decision = {
 			}
 		}
 	}
-	is_valid = {
+	is_valid = { 
 		is_dynast = yes
 		has_trait = intellect_good
 		has_trait = beauty_good
 		has_trait = physique_good
-		OR = {
+		OR = { 
 			has_trait = intellect_good_3
 			has_trait = beauty_good_3
 			has_trait = physique_good_3
 		}
 		num_of_bad_genetic_traits = 0
 	}
-	effect = {
-		show_as_tooltip = {
+	effect = { 
+		show_as_tooltip = { 
 			strengthen_bloodline_decision_effects = yes
 		}
 		trigger_event = major_decisions.0500
-		every_player = {
-			limit = {
-				NOT = {
+		every_player = { 
+			limit = { 
+				NOT = { 
 					this = root
 				}
 				dynasty = root.dynasty
 			}
-			send_interface_toast = {
+			send_interface_toast = { 
 				title = strengthen_bloodline_decision
-				show_as_tooltip = {
+				show_as_tooltip = { 
 					strengthen_bloodline_decision_effects = yes
 				}
 			}
 		}
 	}
-	ai_potential = {
+	ai_potential = { 
 		always = yes
 	}
-	ai_will_do = {
+	ai_will_do = { 
 		base = 100
 	}
 }
-dynasty_of_many_crowns_decision = {
+dynasty_of_many_crowns_decision = { 
 	picture = "gfx/interface/illustrations/decisions/decision_dynasty_house.dds"
 	desc = dynasty_of_many_crowns_decision_desc
 	major = yes
 	ai_check_interval = 120
-	is_shown = {
+	is_shown = { 
 		is_character = yes
 		is_lowborn = no
-		NOT = {
-			dynasty = {
+		NOT = { 
+			dynasty = { 
 				has_dynasty_modifier = dynasty_of_many_crowns
 			}
 		}
 		highest_held_title_tier >= tier_kingdom
 	}
-	is_valid = {
-		dynasty = {
-			any_dynasty_member = {
+	is_valid = { 
+		dynasty = { 
+			any_dynasty_member = { 
 				count >= 10
 				is_independent_ruler = yes
 				highest_held_title_tier >= tier_kingdom
 			}
 		}
 	}
-	effect = {
+	effect = { 
 		save_scope_as = many_crowns
-		show_as_tooltip = {
+		show_as_tooltip = { 
 			dynasty_of_many_crowns_effects = yes
 		}
 		trigger_event = major_decisions.0501
-		every_player = {
-			limit = {
-				NOT = {
+		every_player = { 
+			limit = { 
+				NOT = { 
 					this = root
 				}
 				dynasty = root.dynasty
 			}
-			send_interface_toast = {
+			send_interface_toast = { 
 				title = dynasty_of_many_crowns
-				show_as_tooltip = {
+				show_as_tooltip = { 
 					dynasty_of_many_crowns_effects = yes
 				}
 			}
 		}
 	}
-	ai_potential = {
+	ai_potential = { 
 		always = yes
 	}
-	ai_will_do = {
+	ai_will_do = { 
 		base = 100
 	}
 }
-accept_cannibalism_decision = {
+accept_cannibalism_decision = { 
 	picture = "gfx/interface/illustrations/decisions/decision_misc.dds"
 	major = yes
 	ai_check_interval = 0
 	desc = accept_cannibalism_decision_desc
 	selection_tooltip = accept_cannibalism_decision_tooltip
-	is_shown = {
+	is_shown = { 
 		is_character = yes
 		is_cannibal_trigger = yes
-		NOR = {
-			faith = {
+		NOR = { 
+			faith = { 
 				has_doctrine_parameter = cannibalism_legal
 			}
-			faith = {
+			faith = { 
 				has_variable = accepted_cannibalism
 			}
 			faith.religious_head = root
 		}
 	}
-	is_valid = {
-		custom_description = {
+	is_valid = { 
+		custom_description = { 
 			text = accept_cannibalism_decision_custom
-			AND = {
+			AND = { 
 				exists = root.cp:councillor_court_chaplain
-				root.cp:councillor_court_chaplain = {
+				root.cp:councillor_court_chaplain = { 
 					is_cannibal_trigger = yes
 				}
 			}
 		}
-		trigger_if = {
-			limit = {
+		trigger_if = { 
+			limit = { 
 				exists = faith.religious_head
 			}
-			faith.religious_head = {
-				opinion = {
+			faith.religious_head = { 
+				opinion = { 
 					target = root
 					value >= 40
 				}
@@ -417,25 +417,25 @@ accept_cannibalism_decision = {
 		}
 		piety_level >= high_piety_level
 	}
-	is_valid_showing_failures_only = {
+	is_valid_showing_failures_only = { 
 		is_ruler = yes
 		is_available_adult = yes
 	}
-	cost = {
+	cost = { 
 		piety = major_piety_value
 	}
-	effect = {
+	effect = { 
 		save_scope_as = cannibal
-		root.cp:councillor_court_chaplain = {
+		root.cp:councillor_court_chaplain = { 
 			save_scope_as = court_chaplain
 		}
-		show_as_tooltip = {
+		show_as_tooltip = { 
 			accept_cannibalism_decision_effect = yes
 		}
 		trigger_event = major_decisions.1001
-		every_player = {
-			limit = {
-				NOT = {
+		every_player = { 
+			limit = { 
+				NOT = { 
 					this = root
 				}
 				faith = root.faith
@@ -443,24 +443,24 @@ accept_cannibalism_decision = {
 			trigger_event = major_decisions.1002
 		}
 	}
-	ai_potential = {
+	ai_potential = { 
 		always = no
 	}
-	ai_will_do = {
+	ai_will_do = { 
 		base = 0
 	}
 }
-found_university_decision = {
+found_university_decision = { 
 	picture = "gfx/interface/illustrations/decisions/decision_misc.dds"
 	major = yes
 	ai_check_interval = 0
 	desc = found_university_decision_desc
 	selection_tooltip = found_university_decision_tooltip
-	is_shown = {
+	is_shown = { 
 		is_character = yes
 		highest_held_title_tier >= tier_duchy
-		any_sub_realm_barony = {
-			OR = {
+		any_sub_realm_barony = { 
+			OR = { 
 				this = title:b_fes
 				this = title:b_cairo
 				this = title:b_bologna
@@ -474,8 +474,8 @@ found_university_decision = {
 				this = title:b_napoli
 				this = title:b_tirakka
 			}
-			title_province = {
-				NOR = {
+			title_province = { 
+				NOR = { 
 					exists = var:university
 					has_building = al_azhar_university
 					has_building = sankore_university
@@ -484,280 +484,280 @@ found_university_decision = {
 			}
 		}
 	}
-	is_valid = {
+	is_valid = { 
 		prestige_level >= 4
-		OR = {
-			trigger_if = {
-				limit = {
-					any_sub_realm_barony = {
+		OR = { 
+			trigger_if = { 
+				limit = { 
+					any_sub_realm_barony = { 
 						this = title:b_fes
 					}
-					title:b_fes.title_province = {
-						NOT = {
+					title:b_fes.title_province = { 
+						NOT = { 
 							exists = var:university
 						}
 					}
 				}
-				AND = {
-					title:b_fes.county = {
+				AND = { 
+					title:b_fes.county = { 
 						development_level >= medium_development_level
 					}
-					custom_description = {
+					custom_description = { 
 						text = no_special_building_slot
-						title:b_fes.title_province = {
+						title:b_fes.title_province = { 
 							has_special_building_slot = no
 						}
 					}
 				}
 			}
-			trigger_if = {
-				limit = {
-					any_sub_realm_barony = {
+			trigger_if = { 
+				limit = { 
+					any_sub_realm_barony = { 
 						this = title:b_cairo
 					}
-					title:b_cairo.title_province = {
-						NOT = {
+					title:b_cairo.title_province = { 
+						NOT = { 
 							exists = var:university
 						}
 					}
 				}
-				AND = {
-					title:b_cairo.county = {
+				AND = { 
+					title:b_cairo.county = { 
 						development_level >= medium_development_level
 					}
-					custom_description = {
+					custom_description = { 
 						text = no_special_building_slot
-						title:b_cairo.title_province = {
+						title:b_cairo.title_province = { 
 							has_special_building_slot = no
 						}
 					}
 				}
 			}
-			trigger_if = {
-				limit = {
-					any_sub_realm_barony = {
+			trigger_if = { 
+				limit = { 
+					any_sub_realm_barony = { 
 						this = title:b_bologna
 					}
-					title:b_bologna.title_province = {
-						NOT = {
+					title:b_bologna.title_province = { 
+						NOT = { 
 							exists = var:university
 						}
 					}
 				}
-				AND = {
-					title:b_bologna.county = {
+				AND = { 
+					title:b_bologna.county = { 
 						development_level >= medium_development_level
 					}
-					custom_description = {
+					custom_description = { 
 						text = no_special_building_slot
-						title:b_bologna.title_province = {
+						title:b_bologna.title_province = { 
 							has_special_building_slot = no
 						}
 					}
 				}
 			}
-			trigger_if = {
-				limit = {
-					any_sub_realm_barony = {
+			trigger_if = { 
+				limit = { 
+					any_sub_realm_barony = { 
 						this = title:b_salamanca
 					}
-					title:b_salamanca.title_province = {
-						NOT = {
+					title:b_salamanca.title_province = { 
+						NOT = { 
 							exists = var:university
 						}
 					}
 				}
-				AND = {
-					title:b_salamanca.county = {
+				AND = { 
+					title:b_salamanca.county = { 
 						development_level >= medium_development_level
 					}
-					custom_description = {
+					custom_description = { 
 						text = no_special_building_slot
-						title:b_salamanca.title_province = {
+						title:b_salamanca.title_province = { 
 							has_special_building_slot = no
 						}
 					}
 				}
 			}
-			trigger_if = {
-				limit = {
-					any_sub_realm_barony = {
+			trigger_if = { 
+				limit = { 
+					any_sub_realm_barony = { 
 						this = title:b_madrid
 					}
-					title:b_madrid.title_province = {
-						NOT = {
+					title:b_madrid.title_province = { 
+						NOT = { 
 							exists = var:university
 						}
 					}
 				}
-				AND = {
-					title:b_madrid.county = {
+				AND = { 
+					title:b_madrid.county = { 
 						development_level >= medium_development_level
 					}
-					custom_description = {
+					custom_description = { 
 						text = no_special_building_slot
-						title:b_madrid.title_province = {
+						title:b_madrid.title_province = { 
 							has_special_building_slot = no
 						}
 					}
 				}
 			}
-			trigger_if = {
-				limit = {
-					any_sub_realm_barony = {
+			trigger_if = { 
+				limit = { 
+					any_sub_realm_barony = { 
 						this = title:b_oxford
 					}
-					title:b_oxford.title_province = {
-						NOT = {
+					title:b_oxford.title_province = { 
+						NOT = { 
 							exists = var:university
 						}
 					}
 				}
-				AND = {
-					title:b_oxford.county = {
+				AND = { 
+					title:b_oxford.county = { 
 						development_level >= medium_development_level
 					}
-					custom_description = {
+					custom_description = { 
 						text = no_special_building_slot
-						title:b_oxford.title_province = {
+						title:b_oxford.title_province = { 
 							has_special_building_slot = no
 						}
 					}
 				}
 			}
-			trigger_if = {
-				limit = {
-					any_sub_realm_barony = {
+			trigger_if = { 
+				limit = { 
+					any_sub_realm_barony = { 
 						this = title:b_cambridge
 					}
-					title:b_cambridge.title_province = {
-						NOT = {
+					title:b_cambridge.title_province = { 
+						NOT = { 
 							exists = var:university
 						}
 					}
 				}
-				AND = {
-					title:b_cambridge.county = {
+				AND = { 
+					title:b_cambridge.county = { 
 						development_level >= medium_development_level
 					}
-					custom_description = {
+					custom_description = { 
 						text = no_special_building_slot
-						title:b_cambridge.title_province = {
+						title:b_cambridge.title_province = { 
 							has_special_building_slot = no
 						}
 					}
 				}
 			}
-			trigger_if = {
-				limit = {
-					any_sub_realm_barony = {
+			trigger_if = { 
+				limit = { 
+					any_sub_realm_barony = { 
 						this = title:b_padua
 					}
-					title:b_padua.title_province = {
-						NOT = {
+					title:b_padua.title_province = { 
+						NOT = { 
 							exists = var:university
 						}
 					}
 				}
-				AND = {
-					title:b_padua.county = {
+				AND = { 
+					title:b_padua.county = { 
 						development_level >= medium_development_level
 					}
-					custom_description = {
+					custom_description = { 
 						text = no_special_building_slot
-						title:b_padua.title_province = {
+						title:b_padua.title_province = { 
 							has_special_building_slot = no
 						}
 					}
 				}
 			}
-			trigger_if = {
-				limit = {
-					any_sub_realm_barony = {
+			trigger_if = { 
+				limit = { 
+					any_sub_realm_barony = { 
 						this = title:b_siena
 					}
-					title:b_siena.title_province = {
-						NOT = {
+					title:b_siena.title_province = { 
+						NOT = { 
 							exists = var:university
 						}
 					}
 				}
-				AND = {
-					title:b_siena.county = {
+				AND = { 
+					title:b_siena.county = { 
 						development_level >= medium_development_level
 					}
-					custom_description = {
+					custom_description = { 
 						text = no_special_building_slot
-						title:b_siena.title_province = {
+						title:b_siena.title_province = { 
 							has_special_building_slot = no
 						}
 					}
 				}
 			}
-			trigger_if = {
-				limit = {
-					any_sub_realm_barony = {
+			trigger_if = { 
+				limit = { 
+					any_sub_realm_barony = { 
 						this = title:b_coimbra
 					}
-					title:b_coimbra.title_province = {
-						NOT = {
+					title:b_coimbra.title_province = { 
+						NOT = { 
 							exists = var:university
 						}
 					}
 				}
-				AND = {
-					title:b_coimbra.county = {
+				AND = { 
+					title:b_coimbra.county = { 
 						development_level >= medium_development_level
 					}
-					custom_description = {
+					custom_description = { 
 						text = no_special_building_slot
-						title:b_coimbra.title_province = {
+						title:b_coimbra.title_province = { 
 							has_special_building_slot = no
 						}
 					}
 				}
 			}
-			trigger_if = {
-				limit = {
-					any_sub_realm_barony = {
+			trigger_if = { 
+				limit = { 
+					any_sub_realm_barony = { 
 						this = title:b_napoli
 					}
-					title:b_napoli.title_province = {
-						NOT = {
+					title:b_napoli.title_province = { 
+						NOT = { 
 							exists = var:university
 						}
 					}
 				}
-				AND = {
-					title:b_napoli.county = {
+				AND = { 
+					title:b_napoli.county = { 
 						development_level >= medium_development_level
 					}
-					custom_description = {
+					custom_description = { 
 						text = no_special_building_slot
-						title:b_napoli.title_province = {
+						title:b_napoli.title_province = { 
 							has_special_building_slot = no
 						}
 					}
 				}
 			}
-			trigger_if = {
-				limit = {
-					any_sub_realm_barony = {
+			trigger_if = { 
+				limit = { 
+					any_sub_realm_barony = { 
 						this = title:b_tirakka
 					}
-					title:b_tirakka.title_province = {
-						NOT = {
+					title:b_tirakka.title_province = { 
+						NOT = { 
 							exists = var:university
 						}
 					}
 				}
-				AND = {
-					title:b_tirakka.county = {
+				AND = { 
+					title:b_tirakka.county = { 
 						development_level >= medium_development_level
 					}
-					custom_description = {
+					custom_description = { 
 						text = no_special_building_slot
-						title:b_tirakka.title_province = {
+						title:b_tirakka.title_province = { 
 							has_special_building_slot = no
 						}
 					}
@@ -765,189 +765,189 @@ found_university_decision = {
 			}
 		}
 	}
-	is_valid_showing_failures_only = {
+	is_valid_showing_failures_only = { 
 		is_ruler = yes
 		is_available_adult = yes
 	}
-	effect = {
+	effect = { 
 		save_scope_as = founder
-		show_as_tooltip = {
+		show_as_tooltip = { 
 			found_university_decision_effect = yes
 		}
 		trigger_event = major_decisions.2001
-		every_player = {
-			limit = {
-				NOT = {
+		every_player = { 
+			limit = { 
+				NOT = { 
 					this = root
 				}
-				is_within_diplo_range = {
+				is_within_diplo_range = { 
 					CHARACTER = root
 				}
 			}
 			trigger_event = major_decisions.2002
 		}
 	}
-	cost = {
+	cost = { 
 		prestige = medium_prestige_value
 	}
-	ai_potential = {
+	ai_potential = { 
 		always = no
 	}
-	ai_will_do = {
+	ai_will_do = { 
 		base = 0
 	}
 }
-lunatic_building_decision = {
+lunatic_building_decision = { 
 	picture = "gfx/interface/illustrations/decisions/decision_personal_religious.dds"
 	major = yes
 	ai_check_interval = 0
 	desc = lunatic_building_decision_desc
 	selection_tooltip = lunatic_building_decision_tooltip
-	is_shown = {
+	is_shown = { 
 		is_character = yes
 		has_trait = lunatic
 		has_character_flag = glass_dream
 		is_landed = yes
 		exists = capital_province
-		NOT = {
-			is_target_in_global_variable_list = {
+		NOT = { 
+			is_target_in_global_variable_list = { 
 				name = unavailable_unique_decisions
 				target = flag:lunatic_building_decision
 			}
 		}
 	}
-	is_valid = {
+	is_valid = { 
 		prestige_level >= 2
 	}
-	is_valid_showing_failures_only = {
+	is_valid_showing_failures_only = { 
 		is_ruler = yes
 		is_available_adult = yes
 	}
-	effect = {
+	effect = { 
 		save_scope_as = builder
-		root.cp:councillor_court_chaplain = {
+		root.cp:councillor_court_chaplain = { 
 			save_scope_as = court_chaplain
 		}
-		show_as_tooltip = {
+		show_as_tooltip = { 
 			lunatic_building_decision_effect = yes
 		}
 		trigger_event = major_decisions.3001
-		every_player = {
-			limit = {
-				NOT = {
+		every_player = { 
+			limit = { 
+				NOT = { 
 					this = root
 				}
-				is_within_diplo_range = {
+				is_within_diplo_range = { 
 					CHARACTER = root
 				}
 			}
 			trigger_event = major_decisions.3002
 		}
-		add_to_global_variable_list = {
+		add_to_global_variable_list = { 
 			name = unavailable_unique_decisions
 			target = flag:lunatic_building_decision
 		}
 	}
-	cost = {
+	cost = { 
 		gold = massive_gold_value
 		prestige = medium_prestige_gain
 	}
-	ai_potential = {
+	ai_potential = { 
 		always = no
 	}
-	ai_will_do = {
+	ai_will_do = { 
 		base = 0
 	}
 }
-found_witch_coven_decision = {
+found_witch_coven_decision = { 
 	picture = "gfx/interface/illustrations/decisions/decision_personal_religious.dds"
 	major = yes
 	ai_check_interval = 0
 	desc = found_witch_coven_decision_desc
-	is_shown = {
+	is_shown = { 
 		is_character = yes
-		OR = {
+		OR = { 
 			has_trait = witch
-			any_secret = {
+			any_secret = { 
 				secret_type = secret_witch
 			}
 		}
 		exists = house
-		NOT = {
-			house = {
+		NOT = { 
+			house = { 
 				has_house_modifier = witch_coven
 			}
 		}
 	}
-	is_valid = {
+	is_valid = { 
 		is_house_head = yes
-		trigger_if = {
-			limit = {
+		trigger_if = { 
+			limit = { 
 				exists = player_heir
-				player_heir = {
+				player_heir = { 
 					is_child_of = root
 					house = root.house
 				}
 			}
-			player_heir = {
-				is_witch_known_by_trigger = {
+			player_heir = { 
+				is_witch_known_by_trigger = { 
 					CHARACTER = root
 				}
 			}
 		}
-		trigger_if = {
-			limit = {
-				house = {
-					any_adult_house_member = {
+		trigger_if = { 
+			limit = { 
+				house = { 
+					any_adult_house_member = { 
 						always = yes
 						count <= 6
 					}
 				}
 			}
-			house = {
-				any_adult_house_member = {
+			house = { 
+				any_adult_house_member = { 
 					count >= 4
-					is_witch_known_by_trigger = {
+					is_witch_known_by_trigger = { 
 						CHARACTER = root
 					}
 				}
 			}
 		}
-		trigger_else = {
-			house = {
-				any_adult_house_member = {
+		trigger_else = { 
+			house = { 
+				any_adult_house_member = { 
 					percent >= 0.6
-					is_witch_known_by_trigger = {
+					is_witch_known_by_trigger = { 
 						CHARACTER = root
 					}
 				}
 			}
 		}
 	}
-	is_valid_showing_failures_only = {}
-	effect = {
+	is_valid_showing_failures_only = { }
+	effect = { 
 		found_witch_coven_decision_effects = yes
 	}
 }
-found_kingdom_decision = {
+found_kingdom_decision = { 
 	picture = "gfx/interface/illustrations/decisions/decision_dynasty_house.dds"
 	major = yes
 	ai_check_interval = 60
 	desc = found_kingdom_decision_desc
-	is_shown = {
+	is_shown = { 
 		is_character = yes
 		highest_held_title_tier = tier_duchy
-		NOT = {
+		NOT = { 
 			has_game_rule = off_custom_kingdoms
 		}
 	}
-	is_valid = {
+	is_valid = { 
 		prestige_level >= 3
 		is_independent_ruler = yes
-		OR = {
-			custom_description = {
+		OR = { 
+			custom_description = { 
 				text = found_kingdom_decision_three_duchies_held
-				any_held_title = {
+				any_held_title = { 
 					count > 2
 					tier = tier_duchy
 				}
@@ -955,52 +955,52 @@ found_kingdom_decision = {
 			sub_realm_size >= 30
 		}
 	}
-	is_valid_showing_failures_only = {
+	is_valid_showing_failures_only = { 
 		is_available_adult = yes
 		is_at_war = no
 	}
-	cost = {
+	cost = { 
 		gold = 300
 		prestige = 500
 		piety = 200
 	}
-	effect = {
+	effect = { 
 		create_custom_kingdom_effect = yes
 	}
-	ai_potential = {
+	ai_potential = { 
 		always = yes
 	}
-	ai_will_do = {
+	ai_will_do = { 
 		base = 100
 	}
 }
-found_empire_decision = {
+found_empire_decision = { 
 	picture = "gfx/interface/illustrations/decisions/decision_dynasty_house.dds"
 	major = yes
 	ai_check_interval = 60
 	desc = found_empire_decision_desc
-	is_shown = {
+	is_shown = { 
 		is_character = yes
 		highest_held_title_tier = tier_kingdom
-		OR = {
+		OR = { 
 			is_independent_ruler = yes
-			any_held_title = {
+			any_held_title = { 
 				count >= 3
 				tier = tier_kingdom
 			}
 		}
-		NOT = {
+		NOT = { 
 			has_game_rule = off_custom_kingdoms
 		}
 	}
-	is_valid = {
+	is_valid = { 
 		prestige_level >= 4
-		OR = {
+		OR = { 
 			sub_realm_size >= 120
-			AND = {
-				custom_description = {
+			AND = { 
+				custom_description = { 
 					text = found_empire_decision_three_kingdoms_held
-					any_held_title = {
+					any_held_title = { 
 						count >= 3
 						tier = tier_kingdom
 					}
@@ -1009,41 +1009,41 @@ found_empire_decision = {
 			}
 		}
 	}
-	is_valid_showing_failures_only = {
+	is_valid_showing_failures_only = { 
 		is_independent_ruler = yes
 		is_available_adult = yes
 		is_at_war = no
 	}
-	cost = {
+	cost = { 
 		gold = 1200
 		prestige = 2000
 		piety = 600
 	}
-	effect = {
+	effect = { 
 		create_custom_empire_effect = yes
 	}
-	ai_potential = {
+	ai_potential = { 
 		always = yes
 	}
-	ai_will_do = {
+	ai_will_do = { 
 		base = 100
 	}
 }
-repay_loan_decision = {
+repay_loan_decision = { 
 	picture = "gfx/interface/illustrations/decisions/decision_misc.dds"
 	major = yes
 	desc = repay_loan_decision_decision_desc
 	selection_tooltip = repay_loan_decision_decision_tooltip
 	ai_check_interval = 0
-	is_shown = {
+	is_shown = { 
 		is_character = yes
-		trigger_if = {
-			limit = {
+		trigger_if = { 
+			limit = { 
 				has_character_flag = borrow_from_holy_order
 			}
-			faith = {
-				any_faith_holy_order = {
-					leader = {
+			faith = { 
+				any_faith_holy_order = { 
+					leader = { 
 						exists = var:owes_me_money
 						var:owes_me_money = root
 					}
@@ -1053,112 +1053,112 @@ repay_loan_decision = {
 		exists = var:loan_amount_owed
 		exists = var:loan_holder
 	}
-	is_valid_showing_failures_only = {
+	is_valid_showing_failures_only = { 
 		is_available = yes
 		gold >= var:loan_amount_owed
 	}
-	effect = {
-		pay_short_term_gold = {
+	effect = { 
+		pay_short_term_gold = { 
 			gold = var:loan_amount_owed
 			target = var:loan_holder
 		}
-		if = {
-			limit = {
-				faith = {
-					any_faith_holy_order = {
-						leader = {
+		if = { 
+			limit = { 
+				faith = { 
+					any_faith_holy_order = { 
+						leader = { 
 							this = root.var:loan_holder
 						}
 					}
 				}
 			}
-			faith = {
-				random_faith_holy_order = {
-					limit = {
-						leader = {
+			faith = { 
+				random_faith_holy_order = { 
+					limit = { 
+						leader = { 
 							this = root.var:loan_holder
 						}
 					}
-					leader = {
+					leader = { 
 						save_scope_as = recipient
 					}
 					save_scope_as = order
 				}
 			}
-			hidden_effect = {
+			hidden_effect = { 
 				remove_decision_cooldown = repay_loan_decision
 			}
 		}
 		remove_variable = loan_amount_owed
 		remove_variable = loan_holder
 		remove_character_flag = borrow_from_holy_order
-		if = {
-			limit = {
+		if = { 
+			limit = { 
 				has_character_flag = promised_repayment
 			}
 			remove_character_flag = promised_repayment
 		}
-		if = {
-			limit = {
+		if = { 
+			limit = { 
 				exists = var:has_reminded_about_loan
 			}
 			remove_variable = has_reminded_about_loan
 		}
-		if = {
-			limit = {
+		if = { 
+			limit = { 
 				exists = var:original_loan_holder
 			}
 			remove_variable = original_loan_holder
 		}
-		if = {
-			limit = {
-				any_vassal = {
+		if = { 
+			limit = { 
+				any_vassal = { 
 					exists = var:owes_me_money
 				}
 			}
-			random_vassal = {
-				limit = {
+			random_vassal = { 
+				limit = { 
 					exists = var:owes_me_money
 				}
 				save_scope_as = recipient
 			}
 		}
-		scope:recipient = {
+		scope:recipient = { 
 			remove_variable = owes_me_money
 			remove_variable = loan_amount_owed
-			if = {
-				limit = {
+			if = { 
+				limit = { 
 					exists = var:original_lender
 				}
 				remove_variable = original_lender
 			}
 		}
 	}
-	ai_potential = {
+	ai_potential = { 
 		always = no
 	}
-	ai_will_do = {
+	ai_will_do = { 
 		base = 0
 	}
 }
-adopt_special_succession_decision = {
+adopt_special_succession_decision = { 
 	picture = "gfx/interface/illustrations/decisions/decision_dynasty_house.dds"
 	major = yes
 	desc = adopt_special_succession_decision_desc
 	ai_check_interval = 36
-	is_shown = {
+	is_shown = { 
 		is_character = yes
-		OR = {
+		OR = { 
 			special_succession_witengamot_trigger = yes
 			special_succession_thing_trigger = yes
 			special_succession_tanistry_trigger = yes
 		}
-		AND = {
+		AND = { 
 			highest_held_title_tier >= tier_kingdom
 			has_realm_law_flag = partition_succession_law
-			any_held_title = {
+			any_held_title = { 
 				tier >= tier_kingdom
-				NOR = {
+				NOR = { 
 					has_title_law_flag = advanced_succession_law
 					has_title_law_flag = elective_succession_law
 				}
@@ -1166,20 +1166,20 @@ adopt_special_succession_decision = {
 		}
 		current_date < 1100.1.1
 	}
-	is_valid = {
-		trigger_if = {
-			limit = {
+	is_valid = { 
+		trigger_if = { 
+			limit = { 
 				highest_held_title_tier = tier_kingdom
 			}
-			AND = {
-				any_held_title = {
+			AND = { 
+				any_held_title = { 
 					tier = tier_kingdom
-					NOR = {
-						custom_description = {
+					NOR = { 
+						custom_description = { 
 							text = found_kingdom_decision_advanced_succesion
 							has_title_law_flag = advanced_succession_law
 						}
-						custom_description = {
+						custom_description = { 
 							text = found_kingdom_decision_elective_succesion
 							has_title_law_flag = elective_succession_law
 						}
@@ -1187,17 +1187,17 @@ adopt_special_succession_decision = {
 				}
 			}
 		}
-		trigger_else = {
-			AND = {
+		trigger_else = { 
+			AND = { 
 				highest_held_title_tier >= tier_empire
-				any_held_title = {
+				any_held_title = { 
 					tier >= tier_empire
-					NOR = {
-						custom_description = {
+					NOR = { 
+						custom_description = { 
 							text = found_kingdom_decision_advanced_succesion
 							has_title_law_flag = advanced_succession_law
 						}
-						custom_description = {
+						custom_description = { 
 							text = found_kingdom_decision_elective_succesion
 							has_title_law_flag = elective_succession_law
 						}
@@ -1206,50 +1206,50 @@ adopt_special_succession_decision = {
 			}
 		}
 	}
-	cost = {
+	cost = { 
 		prestige = 300
 	}
-	effect = {
-		show_as_tooltip = {
+	effect = { 
+		show_as_tooltip = { 
 			custom_tooltip = adopt_special_succession_decision_effects.tt
 		}
 		trigger_event = major_decisions.3100
 	}
-	ai_potential = {
+	ai_potential = { 
 		always = yes
 	}
-	ai_will_do = {
+	ai_will_do = { 
 		base = 100
 	}
 }
-escape_from_prison_decision = {
+escape_from_prison_decision = { 
 	picture = "gfx/interface/illustrations/decisions/decision_destiny_goal.dds"
 	major = yes
 	desc = escape_from_prison_decision_desc
 	selection_tooltip = escape_from_prison_decision_tooltip
 	ai_check_interval = 0
-	cooldown = {
+	cooldown = { 
 		days = 1825
 	}
-	is_shown = {
+	is_shown = { 
 		is_character = yes
 		is_imprisoned = yes
 	}
-	is_valid_showing_failures_only = {
+	is_valid_showing_failures_only = { 
 		age >= 10
 	}
-	effect = {
-		imprisoner = {
+	effect = { 
+		imprisoner = { 
 			save_scope_as = imprisoner
 		}
-		show_as_tooltip = {
-			random_list = {
-				50 = {
+		show_as_tooltip = { 
+			random_list = { 
+				50 = { 
 					show_chance = no
 					desc = escape_from_prison_decision_success.tt
 					release_from_prison = yes
 				}
-				50 = {
+				50 = { 
 					show_chance = no
 					desc = escape_from_prison_decision_failure.tt
 					custom_tooltip = escape_from_prison_decision_failure_outcome.tt
@@ -1257,81 +1257,81 @@ escape_from_prison_decision = {
 			}
 		}
 		custom_tooltip = escape_from_prison_decision_effect_tooltip
-		trigger_event = {
+		trigger_event = { 
 			on_action = escape_from_prison
 		}
 	}
-	ai_potential = {
+	ai_potential = { 
 		always = no
 	}
-	ai_will_do = {
+	ai_will_do = { 
 		base = 0
 	}
 }
-tribal_challenge_ruler_decision = {
+tribal_challenge_ruler_decision = { 
 	picture = "gfx/interface/illustrations/decisions/decision_destiny_goal.dds"
 	major = yes
 	desc = tribal_challenge_ruler_decision_desc
 	selection_tooltip = tribal_challenge_ruler_decision_tooltip
 	ai_check_interval = 36
-	cooldown = {
+	cooldown = { 
 		days = 3650
 	}
-	is_shown = {
+	is_shown = { 
 		is_character = yes
 		has_government = tribal_government
 		exists = liege
-		liege = {
-			NOT = {
+		liege = { 
+			NOT = { 
 				this = root
 			}
 			has_government = tribal_government
 			exists = primary_title
-			primary_title = {
+			primary_title = { 
 				save_temporary_scope_as = title_check
 			}
 		}
 		has_claim_on = scope:title_check
 	}
-	is_valid_showing_failures_only = {
+	is_valid_showing_failures_only = { 
 		is_adult = yes
-		liege = {
+		liege = { 
 			is_available = yes
 			is_adult = yes
 		}
-		custom_description = {
+		custom_description = { 
 			text = recently_took_tribal_challenge_ruler_decision
 			subject = root
-			NOT = {
+			NOT = { 
 				has_character_flag = recently_took_the_tribal_challenge_ruler_decision
 			}
 		}
-		can_be_combatant_based_on_gender_trigger = {
+		can_be_combatant_based_on_gender_trigger = { 
 			ARMY_OWNER = liege
 		}
 	}
-	effect = {
+	effect = { 
 		save_scope_as = challenger
-		add_character_flag = {
+		add_character_flag = { 
 			flag = recently_took_the_tribal_challenge_ruler_decision
 			years = 10
 		}
-		liege = {
+		liege = { 
 			save_scope_as = liege_to_challenge
-			primary_title = {
+			primary_title = { 
 				save_scope_as = title_being_fought_over
 			}
 			trigger_event = tribal.1001
 		}
 		custom_tooltip = tribal_challenge_ruler_effect_tooltip
-		show_as_tooltip = {
-			random_list = {
-				10 = {
+		show_as_tooltip = { 
+			random_list = { 
+				10 = { 
 					show_chance = no
 					desc = tribal_challenge_ruler_desc_success
 					tribal_1001_transfer_liege_title_effect = yes
 				}
-				10 = {
+				10 = { 
 					show_chance = no
 					desc = tribal_challenge_ruler_desc_failure
 					tribal_1001_challenger_lost_effect = yes
@@ -1339,26 +1339,26 @@ tribal_challenge_ruler_decision = {
 			}
 		}
 	}
-	ai_potential = {
+	ai_potential = { 
 		highest_held_title_tier > tier_barony
 		has_trait = ambitious
 	}
-	ai_will_do = {
+	ai_will_do = { 
 		base = 0
-		ai_value_modifier = {
+		ai_value_modifier = { 
 			ai_greed = 0.25
 		}
-		opinion_modifier = {
+		opinion_modifier = { 
 			opinion_target = liege
 			multiplier = -1
 		}
-		modifier = {
+		modifier = { 
 			add = 25
 			has_trait = ambitious
 		}
-		modifier = {
+		modifier = { 
 			add = -50
-			liege = {
+			liege = { 
 				is_ai = no
 			}
 		}

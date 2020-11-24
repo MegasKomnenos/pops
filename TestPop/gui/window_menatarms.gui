@@ -77,7 +77,7 @@ window = {
 					background = {
 						name = "image"
 						datacontext = "[Regiment.GetMAAType]"
-						texture = "[RegimentType.GetHorizontalImage]"
+						texture = "[MenAtArmsType.GetHorizontalImage]"
 						fittype = centercrop
 
 						using = Mask_Rough_Edges
@@ -93,7 +93,7 @@ window = {
 
 						icon = {
 							size = { 40 40 }
-							texture = "[RegimentType.GetIcon]"
+							texture = "[MenAtArmsType.GetIcon]"
 						}
 
 						text_label_left = {
@@ -109,8 +109,11 @@ window = {
 							text = "MAA_CURRENT_SIZE"
 							default_format = "#high"
 							using = Font_Size_Big
-							margin_right = 15
 							align = nobaseline
+						}
+
+						spacer = {
+							size = {8 0}
 						}
 					}
 				}
@@ -213,16 +216,17 @@ window = {
 					}
 				}
 
-				button_round = { 
+				button_round  = {
 					enabled = "[MenAtArmsView.CanDestroyMaa]"
-					onclick = "[GetScriptedGui('mil_destroy').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
 					onclick = "[MenAtArmsView.DestroyMAARegiment]"
 					tooltip = "MAA_DESTROY_TOOLTIP"
-					button_cancel = { 
+
+					button_cancel = {
 						parentanchor = center
 						alwaystransparent = yes
 					}
 				}
+
 			}
 
 			vbox = {
@@ -335,7 +339,7 @@ window = {
 						margin = { 15 5 }
 						margin_bottom = 10
 						max_width = 390
-						text = "[RegimentType.GetFlavorString]"
+						text = "[MenAtArmsType.GetFlavorString]"
 						autoresize = yes
 					}
 

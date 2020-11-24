@@ -1,4 +1,4 @@
-﻿call_ally_interaction = {
+﻿call_ally_interaction = { 
 	category = interaction_category_diplomacy
 	desc = call_ally_interaction_desc
 	interface_priority = 60
@@ -8,85 +8,76 @@
 	pause_on_receive = yes
 	greeting = positive
 	notification_text = CALL_ALLY_NOTIFICATION
-	is_shown = {
+	is_shown = { 
 		can_do_normal_interaction = yes
-		scope:actor = {
+		scope:actor = { 
 			is_at_war = yes
 		}
-		scope:recipient = {
+		scope:recipient = { 
 			is_allied_to = scope:actor
 		}
-		scope:actor = {
-			NOT = {
-				is_character_interaction_valid = {
+		scope:actor = { 
+			NOT = { 
+				is_character_interaction_valid = { 
 					recipient = scope:recipient
 					interaction = call_house_member_to_war_interaction
 				}
 			}
 		}
 	}
-	has_valid_target = {
+	has_valid_target = { 
 		exists = scope:target
 	}
-	has_valid_target_showing_failures_only = {
-		scope:target = {
+	has_valid_target_showing_failures_only = { 
+		scope:target = { 
 			is_war_leader = scope:actor
 		}
-		recipient_not_already_in_another_war_with_any_target_war_participants_trigger = yes
+		joiner_not_already_in_another_war_with_any_target_war_participants_trigger = { 
+			WARRIOR = scope:actor
+			JOINER = scope:recipient
+		}
 	}
-	is_valid_showing_failures_only = {
-		scope:recipient = {
+	is_valid_showing_failures_only = { 
+		scope:recipient = { 
 			is_ruler = yes
 		}
-		scope:actor = {
-			custom_description = {
+		scope:actor = { 
+			custom_description = { 
 				text = must_be_war_leader
-				any_character_war = {
+				any_character_war = { 
 					is_war_leader = scope:actor
 				}
 			}
 		}
-		scope:actor = {
-			custom_description = {
+		scope:actor = { 
+			custom_description = { 
 				text = cannot_call_same_character_multiple_times
 				subject = scope:recipient
-				any_character_war = {
-					ALL_FALSE = {
+				any_character_war = { 
+					ALL_FALSE = { 
 						was_called = scope:recipient
 						is_participant = scope:recipient
 					}
 				}
 			}
 		}
-		custom_description = {
-			text = cannot_call_vassal_to_war
-			scope:recipient = {
-				NOT = {
-					target_is_liege_or_above = scope:actor
-				}
-			}
+		can_potentially_call_ally_trigger = { 
+			WARRIOR = scope:actor
+			JOINER = scope:recipient
 		}
-		custom_description = {
-			text = cannot_call_liege_to_war
-			scope:recipient = {
-				NOT = {
-					target_is_vassal_or_below = scope:actor
-				}
-			}
-		}
-		scope:actor = {
-			trigger_if = {
-				limit = {
-					NOT = {
+		scope:actor = { 
+			trigger_if = { 
+				limit = { 
+					NOT = { 
 						faith = scope:recipient.faith
 					}
 				}
-				custom_description = {
+				custom_description = { 
 					text = is_of_wrong_faith_for_holy_war
 					subject = scope:actor
 					object = scope:recipient
-					any_character_war = {
-						NOR = {
+					any_character_war = { 
+						NOR = { 
 							using_cb = undirected_great_holy_war
 							using_cb = directed_great_holy_war
 						}
@@ -95,39 +86,42 @@
 			}
 		}
 	}
-	can_be_picked = {
-		can_call_ally_liege_vassal_check_trigger = yes
-		scope:target = {
+	can_be_picked = { 
+		can_join_war_liege_vassal_check_trigger = { 
+			WARRIOR = scope:actor
+			JOINER = scope:recipient
+		}
+		scope:target = { 
 			is_war_leader = scope:actor
-			custom_description = {
+			custom_description = { 
 				text = join_war_interaction_already_in_target_war
-				NOR = {
-					any_war_attacker = {
+				NOR = { 
+					any_war_attacker = { 
 						this = scope:recipient
 					}
-					any_war_defender = {
+					any_war_defender = { 
 						this = scope:recipient
 					}
 				}
 			}
 		}
 	}
-	on_auto_accept = {
-		scope:recipient = {
+	on_auto_accept = { 
+		scope:recipient = { 
 			trigger_event = call_ally.0001
 		}
 	}
-	on_accept = {
+	on_accept = { 
 		call_ally_interaction_effect = yes
-		save_scope_value_as = {
+		save_scope_value_as = { 
 			name = call_ally_interaction
 			value = yes
 		}
-		scope:actor = {
-			hidden_effect = {
-				if = {
-					limit = {
-						NOR = {
+		scope:actor = { 
+			hidden_effect = { 
+				if = { 
+					limit = { 
+						NOR = { 
 							has_relation_friend = scope:recipient
 							has_relation_potential_friend = scope:recipient
 						}
@@ -138,41 +132,41 @@
 			trigger_event = call_ally.0100
 		}
 	}
-	on_decline = {
-		if = {
-			limit = {
+	on_decline = { 
+		if = { 
+			limit = { 
 				exists = scope:target
 			}
-			scope:target = {
-				if = {
-					limit = {
+			scope:target = { 
+				if = { 
+					limit = { 
 						is_attacker = scope:actor
 					}
-					scope:actor = {
-						add_opinion = {
+					scope:actor = { 
+						add_opinion = { 
 							modifier = rejected_call_to_offensive_war
 							target = scope:recipient
 						}
 					}
-					scope:recipient = {
+					scope:recipient = { 
 						add_prestige_experience = major_prestige_loss
 					}
 				}
-				else = {
-					scope:actor = {
-						add_opinion = {
+				else = { 
+					scope:actor = { 
+						add_opinion = { 
 							modifier = rejected_call_to_defensive_war
 							target = scope:recipient
 						}
 					}
-					scope:recipient = {
+					scope:recipient = { 
 						add_prestige_experience = massive_prestige_loss
 					}
 				}
-				hidden_effect = {
-					if = {
-						limit = {
-							NOT = {
+				hidden_effect = { 
+					if = { 
+						limit = { 
+							NOT = { 
 								was_called = scope:recipient
 							}
 						}
@@ -180,118 +174,118 @@
 					}
 				}
 			}
-			scope:actor = {
+			scope:actor = { 
 				trigger_event = call_ally.0101
 			}
 		}
 	}
-	auto_accept = {
-		OR = {
-			custom_description = {
+	auto_accept = { 
+		OR = { 
+			custom_description = { 
 				text = "recipient_is_spouse"
 				subject = scope:actor
 				object = scope:recipient
-				scope:recipient = {
+				scope:recipient = { 
 					is_spouse_of = scope:actor
 					is_ai = yes
 				}
 			}
-			custom_description = {
+			custom_description = { 
 				text = "is_recipients_player_heir"
 				subject = scope:actor
 				object = scope:recipient
 				exists = scope:recipient.player_heir
-				scope:recipient = {
+				scope:recipient = { 
 					player_heir = scope:actor
 					is_close_or_extended_family_of = scope:actor
 					is_ai = yes
 				}
 			}
-			custom_description = {
+			custom_description = { 
 				text = "is_player_heir"
 				subject = scope:recipient
 				object = scope:actor
 				exists = scope:actor.player_heir
 				scope:actor.player_heir = scope:recipient
-				scope:actor = {
+				scope:actor = { 
 					is_close_or_extended_family_of = scope:recipient
 				}
-				scope:recipient = {
+				scope:recipient = { 
 					is_ai = yes
 				}
 			}
 		}
 	}
-	ai_accept = {
+	ai_accept = { 
 		base = 20
-		modifier = {
+		modifier = { 
 			add = -1000
 			exists = scope:recipient.player_heir
-			trigger_if = {
-				limit = {
+			trigger_if = { 
+				limit = { 
 					scope:target.casus_belli.primary_defender = scope:actor
 				}
 				scope:target.casus_belli.primary_attacker = scope:recipient.player_heir
 			}
-			trigger_else = {
+			trigger_else = { 
 				scope:target.casus_belli.primary_defender = scope:recipient.player_heir
 			}
 			desc = WONT_FIGHT_HEIR_REASON
 		}
-		modifier = {
+		modifier = { 
 			add = -1000
-			scope:recipient = {
-				trigger_if = {
-					limit = {
+			scope:recipient = { 
+				trigger_if = { 
+					limit = { 
 						scope:target.casus_belli.primary_defender = scope:actor
 					}
-					any_spouse = {
+					any_spouse = { 
 						this = scope:target.casus_belli.primary_attacker
 					}
 				}
-				trigger_else = {
-					any_spouse = {
+				trigger_else = { 
+					any_spouse = { 
 						this = scope:target.casus_belli.primary_defender
 					}
 				}
 			}
 			desc = WONT_FIGHT_SPOUSE_REASON
 		}
-		opinion_modifier = {
+		opinion_modifier = { 
 			who = scope:recipient
 			opinion_target = scope:actor
 			multiplier = 1.0
 			desc = AI_OPINION_REASON
 		}
-		ai_value_modifier = {
+		ai_value_modifier = { 
 			ai_honor = 1
 			min = 0
 		}
-		modifier = {
+		modifier = { 
 			add = 50
 			scope:target.casus_belli.primary_defender = scope:actor
 			desc = DEFENSIVE_WAR_REASON
 		}
-		compare_modifier = {
-			trigger = {
+		compare_modifier = { 
+			trigger = { 
 				scope:recipient.faith = scope:actor.faith
-				OR = {
-					AND = {
-						scope:target.casus_belli.primary_attacker = {
+				OR = { 
+					AND = { 
+						scope:target.casus_belli.primary_attacker = { 
 							this = scope:actor
-							faith = {
-								faith_hostility_level = {
+							faith = { 
+								faith_hostility_level = { 
 									target = scope:target.casus_belli.primary_defender.faith
 									value >= religious_cb_enabled_hostility_level
 								}
 							}
 						}
 					}
-					AND = {
-						scope:target.casus_belli.primary_defender = {
+					AND = { 
+						scope:target.casus_belli.primary_defender = { 
 							this = scope:actor
-							faith = {
-								faith_hostility_level = {
+							faith = { 
+								faith_hostility_level = { 
 									target = scope:target.casus_belli.primary_defender.faith
 									value >= religious_cb_enabled_hostility_level
 								}
@@ -306,31 +300,31 @@
 			min = 0
 			multiplier = 0.5
 		}
-		modifier = {
+		modifier = { 
 			add = -50
 			scope:target.casus_belli.primary_attacker = scope:actor
-			scope:recipient = {
+			scope:recipient = { 
 				is_allied_to = scope:target.casus_belli.primary_defender
 			}
 			desc = ATTACK_ON_ALLY_REASON
 		}
-		modifier = {
+		modifier = { 
 			add = -25
 			scope:target.casus_belli.primary_defender = scope:actor
-			scope:recipient = {
+			scope:recipient = { 
 				is_allied_to = scope:target.casus_belli.primary_attacker
 			}
 			desc = WAR_WITH_ALLY_REASON
 		}
-		modifier = {
+		modifier = { 
 			add = -50
-			NOT = {
+			NOT = { 
 				scope:recipient.faith = scope:actor.faith
 			}
 			scope:target.casus_belli.primary_attacker = scope:actor
 			scope:target.casus_belli.primary_defender.faith = scope:recipient.faith
-			scope:target.casus_belli.war = {
-				OR = {
+			scope:target.casus_belli.war = { 
+				OR = { 
 					using_cb = minor_religious_war
 					using_cb = religious_war
 					using_cb = major_religious_war
@@ -341,63 +335,63 @@
 			desc = WONT_ATTACK_RELIGIOUS_BRETHREN_REASON
 		}
 	}
-	ai_will_do = {
+	ai_will_do = { 
 		base = 100
-		modifier = {
+		modifier = { 
 			scope:target.casus_belli.primary_attacker = scope:actor
-			scope:recipient = {
+			scope:recipient = { 
 				is_ai = no
-				any_character_war = {
+				any_character_war = { 
 					primary_defender = scope:recipient
 				}
 			}
 			factor = 0
 		}
-		modifier = {
+		modifier = { 
 			exists = scope:recipient.player_heir
-			scope:recipient = {
+			scope:recipient = { 
 				is_ai = no
 			}
-			trigger_if = {
-				limit = {
+			trigger_if = { 
+				limit = { 
 					scope:target.casus_belli.primary_defender = scope:actor
 				}
 				scope:target.casus_belli.primary_attacker = scope:recipient.player_heir
 			}
-			trigger_else = {
+			trigger_else = { 
 				scope:target.casus_belli.primary_defender = scope:recipient.player_heir
 			}
 			factor = 0
 		}
-		modifier = {
-			scope:recipient = {
+		modifier = { 
+			scope:recipient = { 
 				is_ai = no
 			}
-			trigger_if = {
-				limit = {
+			trigger_if = { 
+				limit = { 
 					scope:target.casus_belli.primary_defender = scope:actor
 				}
-				any_spouse = {
+				any_spouse = { 
 					this = scope:target.casus_belli.primary_attacker
 				}
 			}
-			trigger_else = {
-				any_spouse = {
+			trigger_else = { 
+				any_spouse = { 
 					this = scope:target.casus_belli.primary_defender
 				}
 			}
 			factor = 0
 		}
-		modifier = {
+		modifier = { 
 			scope:target.casus_belli.primary_attacker = scope:actor
-			scope:target.casus_belli.primary_defender = {
+			scope:target.casus_belli.primary_defender = { 
 				is_allied_to = scope:recipient
 			}
 			factor = 0
 		}
 	}
 }
-negotiate_alliance_interaction = {
+negotiate_alliance_interaction = { 
 	category = interaction_category_diplomacy
 	ai_min_reply_days = 4
 	ai_max_reply_days = 9
@@ -406,49 +400,49 @@ negotiate_alliance_interaction = {
 	desc = negotiate_alliance_interaction_desc
 	greeting = positive
 	notification_text = NEGOTIATE_ALLIANCE_NOTIFICATION
-	is_shown = {
+	is_shown = { 
 		can_do_normal_interaction = yes
-		scope:recipient = {
-			NOT = {
+		scope:recipient = { 
+			NOT = { 
 				this = scope:actor
 			}
-			NOT = {
+			NOT = { 
 				is_allied_to = scope:actor
 			}
 			is_ruler = yes
 		}
-		scope:actor = {
+		scope:actor = { 
 			is_ruler = yes
-			OR = {
+			OR = { 
 				is_ai = no
 				highest_held_title_tier >= 2
 			}
-			is_any_family_relation_or_spouse_trigger = {
+			is_any_family_relation_or_spouse_trigger = { 
 				CHARACTER = scope:recipient
 			}
 		}
 	}
-	is_valid_showing_failures_only = {
-		scope:recipient = {
+	is_valid_showing_failures_only = { 
+		scope:recipient = { 
 			is_landed = yes
 			is_imprisoned = no
 		}
-		scope:actor = {
+		scope:actor = { 
 			is_landed = yes
 			is_imprisoned = no
-			NOT = {
+			NOT = { 
 				is_at_war_with = scope:recipient
 			}
 		}
-		scope:recipient = {
+		scope:recipient = { 
 			is_diplomatically_available = yes
 		}
-		custom_description = {
+		custom_description = { 
 			text = "has_already_rejected_renegotiation"
 			subject = scope:recipient
-			NOT = {
-				scope:actor = {
-					has_opinion_modifier = {
+			NOT = { 
+				scope:actor = { 
+					has_opinion_modifier = { 
 						modifier = refused_alliance_opinion
 						target = scope:recipient
 					}
@@ -456,27 +450,27 @@ negotiate_alliance_interaction = {
 			}
 		}
 	}
-	is_valid = {
-		OR = {
-			scope:actor = {
+	is_valid = { 
+		OR = { 
+			scope:actor = { 
 				is_spouse_of = scope:recipient
 			}
-			scope:actor = {
+			scope:actor = { 
 				is_parent_of = scope:recipient
 			}
-			scope:actor = {
+			scope:actor = { 
 				is_child_of = scope:recipient
 			}
-			scope:actor = {
+			scope:actor = { 
 				is_sibling_of = scope:recipient
 			}
-			custom_description = {
+			custom_description = { 
 				text = rulers_family_is_married_to_other_ruler_trigger
 				subject = scope:recipient
 				object = scope:actor
-				scope:recipient = {
-					any_spouse = {
-						OR = {
+				scope:recipient = { 
+					any_spouse = { 
+						OR = { 
 							is_close_family_of = scope:actor
 							is_nibling_of = scope:actor
 							is_uncle_or_aunt_of = scope:actor
@@ -484,13 +478,13 @@ negotiate_alliance_interaction = {
 					}
 				}
 			}
-			custom_description = {
+			custom_description = { 
 				text = rulers_family_is_married_to_other_ruler_trigger
 				subject = scope:actor
 				object = scope:recipient
-				scope:actor = {
-					any_spouse = {
-						OR = {
+				scope:actor = { 
+					any_spouse = { 
+						OR = { 
 							is_close_family_of = scope:recipient
 							is_nibling_of = scope:recipient
 							is_uncle_or_aunt_of = scope:recipient
@@ -498,19 +492,19 @@ negotiate_alliance_interaction = {
 					}
 				}
 			}
-			custom_description = {
+			custom_description = { 
 				text = rulers_child_parent_sibling_is_married_to_other_rulers_trigger
 				subject = scope:recipient
 				object = scope:actor
-				scope:actor = {
-					any_close_family_member = {
-						OR = {
+				scope:actor = { 
+					any_close_family_member = { 
+						OR = { 
 							is_parent_of = scope:actor
 							is_child_of = scope:actor
 							is_sibling_of = scope:actor
 						}
-						any_spouse = {
-							OR = {
+						any_spouse = { 
+							OR = { 
 								is_parent_of = scope:recipient
 								is_child_of = scope:recipient
 								is_sibling_of = scope:recipient
@@ -521,48 +515,49 @@ negotiate_alliance_interaction = {
 			}
 		}
 	}
-	on_auto_accept = {
-		scope:recipient = {
+	on_auto_accept = { 
+		scope:recipient = { 
 			trigger_event = char_interaction.0234
 		}
 	}
-	send_option = {
-		is_valid = {
-			scope:actor = {
+	send_option = { 
+		is_valid = { 
+			scope:actor = { 
 				has_usable_hook = scope:recipient
 			}
 		}
 		flag = hook
 		localization = GENERIC_SPEND_A_HOOK
 	}
-	should_use_extra_icon = {
-		scope:actor = {
+	should_use_extra_icon = { 
+		scope:actor = { 
 			has_usable_hook = scope:recipient
 		}
 	}
 	extra_icon = "gfx/interface/icons/character_interactions/hook_icon.dds"
 	send_options_exclusive = no
-	on_accept = {
-		scope:actor = {
+	on_accept = { 
+		scope:actor = { 
 			trigger_event = char_interaction.0235
-			stress_impact = {
+			stress_impact = { 
 				shy = minor_stress_impact_gain
 			}
-			if = {
-				limit = {
+			if = { 
+				limit = { 
 					scope:hook = yes
+					has_hook = scope:recipient
 				}
 				use_hook = scope:recipient
 			}
 		}
-		scope:recipient = {
+		scope:recipient = { 
 			custom_tooltip = negotiate_alliance_effect_recipient_tooltip
 		}
-		hidden_effect = {
-			if = {
-				limit = {
-					scope:actor = {
-						OR = {
+		hidden_effect = { 
+			if = { 
+				limit = { 
+					scope:actor = { 
+						OR = { 
 							is_spouse_of = scope:recipient
 							is_child_of = scope:recipient
 							is_parent_of = scope:recipient
@@ -570,19 +565,19 @@ negotiate_alliance_interaction = {
 						}
 					}
 				}
-				scope:actor = {
-					create_alliance = {
+				scope:actor = { 
+					create_alliance = { 
 						target = scope:recipient
 						allied_through_owner = scope:actor
 						allied_through_target = scope:recipient
 					}
 				}
 			}
-			else_if = {
-				limit = {
-					scope:recipient = {
-						any_spouse = {
-							OR = {
+			else_if = { 
+				limit = { 
+					scope:recipient = { 
+						any_spouse = { 
+							OR = { 
 								is_close_family_of = scope:actor
 								is_nibling_of = scope:actor
 								is_uncle_or_aunt_of = scope:actor
@@ -590,10 +585,10 @@ negotiate_alliance_interaction = {
 						}
 					}
 				}
-				scope:recipient = {
-					random_spouse = {
-						limit = {
-							OR = {
+				scope:recipient = { 
+					random_spouse = { 
+						limit = { 
+							OR = { 
 								is_close_family_of = scope:actor
 								is_nibling_of = scope:actor
 								is_uncle_or_aunt_of = scope:actor
@@ -602,19 +597,19 @@ negotiate_alliance_interaction = {
 						save_scope_as = recipient_spouse
 					}
 				}
-				scope:actor = {
-					create_alliance = {
+				scope:actor = { 
+					create_alliance = { 
 						target = scope:recipient
 						allied_through_owner = scope:recipient_spouse
 						allied_through_target = scope:recipient
 					}
 				}
 			}
-			else_if = {
-				limit = {
-					scope:actor = {
-						any_spouse = {
-							OR = {
+			else_if = { 
+				limit = { 
+					scope:actor = { 
+						any_spouse = { 
+							OR = { 
 								is_close_family_of = scope:recipient
 								is_nibling_of = scope:recipient
 								is_uncle_or_aunt_of = scope:recipient
@@ -622,10 +617,10 @@ negotiate_alliance_interaction = {
 						}
 					}
 				}
-				scope:actor = {
-					random_spouse = {
-						limit = {
-							OR = {
+				scope:actor = { 
+					random_spouse = { 
+						limit = { 
+							OR = { 
 								is_close_family_of = scope:recipient
 								is_nibling_of = scope:recipient
 								is_uncle_or_aunt_of = scope:recipient
@@ -634,25 +629,25 @@ negotiate_alliance_interaction = {
 						save_scope_as = actor_spouse
 					}
 				}
-				scope:actor = {
-					create_alliance = {
+				scope:actor = { 
+					create_alliance = { 
 						target = scope:recipient
 						allied_through_owner = scope:actor
 						allied_through_target = scope:actor_spouse
 					}
 				}
 			}
-			else_if = {
-				limit = {
-					scope:actor = {
-						any_close_family_member = {
-							OR = {
+			else_if = { 
+				limit = { 
+					scope:actor = { 
+						any_close_family_member = { 
+							OR = { 
 								is_child_of = scope:actor
 								is_parent_of = scope:actor
 								is_sibling_of = scope:actor
 							}
-							any_spouse = {
-								OR = {
+							any_spouse = { 
+								OR = { 
 									is_child_of = scope:recipient
 									is_parent_of = scope:recipient
 									is_sibling_of = scope:recipient
@@ -661,16 +656,16 @@ negotiate_alliance_interaction = {
 						}
 					}
 				}
-				scope:actor = {
-					random_close_family_member = {
-						limit = {
-							OR = {
+				scope:actor = { 
+					random_close_family_member = { 
+						limit = { 
+							OR = { 
 								is_child_of = scope:actor
 								is_parent_of = scope:actor
 								is_sibling_of = scope:actor
 							}
-							any_spouse = {
-								OR = {
+							any_spouse = { 
+								OR = { 
 									is_child_of = scope:recipient
 									is_parent_of = scope:recipient
 									is_sibling_of = scope:recipient
@@ -680,16 +675,16 @@ negotiate_alliance_interaction = {
 						save_scope_as = actor_spouse
 					}
 				}
-				scope:recipient = {
-					random_close_family_member = {
-						limit = {
-							OR = {
+				scope:recipient = { 
+					random_close_family_member = { 
+						limit = { 
+							OR = { 
 								is_child_of = scope:recipient
 								is_parent_of = scope:recipient
 								is_sibling_of = scope:recipient
 							}
-							any_spouse = {
-								OR = {
+							any_spouse = { 
+								OR = { 
 									is_child_of = scope:actor
 									is_parent_of = scope:actor
 									is_sibling_of = scope:actor
@@ -699,8 +694,8 @@ negotiate_alliance_interaction = {
 						save_scope_as = recipient_spouse
 					}
 				}
-				scope:actor = {
-					create_alliance = {
+				scope:actor = { 
+					create_alliance = { 
 						target = scope:recipient
 						allied_through_owner = scope:actor_spouse
 						allied_through_target = scope:recipient_spouse
@@ -709,66 +704,66 @@ negotiate_alliance_interaction = {
 			}
 		}
 	}
-	on_decline = {
-		scope:actor = {
+	on_decline = { 
+		scope:actor = { 
 			trigger_event = char_interaction.0236
 		}
-		scope:actor = {
-			add_opinion = {
+		scope:actor = { 
+			add_opinion = { 
 				modifier = refused_alliance_opinion
 				target = scope:recipient
 			}
 		}
 	}
-	auto_accept = {
-		custom_description = {
+	auto_accept = { 
+		custom_description = { 
 			text = "spending_hook"
 			subject = scope:actor
 			object = scope:recipient
 			scope:hook = yes
 		}
 	}
-	ai_accept = {
+	ai_accept = { 
 		base = 20
-		modifier = {
-			scope:actor = {
-				tier_difference = {
+		modifier = { 
+			scope:actor = { 
+				tier_difference = { 
 					target = scope:recipient
 					value >= 1
 				}
 			}
-			add = {
+			add = { 
 				value = 30
-				if = {
-					limit = {
-						tier_difference = {
+				if = { 
+					limit = { 
+						tier_difference = { 
 							target = scope:recipient
 							value = 2
 						}
 					}
 					add = 30
 				}
-				if = {
-					limit = {
-						tier_difference = {
+				if = { 
+					limit = { 
+						tier_difference = { 
 							target = scope:recipient
 							value = 3
 						}
 					}
 					add = 60
 				}
-				if = {
-					limit = {
-						tier_difference = {
+				if = { 
+					limit = { 
+						tier_difference = { 
 							target = scope:recipient
 							value = 4
 						}
 					}
 					add = 90
 				}
-				if = {
-					limit = {
-						tier_difference = {
+				if = { 
+					limit = { 
+						tier_difference = { 
 							target = scope:recipient
 							value = 5
 						}
@@ -778,45 +773,45 @@ negotiate_alliance_interaction = {
 			}
 			desc = RANK_DIFFERENCE_REASON
 		}
-		modifier = {
-			scope:actor = {
-				tier_difference = {
+		modifier = { 
+			scope:actor = { 
+				tier_difference = { 
 					target = scope:recipient
 					value <= -1
 				}
 			}
-			add = {
+			add = { 
 				value = -30
-				if = {
-					limit = {
-						tier_difference = {
+				if = { 
+					limit = { 
+						tier_difference = { 
 							target = scope:recipient
 							value = -2
 						}
 					}
 					add = -30
 				}
-				if = {
-					limit = {
-						tier_difference = {
+				if = { 
+					limit = { 
+						tier_difference = { 
 							target = scope:recipient
 							value = -3
 						}
 					}
 					add = -60
 				}
-				if = {
-					limit = {
-						tier_difference = {
+				if = { 
+					limit = { 
+						tier_difference = { 
 							target = scope:recipient
 							value = -4
 						}
 					}
 					add = -90
 				}
-				if = {
-					limit = {
-						tier_difference = {
+				if = { 
+					limit = { 
+						tier_difference = { 
 							target = scope:recipient
 							value = -5
 						}
@@ -826,21 +821,21 @@ negotiate_alliance_interaction = {
 			}
 			desc = RANK_DIFFERENCE_REASON
 		}
-		modifier = {
-			scope:recipient = {
+		modifier = { 
+			scope:recipient = { 
 				is_heir_of = scope:actor
 			}
-			scope:actor = {
-				tier_difference = {
+			scope:actor = { 
+				tier_difference = { 
 					target = scope:recipient
 					value > 0
 				}
 			}
-			add = {
+			add = { 
 				value = 10
-				if = {
-					limit = {
-						scope:actor = {
+				if = { 
+					limit = { 
+						scope:actor = { 
 							player_heir = scope:recipient
 						}
 					}
@@ -849,104 +844,104 @@ negotiate_alliance_interaction = {
 			}
 			desc = IS_HEIR_REASON
 		}
-		opinion_modifier = {
+		opinion_modifier = { 
 			who = scope:recipient
 			opinion_target = scope:actor
 			multiplier = 0.25
 			desc = AI_OPINION_REASON
 		}
-		modifier = {
-			scope:recipient = {
+		modifier = { 
+			scope:recipient = { 
 				has_relation_rival = scope:actor
 			}
 			add = -100
 			desc = WE_ARE_RIVALS
 		}
-		modifier = {
+		modifier = { 
 			add = -5
 			desc = AI_DYNASTY_PRESTIGE_REASON
-			scope:actor = {
+			scope:actor = { 
 				has_dynasty = yes
 			}
-			NOT = {
+			NOT = { 
 				scope:actor.dynasty = scope:recipient.dynasty
 			}
-			scope:actor.dynasty = {
+			scope:actor.dynasty = { 
 				dynasty_prestige_level = 0
 			}
 		}
-		modifier = {
+		modifier = { 
 			desc = AI_DYNASTY_PRESTIGE_REASON
-			scope:actor = {
+			scope:actor = { 
 				has_dynasty = yes
 			}
-			NOT = {
+			NOT = { 
 				scope:actor.dynasty = scope:recipient.dynasty
 			}
-			scope:actor.dynasty = {
+			scope:actor.dynasty = { 
 				dynasty_prestige_level >= 2
 			}
-			add = {
+			add = { 
 				value = 10
-				if = {
-					limit = {
-						scope:actor.dynasty = {
+				if = { 
+					limit = { 
+						scope:actor.dynasty = { 
 							dynasty_prestige_level >= 3
 						}
 					}
 					add = 5
 				}
-				if = {
-					limit = {
-						scope:actor.dynasty = {
+				if = { 
+					limit = { 
+						scope:actor.dynasty = { 
 							dynasty_prestige_level >= 4
 						}
 					}
 					add = 5
 				}
-				if = {
-					limit = {
-						scope:actor.dynasty = {
+				if = { 
+					limit = { 
+						scope:actor.dynasty = { 
 							dynasty_prestige_level >= 5
 						}
 					}
 					add = 5
 				}
-				if = {
-					limit = {
-						scope:actor.dynasty = {
+				if = { 
+					limit = { 
+						scope:actor.dynasty = { 
 							dynasty_prestige_level >= 6
 						}
 					}
 					add = 5
 				}
-				if = {
-					limit = {
-						scope:actor.dynasty = {
+				if = { 
+					limit = { 
+						scope:actor.dynasty = { 
 							dynasty_prestige_level >= 7
 						}
 					}
 					add = 5
 				}
-				if = {
-					limit = {
-						scope:actor.dynasty = {
+				if = { 
+					limit = { 
+						scope:actor.dynasty = { 
 							dynasty_prestige_level >= 8
 						}
 					}
 					add = 5
 				}
-				if = {
-					limit = {
-						scope:actor.dynasty = {
+				if = { 
+					limit = { 
+						scope:actor.dynasty = { 
 							dynasty_prestige_level >= 9
 						}
 					}
 					add = 5
 				}
-				if = {
-					limit = {
-						scope:actor.dynasty = {
+				if = { 
+					limit = { 
+						scope:actor.dynasty = { 
 							dynasty_prestige_level >= 10
 						}
 					}
@@ -954,19 +949,19 @@ negotiate_alliance_interaction = {
 				}
 			}
 		}
-		modifier = {
-			scope:recipient.faith = {
-				faith_hostility_level = {
+		modifier = { 
+			scope:recipient.faith = { 
+				faith_hostility_level = { 
 					target = scope:actor.faith
 					value > faith_fully_accepted_level
 				}
 			}
-			add = {
+			add = { 
 				value = -20
-				if = {
-					limit = {
-						scope:recipient.faith = {
-							faith_hostility_level = {
+				if = { 
+					limit = { 
+						scope:recipient.faith = { 
+							faith_hostility_level = { 
 								target = scope:actor.faith
 								value >= faith_astray_level
 							}
@@ -974,10 +969,10 @@ negotiate_alliance_interaction = {
 					}
 					subtract = 20
 				}
-				if = {
-					limit = {
-						scope:recipient.faith = {
-							faith_hostility_level = {
+				if = { 
+					limit = { 
+						scope:recipient.faith = { 
+							faith_hostility_level = { 
 								target = scope:actor.faith
 								value >= faith_hostile_level
 							}
@@ -985,10 +980,10 @@ negotiate_alliance_interaction = {
 					}
 					subtract = 40
 				}
-				if = {
-					limit = {
-						scope:recipient.faith = {
-							faith_hostility_level = {
+				if = { 
+					limit = { 
+						scope:recipient.faith = { 
+							faith_hostility_level = { 
 								target = scope:actor.faith
 								value >= faith_evil_level
 							}
@@ -999,67 +994,67 @@ negotiate_alliance_interaction = {
 			}
 			desc = MARRY_DIFFERENT_FAITH_REASON
 		}
-		modifier = {
+		modifier = { 
 			add = 40
-			scope:recipient = {
+			scope:recipient = { 
 				target_is_liege_or_above = scope:actor
 			}
 			desc = LIEGE_REASON
 		}
-		modifier = {
+		modifier = { 
 			add = 50
-			scope:recipient = {
+			scope:recipient = { 
 				target_is_liege_or_above = scope:actor
-				has_dread_level_towards = {
+				has_dread_level_towards = { 
 					target = scope:actor
 					level = 1
 				}
 			}
 			desc = INTIMIDATED_REASON
 		}
-		modifier = {
+		modifier = { 
 			add = 100
-			scope:recipient = {
+			scope:recipient = { 
 				target_is_liege_or_above = scope:actor
-				has_dread_level_towards = {
+				has_dread_level_towards = { 
 					target = scope:actor
 					level = 2
 				}
 			}
 			desc = COWED_REASON
 		}
-		modifier = {
+		modifier = { 
 			add = 10
-			scope:recipient = {
-				NOT = {
+			scope:recipient = { 
+				NOT = { 
 					target_is_liege_or_above = scope:actor
 				}
-				has_dread_level_towards = {
+				has_dread_level_towards = { 
 					target = scope:actor
 					level = 1
 				}
 			}
 			desc = INTIMIDATED_REASON
 		}
-		modifier = {
+		modifier = { 
 			add = 20
-			scope:recipient = {
-				NOT = {
+			scope:recipient = { 
+				NOT = { 
 					target_is_liege_or_above = scope:actor
 				}
-				has_dread_level_towards = {
+				has_dread_level_towards = { 
 					target = scope:actor
 					level = 2
 				}
 			}
 			desc = COWED_REASON
 		}
-		modifier = {
-			add = {
+		modifier = { 
+			add = { 
 				value = 1
-				subtract = {
+				subtract = { 
 					value = scope:recipient.max_military_strength
-					divide = {
+					divide = { 
 						value = scope:actor.max_military_strength
 						min = 1
 					}
@@ -1068,46 +1063,46 @@ negotiate_alliance_interaction = {
 			}
 			desc = offer_vassalization_interaction_aibehavior_power_tt
 		}
-		modifier = {
-			scope:recipient = {
-				NOT = {
+		modifier = { 
+			scope:recipient = { 
+				NOT = { 
 					has_government = clan_government
 				}
-				any_claim = {
+				any_claim = { 
 					holder = scope:actor
 				}
 			}
-			add = {
+			add = { 
 				value = -200
-				if = {
-					limit = {
-						NOT = {
+				if = { 
+					limit = { 
+						NOT = { 
 							scope:recipient.house = scope:actor.house
 						}
 					}
 					multiply = 2
 				}
-				if = {
-					limit = {
-						NOT = {
+				if = { 
+					limit = { 
+						NOT = { 
 							scope:recipient.dynasty = scope:actor.dynasty
 						}
 					}
 					multiply = 2
 				}
-				if = {
-					limit = {
+				if = { 
+					limit = { 
 						scope:recipient.dynasty = scope:actor.dynasty
-						OR = {
+						OR = { 
 							has_trait = bastard
 							has_trait = legitimized_bastard
 						}
 					}
 					multiply = 1.5
 				}
-				if = {
-					limit = {
-						scope:recipient = {
+				if = { 
+					limit = { 
+						scope:recipient = { 
 							is_primary_heir_of = scope:actor
 						}
 					}
@@ -1116,19 +1111,19 @@ negotiate_alliance_interaction = {
 			}
 			desc = IS_CLAIMANT_TO_ACTORS_TITLES
 		}
-		modifier = {
-			scope:actor = {
-				any_claim = {
+		modifier = { 
+			scope:actor = { 
+				any_claim = { 
 					holder = scope:recipient
 				}
 			}
 			add = 25
 			desc = IS_CLAIMANT_TO_RECIPIENT_TITLES
 		}
-		modifier = {
-			scope:recipient = {
-				NOT = {
-					any_claim = {
+		modifier = { 
+			scope:recipient = { 
+				NOT = { 
+					any_claim = { 
 						holder = scope:actor
 					}
 				}
@@ -1137,9 +1132,9 @@ negotiate_alliance_interaction = {
 			add = 15
 			desc = IS_SAME_HOUSE_REASON
 		}
-		modifier = {
-			scope:recipient = {
-				has_opinion_modifier = {
+		modifier = { 
+			scope:recipient = { 
+				has_opinion_modifier = { 
 					target = scope:actor
 					modifier = declared_war
 				}
@@ -1147,10 +1142,10 @@ negotiate_alliance_interaction = {
 			add = -100
 			desc = DECLARED_WAR_REASON
 		}
-		modifier = {
-			scope:actor = {
+		modifier = { 
+			scope:actor = { 
 				is_at_war = yes
-				NOR = {
+				NOR = { 
 					target_is_liege_or_above = scope:recipient
 					target_is_vassal_or_below = scope:recipient
 				}
@@ -1159,39 +1154,39 @@ negotiate_alliance_interaction = {
 			desc = IS_AT_WAR_REASON
 		}
 	}
-	ai_potential = {
+	ai_potential = { 
 		is_at_war = no
 	}
-	ai_targets = {
+	ai_targets = { 
 		ai_recipients = dynasty
 		max = 20
 	}
-	ai_targets = {
+	ai_targets = { 
 		ai_recipients = family
 		max = 10
 	}
-	ai_targets = {
+	ai_targets = { 
 		ai_recipients = spouses
 	}
 	ai_frequency = 72
-	ai_will_do = {
+	ai_will_do = { 
 		base = 0
-		modifier = {
+		modifier = { 
 			add = 100
-			any_ally = {
+			any_ally = { 
 				count < 2
 			}
 		}
-		modifier = {
+		modifier = { 
 			factor = 0
-			OR = {
+			OR = { 
 				target_is_liege_or_above = scope:recipient
 				target_is_vassal_or_below = scope:recipient
 			}
 		}
 	}
 }
-perk_alliance_interaction = {
+perk_alliance_interaction = { 
 	category = interaction_category_diplomacy
 	ai_min_reply_days = 4
 	ai_max_reply_days = 9
@@ -1199,42 +1194,42 @@ perk_alliance_interaction = {
 	desc = perk_alliance_interaction_desc
 	greeting = positive
 	notification_text = PERK_NEGOTIATE_ALLIANCE_NOTIFICATION
-	is_shown = {
+	is_shown = { 
 		can_do_normal_interaction = yes
-		scope:recipient = {
-			NOT = {
+		scope:recipient = { 
+			NOT = { 
 				this = scope:actor
 			}
-			NOT = {
+			NOT = { 
 				is_allied_to = scope:actor
 			}
-			NOT = {
+			NOT = { 
 				target_is_vassal_or_below = scope:actor
 			}
-			NOT = {
+			NOT = { 
 				target_is_liege_or_above = scope:actor
 			}
 			is_ruler = yes
 			primary_title.tier > tier_barony
 		}
-		scope:actor = {
+		scope:actor = { 
 			has_perk = defensive_negotiations_perk
-			NOT = {
-				is_character_interaction_shown = {
+			NOT = { 
+				is_character_interaction_shown = { 
 					recipient = scope:recipient
 					interaction = negotiate_alliance_interaction
 				}
 			}
 		}
 	}
-	is_valid_showing_failures_only = {
-		custom_description = {
+	is_valid_showing_failures_only = { 
+		custom_description = { 
 			text = "already_has_an_alliance_deal"
 			subject = scope:recipient
-			scope:actor = {
-				NOT = {
-					any_ally = {
-						has_opinion_modifier = {
+			scope:actor = { 
+				NOT = { 
+					any_ally = { 
+						has_opinion_modifier = { 
 							modifier = perk_negotiated_alliance_opinion
 							target = scope:actor
 						}
@@ -1242,25 +1237,25 @@ perk_alliance_interaction = {
 				}
 			}
 		}
-		scope:recipient = {
+		scope:recipient = { 
 			is_landed = yes
 			is_at_war = no
 			is_imprisoned = no
 		}
-		scope:actor = {
+		scope:actor = { 
 			is_landed = yes
 			is_at_war = no
 			is_imprisoned = no
 		}
-		scope:recipient = {
+		scope:recipient = { 
 			is_diplomatically_available = yes
 		}
-		custom_description = {
+		custom_description = { 
 			text = "has_already_rejected_renegotiation"
 			subject = scope:recipient
-			scope:actor = {
-				NOT = {
-					has_opinion_modifier = {
+			scope:actor = { 
+				NOT = { 
+					has_opinion_modifier = { 
 						modifier = refused_alliance_opinion
 						target = scope:recipient
 					}
@@ -1268,128 +1263,128 @@ perk_alliance_interaction = {
 			}
 		}
 	}
-	can_send = {
-		custom_description = {
+	can_send = { 
+		custom_description = { 
 			text = "has_sent_interaction_already"
 			subject = scope:recipient
-			scope:actor = {
-				NOT = {
+			scope:actor = { 
+				NOT = { 
 					has_pending_interaction_of_type = perk_alliance_interaction
 				}
 			}
 		}
 	}
-	on_auto_accept = {
-		scope:recipient = {
+	on_auto_accept = { 
+		scope:recipient = { 
 			trigger_event = char_interaction.0234
 		}
 	}
-	send_option = {
-		is_valid = {
-			scope:actor = {
+	send_option = { 
+		is_valid = { 
+			scope:actor = { 
 				has_usable_hook = scope:recipient
 			}
 		}
 		flag = hook
 		localization = GENERIC_SPEND_A_HOOK
 	}
-	should_use_extra_icon = {
-		scope:actor = {
+	should_use_extra_icon = { 
+		scope:actor = { 
 			has_usable_hook = scope:recipient
 		}
 	}
 	extra_icon = "gfx/interface/icons/character_interactions/hook_icon.dds"
 	send_options_exclusive = no
-	on_accept = {
-		save_scope_value_as = {
+	on_accept = { 
+		save_scope_value_as = { 
 			name = perk_alliance_interaction
 			value = yes
 		}
-		scope:actor = {
+		scope:actor = { 
 			custom_tooltip = negotiate_alliance_effect_tooltip
 			trigger_event = char_interaction.0235
-			create_alliance = {
+			create_alliance = { 
 				target = scope:recipient
 				allied_through_owner = scope:actor
 				allied_through_target = scope:recipient
 			}
-			stress_impact = {
+			stress_impact = { 
 				shy = minor_stress_impact_gain
 			}
-			if = {
-				limit = {
+			if = { 
+				limit = { 
 					scope:hook = yes
 				}
 				use_hook = scope:recipient
 			}
 		}
-		scope:recipient = {
-			add_opinion = {
+		scope:recipient = { 
+			add_opinion = { 
 				modifier = perk_negotiated_alliance_opinion
 				target = scope:actor
 			}
 		}
 	}
-	on_decline = {
-		scope:actor = {
+	on_decline = { 
+		scope:actor = { 
 			trigger_event = char_interaction.0236
 		}
-		scope:actor = {
-			add_opinion = {
+		scope:actor = { 
+			add_opinion = { 
 				modifier = refused_alliance_opinion
 				target = scope:recipient
 			}
 		}
 	}
-	auto_accept = {
-		custom_description = {
+	auto_accept = { 
+		custom_description = { 
 			text = "spending_hook"
 			subject = scope:actor
 			object = scope:recipient
 			scope:hook = yes
 		}
 	}
-	ai_accept = {
+	ai_accept = { 
 		base = -25
-		modifier = {
-			scope:actor = {
-				tier_difference = {
+		modifier = { 
+			scope:actor = { 
+				tier_difference = { 
 					target = scope:recipient
 					value >= 1
 				}
 			}
-			add = {
+			add = { 
 				value = 30
-				if = {
-					limit = {
-						tier_difference = {
+				if = { 
+					limit = { 
+						tier_difference = { 
 							target = scope:recipient
 							value = 2
 						}
 					}
 					add = 30
 				}
-				if = {
-					limit = {
-						tier_difference = {
+				if = { 
+					limit = { 
+						tier_difference = { 
 							target = scope:recipient
 							value = 3
 						}
 					}
 					add = 60
 				}
-				if = {
-					limit = {
-						tier_difference = {
+				if = { 
+					limit = { 
+						tier_difference = { 
 							target = scope:recipient
 							value = 4
 						}
 					}
 					add = 90
 				}
-				if = {
-					limit = {
-						tier_difference = {
+				if = { 
+					limit = { 
+						tier_difference = { 
 							target = scope:recipient
 							value = 5
 						}
@@ -1399,45 +1394,45 @@ perk_alliance_interaction = {
 			}
 			desc = RANK_DIFFERENCE_REASON
 		}
-		modifier = {
-			scope:actor = {
-				tier_difference = {
+		modifier = { 
+			scope:actor = { 
+				tier_difference = { 
 					target = scope:recipient
 					value <= -1
 				}
 			}
-			add = {
+			add = { 
 				value = -30
-				if = {
-					limit = {
-						tier_difference = {
+				if = { 
+					limit = { 
+						tier_difference = { 
 							target = scope:recipient
 							value = -2
 						}
 					}
 					add = -30
 				}
-				if = {
-					limit = {
-						tier_difference = {
+				if = { 
+					limit = { 
+						tier_difference = { 
 							target = scope:recipient
 							value = -3
 						}
 					}
 					add = -60
 				}
-				if = {
-					limit = {
-						tier_difference = {
+				if = { 
+					limit = { 
+						tier_difference = { 
 							target = scope:recipient
 							value = -4
 						}
 					}
 					add = -90
 				}
-				if = {
-					limit = {
-						tier_difference = {
+				if = { 
+					limit = { 
+						tier_difference = { 
 							target = scope:recipient
 							value = -5
 						}
@@ -1447,97 +1442,97 @@ perk_alliance_interaction = {
 			}
 			desc = RANK_DIFFERENCE_REASON
 		}
-		opinion_modifier = {
+		opinion_modifier = { 
 			who = scope:recipient
 			opinion_target = scope:actor
 			multiplier = 0.25
 			desc = AI_OPINION_REASON
 		}
-		modifier = {
+		modifier = { 
 			add = -5
 			desc = AI_DYNASTY_PRESTIGE_REASON
-			scope:actor = {
+			scope:actor = { 
 				has_dynasty = yes
 			}
-			NOT = {
+			NOT = { 
 				scope:actor.dynasty = scope:recipient.dynasty
 			}
-			scope:actor.dynasty = {
+			scope:actor.dynasty = { 
 				dynasty_prestige_level = 0
 			}
 		}
-		modifier = {
+		modifier = { 
 			desc = AI_DYNASTY_PRESTIGE_REASON
-			scope:actor = {
+			scope:actor = { 
 				has_dynasty = yes
 			}
-			NOT = {
+			NOT = { 
 				scope:actor.dynasty = scope:recipient.dynasty
 			}
-			scope:actor.dynasty = {
+			scope:actor.dynasty = { 
 				dynasty_prestige_level >= 2
 			}
-			add = {
+			add = { 
 				value = 10
-				if = {
-					limit = {
-						scope:actor.dynasty = {
+				if = { 
+					limit = { 
+						scope:actor.dynasty = { 
 							dynasty_prestige_level >= 3
 						}
 					}
 					add = 5
 				}
-				if = {
-					limit = {
-						scope:actor.dynasty = {
+				if = { 
+					limit = { 
+						scope:actor.dynasty = { 
 							dynasty_prestige_level >= 4
 						}
 					}
 					add = 5
 				}
-				if = {
-					limit = {
-						scope:actor.dynasty = {
+				if = { 
+					limit = { 
+						scope:actor.dynasty = { 
 							dynasty_prestige_level >= 5
 						}
 					}
 					add = 5
 				}
-				if = {
-					limit = {
-						scope:actor.dynasty = {
+				if = { 
+					limit = { 
+						scope:actor.dynasty = { 
 							dynasty_prestige_level >= 6
 						}
 					}
 					add = 5
 				}
-				if = {
-					limit = {
-						scope:actor.dynasty = {
+				if = { 
+					limit = { 
+						scope:actor.dynasty = { 
 							dynasty_prestige_level >= 7
 						}
 					}
 					add = 5
 				}
-				if = {
-					limit = {
-						scope:actor.dynasty = {
+				if = { 
+					limit = { 
+						scope:actor.dynasty = { 
 							dynasty_prestige_level >= 8
 						}
 					}
 					add = 5
 				}
-				if = {
-					limit = {
-						scope:actor.dynasty = {
+				if = { 
+					limit = { 
+						scope:actor.dynasty = { 
 							dynasty_prestige_level >= 9
 						}
 					}
 					add = 5
 				}
-				if = {
-					limit = {
-						scope:actor.dynasty = {
+				if = { 
+					limit = { 
+						scope:actor.dynasty = { 
 							dynasty_prestige_level >= 10
 						}
 					}
@@ -1545,19 +1540,19 @@ perk_alliance_interaction = {
 				}
 			}
 		}
-		modifier = {
-			scope:recipient.faith = {
-				faith_hostility_level = {
+		modifier = { 
+			scope:recipient.faith = { 
+				faith_hostility_level = { 
 					target = scope:actor.faith
 					value > faith_fully_accepted_level
 				}
 			}
-			add = {
+			add = { 
 				value = -20
-				if = {
-					limit = {
-						scope:recipient.faith = {
-							faith_hostility_level = {
+				if = { 
+					limit = { 
+						scope:recipient.faith = { 
+							faith_hostility_level = { 
 								target = scope:actor.faith
 								value >= faith_astray_level
 							}
@@ -1565,10 +1560,10 @@ perk_alliance_interaction = {
 					}
 					subtract = 20
 				}
-				if = {
-					limit = {
-						scope:recipient.faith = {
-							faith_hostility_level = {
+				if = { 
+					limit = { 
+						scope:recipient.faith = { 
+							faith_hostility_level = { 
 								target = scope:actor.faith
 								value >= faith_hostile_level
 							}
@@ -1576,10 +1571,10 @@ perk_alliance_interaction = {
 					}
 					subtract = 40
 				}
-				if = {
-					limit = {
-						scope:recipient.faith = {
-							faith_hostility_level = {
+				if = { 
+					limit = { 
+						scope:recipient.faith = { 
+							faith_hostility_level = { 
 								target = scope:actor.faith
 								value >= faith_evil_level
 							}
@@ -1590,60 +1585,60 @@ perk_alliance_interaction = {
 			}
 			desc = MARRY_DIFFERENT_FAITH_REASON
 		}
-		modifier = {
+		modifier = { 
 			add = 50
-			scope:recipient = {
+			scope:recipient = { 
 				target_is_liege_or_above = scope:actor
-				has_dread_level_towards = {
+				has_dread_level_towards = { 
 					target = scope:actor
 					level = 1
 				}
 			}
 			desc = INTIMIDATED_REASON
 		}
-		modifier = {
+		modifier = { 
 			add = 100
-			scope:recipient = {
+			scope:recipient = { 
 				target_is_liege_or_above = scope:actor
-				has_dread_level_towards = {
+				has_dread_level_towards = { 
 					target = scope:actor
 					level = 2
 				}
 			}
 			desc = COWED_REASON
 		}
-		modifier = {
+		modifier = { 
 			add = 10
-			scope:recipient = {
-				NOT = {
+			scope:recipient = { 
+				NOT = { 
 					target_is_liege_or_above = scope:actor
 				}
-				has_dread_level_towards = {
+				has_dread_level_towards = { 
 					target = scope:actor
 					level = 1
 				}
 			}
 			desc = INTIMIDATED_REASON
 		}
-		modifier = {
+		modifier = { 
 			add = 20
-			scope:recipient = {
-				NOT = {
+			scope:recipient = { 
+				NOT = { 
 					target_is_liege_or_above = scope:actor
 				}
-				has_dread_level_towards = {
+				has_dread_level_towards = { 
 					target = scope:actor
 					level = 2
 				}
 			}
 			desc = COWED_REASON
 		}
-		modifier = {
-			add = {
+		modifier = { 
+			add = { 
 				value = 1
-				subtract = {
+				subtract = { 
 					value = scope:recipient.max_military_strength
-					divide = {
+					divide = { 
 						value = scope:actor.max_military_strength
 						min = 1
 					}
@@ -1652,43 +1647,43 @@ perk_alliance_interaction = {
 			}
 			desc = offer_vassalization_interaction_aibehavior_power_tt
 		}
-		modifier = {
-			scope:recipient = {
-				any_claim = {
+		modifier = { 
+			scope:recipient = { 
+				any_claim = { 
 					holder = scope:actor
 				}
 			}
-			add = {
+			add = { 
 				value = -200
-				if = {
-					limit = {
-						NOT = {
+				if = { 
+					limit = { 
+						NOT = { 
 							scope:recipient.house = scope:actor.house
 						}
 					}
 					multiply = 2
 				}
-				if = {
-					limit = {
-						NOT = {
+				if = { 
+					limit = { 
+						NOT = { 
 							scope:recipient.dynasty = scope:actor.dynasty
 						}
 					}
 					multiply = 2
 				}
-				if = {
-					limit = {
+				if = { 
+					limit = { 
 						scope:recipient.dynasty = scope:actor.dynasty
-						OR = {
+						OR = { 
 							has_trait = bastard
 							has_trait = legitimized_bastard
 						}
 					}
 					multiply = 1.5
 				}
-				if = {
-					limit = {
-						scope:recipient = {
+				if = { 
+					limit = { 
+						scope:recipient = { 
 							is_primary_heir_of = scope:actor
 						}
 					}
@@ -1697,19 +1692,19 @@ perk_alliance_interaction = {
 			}
 			desc = IS_CLAIMANT_TO_ACTORS_TITLES
 		}
-		modifier = {
-			scope:actor = {
-				any_claim = {
+		modifier = { 
+			scope:actor = { 
+				any_claim = { 
 					holder = scope:recipient
 				}
 			}
 			add = 25
 			desc = IS_CLAIMANT_TO_RECIPIENT_TITLES
 		}
-		modifier = {
-			scope:recipient = {
-				NOT = {
-					any_claim = {
+		modifier = { 
+			scope:recipient = { 
+				NOT = { 
+					any_claim = { 
 						holder = scope:actor
 					}
 				}
@@ -1718,9 +1713,9 @@ perk_alliance_interaction = {
 			add = 15
 			desc = IS_SAME_HOUSE_REASON
 		}
-		modifier = {
-			scope:recipient = {
-				has_opinion_modifier = {
+		modifier = { 
+			scope:recipient = { 
+				has_opinion_modifier = { 
 					target = scope:actor
 					modifier = declared_war
 				}
@@ -1729,29 +1724,29 @@ perk_alliance_interaction = {
 			desc = DECLARED_WAR_REASON
 		}
 	}
-	ai_potential = {
+	ai_potential = { 
 		is_at_war = no
 	}
-	ai_targets = {
+	ai_targets = { 
 		ai_recipients = neighboring_rulers
 		max = 10
 	}
-	ai_targets = {
+	ai_targets = { 
 		ai_recipients = peer_vassals
 		max = 5
 	}
 	ai_frequency = 72
-	ai_will_do = {
+	ai_will_do = { 
 		base = 0
-		modifier = {
+		modifier = { 
 			add = 100
-			any_ally = {
+			any_ally = { 
 				count < 2
 			}
 		}
 	}
 }
-join_war_interaction = {
+join_war_interaction = { 
 	category = interaction_category_diplomacy
 	interface = interfere_in_war
 	special_interaction = interfere_in_war_interaction
@@ -1759,343 +1754,256 @@ join_war_interaction = {
 	desc = join_war_interaction_desc
 	greeting = positive
 	notification_text = join_war_interaction_notification
-	is_shown = {
+	is_shown = { 
 		can_do_normal_interaction = yes
-		scope:recipient = {
+		scope:recipient = { 
 			is_at_war = yes
-			NOR = {
+			NOR = { 
 				this = scope:actor
 				is_at_war_with = scope:actor
 			}
 		}
 	}
-	is_valid_showing_failures_only = {
-		trigger_if = {
-			limit = {
+	is_valid_showing_failures_only = { 
+		trigger_if = { 
+			limit = { 
 				exists = scope:actor.liege
 			}
-			custom_description = {
+			custom_description = { 
 				text = join_war_interaction_recipient_warring_with_my_liege
 				subject = scope:recipient
-				scope:actor = {
-					NOT = {
-						any_liege_or_above = {
+				scope:actor = { 
+					NOT = { 
+						any_liege_or_above = { 
 							is_at_war_with = scope:recipient
 						}
 					}
 				}
 			}
 		}
-		trigger_if = {
-			limit = {
-				scope:actor = {
+		trigger_if = { 
+			limit = { 
+				scope:actor = { 
 					target_is_vassal_or_below = scope:recipient
 				}
 			}
-			custom_description = {
+			custom_description = { 
 				text = join_war_interaction_recipient_not_fighting_peasant_faction
 				subject = scope:recipient
-				scope:recipient = {
-					any_war_enemy = {
+				scope:recipient = { 
+					any_war_enemy = { 
 						is_leading_faction_type = peasant_faction
 					}
 				}
 			}
 		}
-		trigger_else_if = {
-			limit = {
-				scope:actor = {
-					NOT = {
+		trigger_else_if = { 
+			limit = { 
+				scope:actor = { 
+					NOT = { 
 						target_is_liege_or_above = scope:recipient
 					}
 				}
 			}
-			trigger_if = {
-				limit = {
-					scope:recipient = {
-						any_character_war = {
-							OR = {
+			trigger_if = { 
+				limit = { 
+					scope:recipient = { 
+						any_character_war = { 
+							OR = { 
 								scope:recipient.faith = scope:actor.faith
-								AND = {
+								AND = { 
 									scope:recipient.faith.religion = scope:actor.faith.religion
-									scope:actor.faith = {
-										faith_hostility_level = {
+									scope:actor.faith = { 
+										faith_hostility_level = { 
 											target = scope:recipient.faith
 											value < religious_cb_enabled_hostility_level
 										}
 									}
 								}
 							}
-							any_war_defender = {
+							any_war_defender = { 
 								this = scope:recipient
 							}
 						}
 					}
 				}
 			}
-			trigger_else = {
-				custom_description = {
+			trigger_else = { 
+				custom_description = { 
 					text = join_war_interaction_recipient_not_ally
 					subject = scope:recipient
-					scope:recipient = {
+					scope:recipient = { 
 						is_allied_to = scope:actor
 					}
 				}
 			}
 		}
-		trigger_else = {
-			custom_description = {
+		trigger_else = { 
+			custom_description = { 
 				text = join_war_interaction_recipient_not_liege
 				subject = scope:recipient
-				scope:actor = {
+				scope:actor = { 
 					target_is_liege_or_above = scope:recipient
 				}
 			}
 		}
 	}
-	can_be_picked = {
+	can_be_picked = { 
 		exists = scope:target
-		scope:target = {
+		scope:target = { 
 			is_war_leader = scope:recipient
-			trigger_if = {
-				limit = {
+			trigger_if = { 
+				limit = { 
 					is_religious_war = yes
 				}
-				trigger_if = {
-					limit = {
-						NOT = {
-							scope:actor = {
+				trigger_if = { 
+					limit = { 
+						NOT = { 
+							scope:actor = { 
 								is_allied_to = scope:recipient
 							}
 						}
 					}
-					custom_description = {
+					custom_description = { 
 						text = join_war_interaction_recipient_not_def_GHW
 						subject = scope:recipient
 						scope:recipient.faith.religion = scope:actor.faith.religion
-						any_war_defender = {
+						any_war_defender = { 
 							this = scope:recipient
 						}
 					}
 				}
-				casus_belli = {
-					any_target_title = {
+				casus_belli = { 
+					any_target_title = { 
 						save_temporary_scope_as = war_target
 					}
 				}
-				custom_description = {
+				custom_description = { 
 					text = join_war_interaction_recipient_too_distant
 					subject = scope:war_target
 					object = scope:war_target
-					scope:actor = {
-						realm_to_title_distance_squared = {
+					scope:actor = { 
+						realm_to_title_distance_squared = { 
 							title = scope:war_target
 							value <= squared_distance_almost_massive
 						}
 					}
 				}
 			}
-			trigger_if = {
-				limit = {
+			trigger_if = { 
+				limit = { 
 					is_religious_war = no
-					scope:actor = {
+					scope:actor = { 
 						target_is_vassal_or_below = scope:recipient
 					}
 					primary_defender = scope:recipient
-					primary_attacker = {
+					primary_attacker = { 
 						is_leading_faction_type = peasant_faction
 					}
 				}
 				always = yes
 			}
-			trigger_else_if = {
-				limit = {
+			trigger_else_if = { 
+				limit = { 
 					is_religious_war = no
-					scope:actor = {
-						NOT = {
+					scope:actor = { 
+						NOT = { 
 							target_is_liege_or_above = scope:recipient
 						}
 					}
 				}
-				custom_description = {
+				custom_description = { 
 					text = join_war_interaction_recipient_not_ally
 					subject = scope:recipient
-					scope:actor = {
+					scope:actor = { 
 						is_allied_to = scope:recipient
 					}
 				}
-				trigger_if = {
-					limit = {
-						scope:actor = {
+				trigger_if = { 
+					limit = { 
+						scope:actor = { 
 							target_is_vassal_or_below = scope:recipient
-							NOT = {
+							NOT = { 
 								is_allied_to = scope:recipient
 							}
 						}
 					}
-					custom_description = {
+					custom_description = { 
 						text = join_war_interaction_recipient_not_fighting_peasant_faction
 						subject = scope:recipient
 						primary_defender = scope:recipient
-						primary_attacker = {
+						primary_attacker = { 
 							is_leading_faction_type = peasant_faction
 						}
 					}
 				}
 			}
-			trigger_else_if = {
-				limit = {
+			trigger_else_if = { 
+				limit = { 
 					is_religious_war = no
-					scope:actor = {
-						NOT = {
+					scope:actor = { 
+						NOT = { 
 							is_allied_to = scope:recipient
 						}
 					}
 				}
-				custom_description = {
+				custom_description = { 
 					text = join_war_interaction_recipient_not_liege
 					subject = scope:recipient
-					scope:actor = {
+					scope:actor = { 
 						target_is_liege_or_above = scope:recipient
 					}
 				}
 			}
-			trigger_else = {
+			trigger_else = { 
 				always = yes
 			}
 		}
-		scope:actor = {
-			custom_description = {
-				text = join_war_interaction_already_warring_against_enemy
-				subject = scope:recipient
-				NOR = {
-					any_war_enemy = {
-						this = scope:target.primary_attacker
-					}
-					any_war_enemy = {
-						this = scope:target.primary_defender
-					}
-				}
-			}
+		joiner_not_already_in_another_war_with_any_target_war_participants_trigger = { 
+			WARRIOR = scope:recipient
+			JOINER = scope:actor
+		}
+		can_join_war_liege_vassal_check_trigger = { 
+			WARRIOR = scope:recipient
+			JOINER = scope:actor
 		}
 	}
-	on_accept = {
-		scope:target = {
-			hidden_effect = {
+	on_accept = { 
+		scope:target = { 
+			hidden_effect = { 
 				set_called_to = scope:actor
 			}
-			if = {
-				limit = {
+			if = { 
+				limit = { 
 					is_attacker = scope:recipient
 				}
 				add_attacker = scope:actor
 			}
-			else = {
+			else = { 
 				add_defender = scope:actor
 			}
-			if = {
-				limit = {
-					any_war_attacker = {
-						this = scope:recipient
-					}
-				}
-				every_war_attacker = {
-					limit = {
-						NOR = {
-							this = scope:recipient
-							this = scope:actor
-						}
-					}
-					add_to_list = join_war_interaction_combatants
-				}
-			}
-			else = {
-				every_war_defender = {
-					limit = {
-						NOR = {
-							this = scope:recipient
-							this = scope:actor
-						}
-					}
-					add_to_list = join_war_interaction_combatants
-				}
-			}
 		}
-		scope:actor = {
-			if = {
-				limit = {
-					any_vassal = {
-						any_in_list = {
-							list = join_war_interaction_combatants
-							is_at_war_with = prev
-						}
-					}
-				}
-				every_vassal = {
-					limit = {
-						any_in_list = {
-							list = join_war_interaction_combatants
-							is_at_war_with = prev
-						}
-					}
-					every_character_war = {
-						limit = {
-							trigger_if = {
-								limit = {
-									is_attacker = prev
-								}
-								any_in_list = {
-									list = join_war_interaction_combatants
-									is_defender_in_war = prev
-									save_temporary_scope_as = invalid_combatant
-								}
-							}
-							trigger_else_if = {
-								limit = {
-									is_defender = prev
-								}
-								any_in_list = {
-									list = join_war_interaction_combatants
-									is_attacker_in_war = prev
-									save_temporary_scope_as = invalid_combatant
-								}
-							}
-							trigger_else = {
-								always = yes
-							}
-						}
-						end_war = invalidated
-						prev = {
-							send_interface_message = {
-								type = msg_war_ended_invalid
-								desc = join_war_interaction_vassal_war_invalidated_message
-								right_icon = scope:invalid_combatant
-								left_icon = this
-							}
-						}
-					}
-				}
-			}
-			stress_impact = {
+		scope:actor = { 
+			stress_impact = { 
 				craven = medium_stress_impact_gain
 				shy = minor_stress_impact_gain
 			}
 		}
-		scope:recipient = {
-			if = {
-				limit = {
+		scope:recipient = { 
+			if = { 
+				limit = { 
 					is_ai = yes
 				}
-				progress_towards_friend_effect = {
+				progress_towards_friend_effect = { 
 					CHARACTER = scope:actor
 					OPINION = no
 				}
 			}
-			else = {
-				hidden_effect = {
-					if = {
-						limit = {
-							NOR = {
+			else = { 
+				hidden_effect = { 
+					if = { 
+						limit = { 
+							NOR = { 
 								has_relation_friend = scope:actor
 								has_relation_potential_friend = scope:actor
 							}
@@ -2106,13 +2014,13 @@ join_war_interaction = {
 			}
 		}
 	}
-	on_decline = {
-		scope:actor = {
+	on_decline = { 
+		scope:actor = { 
 			trigger_event = char_interaction.0236
 		}
 	}
 	auto_accept = yes
-	ai_accept = {
+	ai_accept = { 
 		base = 100
 	}
 }

@@ -1,46 +1,46 @@
-﻿add_to_court_interaction = {
+﻿add_to_court_interaction = { 
 	category = interaction_debug_main
 	use_diplomatic_range = no
 	ignores_pending_interaction_block = yes
-	is_shown = {
+	is_shown = { 
 		can_do_normal_interaction = yes
 		debug_only = yes
-		NOT = {
+		NOT = { 
 			scope:recipient = scope:actor
 		}
-		scope:recipient = {
-			NOT = {
+		scope:recipient = { 
+			NOT = { 
 				is_courtier_of = scope:actor
 			}
 		}
 	}
-	on_accept = {
-		scope:actor = {
+	on_accept = { 
+		scope:actor = { 
 			add_courtier = scope:recipient
 		}
 	}
 	auto_accept = yes
 }
-give_secrets_to_court_interaction = {
+give_secrets_to_court_interaction = { 
 	category = interaction_debug_main
 	use_diplomatic_range = no
 	ignores_pending_interaction_block = yes
-	is_shown = {
+	is_shown = { 
 		can_do_normal_interaction = yes
 		debug_only = yes
 	}
-	on_accept = {
-		scope:recipient = {
-			random_list = {
-				30 = {
+	on_accept = { 
+		scope:recipient = { 
+			random_list = { 
+				30 = { 
 					give_deviant_secret_or_trait_effect = yes
 				}
-				30 = {
+				30 = { 
 					give_homosexual_secret_or_nothing_effect = yes
 				}
 			}
-			hidden_effect = {
-				every_courtier = {
+			hidden_effect = { 
+				every_courtier = { 
 					give_random_likely_secret_effect = yes
 				}
 			}
@@ -48,99 +48,99 @@ give_secrets_to_court_interaction = {
 	}
 	auto_accept = yes
 }
-set_up_secrets_in_realm_interaction = {
+set_up_secrets_in_realm_interaction = { 
 	category = interaction_debug_main
 	use_diplomatic_range = no
 	ignores_pending_interaction_block = yes
-	is_shown = {
+	is_shown = { 
 		can_do_normal_interaction = yes
 		debug_only = yes
 	}
-	on_accept = {
-		scope:recipient.top_liege = {
-			hidden_effect = {
+	on_accept = { 
+		scope:recipient.top_liege = { 
+			hidden_effect = { 
 				add_to_list = secret_setup
-				every_vassal_or_below = {
+				every_vassal_or_below = { 
 					add_to_list = secret_setup
-					every_courtier_or_guest = {
+					every_courtier_or_guest = { 
 						add_to_list = secret_setup
 					}
 				}
-				every_neighboring_top_liege_realm_owner = {
+				every_neighboring_top_liege_realm_owner = { 
 					add_to_list = secret_setup
-					every_vassal_or_below = {
+					every_vassal_or_below = { 
 						add_to_list = secret_setup
-						every_courtier_or_guest = {
+						every_courtier_or_guest = { 
 							add_to_list = secret_setup
 						}
 					}
 				}
-				every_in_list = {
+				every_in_list = { 
 					list = secret_setup
-					random_list = {
-						60 = {
+					random_list = { 
+						60 = { 
 							give_random_likely_secret_effect = yes
 						}
-						60 = {}
+						60 = { }
 					}
 				}
-				random_in_list = {
+				random_in_list = { 
 					list = secret_setup
-					limit = {
+					limit = { 
 						top_liege = scope:recipient.top_liege
-						any_secret = {
-							NOT = {
+						any_secret = { 
+							NOT = { 
 								is_known_by = scope:recipient
 							}
 						}
 					}
-					random_secret = {
-						limit = {
-							NOT = {
+					random_secret = { 
+						limit = { 
+							NOT = { 
 								is_known_by = scope:recipient
 							}
 						}
 						reveal_to = scope:recipient
 					}
 				}
-				random_in_list = {
+				random_in_list = { 
 					list = secret_setup
-					limit = {
-						NOT = {
+					limit = { 
+						NOT = { 
 							top_liege = scope:recipient.top_liege
 						}
-						any_secret = {
-							NOT = {
+						any_secret = { 
+							NOT = { 
 								is_known_by = scope:recipient
 							}
 						}
 					}
-					random_secret = {
-						limit = {
-							NOT = {
+					random_secret = { 
+						limit = { 
+							NOT = { 
 								is_known_by = scope:recipient
 							}
 						}
 						reveal_to = scope:recipient
 					}
 				}
-				every_in_list = {
+				every_in_list = { 
 					list = secret_setup
 					save_scope_as = reveal_to_me
-					random = {
+					random = { 
 						chance = 75
-						random_in_list = {
+						random_in_list = { 
 							list = secret_setup
-							limit = {
-								any_secret = {
-									NOT = {
+							limit = { 
+								any_secret = { 
+									NOT = { 
 										is_known_by = scope:reveal_to_me
 									}
 								}
 							}
-							random_secret = {
-								limit = {
-									NOT = {
+							random_secret = { 
+								limit = { 
+									NOT = { 
 										is_known_by = scope:reveal_to_me
 									}
 								}
@@ -149,41 +149,41 @@ set_up_secrets_in_realm_interaction = {
 						}
 					}
 				}
-				random_in_list = {
+				random_in_list = { 
 					list = secret_setup
-					limit = {
-						any_secret = {
+					limit = { 
+						any_secret = { 
 							is_known_by = scope:recipient
 						}
-						NOT = {
+						NOT = { 
 							this = scope:recipient
 						}
 						is_foreign_court_guest = no
 					}
 					save_scope_as = prisoner_secret
-					scope:recipient = {
-						imprison = {
+					scope:recipient = { 
+						imprison = { 
 							target = scope:prisoner_secret
 							type = dungeon
 						}
 					}
 				}
-				random_in_list = {
+				random_in_list = { 
 					list = secret_setup
-					limit = {
-						any_secret = {
-							NOT = {
+					limit = { 
+						any_secret = { 
+							NOT = { 
 								is_known_by = scope:recipient
 							}
 						}
-						NOT = {
+						NOT = { 
 							this = scope:recipient
 						}
 						is_foreign_court_guest = no
 					}
 					save_scope_as = prisoner_secret
-					scope:recipient = {
-						imprison = {
+					scope:recipient = { 
+						imprison = { 
 							target = scope:prisoner_secret
 							type = dungeon
 						}
@@ -194,93 +194,99 @@ set_up_secrets_in_realm_interaction = {
 	}
 	auto_accept = yes
 }
-add_weak_hook_interaction = {
+add_weak_hook_interaction = { 
 	category = interaction_debug_main
 	use_diplomatic_range = no
 	ignores_pending_interaction_block = yes
-	is_shown = {
+	is_shown = { 
 		can_do_normal_interaction = yes
 		debug_only = yes
-		NOT = {
+		NOT = { 
 			scope:recipient = scope:actor
 		}
 	}
 	auto_accept = yes
-	on_accept = {
-		scope:actor = {
-			add_hook = {
+	on_accept = { 
+		scope:actor = { 
+			add_hook = { 
 				target = scope:recipient
 				type = favor_hook
 			}
 		}
 	}
 }
-add_strong_hook_interaction = {
+add_strong_hook_interaction = { 
 	category = interaction_debug_main
 	use_diplomatic_range = no
 	ignores_pending_interaction_block = yes
-	is_shown = {
+	is_shown = { 
 		can_do_normal_interaction = yes
 		debug_only = yes
-		NOT = {
+		NOT = { 
 			scope:recipient = scope:actor
 		}
 	}
 	auto_accept = yes
-	on_accept = {
-		scope:actor = {
-			add_hook = {
+	on_accept = { 
+		scope:actor = { 
+			add_hook = { 
 				target = scope:recipient
 				type = strong_test_hook
 			}
 		}
 	}
 }
-add_character_weight_interaction = {
+add_character_weight_interaction = { 
 	category = interaction_debug_main
 	use_diplomatic_range = no
 	ignores_pending_interaction_block = yes
-	is_shown = {
+	is_shown = { 
 		can_do_normal_interaction = yes
 		debug_only = yes
 	}
-	on_accept = {
-		scope:recipient = {
+	on_accept = { 
+		scope:recipient = { 
 			change_current_weight = 25
+			trigger_event = { 
+				on_action = on_weight_changed
+			}
 		}
 	}
 	auto_accept = yes
 }
-remove_character_weight_interaction = {
+remove_character_weight_interaction = { 
 	category = interaction_debug_main
 	use_diplomatic_range = no
 	ignores_pending_interaction_block = yes
-	is_shown = {
+	is_shown = { 
 		can_do_normal_interaction = yes
 		debug_only = yes
 	}
-	on_accept = {
-		scope:recipient = {
+	on_accept = { 
+		scope:recipient = { 
 			change_current_weight = -25
+			trigger_event = { 
+				on_action = on_weight_changed
+			}
 		}
 	}
 	auto_accept = yes
 }
-slay_character_interaction = {
+slay_character_interaction = { 
 	category = interaction_debug_main
 	use_diplomatic_range = no
 	ignores_pending_interaction_block = yes
 	interface_priority = -1
-	is_shown = {
+	is_shown = { 
 		can_do_normal_interaction = yes
 		debug_only = yes
 	}
-	on_accept = {
-		random_independent_ruler = {
+	on_accept = { 
+		random_independent_ruler = { 
 			save_scope_as = rando
 		}
-		scope:recipient = {
-			death = {
+		scope:recipient = { 
+			death = { 
 				death_reason = death_duel
 				killer = scope:rando
 			}
@@ -288,17 +294,17 @@ slay_character_interaction = {
 	}
 	auto_accept = yes
 }
-give_bubonic_plague_interaction = {
+give_bubonic_plague_interaction = { 
 	category = interaction_debug_main
 	use_diplomatic_range = no
 	ignores_pending_interaction_block = yes
 	interface_priority = -1
-	is_shown = {
+	is_shown = { 
 		can_do_normal_interaction = yes
 		debug_only = yes
 	}
-	on_accept = {
-		scope:recipient = {
+	on_accept = { 
+		scope:recipient = { 
 			add_trait = bubonic_plague
 		}
 	}

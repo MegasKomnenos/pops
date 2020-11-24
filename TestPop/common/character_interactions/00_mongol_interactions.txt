@@ -1,39 +1,39 @@
-﻿mongol_demand_subjugation_interaction = {
+﻿mongol_demand_subjugation_interaction = { 
 	category = interaction_category_hostile
 	auto_accept = yes
 	use_diplomatic_range = yes
 	desc = mongol_demand_subjugation_interaction_desc
-	is_shown = {
+	is_shown = { 
 		can_do_normal_interaction = yes
-		scope:actor = {
-			any_owned_story = {
+		scope:actor = { 
+			any_owned_story = { 
 				story_type = story_mongol_invasion
 			}
 			highest_held_title_tier = tier_empire
 			is_independent_ruler = yes
 		}
-		scope:recipient = {
-			NOT = {
+		scope:recipient = { 
+			NOT = { 
 				this = scope:actor
 			}
 			is_independent_ruler = yes
-			any_neighboring_top_liege_realm_owner = {
+			any_neighboring_top_liege_realm_owner = { 
 				this = scope:actor
 			}
 		}
 	}
-	is_valid_showing_failures_only = {
-		scope:recipient = {
+	is_valid_showing_failures_only = { 
+		scope:recipient = { 
 			highest_held_title_tier <= tier_kingdom
 		}
 	}
-	on_accept = {
+	on_accept = { 
 		custom_tooltip = mongol_demand_subjugation_interaction_tooltip
-		hidden_effect = {
-			scope:actor = {
+		hidden_effect = { 
+			scope:actor = { 
 				save_scope_as = mongol_emperor
 			}
-			scope:recipient = {
+			scope:recipient = { 
 				send_mongol_subjugation_demand_effect = yes
 			}
 		}

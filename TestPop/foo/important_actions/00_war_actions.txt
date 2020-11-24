@@ -1,48 +1,49 @@
-﻿action_has_any_display_cb_on = {
+﻿action_has_any_display_cb_on = { 
+	priority = 600
 	combine_into_one = yes
-	check_create_action = {
-		if = {
-			limit = {
+	check_create_action = { 
+		if = { 
+			limit = { 
 				is_character = yes
 			}
-			if = {
-				limit = {
+			if = { 
+				limit = { 
 					gold >= 0
 				}
-				every_neighboring_and_across_water_top_liege_realm_owner = {
-					limit = {
+				every_neighboring_and_across_water_top_liege_realm_owner = { 
+					limit = { 
 						save_temporary_scope_as = this_ruler
-						root = {
+						root = { 
 							has_any_cb_on = scope:this_ruler
-							NOR = {
+							NOR = { 
 								is_allied_to = scope:this_ruler
 								has_truce = scope:this_ruler
 							}
 						}
 					}
-					try_create_important_action = {
+					try_create_important_action = { 
 						important_action_type = action_has_any_display_cb_on
 						actor = root
 						recipient = this
 					}
 				}
-				if = {
-					limit = {
+				if = { 
+					limit = { 
 						is_independent_ruler = no
 					}
-					liege = {
-						every_vassal = {
-							limit = {
+					liege = { 
+						every_vassal = { 
+							limit = { 
 								save_temporary_scope_as = this_ruler
-								root = {
+								root = { 
 									has_any_cb_on = scope:this_ruler
-									NOR = {
+									NOR = { 
 										is_allied_to = scope:this_ruler
 										has_truce = scope:this_ruler
 									}
 								}
 							}
-							try_create_important_action = {
+							try_create_important_action = { 
 								important_action_type = action_has_any_display_cb_on
 								actor = root
 								recipient = this
@@ -53,33 +54,39 @@
 			}
 		}
 	}
-	effect = {
-		open_interaction_window = {
+	unimportant = { 
+		scope:recipient = { 
+			max_military_strength > root.max_military_strength
+		}
+	}
+	effect = { 
+		open_interaction_window = { 
 			interaction = declare_war_interaction
 			actor = scope:actor
 			recipient = scope:recipient
 		}
 	}
 }
-action_can_call_ally = {
+action_can_call_ally = { 
+	priority = 1000
 	combine_into_one = yes
-	check_create_action = {
-		if = {
-			limit = {
+	check_create_action = { 
+		if = { 
+			limit = { 
 				is_character = yes
 			}
-			every_ally = {
+			every_ally = { 
 				save_temporary_scope_as = ally
-				if = {
-					limit = {
-						prev = {
-							is_character_interaction_valid = {
+				if = { 
+					limit = { 
+						prev = { 
+							is_character_interaction_valid = { 
 								recipient = scope:ally
 								interaction = call_ally_interaction
 							}
 						}
 					}
-					try_create_important_action = {
+					try_create_important_action = { 
 						important_action_type = action_can_call_ally
 						actor = root
 						recipient = scope:ally
@@ -88,38 +95,39 @@ action_can_call_ally = {
 			}
 		}
 	}
-	effect = {
-		open_interaction_window = {
+	effect = { 
+		open_interaction_window = { 
 			interaction = call_ally_interaction
 			actor = scope:actor
 			recipient = scope:recipient
 		}
 	}
 }
-action_can_call_house_member = {
+action_can_call_house_member = { 
+	priority = 1000
 	combine_into_one = yes
-	check_create_action = {
-		if = {
-			limit = {
+	check_create_action = { 
+		if = { 
+			limit = { 
 				is_character = yes
 			}
-			if = {
-				limit = {
+			if = { 
+				limit = { 
 					is_house_head = yes
 				}
-				house = {
-					every_house_member = {
+				house = { 
+					every_house_member = { 
 						save_temporary_scope_as = member
-						if = {
-							limit = {
-								root = {
-									is_character_interaction_valid = {
+						if = { 
+							limit = { 
+								root = { 
+									is_character_interaction_valid = { 
 										recipient = scope:member
 										interaction = call_house_member_to_war_interaction
 									}
 								}
 							}
-							try_create_important_action = {
+							try_create_important_action = { 
 								important_action_type = action_can_call_house_member
 								actor = root
 								recipient = scope:member
@@ -130,38 +138,39 @@ action_can_call_house_member = {
 			}
 		}
 	}
-	effect = {
-		open_interaction_window = {
+	effect = { 
+		open_interaction_window = { 
 			interaction = call_house_member_to_war_interaction
 			actor = scope:actor
 			recipient = scope:recipient
 		}
 	}
 }
-action_can_call_dynasty_member = {
+action_can_call_dynasty_member = { 
+	priority = 1000
 	combine_into_one = yes
-	check_create_action = {
-		if = {
-			limit = {
+	check_create_action = { 
+		if = { 
+			limit = { 
 				is_character = yes
 			}
-			if = {
-				limit = {
+			if = { 
+				limit = { 
 					is_dynast = yes
 				}
-				dynasty = {
-					every_dynasty_member = {
+				dynasty = { 
+					every_dynasty_member = { 
 						save_temporary_scope_as = member
-						if = {
-							limit = {
-								root = {
-									is_character_interaction_valid = {
+						if = { 
+							limit = { 
+								root = { 
+									is_character_interaction_valid = { 
 										recipient = scope:member
 										interaction = call_dynasty_member_to_war_interaction
 									}
 								}
 							}
-							try_create_important_action = {
+							try_create_important_action = { 
 								important_action_type = action_can_call_dynasty_member
 								actor = root
 								recipient = scope:member
@@ -172,33 +181,33 @@ action_can_call_dynasty_member = {
 			}
 		}
 	}
-	effect = {
-		open_interaction_window = {
+	effect = { 
+		open_interaction_window = { 
 			interaction = call_dynasty_member_to_war_interaction
 			actor = scope:actor
 			recipient = scope:recipient
 		}
 	}
 }
-action_not_enough_knights = {
-	check_create_action = {
-		if = {
-			limit = {
+action_not_enough_knights = { 
+	check_create_action = { 
+		if = { 
+			limit = { 
 				is_character = yes
 			}
-			if = {
-				limit = {
+			if = { 
+				limit = { 
 					max_number_of_knights > root.number_of_knights
 				}
-				try_create_important_action = {
+				try_create_important_action = { 
 					important_action_type = action_not_enough_knights
 					actor = root
 				}
 			}
 		}
 	}
-	effect = {
-		root = {
+	effect = { 
+		root = { 
 			open_view = military
 			open_view = knights
 		}

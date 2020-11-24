@@ -1,60 +1,60 @@
-﻿claim_throne = {
+﻿claim_throne = { 
 	skill = learning
 	hostile = yes
-	allow = {
+	allow = { 
 		is_character = yes
 		has_perk = meritocracy_perk
 		is_adult = yes
 		is_landed = yes
 		is_imprisoned = no
 	}
-	valid = {
-		scope:owner = {
+	valid = { 
+		scope:owner = { 
 			exists = liege
 			liege = scope:target
 		}
-		scope:target = {
+		scope:target = { 
 			is_landed = yes
 			exists = location
 		}
-		custom_description = {
+		custom_description = { 
 			text = already_has_strong_claim_on
 			object = scope:target
-			scope:owner = {
-				NOT = {
+			scope:owner = { 
+				NOT = { 
 					has_strong_claim_on = scope:target.primary_title
 				}
 			}
 		}
-		NOT = {
-			scope:owner = {
+		NOT = { 
+			scope:owner = { 
 				is_ai = yes
-				has_opinion_modifier = {
+				has_opinion_modifier = { 
 					target = scope:target
 					modifier = repentant_opinion
 				}
 			}
 		}
 	}
-	valid_agent = {
+	valid_agent = { 
 		age >= 14
 	}
-	agent_join_chance = {
+	agent_join_chance = { 
 		base = 0
-		modifier = {
+		modifier = { 
 			add = -20
 			desc = BASE_RELUCTANCE
 		}
-		modifier = {
+		modifier = { 
 			add = 10
 			exists = scope:gift
 			always = scope:gift
-			NOT = {
-				OR = {
-					scope:target = {
+			NOT = { 
+				OR = { 
+					scope:target = { 
 						is_parent_of = root
 					}
-					root = {
+					root = { 
 						is_parent_of = scope:target
 					}
 				}
@@ -63,110 +63,110 @@
 		}
 		hostile_murder_agent_base_join_chance_modifier = yes
 	}
-	base_success_chance = {
+	base_success_chance = { 
 		base = 5
-		compare_modifier = {
+		compare_modifier = { 
 			desc = "SCHEME_MY_LEARNING"
 			value = scope:owner.learning
 			multiplier = 2
 		}
-		compare_modifier = {
+		compare_modifier = { 
 			desc = "SCHEME_MY_INTRIGUE"
 			value = scope:owner.intrigue
 		}
-		modifier = {
+		modifier = { 
 			desc = "SCHEME_I_AM_COUNCILLOR_OF_TARGET"
 			add = 25
-			scope:owner = {
+			scope:owner = { 
 				is_councillor_of = scope:target
 			}
 		}
-		modifier = {
+		modifier = { 
 			add = -30
 			always = scope:exposed
 			desc = "SCHEME_IS_EXPOSED"
 		}
 	}
-	agent_success_chance = {
+	agent_success_chance = { 
 		base = 0
-		compare_modifier = {
+		compare_modifier = { 
 			desc = "SCHEME_AGENT_LEARNING"
 			value = learning
 			multiplier = 2
 		}
-		modifier = {
+		modifier = { 
 			add = 25
 			desc = CLAIM_THRONE_SCHEME_AGENT_COUNCILLOR
 			is_councillor_of = scope:target
-			trigger_if = {
-				limit = {
+			trigger_if = { 
+				limit = { 
 					exists = scope:target.cp:councillor_court_chaplain
 				}
-				NOT = {
+				NOT = { 
 					this = scope:target.cp:councillor_court_chaplain
 				}
 			}
 		}
-		modifier = {
+		modifier = { 
 			add = 50
 			desc = CLAIM_THRONE_SCHEME_AGENT_COURT_CHAPLAIN
 			exists = scope:target.cp:councillor_court_chaplain
 			this = scope:target.cp:councillor_court_chaplain
 		}
-		modifier = {
+		modifier = { 
 			add = 10
 			DESC = CLAIM_THRONE_SCHEME_AGENT_VASSAL
 			is_vassal_of = scope:target
-			NOT = {
+			NOT = { 
 				is_councillor_of = scope:target
 			}
 		}
 	}
 	agent_leave_threshold = -10
-	cooldown = {
+	cooldown = { 
 		years = 2
 	}
 	is_secret = yes
 	base_secrecy = 10
-	on_ready = {
-		scheme_target.primary_title = {
+	on_ready = { 
+		scheme_target.primary_title = { 
 			save_scope_as = target_title
 		}
-		scheme_owner = {
-			if = {
-				limit = {
+		scheme_owner = { 
+			if = { 
+				limit = { 
 					has_character_flag = is_executing_claim_throne
 				}
-				trigger_event = {
+				trigger_event = { 
 					on_action = claim_throne_setup
 					days = 1
 				}
 			}
-			else = {
-				trigger_event = {
+			else = { 
+				trigger_event = { 
 					on_action = claim_throne_setup
 				}
 			}
 		}
 	}
-	on_monthly = {
+	on_monthly = { 
 		hostile_scheme_discovery_chance_effect = yes
-		if = {
-			limit = {
-				NOT = {
+		if = { 
+			limit = { 
+				NOT = { 
 					exists = scope:discovery_event_happening
 				}
 			}
-			scheme_owner = {
-				trigger_event = {
+			scheme_owner = { 
+				trigger_event = { 
 					on_action = claim_throne_ongoing
-					days = { 1 30 }
+					days = { 1 30}
 				}
 			}
 		}
 	}
-	on_invalidated = {
-		scheme_owner = {
+	on_invalidated = { 
+		scheme_owner = { 
 			trigger_event = claim_throne_outcome.9999
 		}
 	}

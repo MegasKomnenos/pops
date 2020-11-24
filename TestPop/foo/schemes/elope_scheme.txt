@@ -1,30 +1,30 @@
-﻿elope = {
+﻿elope = { 
 	skill = intrigue
 	hostile = no
-	allow = {
+	allow = { 
 		is_character = yes
 		is_adult = yes
 		is_landed = yes
 		is_imprisoned = no
 	}
-	valid = {
-		scope:target = {
+	valid = { 
+		scope:target = { 
 			is_alive = yes
 			is_imprisoned = no
 			is_courtier = yes
-			NOT = {
+			NOT = { 
 				is_courtier_of = scope:owner
 			}
-			could_marry_character_trigger = {
+			could_marry_character_trigger = { 
 				CHARACTER = scope:owner
 			}
 		}
-		custom_description = {
+		custom_description = { 
 			object = scope:target
 			text = you_have_been_caught_trying_to_elope_with_target
-			scope:target.liege = {
-				NOT = {
-					has_opinion_modifier = {
+			scope:target.liege = { 
+				NOT = { 
+					has_opinion_modifier = { 
 						target = scope:owner
 						modifier = attempted_elopement_opinion
 					}
@@ -32,19 +32,19 @@
 			}
 		}
 	}
-	valid_agent = {
+	valid_agent = { 
 		age >= 14
 	}
-	agent_join_chance = {
+	agent_join_chance = { 
 		base = 0
-		modifier = {
-			add = {
+		modifier = { 
+			add = { 
 				value = -20
-				if = {
-					limit = {
+				if = { 
+					limit = { 
 						ai_energy < 0
 					}
-					add = {
+					add = { 
 						value = ai_energy
 						multiply = 0.5
 					}
@@ -52,16 +52,16 @@
 			}
 			desc = BASE_RELUCTANCE
 		}
-		modifier = {
+		modifier = { 
 			add = bribe_acceptance_value
 			exists = scope:gift
 			always = scope:gift
-			NOT = {
-				OR = {
-					scope:target = {
+			NOT = { 
+				OR = { 
+					scope:target = { 
 						is_parent_of = root
 					}
-					root = {
+					root = { 
 						is_parent_of = scope:target
 					}
 				}
@@ -70,53 +70,53 @@
 		}
 		hostile_murder_agent_base_join_chance_modifier = yes
 	}
-	base_success_chance = {
+	base_success_chance = { 
 		base = 25
-		modifier = {
-			add = {
+		modifier = { 
+			add = { 
 				value = scope:owner.intrigue
 				multiply = 2.5
 			}
 			desc = ELOPE_SUCCESS_OWNER_INTRIGUE
 		}
-		modifier = {
-			add = {
+		modifier = { 
+			add = { 
 				value = scope:target.intrigue
 				multiply = 2.5
 			}
 			desc = ELOPE_SUCCESS_TARGET_INTRIGUE
 		}
-		modifier = {
-			add = {
+		modifier = { 
+			add = { 
 				value = scope:target.liege.intrigue
 				multiply = -2.5
 			}
 			desc = ELOPE_SUCCESS_TARGETS_LIEGE_INTRIGUE
 		}
-		modifier = {
+		modifier = { 
 			exists = scope:target.liege.cp:councillor_spymaster
-			NOR = {
+			NOR = { 
 				scope:target.liege.cp:councillor_spymaster = scope:target
-				scope:owner = {
-					any_scheme = {
+				scope:owner = { 
+					any_scheme = { 
 						scheme_target = scope:target
 						scheme_is_character_agent = scope:target.liege.cp:councillor_spymaster
 					}
 				}
 			}
-			add = {
+			add = { 
 				value = scope:target.liege.cp:councillor_spymaster.intrigue
 				multiply = -2.5
 			}
 			desc = ELOPE_SUCCESS_TARGETS_LIEGES_SPYMASTER_INTRIGUE
 		}
-		modifier = {
-			scope:target = {
-				NOR = {
-					is_of_major_interest_trigger = {
+		modifier = { 
+			scope:target = { 
+				NOR = { 
+					is_of_major_interest_trigger = { 
 						CHARACTER = scope:target.liege
 					}
-					is_of_minor_interest_trigger = {
+					is_of_minor_interest_trigger = { 
 						CHARACTER = scope:target.liege
 					}
 				}
@@ -124,25 +124,25 @@
 			desc = ELOPE_SUCCESS_UNIMPORTANT
 			add = 15
 		}
-		modifier = {
+		modifier = { 
 			add = courtship_court_success_chance_bonus_value
 			desc = SCHEME_COURTSHIP_PERK
-			scope:owner = {
+			scope:owner = { 
 				has_perk = courtship_perk
 			}
 		}
-		modifier = {
+		modifier = { 
 			add = -20
 			desc = ELOPE_SUCCESS_TARGETS_LIEGE_KNOWS_ABOUT_RELATIONSHIP
-			scope:owner = {
-				OR = {
-					NOT = {
-						any_secret = {
+			scope:owner = { 
+				OR = { 
+					NOT = { 
+						any_secret = { 
 							secret_type = secret_lover
 							secret_target = scope:target
 						}
 					}
-					any_secret = {
+					any_secret = { 
 						secret_type = secret_lover
 						secret_target = scope:target
 						is_known_by = scope:target.liege
@@ -150,17 +150,17 @@
 				}
 			}
 		}
-		modifier = {
+		modifier = { 
 			add = -30
-			scope:target = {
+			scope:target = { 
 				is_imprisoned = yes
 			}
 			desc = ELOPE_SUCCESS_IMPRISONED
 		}
-		opinion_modifier = {
-			trigger = {
-				scope:target = {
-					opinion = {
+		opinion_modifier = { 
+			trigger = { 
+				scope:target = { 
+					opinion = { 
 						target = scope:owner
 						value < 0
 					}
@@ -171,78 +171,78 @@
 			multiplier = 3
 		}
 	}
-	agent_success_chance = {
+	agent_success_chance = { 
 		base = 0
 		hostile_scheme_agent_success_chance_modifier = yes
 	}
 	agent_leave_threshold = -25
-	cooldown = {
+	cooldown = { 
 		years = 10
 	}
 	is_secret = yes
 	base_secrecy = 10
-	on_ready = {
-		scheme_owner = {
-			if = {
-				limit = {
+	on_ready = { 
+		scheme_owner = { 
+			if = { 
+				limit = { 
 					is_ai = no
 				}
 				trigger_event = elope.0001
 			}
-			else = {
+			else = { 
 				trigger_event = elope.0002
 			}
 		}
 	}
-	on_monthly = {
+	on_monthly = { 
 		hostile_scheme_discovery_chance_effect = yes
-		if = {
-			limit = {
-				NOT = {
+		if = { 
+			limit = { 
+				NOT = { 
 					exists = scope:discovery_event_happening
 				}
 			}
-			scheme_owner = {
-				trigger_event = {
+			scheme_owner = { 
+				trigger_event = { 
 					on_action = elope_ongoing
-					days = { 1 15 }
+					days = { 1 15}
 				}
 			}
 		}
 	}
-	on_invalidated = {
-		if = {
-			limit = {
-				scope:target = {
+	on_invalidated = { 
+		if = { 
+			limit = { 
+				scope:target = { 
 					is_alive = no
 				}
 			}
-			scope:owner = {
-				send_interface_toast = {
+			scope:owner = { 
+				send_interface_toast = { 
 					title = elope_scheme_invalidated_title
 					left_icon = scope:target
-					custom_description_no_bullet = {
+					custom_description_no_bullet = { 
 						object = scope:target
 						text = scheme_target_died
 					}
 				}
 			}
 		}
-		if = {
-			limit = {
-				scope:target = {
+		if = { 
+			limit = { 
+				scope:target = { 
 					is_imprisoned = yes
 				}
 			}
-			scope:target.imprisoner = {
+			scope:target.imprisoner = { 
 				save_scope_as = other_imprisoner
 			}
-			scope:owner = {
-				send_interface_toast = {
+			scope:owner = { 
+				send_interface_toast = { 
 					title = elope_scheme_invalidated_title
 					left_icon = scope:target
 					right_icon = scope:other_imprisoner
-					custom_description_no_bullet = {
+					custom_description_no_bullet = { 
 						subject = scope:other_imprisoner
 						object = scope:target
 						text = scheme_target_imprisoned_by_other
@@ -250,21 +250,21 @@
 				}
 			}
 		}
-		if = {
-			limit = {
-				scope:target = {
+		if = { 
+			limit = { 
+				scope:target = { 
 					is_courtier = no
 					exists = var:last_visited_ruler
 				}
 			}
-			scope:target.var:last_visited_ruler = {
+			scope:target.var:last_visited_ruler = { 
 				save_scope_as = target_liege
 			}
-			scope:owner = {
-				send_interface_toast = {
+			scope:owner = { 
+				send_interface_toast = { 
 					title = elope_scheme_invalidated_title
 					left_icon = scope:target
-					custom_description_no_bullet = {
+					custom_description_no_bullet = { 
 						subject = scope:target_liege
 						object = scope:target
 						text = scheme_target_no_longer_courtier
@@ -272,37 +272,37 @@
 				}
 			}
 		}
-		if = {
-			limit = {
-				scope:target = {
+		if = { 
+			limit = { 
+				scope:target = { 
 					is_courtier = no
-					NOT = {
+					NOT = { 
 						exists = var:last_visited_ruler
 					}
 				}
 			}
-			scope:owner = {
-				send_interface_toast = {
+			scope:owner = { 
+				send_interface_toast = { 
 					title = elope_scheme_invalidated_title
 					left_icon = scope:target
-					custom_description_no_bullet = {
+					custom_description_no_bullet = { 
 						subject = scope:target
 						text = scheme_target_no_longer_courtier_no_var
 					}
 				}
 			}
 		}
-		if = {
-			limit = {
-				scope:target = {
+		if = { 
+			limit = { 
+				scope:target = { 
 					is_courtier_of = scope:owner
 				}
 			}
-			scope:owner = {
-				send_interface_toast = {
+			scope:owner = { 
+				send_interface_toast = { 
 					title = elope_scheme_invalidated_title
 					left_icon = scope:target
-					custom_description_no_bullet = {
+					custom_description_no_bullet = { 
 						subject = scope:target
 						text = scheme_target_is_your_courtier
 					}
