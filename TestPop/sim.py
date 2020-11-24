@@ -403,17 +403,22 @@ sim_run.02 = {
 				trigger_event = { id = census.09 }
 				trigger_event = { id = census.10 }
 				trigger_event = { id = census.11 }
-				trigger_event = { id = census.13 }
-
-				every_province = {
+				
+				set_variable = { name = sim_t value = 12 }
+				
+				while = {
 					limit = {
-						is_valid_prov = yes
+						has_variable = sim_t
+						
+						var:sim_t > 0
 					}
-					change_variable = { name = pop_wealth add = var:pop_earn_free } 
-					change_variable = { name = pop_wealth subtract = var:pop_pay_free }
+					change_variable = { name = sim_t subtract = 1 }
 					
-					if = {
+					trigger_event = { id = census.12 }
+					
+					every_province = {
 						limit = {
+							is_valid_prov = yes
 							is_city = yes
 						}
 						change_variable = { name = pop_wealth subtract = var:realm_tax_pay }
@@ -430,55 +435,35 @@ sim_run.02 = {
 									}
 								}
 							}
-							change_variable = { name = pop_wealth add = { value = var:realm_tax_pay divide = 1.5 } }
+							change_variable = { name = pop_wealth add = { value = var:realm_tax_pay divide = 2 } }
 						}
 					}
-				}
-				every_in_global_list = {
-					variable = trade_merchants
-					
-					change_variable = { name = trade_wealth add = var:trade_earn }
-					change_variable = { name = trade_wealth subtract = var:trade_pay }
-					
-					if = {
+					every_ruler = {
 						limit = {
-							OR = {
-								NOT = {
-									has_variable = trade_wealth
-								}
-								
-								var:trade_wealth <= 0
-							}
+							is_character = yes
+							is_landed = yes
 						}
-						set_variable = { name = trade_wealth value = 0 }
-					}
-				}
-
-				every_ruler = {
-					limit = {
-						is_character = yes
-						is_landed = yes
-					}
-					set_variable = { name = sim_balance value = yearly_character_balance }
-					if = { limit = { has_variable = trade_earn } change_variable = { name = sim_balance add = var:trade_earn } }
-					if = { limit = { has_variable = trade_pay } change_variable = { name = sim_balance subtract = var:trade_pay } }
-					
-					if = {
-						limit = {
-							has_variable = sim_balance
-							
-							var:sim_balance > 0
-						}
-						eff_binary_1_16 = { name = sim_balance eff = add_gold }
-					}
-					else = {
-						change_variable = { name = sim_balance multiply = -1 }
+						set_variable = { name = sim_balance value = monthly_character_balance }
 						
-						eff_binary_1_16 = { name = sim_balance eff = remove_short_term_gold }
-					}
+						if = {
+							limit = {
+								has_variable = sim_balance
+								
+								var:sim_balance > 0
+							}
+							eff_binary_1_16 = { name = sim_balance eff = add_gold }
+						}
+						else = {
+							change_variable = { name = sim_balance multiply = -1 }
+							
+							eff_binary_1_16 = { name = sim_balance eff = remove_short_term_gold }
+						}
 
-					remove_variable = sim_balance
+						remove_variable = sim_balance
+					}
 				}
+				
+				remove_variable = sim_t
 				
 				set_variable = { name = t_disp value = global_var:sim_i }
 				
@@ -778,8 +763,7 @@ sim_run.02 = {
 					set_variable = { name = trade_gold value = prev.gold }
 					set_variable = { name = trade_mp value = prev.var:mil_mp }
 					set_variable = { name = trade_supply value = prev.var:mil_supply }
-					set_variable = { name = trade_mp_garrison value = prev.var:mil_mp_garrison }
-					set_variable = { name = trade_supply_garrison value = prev.var:mil_supply_garrison }
+					set_variable = { name = trade_power value = prev.var:mil_power }
 				}
 				
 				clear_variable_list = trade_dat_&goods&

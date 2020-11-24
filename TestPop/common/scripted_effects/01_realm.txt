@@ -1,632 +1,4 @@
 ﻿realm_update = {
-	every_sub_realm_barony = {
-		limit = {
-			title_province = {
-				is_valid_prov = yes
-				is_city = yes
-			}
-		}
-		prev = {
-			add_to_variable_list = { name = realm_update_t target = prev.duchy.var:region_region }
-		}
-	}
-	
-	every_in_global_list = {
-		limit = {
-			has_variable_list = region_controls
-			is_target_in_variable_list = { name = region_controls target = prev }
-			
-			NOT = {
-				prev = {
-					is_target_in_variable_list = { name = realm_update_t target = prev }
-				}
-			}
-		}
-		variable = region_regions
-		
-		remove_list_variable_return_index = { name = region_controls target = prev return = realm_update_t }
-		array_remove = { name = region_controls ind = global_var:realm_update_t.compare_value }
-		
-		remove_list_variable_return_index = { name = region_dists target = prev return = realm_update_t }
-		array_remove = { name = region_dists ind = global_var:realm_update_t.compare_value }
-		
-		remove_list_variable_return_index = { name = region_costs target = prev return = realm_update_t }
-		array_remove = { name = region_costs ind = global_var:realm_update_t.compare_value }
-		
-		remove_list_variable_return_index = { name = region_costs_total target = prev return = realm_update_t }
-		array_remove = { name = region_costs_total ind = global_var:realm_update_t.compare_value }
-		
-		set_global_variable = { name = realm_update_t value = -1 }
-		
-		remove_list_variable_return_index = { name = region_garrisons target = prev return = realm_update_t }
-		
-		if = {
-			limit = {
-				global_var:realm_update_t >= 0
-			}
-			array_remove = { name = region_garrisons ind = global_var:realm_update_t.compare_value }
-		}
-	}
-	
-	every_in_list = {
-		variable = realm_update_t
-		
-		set_variable = { name = realm_update_x_diff value = var:region_x }
-		set_variable = { name = realm_update_y_diff value = var:region_y }
-		
-		change_variable = { name = realm_update_x_diff subtract = prev.capital_province.var:prov_x }
-		change_variable = { name = realm_update_y_diff subtract = prev.capital_province.var:prov_y }
-		
-		dist_effect = { diff_x = var:realm_update_x_diff diff_y = var:realm_update_y_diff return = realm_update_dist }
-		
-		if = {
-			limit = {
-				has_variable_list = region_dists
-				is_target_in_variable_list = { name = region_dists target = prev }
-			}
-			remove_list_variable_return_index = { name = region_dists target = prev return = realm_update_t }
-			array_remove = { name = region_dists ind = global_var:realm_update_t.compare_value }
-		}
-		
-		add_to_variable_list = { name = region_dists target = prev }
-		array_add = { name = region_dists value = var:realm_update_dist dec = 10 }
-		
-		set_variable = { name = realm_update_fort value = 1 }
-		set_variable = { name = realm_update_fort_num value = 0 }
-		
-		save_temporary_scope_as = realm_update_t
-		
-		prev = {
-			every_held_title = {
-				limit = {
-					tier = tier_barony
-					
-					is_leased_out = no
-					
-					duchy.var:region_region = scope:realm_update_t
-				}
-				title_province = {
-					set_variable = { name = realm_update_fort value = fort_level }
-					
-					while = {
-						limit = {
-							var:realm_update_fort > 0
-						}
-						change_variable = { name = realm_update_fort subtract = 1 }
-						
-						scope:realm_update_t = {
-							pow_effect = {
-								inp = 1.25
-								exp = var:realm_update_fort_num
-								return = realm_update_t
-							}
-							
-							change_variable = { name = realm_update_fort add = { value = 0.6 divide = var:realm_update_t } }
-							change_variable = { name = realm_update_fort_num add = 1 }
-						}
-					}
-					
-					remove_variable = realm_update_fort
-				}
-			}
-		}
-		
-		sqrt_effect = {
-			inp = var:realm_update_dist
-			return = realm_update_cost
-		}
-		change_variable = { name = realm_update_cost divide = 5 }
-		change_variable = { name = realm_update_cost divide = var:realm_update_fort }
-		change_variable = { name = realm_update_cost add = 0.5 }
-		
-		if = {
-			limit = {
-				has_variable_list = region_costs
-				is_target_in_variable_list = { name = region_costs target = prev }
-			}
-			remove_list_variable_return_index = { name = region_costs target = prev return = realm_update_t }
-			array_remove = { name = region_costs ind = global_var:realm_update_t.compare_value }
-		}
-		
-		add_to_variable_list = { name = region_costs target = prev }
-		array_add = { name = region_costs value = var:realm_update_cost dec = 10 }
-		
-		if = {
-			limit = {
-				has_variable_list = region_garrisons
-				is_target_in_variable_list = { name = region_garrisons target = prev }
-			}
-			set_global_variable = { name = realm_update_t value = 0 }
-			
-			prev = {
-				save_temporary_scope_as = realm_update_t
-			}
-			
-			every_in_list = {
-				variable = region_garrisons
-				
-				if = {
-					limit = {
-						this = scope:realm_update_t
-					}
-					prev = {
-						array_get = { name = region_garrisons value = global_var:realm_update_t return = realm_update_garrison dec = 100 }
-					}
-				}
-				
-				change_global_variable = { name = realm_update_t add = 1 }
-			}
-		}
-		else = {
-			set_variable = { name = realm_update_garrison value = 0 }
-		}
-		
-		save_temporary_scope_as = realm_update_t
-		
-		set_variable = { name = realm_update_cost value = 0 }
-		
-		prev = {
-			save_temporary_scope_as = realm_update_ttt
-			
-			every_sub_realm_barony = {
-				limit = {
-					duchy.var:region_region = scope:realm_update_t
-					
-					title_province = {
-						is_valid_prov = yes
-						is_city = yes
-					}
-				}
-				holder = {
-					save_temporary_scope_as = realm_update_tt
-				}
-				
-				set_variable = { name = realm_update_tax value = title_province.var:realm_tax_base }
-				change_variable = { name = realm_update_tax divide = 200 }
-				set_variable = { name = realm_update_mp value = title_province.var:realm_mp_base }
-				set_variable = { name = realm_update_supply value = title_province.var:realm_supply_base }
-				
-				if = {
-					limit = {
-						OR = {
-							is_leased_out = yes
-							
-							holder.primary_title.tier = tier_barony
-						}
-					}
-					change_variable = { name = realm_update_tax divide = 2 }
-					change_variable = { name = realm_update_mp divide = 2 }
-					change_variable = { name = realm_update_supply divide = 2 }
-				}
-				
-				if = {
-					limit = {
-						NOT = {
-							holder = scope:realm_update_ttt
-						}
-					}
-					if = {
-						limit = {
-							holder.primary_title.tier > tier_barony
-						}
-						scope:realm_update_t = {
-							set_global_variable = { name = realm_update_t value = 0 }
-						
-							every_in_list = {
-								variable = region_controls
-								
-								if = {
-									limit = {
-										this = scope:realm_update_tt
-									}
-									prev = {
-										array_get = { name = region_controls value = global_var:realm_update_t return = realm_update_t dec = 100 }
-									}
-								}
-								
-								change_global_variable = { name = realm_update_t add = 1 }
-							}
-							
-							prev = {
-								change_variable = { name = realm_update_tax multiply = prev.var:realm_update_t }
-								change_variable = { name = realm_update_mp multiply = prev.var:realm_update_t }
-								change_variable = { name = realm_update_supply multiply = prev.var:realm_update_t }
-								
-								change_variable = { name = realm_update_tax divide = 100 }
-								change_variable = { name = realm_update_mp divide = 100 }
-								change_variable = { name = realm_update_supply divide = 100 }
-							}
-							
-							remove_variable = realm_update_t
-						}
-					}
-					
-					while = {
-						limit = {
-							NOT = {
-								scope:realm_update_tt = {
-									is_vassal_of = scope:realm_update_ttt
-								}
-							}
-						}
-						scope:realm_update_tt.liege = {
-							save_temporary_scope_as = realm_update_tt
-						}
-						
-						scope:realm_update_t = {
-							set_global_variable = { name = realm_update_t value = 0 }
-						
-							every_in_list = {
-								variable = region_controls
-								
-								if = {
-									limit = {
-										this = scope:realm_update_tt
-									}
-									prev = {
-										array_get = { name = region_controls value = global_var:realm_update_t return = realm_update_t dec = 100 }
-									}
-								}
-								
-								change_global_variable = { name = realm_update_t add = 1 }
-							}
-							
-							prev = {
-								change_variable = { name = realm_update_tax multiply = prev.var:realm_update_t }
-								change_variable = { name = realm_update_mp multiply = prev.var:realm_update_t }
-								change_variable = { name = realm_update_supply multiply = prev.var:realm_update_t }
-								
-								change_variable = { name = realm_update_tax divide = 200 }
-								change_variable = { name = realm_update_mp divide = 200 }
-								change_variable = { name = realm_update_supply divide = 200 }
-							}
-							
-							remove_variable = realm_update_t
-						}
-					}
-				}
-				
-				scope:realm_update_t = {
-					change_variable = { name = realm_update_cost add = prev.var:realm_update_tax }
-					change_variable = { name = realm_update_cost add = prev.var:realm_update_mp }
-					change_variable = { name = realm_update_cost add = prev.var:realm_update_supply }
-					change_variable = { name = realm_update_cost add = { value = prev.title_province.var:pop_total divide = 100 } }
-				}
-			}
-		}
-		
-		if = {
-			limit = {
-				has_variable_list = region_costs_total
-				is_target_in_variable_list = { name = region_costs_total target = prev }
-			}
-			remove_list_variable_return_index = { name = region_costs_total target = prev return = realm_update_t }
-			array_remove = { name = region_costs_total ind = global_var:realm_update_t.compare_value }
-		}
-		
-		add_to_variable_list = { name = region_costs_total target = prev }
-		array_add = { name = region_costs_total value = var:realm_update_cost dec = 10 }
-		
-		change_variable = { name = realm_update_garrison add = 0.01 }
-		change_variable = { name = realm_update_garrison multiply = 100 }
-		change_variable = { name = realm_update_garrison divide = var:realm_update_cost }
-		
-		if = {
-			limit = {
-				var:realm_update_garrison > 100
-			}
-			set_variable = { name = realm_update_garrison value = 100 }
-		}
-		
-		sqrt_effect = {
-			inp = var:realm_update_garrison
-			return = realm_update_garrison
-		}
-		
-		change_variable = { name = realm_update_garrison multiply = 10 }
-		
-		if = {
-			limit = {
-				has_variable_list = region_controls
-				is_target_in_variable_list = { name = region_controls target = prev }
-			}
-			remove_list_variable_return_index = { name = region_controls target = prev return = realm_update_t }
-			array_remove = { name = region_controls ind = global_var:realm_update_t.compare_value }
-		}
-		
-		add_to_variable_list = { name = region_controls target = prev }
-		array_add = { name = region_controls value = var:realm_update_garrison dec = 100 }
-		
-		prev = {
-			every_sub_realm_barony = {
-				limit = {
-					duchy.var:region_region = scope:realm_update_t
-					
-					title_province = {
-						is_valid_prov = yes
-						is_city = yes
-					}
-				}
-				set_variable = { name = realm_control value = scope:realm_update_t.var:realm_update_garrison }
-			}
-		}
-		
-		remove_variable = realm_update_x_diff
-		remove_variable = realm_update_y_diff
-		remove_variable = realm_update_dist
-		remove_variable = realm_update_cost
-		remove_variable = realm_update_fort
-		remove_variable = realm_update_fort_num
-		remove_variable = realm_update_garrison
-		remove_variable = realm_update_t
-	}
-	
-	every_sub_realm_barony = {
-		limit = {
-			title_province = {
-				is_valid_prov = yes
-				is_city = yes
-			}
-		}
-		holder = {
-			save_temporary_scope_as = realm_update_t
-		}
-		
-		if = {
-			limit = {
-				is_leased_out = yes
-			}
-			lessee = {
-				save_temporary_scope_as = realm_update_t
-			}
-		}
-		
-		if = {
-			limit = {
-				NOT = {
-					scope:realm_update_t = prev
-				}
-			}
-			while = {
-				limit = {
-					NOT = {
-						scope:realm_update_t.liege = prev
-					}
-				}
-				scope:realm_update_t.liege = {
-					save_temporary_scope_as = realm_update_t
-				}
-			}
-			scope:realm_update_t = {
-				add_to_variable_list = { name = realm_update_t target = prev }
-			}
-			
-			prev = {
-				add_to_variable_list = { name = realm_update_tt target = scope:realm_update_t }
-			}
-		}
-	}
-	
-	every_in_list = {
-		variable = realm_update_tt
-		
-		set_variable = { name = realm_control value = 0.1 }
-		set_variable = { name = realm_update_t value = 0.001 }
-		
-		every_in_list = {
-			variable = realm_update_t
-			
-			set_variable = { name = realm_update_t value = var:realm_update_tax }
-			change_variable = { name = realm_update_t add = var:realm_update_mp }
-			change_variable = { name = realm_update_t add = var:realm_update_supply }
-			change_variable = { name = realm_update_t divide = 10 }
-			
-			prev = {
-				change_variable = { name = realm_control add = { value = prev.var:realm_control multiply = prev.var:realm_update_t } }
-				change_variable = { name = realm_update_t add = prev.var:realm_update_t }
-			}
-			
-			remove_variable = realm_update_t
-		}
-		
-		change_variable = { name = realm_control divide = var:realm_update_t }
-		
-		clear_variable_list = realm_update_t
-		remove_variable = realm_update_t
-	}
-	
-	every_sub_realm_barony = {
-		limit = {
-			title_province = {
-				is_valid_prov = yes
-				is_city = yes
-			}
-			
-			OR = {
-				holder = prev
-				
-				AND = {
-					holder.liege = prev
-					holder.primary_title.tier = tier_barony
-				}
-			}
-		}
-		if = {
-			limit = {
-				OR = {
-					is_leased_out = yes
-					
-					AND = {
-						holder.liege = prev
-						holder.primary_title.tier = tier_barony
-					}
-				}
-			}
-			title_province = {
-				set_variable = { name = realm_tax_pay value = var:realm_tax_base }
-				set_variable = { name = realm_mp_pay value = var:realm_mp_base }
-				set_variable = { name = realm_supply_pay value = var:realm_supply_base }
-			}
-		}
-		else = {
-			title_province = {
-				set_variable = { name = realm_tax_pay value = var:realm_tax_base }
-				set_variable = { name = realm_mp_pay value = var:realm_mp_base }
-				set_variable = { name = realm_supply_pay value = var:realm_supply_base }
-				
-				change_variable = { name = realm_tax_pay multiply = prev.var:realm_control }
-				change_variable = { name = realm_mp_pay multiply = prev.var:realm_control }
-				change_variable = { name = realm_supply_pay multiply = prev.var:realm_control }
-				
-				change_variable = { name = realm_tax_pay divide = 100 }
-				change_variable = { name = realm_mp_pay divide = 100 }
-				change_variable = { name = realm_supply_pay divide = 100 }
-			}
-		}
-	}
-	
-	every_sub_realm_barony = {
-		limit = {
-			title_province = {
-				is_valid_prov = yes
-				is_city = yes
-			}
-		}
-		remove_variable = realm_update_tax
-		remove_variable = realm_update_mp
-		remove_variable = realm_update_supply
-		remove_variable = realm_control
-	}
-	
-	remove_global_variable = realm_update_t
-	clear_variable_list = realm_update_t
-	clear_variable_list = realm_update_tt
-}
-
-realm_update_obligation = {
-	every_province = {
-		limit = {
-			is_valid_prov = yes
-			is_city = yes
-		}
-		if = {
-			limit = {
-				barony = {
-					is_leased_out = yes
-				}
-			}
-			barony.lessee = {
-				add_to_global_variable_list = { name = realm_update_obligation_t target = this }
-				
-				add_to_variable_list = { name = realm_update_obligation_t target = prev }
-			}
-			barony.holder = {
-				add_to_variable_list = { name = realm_update_obligation_tt target = prev.barony.lessee }
-			}
-		}
-		else = {
-			barony.holder = {
-				add_to_global_variable_list = { name = realm_update_obligation_t target = this }
-				
-				add_to_variable_list = { name = realm_update_obligation_t target = prev }
-				
-				if = {
-					limit = {
-						is_independent_ruler = no
-					}
-					liege = {
-						add_to_variable_list = { name = realm_update_obligation_tt target = prev }
-					}
-				}
-			}
-		}
-	}
-	
-	every_in_global_list = {
-		variable = realm_update_obligation_t
-		
-		set_variable = { name = realm_mp_earn value = 0 }
-		set_variable = { name = realm_supply_earn value = 0 }
-		set_variable = { name = realm_mp_pay value = 0 }
-		set_variable = { name = realm_supply_pay value = 0 }
-		
-		every_in_list = {
-			variable = realm_update_obligation_t
-			
-			prev = {
-				change_variable = { name = realm_mp_earn add = prev.var:realm_mp_pay }
-				change_variable = { name = realm_supply_earn add = prev.var:realm_supply_pay }
-			}
-		}
-		
-		clear_variable_list = realm_update_obligation_t
-	}
-	
-	while = {
-		limit = {
-			has_global_variable_list = realm_update_obligation_t
-			
-			global_variable_list_size = { name = realm_update_obligation_t value > 0 }
-		}
-		every_in_global_list = {
-			limit = {
-				OR = {
-					NOT = {
-						has_variable_list = realm_update_obligation_tt
-					}
-					NOT = {
-						any_in_list = {
-							variable = realm_update_obligation_tt
-							
-							is_target_in_global_variable_list = { name = realm_update_obligation_t target = this }
-						}
-					}
-				}
-			}
-			variable = realm_update_obligation_t
-			
-			remove_list_global_variable = { name = realm_update_obligation_t target = this }
-			
-			if = {
-				limit = {
-					has_variable_list = realm_update_obligation_tt
-				}
-				every_in_list = {
-					variable = realm_update_obligation_tt
-					
-					set_variable = { name = realm_mp_pay value = var:realm_mp_earn }
-					set_variable = { name = realm_supply_pay value = var:realm_supply_earn }
-					
-					if = {
-						limit = {
-							has_variable = realm_control
-						}
-						change_variable = { name = realm_mp_pay multiply = var:realm_control }
-						change_variable = { name = realm_supply_pay multiply = var:realm_control }
-						
-						change_variable = { name = realm_mp_pay divide = 200 }
-						change_variable = { name = realm_supply_pay divide = 200 }
-					}
-					else = {
-						change_variable = { name = realm_mp_pay divide = 2 }
-						change_variable = { name = realm_supply_pay divide = 2 }
-					}
-					
-					prev = {
-						change_variable = { name = realm_mp_earn add = prev.var:realm_mp_pay }
-						change_variable = { name = realm_supply_earn add = prev.var:realm_supply_pay }
-					}
-				}
-				
-				clear_variable_list = realm_update_obligation_tt
-			}
-		}
-	}
-	
-	clear_global_variable_list = realm_update_obligation_t
-}
-
-realm_update_obligation_base = {
 	every_province = {
 		limit = {
 			is_valid_prov = yes
@@ -639,116 +11,433 @@ realm_update_obligation_base = {
 		change_variable = { name = realm_tax_base multiply = 0.03 }
 		change_variable = { name = realm_mp_base multiply = 0.15 }
 		change_variable = { name = realm_supply_base multiply = 0.15 }
-	}
-}
-
-realm_ai = {
-	every_in_global_list = {
-		variable = region_regions
 		
-		set_global_variable = { name = realm_ai_t value = 0 }
+		set_variable = { name = realm_tax_pay value = var:realm_tax_base }
+		set_variable = { name = realm_mp_pay value = var:realm_mp_base }
+		set_variable = { name = realm_supply_pay value = var:realm_supply_base }
 		
-		every_in_list = {
-			variable = region_costs_total
+		change_variable = { name = realm_tax_pay multiply = var:realm_tax_rate }
+		change_variable = { name = realm_mp_pay multiply = var:realm_levy_rate }
+		change_variable = { name = realm_supply_pay multiply = var:realm_levy_rate }
+		
+		if = {
+			limit = {
+				county.county_opinion < 0
+			}
+			set_variable = { name = realm_update_t value = 100 }
+			change_variable = { name = realm_update_t add = county.county_opinion }
+			change_variable = { name = realm_update_t divide = 100 }
 			
-			add_to_global_variable_list = { name = realm_ai_t target = this }
+			change_variable = { name = realm_tax_pay multiply = var:realm_update_t }
+			change_variable = { name = realm_mp_pay multiply = var:realm_update_t }
+			change_variable = { name = realm_supply_pay multiply = var:realm_update_t }
 			
-			add_to_variable_list = { name = realm_ai_t target = prev }
-			
-			prev = {
-				array_get = { name = region_costs_total value = global_var:realm_ai_t return = realm_ai_t dec = 10 }
+			remove_variable = realm_update_t
+		}
+		
+		change_variable = { name = realm_tax_pay divide = 12 }
+		change_variable = { name = realm_mp_pay divide = 12 }
+		change_variable = { name = realm_supply_pay divide = 12 }
+		
+		if = {
+			limit = {
+				barony = {
+					is_leased_out = yes
+				}
+			}
+			barony.lessee = {
+				add_to_global_variable_list = { name = realm_update_t target = this }
+				add_to_variable_list = { name = realm_update_t target = prev }
+				set_variable = { name = realm_update_t value = prev.barony.holder }
 				
-				prev = {
-					array_add = { name = realm_ai_t value = prev.var:realm_ai_t dec = 10 }
+				if = {
+					limit = {
+						NOT = {
+							has_variable = mil_power
+						}
+					}
+					set_variable = { name = mil_power value = 0 }
+				}
+			}
+			barony.holder = {
+				add_to_variable_list = { name = realm_update_tt target = prev.barony.lessee }
+				
+				if = {
+					limit = {
+						NOT = {
+							has_variable = mil_power
+						}
+					}
+					set_variable = { name = mil_power value = 0 }
 				}
 			}
 			
-			change_global_variable = { name = realm_ai_t add = 1 }
+			set_variable = { name = realm_suppression value = barony.lessee.var:mil_power }
 		}
-		
-		set_global_variable = { name = realm_ai_t value = 0 }
-		
-		every_in_list = {
-			variable = region_costs
-			
-			prev = {
-				array_get = { name = region_costs value = global_var:realm_ai_t return = realm_ai_t dec = 10 }
+		else = {
+			barony.holder = {
+				add_to_global_variable_list = { name = realm_update_t target = this }
+				add_to_variable_list = { name = realm_update_t target = prev }
 				
-				prev = {
-					array_add = { name = realm_ai_tt value = prev.var:realm_ai_t dec = 10 }
+				if = {
+					limit = {
+						is_independent_ruler = no
+					}
+					set_variable = { name = realm_update_t value = liege }
+					
+					liege = {
+						add_to_variable_list = { name = realm_update_tt target = prev }
+						
+						if = {
+							limit = {
+								NOT = {
+									has_variable = mil_power
+								}
+							}
+							set_variable = { name = mil_power value = 0 }
+						}
+					}
+				}
+				
+				if = {
+					limit = {
+						NOT = {
+							has_variable = mil_power
+						}
+					}
+					set_variable = { name = mil_power value = 0 }
 				}
 			}
 			
-			change_global_variable = { name = realm_ai_t add = 1 }
+			set_variable = { name = realm_suppression value = barony.holder.var:mil_power }
 		}
 		
-		clear_variable_list = region_garrisons
-		array_clear = { name = region_garrisons }
+		change_variable = { name = realm_suppression divide = { value = var:mil_power add = 0.001 } }
 		
-		remove_global_variable = realm_ai_t
-		remove_variable = realm_ai_t
-	}
-	
-	every_in_global_list = {
-		variable = realm_ai_t
+		sqrt_effect = {
+			inp = var:realm_suppression
+			return = realm_suppression
+		}
+		
+		if = {
+			limit = {
+				has_variable = realm_suppression
+				
+				var:realm_suppression > 5
+			}
+			set_variable = { name = realm_suppression value = 5 }
+		}
+		
+		change_variable = { name = realm_suppression multiply = 10 }
 		
 		if = {
 			limit = {
 				NOT = {
-					has_variable = realm_garrison
+					has_variable = realm_resentment
 				}
 			}
-			set_variable = { name = realm_garrison value = 0 }
+			set_variable = { name = realm_resentment value = 0 }
 		}
 		
-		set_global_variable = { name = realm_ai_t value = 0 }
+		set_variable = { name = realm_resentment multiply = 0.99 }
 		
-		set_variable = { name = realm_ai_t value = 0 }
+		set_variable = { name = realm_resentment_goal value = var:realm_tax_rate }
+		change_variable = { name = realm_resentment_goal add = var:realm_levy_rate }
+		change_variable = { name = realm_resentment_goal divide = 2 }
+		change_variable = { name = realm_resentment add = var:realm_resentment_goal }
+		change_variable = { name = realm_resentment_goal multiply = 100 }
 		
-		every_in_list = {
-			variable = realm_ai_t
-			
-			prev = {
-				array_get = { name = realm_ai_t value = global_var:realm_ai_t return = realm_ai_tt dec = 10 }
-				array_get = { name = realm_ai_tt value = global_var:realm_ai_t return = realm_ai_ttt dec = 10 }
+		if = {
+			limit = {
+				has_variable = realm_privilege
+			}
+			pow_effect = {
+				inp = 2
+				exp = var:realm_privilege
+				return = realm_privilege_earn
 			}
 			
-			set_variable = { name = realm_ai_t value = prev.var:realm_ai_tt }
-			change_variable = { name = realm_ai_t divide = prev.var:realm_ai_ttt }
-			
-			prev = {
-				change_variable = { name = realm_ai_t add = prev.var:realm_ai_t }
+			change_variable = { 
+				name = realm_privilege_earn
+				multiply = {
+					value = 0 
+					
+					add = {
+						value = var:realm_tax_base
+						divide = 200
+					}
+					add = var:realm_mp_base
+					add = var:realm_supply_base
+				}
 			}
-			
-			set_variable = { name = realm_ai_tt value = prev.var:realm_ai_ttt }
-			
-			change_global_variable = { name = realm_ai_t add = 1 }
 		}
-		every_in_list = {
-			variable = realm_ai_t
-			
-			change_variable = { name = realm_ai_t multiply = 100 }
-			change_variable = { name = realm_ai_t divide = prev.var:realm_ai_t }
-			change_variable = { name = realm_ai_t multiply = prev.var:realm_garrison }
-			change_variable = { name = realm_ai_t divide = 100 }
-			change_variable = { name = realm_ai_t divide = var:realm_ai_tt }
-			
-			add_to_variable_list = { name = region_garrisons target = prev }
-			array_add = { name = region_garrisons value = var:realm_ai_t dec = 100 }
-			
-			remove_variable = realm_ai_t
-			remove_variable = realm_ai_tt
+		else = {
+			set_variable = { name = realm_privilege_earn value = 0 }
 		}
-		
-		clear_variable_list = realm_ai_t
-		array_clear = { name = realm_ai_t }
-		array_clear = { name = realm_ai_tt }
-		
-		remove_variable = realm_ai_t
-		remove_variable = realm_ai_tt
-		remove_variable = realm_ai_ttt
 	}
 	
-	clear_global_variable_list = realm_ai_t
-	remove_global_variable = realm_ai_t
+	every_in_global_list = {
+		variable = realm_update_t
+		
+		set_variable = { name = realm_tax_earn value = 0 }
+		set_variable = { name = realm_mp_earn value = 0 }
+		set_variable = { name = realm_supply_earn value = 0 }
+		set_variable = { name = realm_privilege_earn value = 0 }
+		
+		set_variable = { name = realm_tax_pay value = 0 }
+		set_variable = { name = realm_mp_pay value = 0 }
+		set_variable = { name = realm_supply_pay value = 0 }
+		set_variable = { name = realm_privilege_pay value = 0 }
+		
+		every_in_list = {
+			variable = realm_update_t
+			
+			prev = {
+				change_variable = { name = realm_tax_earn add = prev.var:realm_tax_pay }
+				change_variable = { name = realm_mp_earn add = prev.var:realm_mp_pay }
+				change_variable = { name = realm_supply_earn add = prev.var:realm_supply_pay }
+			}
+		}
+		
+		clear_variable_list = realm_update_t
+		
+		if = {
+			limit = {
+				has_variable = realm_update_t
+			}
+			set_variable = { name = realm_suppression value = var:realm_update_t.var:mil_power }
+			change_variable = { name = realm_suppression divide = { value = var:mil_power add = 0.001 } }
+		
+			sqrt_effect = {
+				inp = var:realm_suppression
+				return = realm_suppression
+			}
+			
+			if = {
+				limit = {
+					has_variable = realm_suppression
+					
+					var:realm_suppression > 5
+				}
+				set_variable = { name = realm_suppression value = 5 }
+			}
+			
+			change_variable = { name = realm_suppression multiply = 10 }
+			
+			if = {
+				limit = {
+					NOT = {
+						has_variable = realm_resentment
+					}
+				}
+				set_variable = { name = realm_resentment value = 0 }
+			}
+			
+			set_variable = { name = realm_resentment multiply = 0.99 }
+			
+			if = {
+				limit = {
+					NOT = {
+						has_variable = realm_tax_rate
+					}
+				}
+				set_variable = { name = realm_tax_rate value = 0 }
+			}
+			if = {
+				limit = {
+					NOT = {
+						has_variable = realm_levy_rate
+					}
+				}
+				set_variable = { name = realm_levy_rate value = 0 }
+			}
+			
+			set_variable = { name = realm_resentment_goal value = var:realm_tax_rate }
+			change_variable = { name = realm_resentment_goal add = var:realm_levy_rate }
+			change_variable = { name = realm_resentment_goal divide = 2 }
+			change_variable = { name = realm_resentment add = var:realm_resentment_goal }
+			change_variable = { name = realm_resentment_goal multiply = 100 }
+			
+			remove_variable = realm_update_t
+		}
+		else = {
+			set_variable = { name = realm_suppression value = 0 }
+			set_variable = { name = realm_resentment value = 0 }
+			set_variable = { name = realm_resentment_goal value = 0 }
+		}
+	}
+	
+	while = {
+		limit = {
+			has_global_variable_list = realm_update_t
+			
+			global_variable_list_size = { name = realm_update_t value > 0 }
+		}
+		every_in_global_list = {
+			limit = {
+				OR = {
+					NOT = {
+						has_variable_list = realm_update_tt
+					}
+					NOT = {
+						any_in_list = {
+							variable = realm_update_tt
+							
+							is_target_in_global_variable_list = { name = realm_update_t target = this }
+						}
+					}
+				}
+			}
+			variable = realm_update_t
+			
+			remove_list_global_variable = { name = realm_update_t target = this }
+			
+			if = {
+				limit = {
+					has_variable_list = realm_update_tt
+				}
+				every_in_list = {
+					variable = realm_update_tt
+					
+					set_variable = { name = realm_tax_pay value = var:realm_tax_earn }
+					set_variable = { name = realm_mp_pay value = var:realm_mp_earn }
+					set_variable = { name = realm_supply_pay value = var:realm_supply_earn }
+					
+					if = {
+						limit = {
+							NOT = {
+								has_variable = realm_tax_rate
+							}
+						}
+						set_variable = { name = realm_tax_rate value = 0 }
+					}
+					if = {
+						limit = {
+							NOT = {
+								has_variable = realm_levy_rate
+							}
+						}
+						set_variable = { name = realm_levy_rate value = 0 }
+					}
+					
+					change_variable = { name = realm_tax_pay multiply = var:realm_tax_rate }
+					change_variable = { name = realm_mp_pay multiply = var:realm_levy_rate }
+					change_variable = { name = realm_supply_pay multiply = var:realm_levy_rate }
+					
+					if = {
+						limit = {
+							opinion = { value < 0 target = prev }
+						}
+						export_opinion = { target = prev return = realm_update_t }
+						
+						change_variable = { name = realm_update_t add = 100 }
+						change_variable = { name = realm_update_t divide = 100 }
+						
+						change_variable = { name = realm_tax_pay multiply = var:realm_update_t }
+						change_variable = { name = realm_mp_pay multiply = var:realm_update_t }
+						change_variable = { name = realm_supply_pay multiply = var:realm_update_t }
+						
+						remove_variable = realm_update_t
+					}
+					
+					prev = {
+						change_variable = { name = realm_tax_earn add = prev.var:realm_tax_pay }
+						change_variable = { name = realm_mp_earn add = prev.var:realm_mp_pay }
+						change_variable = { name = realm_supply_earn add = prev.var:realm_supply_pay }
+						
+						change_variable = { name = realm_privilege_pay add = prev.var:realm_privilege_earn }
+					}
+				}
+				
+				clear_variable_list = realm_update_tt
+			}
+			
+			if = {
+				limit = {
+					has_variable = realm_privilege
+				}
+				pow_effect = {
+					inp = 2
+					exp = var:realm_privilege
+					return = realm_privilege_earn
+				}
+				
+				change_variable = { 
+					name = realm_privilege_earn
+					multiply = {
+						value = 0 
+						
+						add = {
+							value = var:realm_tax_earn
+							divide = 200
+						}
+						add = var:realm_mp_earn
+						add = var:realm_supply_earn
+					}
+				}
+			}
+			else = {
+				set_variable = { name = realm_privilege_earn value = 0 }
+			}
+		}
+	}
+}
+
+realm_ai = {
+	every_ruler = {
+		limit = {
+			is_character = yes
+			is_landed = yes
+			
+			OR = {
+				is_ai = yes
+				
+				has_global_variable = sim_i
+			}
+		}
+		every_sub_realm_barony = {
+			limit = {
+				title_province = {
+					is_valid_prov = yes
+					is_city = yes
+				}
+				
+				OR = {
+					holder = prev
+					liege = prev
+				}
+			}
+			title_province = {
+				set_variable = { name = realm_tax_rate value = var:realm_suppression }
+				set_variable = { name = realm_levy_rate value = var:realm_suppression }
+				
+				change_variable = { name = realm_tax_rate divide = 100 }
+				change_variable = { name = realm_levy_rate divide = 100 }
+			}
+		}
+		
+		every_held_title = {
+			limit = {
+				is_leased_out = yes
+			}
+			lessee = {
+				set_variable = { name = realm_tax_rate value = var:realm_suppression }
+				set_variable = { name = realm_levy_rate value = var:realm_suppression }
+				
+				change_variable = { name = realm_tax_rate divide = 100 }
+				change_variable = { name = realm_levy_rate divide = 100 }
+			}
+		}
+		every_vassal = {
+			limit = {
+				is_character = yes
+				is_landed = yes
+			}
+			set_variable = { name = realm_tax_rate value = var:realm_suppression }
+			set_variable = { name = realm_levy_rate value = var:realm_suppression }
+			
+			change_variable = { name = realm_tax_rate divide = 100 }
+			change_variable = { name = realm_levy_rate divide = 100 }
+		}
+	}
 }

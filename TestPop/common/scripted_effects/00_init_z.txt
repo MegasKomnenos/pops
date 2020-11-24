@@ -16,7 +16,6 @@
 	init_tech = yes
 	init_buildings = yes
 	init_task_templates = yes
-	init_region = yes
 	
 	province:2517 = {
 		add_to_variable_list = { name = prov_neighb target = province:2506 }
@@ -83,8 +82,16 @@
 			limit = {
 				is_valid_prov = yes
 			}	
-			set_variable = { name = mil_levy_earn value = 0 }
-			set_variable = { name = mil_supply_earn value = 0 }
+			set_variable = { name = mil_levy value = 0.1 }
+			set_variable = { name = mil_supply value = 0.1 }
+			set_variable = { name = mil_power value = 0.1 }
+			
+			set_variable = { name = realm_resentment value = 0 }
+			set_variable = { name = realm_resentment_goal value = 0 }
+			set_variable = { name = realm_suppression value = 0 }
+			
+			set_variable = { name = realm_tax_rate value = 0 }
+			set_variable = { name = realm_levy_rate value = 0 }
 			
 			set_variable = { name = migration_tick value = 0 }
 			set_variable = { name = migration_route value = 0 }
@@ -154,9 +161,6 @@
 		}
 		set_variable = { name = sim_income value = 0 }
 		set_variable = { name = is_character value = 1 }
-		
-		set_variable = { name = mil_mp_garrison_share value = 0.5 }
-		set_variable = { name = mil_supply_garrison_share value = 0.5 }
 		
 		trade_rank_up_handler = yes
 		mil_rank_up_handler = yes

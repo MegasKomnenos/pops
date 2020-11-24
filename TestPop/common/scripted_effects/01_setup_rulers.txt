@@ -8,9 +8,6 @@
 		
 		set_variable = { name = is_character value = 1 }
 		
-		set_variable = { name = mil_mp_garrison_share value = 0.5 }
-		set_variable = { name = mil_supply_garrison_share value = 0.5 }
-		
 		capital_province = {
 			^^goods^
 				every_in_list = {
@@ -44,8 +41,7 @@
 				set_variable = { name = trade_gold value = prev.var:trade_gold }
 				set_variable = { name = mil_mp value = prev.var:trade_mp }
 				set_variable = { name = mil_supply value = prev.var:trade_supply }
-				set_variable = { name = mil_mp_garrison value = prev.var:trade_mp_garrison }
-				set_variable = { name = mil_supply_garrison value = prev.var:trade_supply_garrison }
+				set_variable = { name = mil_power value = prev.var:trade_power }
 			}
 			
 			every_in_list = {
@@ -130,8 +126,7 @@
 		remove_variable = trade_gold
 		remove_variable = trade_mp
 		remove_variable = trade_supply
-		remove_variable = trade_mp_garrison
-		remove_variable = trade_supply_garrison
+		remove_variable = trade_power
 		
 		clear_variable_list = task_tasks
 	}
@@ -140,32 +135,90 @@
 	
 	set_global_variable = { name = sim_i value = 1 }
 	
-	init_region = yes
+	set_variable = { name = sim_ii value = 5 }
 	
-	trigger_event = { id = census.01 }
-	trigger_event = { id = census.02 }
-	trigger_event = { id = census.03 }
-	trigger_event = { id = census.04 }
-	trigger_event = { id = census.06 }
-	trigger_event = { id = census.07 }
-	trigger_event = { id = census.08 }
-	trigger_event = { id = census.09 }
-	trigger_event = { id = census.10 }
-	trigger_event = { id = census.11 }
-	trigger_event = { id = census.12 }
-	
-	trigger_event = { id = census.01 }
-	trigger_event = { id = census.02 }
-	trigger_event = { id = census.03 }
-	trigger_event = { id = census.04 }
-	trigger_event = { id = census.06 }
-	trigger_event = { id = census.07 }
-	trigger_event = { id = census.08 }
-	trigger_event = { id = census.09 }
-	trigger_event = { id = census.10 }
-	trigger_event = { id = census.11 }
-	trigger_event = { id = census.12 }
+	while = {
+		limit = {
+			has_variable = sim_ii
+			
+			var:sim_ii > 0
+		}
+		change_variable = { name = sim_ii subtract = 1 }
+		
+		trigger_event = { id = census.01 }
+		trigger_event = { id = census.02 }
+		trigger_event = { id = census.03 }
+		trigger_event = { id = census.04 }
+		trigger_event = { id = census.06 }
+		trigger_event = { id = census.07 }
+		trigger_event = { id = census.08 }
+		trigger_event = { id = census.09 }
+		trigger_event = { id = census.10 }
+		trigger_event = { id = census.11 }
+		
+		set_variable = { name = sim_t value = 12 }
+		
+		while = {
+			limit = {
+				has_variable = sim_t
+				
+				var:sim_t > 0
+			}
+			change_variable = { name = sim_t subtract = 1 }
+			
+			trigger_event = { id = census.12 }
+			
+			every_province = {
+				limit = {
+					is_valid_prov = yes
+					is_city = yes
+				}
+				change_variable = { name = pop_wealth subtract = var:realm_tax_pay }
+				
+				if = {
+					limit = {
+						barony = {
+							OR = {
+								is_leased_out = yes
+								
+								NOT = {
+									de_facto_liege.holder = holder
+								}
+							}
+						}
+					}
+					change_variable = { name = pop_wealth add = { value = var:realm_tax_pay divide = 2 } }
+				}
+			}
+			every_ruler = {
+				limit = {
+					is_character = yes
+					is_landed = yes
+				}
+				set_variable = { name = sim_balance value = monthly_character_balance }
+				
+				if = {
+					limit = {
+						has_variable = sim_balance
+						
+						var:sim_balance > 0
+					}
+					eff_binary_1_16 = { name = sim_balance eff = add_gold }
+				}
+				else = {
+					change_variable = { name = sim_balance multiply = -1 }
+					
+					eff_binary_1_16 = { name = sim_balance eff = remove_short_term_gold }
+				}
+
+				remove_variable = sim_balance
+			}
+		}
+		
+		remove_variable = sim_t
+	}
 	
 	remove_global_variable = sim_i
+	remove_variable = sim_ii
 	remove_global_variable = setup_rulers_t
 }

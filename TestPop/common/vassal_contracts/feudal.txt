@@ -4,45 +4,60 @@
 feudal_government_taxes = {
 	display_mode = tree
 	icon = gold_icon
+	uses_opinion_of_liege = yes
 	obligation_levels = {
 		feudal_tax_exempt = {
 			position = { 0 0 }
 
 			tax = {
-				value = 0.005
+				value = 1
 				
 				scope:vassal = {
 					if = {
 						limit = {
-							has_variable = realm_control
+							has_variable = realm_tax_rate
 						}
-						multiply = scope:vassal.var:realm_control
+						multiply = scope:vassal.var:realm_tax_rate
+					}
+					if = {
+						limit = {
+							scope:opinion_of_liege < 0
+						}
+						multiply = {
+							value = 100
+							add = scope:opinion_of_liege
+							divide = 100
+						}
 					}
 				}
 			}
-
-			ai_liege_desire = 1
-			ai_vassal_desire = 5
 		}
 		feudal_tax_low = {
 			parent = feudal_tax_exempt
 			position = { 1 0 }
 
 			tax = {
-				value = 0.005
+				value = 1
 				
 				scope:vassal = {
 					if = {
 						limit = {
-							has_variable = realm_control
+							has_variable = realm_tax_rate
 						}
-						multiply = scope:vassal.var:realm_control
+						multiply = scope:vassal.var:realm_tax_rate
+					}
+					if = {
+						limit = {
+							scope:opinion_of_liege < 0
+						}
+						multiply = {
+							value = 100
+							add = scope:opinion_of_liege
+							divide = 100
+						}
 					}
 				}
 			}
-
-			ai_liege_desire = 2
-			ai_vassal_desire = 4
 		}
 		feudal_tax_normal = {
 			default = yes
@@ -50,60 +65,81 @@ feudal_government_taxes = {
 			position = { 2 0 }
 
 			tax = {
-				value = 0.005
+				value = 1
 				
 				scope:vassal = {
 					if = {
 						limit = {
-							has_variable = realm_control
+							has_variable = realm_tax_rate
 						}
-						multiply = scope:vassal.var:realm_control
+						multiply = scope:vassal.var:realm_tax_rate
+					}
+					if = {
+						limit = {
+							scope:opinion_of_liege < 0
+						}
+						multiply = {
+							value = 100
+							add = scope:opinion_of_liege
+							divide = 100
+						}
 					}
 				}
 			}
-
-			ai_liege_desire = 3
-			ai_vassal_desire = 3
 		}
 		feudal_tax_high = {
 			parent = feudal_tax_normal
 			position = { 3 0 }
 			
 			tax = {
-				value = 0.005
+				value = 1
 				
 				scope:vassal = {
 					if = {
 						limit = {
-							has_variable = realm_control
+							has_variable = realm_tax_rate
 						}
-						multiply = scope:vassal.var:realm_control
+						multiply = scope:vassal.var:realm_tax_rate
+					}
+					if = {
+						limit = {
+							scope:opinion_of_liege < 0
+						}
+						multiply = {
+							value = 100
+							add = scope:opinion_of_liege
+							divide = 100
+						}
 					}
 				}
 			}
-
-			ai_liege_desire = 4
-			ai_vassal_desire = 2
 		}
 		feudal_tax_extortionate = {
 			parent = feudal_tax_high
 			position = { 4 0 }
 			
 			tax = {
-				value = 0.005
+				value = 1
 				
 				scope:vassal = {
 					if = {
 						limit = {
-							has_variable = realm_control
+							has_variable = realm_tax_rate
 						}
-						multiply = scope:vassal.var:realm_control
+						multiply = scope:vassal.var:realm_tax_rate
+					}
+					if = {
+						limit = {
+							scope:opinion_of_liege < 0
+						}
+						multiply = {
+							value = 100
+							add = scope:opinion_of_liege
+							divide = 100
+						}
 					}
 				}
 			}
-
-			ai_liege_desire = 5
-			ai_vassal_desire = 1
 		}
 	}
 }

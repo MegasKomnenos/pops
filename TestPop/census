@@ -172,71 +172,6 @@ census.10 = {
 	
 	immediate = {
 		mil_main_1 = yes
-		realm_update_obligation_base = yes
-		
-		every_province = {
-			limit = {
-				is_valid_prov = yes
-				is_city = yes
-			}
-			if = {
-				limit = {
-					barony = {
-						is_leased_out = no
-						
-						holder.primary_title.tier > tier_barony
-					}
-				}
-				barony.holder = {
-					add_to_global_variable_list = { name = census_t target = this }
-					
-					if = {
-						limit = {
-							is_independent_ruler = no
-						}
-						liege = {
-							add_to_variable_list = { name = census_t target = prev }
-						}
-					}
-				}
-			}
-		}
-		
-		while = {
-			limit = {
-				has_global_variable_list = census_t
-				
-				global_variable_list_size = { name = census_t value > 0 }
-			}
-			every_in_global_list = {
-				limit = {
-					OR = {
-						NOT = {
-							has_variable_list = census_t
-						}
-						NOT = {
-							any_in_list = {
-								variable = census_t
-								
-								is_target_in_global_variable_list = { name = census_t target = this }
-							}
-						}
-					}
-				}
-				variable = census_t
-				
-				remove_list_global_variable = { name = census_t target = this }
-				clear_variable_list = census_t
-				
-				realm_update = yes
-			}
-		}
-		
-		clear_global_variable_list = census_t
-		
-		realm_update_obligation = yes
-		mil_main_2 = yes
-		realm_ai = yes
 	}
 	
 	option = {
@@ -244,18 +179,6 @@ census.10 = {
 }
 
 census.11 = {
-	type = empty
-	hidden = yes
-	
-	immediate = {
-		stat_main = yes
-	}
-	
-	option = {
-	}
-}
-
-census.12 = {
 	type = empty
 	hidden = yes
 	
@@ -275,13 +198,6 @@ census.12 = {
 			change_variable = { name = pop_wealth add = var:pop_earn_free } 
 			change_variable = { name = pop_wealth add = var:pop_earn_base } 
 			change_variable = { name = pop_wealth subtract = var:pop_pay_free }
-			
-			if = {
-				limit = {
-					has_variable = realm_tax_pay
-				}
-				change_variable = { name = pop_wealth subtract = var:realm_tax_pay } 
-			}
 		}
 		
 		every_in_global_list = {
@@ -330,6 +246,21 @@ census.12 = {
 
 			remove_variable = census_t
 		}
+	}
+	
+	option = {
+	}
+}
+
+census.12 = {
+	type = empty
+	hidden = yes
+	
+	immediate = {
+		realm_update = yes
+		mil_main_2 = yes
+		stat_main = yes
+		realm_ai = yes
 	}
 	
 	option = {

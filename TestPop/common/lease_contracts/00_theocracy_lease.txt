@@ -26,17 +26,28 @@ theocracy_lease = {
 		lease_liege = 0
 		
 		rest = {
-			max = 50  # when updating the weights also update this value. It is used in the tooltip and should be the maximin posible weight
+			max = 100  # when updating the weights also update this value. It is used in the tooltip and should be the maximin posible weight
 			weight = {
-				base = 0
+				base = 100
+				opinion_modifier = { # Opinion Factor
+					trigger = {
+						scope:lessee = {
+							opinion = {
+								target = scope:ruler
+								value < 0
+							}
+						}
+					}
+					who = scope:lessee
+					opinion_target = scope:ruler
+				}
 				modifier = {
 					scope:lessee = {
-						has_variable = realm_control
+						has_variable = realm_tax_rate
 					}
 					
-					add = {
-						value = scope:lessee.var:realm_control
-						divide = 2
+					multiply = {
+						value = scope:lessee.var:realm_tax_rate
 					}
 				}
 			}

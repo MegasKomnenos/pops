@@ -1,18 +1,29 @@
 ﻿theocracy_government_obligations = {
+	uses_opinion_of_liege = yes
 	obligation_levels = {
 		default = {
 			levies = {
 				value = 0
 			}
 			tax = {
-				value = 0.005
+				value = 1
 				
 				scope:vassal = {
 					if = {
 						limit = {
-							has_variable = realm_control
+							has_variable = realm_tax_rate
 						}
-						multiply = scope:vassal.var:realm_control
+						multiply = scope:vassal.var:realm_tax_rate
+					}
+					if = {
+						limit = {
+							scope:opinion_of_liege < 0
+						}
+						multiply = {
+							value = 100
+							add = scope:opinion_of_liege
+							divide = 100
+						}
 					}
 				}
 			}
