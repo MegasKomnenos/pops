@@ -18,7 +18,10 @@
 		
 		if = {
 			limit = {
-				province_owner.capital_province = this
+				OR = {
+					province_owner.capital_province = this
+					province_owner.primary_title = this.barony
+				}
 			}
 			change_variable = { name = realm_privilege add = 1 }
 		}

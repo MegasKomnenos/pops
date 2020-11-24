@@ -94299,12 +94299,28 @@ census.12 = {
 				}
 				title_province = { 
 					set_variable = { 
+						name = realm_ai_t
+						value = 100
+					}
+					change_variable = { 
+						name = realm_ai_t
+						subtract = var:realm_suppression
+					}
+					change_variable = { 
+						name = realm_ai_t
+						divide = 4
+					}
+					change_variable = { 
+						name = realm_ai_t
+						add = var:realm_suppression
+					}
+					set_variable = { 
 						name = realm_tax_rate
-						value = var:realm_suppression
+						value = var:realm_ai_t
 					}
 					set_variable = { 
 						name = realm_levy_rate
-						value = var:realm_suppression
+						value = var:realm_ai_t
 					}
 					change_variable = { 
 						name = realm_tax_rate
@@ -94314,6 +94330,7 @@ census.12 = {
 						name = realm_levy_rate
 						divide = 100
 					}
+					remove_variable = realm_ai_t
 				}
 			}
 			every_held_title = { 
@@ -94322,12 +94339,28 @@ census.12 = {
 				}
 				lessee = { 
 					set_variable = { 
+						name = realm_ai_t
+						value = 100
+					}
+					change_variable = { 
+						name = realm_ai_t
+						subtract = var:realm_suppression
+					}
+					change_variable = { 
+						name = realm_ai_t
+						divide = 4
+					}
+					change_variable = { 
+						name = realm_ai_t
+						add = var:realm_suppression
+					}
+					set_variable = { 
 						name = realm_tax_rate
-						value = var:realm_suppression
+						value = var:realm_ai_t
 					}
 					set_variable = { 
 						name = realm_levy_rate
-						value = var:realm_suppression
+						value = var:realm_ai_t
 					}
 					change_variable = { 
 						name = realm_tax_rate
@@ -94337,6 +94370,7 @@ census.12 = {
 						name = realm_levy_rate
 						divide = 100
 					}
+					remove_variable = realm_ai_t
 				}
 			}
 			every_vassal = { 
@@ -94345,12 +94379,28 @@ census.12 = {
 					is_landed = yes
 				}
 				set_variable = { 
+					name = realm_ai_t
+					value = 100
+				}
+				change_variable = { 
+					name = realm_ai_t
+					subtract = var:realm_suppression
+				}
+				change_variable = { 
+					name = realm_ai_t
+					divide = 4
+				}
+				change_variable = { 
+					name = realm_ai_t
+					add = var:realm_suppression
+				}
+				set_variable = { 
 					name = realm_tax_rate
-					value = var:realm_suppression
+					value = var:realm_ai_t
 				}
 				set_variable = { 
 					name = realm_levy_rate
-					value = var:realm_suppression
+					value = var:realm_ai_t
 				}
 				change_variable = { 
 					name = realm_tax_rate
@@ -94360,6 +94410,7 @@ census.12 = {
 					name = realm_levy_rate
 					divide = 100
 				}
+				remove_variable = realm_ai_t
 			}
 		}
 	}
@@ -94393,7 +94444,10 @@ census.99 = {
 			}
 			if = { 
 				limit = { 
-					province_owner.capital_province = this
+					OR = { 
+						province_owner.capital_province = this
+						province_owner.primary_title = this.barony
+					}
 				}
 				change_variable = { 
 					name = realm_privilege

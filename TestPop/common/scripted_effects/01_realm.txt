@@ -422,11 +422,18 @@ realm_ai = {
 				}
 			}
 			title_province = {
-				set_variable = { name = realm_tax_rate value = var:realm_suppression }
-				set_variable = { name = realm_levy_rate value = var:realm_suppression }
+				set_variable = { name = realm_ai_t value = 100 }
+				change_variable = { name = realm_ai_t subtract = var:realm_suppression }
+				change_variable = { name = realm_ai_t divide = 4 }
+				change_variable = { name = realm_ai_t add = var:realm_suppression }
+				
+				set_variable = { name = realm_tax_rate value = var:realm_ai_t }
+				set_variable = { name = realm_levy_rate value = var:realm_ai_t }
 				
 				change_variable = { name = realm_tax_rate divide = 100 }
 				change_variable = { name = realm_levy_rate divide = 100 }
+				
+				remove_variable = realm_ai_t
 			}
 		}
 		
@@ -435,11 +442,18 @@ realm_ai = {
 				is_leased_out = yes
 			}
 			lessee = {
-				set_variable = { name = realm_tax_rate value = var:realm_suppression }
-				set_variable = { name = realm_levy_rate value = var:realm_suppression }
+				set_variable = { name = realm_ai_t value = 100 }
+				change_variable = { name = realm_ai_t subtract = var:realm_suppression }
+				change_variable = { name = realm_ai_t divide = 4 }
+				change_variable = { name = realm_ai_t add = var:realm_suppression }
+				
+				set_variable = { name = realm_tax_rate value = var:realm_ai_t }
+				set_variable = { name = realm_levy_rate value = var:realm_ai_t }
 				
 				change_variable = { name = realm_tax_rate divide = 100 }
 				change_variable = { name = realm_levy_rate divide = 100 }
+				
+				remove_variable = realm_ai_t
 			}
 		}
 		every_vassal = {
@@ -447,11 +461,18 @@ realm_ai = {
 				is_character = yes
 				is_landed = yes
 			}
-			set_variable = { name = realm_tax_rate value = var:realm_suppression }
-			set_variable = { name = realm_levy_rate value = var:realm_suppression }
+			set_variable = { name = realm_ai_t value = 100 }
+			change_variable = { name = realm_ai_t subtract = var:realm_suppression }
+			change_variable = { name = realm_ai_t divide = 4 }
+			change_variable = { name = realm_ai_t add = var:realm_suppression }
+			
+			set_variable = { name = realm_tax_rate value = var:realm_ai_t }
+			set_variable = { name = realm_levy_rate value = var:realm_ai_t }
 			
 			change_variable = { name = realm_tax_rate divide = 100 }
 			change_variable = { name = realm_levy_rate divide = 100 }
+			
+			remove_variable = realm_ai_t
 		}
 	}
 }
