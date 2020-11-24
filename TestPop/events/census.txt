@@ -87154,6 +87154,14 @@ census.10 = {
 				name = mil_mp_balance
 				add = var:realm_mp_earn
 			}
+			set_variable = { 
+				name = mil_mp_garrison_earn
+				value = var:mil_mp_garrison_share
+			}
+			change_variable = { 
+				name = mil_mp_garrison_earn
+				multiply = var:mil_mp_balance
+			}
 			change_variable = { 
 				name = mil_mp_balance
 				subtract = var:realm_mp_pay
@@ -87165,14 +87173,6 @@ census.10 = {
 			change_variable = { 
 				name = mil_mp_balance
 				subtract = var:mil_mp_mismanage
-			}
-			set_variable = { 
-				name = mil_mp_garrison_earn
-				value = var:mil_mp_garrison_share
-			}
-			change_variable = { 
-				name = mil_mp_garrison_earn
-				multiply = var:mil_mp_balance
 			}
 			change_variable = { 
 				name = mil_mp_balance
@@ -87210,6 +87210,14 @@ census.10 = {
 				name = mil_supply_balance
 				add = var:realm_supply_earn
 			}
+			set_variable = { 
+				name = mil_supply_garrison_earn
+				value = var:mil_supply_garrison_share
+			}
+			change_variable = { 
+				name = mil_supply_garrison_earn
+				multiply = var:mil_supply_balance
+			}
 			change_variable = { 
 				name = mil_supply_balance
 				subtract = var:realm_supply_pay
@@ -87221,14 +87229,6 @@ census.10 = {
 			change_variable = { 
 				name = mil_supply_balance
 				subtract = var:mil_supply_mismanage
-			}
-			set_variable = { 
-				name = mil_supply_garrison_earn
-				value = var:mil_supply_garrison_share
-			}
-			change_variable = { 
-				name = mil_supply_garrison_earn
-				multiply = var:mil_supply_balance
 			}
 			change_variable = { 
 				name = mil_supply_balance
