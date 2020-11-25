@@ -39,12 +39,6 @@
 }
 
 mil_main_0 = {
-	every_county = {
-		limit = {
-			is_valid_prov = yes
-		}
-		modi_mil = yes
-	}
 	every_province = {
 		limit = {
 			is_valid_prov = yes
@@ -118,18 +112,6 @@ mil_main_1 = {
 		^
 		
 		change_variable = { name = mil_supply_stockpile divide = 12 }
-		
-		if = {
-			limit = {
-				has_variable = task_manage_logistics
-			}
-			set_variable = { name = mil_mismanage value = 100 }
-			change_variable = { name = mil_mismanage subtract = var:task_manage_logistics.var:task_time_in }
-			change_variable = { name = mil_mismanage divide = 2500 }
-		}
-		else = {
-			set_variable = { name = mil_mismanage value = 0 }
-		}
 		
 		remove_variable = mil_main_t
 	}
@@ -253,14 +235,6 @@ mil_main_2 = {
 			}
 			set_variable = { name = mil_supply_stockpile value = 0 }
 		}
-		if = {
-			limit = {
-				NOT = {
-					has_variable = mil_mismanage
-				}
-			}
-			set_variable = { name = mil_mismanage value = 0 }
-		}
 		
 		set_variable = { name = mil_mp_supply value = 0.005 }
 		change_variable = { name = mil_mp_supply multiply = var:mil_supply }
@@ -272,14 +246,49 @@ mil_main_2 = {
 		change_variable = { name = mil_mp_decay multiply = var:mil_mp }
 		change_variable = { name = mil_supply_decay multiply = var:mil_supply }
 		
-		set_variable = { name = mil_mp_mismanage value = var:mil_mismanage }
-		set_variable = { name = mil_supply_mismanage value = var:mil_mismanage }
+		set_variable = { name = mil_mp_goodmanage value = 0 }
+		set_variable = { name = mil_supply_goodmanage value = 0 }
+		set_variable = { name = mil_mp_mismanage value = 0 }
+		set_variable = { name = mil_supply_mismanage value = 0 }
 		
-		change_variable = { name = mil_mp_mismanage multiply = var:mil_mp }
-		change_variable = { name = mil_supply_mismanage multiply = var:mil_supply }
+		if = {
+			limit = {
+				has_variable = mil_task
+			}
+			if = {
+				limit = {
+					var:mil_task > 1
+				}
+				set_variable = { name = mil_mp_goodmanage value = var:mil_mp_decay }
+				set_variable = { name = mil_supply_goodmanage value = var:mil_supply_decay }
+				
+				change_variable = { name = mil_mp_goodmanage divide = var:mil_task }
+				change_variable = { name = mil_supply_goodmanage divide = var:mil_task }
+				
+				change_variable = { name = mil_mp_goodmanage multiply = -1 }
+				change_variable = { name = mil_supply_goodmanage multiply = -1 }
+				
+				change_variable = { name = mil_mp_goodmanage add = var:mil_mp_decay }
+				change_variable = { name = mil_supply_goodmanage add = var:mil_supply_decay }
+			}
+			else = {
+				set_variable = { name = mil_mp_mismanage value = var:mil_mp_decay }
+				set_variable = { name = mil_supply_mismanage value = var:mil_supply_decay }
+				
+				change_variable = { name = mil_mp_mismanage multiply = var:mil_task }
+				change_variable = { name = mil_supply_mismanage multiply = var:mil_task }
+				
+				change_variable = { name = mil_mp_mismanage multiply = -1 }
+				change_variable = { name = mil_supply_mismanage multiply = -1 }
+				
+				change_variable = { name = mil_mp_mismanage add = var:mil_mp_decay }
+				change_variable = { name = mil_supply_mismanage add = var:mil_supply_decay }
+			}
+		}
 		
 		set_variable = { name = mil_mp_balance value = var:mil_mp_supply }
 		change_variable = { name = mil_mp_balance add = var:realm_mp_earn }
+		change_variable = { name = mil_mp_balance add = var:mil_mp_goodmanage }
 		change_variable = { name = mil_mp_balance subtract = var:realm_mp_pay }
 		change_variable = { name = mil_mp_balance subtract = var:mil_mp_decay }
 		change_variable = { name = mil_mp_balance subtract = var:mil_mp_mismanage }
@@ -287,6 +296,7 @@ mil_main_2 = {
 		
 		set_variable = { name = mil_supply_balance value = var:mil_supply_stockpile }
 		change_variable = { name = mil_supply_balance add = var:realm_supply_earn }
+		change_variable = { name = mil_supply_balance add = var:mil_supply_goodmanage }
 		change_variable = { name = mil_supply_balance subtract = var:realm_supply_pay }
 		change_variable = { name = mil_supply_balance subtract = var:mil_supply_decay }
 		change_variable = { name = mil_supply_balance subtract = var:mil_supply_mismanage }
@@ -307,7 +317,7 @@ mil_main_2 = {
 mil_rank_up_handler = {
 	if = {
 		limit = {
-			is_ruler = yes
+			is_character = yes
 			is_landed = yes
 		}
 		if = {

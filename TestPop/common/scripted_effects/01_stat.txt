@@ -74,10 +74,51 @@
 		remove_variable = stat_main_tt
 	}
 	
+	every_living_character = {
+		limit = {
+			is_character = yes
+			has_variable = task_prestige
+		}
+		if = {
+			limit = {
+				OR = {
+					AND = {
+						is_ruler = yes
+						is_landed = yes
+						primary_title.tier > tier_barony
+					}
+					
+					is_councillor = yes
+				}
+			}
+			set_variable = { name = stat_main_t value = var:task_prestige }
+		}
+		else = {
+			remove_variable = task_prestige
+			
+			set_variable = { name = stat_main_t value = 0 }
+		}
+		
+		mod_assign_2_16 = { type = character name = stat_task var = stat_main_t }
+		remove_variable = stat_main_t
+	}
+	
 	every_in_global_list = {
 		variable = stat_main_t
 		
 		add_character_modifier = base_lord
+		
+		if = {
+			limit = {
+				has_variable = task_manage_domain_prog
+			}
+			set_variable = { name = stat_main_t value = var:task_manage_domain_prog }
+		}
+		else = {
+			set_variable = { name = stat_main_t value = 0 }
+		}
+		
+		mod_assign_0_8 = { type = character name = stat_domain var = stat_main_t }
 		
 		set_variable = { name = stat_main_t value = var:realm_resentment }
 		change_variable = { name = stat_main_t subtract = var:realm_suppression }

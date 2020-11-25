@@ -45,10 +45,24 @@ census.03 = {
 	hidden = yes
 	
 	immediate = {
-		task_main = yes
-		task_ai = yes
-		
-		modi_refresh = yes
+		every_ruler = {
+			limit = {
+				is_character = yes
+				is_landed = yes
+			}
+			if = {
+				limit = {
+					OR = {
+						is_ai = yes
+						
+						has_global_variable = sim_i
+					}
+				}
+				task_ai = yes
+			}
+			
+			task_update = yes
+		}
 	}
 	
 	option = {
@@ -261,6 +275,7 @@ census.12 = {
 		mil_main_2 = yes
 		stat_main = yes
 		realm_ai = yes
+		task_month = yes
 	}
 	
 	option = {

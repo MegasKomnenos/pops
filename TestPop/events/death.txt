@@ -6956,68 +6956,6 @@ death.01 = {
 				}
 			}
 		}
-		if = { 
-			limit = { 
-				has_variable_list = task_tasks
-			}
-			every_in_list = { 
-				variable = task_tasks
-				save_temporary_scope_as = task_death_handler_h
-				prev.primary_heir = { 
-					if = { 
-						limit = { 
-							NOT = { 
-								any_in_list = { 
-									variable = task_tasks
-									var:task_template = scope:task_death_handler_h.var:task_template
-								}
-							}
-						}
-						prev = { 
-							set_variable = { 
-								name = task_owner
-								value = prev.primary_heir
-							}
-						}
-						add_to_variable_list = { 
-							name = task_tasks
-							target = prev
-						}
-					}
-					else = { 
-						prev = { 
-							remove_list_global_variable = { 
-								name = task_tasks_active
-								target = this
-							}
-							add_to_global_variable_list = { 
-								name = task_tasks
-								target = this
-							}
-							var:task_owner = { 
-								remove_list_variable = { 
-									name = task_tasks
-									target = prev
-								}
-							}
-							var:task_template = { 
-								remove_list_variable = { 
-									name = task_tasks
-									target = prev
-								}
-							}
-							remove_variable = task_owner
-							remove_variable = task_worker
-							remove_variable = task_template
-							remove_variable = task_delegate
-							remove_variable = task_time_cost
-							remove_variable = task_time_in
-							remove_variable = task_crpt
-						}
-					}
-				}
-			}
-		}
 	}
 	option = { }
 }
@@ -7032,24 +6970,30 @@ death.02 = {
 		add_character_modifier = base_lord
 		if = { 
 			limit = { 
-				is_ruler = yes
+				is_character = yes
 				is_landed = yes
-				OR = { 
+			}
+			if = { 
+				limit = { 
 					NOT = { 
 						has_variable = trade_earn
 					}
+				}
+				set_variable = { 
+					name = trade_earn
+					value = 0
+				}
+			}
+			if = { 
+				limit = { 
 					NOT = { 
 						has_variable = trade_pay
 					}
 				}
-			}
-			set_variable = { 
-				name = trade_earn
-				value = 0
-			}
-			set_variable = { 
-				name = trade_pay
-				value = 0
+				set_variable = { 
+					name = trade_pay
+					value = 0
+				}
 			}
 			if = { 
 				limit = { 
@@ -8638,7 +8582,7 @@ death.02 = {
 		}
 		if = { 
 			limit = { 
-				is_ruler = yes
+				is_character = yes
 				is_landed = yes
 			}
 			if = { 
@@ -8739,6 +8683,6910 @@ death.02 = {
 				value = 1
 			}
 		}
+		if = { 
+			limit = { 
+				is_character = yes
+				is_landed = yes
+				primary_title.tier > tier_barony
+				NOT = { 
+					has_variable = task_manage_domain_prog
+					has_variable = task_manage_realm_prog
+					has_variable = task_manage_logistics_prog
+					has_variable = task_manage_stockpile_prog
+				}
+			}
+			set_variable = { 
+				name = task_manage_domain_lord
+				value = 0
+			}
+			set_variable = { 
+				name = task_manage_domain_diplomacy
+				value = 0
+			}
+			set_variable = { 
+				name = task_manage_domain_martial
+				value = 0
+			}
+			set_variable = { 
+				name = task_manage_domain_stewardship
+				value = 0
+			}
+			set_variable = { 
+				name = task_manage_domain_intrigue
+				value = 0
+			}
+			set_variable = { 
+				name = task_manage_domain_learning
+				value = 0
+			}
+			set_variable = { 
+				name = task_ai_manage_domain
+				value = 1
+			}
+			if = { 
+				limit = { 
+					is_councillor = yes
+				}
+				set_variable = { 
+					name = task_ai_manage_domain_lord
+					value = 0
+				}
+			}
+			else = { 
+				set_variable = { 
+					name = task_get_prog_t
+					value = this.stewardship
+				}
+				change_variable = { 
+					name = task_get_prog_t
+					add = { 
+						value = this.diplomacy
+						divide = 2
+					}
+				}
+				change_variable = { 
+					name = task_get_prog_t
+					divide = 1.5
+				}
+				set_variable = { 
+					name = math_sqrt_i
+					value = var:task_get_prog_t
+				}
+				if = { 
+					limit = { 
+						has_variable = math_sqrt_i
+						var:math_sqrt_i > 0
+					}
+					set_variable = { 
+						name = math_sqrt_x
+						value = var:math_sqrt_i
+					}
+					set_variable = { 
+						name = math_sqrt_n
+						value = var:math_sqrt_i
+					}
+					change_variable = { 
+						name = math_sqrt_n
+						divide = 2
+					}
+					set_variable = { 
+						name = math_sqrt_tt
+						value = 0.5
+					}
+					while = { 
+						limit = { 
+							has_variable = math_sqrt_n
+							var:math_sqrt_n > 0
+							OR = { 
+								var:math_sqrt_tt < 0.995
+								var:math_sqrt_tt > 1.005
+							}
+						}
+						set_variable = { 
+							name = math_sqrt_x
+							value = var:math_sqrt_n
+						}
+						set_variable = { 
+							name = math_sqrt_t
+							value = var:math_sqrt_i
+						}
+						change_variable = { 
+							name = math_sqrt_t
+							divide = var:math_sqrt_n
+						}
+						change_variable = { 
+							name = math_sqrt_n
+							add = var:math_sqrt_t
+						}
+						change_variable = { 
+							name = math_sqrt_n
+							divide = 2
+						}
+						set_variable = { 
+							name = math_sqrt_tt
+							value = var:math_sqrt_x
+						}
+						change_variable = { 
+							name = math_sqrt_tt
+							divide = var:math_sqrt_n
+						}
+					}
+					set_variable = { 
+						name = task_get_prog_tt
+						value = var:math_sqrt_n
+					}
+					remove_variable = math_sqrt_x
+					remove_variable = math_sqrt_t
+					remove_variable = math_sqrt_n
+					remove_variable = math_sqrt_tt
+				}
+				else = { 
+					set_variable = { 
+						name = task_get_prog_tt
+						value = 0
+					}
+				}
+				remove_variable = math_sqrt_i
+				change_variable = { 
+					name = task_get_prog_t
+					multiply = var:task_get_prog_tt
+				}
+				change_variable = { 
+					name = task_get_prog_t
+					divide = 30
+				}
+				change_variable = { 
+					name = task_get_prog_t
+					add = 0.1
+				}
+				change_variable = { 
+					name = task_get_prog_t
+					multiply = 1
+				}
+				change_variable = { 
+					name = task_get_prog_t
+					divide = 12
+				}
+				set_variable = { 
+					name = task_ai_manage_domain_lord
+					value = var:task_get_prog_t
+				}
+				remove_variable = task_get_prog_t
+				remove_variable = task_get_prog_tt
+			}
+			set_variable = { 
+				name = task_ai_manage_domain_diplomacy
+				value = 0
+			}
+			ordered_diplomacy_councillor = { 
+				position = 0
+				prev = { 
+					set_variable = { 
+						name = task_get_prog_t
+						value = prev.stewardship
+					}
+					change_variable = { 
+						name = task_get_prog_t
+						add = { 
+							value = prev.diplomacy
+							divide = 2
+						}
+					}
+					change_variable = { 
+						name = task_get_prog_t
+						divide = 1.5
+					}
+					set_variable = { 
+						name = math_sqrt_i
+						value = var:task_get_prog_t
+					}
+					if = { 
+						limit = { 
+							has_variable = math_sqrt_i
+							var:math_sqrt_i > 0
+						}
+						set_variable = { 
+							name = math_sqrt_x
+							value = var:math_sqrt_i
+						}
+						set_variable = { 
+							name = math_sqrt_n
+							value = var:math_sqrt_i
+						}
+						change_variable = { 
+							name = math_sqrt_n
+							divide = 2
+						}
+						set_variable = { 
+							name = math_sqrt_tt
+							value = 0.5
+						}
+						while = { 
+							limit = { 
+								has_variable = math_sqrt_n
+								var:math_sqrt_n > 0
+								OR = { 
+									var:math_sqrt_tt < 0.995
+									var:math_sqrt_tt > 1.005
+								}
+							}
+							set_variable = { 
+								name = math_sqrt_x
+								value = var:math_sqrt_n
+							}
+							set_variable = { 
+								name = math_sqrt_t
+								value = var:math_sqrt_i
+							}
+							change_variable = { 
+								name = math_sqrt_t
+								divide = var:math_sqrt_n
+							}
+							change_variable = { 
+								name = math_sqrt_n
+								add = var:math_sqrt_t
+							}
+							change_variable = { 
+								name = math_sqrt_n
+								divide = 2
+							}
+							set_variable = { 
+								name = math_sqrt_tt
+								value = var:math_sqrt_x
+							}
+							change_variable = { 
+								name = math_sqrt_tt
+								divide = var:math_sqrt_n
+							}
+						}
+						set_variable = { 
+							name = task_get_prog_tt
+							value = var:math_sqrt_n
+						}
+						remove_variable = math_sqrt_x
+						remove_variable = math_sqrt_t
+						remove_variable = math_sqrt_n
+						remove_variable = math_sqrt_tt
+					}
+					else = { 
+						set_variable = { 
+							name = task_get_prog_tt
+							value = 0
+						}
+					}
+					remove_variable = math_sqrt_i
+					change_variable = { 
+						name = task_get_prog_t
+						multiply = var:task_get_prog_tt
+					}
+					change_variable = { 
+						name = task_get_prog_t
+						divide = 30
+					}
+					change_variable = { 
+						name = task_get_prog_t
+						add = 0.1
+					}
+					change_variable = { 
+						name = task_get_prog_t
+						multiply = 1
+					}
+					change_variable = { 
+						name = task_get_prog_t
+						divide = 12
+					}
+					set_variable = { 
+						name = task_ai_manage_domain_diplomacy
+						value = var:task_get_prog_t
+					}
+					remove_variable = task_get_prog_t
+					remove_variable = task_get_prog_tt
+				}
+			}
+			set_variable = { 
+				name = task_ai_manage_domain_martial
+				value = 0
+			}
+			ordered_martial_councillor = { 
+				position = 0
+				prev = { 
+					set_variable = { 
+						name = task_get_prog_t
+						value = prev.stewardship
+					}
+					change_variable = { 
+						name = task_get_prog_t
+						add = { 
+							value = prev.diplomacy
+							divide = 2
+						}
+					}
+					change_variable = { 
+						name = task_get_prog_t
+						divide = 1.5
+					}
+					set_variable = { 
+						name = math_sqrt_i
+						value = var:task_get_prog_t
+					}
+					if = { 
+						limit = { 
+							has_variable = math_sqrt_i
+							var:math_sqrt_i > 0
+						}
+						set_variable = { 
+							name = math_sqrt_x
+							value = var:math_sqrt_i
+						}
+						set_variable = { 
+							name = math_sqrt_n
+							value = var:math_sqrt_i
+						}
+						change_variable = { 
+							name = math_sqrt_n
+							divide = 2
+						}
+						set_variable = { 
+							name = math_sqrt_tt
+							value = 0.5
+						}
+						while = { 
+							limit = { 
+								has_variable = math_sqrt_n
+								var:math_sqrt_n > 0
+								OR = { 
+									var:math_sqrt_tt < 0.995
+									var:math_sqrt_tt > 1.005
+								}
+							}
+							set_variable = { 
+								name = math_sqrt_x
+								value = var:math_sqrt_n
+							}
+							set_variable = { 
+								name = math_sqrt_t
+								value = var:math_sqrt_i
+							}
+							change_variable = { 
+								name = math_sqrt_t
+								divide = var:math_sqrt_n
+							}
+							change_variable = { 
+								name = math_sqrt_n
+								add = var:math_sqrt_t
+							}
+							change_variable = { 
+								name = math_sqrt_n
+								divide = 2
+							}
+							set_variable = { 
+								name = math_sqrt_tt
+								value = var:math_sqrt_x
+							}
+							change_variable = { 
+								name = math_sqrt_tt
+								divide = var:math_sqrt_n
+							}
+						}
+						set_variable = { 
+							name = task_get_prog_tt
+							value = var:math_sqrt_n
+						}
+						remove_variable = math_sqrt_x
+						remove_variable = math_sqrt_t
+						remove_variable = math_sqrt_n
+						remove_variable = math_sqrt_tt
+					}
+					else = { 
+						set_variable = { 
+							name = task_get_prog_tt
+							value = 0
+						}
+					}
+					remove_variable = math_sqrt_i
+					change_variable = { 
+						name = task_get_prog_t
+						multiply = var:task_get_prog_tt
+					}
+					change_variable = { 
+						name = task_get_prog_t
+						divide = 30
+					}
+					change_variable = { 
+						name = task_get_prog_t
+						add = 0.1
+					}
+					change_variable = { 
+						name = task_get_prog_t
+						multiply = 1
+					}
+					change_variable = { 
+						name = task_get_prog_t
+						divide = 12
+					}
+					set_variable = { 
+						name = task_ai_manage_domain_martial
+						value = var:task_get_prog_t
+					}
+					remove_variable = task_get_prog_t
+					remove_variable = task_get_prog_tt
+				}
+			}
+			set_variable = { 
+				name = task_ai_manage_domain_stewardship
+				value = 0
+			}
+			ordered_stewardship_councillor = { 
+				position = 0
+				prev = { 
+					set_variable = { 
+						name = task_get_prog_t
+						value = prev.stewardship
+					}
+					change_variable = { 
+						name = task_get_prog_t
+						add = { 
+							value = prev.diplomacy
+							divide = 2
+						}
+					}
+					change_variable = { 
+						name = task_get_prog_t
+						divide = 1.5
+					}
+					set_variable = { 
+						name = math_sqrt_i
+						value = var:task_get_prog_t
+					}
+					if = { 
+						limit = { 
+							has_variable = math_sqrt_i
+							var:math_sqrt_i > 0
+						}
+						set_variable = { 
+							name = math_sqrt_x
+							value = var:math_sqrt_i
+						}
+						set_variable = { 
+							name = math_sqrt_n
+							value = var:math_sqrt_i
+						}
+						change_variable = { 
+							name = math_sqrt_n
+							divide = 2
+						}
+						set_variable = { 
+							name = math_sqrt_tt
+							value = 0.5
+						}
+						while = { 
+							limit = { 
+								has_variable = math_sqrt_n
+								var:math_sqrt_n > 0
+								OR = { 
+									var:math_sqrt_tt < 0.995
+									var:math_sqrt_tt > 1.005
+								}
+							}
+							set_variable = { 
+								name = math_sqrt_x
+								value = var:math_sqrt_n
+							}
+							set_variable = { 
+								name = math_sqrt_t
+								value = var:math_sqrt_i
+							}
+							change_variable = { 
+								name = math_sqrt_t
+								divide = var:math_sqrt_n
+							}
+							change_variable = { 
+								name = math_sqrt_n
+								add = var:math_sqrt_t
+							}
+							change_variable = { 
+								name = math_sqrt_n
+								divide = 2
+							}
+							set_variable = { 
+								name = math_sqrt_tt
+								value = var:math_sqrt_x
+							}
+							change_variable = { 
+								name = math_sqrt_tt
+								divide = var:math_sqrt_n
+							}
+						}
+						set_variable = { 
+							name = task_get_prog_tt
+							value = var:math_sqrt_n
+						}
+						remove_variable = math_sqrt_x
+						remove_variable = math_sqrt_t
+						remove_variable = math_sqrt_n
+						remove_variable = math_sqrt_tt
+					}
+					else = { 
+						set_variable = { 
+							name = task_get_prog_tt
+							value = 0
+						}
+					}
+					remove_variable = math_sqrt_i
+					change_variable = { 
+						name = task_get_prog_t
+						multiply = var:task_get_prog_tt
+					}
+					change_variable = { 
+						name = task_get_prog_t
+						divide = 30
+					}
+					change_variable = { 
+						name = task_get_prog_t
+						add = 0.1
+					}
+					change_variable = { 
+						name = task_get_prog_t
+						multiply = 1
+					}
+					change_variable = { 
+						name = task_get_prog_t
+						divide = 12
+					}
+					set_variable = { 
+						name = task_ai_manage_domain_stewardship
+						value = var:task_get_prog_t
+					}
+					remove_variable = task_get_prog_t
+					remove_variable = task_get_prog_tt
+				}
+			}
+			set_variable = { 
+				name = task_ai_manage_domain_intrigue
+				value = 0
+			}
+			ordered_intrigue_councillor = { 
+				position = 0
+				prev = { 
+					set_variable = { 
+						name = task_get_prog_t
+						value = prev.stewardship
+					}
+					change_variable = { 
+						name = task_get_prog_t
+						add = { 
+							value = prev.diplomacy
+							divide = 2
+						}
+					}
+					change_variable = { 
+						name = task_get_prog_t
+						divide = 1.5
+					}
+					set_variable = { 
+						name = math_sqrt_i
+						value = var:task_get_prog_t
+					}
+					if = { 
+						limit = { 
+							has_variable = math_sqrt_i
+							var:math_sqrt_i > 0
+						}
+						set_variable = { 
+							name = math_sqrt_x
+							value = var:math_sqrt_i
+						}
+						set_variable = { 
+							name = math_sqrt_n
+							value = var:math_sqrt_i
+						}
+						change_variable = { 
+							name = math_sqrt_n
+							divide = 2
+						}
+						set_variable = { 
+							name = math_sqrt_tt
+							value = 0.5
+						}
+						while = { 
+							limit = { 
+								has_variable = math_sqrt_n
+								var:math_sqrt_n > 0
+								OR = { 
+									var:math_sqrt_tt < 0.995
+									var:math_sqrt_tt > 1.005
+								}
+							}
+							set_variable = { 
+								name = math_sqrt_x
+								value = var:math_sqrt_n
+							}
+							set_variable = { 
+								name = math_sqrt_t
+								value = var:math_sqrt_i
+							}
+							change_variable = { 
+								name = math_sqrt_t
+								divide = var:math_sqrt_n
+							}
+							change_variable = { 
+								name = math_sqrt_n
+								add = var:math_sqrt_t
+							}
+							change_variable = { 
+								name = math_sqrt_n
+								divide = 2
+							}
+							set_variable = { 
+								name = math_sqrt_tt
+								value = var:math_sqrt_x
+							}
+							change_variable = { 
+								name = math_sqrt_tt
+								divide = var:math_sqrt_n
+							}
+						}
+						set_variable = { 
+							name = task_get_prog_tt
+							value = var:math_sqrt_n
+						}
+						remove_variable = math_sqrt_x
+						remove_variable = math_sqrt_t
+						remove_variable = math_sqrt_n
+						remove_variable = math_sqrt_tt
+					}
+					else = { 
+						set_variable = { 
+							name = task_get_prog_tt
+							value = 0
+						}
+					}
+					remove_variable = math_sqrt_i
+					change_variable = { 
+						name = task_get_prog_t
+						multiply = var:task_get_prog_tt
+					}
+					change_variable = { 
+						name = task_get_prog_t
+						divide = 30
+					}
+					change_variable = { 
+						name = task_get_prog_t
+						add = 0.1
+					}
+					change_variable = { 
+						name = task_get_prog_t
+						multiply = 1
+					}
+					change_variable = { 
+						name = task_get_prog_t
+						divide = 12
+					}
+					set_variable = { 
+						name = task_ai_manage_domain_intrigue
+						value = var:task_get_prog_t
+					}
+					remove_variable = task_get_prog_t
+					remove_variable = task_get_prog_tt
+				}
+			}
+			set_variable = { 
+				name = task_ai_manage_domain_learning
+				value = 0
+			}
+			ordered_learning_councillor = { 
+				position = 0
+				prev = { 
+					set_variable = { 
+						name = task_get_prog_t
+						value = prev.stewardship
+					}
+					change_variable = { 
+						name = task_get_prog_t
+						add = { 
+							value = prev.diplomacy
+							divide = 2
+						}
+					}
+					change_variable = { 
+						name = task_get_prog_t
+						divide = 1.5
+					}
+					set_variable = { 
+						name = math_sqrt_i
+						value = var:task_get_prog_t
+					}
+					if = { 
+						limit = { 
+							has_variable = math_sqrt_i
+							var:math_sqrt_i > 0
+						}
+						set_variable = { 
+							name = math_sqrt_x
+							value = var:math_sqrt_i
+						}
+						set_variable = { 
+							name = math_sqrt_n
+							value = var:math_sqrt_i
+						}
+						change_variable = { 
+							name = math_sqrt_n
+							divide = 2
+						}
+						set_variable = { 
+							name = math_sqrt_tt
+							value = 0.5
+						}
+						while = { 
+							limit = { 
+								has_variable = math_sqrt_n
+								var:math_sqrt_n > 0
+								OR = { 
+									var:math_sqrt_tt < 0.995
+									var:math_sqrt_tt > 1.005
+								}
+							}
+							set_variable = { 
+								name = math_sqrt_x
+								value = var:math_sqrt_n
+							}
+							set_variable = { 
+								name = math_sqrt_t
+								value = var:math_sqrt_i
+							}
+							change_variable = { 
+								name = math_sqrt_t
+								divide = var:math_sqrt_n
+							}
+							change_variable = { 
+								name = math_sqrt_n
+								add = var:math_sqrt_t
+							}
+							change_variable = { 
+								name = math_sqrt_n
+								divide = 2
+							}
+							set_variable = { 
+								name = math_sqrt_tt
+								value = var:math_sqrt_x
+							}
+							change_variable = { 
+								name = math_sqrt_tt
+								divide = var:math_sqrt_n
+							}
+						}
+						set_variable = { 
+							name = task_get_prog_tt
+							value = var:math_sqrt_n
+						}
+						remove_variable = math_sqrt_x
+						remove_variable = math_sqrt_t
+						remove_variable = math_sqrt_n
+						remove_variable = math_sqrt_tt
+					}
+					else = { 
+						set_variable = { 
+							name = task_get_prog_tt
+							value = 0
+						}
+					}
+					remove_variable = math_sqrt_i
+					change_variable = { 
+						name = task_get_prog_t
+						multiply = var:task_get_prog_tt
+					}
+					change_variable = { 
+						name = task_get_prog_t
+						divide = 30
+					}
+					change_variable = { 
+						name = task_get_prog_t
+						add = 0.1
+					}
+					change_variable = { 
+						name = task_get_prog_t
+						multiply = 1
+					}
+					change_variable = { 
+						name = task_get_prog_t
+						divide = 12
+					}
+					set_variable = { 
+						name = task_ai_manage_domain_learning
+						value = var:task_get_prog_t
+					}
+					remove_variable = task_get_prog_t
+					remove_variable = task_get_prog_tt
+				}
+			}
+			set_variable = { 
+				name = task_manage_realm_lord
+				value = 0
+			}
+			set_variable = { 
+				name = task_manage_realm_diplomacy
+				value = 0
+			}
+			set_variable = { 
+				name = task_manage_realm_martial
+				value = 0
+			}
+			set_variable = { 
+				name = task_manage_realm_stewardship
+				value = 0
+			}
+			set_variable = { 
+				name = task_manage_realm_intrigue
+				value = 0
+			}
+			set_variable = { 
+				name = task_manage_realm_learning
+				value = 0
+			}
+			set_variable = { 
+				name = task_ai_manage_realm
+				value = 1
+			}
+			if = { 
+				limit = { 
+					is_councillor = yes
+				}
+				set_variable = { 
+					name = task_ai_manage_realm_lord
+					value = 0
+				}
+			}
+			else = { 
+				set_variable = { 
+					name = task_get_prog_t
+					value = this.diplomacy
+				}
+				change_variable = { 
+					name = task_get_prog_t
+					add = { 
+						value = this.stewardship
+						divide = 2
+					}
+				}
+				change_variable = { 
+					name = task_get_prog_t
+					divide = 1.5
+				}
+				set_variable = { 
+					name = math_sqrt_i
+					value = var:task_get_prog_t
+				}
+				if = { 
+					limit = { 
+						has_variable = math_sqrt_i
+						var:math_sqrt_i > 0
+					}
+					set_variable = { 
+						name = math_sqrt_x
+						value = var:math_sqrt_i
+					}
+					set_variable = { 
+						name = math_sqrt_n
+						value = var:math_sqrt_i
+					}
+					change_variable = { 
+						name = math_sqrt_n
+						divide = 2
+					}
+					set_variable = { 
+						name = math_sqrt_tt
+						value = 0.5
+					}
+					while = { 
+						limit = { 
+							has_variable = math_sqrt_n
+							var:math_sqrt_n > 0
+							OR = { 
+								var:math_sqrt_tt < 0.995
+								var:math_sqrt_tt > 1.005
+							}
+						}
+						set_variable = { 
+							name = math_sqrt_x
+							value = var:math_sqrt_n
+						}
+						set_variable = { 
+							name = math_sqrt_t
+							value = var:math_sqrt_i
+						}
+						change_variable = { 
+							name = math_sqrt_t
+							divide = var:math_sqrt_n
+						}
+						change_variable = { 
+							name = math_sqrt_n
+							add = var:math_sqrt_t
+						}
+						change_variable = { 
+							name = math_sqrt_n
+							divide = 2
+						}
+						set_variable = { 
+							name = math_sqrt_tt
+							value = var:math_sqrt_x
+						}
+						change_variable = { 
+							name = math_sqrt_tt
+							divide = var:math_sqrt_n
+						}
+					}
+					set_variable = { 
+						name = task_get_prog_tt
+						value = var:math_sqrt_n
+					}
+					remove_variable = math_sqrt_x
+					remove_variable = math_sqrt_t
+					remove_variable = math_sqrt_n
+					remove_variable = math_sqrt_tt
+				}
+				else = { 
+					set_variable = { 
+						name = task_get_prog_tt
+						value = 0
+					}
+				}
+				remove_variable = math_sqrt_i
+				change_variable = { 
+					name = task_get_prog_t
+					multiply = var:task_get_prog_tt
+				}
+				change_variable = { 
+					name = task_get_prog_t
+					divide = 30
+				}
+				change_variable = { 
+					name = task_get_prog_t
+					add = 0.1
+				}
+				change_variable = { 
+					name = task_get_prog_t
+					multiply = 1
+				}
+				change_variable = { 
+					name = task_get_prog_t
+					divide = 12
+				}
+				set_variable = { 
+					name = task_ai_manage_realm_lord
+					value = var:task_get_prog_t
+				}
+				remove_variable = task_get_prog_t
+				remove_variable = task_get_prog_tt
+			}
+			set_variable = { 
+				name = task_ai_manage_realm_diplomacy
+				value = 0
+			}
+			ordered_diplomacy_councillor = { 
+				position = 0
+				prev = { 
+					set_variable = { 
+						name = task_get_prog_t
+						value = prev.diplomacy
+					}
+					change_variable = { 
+						name = task_get_prog_t
+						add = { 
+							value = prev.stewardship
+							divide = 2
+						}
+					}
+					change_variable = { 
+						name = task_get_prog_t
+						divide = 1.5
+					}
+					set_variable = { 
+						name = math_sqrt_i
+						value = var:task_get_prog_t
+					}
+					if = { 
+						limit = { 
+							has_variable = math_sqrt_i
+							var:math_sqrt_i > 0
+						}
+						set_variable = { 
+							name = math_sqrt_x
+							value = var:math_sqrt_i
+						}
+						set_variable = { 
+							name = math_sqrt_n
+							value = var:math_sqrt_i
+						}
+						change_variable = { 
+							name = math_sqrt_n
+							divide = 2
+						}
+						set_variable = { 
+							name = math_sqrt_tt
+							value = 0.5
+						}
+						while = { 
+							limit = { 
+								has_variable = math_sqrt_n
+								var:math_sqrt_n > 0
+								OR = { 
+									var:math_sqrt_tt < 0.995
+									var:math_sqrt_tt > 1.005
+								}
+							}
+							set_variable = { 
+								name = math_sqrt_x
+								value = var:math_sqrt_n
+							}
+							set_variable = { 
+								name = math_sqrt_t
+								value = var:math_sqrt_i
+							}
+							change_variable = { 
+								name = math_sqrt_t
+								divide = var:math_sqrt_n
+							}
+							change_variable = { 
+								name = math_sqrt_n
+								add = var:math_sqrt_t
+							}
+							change_variable = { 
+								name = math_sqrt_n
+								divide = 2
+							}
+							set_variable = { 
+								name = math_sqrt_tt
+								value = var:math_sqrt_x
+							}
+							change_variable = { 
+								name = math_sqrt_tt
+								divide = var:math_sqrt_n
+							}
+						}
+						set_variable = { 
+							name = task_get_prog_tt
+							value = var:math_sqrt_n
+						}
+						remove_variable = math_sqrt_x
+						remove_variable = math_sqrt_t
+						remove_variable = math_sqrt_n
+						remove_variable = math_sqrt_tt
+					}
+					else = { 
+						set_variable = { 
+							name = task_get_prog_tt
+							value = 0
+						}
+					}
+					remove_variable = math_sqrt_i
+					change_variable = { 
+						name = task_get_prog_t
+						multiply = var:task_get_prog_tt
+					}
+					change_variable = { 
+						name = task_get_prog_t
+						divide = 30
+					}
+					change_variable = { 
+						name = task_get_prog_t
+						add = 0.1
+					}
+					change_variable = { 
+						name = task_get_prog_t
+						multiply = 1
+					}
+					change_variable = { 
+						name = task_get_prog_t
+						divide = 12
+					}
+					set_variable = { 
+						name = task_ai_manage_realm_diplomacy
+						value = var:task_get_prog_t
+					}
+					remove_variable = task_get_prog_t
+					remove_variable = task_get_prog_tt
+				}
+			}
+			set_variable = { 
+				name = task_ai_manage_realm_martial
+				value = 0
+			}
+			ordered_martial_councillor = { 
+				position = 0
+				prev = { 
+					set_variable = { 
+						name = task_get_prog_t
+						value = prev.diplomacy
+					}
+					change_variable = { 
+						name = task_get_prog_t
+						add = { 
+							value = prev.stewardship
+							divide = 2
+						}
+					}
+					change_variable = { 
+						name = task_get_prog_t
+						divide = 1.5
+					}
+					set_variable = { 
+						name = math_sqrt_i
+						value = var:task_get_prog_t
+					}
+					if = { 
+						limit = { 
+							has_variable = math_sqrt_i
+							var:math_sqrt_i > 0
+						}
+						set_variable = { 
+							name = math_sqrt_x
+							value = var:math_sqrt_i
+						}
+						set_variable = { 
+							name = math_sqrt_n
+							value = var:math_sqrt_i
+						}
+						change_variable = { 
+							name = math_sqrt_n
+							divide = 2
+						}
+						set_variable = { 
+							name = math_sqrt_tt
+							value = 0.5
+						}
+						while = { 
+							limit = { 
+								has_variable = math_sqrt_n
+								var:math_sqrt_n > 0
+								OR = { 
+									var:math_sqrt_tt < 0.995
+									var:math_sqrt_tt > 1.005
+								}
+							}
+							set_variable = { 
+								name = math_sqrt_x
+								value = var:math_sqrt_n
+							}
+							set_variable = { 
+								name = math_sqrt_t
+								value = var:math_sqrt_i
+							}
+							change_variable = { 
+								name = math_sqrt_t
+								divide = var:math_sqrt_n
+							}
+							change_variable = { 
+								name = math_sqrt_n
+								add = var:math_sqrt_t
+							}
+							change_variable = { 
+								name = math_sqrt_n
+								divide = 2
+							}
+							set_variable = { 
+								name = math_sqrt_tt
+								value = var:math_sqrt_x
+							}
+							change_variable = { 
+								name = math_sqrt_tt
+								divide = var:math_sqrt_n
+							}
+						}
+						set_variable = { 
+							name = task_get_prog_tt
+							value = var:math_sqrt_n
+						}
+						remove_variable = math_sqrt_x
+						remove_variable = math_sqrt_t
+						remove_variable = math_sqrt_n
+						remove_variable = math_sqrt_tt
+					}
+					else = { 
+						set_variable = { 
+							name = task_get_prog_tt
+							value = 0
+						}
+					}
+					remove_variable = math_sqrt_i
+					change_variable = { 
+						name = task_get_prog_t
+						multiply = var:task_get_prog_tt
+					}
+					change_variable = { 
+						name = task_get_prog_t
+						divide = 30
+					}
+					change_variable = { 
+						name = task_get_prog_t
+						add = 0.1
+					}
+					change_variable = { 
+						name = task_get_prog_t
+						multiply = 1
+					}
+					change_variable = { 
+						name = task_get_prog_t
+						divide = 12
+					}
+					set_variable = { 
+						name = task_ai_manage_realm_martial
+						value = var:task_get_prog_t
+					}
+					remove_variable = task_get_prog_t
+					remove_variable = task_get_prog_tt
+				}
+			}
+			set_variable = { 
+				name = task_ai_manage_realm_stewardship
+				value = 0
+			}
+			ordered_stewardship_councillor = { 
+				position = 0
+				prev = { 
+					set_variable = { 
+						name = task_get_prog_t
+						value = prev.diplomacy
+					}
+					change_variable = { 
+						name = task_get_prog_t
+						add = { 
+							value = prev.stewardship
+							divide = 2
+						}
+					}
+					change_variable = { 
+						name = task_get_prog_t
+						divide = 1.5
+					}
+					set_variable = { 
+						name = math_sqrt_i
+						value = var:task_get_prog_t
+					}
+					if = { 
+						limit = { 
+							has_variable = math_sqrt_i
+							var:math_sqrt_i > 0
+						}
+						set_variable = { 
+							name = math_sqrt_x
+							value = var:math_sqrt_i
+						}
+						set_variable = { 
+							name = math_sqrt_n
+							value = var:math_sqrt_i
+						}
+						change_variable = { 
+							name = math_sqrt_n
+							divide = 2
+						}
+						set_variable = { 
+							name = math_sqrt_tt
+							value = 0.5
+						}
+						while = { 
+							limit = { 
+								has_variable = math_sqrt_n
+								var:math_sqrt_n > 0
+								OR = { 
+									var:math_sqrt_tt < 0.995
+									var:math_sqrt_tt > 1.005
+								}
+							}
+							set_variable = { 
+								name = math_sqrt_x
+								value = var:math_sqrt_n
+							}
+							set_variable = { 
+								name = math_sqrt_t
+								value = var:math_sqrt_i
+							}
+							change_variable = { 
+								name = math_sqrt_t
+								divide = var:math_sqrt_n
+							}
+							change_variable = { 
+								name = math_sqrt_n
+								add = var:math_sqrt_t
+							}
+							change_variable = { 
+								name = math_sqrt_n
+								divide = 2
+							}
+							set_variable = { 
+								name = math_sqrt_tt
+								value = var:math_sqrt_x
+							}
+							change_variable = { 
+								name = math_sqrt_tt
+								divide = var:math_sqrt_n
+							}
+						}
+						set_variable = { 
+							name = task_get_prog_tt
+							value = var:math_sqrt_n
+						}
+						remove_variable = math_sqrt_x
+						remove_variable = math_sqrt_t
+						remove_variable = math_sqrt_n
+						remove_variable = math_sqrt_tt
+					}
+					else = { 
+						set_variable = { 
+							name = task_get_prog_tt
+							value = 0
+						}
+					}
+					remove_variable = math_sqrt_i
+					change_variable = { 
+						name = task_get_prog_t
+						multiply = var:task_get_prog_tt
+					}
+					change_variable = { 
+						name = task_get_prog_t
+						divide = 30
+					}
+					change_variable = { 
+						name = task_get_prog_t
+						add = 0.1
+					}
+					change_variable = { 
+						name = task_get_prog_t
+						multiply = 1
+					}
+					change_variable = { 
+						name = task_get_prog_t
+						divide = 12
+					}
+					set_variable = { 
+						name = task_ai_manage_realm_stewardship
+						value = var:task_get_prog_t
+					}
+					remove_variable = task_get_prog_t
+					remove_variable = task_get_prog_tt
+				}
+			}
+			set_variable = { 
+				name = task_ai_manage_realm_intrigue
+				value = 0
+			}
+			ordered_intrigue_councillor = { 
+				position = 0
+				prev = { 
+					set_variable = { 
+						name = task_get_prog_t
+						value = prev.diplomacy
+					}
+					change_variable = { 
+						name = task_get_prog_t
+						add = { 
+							value = prev.stewardship
+							divide = 2
+						}
+					}
+					change_variable = { 
+						name = task_get_prog_t
+						divide = 1.5
+					}
+					set_variable = { 
+						name = math_sqrt_i
+						value = var:task_get_prog_t
+					}
+					if = { 
+						limit = { 
+							has_variable = math_sqrt_i
+							var:math_sqrt_i > 0
+						}
+						set_variable = { 
+							name = math_sqrt_x
+							value = var:math_sqrt_i
+						}
+						set_variable = { 
+							name = math_sqrt_n
+							value = var:math_sqrt_i
+						}
+						change_variable = { 
+							name = math_sqrt_n
+							divide = 2
+						}
+						set_variable = { 
+							name = math_sqrt_tt
+							value = 0.5
+						}
+						while = { 
+							limit = { 
+								has_variable = math_sqrt_n
+								var:math_sqrt_n > 0
+								OR = { 
+									var:math_sqrt_tt < 0.995
+									var:math_sqrt_tt > 1.005
+								}
+							}
+							set_variable = { 
+								name = math_sqrt_x
+								value = var:math_sqrt_n
+							}
+							set_variable = { 
+								name = math_sqrt_t
+								value = var:math_sqrt_i
+							}
+							change_variable = { 
+								name = math_sqrt_t
+								divide = var:math_sqrt_n
+							}
+							change_variable = { 
+								name = math_sqrt_n
+								add = var:math_sqrt_t
+							}
+							change_variable = { 
+								name = math_sqrt_n
+								divide = 2
+							}
+							set_variable = { 
+								name = math_sqrt_tt
+								value = var:math_sqrt_x
+							}
+							change_variable = { 
+								name = math_sqrt_tt
+								divide = var:math_sqrt_n
+							}
+						}
+						set_variable = { 
+							name = task_get_prog_tt
+							value = var:math_sqrt_n
+						}
+						remove_variable = math_sqrt_x
+						remove_variable = math_sqrt_t
+						remove_variable = math_sqrt_n
+						remove_variable = math_sqrt_tt
+					}
+					else = { 
+						set_variable = { 
+							name = task_get_prog_tt
+							value = 0
+						}
+					}
+					remove_variable = math_sqrt_i
+					change_variable = { 
+						name = task_get_prog_t
+						multiply = var:task_get_prog_tt
+					}
+					change_variable = { 
+						name = task_get_prog_t
+						divide = 30
+					}
+					change_variable = { 
+						name = task_get_prog_t
+						add = 0.1
+					}
+					change_variable = { 
+						name = task_get_prog_t
+						multiply = 1
+					}
+					change_variable = { 
+						name = task_get_prog_t
+						divide = 12
+					}
+					set_variable = { 
+						name = task_ai_manage_realm_intrigue
+						value = var:task_get_prog_t
+					}
+					remove_variable = task_get_prog_t
+					remove_variable = task_get_prog_tt
+				}
+			}
+			set_variable = { 
+				name = task_ai_manage_realm_learning
+				value = 0
+			}
+			ordered_learning_councillor = { 
+				position = 0
+				prev = { 
+					set_variable = { 
+						name = task_get_prog_t
+						value = prev.diplomacy
+					}
+					change_variable = { 
+						name = task_get_prog_t
+						add = { 
+							value = prev.stewardship
+							divide = 2
+						}
+					}
+					change_variable = { 
+						name = task_get_prog_t
+						divide = 1.5
+					}
+					set_variable = { 
+						name = math_sqrt_i
+						value = var:task_get_prog_t
+					}
+					if = { 
+						limit = { 
+							has_variable = math_sqrt_i
+							var:math_sqrt_i > 0
+						}
+						set_variable = { 
+							name = math_sqrt_x
+							value = var:math_sqrt_i
+						}
+						set_variable = { 
+							name = math_sqrt_n
+							value = var:math_sqrt_i
+						}
+						change_variable = { 
+							name = math_sqrt_n
+							divide = 2
+						}
+						set_variable = { 
+							name = math_sqrt_tt
+							value = 0.5
+						}
+						while = { 
+							limit = { 
+								has_variable = math_sqrt_n
+								var:math_sqrt_n > 0
+								OR = { 
+									var:math_sqrt_tt < 0.995
+									var:math_sqrt_tt > 1.005
+								}
+							}
+							set_variable = { 
+								name = math_sqrt_x
+								value = var:math_sqrt_n
+							}
+							set_variable = { 
+								name = math_sqrt_t
+								value = var:math_sqrt_i
+							}
+							change_variable = { 
+								name = math_sqrt_t
+								divide = var:math_sqrt_n
+							}
+							change_variable = { 
+								name = math_sqrt_n
+								add = var:math_sqrt_t
+							}
+							change_variable = { 
+								name = math_sqrt_n
+								divide = 2
+							}
+							set_variable = { 
+								name = math_sqrt_tt
+								value = var:math_sqrt_x
+							}
+							change_variable = { 
+								name = math_sqrt_tt
+								divide = var:math_sqrt_n
+							}
+						}
+						set_variable = { 
+							name = task_get_prog_tt
+							value = var:math_sqrt_n
+						}
+						remove_variable = math_sqrt_x
+						remove_variable = math_sqrt_t
+						remove_variable = math_sqrt_n
+						remove_variable = math_sqrt_tt
+					}
+					else = { 
+						set_variable = { 
+							name = task_get_prog_tt
+							value = 0
+						}
+					}
+					remove_variable = math_sqrt_i
+					change_variable = { 
+						name = task_get_prog_t
+						multiply = var:task_get_prog_tt
+					}
+					change_variable = { 
+						name = task_get_prog_t
+						divide = 30
+					}
+					change_variable = { 
+						name = task_get_prog_t
+						add = 0.1
+					}
+					change_variable = { 
+						name = task_get_prog_t
+						multiply = 1
+					}
+					change_variable = { 
+						name = task_get_prog_t
+						divide = 12
+					}
+					set_variable = { 
+						name = task_ai_manage_realm_learning
+						value = var:task_get_prog_t
+					}
+					remove_variable = task_get_prog_t
+					remove_variable = task_get_prog_tt
+				}
+			}
+			set_variable = { 
+				name = task_manage_logistics_lord
+				value = 0
+			}
+			set_variable = { 
+				name = task_manage_logistics_diplomacy
+				value = 0
+			}
+			set_variable = { 
+				name = task_manage_logistics_martial
+				value = 0
+			}
+			set_variable = { 
+				name = task_manage_logistics_stewardship
+				value = 0
+			}
+			set_variable = { 
+				name = task_manage_logistics_intrigue
+				value = 0
+			}
+			set_variable = { 
+				name = task_manage_logistics_learning
+				value = 0
+			}
+			set_variable = { 
+				name = task_ai_manage_logistics
+				value = 1
+			}
+			if = { 
+				limit = { 
+					is_councillor = yes
+				}
+				set_variable = { 
+					name = task_ai_manage_logistics_lord
+					value = 0
+				}
+			}
+			else = { 
+				set_variable = { 
+					name = task_get_prog_t
+					value = this.martial
+				}
+				change_variable = { 
+					name = task_get_prog_t
+					add = { 
+						value = this.stewardship
+						divide = 2
+					}
+				}
+				change_variable = { 
+					name = task_get_prog_t
+					divide = 1.5
+				}
+				set_variable = { 
+					name = math_sqrt_i
+					value = var:task_get_prog_t
+				}
+				if = { 
+					limit = { 
+						has_variable = math_sqrt_i
+						var:math_sqrt_i > 0
+					}
+					set_variable = { 
+						name = math_sqrt_x
+						value = var:math_sqrt_i
+					}
+					set_variable = { 
+						name = math_sqrt_n
+						value = var:math_sqrt_i
+					}
+					change_variable = { 
+						name = math_sqrt_n
+						divide = 2
+					}
+					set_variable = { 
+						name = math_sqrt_tt
+						value = 0.5
+					}
+					while = { 
+						limit = { 
+							has_variable = math_sqrt_n
+							var:math_sqrt_n > 0
+							OR = { 
+								var:math_sqrt_tt < 0.995
+								var:math_sqrt_tt > 1.005
+							}
+						}
+						set_variable = { 
+							name = math_sqrt_x
+							value = var:math_sqrt_n
+						}
+						set_variable = { 
+							name = math_sqrt_t
+							value = var:math_sqrt_i
+						}
+						change_variable = { 
+							name = math_sqrt_t
+							divide = var:math_sqrt_n
+						}
+						change_variable = { 
+							name = math_sqrt_n
+							add = var:math_sqrt_t
+						}
+						change_variable = { 
+							name = math_sqrt_n
+							divide = 2
+						}
+						set_variable = { 
+							name = math_sqrt_tt
+							value = var:math_sqrt_x
+						}
+						change_variable = { 
+							name = math_sqrt_tt
+							divide = var:math_sqrt_n
+						}
+					}
+					set_variable = { 
+						name = task_get_prog_tt
+						value = var:math_sqrt_n
+					}
+					remove_variable = math_sqrt_x
+					remove_variable = math_sqrt_t
+					remove_variable = math_sqrt_n
+					remove_variable = math_sqrt_tt
+				}
+				else = { 
+					set_variable = { 
+						name = task_get_prog_tt
+						value = 0
+					}
+				}
+				remove_variable = math_sqrt_i
+				change_variable = { 
+					name = task_get_prog_t
+					multiply = var:task_get_prog_tt
+				}
+				change_variable = { 
+					name = task_get_prog_t
+					divide = 30
+				}
+				change_variable = { 
+					name = task_get_prog_t
+					add = 0.1
+				}
+				change_variable = { 
+					name = task_get_prog_t
+					multiply = 1
+				}
+				change_variable = { 
+					name = task_get_prog_t
+					divide = 12
+				}
+				set_variable = { 
+					name = task_ai_manage_logistics_lord
+					value = var:task_get_prog_t
+				}
+				remove_variable = task_get_prog_t
+				remove_variable = task_get_prog_tt
+			}
+			set_variable = { 
+				name = task_ai_manage_logistics_diplomacy
+				value = 0
+			}
+			ordered_diplomacy_councillor = { 
+				position = 0
+				prev = { 
+					set_variable = { 
+						name = task_get_prog_t
+						value = prev.martial
+					}
+					change_variable = { 
+						name = task_get_prog_t
+						add = { 
+							value = prev.stewardship
+							divide = 2
+						}
+					}
+					change_variable = { 
+						name = task_get_prog_t
+						divide = 1.5
+					}
+					set_variable = { 
+						name = math_sqrt_i
+						value = var:task_get_prog_t
+					}
+					if = { 
+						limit = { 
+							has_variable = math_sqrt_i
+							var:math_sqrt_i > 0
+						}
+						set_variable = { 
+							name = math_sqrt_x
+							value = var:math_sqrt_i
+						}
+						set_variable = { 
+							name = math_sqrt_n
+							value = var:math_sqrt_i
+						}
+						change_variable = { 
+							name = math_sqrt_n
+							divide = 2
+						}
+						set_variable = { 
+							name = math_sqrt_tt
+							value = 0.5
+						}
+						while = { 
+							limit = { 
+								has_variable = math_sqrt_n
+								var:math_sqrt_n > 0
+								OR = { 
+									var:math_sqrt_tt < 0.995
+									var:math_sqrt_tt > 1.005
+								}
+							}
+							set_variable = { 
+								name = math_sqrt_x
+								value = var:math_sqrt_n
+							}
+							set_variable = { 
+								name = math_sqrt_t
+								value = var:math_sqrt_i
+							}
+							change_variable = { 
+								name = math_sqrt_t
+								divide = var:math_sqrt_n
+							}
+							change_variable = { 
+								name = math_sqrt_n
+								add = var:math_sqrt_t
+							}
+							change_variable = { 
+								name = math_sqrt_n
+								divide = 2
+							}
+							set_variable = { 
+								name = math_sqrt_tt
+								value = var:math_sqrt_x
+							}
+							change_variable = { 
+								name = math_sqrt_tt
+								divide = var:math_sqrt_n
+							}
+						}
+						set_variable = { 
+							name = task_get_prog_tt
+							value = var:math_sqrt_n
+						}
+						remove_variable = math_sqrt_x
+						remove_variable = math_sqrt_t
+						remove_variable = math_sqrt_n
+						remove_variable = math_sqrt_tt
+					}
+					else = { 
+						set_variable = { 
+							name = task_get_prog_tt
+							value = 0
+						}
+					}
+					remove_variable = math_sqrt_i
+					change_variable = { 
+						name = task_get_prog_t
+						multiply = var:task_get_prog_tt
+					}
+					change_variable = { 
+						name = task_get_prog_t
+						divide = 30
+					}
+					change_variable = { 
+						name = task_get_prog_t
+						add = 0.1
+					}
+					change_variable = { 
+						name = task_get_prog_t
+						multiply = 1
+					}
+					change_variable = { 
+						name = task_get_prog_t
+						divide = 12
+					}
+					set_variable = { 
+						name = task_ai_manage_logistics_diplomacy
+						value = var:task_get_prog_t
+					}
+					remove_variable = task_get_prog_t
+					remove_variable = task_get_prog_tt
+				}
+			}
+			set_variable = { 
+				name = task_ai_manage_logistics_martial
+				value = 0
+			}
+			ordered_martial_councillor = { 
+				position = 0
+				prev = { 
+					set_variable = { 
+						name = task_get_prog_t
+						value = prev.martial
+					}
+					change_variable = { 
+						name = task_get_prog_t
+						add = { 
+							value = prev.stewardship
+							divide = 2
+						}
+					}
+					change_variable = { 
+						name = task_get_prog_t
+						divide = 1.5
+					}
+					set_variable = { 
+						name = math_sqrt_i
+						value = var:task_get_prog_t
+					}
+					if = { 
+						limit = { 
+							has_variable = math_sqrt_i
+							var:math_sqrt_i > 0
+						}
+						set_variable = { 
+							name = math_sqrt_x
+							value = var:math_sqrt_i
+						}
+						set_variable = { 
+							name = math_sqrt_n
+							value = var:math_sqrt_i
+						}
+						change_variable = { 
+							name = math_sqrt_n
+							divide = 2
+						}
+						set_variable = { 
+							name = math_sqrt_tt
+							value = 0.5
+						}
+						while = { 
+							limit = { 
+								has_variable = math_sqrt_n
+								var:math_sqrt_n > 0
+								OR = { 
+									var:math_sqrt_tt < 0.995
+									var:math_sqrt_tt > 1.005
+								}
+							}
+							set_variable = { 
+								name = math_sqrt_x
+								value = var:math_sqrt_n
+							}
+							set_variable = { 
+								name = math_sqrt_t
+								value = var:math_sqrt_i
+							}
+							change_variable = { 
+								name = math_sqrt_t
+								divide = var:math_sqrt_n
+							}
+							change_variable = { 
+								name = math_sqrt_n
+								add = var:math_sqrt_t
+							}
+							change_variable = { 
+								name = math_sqrt_n
+								divide = 2
+							}
+							set_variable = { 
+								name = math_sqrt_tt
+								value = var:math_sqrt_x
+							}
+							change_variable = { 
+								name = math_sqrt_tt
+								divide = var:math_sqrt_n
+							}
+						}
+						set_variable = { 
+							name = task_get_prog_tt
+							value = var:math_sqrt_n
+						}
+						remove_variable = math_sqrt_x
+						remove_variable = math_sqrt_t
+						remove_variable = math_sqrt_n
+						remove_variable = math_sqrt_tt
+					}
+					else = { 
+						set_variable = { 
+							name = task_get_prog_tt
+							value = 0
+						}
+					}
+					remove_variable = math_sqrt_i
+					change_variable = { 
+						name = task_get_prog_t
+						multiply = var:task_get_prog_tt
+					}
+					change_variable = { 
+						name = task_get_prog_t
+						divide = 30
+					}
+					change_variable = { 
+						name = task_get_prog_t
+						add = 0.1
+					}
+					change_variable = { 
+						name = task_get_prog_t
+						multiply = 1
+					}
+					change_variable = { 
+						name = task_get_prog_t
+						divide = 12
+					}
+					set_variable = { 
+						name = task_ai_manage_logistics_martial
+						value = var:task_get_prog_t
+					}
+					remove_variable = task_get_prog_t
+					remove_variable = task_get_prog_tt
+				}
+			}
+			set_variable = { 
+				name = task_ai_manage_logistics_stewardship
+				value = 0
+			}
+			ordered_stewardship_councillor = { 
+				position = 0
+				prev = { 
+					set_variable = { 
+						name = task_get_prog_t
+						value = prev.martial
+					}
+					change_variable = { 
+						name = task_get_prog_t
+						add = { 
+							value = prev.stewardship
+							divide = 2
+						}
+					}
+					change_variable = { 
+						name = task_get_prog_t
+						divide = 1.5
+					}
+					set_variable = { 
+						name = math_sqrt_i
+						value = var:task_get_prog_t
+					}
+					if = { 
+						limit = { 
+							has_variable = math_sqrt_i
+							var:math_sqrt_i > 0
+						}
+						set_variable = { 
+							name = math_sqrt_x
+							value = var:math_sqrt_i
+						}
+						set_variable = { 
+							name = math_sqrt_n
+							value = var:math_sqrt_i
+						}
+						change_variable = { 
+							name = math_sqrt_n
+							divide = 2
+						}
+						set_variable = { 
+							name = math_sqrt_tt
+							value = 0.5
+						}
+						while = { 
+							limit = { 
+								has_variable = math_sqrt_n
+								var:math_sqrt_n > 0
+								OR = { 
+									var:math_sqrt_tt < 0.995
+									var:math_sqrt_tt > 1.005
+								}
+							}
+							set_variable = { 
+								name = math_sqrt_x
+								value = var:math_sqrt_n
+							}
+							set_variable = { 
+								name = math_sqrt_t
+								value = var:math_sqrt_i
+							}
+							change_variable = { 
+								name = math_sqrt_t
+								divide = var:math_sqrt_n
+							}
+							change_variable = { 
+								name = math_sqrt_n
+								add = var:math_sqrt_t
+							}
+							change_variable = { 
+								name = math_sqrt_n
+								divide = 2
+							}
+							set_variable = { 
+								name = math_sqrt_tt
+								value = var:math_sqrt_x
+							}
+							change_variable = { 
+								name = math_sqrt_tt
+								divide = var:math_sqrt_n
+							}
+						}
+						set_variable = { 
+							name = task_get_prog_tt
+							value = var:math_sqrt_n
+						}
+						remove_variable = math_sqrt_x
+						remove_variable = math_sqrt_t
+						remove_variable = math_sqrt_n
+						remove_variable = math_sqrt_tt
+					}
+					else = { 
+						set_variable = { 
+							name = task_get_prog_tt
+							value = 0
+						}
+					}
+					remove_variable = math_sqrt_i
+					change_variable = { 
+						name = task_get_prog_t
+						multiply = var:task_get_prog_tt
+					}
+					change_variable = { 
+						name = task_get_prog_t
+						divide = 30
+					}
+					change_variable = { 
+						name = task_get_prog_t
+						add = 0.1
+					}
+					change_variable = { 
+						name = task_get_prog_t
+						multiply = 1
+					}
+					change_variable = { 
+						name = task_get_prog_t
+						divide = 12
+					}
+					set_variable = { 
+						name = task_ai_manage_logistics_stewardship
+						value = var:task_get_prog_t
+					}
+					remove_variable = task_get_prog_t
+					remove_variable = task_get_prog_tt
+				}
+			}
+			set_variable = { 
+				name = task_ai_manage_logistics_intrigue
+				value = 0
+			}
+			ordered_intrigue_councillor = { 
+				position = 0
+				prev = { 
+					set_variable = { 
+						name = task_get_prog_t
+						value = prev.martial
+					}
+					change_variable = { 
+						name = task_get_prog_t
+						add = { 
+							value = prev.stewardship
+							divide = 2
+						}
+					}
+					change_variable = { 
+						name = task_get_prog_t
+						divide = 1.5
+					}
+					set_variable = { 
+						name = math_sqrt_i
+						value = var:task_get_prog_t
+					}
+					if = { 
+						limit = { 
+							has_variable = math_sqrt_i
+							var:math_sqrt_i > 0
+						}
+						set_variable = { 
+							name = math_sqrt_x
+							value = var:math_sqrt_i
+						}
+						set_variable = { 
+							name = math_sqrt_n
+							value = var:math_sqrt_i
+						}
+						change_variable = { 
+							name = math_sqrt_n
+							divide = 2
+						}
+						set_variable = { 
+							name = math_sqrt_tt
+							value = 0.5
+						}
+						while = { 
+							limit = { 
+								has_variable = math_sqrt_n
+								var:math_sqrt_n > 0
+								OR = { 
+									var:math_sqrt_tt < 0.995
+									var:math_sqrt_tt > 1.005
+								}
+							}
+							set_variable = { 
+								name = math_sqrt_x
+								value = var:math_sqrt_n
+							}
+							set_variable = { 
+								name = math_sqrt_t
+								value = var:math_sqrt_i
+							}
+							change_variable = { 
+								name = math_sqrt_t
+								divide = var:math_sqrt_n
+							}
+							change_variable = { 
+								name = math_sqrt_n
+								add = var:math_sqrt_t
+							}
+							change_variable = { 
+								name = math_sqrt_n
+								divide = 2
+							}
+							set_variable = { 
+								name = math_sqrt_tt
+								value = var:math_sqrt_x
+							}
+							change_variable = { 
+								name = math_sqrt_tt
+								divide = var:math_sqrt_n
+							}
+						}
+						set_variable = { 
+							name = task_get_prog_tt
+							value = var:math_sqrt_n
+						}
+						remove_variable = math_sqrt_x
+						remove_variable = math_sqrt_t
+						remove_variable = math_sqrt_n
+						remove_variable = math_sqrt_tt
+					}
+					else = { 
+						set_variable = { 
+							name = task_get_prog_tt
+							value = 0
+						}
+					}
+					remove_variable = math_sqrt_i
+					change_variable = { 
+						name = task_get_prog_t
+						multiply = var:task_get_prog_tt
+					}
+					change_variable = { 
+						name = task_get_prog_t
+						divide = 30
+					}
+					change_variable = { 
+						name = task_get_prog_t
+						add = 0.1
+					}
+					change_variable = { 
+						name = task_get_prog_t
+						multiply = 1
+					}
+					change_variable = { 
+						name = task_get_prog_t
+						divide = 12
+					}
+					set_variable = { 
+						name = task_ai_manage_logistics_intrigue
+						value = var:task_get_prog_t
+					}
+					remove_variable = task_get_prog_t
+					remove_variable = task_get_prog_tt
+				}
+			}
+			set_variable = { 
+				name = task_ai_manage_logistics_learning
+				value = 0
+			}
+			ordered_learning_councillor = { 
+				position = 0
+				prev = { 
+					set_variable = { 
+						name = task_get_prog_t
+						value = prev.martial
+					}
+					change_variable = { 
+						name = task_get_prog_t
+						add = { 
+							value = prev.stewardship
+							divide = 2
+						}
+					}
+					change_variable = { 
+						name = task_get_prog_t
+						divide = 1.5
+					}
+					set_variable = { 
+						name = math_sqrt_i
+						value = var:task_get_prog_t
+					}
+					if = { 
+						limit = { 
+							has_variable = math_sqrt_i
+							var:math_sqrt_i > 0
+						}
+						set_variable = { 
+							name = math_sqrt_x
+							value = var:math_sqrt_i
+						}
+						set_variable = { 
+							name = math_sqrt_n
+							value = var:math_sqrt_i
+						}
+						change_variable = { 
+							name = math_sqrt_n
+							divide = 2
+						}
+						set_variable = { 
+							name = math_sqrt_tt
+							value = 0.5
+						}
+						while = { 
+							limit = { 
+								has_variable = math_sqrt_n
+								var:math_sqrt_n > 0
+								OR = { 
+									var:math_sqrt_tt < 0.995
+									var:math_sqrt_tt > 1.005
+								}
+							}
+							set_variable = { 
+								name = math_sqrt_x
+								value = var:math_sqrt_n
+							}
+							set_variable = { 
+								name = math_sqrt_t
+								value = var:math_sqrt_i
+							}
+							change_variable = { 
+								name = math_sqrt_t
+								divide = var:math_sqrt_n
+							}
+							change_variable = { 
+								name = math_sqrt_n
+								add = var:math_sqrt_t
+							}
+							change_variable = { 
+								name = math_sqrt_n
+								divide = 2
+							}
+							set_variable = { 
+								name = math_sqrt_tt
+								value = var:math_sqrt_x
+							}
+							change_variable = { 
+								name = math_sqrt_tt
+								divide = var:math_sqrt_n
+							}
+						}
+						set_variable = { 
+							name = task_get_prog_tt
+							value = var:math_sqrt_n
+						}
+						remove_variable = math_sqrt_x
+						remove_variable = math_sqrt_t
+						remove_variable = math_sqrt_n
+						remove_variable = math_sqrt_tt
+					}
+					else = { 
+						set_variable = { 
+							name = task_get_prog_tt
+							value = 0
+						}
+					}
+					remove_variable = math_sqrt_i
+					change_variable = { 
+						name = task_get_prog_t
+						multiply = var:task_get_prog_tt
+					}
+					change_variable = { 
+						name = task_get_prog_t
+						divide = 30
+					}
+					change_variable = { 
+						name = task_get_prog_t
+						add = 0.1
+					}
+					change_variable = { 
+						name = task_get_prog_t
+						multiply = 1
+					}
+					change_variable = { 
+						name = task_get_prog_t
+						divide = 12
+					}
+					set_variable = { 
+						name = task_ai_manage_logistics_learning
+						value = var:task_get_prog_t
+					}
+					remove_variable = task_get_prog_t
+					remove_variable = task_get_prog_tt
+				}
+			}
+			set_variable = { 
+				name = task_manage_stockpile_lord
+				value = 0
+			}
+			set_variable = { 
+				name = task_manage_stockpile_diplomacy
+				value = 0
+			}
+			set_variable = { 
+				name = task_manage_stockpile_martial
+				value = 0
+			}
+			set_variable = { 
+				name = task_manage_stockpile_stewardship
+				value = 0
+			}
+			set_variable = { 
+				name = task_manage_stockpile_intrigue
+				value = 0
+			}
+			set_variable = { 
+				name = task_manage_stockpile_learning
+				value = 0
+			}
+			set_variable = { 
+				name = task_ai_manage_stockpile
+				value = 1
+			}
+			if = { 
+				limit = { 
+					is_councillor = yes
+				}
+				set_variable = { 
+					name = task_ai_manage_stockpile_lord
+					value = 0
+				}
+			}
+			else = { 
+				set_variable = { 
+					name = task_get_prog_t
+					value = this.stewardship
+				}
+				change_variable = { 
+					name = task_get_prog_t
+					add = { 
+						value = this.diplomacy
+						divide = 2
+					}
+				}
+				change_variable = { 
+					name = task_get_prog_t
+					divide = 1.5
+				}
+				set_variable = { 
+					name = math_sqrt_i
+					value = var:task_get_prog_t
+				}
+				if = { 
+					limit = { 
+						has_variable = math_sqrt_i
+						var:math_sqrt_i > 0
+					}
+					set_variable = { 
+						name = math_sqrt_x
+						value = var:math_sqrt_i
+					}
+					set_variable = { 
+						name = math_sqrt_n
+						value = var:math_sqrt_i
+					}
+					change_variable = { 
+						name = math_sqrt_n
+						divide = 2
+					}
+					set_variable = { 
+						name = math_sqrt_tt
+						value = 0.5
+					}
+					while = { 
+						limit = { 
+							has_variable = math_sqrt_n
+							var:math_sqrt_n > 0
+							OR = { 
+								var:math_sqrt_tt < 0.995
+								var:math_sqrt_tt > 1.005
+							}
+						}
+						set_variable = { 
+							name = math_sqrt_x
+							value = var:math_sqrt_n
+						}
+						set_variable = { 
+							name = math_sqrt_t
+							value = var:math_sqrt_i
+						}
+						change_variable = { 
+							name = math_sqrt_t
+							divide = var:math_sqrt_n
+						}
+						change_variable = { 
+							name = math_sqrt_n
+							add = var:math_sqrt_t
+						}
+						change_variable = { 
+							name = math_sqrt_n
+							divide = 2
+						}
+						set_variable = { 
+							name = math_sqrt_tt
+							value = var:math_sqrt_x
+						}
+						change_variable = { 
+							name = math_sqrt_tt
+							divide = var:math_sqrt_n
+						}
+					}
+					set_variable = { 
+						name = task_get_prog_tt
+						value = var:math_sqrt_n
+					}
+					remove_variable = math_sqrt_x
+					remove_variable = math_sqrt_t
+					remove_variable = math_sqrt_n
+					remove_variable = math_sqrt_tt
+				}
+				else = { 
+					set_variable = { 
+						name = task_get_prog_tt
+						value = 0
+					}
+				}
+				remove_variable = math_sqrt_i
+				change_variable = { 
+					name = task_get_prog_t
+					multiply = var:task_get_prog_tt
+				}
+				change_variable = { 
+					name = task_get_prog_t
+					divide = 30
+				}
+				change_variable = { 
+					name = task_get_prog_t
+					add = 0.1
+				}
+				change_variable = { 
+					name = task_get_prog_t
+					multiply = 1
+				}
+				change_variable = { 
+					name = task_get_prog_t
+					divide = 12
+				}
+				set_variable = { 
+					name = task_ai_manage_stockpile_lord
+					value = var:task_get_prog_t
+				}
+				remove_variable = task_get_prog_t
+				remove_variable = task_get_prog_tt
+			}
+			set_variable = { 
+				name = task_ai_manage_stockpile_diplomacy
+				value = 0
+			}
+			ordered_diplomacy_councillor = { 
+				position = 0
+				prev = { 
+					set_variable = { 
+						name = task_get_prog_t
+						value = prev.stewardship
+					}
+					change_variable = { 
+						name = task_get_prog_t
+						add = { 
+							value = prev.diplomacy
+							divide = 2
+						}
+					}
+					change_variable = { 
+						name = task_get_prog_t
+						divide = 1.5
+					}
+					set_variable = { 
+						name = math_sqrt_i
+						value = var:task_get_prog_t
+					}
+					if = { 
+						limit = { 
+							has_variable = math_sqrt_i
+							var:math_sqrt_i > 0
+						}
+						set_variable = { 
+							name = math_sqrt_x
+							value = var:math_sqrt_i
+						}
+						set_variable = { 
+							name = math_sqrt_n
+							value = var:math_sqrt_i
+						}
+						change_variable = { 
+							name = math_sqrt_n
+							divide = 2
+						}
+						set_variable = { 
+							name = math_sqrt_tt
+							value = 0.5
+						}
+						while = { 
+							limit = { 
+								has_variable = math_sqrt_n
+								var:math_sqrt_n > 0
+								OR = { 
+									var:math_sqrt_tt < 0.995
+									var:math_sqrt_tt > 1.005
+								}
+							}
+							set_variable = { 
+								name = math_sqrt_x
+								value = var:math_sqrt_n
+							}
+							set_variable = { 
+								name = math_sqrt_t
+								value = var:math_sqrt_i
+							}
+							change_variable = { 
+								name = math_sqrt_t
+								divide = var:math_sqrt_n
+							}
+							change_variable = { 
+								name = math_sqrt_n
+								add = var:math_sqrt_t
+							}
+							change_variable = { 
+								name = math_sqrt_n
+								divide = 2
+							}
+							set_variable = { 
+								name = math_sqrt_tt
+								value = var:math_sqrt_x
+							}
+							change_variable = { 
+								name = math_sqrt_tt
+								divide = var:math_sqrt_n
+							}
+						}
+						set_variable = { 
+							name = task_get_prog_tt
+							value = var:math_sqrt_n
+						}
+						remove_variable = math_sqrt_x
+						remove_variable = math_sqrt_t
+						remove_variable = math_sqrt_n
+						remove_variable = math_sqrt_tt
+					}
+					else = { 
+						set_variable = { 
+							name = task_get_prog_tt
+							value = 0
+						}
+					}
+					remove_variable = math_sqrt_i
+					change_variable = { 
+						name = task_get_prog_t
+						multiply = var:task_get_prog_tt
+					}
+					change_variable = { 
+						name = task_get_prog_t
+						divide = 30
+					}
+					change_variable = { 
+						name = task_get_prog_t
+						add = 0.1
+					}
+					change_variable = { 
+						name = task_get_prog_t
+						multiply = 1
+					}
+					change_variable = { 
+						name = task_get_prog_t
+						divide = 12
+					}
+					set_variable = { 
+						name = task_ai_manage_stockpile_diplomacy
+						value = var:task_get_prog_t
+					}
+					remove_variable = task_get_prog_t
+					remove_variable = task_get_prog_tt
+				}
+			}
+			set_variable = { 
+				name = task_ai_manage_stockpile_martial
+				value = 0
+			}
+			ordered_martial_councillor = { 
+				position = 0
+				prev = { 
+					set_variable = { 
+						name = task_get_prog_t
+						value = prev.stewardship
+					}
+					change_variable = { 
+						name = task_get_prog_t
+						add = { 
+							value = prev.diplomacy
+							divide = 2
+						}
+					}
+					change_variable = { 
+						name = task_get_prog_t
+						divide = 1.5
+					}
+					set_variable = { 
+						name = math_sqrt_i
+						value = var:task_get_prog_t
+					}
+					if = { 
+						limit = { 
+							has_variable = math_sqrt_i
+							var:math_sqrt_i > 0
+						}
+						set_variable = { 
+							name = math_sqrt_x
+							value = var:math_sqrt_i
+						}
+						set_variable = { 
+							name = math_sqrt_n
+							value = var:math_sqrt_i
+						}
+						change_variable = { 
+							name = math_sqrt_n
+							divide = 2
+						}
+						set_variable = { 
+							name = math_sqrt_tt
+							value = 0.5
+						}
+						while = { 
+							limit = { 
+								has_variable = math_sqrt_n
+								var:math_sqrt_n > 0
+								OR = { 
+									var:math_sqrt_tt < 0.995
+									var:math_sqrt_tt > 1.005
+								}
+							}
+							set_variable = { 
+								name = math_sqrt_x
+								value = var:math_sqrt_n
+							}
+							set_variable = { 
+								name = math_sqrt_t
+								value = var:math_sqrt_i
+							}
+							change_variable = { 
+								name = math_sqrt_t
+								divide = var:math_sqrt_n
+							}
+							change_variable = { 
+								name = math_sqrt_n
+								add = var:math_sqrt_t
+							}
+							change_variable = { 
+								name = math_sqrt_n
+								divide = 2
+							}
+							set_variable = { 
+								name = math_sqrt_tt
+								value = var:math_sqrt_x
+							}
+							change_variable = { 
+								name = math_sqrt_tt
+								divide = var:math_sqrt_n
+							}
+						}
+						set_variable = { 
+							name = task_get_prog_tt
+							value = var:math_sqrt_n
+						}
+						remove_variable = math_sqrt_x
+						remove_variable = math_sqrt_t
+						remove_variable = math_sqrt_n
+						remove_variable = math_sqrt_tt
+					}
+					else = { 
+						set_variable = { 
+							name = task_get_prog_tt
+							value = 0
+						}
+					}
+					remove_variable = math_sqrt_i
+					change_variable = { 
+						name = task_get_prog_t
+						multiply = var:task_get_prog_tt
+					}
+					change_variable = { 
+						name = task_get_prog_t
+						divide = 30
+					}
+					change_variable = { 
+						name = task_get_prog_t
+						add = 0.1
+					}
+					change_variable = { 
+						name = task_get_prog_t
+						multiply = 1
+					}
+					change_variable = { 
+						name = task_get_prog_t
+						divide = 12
+					}
+					set_variable = { 
+						name = task_ai_manage_stockpile_martial
+						value = var:task_get_prog_t
+					}
+					remove_variable = task_get_prog_t
+					remove_variable = task_get_prog_tt
+				}
+			}
+			set_variable = { 
+				name = task_ai_manage_stockpile_stewardship
+				value = 0
+			}
+			ordered_stewardship_councillor = { 
+				position = 0
+				prev = { 
+					set_variable = { 
+						name = task_get_prog_t
+						value = prev.stewardship
+					}
+					change_variable = { 
+						name = task_get_prog_t
+						add = { 
+							value = prev.diplomacy
+							divide = 2
+						}
+					}
+					change_variable = { 
+						name = task_get_prog_t
+						divide = 1.5
+					}
+					set_variable = { 
+						name = math_sqrt_i
+						value = var:task_get_prog_t
+					}
+					if = { 
+						limit = { 
+							has_variable = math_sqrt_i
+							var:math_sqrt_i > 0
+						}
+						set_variable = { 
+							name = math_sqrt_x
+							value = var:math_sqrt_i
+						}
+						set_variable = { 
+							name = math_sqrt_n
+							value = var:math_sqrt_i
+						}
+						change_variable = { 
+							name = math_sqrt_n
+							divide = 2
+						}
+						set_variable = { 
+							name = math_sqrt_tt
+							value = 0.5
+						}
+						while = { 
+							limit = { 
+								has_variable = math_sqrt_n
+								var:math_sqrt_n > 0
+								OR = { 
+									var:math_sqrt_tt < 0.995
+									var:math_sqrt_tt > 1.005
+								}
+							}
+							set_variable = { 
+								name = math_sqrt_x
+								value = var:math_sqrt_n
+							}
+							set_variable = { 
+								name = math_sqrt_t
+								value = var:math_sqrt_i
+							}
+							change_variable = { 
+								name = math_sqrt_t
+								divide = var:math_sqrt_n
+							}
+							change_variable = { 
+								name = math_sqrt_n
+								add = var:math_sqrt_t
+							}
+							change_variable = { 
+								name = math_sqrt_n
+								divide = 2
+							}
+							set_variable = { 
+								name = math_sqrt_tt
+								value = var:math_sqrt_x
+							}
+							change_variable = { 
+								name = math_sqrt_tt
+								divide = var:math_sqrt_n
+							}
+						}
+						set_variable = { 
+							name = task_get_prog_tt
+							value = var:math_sqrt_n
+						}
+						remove_variable = math_sqrt_x
+						remove_variable = math_sqrt_t
+						remove_variable = math_sqrt_n
+						remove_variable = math_sqrt_tt
+					}
+					else = { 
+						set_variable = { 
+							name = task_get_prog_tt
+							value = 0
+						}
+					}
+					remove_variable = math_sqrt_i
+					change_variable = { 
+						name = task_get_prog_t
+						multiply = var:task_get_prog_tt
+					}
+					change_variable = { 
+						name = task_get_prog_t
+						divide = 30
+					}
+					change_variable = { 
+						name = task_get_prog_t
+						add = 0.1
+					}
+					change_variable = { 
+						name = task_get_prog_t
+						multiply = 1
+					}
+					change_variable = { 
+						name = task_get_prog_t
+						divide = 12
+					}
+					set_variable = { 
+						name = task_ai_manage_stockpile_stewardship
+						value = var:task_get_prog_t
+					}
+					remove_variable = task_get_prog_t
+					remove_variable = task_get_prog_tt
+				}
+			}
+			set_variable = { 
+				name = task_ai_manage_stockpile_intrigue
+				value = 0
+			}
+			ordered_intrigue_councillor = { 
+				position = 0
+				prev = { 
+					set_variable = { 
+						name = task_get_prog_t
+						value = prev.stewardship
+					}
+					change_variable = { 
+						name = task_get_prog_t
+						add = { 
+							value = prev.diplomacy
+							divide = 2
+						}
+					}
+					change_variable = { 
+						name = task_get_prog_t
+						divide = 1.5
+					}
+					set_variable = { 
+						name = math_sqrt_i
+						value = var:task_get_prog_t
+					}
+					if = { 
+						limit = { 
+							has_variable = math_sqrt_i
+							var:math_sqrt_i > 0
+						}
+						set_variable = { 
+							name = math_sqrt_x
+							value = var:math_sqrt_i
+						}
+						set_variable = { 
+							name = math_sqrt_n
+							value = var:math_sqrt_i
+						}
+						change_variable = { 
+							name = math_sqrt_n
+							divide = 2
+						}
+						set_variable = { 
+							name = math_sqrt_tt
+							value = 0.5
+						}
+						while = { 
+							limit = { 
+								has_variable = math_sqrt_n
+								var:math_sqrt_n > 0
+								OR = { 
+									var:math_sqrt_tt < 0.995
+									var:math_sqrt_tt > 1.005
+								}
+							}
+							set_variable = { 
+								name = math_sqrt_x
+								value = var:math_sqrt_n
+							}
+							set_variable = { 
+								name = math_sqrt_t
+								value = var:math_sqrt_i
+							}
+							change_variable = { 
+								name = math_sqrt_t
+								divide = var:math_sqrt_n
+							}
+							change_variable = { 
+								name = math_sqrt_n
+								add = var:math_sqrt_t
+							}
+							change_variable = { 
+								name = math_sqrt_n
+								divide = 2
+							}
+							set_variable = { 
+								name = math_sqrt_tt
+								value = var:math_sqrt_x
+							}
+							change_variable = { 
+								name = math_sqrt_tt
+								divide = var:math_sqrt_n
+							}
+						}
+						set_variable = { 
+							name = task_get_prog_tt
+							value = var:math_sqrt_n
+						}
+						remove_variable = math_sqrt_x
+						remove_variable = math_sqrt_t
+						remove_variable = math_sqrt_n
+						remove_variable = math_sqrt_tt
+					}
+					else = { 
+						set_variable = { 
+							name = task_get_prog_tt
+							value = 0
+						}
+					}
+					remove_variable = math_sqrt_i
+					change_variable = { 
+						name = task_get_prog_t
+						multiply = var:task_get_prog_tt
+					}
+					change_variable = { 
+						name = task_get_prog_t
+						divide = 30
+					}
+					change_variable = { 
+						name = task_get_prog_t
+						add = 0.1
+					}
+					change_variable = { 
+						name = task_get_prog_t
+						multiply = 1
+					}
+					change_variable = { 
+						name = task_get_prog_t
+						divide = 12
+					}
+					set_variable = { 
+						name = task_ai_manage_stockpile_intrigue
+						value = var:task_get_prog_t
+					}
+					remove_variable = task_get_prog_t
+					remove_variable = task_get_prog_tt
+				}
+			}
+			set_variable = { 
+				name = task_ai_manage_stockpile_learning
+				value = 0
+			}
+			ordered_learning_councillor = { 
+				position = 0
+				prev = { 
+					set_variable = { 
+						name = task_get_prog_t
+						value = prev.stewardship
+					}
+					change_variable = { 
+						name = task_get_prog_t
+						add = { 
+							value = prev.diplomacy
+							divide = 2
+						}
+					}
+					change_variable = { 
+						name = task_get_prog_t
+						divide = 1.5
+					}
+					set_variable = { 
+						name = math_sqrt_i
+						value = var:task_get_prog_t
+					}
+					if = { 
+						limit = { 
+							has_variable = math_sqrt_i
+							var:math_sqrt_i > 0
+						}
+						set_variable = { 
+							name = math_sqrt_x
+							value = var:math_sqrt_i
+						}
+						set_variable = { 
+							name = math_sqrt_n
+							value = var:math_sqrt_i
+						}
+						change_variable = { 
+							name = math_sqrt_n
+							divide = 2
+						}
+						set_variable = { 
+							name = math_sqrt_tt
+							value = 0.5
+						}
+						while = { 
+							limit = { 
+								has_variable = math_sqrt_n
+								var:math_sqrt_n > 0
+								OR = { 
+									var:math_sqrt_tt < 0.995
+									var:math_sqrt_tt > 1.005
+								}
+							}
+							set_variable = { 
+								name = math_sqrt_x
+								value = var:math_sqrt_n
+							}
+							set_variable = { 
+								name = math_sqrt_t
+								value = var:math_sqrt_i
+							}
+							change_variable = { 
+								name = math_sqrt_t
+								divide = var:math_sqrt_n
+							}
+							change_variable = { 
+								name = math_sqrt_n
+								add = var:math_sqrt_t
+							}
+							change_variable = { 
+								name = math_sqrt_n
+								divide = 2
+							}
+							set_variable = { 
+								name = math_sqrt_tt
+								value = var:math_sqrt_x
+							}
+							change_variable = { 
+								name = math_sqrt_tt
+								divide = var:math_sqrt_n
+							}
+						}
+						set_variable = { 
+							name = task_get_prog_tt
+							value = var:math_sqrt_n
+						}
+						remove_variable = math_sqrt_x
+						remove_variable = math_sqrt_t
+						remove_variable = math_sqrt_n
+						remove_variable = math_sqrt_tt
+					}
+					else = { 
+						set_variable = { 
+							name = task_get_prog_tt
+							value = 0
+						}
+					}
+					remove_variable = math_sqrt_i
+					change_variable = { 
+						name = task_get_prog_t
+						multiply = var:task_get_prog_tt
+					}
+					change_variable = { 
+						name = task_get_prog_t
+						divide = 30
+					}
+					change_variable = { 
+						name = task_get_prog_t
+						add = 0.1
+					}
+					change_variable = { 
+						name = task_get_prog_t
+						multiply = 1
+					}
+					change_variable = { 
+						name = task_get_prog_t
+						divide = 12
+					}
+					set_variable = { 
+						name = task_ai_manage_stockpile_learning
+						value = var:task_get_prog_t
+					}
+					remove_variable = task_get_prog_t
+					remove_variable = task_get_prog_tt
+				}
+			}
+			set_variable = { 
+				name = task_ai_t
+				value = 0
+			}
+			set_variable = { 
+				name = task_manage_domain_lord
+				value = var:task_ai_manage_domain
+			}
+			change_variable = { 
+				name = task_manage_domain_lord
+				multiply = 10
+			}
+			change_variable = { 
+				name = task_manage_domain_lord
+				multiply = var:task_ai_manage_domain_lord
+			}
+			change_variable = { 
+				name = task_ai_t
+				add = var:task_manage_domain_lord
+			}
+			set_variable = { 
+				name = task_manage_realm_lord
+				value = var:task_ai_manage_realm
+			}
+			change_variable = { 
+				name = task_manage_realm_lord
+				multiply = 10
+			}
+			change_variable = { 
+				name = task_manage_realm_lord
+				multiply = var:task_ai_manage_realm_lord
+			}
+			change_variable = { 
+				name = task_ai_t
+				add = var:task_manage_realm_lord
+			}
+			set_variable = { 
+				name = task_manage_logistics_lord
+				value = var:task_ai_manage_logistics
+			}
+			change_variable = { 
+				name = task_manage_logistics_lord
+				multiply = 10
+			}
+			change_variable = { 
+				name = task_manage_logistics_lord
+				multiply = var:task_ai_manage_logistics_lord
+			}
+			change_variable = { 
+				name = task_ai_t
+				add = var:task_manage_logistics_lord
+			}
+			set_variable = { 
+				name = task_manage_stockpile_lord
+				value = var:task_ai_manage_stockpile
+			}
+			change_variable = { 
+				name = task_manage_stockpile_lord
+				multiply = 10
+			}
+			change_variable = { 
+				name = task_manage_stockpile_lord
+				multiply = var:task_ai_manage_stockpile_lord
+			}
+			change_variable = { 
+				name = task_ai_t
+				add = var:task_manage_stockpile_lord
+			}
+			if = { 
+				limit = { 
+					has_variable = task_ai_t
+					var:task_ai_t > 0
+				}
+				change_variable = { 
+					name = task_manage_domain_lord
+					divide = var:task_ai_t
+				}
+				change_variable = { 
+					name = task_manage_realm_lord
+					divide = var:task_ai_t
+				}
+				change_variable = { 
+					name = task_manage_logistics_lord
+					divide = var:task_ai_t
+				}
+				change_variable = { 
+					name = task_manage_stockpile_lord
+					divide = var:task_ai_t
+				}
+			}
+			set_variable = { 
+				name = task_ai_t
+				value = 0
+			}
+			set_variable = { 
+				name = task_manage_domain_diplomacy
+				value = var:task_ai_manage_domain
+			}
+			change_variable = { 
+				name = task_manage_domain_diplomacy
+				multiply = 10
+			}
+			change_variable = { 
+				name = task_manage_domain_diplomacy
+				multiply = var:task_ai_manage_domain_diplomacy
+			}
+			change_variable = { 
+				name = task_ai_t
+				add = var:task_manage_domain_diplomacy
+			}
+			set_variable = { 
+				name = task_manage_realm_diplomacy
+				value = var:task_ai_manage_realm
+			}
+			change_variable = { 
+				name = task_manage_realm_diplomacy
+				multiply = 10
+			}
+			change_variable = { 
+				name = task_manage_realm_diplomacy
+				multiply = var:task_ai_manage_realm_diplomacy
+			}
+			change_variable = { 
+				name = task_ai_t
+				add = var:task_manage_realm_diplomacy
+			}
+			set_variable = { 
+				name = task_manage_logistics_diplomacy
+				value = var:task_ai_manage_logistics
+			}
+			change_variable = { 
+				name = task_manage_logistics_diplomacy
+				multiply = 10
+			}
+			change_variable = { 
+				name = task_manage_logistics_diplomacy
+				multiply = var:task_ai_manage_logistics_diplomacy
+			}
+			change_variable = { 
+				name = task_ai_t
+				add = var:task_manage_logistics_diplomacy
+			}
+			set_variable = { 
+				name = task_manage_stockpile_diplomacy
+				value = var:task_ai_manage_stockpile
+			}
+			change_variable = { 
+				name = task_manage_stockpile_diplomacy
+				multiply = 10
+			}
+			change_variable = { 
+				name = task_manage_stockpile_diplomacy
+				multiply = var:task_ai_manage_stockpile_diplomacy
+			}
+			change_variable = { 
+				name = task_ai_t
+				add = var:task_manage_stockpile_diplomacy
+			}
+			if = { 
+				limit = { 
+					has_variable = task_ai_t
+					var:task_ai_t > 0
+				}
+				change_variable = { 
+					name = task_manage_domain_diplomacy
+					divide = var:task_ai_t
+				}
+				change_variable = { 
+					name = task_manage_realm_diplomacy
+					divide = var:task_ai_t
+				}
+				change_variable = { 
+					name = task_manage_logistics_diplomacy
+					divide = var:task_ai_t
+				}
+				change_variable = { 
+					name = task_manage_stockpile_diplomacy
+					divide = var:task_ai_t
+				}
+			}
+			set_variable = { 
+				name = task_ai_t
+				value = 0
+			}
+			set_variable = { 
+				name = task_manage_domain_martial
+				value = var:task_ai_manage_domain
+			}
+			change_variable = { 
+				name = task_manage_domain_martial
+				multiply = 10
+			}
+			change_variable = { 
+				name = task_manage_domain_martial
+				multiply = var:task_ai_manage_domain_martial
+			}
+			change_variable = { 
+				name = task_ai_t
+				add = var:task_manage_domain_martial
+			}
+			set_variable = { 
+				name = task_manage_realm_martial
+				value = var:task_ai_manage_realm
+			}
+			change_variable = { 
+				name = task_manage_realm_martial
+				multiply = 10
+			}
+			change_variable = { 
+				name = task_manage_realm_martial
+				multiply = var:task_ai_manage_realm_martial
+			}
+			change_variable = { 
+				name = task_ai_t
+				add = var:task_manage_realm_martial
+			}
+			set_variable = { 
+				name = task_manage_logistics_martial
+				value = var:task_ai_manage_logistics
+			}
+			change_variable = { 
+				name = task_manage_logistics_martial
+				multiply = 10
+			}
+			change_variable = { 
+				name = task_manage_logistics_martial
+				multiply = var:task_ai_manage_logistics_martial
+			}
+			change_variable = { 
+				name = task_ai_t
+				add = var:task_manage_logistics_martial
+			}
+			set_variable = { 
+				name = task_manage_stockpile_martial
+				value = var:task_ai_manage_stockpile
+			}
+			change_variable = { 
+				name = task_manage_stockpile_martial
+				multiply = 10
+			}
+			change_variable = { 
+				name = task_manage_stockpile_martial
+				multiply = var:task_ai_manage_stockpile_martial
+			}
+			change_variable = { 
+				name = task_ai_t
+				add = var:task_manage_stockpile_martial
+			}
+			if = { 
+				limit = { 
+					has_variable = task_ai_t
+					var:task_ai_t > 0
+				}
+				change_variable = { 
+					name = task_manage_domain_martial
+					divide = var:task_ai_t
+				}
+				change_variable = { 
+					name = task_manage_realm_martial
+					divide = var:task_ai_t
+				}
+				change_variable = { 
+					name = task_manage_logistics_martial
+					divide = var:task_ai_t
+				}
+				change_variable = { 
+					name = task_manage_stockpile_martial
+					divide = var:task_ai_t
+				}
+			}
+			set_variable = { 
+				name = task_ai_t
+				value = 0
+			}
+			set_variable = { 
+				name = task_manage_domain_stewardship
+				value = var:task_ai_manage_domain
+			}
+			change_variable = { 
+				name = task_manage_domain_stewardship
+				multiply = 10
+			}
+			change_variable = { 
+				name = task_manage_domain_stewardship
+				multiply = var:task_ai_manage_domain_stewardship
+			}
+			change_variable = { 
+				name = task_ai_t
+				add = var:task_manage_domain_stewardship
+			}
+			set_variable = { 
+				name = task_manage_realm_stewardship
+				value = var:task_ai_manage_realm
+			}
+			change_variable = { 
+				name = task_manage_realm_stewardship
+				multiply = 10
+			}
+			change_variable = { 
+				name = task_manage_realm_stewardship
+				multiply = var:task_ai_manage_realm_stewardship
+			}
+			change_variable = { 
+				name = task_ai_t
+				add = var:task_manage_realm_stewardship
+			}
+			set_variable = { 
+				name = task_manage_logistics_stewardship
+				value = var:task_ai_manage_logistics
+			}
+			change_variable = { 
+				name = task_manage_logistics_stewardship
+				multiply = 10
+			}
+			change_variable = { 
+				name = task_manage_logistics_stewardship
+				multiply = var:task_ai_manage_logistics_stewardship
+			}
+			change_variable = { 
+				name = task_ai_t
+				add = var:task_manage_logistics_stewardship
+			}
+			set_variable = { 
+				name = task_manage_stockpile_stewardship
+				value = var:task_ai_manage_stockpile
+			}
+			change_variable = { 
+				name = task_manage_stockpile_stewardship
+				multiply = 10
+			}
+			change_variable = { 
+				name = task_manage_stockpile_stewardship
+				multiply = var:task_ai_manage_stockpile_stewardship
+			}
+			change_variable = { 
+				name = task_ai_t
+				add = var:task_manage_stockpile_stewardship
+			}
+			if = { 
+				limit = { 
+					has_variable = task_ai_t
+					var:task_ai_t > 0
+				}
+				change_variable = { 
+					name = task_manage_domain_stewardship
+					divide = var:task_ai_t
+				}
+				change_variable = { 
+					name = task_manage_realm_stewardship
+					divide = var:task_ai_t
+				}
+				change_variable = { 
+					name = task_manage_logistics_stewardship
+					divide = var:task_ai_t
+				}
+				change_variable = { 
+					name = task_manage_stockpile_stewardship
+					divide = var:task_ai_t
+				}
+			}
+			set_variable = { 
+				name = task_ai_t
+				value = 0
+			}
+			set_variable = { 
+				name = task_manage_domain_intrigue
+				value = var:task_ai_manage_domain
+			}
+			change_variable = { 
+				name = task_manage_domain_intrigue
+				multiply = 10
+			}
+			change_variable = { 
+				name = task_manage_domain_intrigue
+				multiply = var:task_ai_manage_domain_intrigue
+			}
+			change_variable = { 
+				name = task_ai_t
+				add = var:task_manage_domain_intrigue
+			}
+			set_variable = { 
+				name = task_manage_realm_intrigue
+				value = var:task_ai_manage_realm
+			}
+			change_variable = { 
+				name = task_manage_realm_intrigue
+				multiply = 10
+			}
+			change_variable = { 
+				name = task_manage_realm_intrigue
+				multiply = var:task_ai_manage_realm_intrigue
+			}
+			change_variable = { 
+				name = task_ai_t
+				add = var:task_manage_realm_intrigue
+			}
+			set_variable = { 
+				name = task_manage_logistics_intrigue
+				value = var:task_ai_manage_logistics
+			}
+			change_variable = { 
+				name = task_manage_logistics_intrigue
+				multiply = 10
+			}
+			change_variable = { 
+				name = task_manage_logistics_intrigue
+				multiply = var:task_ai_manage_logistics_intrigue
+			}
+			change_variable = { 
+				name = task_ai_t
+				add = var:task_manage_logistics_intrigue
+			}
+			set_variable = { 
+				name = task_manage_stockpile_intrigue
+				value = var:task_ai_manage_stockpile
+			}
+			change_variable = { 
+				name = task_manage_stockpile_intrigue
+				multiply = 10
+			}
+			change_variable = { 
+				name = task_manage_stockpile_intrigue
+				multiply = var:task_ai_manage_stockpile_intrigue
+			}
+			change_variable = { 
+				name = task_ai_t
+				add = var:task_manage_stockpile_intrigue
+			}
+			if = { 
+				limit = { 
+					has_variable = task_ai_t
+					var:task_ai_t > 0
+				}
+				change_variable = { 
+					name = task_manage_domain_intrigue
+					divide = var:task_ai_t
+				}
+				change_variable = { 
+					name = task_manage_realm_intrigue
+					divide = var:task_ai_t
+				}
+				change_variable = { 
+					name = task_manage_logistics_intrigue
+					divide = var:task_ai_t
+				}
+				change_variable = { 
+					name = task_manage_stockpile_intrigue
+					divide = var:task_ai_t
+				}
+			}
+			set_variable = { 
+				name = task_ai_t
+				value = 0
+			}
+			set_variable = { 
+				name = task_manage_domain_learning
+				value = var:task_ai_manage_domain
+			}
+			change_variable = { 
+				name = task_manage_domain_learning
+				multiply = 10
+			}
+			change_variable = { 
+				name = task_manage_domain_learning
+				multiply = var:task_ai_manage_domain_learning
+			}
+			change_variable = { 
+				name = task_ai_t
+				add = var:task_manage_domain_learning
+			}
+			set_variable = { 
+				name = task_manage_realm_learning
+				value = var:task_ai_manage_realm
+			}
+			change_variable = { 
+				name = task_manage_realm_learning
+				multiply = 10
+			}
+			change_variable = { 
+				name = task_manage_realm_learning
+				multiply = var:task_ai_manage_realm_learning
+			}
+			change_variable = { 
+				name = task_ai_t
+				add = var:task_manage_realm_learning
+			}
+			set_variable = { 
+				name = task_manage_logistics_learning
+				value = var:task_ai_manage_logistics
+			}
+			change_variable = { 
+				name = task_manage_logistics_learning
+				multiply = 10
+			}
+			change_variable = { 
+				name = task_manage_logistics_learning
+				multiply = var:task_ai_manage_logistics_learning
+			}
+			change_variable = { 
+				name = task_ai_t
+				add = var:task_manage_logistics_learning
+			}
+			set_variable = { 
+				name = task_manage_stockpile_learning
+				value = var:task_ai_manage_stockpile
+			}
+			change_variable = { 
+				name = task_manage_stockpile_learning
+				multiply = 10
+			}
+			change_variable = { 
+				name = task_manage_stockpile_learning
+				multiply = var:task_ai_manage_stockpile_learning
+			}
+			change_variable = { 
+				name = task_ai_t
+				add = var:task_manage_stockpile_learning
+			}
+			if = { 
+				limit = { 
+					has_variable = task_ai_t
+					var:task_ai_t > 0
+				}
+				change_variable = { 
+					name = task_manage_domain_learning
+					divide = var:task_ai_t
+				}
+				change_variable = { 
+					name = task_manage_realm_learning
+					divide = var:task_ai_t
+				}
+				change_variable = { 
+					name = task_manage_logistics_learning
+					divide = var:task_ai_t
+				}
+				change_variable = { 
+					name = task_manage_stockpile_learning
+					divide = var:task_ai_t
+				}
+			}
+			remove_variable = task_ai_t
+			remove_variable = task_ai_manage_domain
+			remove_variable = task_ai_manage_domain_lord
+			remove_variable = task_ai_manage_domain_diplomacy
+			remove_variable = task_ai_manage_domain_martial
+			remove_variable = task_ai_manage_domain_stewardship
+			remove_variable = task_ai_manage_domain_intrigue
+			remove_variable = task_ai_manage_domain_learning
+			remove_variable = task_ai_manage_realm
+			remove_variable = task_ai_manage_realm_lord
+			remove_variable = task_ai_manage_realm_diplomacy
+			remove_variable = task_ai_manage_realm_martial
+			remove_variable = task_ai_manage_realm_stewardship
+			remove_variable = task_ai_manage_realm_intrigue
+			remove_variable = task_ai_manage_realm_learning
+			remove_variable = task_ai_manage_logistics
+			remove_variable = task_ai_manage_logistics_lord
+			remove_variable = task_ai_manage_logistics_diplomacy
+			remove_variable = task_ai_manage_logistics_martial
+			remove_variable = task_ai_manage_logistics_stewardship
+			remove_variable = task_ai_manage_logistics_intrigue
+			remove_variable = task_ai_manage_logistics_learning
+			remove_variable = task_ai_manage_stockpile
+			remove_variable = task_ai_manage_stockpile_lord
+			remove_variable = task_ai_manage_stockpile_diplomacy
+			remove_variable = task_ai_manage_stockpile_martial
+			remove_variable = task_ai_manage_stockpile_stewardship
+			remove_variable = task_ai_manage_stockpile_intrigue
+			remove_variable = task_ai_manage_stockpile_learning
+			every_in_list = { 
+				limit = { 
+					OR = { 
+						is_landed = no
+						is_ruler = no
+						primary_title.tier = tier_barony
+					}
+					is_councillor = no
+				}
+				variable = task_workers
+				remove_variable = task_time_has
+				remove_variable = task_time_spent
+				remove_variable = task_prestige
+			}
+			clear_variable_list = task_workers
+			clear_variable_list = task_manage_domain
+			clear_variable_list = array_task_manage_domain_time
+			clear_variable_list = array_task_manage_domain_prog
+			if = { 
+				limit = { 
+					has_variable = task_manage_domain_lord
+					var:task_manage_domain_lord > 0
+				}
+				add_to_variable_list = { 
+					name = task_workers
+					target = this
+				}
+				add_to_variable_list = { 
+					name = task_manage_domain
+					target = this
+				}
+				set_variable = { 
+					name = array_add_t
+					value = var:task_manage_domain_lord
+				}
+				change_variable = { 
+					name = array_add_t
+					multiply = 10
+				}
+				if = { 
+					limit = { 
+						NOT = { 
+							has_variable_list = array_task_manage_domain_time
+						}
+					}
+					add_to_variable_list = { 
+						name = array_task_manage_domain_time
+						target = var:array_add_t
+					}
+				}
+				else = { 
+					while = { 
+						limit = { 
+							is_target_in_variable_list = { 
+								name = array_task_manage_domain_time
+								target = var:array_add_t
+							}
+						}
+						count = 10
+						change_variable = { 
+							name = array_add_t
+							add = 0.001
+						}
+					}
+					add_to_variable_list = { 
+						name = array_task_manage_domain_time
+						target = var:array_add_t
+					}
+				}
+				remove_variable = array_add_t
+			}
+			if = { 
+				limit = { 
+					has_variable = task_manage_domain_diplomacy
+					var:task_manage_domain_diplomacy > 0
+				}
+				ordered_diplomacy_councillor = { 
+					position = 0
+					prev = { 
+						add_to_variable_list = { 
+							name = task_workers
+							target = prev
+						}
+						add_to_variable_list = { 
+							name = task_manage_domain
+							target = prev
+						}
+						set_variable = { 
+							name = array_add_t
+							value = var:task_manage_domain_diplomacy
+						}
+						change_variable = { 
+							name = array_add_t
+							multiply = 10
+						}
+						if = { 
+							limit = { 
+								NOT = { 
+									has_variable_list = array_task_manage_domain_time
+								}
+							}
+							add_to_variable_list = { 
+								name = array_task_manage_domain_time
+								target = var:array_add_t
+							}
+						}
+						else = { 
+							while = { 
+								limit = { 
+									is_target_in_variable_list = { 
+										name = array_task_manage_domain_time
+										target = var:array_add_t
+									}
+								}
+								count = 10
+								change_variable = { 
+									name = array_add_t
+									add = 0.001
+								}
+							}
+							add_to_variable_list = { 
+								name = array_task_manage_domain_time
+								target = var:array_add_t
+							}
+						}
+						remove_variable = array_add_t
+					}
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = task_manage_domain_martial
+					var:task_manage_domain_martial > 0
+				}
+				ordered_martial_councillor = { 
+					position = 0
+					prev = { 
+						add_to_variable_list = { 
+							name = task_workers
+							target = prev
+						}
+						add_to_variable_list = { 
+							name = task_manage_domain
+							target = prev
+						}
+						set_variable = { 
+							name = array_add_t
+							value = var:task_manage_domain_martial
+						}
+						change_variable = { 
+							name = array_add_t
+							multiply = 10
+						}
+						if = { 
+							limit = { 
+								NOT = { 
+									has_variable_list = array_task_manage_domain_time
+								}
+							}
+							add_to_variable_list = { 
+								name = array_task_manage_domain_time
+								target = var:array_add_t
+							}
+						}
+						else = { 
+							while = { 
+								limit = { 
+									is_target_in_variable_list = { 
+										name = array_task_manage_domain_time
+										target = var:array_add_t
+									}
+								}
+								count = 10
+								change_variable = { 
+									name = array_add_t
+									add = 0.001
+								}
+							}
+							add_to_variable_list = { 
+								name = array_task_manage_domain_time
+								target = var:array_add_t
+							}
+						}
+						remove_variable = array_add_t
+					}
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = task_manage_domain_stewardship
+					var:task_manage_domain_stewardship > 0
+				}
+				ordered_stewardship_councillor = { 
+					position = 0
+					prev = { 
+						add_to_variable_list = { 
+							name = task_workers
+							target = prev
+						}
+						add_to_variable_list = { 
+							name = task_manage_domain
+							target = prev
+						}
+						set_variable = { 
+							name = array_add_t
+							value = var:task_manage_domain_stewardship
+						}
+						change_variable = { 
+							name = array_add_t
+							multiply = 10
+						}
+						if = { 
+							limit = { 
+								NOT = { 
+									has_variable_list = array_task_manage_domain_time
+								}
+							}
+							add_to_variable_list = { 
+								name = array_task_manage_domain_time
+								target = var:array_add_t
+							}
+						}
+						else = { 
+							while = { 
+								limit = { 
+									is_target_in_variable_list = { 
+										name = array_task_manage_domain_time
+										target = var:array_add_t
+									}
+								}
+								count = 10
+								change_variable = { 
+									name = array_add_t
+									add = 0.001
+								}
+							}
+							add_to_variable_list = { 
+								name = array_task_manage_domain_time
+								target = var:array_add_t
+							}
+						}
+						remove_variable = array_add_t
+					}
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = task_manage_domain_intrigue
+					var:task_manage_domain_intrigue > 0
+				}
+				ordered_intrigue_councillor = { 
+					position = 0
+					prev = { 
+						add_to_variable_list = { 
+							name = task_workers
+							target = prev
+						}
+						add_to_variable_list = { 
+							name = task_manage_domain
+							target = prev
+						}
+						set_variable = { 
+							name = array_add_t
+							value = var:task_manage_domain_intrigue
+						}
+						change_variable = { 
+							name = array_add_t
+							multiply = 10
+						}
+						if = { 
+							limit = { 
+								NOT = { 
+									has_variable_list = array_task_manage_domain_time
+								}
+							}
+							add_to_variable_list = { 
+								name = array_task_manage_domain_time
+								target = var:array_add_t
+							}
+						}
+						else = { 
+							while = { 
+								limit = { 
+									is_target_in_variable_list = { 
+										name = array_task_manage_domain_time
+										target = var:array_add_t
+									}
+								}
+								count = 10
+								change_variable = { 
+									name = array_add_t
+									add = 0.001
+								}
+							}
+							add_to_variable_list = { 
+								name = array_task_manage_domain_time
+								target = var:array_add_t
+							}
+						}
+						remove_variable = array_add_t
+					}
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = task_manage_domain_learning
+					var:task_manage_domain_learning > 0
+				}
+				ordered_learning_councillor = { 
+					position = 0
+					prev = { 
+						add_to_variable_list = { 
+							name = task_workers
+							target = prev
+						}
+						add_to_variable_list = { 
+							name = task_manage_domain
+							target = prev
+						}
+						set_variable = { 
+							name = array_add_t
+							value = var:task_manage_domain_learning
+						}
+						change_variable = { 
+							name = array_add_t
+							multiply = 10
+						}
+						if = { 
+							limit = { 
+								NOT = { 
+									has_variable_list = array_task_manage_domain_time
+								}
+							}
+							add_to_variable_list = { 
+								name = array_task_manage_domain_time
+								target = var:array_add_t
+							}
+						}
+						else = { 
+							while = { 
+								limit = { 
+									is_target_in_variable_list = { 
+										name = array_task_manage_domain_time
+										target = var:array_add_t
+									}
+								}
+								count = 10
+								change_variable = { 
+									name = array_add_t
+									add = 0.001
+								}
+							}
+							add_to_variable_list = { 
+								name = array_task_manage_domain_time
+								target = var:array_add_t
+							}
+						}
+						remove_variable = array_add_t
+					}
+				}
+			}
+			clear_variable_list = task_manage_realm
+			clear_variable_list = array_task_manage_realm_time
+			clear_variable_list = array_task_manage_realm_prog
+			if = { 
+				limit = { 
+					has_variable = task_manage_realm_lord
+					var:task_manage_realm_lord > 0
+				}
+				add_to_variable_list = { 
+					name = task_workers
+					target = this
+				}
+				add_to_variable_list = { 
+					name = task_manage_realm
+					target = this
+				}
+				set_variable = { 
+					name = array_add_t
+					value = var:task_manage_realm_lord
+				}
+				change_variable = { 
+					name = array_add_t
+					multiply = 10
+				}
+				if = { 
+					limit = { 
+						NOT = { 
+							has_variable_list = array_task_manage_realm_time
+						}
+					}
+					add_to_variable_list = { 
+						name = array_task_manage_realm_time
+						target = var:array_add_t
+					}
+				}
+				else = { 
+					while = { 
+						limit = { 
+							is_target_in_variable_list = { 
+								name = array_task_manage_realm_time
+								target = var:array_add_t
+							}
+						}
+						count = 10
+						change_variable = { 
+							name = array_add_t
+							add = 0.001
+						}
+					}
+					add_to_variable_list = { 
+						name = array_task_manage_realm_time
+						target = var:array_add_t
+					}
+				}
+				remove_variable = array_add_t
+			}
+			if = { 
+				limit = { 
+					has_variable = task_manage_realm_diplomacy
+					var:task_manage_realm_diplomacy > 0
+				}
+				ordered_diplomacy_councillor = { 
+					position = 0
+					prev = { 
+						add_to_variable_list = { 
+							name = task_workers
+							target = prev
+						}
+						add_to_variable_list = { 
+							name = task_manage_realm
+							target = prev
+						}
+						set_variable = { 
+							name = array_add_t
+							value = var:task_manage_realm_diplomacy
+						}
+						change_variable = { 
+							name = array_add_t
+							multiply = 10
+						}
+						if = { 
+							limit = { 
+								NOT = { 
+									has_variable_list = array_task_manage_realm_time
+								}
+							}
+							add_to_variable_list = { 
+								name = array_task_manage_realm_time
+								target = var:array_add_t
+							}
+						}
+						else = { 
+							while = { 
+								limit = { 
+									is_target_in_variable_list = { 
+										name = array_task_manage_realm_time
+										target = var:array_add_t
+									}
+								}
+								count = 10
+								change_variable = { 
+									name = array_add_t
+									add = 0.001
+								}
+							}
+							add_to_variable_list = { 
+								name = array_task_manage_realm_time
+								target = var:array_add_t
+							}
+						}
+						remove_variable = array_add_t
+					}
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = task_manage_realm_martial
+					var:task_manage_realm_martial > 0
+				}
+				ordered_martial_councillor = { 
+					position = 0
+					prev = { 
+						add_to_variable_list = { 
+							name = task_workers
+							target = prev
+						}
+						add_to_variable_list = { 
+							name = task_manage_realm
+							target = prev
+						}
+						set_variable = { 
+							name = array_add_t
+							value = var:task_manage_realm_martial
+						}
+						change_variable = { 
+							name = array_add_t
+							multiply = 10
+						}
+						if = { 
+							limit = { 
+								NOT = { 
+									has_variable_list = array_task_manage_realm_time
+								}
+							}
+							add_to_variable_list = { 
+								name = array_task_manage_realm_time
+								target = var:array_add_t
+							}
+						}
+						else = { 
+							while = { 
+								limit = { 
+									is_target_in_variable_list = { 
+										name = array_task_manage_realm_time
+										target = var:array_add_t
+									}
+								}
+								count = 10
+								change_variable = { 
+									name = array_add_t
+									add = 0.001
+								}
+							}
+							add_to_variable_list = { 
+								name = array_task_manage_realm_time
+								target = var:array_add_t
+							}
+						}
+						remove_variable = array_add_t
+					}
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = task_manage_realm_stewardship
+					var:task_manage_realm_stewardship > 0
+				}
+				ordered_stewardship_councillor = { 
+					position = 0
+					prev = { 
+						add_to_variable_list = { 
+							name = task_workers
+							target = prev
+						}
+						add_to_variable_list = { 
+							name = task_manage_realm
+							target = prev
+						}
+						set_variable = { 
+							name = array_add_t
+							value = var:task_manage_realm_stewardship
+						}
+						change_variable = { 
+							name = array_add_t
+							multiply = 10
+						}
+						if = { 
+							limit = { 
+								NOT = { 
+									has_variable_list = array_task_manage_realm_time
+								}
+							}
+							add_to_variable_list = { 
+								name = array_task_manage_realm_time
+								target = var:array_add_t
+							}
+						}
+						else = { 
+							while = { 
+								limit = { 
+									is_target_in_variable_list = { 
+										name = array_task_manage_realm_time
+										target = var:array_add_t
+									}
+								}
+								count = 10
+								change_variable = { 
+									name = array_add_t
+									add = 0.001
+								}
+							}
+							add_to_variable_list = { 
+								name = array_task_manage_realm_time
+								target = var:array_add_t
+							}
+						}
+						remove_variable = array_add_t
+					}
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = task_manage_realm_intrigue
+					var:task_manage_realm_intrigue > 0
+				}
+				ordered_intrigue_councillor = { 
+					position = 0
+					prev = { 
+						add_to_variable_list = { 
+							name = task_workers
+							target = prev
+						}
+						add_to_variable_list = { 
+							name = task_manage_realm
+							target = prev
+						}
+						set_variable = { 
+							name = array_add_t
+							value = var:task_manage_realm_intrigue
+						}
+						change_variable = { 
+							name = array_add_t
+							multiply = 10
+						}
+						if = { 
+							limit = { 
+								NOT = { 
+									has_variable_list = array_task_manage_realm_time
+								}
+							}
+							add_to_variable_list = { 
+								name = array_task_manage_realm_time
+								target = var:array_add_t
+							}
+						}
+						else = { 
+							while = { 
+								limit = { 
+									is_target_in_variable_list = { 
+										name = array_task_manage_realm_time
+										target = var:array_add_t
+									}
+								}
+								count = 10
+								change_variable = { 
+									name = array_add_t
+									add = 0.001
+								}
+							}
+							add_to_variable_list = { 
+								name = array_task_manage_realm_time
+								target = var:array_add_t
+							}
+						}
+						remove_variable = array_add_t
+					}
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = task_manage_realm_learning
+					var:task_manage_realm_learning > 0
+				}
+				ordered_learning_councillor = { 
+					position = 0
+					prev = { 
+						add_to_variable_list = { 
+							name = task_workers
+							target = prev
+						}
+						add_to_variable_list = { 
+							name = task_manage_realm
+							target = prev
+						}
+						set_variable = { 
+							name = array_add_t
+							value = var:task_manage_realm_learning
+						}
+						change_variable = { 
+							name = array_add_t
+							multiply = 10
+						}
+						if = { 
+							limit = { 
+								NOT = { 
+									has_variable_list = array_task_manage_realm_time
+								}
+							}
+							add_to_variable_list = { 
+								name = array_task_manage_realm_time
+								target = var:array_add_t
+							}
+						}
+						else = { 
+							while = { 
+								limit = { 
+									is_target_in_variable_list = { 
+										name = array_task_manage_realm_time
+										target = var:array_add_t
+									}
+								}
+								count = 10
+								change_variable = { 
+									name = array_add_t
+									add = 0.001
+								}
+							}
+							add_to_variable_list = { 
+								name = array_task_manage_realm_time
+								target = var:array_add_t
+							}
+						}
+						remove_variable = array_add_t
+					}
+				}
+			}
+			clear_variable_list = task_manage_logistics
+			clear_variable_list = array_task_manage_logistics_time
+			clear_variable_list = array_task_manage_logistics_prog
+			if = { 
+				limit = { 
+					has_variable = task_manage_logistics_lord
+					var:task_manage_logistics_lord > 0
+				}
+				add_to_variable_list = { 
+					name = task_workers
+					target = this
+				}
+				add_to_variable_list = { 
+					name = task_manage_logistics
+					target = this
+				}
+				set_variable = { 
+					name = array_add_t
+					value = var:task_manage_logistics_lord
+				}
+				change_variable = { 
+					name = array_add_t
+					multiply = 10
+				}
+				if = { 
+					limit = { 
+						NOT = { 
+							has_variable_list = array_task_manage_logistics_time
+						}
+					}
+					add_to_variable_list = { 
+						name = array_task_manage_logistics_time
+						target = var:array_add_t
+					}
+				}
+				else = { 
+					while = { 
+						limit = { 
+							is_target_in_variable_list = { 
+								name = array_task_manage_logistics_time
+								target = var:array_add_t
+							}
+						}
+						count = 10
+						change_variable = { 
+							name = array_add_t
+							add = 0.001
+						}
+					}
+					add_to_variable_list = { 
+						name = array_task_manage_logistics_time
+						target = var:array_add_t
+					}
+				}
+				remove_variable = array_add_t
+			}
+			if = { 
+				limit = { 
+					has_variable = task_manage_logistics_diplomacy
+					var:task_manage_logistics_diplomacy > 0
+				}
+				ordered_diplomacy_councillor = { 
+					position = 0
+					prev = { 
+						add_to_variable_list = { 
+							name = task_workers
+							target = prev
+						}
+						add_to_variable_list = { 
+							name = task_manage_logistics
+							target = prev
+						}
+						set_variable = { 
+							name = array_add_t
+							value = var:task_manage_logistics_diplomacy
+						}
+						change_variable = { 
+							name = array_add_t
+							multiply = 10
+						}
+						if = { 
+							limit = { 
+								NOT = { 
+									has_variable_list = array_task_manage_logistics_time
+								}
+							}
+							add_to_variable_list = { 
+								name = array_task_manage_logistics_time
+								target = var:array_add_t
+							}
+						}
+						else = { 
+							while = { 
+								limit = { 
+									is_target_in_variable_list = { 
+										name = array_task_manage_logistics_time
+										target = var:array_add_t
+									}
+								}
+								count = 10
+								change_variable = { 
+									name = array_add_t
+									add = 0.001
+								}
+							}
+							add_to_variable_list = { 
+								name = array_task_manage_logistics_time
+								target = var:array_add_t
+							}
+						}
+						remove_variable = array_add_t
+					}
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = task_manage_logistics_martial
+					var:task_manage_logistics_martial > 0
+				}
+				ordered_martial_councillor = { 
+					position = 0
+					prev = { 
+						add_to_variable_list = { 
+							name = task_workers
+							target = prev
+						}
+						add_to_variable_list = { 
+							name = task_manage_logistics
+							target = prev
+						}
+						set_variable = { 
+							name = array_add_t
+							value = var:task_manage_logistics_martial
+						}
+						change_variable = { 
+							name = array_add_t
+							multiply = 10
+						}
+						if = { 
+							limit = { 
+								NOT = { 
+									has_variable_list = array_task_manage_logistics_time
+								}
+							}
+							add_to_variable_list = { 
+								name = array_task_manage_logistics_time
+								target = var:array_add_t
+							}
+						}
+						else = { 
+							while = { 
+								limit = { 
+									is_target_in_variable_list = { 
+										name = array_task_manage_logistics_time
+										target = var:array_add_t
+									}
+								}
+								count = 10
+								change_variable = { 
+									name = array_add_t
+									add = 0.001
+								}
+							}
+							add_to_variable_list = { 
+								name = array_task_manage_logistics_time
+								target = var:array_add_t
+							}
+						}
+						remove_variable = array_add_t
+					}
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = task_manage_logistics_stewardship
+					var:task_manage_logistics_stewardship > 0
+				}
+				ordered_stewardship_councillor = { 
+					position = 0
+					prev = { 
+						add_to_variable_list = { 
+							name = task_workers
+							target = prev
+						}
+						add_to_variable_list = { 
+							name = task_manage_logistics
+							target = prev
+						}
+						set_variable = { 
+							name = array_add_t
+							value = var:task_manage_logistics_stewardship
+						}
+						change_variable = { 
+							name = array_add_t
+							multiply = 10
+						}
+						if = { 
+							limit = { 
+								NOT = { 
+									has_variable_list = array_task_manage_logistics_time
+								}
+							}
+							add_to_variable_list = { 
+								name = array_task_manage_logistics_time
+								target = var:array_add_t
+							}
+						}
+						else = { 
+							while = { 
+								limit = { 
+									is_target_in_variable_list = { 
+										name = array_task_manage_logistics_time
+										target = var:array_add_t
+									}
+								}
+								count = 10
+								change_variable = { 
+									name = array_add_t
+									add = 0.001
+								}
+							}
+							add_to_variable_list = { 
+								name = array_task_manage_logistics_time
+								target = var:array_add_t
+							}
+						}
+						remove_variable = array_add_t
+					}
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = task_manage_logistics_intrigue
+					var:task_manage_logistics_intrigue > 0
+				}
+				ordered_intrigue_councillor = { 
+					position = 0
+					prev = { 
+						add_to_variable_list = { 
+							name = task_workers
+							target = prev
+						}
+						add_to_variable_list = { 
+							name = task_manage_logistics
+							target = prev
+						}
+						set_variable = { 
+							name = array_add_t
+							value = var:task_manage_logistics_intrigue
+						}
+						change_variable = { 
+							name = array_add_t
+							multiply = 10
+						}
+						if = { 
+							limit = { 
+								NOT = { 
+									has_variable_list = array_task_manage_logistics_time
+								}
+							}
+							add_to_variable_list = { 
+								name = array_task_manage_logistics_time
+								target = var:array_add_t
+							}
+						}
+						else = { 
+							while = { 
+								limit = { 
+									is_target_in_variable_list = { 
+										name = array_task_manage_logistics_time
+										target = var:array_add_t
+									}
+								}
+								count = 10
+								change_variable = { 
+									name = array_add_t
+									add = 0.001
+								}
+							}
+							add_to_variable_list = { 
+								name = array_task_manage_logistics_time
+								target = var:array_add_t
+							}
+						}
+						remove_variable = array_add_t
+					}
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = task_manage_logistics_learning
+					var:task_manage_logistics_learning > 0
+				}
+				ordered_learning_councillor = { 
+					position = 0
+					prev = { 
+						add_to_variable_list = { 
+							name = task_workers
+							target = prev
+						}
+						add_to_variable_list = { 
+							name = task_manage_logistics
+							target = prev
+						}
+						set_variable = { 
+							name = array_add_t
+							value = var:task_manage_logistics_learning
+						}
+						change_variable = { 
+							name = array_add_t
+							multiply = 10
+						}
+						if = { 
+							limit = { 
+								NOT = { 
+									has_variable_list = array_task_manage_logistics_time
+								}
+							}
+							add_to_variable_list = { 
+								name = array_task_manage_logistics_time
+								target = var:array_add_t
+							}
+						}
+						else = { 
+							while = { 
+								limit = { 
+									is_target_in_variable_list = { 
+										name = array_task_manage_logistics_time
+										target = var:array_add_t
+									}
+								}
+								count = 10
+								change_variable = { 
+									name = array_add_t
+									add = 0.001
+								}
+							}
+							add_to_variable_list = { 
+								name = array_task_manage_logistics_time
+								target = var:array_add_t
+							}
+						}
+						remove_variable = array_add_t
+					}
+				}
+			}
+			clear_variable_list = task_manage_stockpile
+			clear_variable_list = array_task_manage_stockpile_time
+			clear_variable_list = array_task_manage_stockpile_prog
+			if = { 
+				limit = { 
+					has_variable = task_manage_stockpile_lord
+					var:task_manage_stockpile_lord > 0
+				}
+				add_to_variable_list = { 
+					name = task_workers
+					target = this
+				}
+				add_to_variable_list = { 
+					name = task_manage_stockpile
+					target = this
+				}
+				set_variable = { 
+					name = array_add_t
+					value = var:task_manage_stockpile_lord
+				}
+				change_variable = { 
+					name = array_add_t
+					multiply = 10
+				}
+				if = { 
+					limit = { 
+						NOT = { 
+							has_variable_list = array_task_manage_stockpile_time
+						}
+					}
+					add_to_variable_list = { 
+						name = array_task_manage_stockpile_time
+						target = var:array_add_t
+					}
+				}
+				else = { 
+					while = { 
+						limit = { 
+							is_target_in_variable_list = { 
+								name = array_task_manage_stockpile_time
+								target = var:array_add_t
+							}
+						}
+						count = 10
+						change_variable = { 
+							name = array_add_t
+							add = 0.001
+						}
+					}
+					add_to_variable_list = { 
+						name = array_task_manage_stockpile_time
+						target = var:array_add_t
+					}
+				}
+				remove_variable = array_add_t
+			}
+			if = { 
+				limit = { 
+					has_variable = task_manage_stockpile_diplomacy
+					var:task_manage_stockpile_diplomacy > 0
+				}
+				ordered_diplomacy_councillor = { 
+					position = 0
+					prev = { 
+						add_to_variable_list = { 
+							name = task_workers
+							target = prev
+						}
+						add_to_variable_list = { 
+							name = task_manage_stockpile
+							target = prev
+						}
+						set_variable = { 
+							name = array_add_t
+							value = var:task_manage_stockpile_diplomacy
+						}
+						change_variable = { 
+							name = array_add_t
+							multiply = 10
+						}
+						if = { 
+							limit = { 
+								NOT = { 
+									has_variable_list = array_task_manage_stockpile_time
+								}
+							}
+							add_to_variable_list = { 
+								name = array_task_manage_stockpile_time
+								target = var:array_add_t
+							}
+						}
+						else = { 
+							while = { 
+								limit = { 
+									is_target_in_variable_list = { 
+										name = array_task_manage_stockpile_time
+										target = var:array_add_t
+									}
+								}
+								count = 10
+								change_variable = { 
+									name = array_add_t
+									add = 0.001
+								}
+							}
+							add_to_variable_list = { 
+								name = array_task_manage_stockpile_time
+								target = var:array_add_t
+							}
+						}
+						remove_variable = array_add_t
+					}
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = task_manage_stockpile_martial
+					var:task_manage_stockpile_martial > 0
+				}
+				ordered_martial_councillor = { 
+					position = 0
+					prev = { 
+						add_to_variable_list = { 
+							name = task_workers
+							target = prev
+						}
+						add_to_variable_list = { 
+							name = task_manage_stockpile
+							target = prev
+						}
+						set_variable = { 
+							name = array_add_t
+							value = var:task_manage_stockpile_martial
+						}
+						change_variable = { 
+							name = array_add_t
+							multiply = 10
+						}
+						if = { 
+							limit = { 
+								NOT = { 
+									has_variable_list = array_task_manage_stockpile_time
+								}
+							}
+							add_to_variable_list = { 
+								name = array_task_manage_stockpile_time
+								target = var:array_add_t
+							}
+						}
+						else = { 
+							while = { 
+								limit = { 
+									is_target_in_variable_list = { 
+										name = array_task_manage_stockpile_time
+										target = var:array_add_t
+									}
+								}
+								count = 10
+								change_variable = { 
+									name = array_add_t
+									add = 0.001
+								}
+							}
+							add_to_variable_list = { 
+								name = array_task_manage_stockpile_time
+								target = var:array_add_t
+							}
+						}
+						remove_variable = array_add_t
+					}
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = task_manage_stockpile_stewardship
+					var:task_manage_stockpile_stewardship > 0
+				}
+				ordered_stewardship_councillor = { 
+					position = 0
+					prev = { 
+						add_to_variable_list = { 
+							name = task_workers
+							target = prev
+						}
+						add_to_variable_list = { 
+							name = task_manage_stockpile
+							target = prev
+						}
+						set_variable = { 
+							name = array_add_t
+							value = var:task_manage_stockpile_stewardship
+						}
+						change_variable = { 
+							name = array_add_t
+							multiply = 10
+						}
+						if = { 
+							limit = { 
+								NOT = { 
+									has_variable_list = array_task_manage_stockpile_time
+								}
+							}
+							add_to_variable_list = { 
+								name = array_task_manage_stockpile_time
+								target = var:array_add_t
+							}
+						}
+						else = { 
+							while = { 
+								limit = { 
+									is_target_in_variable_list = { 
+										name = array_task_manage_stockpile_time
+										target = var:array_add_t
+									}
+								}
+								count = 10
+								change_variable = { 
+									name = array_add_t
+									add = 0.001
+								}
+							}
+							add_to_variable_list = { 
+								name = array_task_manage_stockpile_time
+								target = var:array_add_t
+							}
+						}
+						remove_variable = array_add_t
+					}
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = task_manage_stockpile_intrigue
+					var:task_manage_stockpile_intrigue > 0
+				}
+				ordered_intrigue_councillor = { 
+					position = 0
+					prev = { 
+						add_to_variable_list = { 
+							name = task_workers
+							target = prev
+						}
+						add_to_variable_list = { 
+							name = task_manage_stockpile
+							target = prev
+						}
+						set_variable = { 
+							name = array_add_t
+							value = var:task_manage_stockpile_intrigue
+						}
+						change_variable = { 
+							name = array_add_t
+							multiply = 10
+						}
+						if = { 
+							limit = { 
+								NOT = { 
+									has_variable_list = array_task_manage_stockpile_time
+								}
+							}
+							add_to_variable_list = { 
+								name = array_task_manage_stockpile_time
+								target = var:array_add_t
+							}
+						}
+						else = { 
+							while = { 
+								limit = { 
+									is_target_in_variable_list = { 
+										name = array_task_manage_stockpile_time
+										target = var:array_add_t
+									}
+								}
+								count = 10
+								change_variable = { 
+									name = array_add_t
+									add = 0.001
+								}
+							}
+							add_to_variable_list = { 
+								name = array_task_manage_stockpile_time
+								target = var:array_add_t
+							}
+						}
+						remove_variable = array_add_t
+					}
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = task_manage_stockpile_learning
+					var:task_manage_stockpile_learning > 0
+				}
+				ordered_learning_councillor = { 
+					position = 0
+					prev = { 
+						add_to_variable_list = { 
+							name = task_workers
+							target = prev
+						}
+						add_to_variable_list = { 
+							name = task_manage_stockpile
+							target = prev
+						}
+						set_variable = { 
+							name = array_add_t
+							value = var:task_manage_stockpile_learning
+						}
+						change_variable = { 
+							name = array_add_t
+							multiply = 10
+						}
+						if = { 
+							limit = { 
+								NOT = { 
+									has_variable_list = array_task_manage_stockpile_time
+								}
+							}
+							add_to_variable_list = { 
+								name = array_task_manage_stockpile_time
+								target = var:array_add_t
+							}
+						}
+						else = { 
+							while = { 
+								limit = { 
+									is_target_in_variable_list = { 
+										name = array_task_manage_stockpile_time
+										target = var:array_add_t
+									}
+								}
+								count = 10
+								change_variable = { 
+									name = array_add_t
+									add = 0.001
+								}
+							}
+							add_to_variable_list = { 
+								name = array_task_manage_stockpile_time
+								target = var:array_add_t
+							}
+						}
+						remove_variable = array_add_t
+					}
+				}
+			}
+			set_variable = { 
+				name = task_time_has
+				value = 10
+			}
+			set_variable = { 
+				name = task_time_spent
+				value = 0
+			}
+			set_variable = { 
+				name = task_prestige
+				value = 0
+			}
+			every_in_list = { 
+				variable = task_workers
+				set_variable = { 
+					name = task_time_has
+					value = 10
+				}
+				set_variable = { 
+					name = task_time_spent
+					value = 0
+				}
+				set_variable = { 
+					name = task_prestige
+					value = 0
+				}
+			}
+			set_variable = { 
+				name = task_update_t
+				value = 0
+			}
+			every_in_list = { 
+				variable = task_manage_domain
+				prev = { 
+					set_global_variable = { 
+						name = array_get_t
+						value = var:task_update_t
+					}
+					if = { 
+						limit = { 
+							OR = { 
+								NOT = { 
+									has_global_variable = array_get_t
+								}
+								global_var:array_get_t = 0
+							}
+						}
+						ordered_in_list = { 
+							variable = array_task_manage_domain_time
+							position = 0
+							prev = { 
+								set_variable = { 
+									name = task_update_tt
+									value = prev
+								}
+							}
+						}
+					}
+					else = { 
+						ordered_in_list = { 
+							variable = array_task_manage_domain_time
+							position = global_var:array_get_t.compare_value
+							prev = { 
+								set_variable = { 
+									name = task_update_tt
+									value = prev
+								}
+							}
+						}
+					}
+					change_variable = { 
+						name = task_update_tt
+						divide = 10
+					}
+					remove_global_variable = array_get_t
+					prev = { 
+						set_variable = { 
+							name = task_update_ttt
+							value = prev.var:task_update_tt
+						}
+						change_variable = { 
+							name = task_time_spent
+							add = prev.var:task_update_tt
+						}
+					}
+					set_variable = { 
+						name = task_get_prog_t
+						value = prev.stewardship
+					}
+					change_variable = { 
+						name = task_get_prog_t
+						add = { 
+							value = prev.diplomacy
+							divide = 2
+						}
+					}
+					change_variable = { 
+						name = task_get_prog_t
+						divide = 1.5
+					}
+					set_variable = { 
+						name = math_sqrt_i
+						value = var:task_get_prog_t
+					}
+					if = { 
+						limit = { 
+							has_variable = math_sqrt_i
+							var:math_sqrt_i > 0
+						}
+						set_variable = { 
+							name = math_sqrt_x
+							value = var:math_sqrt_i
+						}
+						set_variable = { 
+							name = math_sqrt_n
+							value = var:math_sqrt_i
+						}
+						change_variable = { 
+							name = math_sqrt_n
+							divide = 2
+						}
+						set_variable = { 
+							name = math_sqrt_tt
+							value = 0.5
+						}
+						while = { 
+							limit = { 
+								has_variable = math_sqrt_n
+								var:math_sqrt_n > 0
+								OR = { 
+									var:math_sqrt_tt < 0.995
+									var:math_sqrt_tt > 1.005
+								}
+							}
+							set_variable = { 
+								name = math_sqrt_x
+								value = var:math_sqrt_n
+							}
+							set_variable = { 
+								name = math_sqrt_t
+								value = var:math_sqrt_i
+							}
+							change_variable = { 
+								name = math_sqrt_t
+								divide = var:math_sqrt_n
+							}
+							change_variable = { 
+								name = math_sqrt_n
+								add = var:math_sqrt_t
+							}
+							change_variable = { 
+								name = math_sqrt_n
+								divide = 2
+							}
+							set_variable = { 
+								name = math_sqrt_tt
+								value = var:math_sqrt_x
+							}
+							change_variable = { 
+								name = math_sqrt_tt
+								divide = var:math_sqrt_n
+							}
+						}
+						set_variable = { 
+							name = task_get_prog_tt
+							value = var:math_sqrt_n
+						}
+						remove_variable = math_sqrt_x
+						remove_variable = math_sqrt_t
+						remove_variable = math_sqrt_n
+						remove_variable = math_sqrt_tt
+					}
+					else = { 
+						set_variable = { 
+							name = task_get_prog_tt
+							value = 0
+						}
+					}
+					remove_variable = math_sqrt_i
+					change_variable = { 
+						name = task_get_prog_t
+						multiply = var:task_get_prog_tt
+					}
+					change_variable = { 
+						name = task_get_prog_t
+						divide = 30
+					}
+					change_variable = { 
+						name = task_get_prog_t
+						add = 0.1
+					}
+					change_variable = { 
+						name = task_get_prog_t
+						multiply = var:task_update_tt
+					}
+					change_variable = { 
+						name = task_get_prog_t
+						divide = 12
+					}
+					set_variable = { 
+						name = task_update_tt
+						value = var:task_get_prog_t
+					}
+					remove_variable = task_get_prog_t
+					remove_variable = task_get_prog_tt
+					set_variable = { 
+						name = array_add_t
+						value = var:task_update_tt
+					}
+					change_variable = { 
+						name = array_add_t
+						multiply = 10
+					}
+					if = { 
+						limit = { 
+							NOT = { 
+								has_variable_list = array_task_manage_domain_prog
+							}
+						}
+						add_to_variable_list = { 
+							name = array_task_manage_domain_prog
+							target = var:array_add_t
+						}
+					}
+					else = { 
+						while = { 
+							limit = { 
+								is_target_in_variable_list = { 
+									name = array_task_manage_domain_prog
+									target = var:array_add_t
+								}
+							}
+							count = 10
+							change_variable = { 
+								name = array_add_t
+								add = 0.001
+							}
+						}
+						add_to_variable_list = { 
+							name = array_task_manage_domain_prog
+							target = var:array_add_t
+						}
+					}
+					remove_variable = array_add_t
+					change_variable = { 
+						name = task_update_t
+						add = 1
+					}
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = task_manage_domain_prog
+					var:task_manage_domain_prog > domain_size
+				}
+				set_variable = { 
+					name = $return$
+					value = domain_size
+				}
+				change_variable = { 
+					name = $return$
+					divide = var:task_manage_domain_prog
+				}
+				set_variable = { 
+					name = math_sqrt_i
+					value = var:$return$
+				}
+				if = { 
+					limit = { 
+						has_variable = math_sqrt_i
+						var:math_sqrt_i > 0
+					}
+					set_variable = { 
+						name = math_sqrt_x
+						value = var:math_sqrt_i
+					}
+					set_variable = { 
+						name = math_sqrt_n
+						value = var:math_sqrt_i
+					}
+					change_variable = { 
+						name = math_sqrt_n
+						divide = 2
+					}
+					set_variable = { 
+						name = math_sqrt_tt
+						value = 0.5
+					}
+					while = { 
+						limit = { 
+							has_variable = math_sqrt_n
+							var:math_sqrt_n > 0
+							OR = { 
+								var:math_sqrt_tt < 0.995
+								var:math_sqrt_tt > 1.005
+							}
+						}
+						set_variable = { 
+							name = math_sqrt_x
+							value = var:math_sqrt_n
+						}
+						set_variable = { 
+							name = math_sqrt_t
+							value = var:math_sqrt_i
+						}
+						change_variable = { 
+							name = math_sqrt_t
+							divide = var:math_sqrt_n
+						}
+						change_variable = { 
+							name = math_sqrt_n
+							add = var:math_sqrt_t
+						}
+						change_variable = { 
+							name = math_sqrt_n
+							divide = 2
+						}
+						set_variable = { 
+							name = math_sqrt_tt
+							value = var:math_sqrt_x
+						}
+						change_variable = { 
+							name = math_sqrt_tt
+							divide = var:math_sqrt_n
+						}
+					}
+					set_variable = { 
+						name = $return$
+						value = var:math_sqrt_n
+					}
+					remove_variable = math_sqrt_x
+					remove_variable = math_sqrt_t
+					remove_variable = math_sqrt_n
+					remove_variable = math_sqrt_tt
+				}
+				else = { 
+					set_variable = { 
+						name = $return$
+						value = 0
+					}
+				}
+				remove_variable = math_sqrt_i
+			}
+			else = { 
+				set_variable = { 
+					name = $return$
+					value = 1
+				}
+			}
+			every_in_list = { 
+				variable = task_manage_domain
+				change_variable = { 
+					name = task_update_ttt
+					multiply = prev.var:task_manage_domain_prestige
+				}
+				change_variable = { 
+					name = task_update_ttt
+					divide = 5
+				}
+				change_variable = { 
+					name = task_prestige
+					add = var:task_update_ttt
+				}
+				remove_variable = task_update_t
+				remove_variable = task_update_tt
+				remove_variable = task_update_ttt
+			}
+			set_variable = { 
+				name = task_update_t
+				value = 0
+			}
+			every_in_list = { 
+				variable = task_manage_realm
+				prev = { 
+					set_global_variable = { 
+						name = array_get_t
+						value = var:task_update_t
+					}
+					if = { 
+						limit = { 
+							OR = { 
+								NOT = { 
+									has_global_variable = array_get_t
+								}
+								global_var:array_get_t = 0
+							}
+						}
+						ordered_in_list = { 
+							variable = array_task_manage_realm_time
+							position = 0
+							prev = { 
+								set_variable = { 
+									name = task_update_tt
+									value = prev
+								}
+							}
+						}
+					}
+					else = { 
+						ordered_in_list = { 
+							variable = array_task_manage_realm_time
+							position = global_var:array_get_t.compare_value
+							prev = { 
+								set_variable = { 
+									name = task_update_tt
+									value = prev
+								}
+							}
+						}
+					}
+					change_variable = { 
+						name = task_update_tt
+						divide = 10
+					}
+					remove_global_variable = array_get_t
+					prev = { 
+						set_variable = { 
+							name = task_update_ttt
+							value = prev.var:task_update_tt
+						}
+						change_variable = { 
+							name = task_time_spent
+							add = prev.var:task_update_tt
+						}
+					}
+					set_variable = { 
+						name = task_get_prog_t
+						value = prev.diplomacy
+					}
+					change_variable = { 
+						name = task_get_prog_t
+						add = { 
+							value = prev.stewardship
+							divide = 2
+						}
+					}
+					change_variable = { 
+						name = task_get_prog_t
+						divide = 1.5
+					}
+					set_variable = { 
+						name = math_sqrt_i
+						value = var:task_get_prog_t
+					}
+					if = { 
+						limit = { 
+							has_variable = math_sqrt_i
+							var:math_sqrt_i > 0
+						}
+						set_variable = { 
+							name = math_sqrt_x
+							value = var:math_sqrt_i
+						}
+						set_variable = { 
+							name = math_sqrt_n
+							value = var:math_sqrt_i
+						}
+						change_variable = { 
+							name = math_sqrt_n
+							divide = 2
+						}
+						set_variable = { 
+							name = math_sqrt_tt
+							value = 0.5
+						}
+						while = { 
+							limit = { 
+								has_variable = math_sqrt_n
+								var:math_sqrt_n > 0
+								OR = { 
+									var:math_sqrt_tt < 0.995
+									var:math_sqrt_tt > 1.005
+								}
+							}
+							set_variable = { 
+								name = math_sqrt_x
+								value = var:math_sqrt_n
+							}
+							set_variable = { 
+								name = math_sqrt_t
+								value = var:math_sqrt_i
+							}
+							change_variable = { 
+								name = math_sqrt_t
+								divide = var:math_sqrt_n
+							}
+							change_variable = { 
+								name = math_sqrt_n
+								add = var:math_sqrt_t
+							}
+							change_variable = { 
+								name = math_sqrt_n
+								divide = 2
+							}
+							set_variable = { 
+								name = math_sqrt_tt
+								value = var:math_sqrt_x
+							}
+							change_variable = { 
+								name = math_sqrt_tt
+								divide = var:math_sqrt_n
+							}
+						}
+						set_variable = { 
+							name = task_get_prog_tt
+							value = var:math_sqrt_n
+						}
+						remove_variable = math_sqrt_x
+						remove_variable = math_sqrt_t
+						remove_variable = math_sqrt_n
+						remove_variable = math_sqrt_tt
+					}
+					else = { 
+						set_variable = { 
+							name = task_get_prog_tt
+							value = 0
+						}
+					}
+					remove_variable = math_sqrt_i
+					change_variable = { 
+						name = task_get_prog_t
+						multiply = var:task_get_prog_tt
+					}
+					change_variable = { 
+						name = task_get_prog_t
+						divide = 30
+					}
+					change_variable = { 
+						name = task_get_prog_t
+						add = 0.1
+					}
+					change_variable = { 
+						name = task_get_prog_t
+						multiply = var:task_update_tt
+					}
+					change_variable = { 
+						name = task_get_prog_t
+						divide = 12
+					}
+					set_variable = { 
+						name = task_update_tt
+						value = var:task_get_prog_t
+					}
+					remove_variable = task_get_prog_t
+					remove_variable = task_get_prog_tt
+					set_variable = { 
+						name = array_add_t
+						value = var:task_update_tt
+					}
+					change_variable = { 
+						name = array_add_t
+						multiply = 10
+					}
+					if = { 
+						limit = { 
+							NOT = { 
+								has_variable_list = array_task_manage_realm_prog
+							}
+						}
+						add_to_variable_list = { 
+							name = array_task_manage_realm_prog
+							target = var:array_add_t
+						}
+					}
+					else = { 
+						while = { 
+							limit = { 
+								is_target_in_variable_list = { 
+									name = array_task_manage_realm_prog
+									target = var:array_add_t
+								}
+							}
+							count = 10
+							change_variable = { 
+								name = array_add_t
+								add = 0.001
+							}
+						}
+						add_to_variable_list = { 
+							name = array_task_manage_realm_prog
+							target = var:array_add_t
+						}
+					}
+					remove_variable = array_add_t
+					change_variable = { 
+						name = task_update_t
+						add = 1
+					}
+				}
+			}
+			set_variable = { 
+				name = math_sqrt_i
+				value = sub_realm_size
+			}
+			if = { 
+				limit = { 
+					has_variable = math_sqrt_i
+					var:math_sqrt_i > 0
+				}
+				set_variable = { 
+					name = math_sqrt_x
+					value = var:math_sqrt_i
+				}
+				set_variable = { 
+					name = math_sqrt_n
+					value = var:math_sqrt_i
+				}
+				change_variable = { 
+					name = math_sqrt_n
+					divide = 2
+				}
+				set_variable = { 
+					name = math_sqrt_tt
+					value = 0.5
+				}
+				while = { 
+					limit = { 
+						has_variable = math_sqrt_n
+						var:math_sqrt_n > 0
+						OR = { 
+							var:math_sqrt_tt < 0.995
+							var:math_sqrt_tt > 1.005
+						}
+					}
+					set_variable = { 
+						name = math_sqrt_x
+						value = var:math_sqrt_n
+					}
+					set_variable = { 
+						name = math_sqrt_t
+						value = var:math_sqrt_i
+					}
+					change_variable = { 
+						name = math_sqrt_t
+						divide = var:math_sqrt_n
+					}
+					change_variable = { 
+						name = math_sqrt_n
+						add = var:math_sqrt_t
+					}
+					change_variable = { 
+						name = math_sqrt_n
+						divide = 2
+					}
+					set_variable = { 
+						name = math_sqrt_tt
+						value = var:math_sqrt_x
+					}
+					change_variable = { 
+						name = math_sqrt_tt
+						divide = var:math_sqrt_n
+					}
+				}
+				set_variable = { 
+					name = $return$
+					value = var:math_sqrt_n
+				}
+				remove_variable = math_sqrt_x
+				remove_variable = math_sqrt_t
+				remove_variable = math_sqrt_n
+				remove_variable = math_sqrt_tt
+			}
+			else = { 
+				set_variable = { 
+					name = $return$
+					value = 0
+				}
+			}
+			remove_variable = math_sqrt_i
+			change_variable = { 
+				name = $return$
+				add = vassal_count
+			}
+			change_variable = { 
+				name = $return$
+				divide = 2
+			}
+			if = { 
+				limit = { 
+					has_variable = task_manage_realm_prog
+					var:task_manage_realm_prog = { 
+						compare_value > prev.var:$return$
+					}
+				}
+				change_variable = { 
+					name = $return$
+					divide = var:task_manage_realm_prog
+				}
+				set_variable = { 
+					name = math_sqrt_i
+					value = var:$return$
+				}
+				if = { 
+					limit = { 
+						has_variable = math_sqrt_i
+						var:math_sqrt_i > 0
+					}
+					set_variable = { 
+						name = math_sqrt_x
+						value = var:math_sqrt_i
+					}
+					set_variable = { 
+						name = math_sqrt_n
+						value = var:math_sqrt_i
+					}
+					change_variable = { 
+						name = math_sqrt_n
+						divide = 2
+					}
+					set_variable = { 
+						name = math_sqrt_tt
+						value = 0.5
+					}
+					while = { 
+						limit = { 
+							has_variable = math_sqrt_n
+							var:math_sqrt_n > 0
+							OR = { 
+								var:math_sqrt_tt < 0.995
+								var:math_sqrt_tt > 1.005
+							}
+						}
+						set_variable = { 
+							name = math_sqrt_x
+							value = var:math_sqrt_n
+						}
+						set_variable = { 
+							name = math_sqrt_t
+							value = var:math_sqrt_i
+						}
+						change_variable = { 
+							name = math_sqrt_t
+							divide = var:math_sqrt_n
+						}
+						change_variable = { 
+							name = math_sqrt_n
+							add = var:math_sqrt_t
+						}
+						change_variable = { 
+							name = math_sqrt_n
+							divide = 2
+						}
+						set_variable = { 
+							name = math_sqrt_tt
+							value = var:math_sqrt_x
+						}
+						change_variable = { 
+							name = math_sqrt_tt
+							divide = var:math_sqrt_n
+						}
+					}
+					set_variable = { 
+						name = $return$
+						value = var:math_sqrt_n
+					}
+					remove_variable = math_sqrt_x
+					remove_variable = math_sqrt_t
+					remove_variable = math_sqrt_n
+					remove_variable = math_sqrt_tt
+				}
+				else = { 
+					set_variable = { 
+						name = $return$
+						value = 0
+					}
+				}
+				remove_variable = math_sqrt_i
+			}
+			else = { 
+				set_variable = { 
+					name = $return$
+					value = 1
+				}
+			}
+			every_in_list = { 
+				variable = task_manage_realm
+				change_variable = { 
+					name = task_update_ttt
+					multiply = prev.var:task_manage_realm_prestige
+				}
+				change_variable = { 
+					name = task_update_ttt
+					divide = 5
+				}
+				change_variable = { 
+					name = task_prestige
+					add = var:task_update_ttt
+				}
+				remove_variable = task_update_t
+				remove_variable = task_update_tt
+				remove_variable = task_update_ttt
+			}
+			set_variable = { 
+				name = task_update_t
+				value = 0
+			}
+			every_in_list = { 
+				variable = task_manage_logistics
+				prev = { 
+					set_global_variable = { 
+						name = array_get_t
+						value = var:task_update_t
+					}
+					if = { 
+						limit = { 
+							OR = { 
+								NOT = { 
+									has_global_variable = array_get_t
+								}
+								global_var:array_get_t = 0
+							}
+						}
+						ordered_in_list = { 
+							variable = array_task_manage_logistics_time
+							position = 0
+							prev = { 
+								set_variable = { 
+									name = task_update_tt
+									value = prev
+								}
+							}
+						}
+					}
+					else = { 
+						ordered_in_list = { 
+							variable = array_task_manage_logistics_time
+							position = global_var:array_get_t.compare_value
+							prev = { 
+								set_variable = { 
+									name = task_update_tt
+									value = prev
+								}
+							}
+						}
+					}
+					change_variable = { 
+						name = task_update_tt
+						divide = 10
+					}
+					remove_global_variable = array_get_t
+					prev = { 
+						set_variable = { 
+							name = task_update_ttt
+							value = prev.var:task_update_tt
+						}
+						change_variable = { 
+							name = task_time_spent
+							add = prev.var:task_update_tt
+						}
+					}
+					set_variable = { 
+						name = task_get_prog_t
+						value = prev.martial
+					}
+					change_variable = { 
+						name = task_get_prog_t
+						add = { 
+							value = prev.stewardship
+							divide = 2
+						}
+					}
+					change_variable = { 
+						name = task_get_prog_t
+						divide = 1.5
+					}
+					set_variable = { 
+						name = math_sqrt_i
+						value = var:task_get_prog_t
+					}
+					if = { 
+						limit = { 
+							has_variable = math_sqrt_i
+							var:math_sqrt_i > 0
+						}
+						set_variable = { 
+							name = math_sqrt_x
+							value = var:math_sqrt_i
+						}
+						set_variable = { 
+							name = math_sqrt_n
+							value = var:math_sqrt_i
+						}
+						change_variable = { 
+							name = math_sqrt_n
+							divide = 2
+						}
+						set_variable = { 
+							name = math_sqrt_tt
+							value = 0.5
+						}
+						while = { 
+							limit = { 
+								has_variable = math_sqrt_n
+								var:math_sqrt_n > 0
+								OR = { 
+									var:math_sqrt_tt < 0.995
+									var:math_sqrt_tt > 1.005
+								}
+							}
+							set_variable = { 
+								name = math_sqrt_x
+								value = var:math_sqrt_n
+							}
+							set_variable = { 
+								name = math_sqrt_t
+								value = var:math_sqrt_i
+							}
+							change_variable = { 
+								name = math_sqrt_t
+								divide = var:math_sqrt_n
+							}
+							change_variable = { 
+								name = math_sqrt_n
+								add = var:math_sqrt_t
+							}
+							change_variable = { 
+								name = math_sqrt_n
+								divide = 2
+							}
+							set_variable = { 
+								name = math_sqrt_tt
+								value = var:math_sqrt_x
+							}
+							change_variable = { 
+								name = math_sqrt_tt
+								divide = var:math_sqrt_n
+							}
+						}
+						set_variable = { 
+							name = task_get_prog_tt
+							value = var:math_sqrt_n
+						}
+						remove_variable = math_sqrt_x
+						remove_variable = math_sqrt_t
+						remove_variable = math_sqrt_n
+						remove_variable = math_sqrt_tt
+					}
+					else = { 
+						set_variable = { 
+							name = task_get_prog_tt
+							value = 0
+						}
+					}
+					remove_variable = math_sqrt_i
+					change_variable = { 
+						name = task_get_prog_t
+						multiply = var:task_get_prog_tt
+					}
+					change_variable = { 
+						name = task_get_prog_t
+						divide = 30
+					}
+					change_variable = { 
+						name = task_get_prog_t
+						add = 0.1
+					}
+					change_variable = { 
+						name = task_get_prog_t
+						multiply = var:task_update_tt
+					}
+					change_variable = { 
+						name = task_get_prog_t
+						divide = 12
+					}
+					set_variable = { 
+						name = task_update_tt
+						value = var:task_get_prog_t
+					}
+					remove_variable = task_get_prog_t
+					remove_variable = task_get_prog_tt
+					set_variable = { 
+						name = array_add_t
+						value = var:task_update_tt
+					}
+					change_variable = { 
+						name = array_add_t
+						multiply = 10
+					}
+					if = { 
+						limit = { 
+							NOT = { 
+								has_variable_list = array_task_manage_logistics_prog
+							}
+						}
+						add_to_variable_list = { 
+							name = array_task_manage_logistics_prog
+							target = var:array_add_t
+						}
+					}
+					else = { 
+						while = { 
+							limit = { 
+								is_target_in_variable_list = { 
+									name = array_task_manage_logistics_prog
+									target = var:array_add_t
+								}
+							}
+							count = 10
+							change_variable = { 
+								name = array_add_t
+								add = 0.001
+							}
+						}
+						add_to_variable_list = { 
+							name = array_task_manage_logistics_prog
+							target = var:array_add_t
+						}
+					}
+					remove_variable = array_add_t
+					change_variable = { 
+						name = task_update_t
+						add = 1
+					}
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = task_manage_logistics_prog
+					has_variable = mil_power
+					var:task_manage_logistics_prog = { 
+						compare_value > prev.var:mil_power
+					}
+				}
+				set_variable = { 
+					name = $return$
+					value = var:mil_power
+				}
+				change_variable = { 
+					name = $return$
+					divide = var:task_manage_logistics_prog
+				}
+				set_variable = { 
+					name = math_sqrt_i
+					value = var:$return$
+				}
+				if = { 
+					limit = { 
+						has_variable = math_sqrt_i
+						var:math_sqrt_i > 0
+					}
+					set_variable = { 
+						name = math_sqrt_x
+						value = var:math_sqrt_i
+					}
+					set_variable = { 
+						name = math_sqrt_n
+						value = var:math_sqrt_i
+					}
+					change_variable = { 
+						name = math_sqrt_n
+						divide = 2
+					}
+					set_variable = { 
+						name = math_sqrt_tt
+						value = 0.5
+					}
+					while = { 
+						limit = { 
+							has_variable = math_sqrt_n
+							var:math_sqrt_n > 0
+							OR = { 
+								var:math_sqrt_tt < 0.995
+								var:math_sqrt_tt > 1.005
+							}
+						}
+						set_variable = { 
+							name = math_sqrt_x
+							value = var:math_sqrt_n
+						}
+						set_variable = { 
+							name = math_sqrt_t
+							value = var:math_sqrt_i
+						}
+						change_variable = { 
+							name = math_sqrt_t
+							divide = var:math_sqrt_n
+						}
+						change_variable = { 
+							name = math_sqrt_n
+							add = var:math_sqrt_t
+						}
+						change_variable = { 
+							name = math_sqrt_n
+							divide = 2
+						}
+						set_variable = { 
+							name = math_sqrt_tt
+							value = var:math_sqrt_x
+						}
+						change_variable = { 
+							name = math_sqrt_tt
+							divide = var:math_sqrt_n
+						}
+					}
+					set_variable = { 
+						name = $return$
+						value = var:math_sqrt_n
+					}
+					remove_variable = math_sqrt_x
+					remove_variable = math_sqrt_t
+					remove_variable = math_sqrt_n
+					remove_variable = math_sqrt_tt
+				}
+				else = { 
+					set_variable = { 
+						name = $return$
+						value = 0
+					}
+				}
+				remove_variable = math_sqrt_i
+			}
+			else = { 
+				set_variable = { 
+					name = $return$
+					value = 1
+				}
+			}
+			every_in_list = { 
+				variable = task_manage_logistics
+				change_variable = { 
+					name = task_update_ttt
+					multiply = prev.var:task_manage_logistics_prestige
+				}
+				change_variable = { 
+					name = task_update_ttt
+					divide = 5
+				}
+				change_variable = { 
+					name = task_prestige
+					add = var:task_update_ttt
+				}
+				remove_variable = task_update_t
+				remove_variable = task_update_tt
+				remove_variable = task_update_ttt
+			}
+			set_variable = { 
+				name = task_update_t
+				value = 0
+			}
+			every_in_list = { 
+				variable = task_manage_stockpile
+				prev = { 
+					set_global_variable = { 
+						name = array_get_t
+						value = var:task_update_t
+					}
+					if = { 
+						limit = { 
+							OR = { 
+								NOT = { 
+									has_global_variable = array_get_t
+								}
+								global_var:array_get_t = 0
+							}
+						}
+						ordered_in_list = { 
+							variable = array_task_manage_stockpile_time
+							position = 0
+							prev = { 
+								set_variable = { 
+									name = task_update_tt
+									value = prev
+								}
+							}
+						}
+					}
+					else = { 
+						ordered_in_list = { 
+							variable = array_task_manage_stockpile_time
+							position = global_var:array_get_t.compare_value
+							prev = { 
+								set_variable = { 
+									name = task_update_tt
+									value = prev
+								}
+							}
+						}
+					}
+					change_variable = { 
+						name = task_update_tt
+						divide = 10
+					}
+					remove_global_variable = array_get_t
+					prev = { 
+						set_variable = { 
+							name = task_update_ttt
+							value = prev.var:task_update_tt
+						}
+						change_variable = { 
+							name = task_time_spent
+							add = prev.var:task_update_tt
+						}
+					}
+					set_variable = { 
+						name = task_get_prog_t
+						value = prev.stewardship
+					}
+					change_variable = { 
+						name = task_get_prog_t
+						add = { 
+							value = prev.diplomacy
+							divide = 2
+						}
+					}
+					change_variable = { 
+						name = task_get_prog_t
+						divide = 1.5
+					}
+					set_variable = { 
+						name = math_sqrt_i
+						value = var:task_get_prog_t
+					}
+					if = { 
+						limit = { 
+							has_variable = math_sqrt_i
+							var:math_sqrt_i > 0
+						}
+						set_variable = { 
+							name = math_sqrt_x
+							value = var:math_sqrt_i
+						}
+						set_variable = { 
+							name = math_sqrt_n
+							value = var:math_sqrt_i
+						}
+						change_variable = { 
+							name = math_sqrt_n
+							divide = 2
+						}
+						set_variable = { 
+							name = math_sqrt_tt
+							value = 0.5
+						}
+						while = { 
+							limit = { 
+								has_variable = math_sqrt_n
+								var:math_sqrt_n > 0
+								OR = { 
+									var:math_sqrt_tt < 0.995
+									var:math_sqrt_tt > 1.005
+								}
+							}
+							set_variable = { 
+								name = math_sqrt_x
+								value = var:math_sqrt_n
+							}
+							set_variable = { 
+								name = math_sqrt_t
+								value = var:math_sqrt_i
+							}
+							change_variable = { 
+								name = math_sqrt_t
+								divide = var:math_sqrt_n
+							}
+							change_variable = { 
+								name = math_sqrt_n
+								add = var:math_sqrt_t
+							}
+							change_variable = { 
+								name = math_sqrt_n
+								divide = 2
+							}
+							set_variable = { 
+								name = math_sqrt_tt
+								value = var:math_sqrt_x
+							}
+							change_variable = { 
+								name = math_sqrt_tt
+								divide = var:math_sqrt_n
+							}
+						}
+						set_variable = { 
+							name = task_get_prog_tt
+							value = var:math_sqrt_n
+						}
+						remove_variable = math_sqrt_x
+						remove_variable = math_sqrt_t
+						remove_variable = math_sqrt_n
+						remove_variable = math_sqrt_tt
+					}
+					else = { 
+						set_variable = { 
+							name = task_get_prog_tt
+							value = 0
+						}
+					}
+					remove_variable = math_sqrt_i
+					change_variable = { 
+						name = task_get_prog_t
+						multiply = var:task_get_prog_tt
+					}
+					change_variable = { 
+						name = task_get_prog_t
+						divide = 30
+					}
+					change_variable = { 
+						name = task_get_prog_t
+						add = 0.1
+					}
+					change_variable = { 
+						name = task_get_prog_t
+						multiply = var:task_update_tt
+					}
+					change_variable = { 
+						name = task_get_prog_t
+						divide = 12
+					}
+					set_variable = { 
+						name = task_update_tt
+						value = var:task_get_prog_t
+					}
+					remove_variable = task_get_prog_t
+					remove_variable = task_get_prog_tt
+					set_variable = { 
+						name = array_add_t
+						value = var:task_update_tt
+					}
+					change_variable = { 
+						name = array_add_t
+						multiply = 10
+					}
+					if = { 
+						limit = { 
+							NOT = { 
+								has_variable_list = array_task_manage_stockpile_prog
+							}
+						}
+						add_to_variable_list = { 
+							name = array_task_manage_stockpile_prog
+							target = var:array_add_t
+						}
+					}
+					else = { 
+						while = { 
+							limit = { 
+								is_target_in_variable_list = { 
+									name = array_task_manage_stockpile_prog
+									target = var:array_add_t
+								}
+							}
+							count = 10
+							change_variable = { 
+								name = array_add_t
+								add = 0.001
+							}
+						}
+						add_to_variable_list = { 
+							name = array_task_manage_stockpile_prog
+							target = var:array_add_t
+						}
+					}
+					remove_variable = array_add_t
+					change_variable = { 
+						name = task_update_t
+						add = 1
+					}
+				}
+			}
+			set_variable = { 
+				name = $return$
+				value = 0
+			}
+			if = { 
+				limit = { 
+					has_variable = trade_want_food
+				}
+				change_variable = { 
+					name = $return$
+					add = var:trade_want_food
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = trade_want_cereal
+				}
+				change_variable = { 
+					name = $return$
+					add = var:trade_want_cereal
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = trade_want_salted
+				}
+				change_variable = { 
+					name = $return$
+					add = var:trade_want_salted
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = trade_want_salt
+				}
+				change_variable = { 
+					name = $return$
+					add = var:trade_want_salt
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = trade_want_mud
+				}
+				change_variable = { 
+					name = $return$
+					add = var:trade_want_mud
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = trade_want_fuel
+				}
+				change_variable = { 
+					name = $return$
+					add = var:trade_want_fuel
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = trade_want_fiber
+				}
+				change_variable = { 
+					name = $return$
+					add = var:trade_want_fiber
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = trade_want_timber
+				}
+				change_variable = { 
+					name = $return$
+					add = var:trade_want_timber
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = trade_want_metal
+				}
+				change_variable = { 
+					name = $return$
+					add = var:trade_want_metal
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = trade_want_exotics_w
+				}
+				change_variable = { 
+					name = $return$
+					add = var:trade_want_exotics_w
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = trade_want_exotics_e
+				}
+				change_variable = { 
+					name = $return$
+					add = var:trade_want_exotics_e
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = trade_want_exotics_g
+				}
+				change_variable = { 
+					name = $return$
+					add = var:trade_want_exotics_g
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = trade_want_textile
+				}
+				change_variable = { 
+					name = $return$
+					add = var:trade_want_textile
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = trade_want_pottery
+				}
+				change_variable = { 
+					name = $return$
+					add = var:trade_want_pottery
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = trade_want_tools
+				}
+				change_variable = { 
+					name = $return$
+					add = var:trade_want_tools
+				}
+			}
+			if = { 
+				limit = { 
+					has_variable = trade_want_armaments
+				}
+				change_variable = { 
+					name = $return$
+					add = var:trade_want_armaments
+				}
+			}
+			set_variable = { 
+				name = math_sqrt_i
+				value = var:$return$
+			}
+			if = { 
+				limit = { 
+					has_variable = math_sqrt_i
+					var:math_sqrt_i > 0
+				}
+				set_variable = { 
+					name = math_sqrt_x
+					value = var:math_sqrt_i
+				}
+				set_variable = { 
+					name = math_sqrt_n
+					value = var:math_sqrt_i
+				}
+				change_variable = { 
+					name = math_sqrt_n
+					divide = 2
+				}
+				set_variable = { 
+					name = math_sqrt_tt
+					value = 0.5
+				}
+				while = { 
+					limit = { 
+						has_variable = math_sqrt_n
+						var:math_sqrt_n > 0
+						OR = { 
+							var:math_sqrt_tt < 0.995
+							var:math_sqrt_tt > 1.005
+						}
+					}
+					set_variable = { 
+						name = math_sqrt_x
+						value = var:math_sqrt_n
+					}
+					set_variable = { 
+						name = math_sqrt_t
+						value = var:math_sqrt_i
+					}
+					change_variable = { 
+						name = math_sqrt_t
+						divide = var:math_sqrt_n
+					}
+					change_variable = { 
+						name = math_sqrt_n
+						add = var:math_sqrt_t
+					}
+					change_variable = { 
+						name = math_sqrt_n
+						divide = 2
+					}
+					set_variable = { 
+						name = math_sqrt_tt
+						value = var:math_sqrt_x
+					}
+					change_variable = { 
+						name = math_sqrt_tt
+						divide = var:math_sqrt_n
+					}
+				}
+				set_variable = { 
+					name = $return$
+					value = var:math_sqrt_n
+				}
+				remove_variable = math_sqrt_x
+				remove_variable = math_sqrt_t
+				remove_variable = math_sqrt_n
+				remove_variable = math_sqrt_tt
+			}
+			else = { 
+				set_variable = { 
+					name = $return$
+					value = 0
+				}
+			}
+			remove_variable = math_sqrt_i
+			change_variable = { 
+				name = $return$
+				divide = 2
+			}
+			if = { 
+				limit = { 
+					has_variable = task_manage_stockpile_prog
+					var:task_manage_stockpile_prog = { 
+						compare_value > prev.var:$return$
+					}
+				}
+				change_variable = { 
+					name = $return$
+					divide = var:task_manage_stockpile_prog
+				}
+				set_variable = { 
+					name = math_sqrt_i
+					value = var:$return$
+				}
+				if = { 
+					limit = { 
+						has_variable = math_sqrt_i
+						var:math_sqrt_i > 0
+					}
+					set_variable = { 
+						name = math_sqrt_x
+						value = var:math_sqrt_i
+					}
+					set_variable = { 
+						name = math_sqrt_n
+						value = var:math_sqrt_i
+					}
+					change_variable = { 
+						name = math_sqrt_n
+						divide = 2
+					}
+					set_variable = { 
+						name = math_sqrt_tt
+						value = 0.5
+					}
+					while = { 
+						limit = { 
+							has_variable = math_sqrt_n
+							var:math_sqrt_n > 0
+							OR = { 
+								var:math_sqrt_tt < 0.995
+								var:math_sqrt_tt > 1.005
+							}
+						}
+						set_variable = { 
+							name = math_sqrt_x
+							value = var:math_sqrt_n
+						}
+						set_variable = { 
+							name = math_sqrt_t
+							value = var:math_sqrt_i
+						}
+						change_variable = { 
+							name = math_sqrt_t
+							divide = var:math_sqrt_n
+						}
+						change_variable = { 
+							name = math_sqrt_n
+							add = var:math_sqrt_t
+						}
+						change_variable = { 
+							name = math_sqrt_n
+							divide = 2
+						}
+						set_variable = { 
+							name = math_sqrt_tt
+							value = var:math_sqrt_x
+						}
+						change_variable = { 
+							name = math_sqrt_tt
+							divide = var:math_sqrt_n
+						}
+					}
+					set_variable = { 
+						name = $return$
+						value = var:math_sqrt_n
+					}
+					remove_variable = math_sqrt_x
+					remove_variable = math_sqrt_t
+					remove_variable = math_sqrt_n
+					remove_variable = math_sqrt_tt
+				}
+				else = { 
+					set_variable = { 
+						name = $return$
+						value = 0
+					}
+				}
+				remove_variable = math_sqrt_i
+			}
+			else = { 
+				set_variable = { 
+					name = $return$
+					value = 1
+				}
+			}
+			every_in_list = { 
+				variable = task_manage_stockpile
+				change_variable = { 
+					name = task_update_ttt
+					multiply = prev.var:task_manage_stockpile_prestige
+				}
+				change_variable = { 
+					name = task_update_ttt
+					divide = 5
+				}
+				change_variable = { 
+					name = task_prestige
+					add = var:task_update_ttt
+				}
+				remove_variable = task_update_t
+				remove_variable = task_update_tt
+				remove_variable = task_update_ttt
+			}
+			remove_variable = task_update_t
+			remove_variable = task_update_tt
+			remove_variable = task_update_ttt
+		}
 	}
 	option = { }
 }
@@ -8746,44 +15594,6 @@ death.03 = {
 	type = empty
 	hidden = yes
 	immediate = { 
-		if = { 
-			limit = { 
-				OR = { 
-					is_ruler = no
-					is_landed = no
-				}
-			}
-			every_in_list = { 
-				variable = task_tasks
-				remove_list_global_variable = { 
-					name = task_tasks_active
-					target = this
-				}
-				add_to_global_variable_list = { 
-					name = task_tasks
-					target = this
-				}
-				var:task_owner = { 
-					remove_list_variable = { 
-						name = task_tasks
-						target = prev
-					}
-				}
-				var:task_template = { 
-					remove_list_variable = { 
-						name = task_tasks
-						target = prev
-					}
-				}
-				remove_variable = task_owner
-				remove_variable = task_worker
-				remove_variable = task_template
-				remove_variable = task_delegate
-				remove_variable = task_time_cost
-				remove_variable = task_time_in
-				remove_variable = task_crpt
-			}
-		}
 		if = { 
 			limit = { 
 				is_ruler = no
@@ -10165,6 +16975,66 @@ death.03 = {
 					add_character_modifier = stat_maa_1
 				}
 			}
+		}
+		if = { 
+			limit = { 
+				OR = { 
+					is_landed = no
+					is_ruler = no
+					primary_title.tier = tier_barony
+				}
+				OR = { 
+					has_variable = task_manage_domain_prog
+					has_variable = task_manage_realm_prog
+					has_variable = task_manage_logistics_prog
+					has_variable = task_manage_stockpile_prog
+				}
+			}
+			clear_variable_list = task_workers
+			clear_variable_list = task_manage_domain
+			clear_variable_list = array_task_manage_domain_time
+			clear_variable_list = array_task_manage_domain_prog
+			remove_variable = task_manage_domain_prog
+			remove_variable = task_manage_domain_prestige
+			remove_variable = task_manage_domain_lord
+			remove_variable = task_manage_domain_diplomacy
+			remove_variable = task_manage_domain_martial
+			remove_variable = task_manage_domain_stewardship
+			remove_variable = task_manage_domain_intrigue
+			remove_variable = task_manage_domain_learning
+			clear_variable_list = task_manage_realm
+			clear_variable_list = array_task_manage_realm_time
+			clear_variable_list = array_task_manage_realm_prog
+			remove_variable = task_manage_realm_prog
+			remove_variable = task_manage_realm_prestige
+			remove_variable = task_manage_realm_lord
+			remove_variable = task_manage_realm_diplomacy
+			remove_variable = task_manage_realm_martial
+			remove_variable = task_manage_realm_stewardship
+			remove_variable = task_manage_realm_intrigue
+			remove_variable = task_manage_realm_learning
+			clear_variable_list = task_manage_logistics
+			clear_variable_list = array_task_manage_logistics_time
+			clear_variable_list = array_task_manage_logistics_prog
+			remove_variable = task_manage_logistics_prog
+			remove_variable = task_manage_logistics_prestige
+			remove_variable = task_manage_logistics_lord
+			remove_variable = task_manage_logistics_diplomacy
+			remove_variable = task_manage_logistics_martial
+			remove_variable = task_manage_logistics_stewardship
+			remove_variable = task_manage_logistics_intrigue
+			remove_variable = task_manage_logistics_learning
+			clear_variable_list = task_manage_stockpile
+			clear_variable_list = array_task_manage_stockpile_time
+			clear_variable_list = array_task_manage_stockpile_prog
+			remove_variable = task_manage_stockpile_prog
+			remove_variable = task_manage_stockpile_prestige
+			remove_variable = task_manage_stockpile_lord
+			remove_variable = task_manage_stockpile_diplomacy
+			remove_variable = task_manage_stockpile_martial
+			remove_variable = task_manage_stockpile_stewardship
+			remove_variable = task_manage_stockpile_intrigue
+			remove_variable = task_manage_stockpile_learning
 		}
 	}
 	option = { }

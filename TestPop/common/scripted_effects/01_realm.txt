@@ -145,6 +145,7 @@
 			}
 			
 			set_variable = { name = realm_suppression value = barony.lessee.var:mil_power }
+			change_variable = { name = realm_suppression add = { value = barony.lessee.prestige divide = 200 } }
 		}
 		else = {
 			barony.holder = {
@@ -182,10 +183,24 @@
 			}
 			
 			set_variable = { name = realm_suppression value = barony.holder.var:mil_power }
+			change_variable = { name = realm_suppression add = { value = barony.holder.prestige divide = 200 } }
+		}
+		
+		if = {
+			limit = {
+				barony.holder = {
+					has_variable = realm_task
+				}
+			}
+			set_variable = { name = realm_task_prov value = barony.holder.var:realm_task }
+		}
+		else = {
+			set_variable = { name = realm_task_prov value = 1 }
 		}
 		
 		change_variable = { name = realm_suppression divide = { value = var:mil_power add = 0.001 } }
 		change_variable = { name = realm_suppression divide = var:realm_dist }
+		change_variable = { name = realm_suppression multiply = var:realm_task_prov }
 		
 		sqrt_effect = {
 			inp = var:realm_suppression
@@ -288,8 +303,23 @@
 				has_variable = realm_update_t
 			}
 			set_variable = { name = realm_suppression value = var:realm_update_t.var:mil_power }
-			change_variable = { name = realm_suppression divide = { value = var:mil_power add = 0.001 } }
+			change_variable = { name = realm_suppression add = { value = var:realm_update_t.prestige divide = 200 } }
+			change_variable = { name = realm_suppression divide = { value = var:mil_power add = { value = prestige divide = 200 } add = 0.001 } }
 			change_variable = { name = realm_suppression divide = var:realm_dist }
+			
+			if = {
+				limit = {
+					var:realm_update_t = {
+						has_variable = realm_task
+					}
+				}
+				set_variable = { name = realm_task_char value = var:realm_update_t.var:realm_task }
+			}
+			else = {
+				set_variable = { name = realm_task_char value = 1 }
+			}
+			
+			change_variable = { name = realm_suppression multiply = var:realm_task_char }
 		
 			sqrt_effect = {
 				inp = var:realm_suppression

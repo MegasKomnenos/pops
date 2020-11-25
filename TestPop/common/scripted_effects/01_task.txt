@@ -1,774 +1,442 @@
-﻿task_new_template = {
-	create_character = {
-		save_temporary_scope_as = task_new_template_t
-		gender = male
-		trait = character_not_1
-		employer = global_var:arhat
-		faith = global_var:arhat.faith
-		culture = global_var:arhat.culture
-		dynasty = none
-	}
-
-	set_global_variable = { name = $name$ value = scope:task_new_template_t }
-	add_to_global_variable_list = { name = task_templates target = scope:task_new_template_t }
-	
-	scope:task_new_template_t = {
-		set_variable = { name = task_councillor value = flag:$councillor$ }
-		
-		^^skills^ 
-			[[&skills&_base] set_variable = { name = task_&skills&_base value = $&skills&_base$ } ]
-			[[&skills&_mult] set_variable = { name = task_&skills&_mult value = $&skills&_mult$ } ]
-		^
-	}
+﻿task_setup = {
+	^^tasks_passive^
+		set_variable = { name = task_&tasks_passive&_prog value = 0 }
+		set_variable = { name = task_&tasks_passive&_prestige value = 0 }
+		set_variable = { name = task_&tasks_passive&_lord value = 0 }
+		^^skills^ set_variable = { name = task_&tasks_passive&_&skills& value = 0 } ^
+	^
 }
 
-task_new_task = {
-	if = {
-		limit = {
-			has_global_variable_list = task_tasks
-				
-			global_variable_list_size = { name = task_tasks value > 0 }
-		}
-		ordered_in_global_list = {
-			variable = task_tasks
-			position = 0
-			
-			save_temporary_scope_as = task_new_task_t
-			
-			remove_list_global_variable = { name = task_tasks target = this }
-		}
-	}
-	else = {
-		create_character = {
-			save_temporary_scope_as = task_new_task_t
-			gender = male
-			trait = character_not_1
-			employer = global_var:arhat
-			faith = global_var:arhat.faith
-			culture = global_var:arhat.culture
-			dynasty = none
-		}
-	}
-	
-	add_to_global_variable_list = { name = task_tasks_active target = scope:task_new_task_t }
-	
-	$owner$ = {
-		add_to_variable_list = { name = task_tasks target = scope:task_new_task_t }
-		
-		scope:task_new_task_t = {
-			set_variable = { name = task_owner value = prev }
-			set_variable = { name = task_worker value = prev }
-		}
-	}
-	global_var:$template$ = {
-		add_to_variable_list = { name = task_tasks target = scope:task_new_task_t }
-	}
-	scope:task_new_task_t = {
-		set_variable = { name = task_template value = global_var:$template$ }
-		set_variable = { name = task_time_cost value = 0 }
-		set_variable = { name = task_time_in value = 0 }
-		set_variable = { name = task_crpt value = 0 }
-	}
-}
-
-task_pop_task = {
-	remove_list_global_variable = { name = task_tasks_active target = this }
-	add_to_global_variable_list = { name = task_tasks target = this }
-	
-	var:task_owner = {
-		remove_list_variable = { name = task_tasks target = prev }
-	}
-	var:task_template = {
-		remove_list_variable = { name = task_tasks target = prev }
-	}
-	
-	remove_variable = task_owner
-	remove_variable = task_worker
-	remove_variable = task_template
-	remove_variable = task_delegate
-	remove_variable = task_time_cost
-	remove_variable = task_time_in
-	remove_variable = task_crpt
-}
-
-task_death_handler = {
-	if = {
-		limit = {
-			has_variable_list = task_tasks
-		}
-		every_in_list = {
-			variable = task_tasks
-			
-			save_temporary_scope_as = task_death_handler_h
-			
-			prev.primary_heir = {
-				if = {
-					limit = {
-						NOT = {
-							any_in_list = {
-								variable = task_tasks
-								
-								var:task_template = scope:task_death_handler_h.var:task_template
-							}
-						}
-					}
-					prev = {
-						set_variable = { name = task_owner value = prev.primary_heir }
-					}
-					
-					add_to_variable_list = { name = task_tasks target = prev }
-				}
-				else = {
-					prev = {
-						task_pop_task = yes
-					}
-				}
-			}
-		}
-	}
-}
-
-task_rank_down_handler = {
-	if = {
+task_update = {
+	every_in_list = {
 		limit = {
 			OR = {
-				is_ruler = no
 				is_landed = no
+				is_ruler = no
+				primary_title.tier = tier_barony
+			}
+			
+			is_councillor = no
+		}
+		variable = task_workers
+		
+		remove_variable = task_time_has
+		remove_variable = task_time_spent
+		remove_variable = task_prestige
+	}
+	
+	clear_variable_list = task_workers
+	
+	^^tasks_passive^
+		clear_variable_list = task_&tasks_passive& 
+		array_clear = { name = task_&tasks_passive&_time }
+		array_clear = { name = task_&tasks_passive&_prog }
+		
+		if = {
+			limit = {
+				has_variable = task_&tasks_passive&_lord
+				
+				var:task_&tasks_passive&_lord > 0
+			}
+			add_to_variable_list = { name = task_workers target = this }
+			add_to_variable_list = { name = task_&tasks_passive& target = this }
+			array_add = { name = task_&tasks_passive&_time value = var:task_&tasks_passive&_lord dec = 10 }
+		}
+		
+		^^skills^
+			if = {
+				limit = {
+					has_variable = task_&tasks_passive&_&skills&
+					
+					var:task_&tasks_passive&_&skills& > 0
+				}
+				ordered_&skills&_councillor = {
+					position = 0
+					
+					prev = {
+						add_to_variable_list = { name = task_workers target = prev }
+						add_to_variable_list = { name = task_&tasks_passive& target = prev }
+						array_add = { name = task_&tasks_passive&_time value = var:task_&tasks_passive&_&skills& dec = 10 }
+					}
+				}
+			}
+		^
+	^
+	
+	set_variable = { name = task_time_has value = 10 }
+	set_variable = { name = task_time_spent value = 0 }
+	set_variable = { name = task_prestige value = 0 }
+	
+	every_in_list = {
+		variable = task_workers
+		
+		set_variable = { name = task_time_has value = 10 }
+		set_variable = { name = task_time_spent value = 0 }
+		set_variable = { name = task_prestige value = 0 }
+	}
+	
+	^^tasks_passive^
+		set_variable = { name = task_update_t value = 0 }
+		
+		every_in_list = {
+			variable = task_&tasks_passive&
+			
+			prev = {
+				array_get = { name = task_&tasks_passive&_time value = var:task_update_t return = task_update_tt dec = 10 }
+				
+				prev = {
+					set_variable = { name = task_update_ttt value = prev.var:task_update_tt }
+					change_variable = { name = task_time_spent add = prev.var:task_update_tt }
+				}
+				
+				task_get_prog_&tasks_passive& = { worker = prev time = var:task_update_tt return = task_update_tt }
+				array_add = { name = task_&tasks_passive&_prog value = var:task_update_tt dec = 10 }
+				
+				change_variable = { name = task_update_t add = 1 }
 			}
 		}
+		
+		task_set_prestige_&tasks_passive& = yes
+		
 		every_in_list = {
-			variable = task_tasks
+			variable = task_&tasks_passive&
 			
-			task_pop_task = yes
+			change_variable = { name = task_update_ttt multiply = prev.var:task_&tasks_passive&_prestige }
+			change_variable = { name = task_update_ttt divide = 5 }
+			change_variable = { name = task_prestige add = var:task_update_ttt }
+			
+			remove_variable = task_update_t
+			remove_variable = task_update_tt
+			remove_variable = task_update_ttt
 		}
+	^
+	
+	remove_variable = task_update_t
+	remove_variable = task_update_tt
+	remove_variable = task_update_ttt
+}
+
+task_month = {
+	every_ruler = {
+		limit = {
+			is_character = yes
+			is_landed = yes
+		}
+		^^tasks_passive^
+			change_variable = { name = task_&tasks_passive&_prog multiply = 0.99 }
+			
+			every_in_list = {
+				variable = task_&tasks_passive&_prog
+				
+				prev = {
+					change_variable = { name = task_&tasks_passive&_prog add = { value = prev divide = 10 } }
+				}
+			}
+		^
 	}
 }
 
 task_ai = {
-	every_ruler = {
-		limit = {
-			is_character = yes
-			is_landed = yes
-	
-			is_councillor = no
-			
-			has_variable_list = task_tasks		
-			variable_list_size = { name = task_tasks value >= 1 }
-			
-			OR = {
-				is_ai = yes
-				
-				has_global_variable = sim_i
-			}
-		}
-		every_in_list = {
-			variable = task_tasks
-			
-			prev = {
-				save_temporary_scope_as = task_ai_t
-			}
-			
-			if = {
-				limit = {
-					var:task_template.var:task_councillor = flag:spouse
-				}
-				prev = {
-					primary_spouse = {
-						save_temporary_scope_as = task_ai_t
-					}
-				}
-			}
-			^^skills^else_if = {
-				limit = {
-					var:task_template.var:task_councillor = flag:&skills&
-				}
-				prev = {
-					ordered_&skills&_councillor = {
-						position = 0
-						
-						save_temporary_scope_as = task_ai_t
-					}
-				}
-			}^
-			
-			set_variable = { name = task_ai_t value = 1 }
-			set_variable = { name = task_ai_tt value = 1 }
+	^^tasks_passive^
+		set_variable = { name = task_&tasks_passive&_lord value = 0 }
+		^^skills^ set_variable = { name = task_&tasks_passive&_&skills& value = 0 } ^
 		
-			^^skills^
-				if = {
-					limit = {
-						var:task_template = {
-							has_variable = task_&skills&_mult
-						}
-					}
-					set_variable = { name = task_ai_ttt value = var:task_template.var:task_&skills&_mult }
-					set_variable = { name = task_ai_tttt value = var:task_template.var:task_&skills&_mult }
-					
-					change_variable = { name = task_ai_ttt multiply = prev.&skills& }
-					change_variable = { name = task_ai_tttt multiply = scope:task_ai_t.&skills& }
-					
-					if = {
-						limit = {
-							var:task_template = {
-								has_variable = task_&skills&_base
-							}
-						}
-						change_variable = { name = task_ai_ttt add = var:task_template.var:task_&skills&_base }
-						change_variable = { name = task_ai_tttt add = var:task_template.var:task_&skills&_base }
-					}
-					
-					change_variable = { name = task_ai_t multiply = var:task_ai_ttt }
-					change_variable = { name = task_ai_tt multiply = var:task_ai_tttt }
-				}
-			^
-			
-			change_variable = { name = task_ai_t add = 0.05 }
-			change_variable = { name = task_ai_tt add = 0.05 }
-	
-			set_variable = { name = task_ai_ttt value = var:task_time_cost }
-			change_variable = { name = task_ai_ttt divide = var:task_ai_t }
-			set_variable = { name = task_ai_t value = var:task_ai_ttt }
-			
-			set_variable = { name = task_ai_ttt value = var:task_time_cost }
-			change_variable = { name = task_ai_ttt divide = var:task_ai_tt }
-			set_variable = { name = task_ai_tt value = var:task_ai_ttt }
-			
-			set_variable = { name = task_ai_ttt value = scope:task_ai_t }
-		}
+		task_get_pref_task_&tasks_passive& = { return = task_ai_&tasks_passive& }
 		
-		set_variable = { name = task_ai_t value = 0 }
-		
-		every_councillor = {
-			set_variable = { name = task_ai_t value = 0 }
-		}
-		
-		every_in_list = {
-			variable = task_tasks
-			
-			remove_variable = task_delegate
-			
-			prev = {
-				change_variable = { name = task_ai_t add = prev.var:task_ai_t }
-			}
-		}
-		
-		while = {
+		if = {
 			limit = {
-				var:task_ai_t > 20
+				is_councillor = yes
 			}
-			set_variable = { name = task_ai_tt value = var:task_ai_t }
+			set_variable = { name = task_ai_&tasks_passive&_lord value = 0 }
+		}
+		else = {
+			task_get_pref_char_&tasks_passive& = { worker = this return = task_ai_&tasks_passive&_lord }
+		}
+		
+		^^skills^
+			set_variable = { name = task_ai_&tasks_passive&_&skills& value = 0 }
 			
-			every_in_list = {
-				limit = {
-					NOT = {
-						has_variable = task_delegate
-						
-						var:task_ai_ttt = prev
-					}
-				}
-				variable = task_tasks
-				
-				set_variable = { name = task_ai_tttt value = var:task_ai_ttt.var:task_ai_t }
-				change_variable = { name = task_ai_tttt add = var:task_ai_tt }
-				
-				if = {
-					limit = {
-						has_variable = task_ai_tttt
-						
-						var:task_ai_tttt > 20
-					}
-					set_variable = { name = task_ai_tttt value = 1 }
-				}
-				else = {
-					change_variable = { name = task_ai_tttt divide = -20 }
-					change_variable = { name = task_ai_tttt add = 1 }
-					change_variable = { name = task_ai_tttt multiply = 9 }
-					change_variable = { name = task_ai_tttt add = 1 }
-				}
-				
-				if = {
-					limit = {
-						var:task_ai_t = {
-							compare_value < prev.var:task_ai_tt
-						}
-					}
-					set_variable = { name = task_ai_ttttt value = 1 }
-				}
-				else = {
-					set_variable = { name = task_ai_ttttt value = var:task_ai_t }
-					change_variable = { name = task_ai_ttttt divide = var:task_ai_tt }
-					change_variable = { name = task_ai_ttttt subtract = 1 }
-					change_variable = { name = task_ai_ttttt multiply = 4 }
-					change_variable = { name = task_ai_ttttt add = 1 }
-				}
-				
-				change_variable = { name = task_ai_tttt multiply = var:task_ai_ttttt }
-			}
-			
-			ordered_in_list = {
-				limit = {
-					NOT = {
-						has_variable = task_delegate
-						
-						var:task_ai_ttt = prev
-					}
-				}
-				variable = task_tasks
-				order_by = var:task_ai_tttt
+			ordered_&skills&_councillor = {
 				position = 0
 				
-				set_variable = { name = task_delegate value = 1 }
-				
-				var:task_ai_ttt = {
-					change_variable = { name = task_ai_t add = prev.var:task_ai_tt }
-				}
-				
 				prev = {
-					change_variable = { name = task_ai_t subtract = prev.var:task_ai_t }
-				}
-			}
-			
-			if = {
-				limit = {
-					var:task_ai_tt = {
-						compare_value = prev.var:task_ai_t
-					}
-				}
-				set_variable = { name = task_ai_t value = 0 }
-			}
-		}
-		
-		remove_variable = task_ai_t
-		remove_variable = task_ai_tt
-		
-		every_councillor = {
-			remove_variable = task_ai_t
-		}
-		
-		every_in_list = {
-			variable = task_tasks
-			
-			remove_variable = task_ai_t
-			remove_variable = task_ai_tt
-			remove_variable = task_ai_ttt
-			remove_variable = task_ai_tttt
-			remove_variable = task_ai_ttttt
-		}
-	}
-}
-
-task_main = {
-	every_ruler = {
-		limit = {
-			is_character = yes
-			is_landed = yes
-		}
-		remove_variable = task_manage_logistics
-		remove_variable = task_manage_stockpile
-		
-		^^tasks_passive^
-			if = {
-				limit = {
-					task_check_cond_&tasks_passive& = yes
-				}
-				if = {
-					limit = {
-						NOT = {
-							any_in_list = {
-								variable = task_tasks
-								
-								var:task_template = global_var:&tasks_passive&
-							}
-						}
-					}
-					task_new_task = { owner = this template = &tasks_passive& }
-				}
-			}
-			else = {
-				every_in_list = {
-					limit = {
-						var:task_template = global_var:&tasks_passive&
-					}
-					variable = task_tasks
-					
-					task_pop_task = yes
+					task_get_pref_char_&tasks_passive& = { worker = prev return = task_ai_&tasks_passive&_&skills& }
 				}
 			}
 		^
-	}
+	^
+	
+	set_variable = { name = task_ai_t value = 0 }
 	
 	^^tasks_passive^
-		global_var:&tasks_passive& = {
-			every_in_list = {
-				variable = task_tasks
-				
-				task_set_cost_&tasks_passive& = yes
-			}
-		}
-	^
-	^^tasks_active^
-		global_var:&tasks_active& = {
-			every_in_list = {
-				variable = task_tasks
-				
-				task_set_cost_&tasks_active& = yes
-			}
-		}
+		set_variable = { name = task_&tasks_passive&_lord value = var:task_ai_&tasks_passive& }
+		change_variable = { name = task_&tasks_passive&_lord multiply = 10 }
+		change_variable = { name = task_&tasks_passive&_lord multiply = var:task_ai_&tasks_passive&_lord }
+		change_variable = { name = task_ai_t add = var:task_&tasks_passive&_lord }
 	^
 	
-	every_ruler = {
+	if = {
 		limit = {
-			is_character = yes
-			is_landed = yes
+			has_variable = task_ai_t
+			
+			var:task_ai_t > 0
 		}
-		set_variable = { name = task_main_t value = 0 }
-		
-		every_councillor = {
-			set_variable = { name = task_main_t value = 0 }
-		}
+		^^tasks_passive^
+			change_variable = { name = task_&tasks_passive&_lord divide = var:task_ai_t }
+		^
 	}
 	
-	every_ruler = {
-		limit = {
-			is_character = yes
-			is_landed = yes
-		}
-		every_in_list = {
-			variable = task_tasks
-			
-			prev = {
-				save_temporary_scope_as = task_main_t
+	^^skills^
+		set_variable = { name = task_ai_t value = 0 }
+	
+		^^tasks_passive^
+			set_variable = { name = task_&tasks_passive&_&skills& value = var:task_ai_&tasks_passive& }
+			change_variable = { name = task_&tasks_passive&_&skills& multiply = 10 }
+			change_variable = { name = task_&tasks_passive&_&skills& multiply = var:task_ai_&tasks_passive&_&skills& }
+			change_variable = { name = task_ai_t add = var:task_&tasks_passive&_&skills& }
+		^
+		
+		if = {
+			limit = {
+				has_variable = task_ai_t
+				
+				var:task_ai_t > 0
 			}
-			
-			if = {
-				limit = {
-					OR = {
-						prev = {
-							is_councillor = yes
-							is_alive = no
-						}
-						
-						has_variable = task_delegate
-					}
-				}
-				if = {
-					limit = {
-						var:task_template.var:task_councillor = flag:spouse
-					}
-					prev = {
-						primary_spouse = {
-							if = {
-								limit = {
-									is_alive = yes
-								}
-								save_temporary_scope_as = task_main_t
-							}
-						}
-					}
-				}
-				^^skills^else_if = {
-					limit = {
-						var:task_template.var:task_councillor = flag:&skills&
-					}
-					prev = {
-						ordered_&skills&_councillor = {
-							limit = {
-								is_alive = yes
-							}
-							position = 0
-							
-							save_temporary_scope_as = task_main_t
-						}
-					}
-				}^
-			}
-			
-			set_variable = { name = task_worker value = scope:task_main_t }
-			
-			set_variable = { name = task_main_t value = 1 }
-			
-			^^skills^
-				if = {
-					limit = {
-						var:task_template = {
-							has_variable = task_&skills&_mult
-						}
-					}
-					set_variable = { name = task_main_tt value = var:task_template.var:task_&skills&_mult }
-					change_variable = { name = task_main_tt multiply = scope:task_main_t.&skills& }
-					
-					if = {
-						limit = {
-							var:task_template = {
-								has_variable = task_&skills&_base
-							}
-						}
-						change_variable = { name = task_main_tt add = var:task_template.var:task_&skills&_base }
-					}
-					
-					change_variable = { name = task_main_t multiply = var:task_main_tt }
-				}
+			^^tasks_passive^
+				change_variable = { name = task_&tasks_passive&_&skills& divide = var:task_ai_t }
 			^
-			
-			change_variable = { name = task_main_t add = 0.05 }
-			
-			set_variable = { name = task_main_tt value = var:task_time_cost }
-			change_variable = { name = task_main_tt divide = var:task_main_t }
-			
-			scope:task_main_t = {
-				change_variable = { name = task_main_t add = prev.var:task_main_tt }
-				add_to_global_variable_list = { name = task_main_t target = this }
-			}
-			
-			remove_variable = task_main_t
-			remove_variable = task_main_tt
-		}
-	}
-	
-	every_in_global_list = {
-		variable = task_main_t
-		
-		change_variable = { name = task_main_t divide = 20 }
-	}
-	
-	every_in_global_list = {
-		variable = task_tasks_active
-		
-		set_variable = { name = task_time_in value = 100 }
-		
-		if = {
-			limit = {
-				var:task_worker = {
-					has_variable = task_main_t
-				
-					var:task_main_t > 1
-				}
-			}
-			change_variable = { name = task_time_in divide = var:task_worker.var:task_main_t }
-		}
-	}
-	
-	every_ruler = {
-		limit = {
-			is_character = yes
-			is_landed = yes
-		}
-		ordered_in_list = {
-			limit = {
-				var:task_template = global_var:manage_oversight
-			}
-			variable = task_tasks
-			position = 0
-			
-			prev = {
-				set_variable = { name = task_main_t value = 100 }
-				change_variable = { name = task_main_t subtract = prev.var:task_crpt }
-				change_variable = { name = task_main_t multiply = prev.var:task_time_in }
-				change_variable = { name = task_main_t divide = 100 }
-			}
-		}
-	}
-	
-	every_in_global_list = {
-		variable = task_tasks_active
-		
-		if = {
-			limit = {
-				var:task_owner = var:task_worker
-			}
-			set_variable = { name = task_main_t value = 0 }
-		}
-		else = {
-			var:task_worker = {
-				export_opinion = { target = liege return = task_main_tt }
-			
-				if = {
-					limit = {
-						has_dread_level_towards = {
-							target = liege
-							level = 2
-						}
-					}
-					change_variable = { name = task_main_tt add = 200 }
-				}
-				else_if = {
-					limit = {
-						has_dread_level_towards = {
-							target = liege
-							level = 1
-						}
-					}
-					change_variable = { name = task_main_tt add = 100 }
-				}
-				
-				if = {
-					limit = {
-						NOT = {
-							prev.var:task_template = global_var:manage_oversight
-						}
-					}
-					change_variable = { name = task_main_tt add = liege.var:task_main_t }
-				}
-				
-				if = {
-					limit = {
-						has_variable = task_main_tt
-						
-						var:task_main_tt > 100
-					}
-					set_variable = { name = task_main_tt value = 100 }
-				}
-				
-				change_variable = { name = task_main_tt subtract = 100 }
-				change_variable = { name = task_main_tt multiply = var:task_main_tt }
-				change_variable = { name = task_main_tt divide = 400 }
-				
-				prev = {
-					set_variable = { name = task_main_t value = prev.var:task_main_tt }
-				}
-				
-				remove_variable = task_main_tt
-			}
-		}
-		
-		change_variable = { name = task_main_t subtract = var:task_crpt }
-		change_variable = { name = task_main_t divide = 10 }
-		change_variable = { name = task_crpt add = var:task_main_t }
-		
-		remove_variable = task_main_t
-	}
-	
-	every_in_global_list = {
-		variable = task_main_t
-		
-		remove_variable = task_main_t
-		remove_variable = task_main_tt
-	}
-	
-	clear_global_variable_list = task_main_t
-	
-	^^tasks_passive^
-		global_var:&tasks_passive& = {
-			every_in_list = {
-				variable = task_tasks
-				
-				task_do_pulse_&tasks_passive& = yes
-			}
 		}
 	^
-	^^tasks_active^
-		global_var:&tasks_active& = {
-			every_in_list = {
-				variable = task_tasks
-				
-				task_do_pulse_&tasks_active& = yes
-			}
-		}
+	
+	remove_variable = task_ai_t
+	
+	^^tasks_passive^
+		remove_variable = task_ai_&tasks_passive&
+		remove_variable = task_ai_&tasks_passive&_lord
+		^^skills^ remove_variable = task_ai_&tasks_passive&_&skills& ^
 	^
 }
 
-task_set_cost_manage_domain = {
-	set_variable = { name = task_time_cost value = var:task_owner.domain_size }
-	change_variable = { name = task_time_cost multiply = 0.8 }
-	change_variable = { name = task_time_cost add = 0.2 }
-}
-task_set_cost_manage_realm = {
-	set_variable = { name = task_time_cost value = var:task_owner.vassal_count }
-	change_variable = { name = task_time_cost multiply = 0.4 }
-	change_variable = { name = task_time_cost add = 0.6 }
-}
-task_set_cost_manage_logistics = {
-	set_variable = { name = task_time_cost value = 0 }
-	
-	var:task_owner = {
-		if = {
-			limit = {
-				has_variable = mil_mp
-			}
-			prev = {
-				change_variable = { name = task_time_cost add = prev.var:mil_mp }
+task_rank_up_handler = {
+	if = {
+		limit = {
+			is_character = yes
+			is_landed = yes
+			
+			primary_title.tier > tier_barony
+			
+			NOT = {
+				^^tasks_passive^ has_variable = task_&tasks_passive&_prog ^
 			}
 		}
-		if = {
-			limit = {
-				has_variable = mil_supply
-			}
-			prev = {
-				change_variable = { name = task_time_cost add = prev.var:mil_supply }
-			}
-		}
+		task_ai = yes
+		task_update = yes
 	}
+}
+task_rank_down_handler = {
+	if = {
+		limit = {
+			OR = {
+				is_landed = no
+				is_ruler = no
+				
+				primary_title.tier = tier_barony
+			}
+			OR = {
+				^^tasks_passive^ has_variable = task_&tasks_passive&_prog ^
+			}
+		}
+		clear_variable_list = task_workers
 	
+		^^tasks_passive^
+			clear_variable_list = task_&tasks_passive& 
+			array_clear = { name = task_&tasks_passive&_time }
+			array_clear = { name = task_&tasks_passive&_prog }
+			
+			remove_variable = task_&tasks_passive&_prog
+			remove_variable = task_&tasks_passive&_prestige
+			remove_variable = task_&tasks_passive&_lord
+			^^skills^ remove_variable = task_&tasks_passive&_&skills& ^
+		^
+	}
+}
+
+task_get_pref_task_manage_domain = {
+	set_variable = { name = $return$ value = 1 }
+}
+task_get_pref_task_manage_realm = {
+	set_variable = { name = $return$ value = 1 }
+}
+task_get_pref_task_manage_logistics = {
+	set_variable = { name = $return$ value = 1 }
+}
+task_get_pref_task_manage_stockpile = {
+	set_variable = { name = $return$ value = 1 }
+}
+
+task_get_pref_char_manage_domain = {
+	task_get_prog_manage_domain = { worker = $worker$ time = 1 return = $return$ }
+}
+task_get_pref_char_manage_realm = {
+	task_get_prog_manage_realm = { worker = $worker$ time = 1 return = $return$ }
+}
+task_get_pref_char_manage_logistics = {
+	task_get_prog_manage_logistics = { worker = $worker$ time = 1 return = $return$ }
+}
+task_get_pref_char_manage_stockpile = {
+	task_get_prog_manage_stockpile = { worker = $worker$ time = 1 return = $return$ }
+}
+
+task_get_prog = {
 	sqrt_effect = {
-		inp = var:task_time_cost
-		return = task_time_cost
+		inp = var:task_get_prog_t
+		return = task_get_prog_tt
 	}
 	
-	change_variable = { name = task_time_cost divide = 2 }
-	change_variable = { name = task_time_cost add = 1 }
+	change_variable = { name = task_get_prog_t multiply = var:task_get_prog_tt }
+	change_variable = { name = task_get_prog_t divide = 30 }
+	change_variable = { name = task_get_prog_t add = 0.1 }
+	change_variable = { name = task_get_prog_t multiply = $time$ }
+	change_variable = { name = task_get_prog_t divide = 12 }
+	
+	set_variable = { name = $return$ value = var:task_get_prog_t }
+	
+	remove_variable = task_get_prog_t
+	remove_variable = task_get_prog_tt
 }
-task_set_cost_manage_court = {
-	set_variable = { name = task_time_cost value = 1 }
+task_get_prog_manage_domain = {
+	set_variable = { name = task_get_prog_t value = $worker$.stewardship }
+	change_variable = { name = task_get_prog_t add = { value = $worker$.diplomacy divide = 2 } }
+	change_variable = { name = task_get_prog_t divide = 1.5 }
+	
+	task_get_prog = { return = $return$ time = $time$ }
 }
-task_set_cost_manage_stockpile = {
-	set_variable = { name = task_time_cost value = 0 }
+task_get_prog_manage_realm = {
+	set_variable = { name = task_get_prog_t value = $worker$.diplomacy }
+	change_variable = { name = task_get_prog_t add = { value = $worker$.stewardship divide = 2 } }
+	change_variable = { name = task_get_prog_t divide = 1.5 }
+	
+	task_get_prog = { return = $return$ time = $time$ }
+}
+task_get_prog_manage_logistics = {
+	set_variable = { name = task_get_prog_t value = $worker$.martial }
+	change_variable = { name = task_get_prog_t add = { value = $worker$.stewardship divide = 2 } }
+	change_variable = { name = task_get_prog_t divide = 1.5 }
+	
+	task_get_prog = { return = $return$ time = $time$ }
+}
+task_get_prog_manage_stockpile = {
+	set_variable = { name = task_get_prog_t value = $worker$.stewardship }
+	change_variable = { name = task_get_prog_t add = { value = $worker$.diplomacy divide = 2 } }
+	change_variable = { name = task_get_prog_t divide = 1.5 }
+	
+	task_get_prog = { return = $return$ time = $time$ }
+}
+
+task_set_prestige_manage_domain = {
+	if = {
+		limit = {
+			has_variable = task_manage_domain_prog
+			
+			var:task_manage_domain_prog > domain_size
+		}
+		set_variable = { name = $return$ value = domain_size }
+		change_variable = { name = $return$ divide = var:task_manage_domain_prog }
+		
+		sqrt_effect = {
+			inp = var:$return$
+			return = $return$
+		}
+	}
+	else = {
+		set_variable = { name = $return$ value = 1 }
+	}
+}
+task_set_prestige_manage_realm = {
+	sqrt_effect = {
+		inp = sub_realm_size
+		return = $return$
+	}
+	
+	change_variable = { name = $return$ add = vassal_count }
+	change_variable = { name = $return$ divide = 2 }
+	
+	if = {
+		limit = {
+			has_variable = task_manage_realm_prog
+			
+			var:task_manage_realm_prog = {
+				compare_value > prev.var:$return$
+			}
+		}
+		change_variable = { name = $return$ divide = var:task_manage_realm_prog }
+		
+		sqrt_effect = {
+			inp = var:$return$
+			return = $return$
+		}
+	}
+	else = {
+		set_variable = { name = $return$ value = 1 }
+	}
+}
+task_set_prestige_manage_logistics = {
+	if = {
+		limit = {
+			has_variable = task_manage_logistics_prog
+			has_variable = mil_power
+			
+			var:task_manage_logistics_prog = {
+				compare_value > prev.var:mil_power
+			}
+		}
+		set_variable = { name = $return$ value = var:mil_power }
+		change_variable = { name = $return$ divide = var:task_manage_logistics_prog }
+		
+		sqrt_effect = {
+			inp = var:$return$
+			return = $return$
+		}
+	}
+	else = {
+		set_variable = { name = $return$ value = 1 }
+	}
+}
+task_set_prestige_manage_stockpile = {
+	set_variable = { name = $return$ value = 0 }
 	
 	^^goods^
-		change_variable = { name = task_time_cost add = var:task_owner.var:trade_want_&goods& }
+		if = {
+			limit = {
+				has_variable = trade_want_&goods&
+			}
+			change_variable = { name = $return$ add = var:trade_want_&goods& }
+		}
 	^
 	
 	sqrt_effect = {
-		inp = var:task_time_cost
-		return = task_time_cost
+		inp = var:$return$
+		return = $return$
 	}
 	
-	change_variable = { name = task_time_cost divide = 4 }
-	change_variable = { name = task_time_cost add = 1 }
-}
-task_set_cost_manage_oversight = {
-	save_temporary_scope_as = task_set_cost_manage_oversight_t
+	change_variable = { name = $return$ divide = 2 }
 	
-	set_variable = { name = task_time_cost value = 0 }
-	
-	var:task_owner = {
-		every_in_list = {
-			limit = {
-				has_variable = task_delegate
-			}
-			variable = task_tasks
+	if = {
+		limit = {
+			has_variable = task_manage_stockpile_prog
 			
-			scope:task_set_cost_manage_oversight_t = {
-				change_variable = { name = task_time_cost add = prev.var:task_time_cost }
+			var:task_manage_stockpile_prog = {
+				compare_value > prev.var:$return$
 			}
 		}
+		change_variable = { name = $return$ divide = var:task_manage_stockpile_prog }
+		
+		sqrt_effect = {
+			inp = var:$return$
+			return = $return$
+		}
 	}
-	
-	sqrt_effect = {
-		inp = var:task_time_cost
-		return = task_time_cost
+	else = {
+		set_variable = { name = $return$ value = 1 }
 	}
-	
-	change_variable = { name = task_time_cost add = 0.2 }
-}
-
-task_do_pulse_manage_domain = {
-}
-task_do_pulse_manage_realm = {
-}
-task_do_pulse_manage_logistics = {
-	var:task_owner = {
-		set_variable = { name = task_manage_logistics value = prev }
-	}
-}
-task_do_pulse_manage_court = {
-}
-task_do_pulse_manage_stockpile = {
-	var:task_owner = {
-		set_variable = { name = task_manage_stockpile value = prev }
-	}
-}
-task_do_pulse_manage_oversight = {
-}
-task_do_pulse_religious_relations = {
-	
 }

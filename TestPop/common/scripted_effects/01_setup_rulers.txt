@@ -106,6 +106,7 @@
 		remove_variable = init_main_t
 		
 		realm_set_dist = yes
+		task_setup = yes
 	}
 	
 	every_ruler = {
@@ -151,17 +152,8 @@
 				set_variable = { name = mil_mp value = prev.var:trade_mp }
 				set_variable = { name = mil_supply value = prev.var:trade_supply }
 				set_variable = { name = mil_power value = prev.var:trade_power }
-			}
-			
-			every_in_list = {
-				variable = task_tasks
 				
-				set_variable = { name = task_owner value = scope:setup_rulers_t }
-				set_variable = { name = task_worker value = scope:setup_rulers_t }
-				
-				scope:setup_rulers_t = {
-					add_to_variable_list = { name = task_tasks target = prev }
-				}
+				^^tasks_passive^ set_variable = { name = task_&tasks_passive&_prog value = prev.var:trade_&tasks_passive&_prog }^
 			}
 			
 			set_variable = { name = setup_rulers_t value = 1 }
@@ -236,11 +228,8 @@
 		remove_variable = trade_mp
 		remove_variable = trade_supply
 		remove_variable = trade_power
-		
-		clear_variable_list = task_tasks
+		^^tasks_passive^ remove_variable = trade_&tasks_passive&_prog ^
 	}
-	
-	modi_refresh = yes
 	
 	set_global_variable = { name = sim_i value = 1 }
 	

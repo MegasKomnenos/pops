@@ -503,20 +503,11 @@ trade_do_trade_helper_3 = {
 trade_rank_up_handler = {
 	if = {
 		limit = {
-			is_ruler = yes
+			is_character = yes
 			is_landed = yes
-			
-			OR = {
-				NOT = {
-					has_variable = trade_earn
-				}
-				NOT = {
-					has_variable = trade_pay
-				}
-			}
 		}
-		set_variable = { name = trade_earn value = 0 }
-		set_variable = { name = trade_pay value = 0 }
+		if = { limit = { NOT = { has_variable = trade_earn } } set_variable = { name = trade_earn value = 0 } }
+		if = { limit = { NOT = { has_variable = trade_pay } } set_variable = { name = trade_pay value = 0 } }
 		
 		^^goods^
 			if = { limit = { NOT = { has_variable = trade_in_&goods& } } set_variable = { name = trade_in_&goods& value = 0 } }
@@ -1065,10 +1056,9 @@ trade_do_trade = {
 						
 						if = {
 							limit = {
-								has_variable = task_manage_stockpile
+								has_variable = trade_task
 							}
-							change_variable = { name = trade_point_&goods& multiply = var:task_manage_stockpile.var:task_time_in }
-							change_variable = { name = trade_point_&goods& divide = 100 }
+							change_variable = { name = trade_point_&goods& multiply = var:trade_task }
 						}
 						
 						if = {
@@ -1568,10 +1558,11 @@ trade_do_trade = {
 			}
 			if = {
 				limit = {
-					has_variable = task_manage_stockpile
+					has_variable = trade_task
+					
+					var:trade_task < 0
 				}
-				change_variable = { name = trade_do_trade_tt multiply = var:task_manage_stockpile.var:task_time_in }
-				change_variable = { name = trade_do_trade_tt divide = 100 }
+				change_variable = { name = trade_do_trade_tt multiply = var:trade_task }
 			}
 			
 			if = {
@@ -1625,10 +1616,11 @@ trade_do_trade = {
 			}
 			if = {
 				limit = {
-					has_variable = task_manage_stockpile
+					has_variable = trade_task
+					
+					var:trade_task < 1
 				}
-				change_variable = { name = trade_do_trade_tt multiply = var:task_manage_stockpile.var:task_time_in }
-				change_variable = { name = trade_do_trade_tt divide = 100 }
+				change_variable = { name = trade_do_trade_tt multiply = var:trade_task }
 			}
 			
 			if = {

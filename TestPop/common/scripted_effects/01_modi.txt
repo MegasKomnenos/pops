@@ -5,6 +5,7 @@
 		}
 		modi_prod = yes
 		modi_pop = yes
+		modi_mil = yes
 	}
 	
 	every_ruler = {
@@ -13,6 +14,7 @@
 			is_landed = yes
 		}
 		modi_mil = yes
+		modi_task = yes
 	}
 }
 
@@ -42,4 +44,136 @@ modi_mil = {
 	^^goods^
 		set_variable = { name = modi_mil_supply_&goods& value = 1 }
 	^
+}
+
+modi_task = {
+	set_variable = { name = trade_task value = 1 }
+	set_variable = { name = mil_task value = 1 }
+	set_variable = { name = realm_task value = 1 }
+	
+	if = {
+		limit = {
+			has_variable = task_manage_stockpile_prog
+		}
+		set_variable = { name = modi_task_t value = 0 }
+	
+		^^goods^
+			if = {
+				limit = {
+					has_variable = trade_want_&goods&
+				}
+				change_variable = { name = modi_task_t add = var:trade_want_&goods& }
+			}
+		^
+		
+		sqrt_effect = {
+			inp = var:modi_task_t
+			return = modi_task_t
+		}
+		
+		change_variable = { name = modi_task_t divide = 2 }
+		
+		if = {
+			limit = {
+				var:task_manage_stockpile_prog = {
+					compare_value > prev.var:modi_task_t
+				}
+			}
+			set_variable = { name = trade_task value = var:task_manage_stockpile_prog }
+			change_variable = { name = trade_task divide = { value = var:modi_task_t add = 0.01 } }
+			change_variable = { name = trade_task subtract = 1 }
+			
+			sqrt_effect = {
+				inp = var:trade_task
+				return = trade_task
+			}
+			
+			change_variable = { name = trade_task add = 1 }
+		}
+		else_if = {
+			limit = {
+				var:task_manage_stockpile_prog = {
+					compare_value < prev.var:modi_task_t
+				}
+			}
+			set_variable = { name = trade_task value = var:task_manage_stockpile_prog }
+			change_variable = { name = trade_task divide = var:modi_task_t }
+			change_variable = { name = trade_task multiply = var:trade_task }
+		}
+	}
+	if = {
+		limit = {
+			has_variable = task_manage_logistics_prog
+			has_variable = mil_power
+		}
+		if = {
+			limit = {
+				var:task_manage_logistics_prog = {
+					compare_value > prev.var:mil_power
+				}
+			}
+			set_variable = { name = mil_task value = var:task_manage_logistics_prog }
+			change_variable = { name = mil_task divide = { value = var:mil_power add = 0.01 } }
+			change_variable = { name = mil_task subtract = 1 }
+			
+			sqrt_effect = {
+				inp = var:mil_task
+				return = mil_task
+			}
+			
+			change_variable = { name = mil_task add = 1 }
+		}
+		else_if = {
+			limit = {
+				var:task_manage_logistics_prog = {
+					compare_value < prev.var:mil_power
+				}
+			}
+			set_variable = { name = mil_task value = var:task_manage_logistics_prog }
+			change_variable = { name = mil_task divide = var:mil_power }
+			change_variable = { name = mil_task multiply = var:mil_task }
+		}
+	}
+	if = {
+		limit = {
+			has_variable = task_manage_realm_prog
+		}
+		sqrt_effect = {
+			inp = sub_realm_size
+			return = modi_task_t
+		}
+		
+		change_variable = { name = modi_task_t add = vassal_count }
+		change_variable = { name = modi_task_t divide = 2 }
+		
+		if = {
+			limit = {
+				var:task_manage_realm_prog = {
+					compare_value > prev.var:modi_task_t
+				}
+			}
+			set_variable = { name = realm_task value = var:task_manage_realm_prog }
+			change_variable = { name = realm_task divide = var:modi_task_t }
+			change_variable = { name = realm_task subtract = 1 }
+			
+			sqrt_effect = {
+				inp = var:realm_task
+				return = realm_task
+			}
+			
+			change_variable = { name = realm_task add = 1 }
+		}
+		else_if = {
+			limit = {
+				var:task_manage_realm_prog = {
+					compare_value < prev.var:modi_task_t
+				}
+			}
+			set_variable = { name = realm_task value = var:task_manage_realm_prog }
+			change_variable = { name = realm_task divide = var:modi_task_t }
+			change_variable = { name = realm_task multiply = var:realm_task }
+		}
+	}
+	
+	remove_variable = modi_task_t
 }

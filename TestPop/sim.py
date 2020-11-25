@@ -760,22 +760,19 @@ sim_run.02 = {
 					set_variable = { name = trade_sply_&goods& value = prev.var:trade_sply_&goods& }
 					set_variable = { name = trade_dmnd_&goods& value = prev.var:trade_dmnd_&goods& }
 					set_variable = { name = trade_price_&goods& value = prev.var:trade_price_&goods& }
-					set_variable = { name = trade_gold value = prev.gold }
-					set_variable = { name = trade_mp value = prev.var:mil_mp }
-					set_variable = { name = trade_supply value = prev.var:mil_supply }
-					set_variable = { name = trade_power value = prev.var:mil_power }
 				}
 				
 				clear_variable_list = trade_dat_&goods&
 				array_clear = { name = trade_dat_&goods& }
 			^
 			
-			every_in_list = {
-				variable = task_tasks
+			capital_province = {
+				set_variable = { name = trade_gold value = prev.gold }
+				set_variable = { name = trade_mp value = prev.var:mil_mp }
+				set_variable = { name = trade_supply value = prev.var:mil_supply }
+				set_variable = { name = trade_power value = prev.var:mil_power }
 				
-				prev.capital_province = {
-					add_to_variable_list = { name = task_tasks target = prev }
-				}
+				^^tasks_passive^ set_variable = { name = trade_&tasks_passive&_prog value = prev.var:task_&tasks_passive&_prog }^
 			}
 		}
 		
