@@ -4,115 +4,69 @@
 			is_valid_prov = yes
 			is_city = yes
 		}
+		set_variable = { name = realm_dist value = 10 }
+		
 		if = {
 			limit = {
-				barony.holder = {
-					has_variable_list = realm_dist
-					
-					is_target_in_variable_list = { name = realm_dist target = prev }
+				barony = {
+					is_leased_out = yes
 				}
 			}
-			save_temporary_scope_as = realm_update_t
-			
-			barony.holder = {
-				set_variable = { name = realm_update_t value = 0 }
-				
-				every_in_list = {
-					variable = realm_dist
-					
-					if = {
-						limit = {
-							this = scope:realm_update_t
-						}
-						prev = {
-							array_get = { name = realm_dist value = var:realm_update_t return = realm_update_tt dec = 100 }
-							
-							scope:realm_update_t = {
-								set_variable = { name = realm_dist value = prev.var:realm_update_tt }
-							}
-						}
-					}
-					
-					prev = {
-						change_variable = { name = realm_update_t add = 1 }
-					}
-				}
-				
-				remove_variable = realm_update_t
-				remove_variable = realm_update_tt
+			barony.lessee = {
+				set_variable = { name = realm_dist value = 1 }
 			}
 		}
 		else = {
-			set_variable = { name = realm_dist value = 10 }
+			barony.holder = {
+				set_variable = { name = realm_dist value = 10 }
+			}
 		}
 	}
-	
 	every_ruler = {
 		limit = {
 			is_character = yes
 			is_landed = yes
+			
+			has_variable_list = realm_dist
 		}
-		if = {
-			limit = {
-				has_variable_list = realm_dist
-			}
-			every_vassal = {
+		set_variable = { name = realm_update_t value = 0 }
+		
+		every_in_list = {
+			variable = realm_dist
+			
+			if = {
 				limit = {
-					is_character = yes
-					is_landed = yes
+					barony.holder = prev
 				}
-				if = {
-					limit = {
-						prev = {
-							is_target_in_variable_list = { name = realm_dist target = prev.capital_province }
-						}
-					}
-					capital_province = {
-						save_temporary_scope_as = realm_update_t
-					}
+				prev = {
+					array_get = { name = realm_dist value = var:realm_update_t return = realm_update_tt dec = 100 }
 					
 					prev = {
-						set_variable = { name = realm_update_t value = 0 }
-				
-						every_in_list = {
-							variable = realm_dist
-							
-							if = {
-								limit = {
-									this = scope:realm_update_t
-								}
-								prev = {
-									array_get = { name = realm_dist value = var:realm_update_t return = realm_update_tt dec = 100 }
-									
-									scope:realm_update_t.province_owner = {
-										set_variable = { name = realm_dist value = prev.var:realm_update_tt }
-									}
-								}
-							}
-							
-							prev = {
-								change_variable = { name = realm_update_t add = 1 }
-							}
-						}
-						
-						remove_variable = realm_update_t
-						remove_variable = realm_update_tt
+						set_variable = { name = realm_dist value = prev.var:realm_update_tt }
 					}
 				}
-				else = {
-					set_variable = { name = realm_dist value = 10 }
-				}
 			}
-		}
-		else = {
-			every_vassal = {
+			else_if = {
 				limit = {
-					is_character = yes
-					is_landed = yes
+					barony.holder.capital_province = this
+					barony.holder.liege = prev
 				}
-				set_variable = { name = realm_dist value = 10 }
+				prev = {
+					array_get = { name = realm_dist value = var:realm_update_t return = realm_update_tt dec = 100 }
+					
+					prev.barony.holder = {
+						set_variable = { name = realm_dist value = prev.var:realm_update_tt }
+					}
+				}
+			}
+			
+			prev = {
+				change_variable = { name = realm_update_t add = 1 }
 			}
 		}
+		
+		remove_variable = realm_update_t
+		remove_variable = realm_update_tt
 	}
 	
 	every_province = {
