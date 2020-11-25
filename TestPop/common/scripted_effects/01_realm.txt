@@ -4,6 +4,122 @@
 			is_valid_prov = yes
 			is_city = yes
 		}
+		if = {
+			limit = {
+				barony.holder = {
+					has_variable_list = realm_dist
+					
+					is_target_in_variable_list = { name = realm_dist target = prev }
+				}
+			}
+			save_temporary_scope_as = realm_update_t
+			
+			barony.holder = {
+				set_variable = { name = realm_update_t value = 0 }
+				
+				every_in_list = {
+					variable = realm_dist
+					
+					if = {
+						limit = {
+							this = scope:realm_update_t
+						}
+						prev = {
+							array_get = { name = realm_dist value = var:realm_update_t return = realm_update_tt dec = 100 }
+							
+							scope:realm_update_t = {
+								set_variable = { name = realm_dist value = prev.var:realm_update_tt }
+							}
+						}
+					}
+					
+					prev = {
+						change_variable = { name = realm_update_t add = 1 }
+					}
+				}
+				
+				remove_variable = realm_update_t
+				remove_variable = realm_update_tt
+			}
+		}
+		else = {
+			set_variable = { name = realm_dist value = 10 }
+		}
+	}
+	
+	every_ruler = {
+		limit = {
+			is_character = yes
+			is_landed = yes
+		}
+		if = {
+			limit = {
+				has_variable_list = realm_dist
+			}
+			every_vassal = {
+				limit = {
+					is_character = yes
+					is_landed = yes
+				}
+				if = {
+					limit = {
+						prev = {
+							is_target_in_variable_list = { name = realm_dist target = prev.capital_province }
+						}
+					}
+					capital_province = {
+						save_temporary_scope_as = realm_update_t
+					}
+					
+					prev = {
+						set_variable = { name = realm_update_t value = 0 }
+				
+						every_in_list = {
+							variable = realm_dist
+							
+							if = {
+								limit = {
+									this = scope:realm_update_t
+								}
+								prev = {
+									array_get = { name = realm_dist value = var:realm_update_t return = realm_update_tt dec = 100 }
+									
+									scope:realm_update_t.province_owner = {
+										set_variable = { name = realm_dist value = prev.var:realm_update_tt }
+									}
+								}
+							}
+							
+							prev = {
+								change_variable = { name = realm_update_t add = 1 }
+							}
+						}
+						
+						remove_variable = realm_update_t
+						remove_variable = realm_update_tt
+					}
+				}
+				else = {
+					set_variable = { name = realm_dist value = 10 }
+				}
+			}
+		}
+		else = {
+			every_vassal = {
+				limit = {
+					is_character = yes
+					is_landed = yes
+				}
+				set_variable = { name = realm_dist value = 10 }
+			}
+		}
+	}
+	
+	every_province = {
+		limit = {
+			is_valid_prov = yes
+			is_city = yes
+		}
 		set_variable = { name = realm_tax_base value = var:pop_wealth }
 		set_variable = { name = realm_mp_base value = var:mil_levy }
 		set_variable = { name = realm_supply_base value = var:mil_supply }
@@ -58,6 +174,8 @@
 					}
 					set_variable = { name = mil_power value = 0 }
 				}
+				
+				set_variable = { name = realm_dist value = 1 }
 			}
 			barony.holder = {
 				add_to_variable_list = { name = realm_update_tt target = prev.barony.lessee }
@@ -113,10 +231,10 @@
 		}
 		
 		change_variable = { name = realm_suppression divide = { value = var:mil_power add = 0.001 } }
+		change_variable = { name = realm_suppression divide = var:realm_dist }
 		
-		root_effect = {
+		sqrt_effect = {
 			inp = var:realm_suppression
-			root = 3
 			return = realm_suppression
 		}
 		
@@ -217,10 +335,10 @@
 			}
 			set_variable = { name = realm_suppression value = var:realm_update_t.var:mil_power }
 			change_variable = { name = realm_suppression divide = { value = var:mil_power add = 0.001 } }
+			change_variable = { name = realm_suppression divide = var:realm_dist }
 		
-			root_effect = {
+			sqrt_effect = {
 				inp = var:realm_suppression
-				root = 3
 				return = realm_suppression
 			}
 			
@@ -468,4 +586,234 @@ realm_ai = {
 			change_variable = { name = realm_levy_rate divide = 100 }
 		}
 	}
+}
+
+realm_set_dist = {
+	clear_variable_list = realm_dist
+	array_clear = { name = realm_dist }
+	
+	every_realm_county = {
+		limit = {
+			is_valid_prov = yes
+		}
+		every_county_province = {
+			limit = {
+				is_valid_prov = yes
+			}
+			set_variable = { name = realm_set_dist_t value = 1 }
+		}
+	}
+	every_in_global_list = {
+		variable = every_water
+		
+		set_variable = { name = realm_set_dist_t value = 1 }
+	}
+	
+	every_sub_realm_barony = {
+		limit = {
+			title_province = {
+				is_valid_prov = yes
+				is_city = yes
+			}
+		}
+		title_province = {
+			add_to_global_variable_list = { name = realm_set_dist_t target = this }
+			
+			every_in_list = {
+				limit = {
+					has_variable = realm_set_dist_t
+				}
+				variable = prov_neighb
+				
+				add_to_global_variable_list = { name = realm_set_dist_t target = this }
+			}
+			every_in_list = {
+				limit = {
+					has_variable = realm_set_dist_t
+				}
+				variable = prov_port
+				
+				add_to_global_variable_list = { name = realm_set_dist_t target = this }
+			}
+		}
+	}
+	
+	capital_province = {
+		set_variable = { name = travel_distance_distance value = 0 }
+		
+		add_to_global_variable_list = { name = travel_distance_fray target = this }
+	}
+	
+	while = {
+		limit = {
+			has_global_variable_list = travel_distance_fray
+			global_variable_list_size = { name = travel_distance_fray value >= 1 }
+			
+			has_global_variable_list = realm_set_dist_t
+			global_variable_list_size = { name = realm_set_dist_t value >= 1 }
+		}
+		count = 100000
+		
+		ordered_in_global_list = {
+			variable = travel_distance_fray
+			order_by = travel_distance_order_value
+			position = 0
+			
+			set_global_variable = { name = travel_distance_select value = this }
+			
+			remove_list_global_variable = { name = travel_distance_fray target = this }
+			remove_list_global_variable = { name = realm_set_dist_t target = this }
+		}
+		
+		global_var:travel_distance_select = {
+			if = {
+				limit = {
+					has_variable_list = prov_neighb
+				}
+				every_in_list = {
+					variable = prov_neighb
+					limit = {
+						has_variable = realm_set_dist_t
+						
+						OR = {
+							NOT = {
+								has_variable = travel_distance_distance
+							}
+								
+							var:travel_distance_distance = {
+								compare_value > global_var:travel_distance_select.var:travel_distance_distance
+							}
+						}
+					}
+					get_distance_neighb = { 
+						one = global_var:travel_distance_select
+						other = this
+						base = global_var:travel_distance_select.var:travel_distance_distance 
+						return = travel_distance_distance_new
+					}
+					
+					if = {
+						limit = {
+							OR = {
+								NOT = {
+									has_variable = travel_distance_distance
+								}
+								
+								var:travel_distance_distance_new = {
+									compare_value < prev.var:travel_distance_distance
+								}
+							}
+						}
+						add_to_global_variable_list = { name = travel_distance_fray target = this }
+						
+						set_variable = { name = travel_distance_distance value = var:travel_distance_distance_new }
+					}
+				}
+			}
+			if = {
+				limit = {
+					has_variable_list = prov_port
+				}
+				every_in_list = {
+					variable = prov_port
+					limit = {
+						has_variable = realm_set_dist_t
+						
+						OR = {
+							NOT = {
+								has_variable = travel_distance_distance
+							}
+								
+							var:travel_distance_distance = {
+								compare_value > global_var:travel_distance_select.var:travel_distance_distance
+							}
+						}
+					}
+					get_distance_port = { 
+						one = global_var:travel_distance_select
+						other = this
+						base = global_var:travel_distance_select.var:travel_distance_distance 
+						return = travel_distance_distance_new
+					}
+					
+					if = {
+						limit = {
+							OR = {
+								NOT = {
+									has_variable = travel_distance_distance
+								}
+								
+								var:travel_distance_distance_new = {
+									compare_value < prev.var:travel_distance_distance
+								}
+							}
+						}
+						add_to_global_variable_list = { name = travel_distance_fray target = this }
+						
+						set_variable = { name = travel_distance_distance value = var:travel_distance_distance_new }
+					}
+				}
+			}
+		}
+	}
+	
+	save_temporary_scope_as = realm_set_dist_t
+	
+	every_sub_realm_barony = {
+		limit = {
+			title_province = {
+				is_valid_prov = yes
+				is_city = yes
+			}
+		}
+		title_province = {
+			if = {
+				limit = {
+					has_variable = travel_distance_distance
+				}
+				sqrt_effect = {
+					inp = var:travel_distance_distance
+					return = travel_distance_distance
+				}
+				change_variable = { name = travel_distance_distance divide = 10 }
+				change_variable = { name = travel_distance_distance add = 0.5 }
+				
+				scope:realm_set_dist_t = {
+					add_to_variable_list = { name = realm_dist target = prev }
+					array_add = { name = realm_dist value = prev.var:travel_distance_distance dec = 100 }
+				}
+			}
+			else = {
+				scope:realm_set_dist_t = {
+					add_to_variable_list = { name = realm_dist target = prev }
+					array_add = { name = realm_dist value = 10 dec = 100 }
+				}
+			}
+		}
+	}
+	
+	every_realm_county = {
+		limit = {
+			is_valid_prov = yes
+		}
+		every_county_province = {
+			limit = {
+				is_valid_prov = yes
+			}
+			remove_variable = realm_set_dist_t
+			remove_variable = travel_distance_distance
+			remove_variable = travel_distance_distance_new
+		}
+	}
+	every_in_global_list = {
+		variable = every_water
+		
+		remove_variable = realm_set_dist_t
+		remove_variable = travel_distance_distance
+		remove_variable = travel_distance_distance_new
+	}
+	
+	clear_global_variable_list = travel_distance_fray
+	clear_global_variable_list = realm_set_dist_t
+	remove_global_variable = travel_distance_select
 }
