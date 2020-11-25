@@ -126,7 +126,7 @@ task_month = {
 			change_variable = { name = task_&tasks_passive&_prog multiply = 0.95 }
 			
 			every_in_list = {
-				variable = task_&tasks_passive&_prog
+				variable = array_task_&tasks_passive&_prog
 				
 				prev = {
 					change_variable = { name = task_&tasks_passive&_prog add = { value = prev divide = 10 } }
@@ -170,7 +170,6 @@ task_ai = {
 	
 	^^tasks_passive^
 		set_variable = { name = task_&tasks_passive&_lord value = var:task_ai_&tasks_passive& }
-		change_variable = { name = task_&tasks_passive&_lord multiply = 10 }
 		change_variable = { name = task_&tasks_passive&_lord multiply = var:task_ai_&tasks_passive&_lord }
 		change_variable = { name = task_ai_t add = var:task_&tasks_passive&_lord }
 	^
@@ -182,6 +181,7 @@ task_ai = {
 			var:task_ai_t > 0
 		}
 		^^tasks_passive^
+			change_variable = { name = task_&tasks_passive&_lord multiply = 10 }
 			change_variable = { name = task_&tasks_passive&_lord divide = var:task_ai_t }
 		^
 	}
@@ -191,7 +191,6 @@ task_ai = {
 	
 		^^tasks_passive^
 			set_variable = { name = task_&tasks_passive&_&skills& value = var:task_ai_&tasks_passive& }
-			change_variable = { name = task_&tasks_passive&_&skills& multiply = 10 }
 			change_variable = { name = task_&tasks_passive&_&skills& multiply = var:task_ai_&tasks_passive&_&skills& }
 			change_variable = { name = task_ai_t add = var:task_&tasks_passive&_&skills& }
 		^
@@ -203,6 +202,7 @@ task_ai = {
 				var:task_ai_t > 0
 			}
 			^^tasks_passive^
+				change_variable = { name = task_&tasks_passive&_&skills& multiply = 10 }
 				change_variable = { name = task_&tasks_passive&_&skills& divide = var:task_ai_t }
 			^
 		}
