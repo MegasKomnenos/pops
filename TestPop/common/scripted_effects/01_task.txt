@@ -85,24 +85,27 @@ task_update = {
 				array_get = { name = task_&tasks_passive&_time value = var:task_update_t return = task_update_tt dec = 10 }
 				
 				prev = {
-					set_variable = { name = task_update_ttt value = prev.var:task_update_tt }
 					change_variable = { name = task_time_spent add = prev.var:task_update_tt }
 				}
 				
 				task_get_prog_&tasks_passive& = { worker = prev time = var:task_update_tt return = task_update_tt }
 				array_add = { name = task_&tasks_passive&_prog value = var:task_update_tt dec = 10 }
 				
+				prev = {
+					set_variable = { name = task_update_ttt value = prev.var:task_update_tt }
+				}
+				
 				change_variable = { name = task_update_t add = 1 }
 			}
 		}
 		
-		task_set_prestige_&tasks_passive& = yes
+		task_set_prestige_&tasks_passive& = { return = task_&tasks_passive&_prestige }
 		
 		every_in_list = {
 			variable = task_&tasks_passive&
 			
+			change_variable = { name = task_update_ttt multiply = 2 }
 			change_variable = { name = task_update_ttt multiply = prev.var:task_&tasks_passive&_prestige }
-			change_variable = { name = task_update_ttt divide = 5 }
 			change_variable = { name = task_prestige add = var:task_update_ttt }
 			
 			remove_variable = task_update_t
@@ -294,7 +297,7 @@ task_get_prog = {
 	}
 	
 	change_variable = { name = task_get_prog_t multiply = var:task_get_prog_tt }
-	change_variable = { name = task_get_prog_t divide = 30 }
+	change_variable = { name = task_get_prog_t divide = 50 }
 	change_variable = { name = task_get_prog_t add = 0.1 }
 	change_variable = { name = task_get_prog_t multiply = $time$ }
 	change_variable = { name = task_get_prog_t divide = 12 }
