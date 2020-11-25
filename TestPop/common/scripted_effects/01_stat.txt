@@ -10,10 +10,6 @@
 		
 		mod_assign_2_16 = { type = province name = stat_tax var = stat_main_t }
 		
-		set_variable = { name = stat_main_t value = var:realm_privilege_earn }
-		
-		mod_assign_2_16 = { type = province name = stat_privilege_pay var = stat_main_t }
-		
 		remove_variable = stat_main_t
 		
 		if = {
@@ -56,6 +52,22 @@
 		
 		change_variable = { name = stat_main_t divide = var:stat_main_tt }
 		
+		if = {
+			limit = {
+				has_variable = stat_main_t
+				
+				var:stat_main_t < 0
+			}
+			set_variable = { name = stat_main_t value = 0 }
+		}
+		
+		sqrt_effect = {
+			inp = var:stat_main_t
+			return = stat_main_tt
+		}
+		
+		change_variable = { name = stat_main_t multiply = var:stat_main_tt }
+		
 		mod_assign_0_8 = { type = county name = stat_resentment var = stat_main_t }
 		
 		remove_variable = stat_main_t
@@ -70,19 +82,32 @@
 		set_variable = { name = stat_main_t value = var:realm_resentment }
 		change_variable = { name = stat_main_t subtract = var:realm_suppression }
 		
+		if = {
+			limit = {
+				has_variable = stat_main_t
+				
+				var:stat_main_t < 0
+			}
+			set_variable = { name = stat_main_t value = 0 }
+		}
+		
+		sqrt_effect = {
+			inp = var:stat_main_t
+			return = stat_main_tt
+		}
+		
+		change_variable = { name = stat_main_t multiply = var:stat_main_tt }
+		
 		mod_assign_0_8 = { type = character name = stat_resentment_lord var = stat_main_t }
 		
 		set_variable = { name = stat_main_t value = var:realm_privilege_earn }
-		
 		mod_assign_2_16 = { type = character name = stat_privilege var = stat_main_t }
 		
 		set_variable = { name = stat_main_t value = var:realm_privilege_pay }
-		
 		mod_assign_2_16 = { type = character name = stat_privilege_pay var = stat_main_t }
 		
 		set_variable = { name = stat_main_t value = var:mil_power }
 		change_variable = { name = stat_main_t multiply = 5 }
-		
 		mod_assign_0_12 = { type = character name = stat_maa var = stat_main_t }
 		
 		set_variable = { name = stat_main_tt value = var:mil_power }
