@@ -81,14 +81,11 @@ modi_task = {
 			}
 			set_variable = { name = trade_task value = var:task_manage_stockpile_prog }
 			change_variable = { name = trade_task divide = { value = var:modi_task_t add = 0.01 } }
-			change_variable = { name = trade_task subtract = 1 }
 			
 			sqrt_effect = {
 				inp = var:trade_task
 				return = trade_task
 			}
-			
-			change_variable = { name = trade_task add = 1 }
 		}
 		else_if = {
 			limit = {
@@ -114,14 +111,11 @@ modi_task = {
 			}
 			set_variable = { name = mil_task value = var:task_manage_logistics_prog }
 			change_variable = { name = mil_task divide = { value = var:mil_power add = 0.01 } }
-			change_variable = { name = mil_task subtract = 1 }
 			
 			sqrt_effect = {
 				inp = var:mil_task
 				return = mil_task
 			}
-			
-			change_variable = { name = mil_task add = 1 }
 		}
 		else_if = {
 			limit = {
@@ -154,14 +148,11 @@ modi_task = {
 			}
 			set_variable = { name = realm_task value = var:task_manage_realm_prog }
 			change_variable = { name = realm_task divide = var:modi_task_t }
-			change_variable = { name = realm_task subtract = 1 }
 			
 			sqrt_effect = {
 				inp = var:realm_task
 				return = realm_task
 			}
-			
-			change_variable = { name = realm_task add = 1 }
 		}
 		else_if = {
 			limit = {
