@@ -491,6 +491,24 @@ window = {
 											}
 											
 											icon = {
+												name = "icon_pops_lands_pops_ind"
+												texture = "gfx/interface/icons/icon_pops_lands_pops.dds"
+												size = { 20 20 }
+											}
+											text_single = {
+												margin_bottom = 5
+												text = "[Scope.Var('gui_t').Var('prod_labor').GetValue]"
+												using = Font_Size_Small
+												min_width = 100
+												max_width = 100
+											}
+										}
+										hbox = {
+											background = {
+												using = Background_Area_Dark
+											}
+											
+											icon = {
 												name = "icon_pops_lands_farms_ind"
 												visible = "[EqualTo_CFixedPoint('(CFixedPoint)1', Scope.Var('gui_farm').GetValue)]"
 												texture = "gfx/interface/icons/icon_pops_lands_farms.dds"
@@ -523,24 +541,6 @@ window = {
 											text_single = {
 												margin_bottom = 5
 												text = "[Scope.Var('gui_t').Var('prod_land').GetValue]"
-												using = Font_Size_Small
-												min_width = 100
-												max_width = 100
-											}
-										}
-										hbox = {
-											background = {
-												using = Background_Area_Dark
-											}
-											
-											icon = {
-												name = "icon_pops_lands_pops_ind"
-												texture = "gfx/interface/icons/icon_pops_lands_pops.dds"
-												size = { 20 20 }
-											}
-											text_single = {
-												margin_bottom = 5
-												text = "[Scope.Var('gui_t').Var('prod_labor').GetValue]"
 												using = Font_Size_Small
 												min_width = 100
 												max_width = 100
