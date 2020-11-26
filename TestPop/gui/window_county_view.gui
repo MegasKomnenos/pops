@@ -39,6 +39,7 @@ window = {
 		on_start = "[GetVariableSystem.Set( 'hide_bottom_left_HUD', 'true' )]"
 		on_start = "[GetScriptedGui( 'close_county_commerce' ).Execute( GuiScope.SetRoot( County.GetCapital.MakeScope ).End )]"
 		on_start = "[GetScriptedGui( 'close_province_economy' ).Execute( GuiScope.SetRoot( Province.MakeScope ).End )]"
+		on_start = "[GetScriptedGui( 'close_province_townhall' ).Execute( GuiScope.SetRoot( Province.MakeScope ).End )]"
 
 		using = Animation_FadeIn_Standard
 		using = Sound_WindowShow_Standard
@@ -51,6 +52,7 @@ window = {
 		on_start = "[GetVariableSystem.Clear( 'hide_bottom_left_HUD' )]"
 		on_start = "[GetScriptedGui( 'close_county_commerce' ).Execute( GuiScope.SetRoot( County.GetCapital.MakeScope ).End )]"
 		on_start = "[GetScriptedGui( 'close_province_economy' ).Execute( GuiScope.SetRoot( Province.MakeScope ).End )]"
+		on_start = "[GetScriptedGui( 'close_province_townhall' ).Execute( GuiScope.SetRoot( Province.MakeScope ).End )]"
 
 		using = Animation_FadeOut_Standard
 		using = Sound_WindowHide_Standard
@@ -291,7 +293,439 @@ window = {
 			}
 		}
 	}
-
+	window = {
+		parentanchor = right
+		size = { 300 610 }
+		position = { 300 0 }
+		movable = no
+		visible = "[EqualTo_CFixedPoint('(CFixedPoint)1', Province.MakeScope.Var('show_province_townhall').GetValue)]"
+		
+		background = {
+			texture = "gfx/interface/component_tiles/tile_window_background_subwindow.dds"
+			spriteType = Corneredtiled
+			spriteborder = { 18 18 }
+			margin = { -23 -17 }
+			margin_left = 40
+			margin_bottom = 20
+			texture_density = 2
+			
+			modify_texture = {
+				name = "overlay"
+				texture = "gfx/interface/component_overlay/overlay_effect.dds"
+				spriteType = Corneredstretched
+				spriteborder = { 0 0 }
+				blend_mode = overlay
+			}
+		}
+		
+		vbox = {	
+			position = { -30 30 }
+			
+			background = {
+				using = Background_Area_Light
+			}
+			
+			hbox = {
+				margin_right = 200
+				layoutpolicy_horizontal = expanding
+				text_single = {
+					layoutpolicy_horizontal = expanding
+					text = "Town Hall"
+					default_format = "#high"
+					align = nobaseline
+					using = Font_Size_Big
+					max_width = 100
+					fontsize_min = 16
+				}
+			}
+			
+			hbox = {
+				margin_right = 100
+				spacing = 5
+				
+				hbox = {
+					background = {
+						using = Background_Area_Dark
+					}
+					
+					icon = {
+						name = "icon_pops_lands_pops"
+						texture = "gfx/interface/icons/icon_pops_lands_pops.dds"
+						size = { 25 25 }
+					}
+					text_single = {
+						text = "[Province.MakeScope.Var('pop_total').GetValue]k"
+						min_width = 75
+					}
+				}
+				hbox = {
+					background = {
+						using = Background_Area_Dark
+					}
+					
+					icon = {
+						name = "icon_pops_lands_workshops"
+						texture = "gfx/interface/icons/icon_pops_lands_workshops.dds"
+						size = { 25 25 }
+					}
+					text_single = {
+						text = "[Province.MakeScope.Var('workshop_total').GetValue]"
+						min_width = 75
+					}
+				}
+			}
+			hbox = {
+				margin_right = 100
+				spacing = 5
+				
+				hbox = {
+					background = {
+						using = Background_Area_Dark
+					}
+					
+					icon = {
+						name = "icon_pops_lands_farms"
+						texture = "gfx/interface/icons/icon_pops_lands_farms.dds"
+						size = { 25 25 }
+					}
+					text_single = {
+						text = "[Province.MakeScope.Var('farm_total').GetValue]"
+						min_width = 75
+					}
+				}
+				hbox = {
+					background = {
+						using = Background_Area_Dark
+					}
+					
+					icon = {
+						name = "icon_pops_lands_mines"
+						texture = "gfx/interface/icons/icon_pops_lands_mines.dds"
+						size = { 25 25 }
+					}
+					text_single = {
+						text = "[Province.MakeScope.Var('extraction_total').GetValue]"
+						min_width = 75
+					}
+				}
+			}
+			hbox = {
+				margin_right = 100
+				spacing = 5
+				
+				hbox = {
+					background = {
+						using = Background_Area_Dark
+					}
+					
+					icon = {
+						name = "icon_pops_lands_pastures"
+						texture = "gfx/interface/icons/icon_pops_lands_pastures.dds"
+						size = { 25 25 }
+					}
+					text_single = {
+						text = "[Province.MakeScope.Var('pasture_total').GetValue]"
+						min_width = 75
+					}
+				}
+				hbox = {
+					background = {
+						using = Background_Area_Dark
+					}
+					
+					icon = {
+						name = "icon_pops_lands_forests"
+						texture = "gfx/interface/icons/icon_pops_lands_forests.dds"
+						size = { 25 25 }
+					}
+					text_single = {
+						text = "[Province.MakeScope.Var('forest_total').GetValue]"
+						min_width = 75
+					}
+				}
+			}
+			
+			container = {
+				layoutpolicy_vertical = expanding
+				
+				scrollbox = {
+					minimumsize = { 300 480 }
+					layoutpolicy_vertical = expanding
+					
+					blockoverride scrollbox_background
+					{
+						background = {
+							using = Background_Area_Dark
+						}
+					}
+					
+					blockoverride "scrollbox_content"
+					{
+						position = { -10 0 }
+						vbox = {
+							datamodel = "[Province.MakeScope.GetList('toggle_province_townhall_t')]"
+							spacing = 5
+							
+							item = {
+								hbox = {
+									layoutpolicy_horizontal = expanding
+									min_width = 270
+									
+									vbox = {
+										hbox = {
+											layoutpolicy_horizontal = expanding
+											text_single = {
+												layoutpolicy_horizontal = expanding
+												default_format = "#high"
+												align = nobaseline
+												using = Font_Size_Medium
+												max_width = 120
+												fontsize_min = 12
+												text = "[Scope.GetCharacter.GetNickname]"
+											}
+										}
+										
+										hbox = {
+											background = {
+												using = Background_Area_Dark
+											}
+											
+											icon = {
+												name = "icon_pops_lands_farms_ind"
+												visible = "[EqualTo_CFixedPoint('(CFixedPoint)1', Scope.Var('gui_farm').GetValue)]"
+												texture = "gfx/interface/icons/icon_pops_lands_farms.dds"
+												size = { 20 20 }
+											}
+											icon = {
+												name = "icon_pops_lands_pastures_ind"
+												visible = "[EqualTo_CFixedPoint('(CFixedPoint)1', Scope.Var('gui_pasture').GetValue)]"
+												texture = "gfx/interface/icons/icon_pops_lands_pastures.dds"
+												size = { 20 20 }
+											}
+											icon = {
+												name = "icon_pops_lands_forests_ind"
+												visible = "[EqualTo_CFixedPoint('(CFixedPoint)1', Scope.Var('gui_forest').GetValue)]"
+												texture = "gfx/interface/icons/icon_pops_lands_forests.dds"
+												size = { 20 20 }
+											}
+											icon = {
+												name = "icon_pops_lands_mines_ind"
+												visible = "[EqualTo_CFixedPoint('(CFixedPoint)1', Scope.Var('gui_extraction').GetValue)]"
+												texture = "gfx/interface/icons/icon_pops_lands_mines.dds"
+												size = { 20 20 }
+											}
+											icon = {
+												name = "icon_pops_lands_workshops_ind"
+												visible = "[EqualTo_CFixedPoint('(CFixedPoint)1', Scope.Var('gui_workshop').GetValue)]"
+												texture = "gfx/interface/icons/icon_pops_lands_workshops.dds"
+												size = { 20 20 }
+											}
+											text_single = {
+												margin_bottom = 5
+												text = "[Scope.Var('gui_t').Var('prod_land').GetValue]"
+												using = Font_Size_Small
+												min_width = 100
+												max_width = 100
+											}
+										}
+										hbox = {
+											background = {
+												using = Background_Area_Dark
+											}
+											
+											icon = {
+												name = "icon_pops_lands_pops_ind"
+												texture = "gfx/interface/icons/icon_pops_lands_pops.dds"
+												size = { 20 20 }
+											}
+											text_single = {
+												margin_bottom = 5
+												text = "[Scope.Var('gui_t').Var('prod_labor').GetValue]"
+												using = Font_Size_Small
+												min_width = 100
+												max_width = 100
+											}
+										}
+										hbox = {
+											background = {
+												using = Background_Area_Dark
+											}
+											
+											icon = {
+												name = "icon_profit"
+												texture = "gfx/interface/icons/icon_gold.dds"
+												size = { 20 20 }
+											}
+											text_single = {
+												margin_bottom = 5
+												text = "[Scope.Var('gui_t').Var('prod_profit').GetValue]"
+												tooltip = "[Scope.Var('gui_t').Var('prod_earn_old').GetValue] - [Scope.Var('gui_t').Var('prod_pay_old').GetValue]"
+												using = Font_Size_Small
+												min_width = 100
+												max_width = 100
+											}
+										}
+										hbox = {
+											background = {
+												using = Background_Area_Dark
+											}
+											
+											icon = {
+												name = "icon_produce_tools_ind"
+												texture = "gfx/interface/icons/icon_produce_tools.dds"
+												size = { 20 20 }
+											}
+											text_single = {
+												margin_bottom = 5
+												text = "[Scope.Var('gui_t').Var('prod_tools_pay').GetValue]"
+												using = Font_Size_Small
+												min_width = 100
+												max_width = 100
+											}
+										}
+									}
+									
+									vbox = {
+										datamodel = "[Scope.GetList('toggle_province_townhall_t')]"
+										
+										item = {
+											hbox = {
+												background = {
+													using = Background_Area_Dark
+												}
+												
+												text_single = {
+													margin_bottom = 5
+													margin_left = 5
+													text = "[Scope.GetCharacter.GetNickname]: [Scope.Var('gui_t').GetValue]"
+													min_width = 145
+													max_width = 145
+												}
+												
+												icon = {
+													name = "icon_produce_armaments"
+													visible = "[EqualTo_string('Armaments', Scope.GetCharacter.GetNickname)]"
+													texture = "gfx/interface/icons/icon_produce_armaments.dds"
+													size = { 20 20 }
+												}
+												icon = {
+													name = "icon_produce_cereal"
+													visible = "[EqualTo_string('Grain', Scope.GetCharacter.GetNickname)]"
+													texture = "gfx/interface/icons/icon_produce_cereal.dds"
+													size = { 20 20 }
+												}
+												icon = {
+													name = "icon_produce_eastern_exotics"
+													visible = "[EqualTo_string('Sugar & Tea', Scope.GetCharacter.GetNickname)]"
+													texture = "gfx/interface/icons/icon_produce_eastern_exotics.dds"
+													size = { 20 20 }
+												}
+												icon = {
+													name = "icon_produce_fibers"
+													visible = "[EqualTo_string('Fiber', Scope.GetCharacter.GetNickname)]"
+													texture = "gfx/interface/icons/icon_produce_fibers.dds"
+													size = { 20 20 }
+												}
+												icon = {
+													name = "icon_produce_food"
+													visible = "[EqualTo_string('Food', Scope.GetCharacter.GetNickname)]"
+													texture = "gfx/interface/icons/icon_produce_food.dds"
+													size = { 20 20 }
+												}
+												icon = {
+													name = "icon_produce_fuel"
+													visible = "[EqualTo_string('Fuel', Scope.GetCharacter.GetNickname)]"
+													texture = "gfx/interface/icons/icon_produce_fuel.dds"
+													size = { 20 20 }
+												}
+												icon = {
+													name = "icon_produce_general_exotics"
+													visible = "[EqualTo_string('Fur & Ivory', Scope.GetCharacter.GetNickname)]"
+													texture = "gfx/interface/icons/icon_produce_general_exotics.dds"
+													size = { 20 20 }
+												}
+												icon = {
+													name = "icon_produce_iron"
+													visible = "[EqualTo_string('Metal', Scope.GetCharacter.GetNickname)]"
+													texture = "gfx/interface/icons/icon_produce_iron.dds"
+													size = { 20 20 }
+												}
+												icon = {
+													name = "icon_produce_mud"
+													visible = "[EqualTo_string('Clay', Scope.GetCharacter.GetNickname)]"
+													texture = "gfx/interface/icons/icon_produce_mud.dds"
+													size = { 20 20 }
+												}
+												icon = {
+													name = "icon_produce_pottery"
+													visible = "[EqualTo_string('Pottery', Scope.GetCharacter.GetNickname)]"
+													texture = "gfx/interface/icons/icon_produce_pottery.dds"
+													size = { 20 20 }
+												}
+												icon = {
+													name = "icon_produce_salt"
+													visible = "[EqualTo_string('Salt', Scope.GetCharacter.GetNickname)]"
+													texture = "gfx/interface/icons/icon_produce_salt.dds"
+													size = { 20 20 }
+												}
+												icon = {
+													name = "icon_produce_salted"
+													visible = "[EqualTo_string('Pickle & Ham', Scope.GetCharacter.GetNickname)]"
+													texture = "gfx/interface/icons/icon_produce_salted.dds"
+													size = { 20 20 }
+												}
+												icon = {
+													name = "icon_produce_textile"
+													visible = "[EqualTo_string('Textile', Scope.GetCharacter.GetNickname)]"
+													texture = "gfx/interface/icons/icon_produce_textile.dds"
+													size = { 20 20 }
+												}
+												icon = {
+													name = "icon_produce_timber"
+													visible = "[EqualTo_string('Timber', Scope.GetCharacter.GetNickname)]"
+													texture = "gfx/interface/icons/icon_produce_timber.dds"
+													size = { 20 20 }
+												}
+												icon = {
+													name = "icon_produce_tools"
+													visible = "[EqualTo_string('Tools', Scope.GetCharacter.GetNickname)]"
+													texture = "gfx/interface/icons/icon_produce_tools.dds"
+													size = { 20 20 }
+												}
+												icon = {
+													name = "icon_produce_western_exotics"
+													visible = "[EqualTo_string('Wine & Honey', Scope.GetCharacter.GetNickname)]"
+													texture = "gfx/interface/icons/icon_produce_western_exotics.dds"
+													size = { 20 20 }
+												}
+											}
+										}
+									}
+									
+									background = {
+										using = Background_Area_Light
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		
+		buttons_window_control = {
+			parentanchor = top|right
+			position = { -40 35 }
+			blockoverride "button_close"
+			{
+				datacontext = "[GetScriptedGui('close_province_townhall')]"
+				onclick = "[ScriptedGui.Execute(GuiScope.SetRoot(Province.MakeScope).End)]"
+				background = {
+					using = Background_Area_Dark
+				}
+			}
+		}
+	}
 
 	vbox = {
 		name = "window_content"
@@ -1147,6 +1581,23 @@ window = {
 						button_icon = {
 							name = "toggle_province_economy"
 							onclick = "[GetScriptedGui('toggle_province_economy').Execute(GuiScope.SetRoot(Province.MakeScope).End)]"
+							size = { 25 25 }
+							texture = "gfx/interface/buttons/button_round_big.dds"
+
+							background = {
+								texture = "gfx/interface/window_county/building_status_circle.dds"
+								size = { 25 25 }
+								framesize = { 120 120 }
+								using = Master_Button_Modify_Texture
+
+								blockoverride "master_color_frame" {
+									frame = 3
+								}
+							}
+						}
+						button_icon = {
+							name = "toggle_province_townhall"
+							onclick = "[GetScriptedGui('toggle_province_townhall').Execute(GuiScope.SetRoot(Province.MakeScope).End)]"
 							size = { 25 25 }
 							texture = "gfx/interface/buttons/button_round_big.dds"
 

@@ -354,11 +354,6 @@ toggle_province_economy = {
 					}
 				}
 			^
-			
-			county = {
-				remove_variable = gui_t
-				remove_variable = gui_tt
-			}
 		}
 	}
 }
@@ -391,6 +386,168 @@ close_province_economy = {
 			}
 			
 			clear_variable_list = toggle_province_economy_t
+		}
+	}
+}
+
+toggle_province_townhall = {
+	scope = province
+	
+	is_shown = {
+		always = yes
+	}
+	is_valid = {
+		always = yes
+	}
+	
+	effect = {
+		if = {
+			limit = {
+				has_variable = show_province_townhall
+			}
+			remove_variable = show_province_townhall
+			
+			every_in_list = {
+				variable = toggle_province_townhall_t
+				
+				remove_variable = gui_t
+				^^lands^ remove_variable = gui_&lands& ^
+				
+				every_in_list = {
+					variable = gui_t
+					
+					remove_variable = gui_t
+					
+					return_character = { char = this }
+				}
+				
+				clear_variable_list = gui_t
+				
+				return_character = { char = this }
+			}
+			
+			clear_variable_list = toggle_province_townhall_t
+		}
+		else = {
+			set_variable = { name = show_province_townhall value = 1 }
+			
+			every_in_list = {
+				variable = prod_instances
+				
+				prev = {
+					get_character = { return = gui_t }
+					
+					add_to_variable_list = { name = toggle_province_townhall_t target = scope:gui_t }
+				}
+				
+				^^industries^
+					if = {
+						limit = {
+							var:prod_template = global_var:&industries&
+						}
+						scope:gui_t = {
+							give_nickname = gui_ind_&industries&
+						}
+						
+						^^lands^
+							if = {
+								limit = {
+									global_var:&industries& = {
+										has_variable = prod_land_&lands&
+									}
+								}
+								scope:gui_t = {
+									set_variable = { name = gui_&lands& value = 1 }
+								}
+							}
+						^
+						
+						scope:gui_t = {
+							set_variable = { name = gui_t value = prev }
+							
+							^^goods^
+								if = {
+									limit = {
+										prev = {
+											has_variable = prod_dmnd_old_&goods&
+										}
+									}
+									get_character = { return = gui_tt }
+					
+									add_to_variable_list = { name = toggle_province_townhall_t target = scope:gui_tt }
+									
+									prev = {
+										scope:gui_tt = {
+											give_nickname = gui_&goods&
+											
+											set_variable = { name = gui_t value = prev.var:prod_dmnd_old_&goods& }
+											change_variable = { name = gui_t multiply = -1 }
+										}
+									}
+								}
+								else_if = {
+									limit = {
+										prev = {
+											has_variable = prod_sply_old_&goods&
+										}
+									}
+									get_character = { return = gui_tt }
+					
+									add_to_variable_list = { name = toggle_province_townhall_t target = scope:gui_tt }
+									
+									prev = {
+										scope:gui_tt = {
+											give_nickname = gui_&goods&
+											
+											set_variable = { name = gui_t value = prev.var:prod_sply_old_&goods& }
+										}
+									}
+								}
+							^
+						}
+					}
+				^
+			}
+		}
+	}
+}
+close_province_townhall = {
+	scope = province
+	
+	is_shown = {
+		always = yes
+	}
+	is_valid = {
+		always = yes
+	}
+	
+	effect = {
+		if = {
+			limit = {
+				has_variable = show_province_townhall
+			}
+			remove_variable = show_province_townhall
+			
+			every_in_list = {
+				variable = toggle_province_townhall_t
+				
+				remove_variable = gui_t
+				^^lands^ remove_variable = gui_&lands& ^
+				
+				every_in_list = {
+					variable = gui_t
+					
+					remove_variable = gui_t
+					
+					return_character = { char = this }
+				}
+				
+				clear_variable_list = gui_t
+				
+				return_character = { char = this }
+			}
+			
+			clear_variable_list = toggle_province_townhall_t
 		}
 	}
 }
