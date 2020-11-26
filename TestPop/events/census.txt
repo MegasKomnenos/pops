@@ -87231,11 +87231,15 @@ census.12 = {
 					}
 				}
 				set_variable = { 
-					name = realm_suppression
+					name = realm_liege
+					value = barony.lessee
+				}
+				set_variable = { 
+					name = realm_suppression_base_liege
 					value = barony.lessee.var:mil_power
 				}
 				change_variable = { 
-					name = realm_suppression
+					name = realm_suppression_base_liege
 					add = { 
 						value = barony.lessee.prestige
 						divide = 200
@@ -87291,11 +87295,15 @@ census.12 = {
 					}
 				}
 				set_variable = { 
-					name = realm_suppression
+					name = realm_liege
+					value = barony.holder
+				}
+				set_variable = { 
+					name = realm_suppression_base_liege
 					value = barony.holder.var:mil_power
 				}
 				change_variable = { 
-					name = realm_suppression
+					name = realm_suppression_base_liege
 					add = { 
 						value = barony.holder.prestige
 						divide = 200
@@ -87318,6 +87326,10 @@ census.12 = {
 					name = realm_task_prov
 					value = 1
 				}
+			}
+			set_variable = { 
+				name = realm_suppression
+				value = var:realm_suppression_base_liege
 			}
 			change_variable = { 
 				name = realm_suppression
@@ -88014,26 +88026,42 @@ census.12 = {
 					has_variable = realm_update_t
 				}
 				set_variable = { 
-					name = realm_suppression
+					name = realm_liege
+					value = var:realm_update_t
+				}
+				set_variable = { 
+					name = realm_suppression_base_liege
 					value = var:realm_update_t.var:mil_power
 				}
 				change_variable = { 
-					name = realm_suppression
+					name = realm_suppression_base_liege
 					add = { 
 						value = var:realm_update_t.prestige
 						divide = 200
 					}
 				}
+				set_variable = { 
+					name = realm_suppression_base_self
+					value = var:mil_power
+				}
+				change_variable = { 
+					name = realm_suppression_base_self
+					add = { 
+						value = prestige
+						divide = 200
+					}
+				}
+				change_variable = { 
+					name = realm_suppression_base_self
+					add = 0.001
+				}
+				set_variable = { 
+					name = realm_suppression
+					value = var:realm_suppression_base_liege
+				}
 				change_variable = { 
 					name = realm_suppression
-					divide = { 
-						value = var:mil_power
-						add = { 
-							value = prestige
-							divide = 200
-						}
-						add = 0.001
-					}
+					divide = var:realm_suppression_base_self
 				}
 				change_variable = { 
 					name = realm_suppression
@@ -88225,8 +88253,17 @@ census.12 = {
 				remove_variable = realm_update_t
 			}
 			else = { 
+				remove_variable = realm_liege
 				set_variable = { 
 					name = realm_suppression
+					value = 0
+				}
+				set_variable = { 
+					name = realm_suppression_base_liege
+					value = 0
+				}
+				set_variable = { 
+					name = realm_suppression_base_self
 					value = 0
 				}
 				set_variable = { 

@@ -1,6 +1,9 @@
 ﻿l_english:
  Arhat:0 "Arhat"
  
+ tooltip_tax: "#T Tax#!\nTotal Tax: [ROOT.Var('realm_tax_pay').GetValue]\n  =\n  Base Tax: [ROOT.Var('realm_tax_base').GetValue]\n     =\n     Pop Wealth: [ROOT.Var('pop_wealth').GetValue]\n     x\n     Base Rate: 0.03\n  x\n  Tax Rate: [ROOT.Var('realm_tax_rate').GetValue]\n  /\n  12"
+ tooltip_suppression: "#T Suppression & Resentment#!\nTotal Suppression: [ROOT.Var('realm_suppression').GetValue]\n  =\n  sqrt\n     Liege Power: [ROOT.Var('realm_suppression_base_liege').GetValue]\n     /\n     Province Power: [ROOT.Var('mil_power').GetValue]\n        =\n        sqrt\n           Militia: [ROOT.Var('mil_levy').GetValue]\n           x\n           Armaments: [ROOT.Var('mil_supply').GetValue]\n     /\n     Distance from Capital: [ROOT.Var('realm_dist').GetValue]\n     x\n     Realm Management: [ROOT.Var('realm_task_prov').GetValue]\n  x\n  10\n  +\n     Privilege: [ROOT.Var('realm_privilege').GetValue]\n     x\n     5\n\nTotal Resentment: [ROOT.Var('realm_resentment').GetValue]\n  ->\n  Max Resentment: [ROOT.Var('realm_resentment_goal').GetValue]\n     =\n     Tax Rate: [ROOT.Var('realm_tax_rate').GetValue]\n     +\n     Levy Rate: [ROOT.Var('realm_levy_rate').GetValue]\n     x\n     50"
+ 
  gui_food: "Food"
  gui_cereal: "Grain"
  gui_salted: "Pickle & Ham"
