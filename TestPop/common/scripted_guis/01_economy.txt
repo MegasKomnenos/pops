@@ -36811,3 +36811,2492 @@ close_province_townhall = {
 		}
 	}
 }
+toggle_province_merchant = { 
+	scope = province
+	is_shown = { 
+		always = yes
+	}
+	is_valid = { 
+		always = yes
+	}
+	effect = { 
+		if = { 
+			limit = { 
+				has_variable = show_province_merchant
+			}
+			remove_variable = show_province_merchant
+			every_in_list = { 
+				variable = toggle_province_merchant_t
+				remove_variable = gui_t
+				remove_variable = gui_tt
+				every_in_list = { 
+					variable = gui_t
+					remove_variable = gui_t
+					remove_variable = gui_tt
+					remove_variable = gui_ttt
+					add_to_global_variable_list = { 
+						name = misc_chars
+						target = this
+					}
+				}
+				clear_variable_list = gui_t
+				add_to_global_variable_list = { 
+					name = misc_chars
+					target = this
+				}
+			}
+			clear_variable_list = toggle_province_merchant_t
+		}
+		else_if = { 
+			limit = { 
+				has_variable = trade_merchant
+			}
+			set_variable = { 
+				name = show_province_merchant
+				value = 1
+			}
+			ordered_in_global_list = { 
+				variable = misc_chars
+				position = 0
+				save_temporary_scope_as = gui_t
+				remove_list_global_variable = { 
+					name = misc_chars
+					target = this
+				}
+			}
+			add_to_variable_list = { 
+				name = toggle_province_merchant_t
+				target = scope:gui_t
+			}
+			scope:gui_t = { 
+				give_nickname = gui_food
+				set_variable = { 
+					name = gui_t
+					value = prev.var:trade_merchant.var:trade_price_food
+				}
+				set_variable = { 
+					name = gui_tt
+					value = prev.var:trade_merchant.var:trade_has_food
+				}
+				prev.var:trade_merchant = { 
+					set_variable = { 
+						name = gui_t
+						value = 0
+					}
+					every_in_list = { 
+						variable = trade_dat_food
+						ordered_in_global_list = { 
+							variable = misc_chars
+							position = 0
+							save_temporary_scope_as = gui_tt
+							remove_list_global_variable = { 
+								name = misc_chars
+								target = this
+							}
+						}
+						scope:gui_t = { 
+							add_to_variable_list = { 
+								name = gui_t
+								target = scope:gui_tt
+							}
+						}
+						scope:gui_tt = { 
+							set_variable = { 
+								name = gui_t
+								value = prev
+							}
+						}
+						if = { 
+							limit = { 
+								has_variable = trade_merchant
+							}
+							scope:gui_tt = { 
+								set_variable = { 
+									name = gui_tt
+									value = 1
+								}
+							}
+						}
+						else_if = { 
+							limit = { 
+								has_variable = pop_total
+							}
+							scope:gui_tt = { 
+								set_variable = { 
+									name = gui_tt
+									value = 2
+								}
+							}
+						}
+						else = { 
+							scope:gui_tt = { 
+								set_variable = { 
+									name = gui_tt
+									value = 3
+								}
+							}
+						}
+						prev = { 
+							set_global_variable = { 
+								name = array_get_t
+								value = var:gui_t
+							}
+							if = { 
+								limit = { 
+									OR = { 
+										NOT = { 
+											has_global_variable = array_get_t
+										}
+										global_var:array_get_t = 0
+									}
+								}
+								ordered_in_list = { 
+									variable = array_trade_dat_food
+									position = 0
+									prev = { 
+										set_variable = { 
+											name = gui_tt
+											value = prev
+										}
+									}
+								}
+							}
+							else = { 
+								ordered_in_list = { 
+									variable = array_trade_dat_food
+									position = global_var:array_get_t.compare_value
+									prev = { 
+										set_variable = { 
+											name = gui_tt
+											value = prev
+										}
+									}
+								}
+							}
+							change_variable = { 
+								name = gui_tt
+								divide = 10
+							}
+							remove_global_variable = array_get_t
+							scope:gui_tt = { 
+								set_variable = { 
+									name = gui_ttt
+									value = prev.var:gui_tt
+								}
+								if = { 
+									limit = { 
+										var:gui_ttt < 0
+									}
+									give_nickname = gui_import
+									change_variable = { 
+										name = gui_ttt
+										multiply = -1
+									}
+								}
+								else = { 
+									give_nickname = gui_export
+								}
+							}
+							change_variable = { 
+								name = gui_t
+								add = 1
+							}
+						}
+					}
+				}
+			}
+			ordered_in_global_list = { 
+				variable = misc_chars
+				position = 0
+				save_temporary_scope_as = gui_t
+				remove_list_global_variable = { 
+					name = misc_chars
+					target = this
+				}
+			}
+			add_to_variable_list = { 
+				name = toggle_province_merchant_t
+				target = scope:gui_t
+			}
+			scope:gui_t = { 
+				give_nickname = gui_cereal
+				set_variable = { 
+					name = gui_t
+					value = prev.var:trade_merchant.var:trade_price_cereal
+				}
+				set_variable = { 
+					name = gui_tt
+					value = prev.var:trade_merchant.var:trade_has_cereal
+				}
+				prev.var:trade_merchant = { 
+					set_variable = { 
+						name = gui_t
+						value = 0
+					}
+					every_in_list = { 
+						variable = trade_dat_cereal
+						ordered_in_global_list = { 
+							variable = misc_chars
+							position = 0
+							save_temporary_scope_as = gui_tt
+							remove_list_global_variable = { 
+								name = misc_chars
+								target = this
+							}
+						}
+						scope:gui_t = { 
+							add_to_variable_list = { 
+								name = gui_t
+								target = scope:gui_tt
+							}
+						}
+						scope:gui_tt = { 
+							set_variable = { 
+								name = gui_t
+								value = prev
+							}
+						}
+						if = { 
+							limit = { 
+								has_variable = trade_merchant
+							}
+							scope:gui_tt = { 
+								set_variable = { 
+									name = gui_tt
+									value = 1
+								}
+							}
+						}
+						else_if = { 
+							limit = { 
+								has_variable = pop_total
+							}
+							scope:gui_tt = { 
+								set_variable = { 
+									name = gui_tt
+									value = 2
+								}
+							}
+						}
+						else = { 
+							scope:gui_tt = { 
+								set_variable = { 
+									name = gui_tt
+									value = 3
+								}
+							}
+						}
+						prev = { 
+							set_global_variable = { 
+								name = array_get_t
+								value = var:gui_t
+							}
+							if = { 
+								limit = { 
+									OR = { 
+										NOT = { 
+											has_global_variable = array_get_t
+										}
+										global_var:array_get_t = 0
+									}
+								}
+								ordered_in_list = { 
+									variable = array_trade_dat_cereal
+									position = 0
+									prev = { 
+										set_variable = { 
+											name = gui_tt
+											value = prev
+										}
+									}
+								}
+							}
+							else = { 
+								ordered_in_list = { 
+									variable = array_trade_dat_cereal
+									position = global_var:array_get_t.compare_value
+									prev = { 
+										set_variable = { 
+											name = gui_tt
+											value = prev
+										}
+									}
+								}
+							}
+							change_variable = { 
+								name = gui_tt
+								divide = 10
+							}
+							remove_global_variable = array_get_t
+							scope:gui_tt = { 
+								set_variable = { 
+									name = gui_ttt
+									value = prev.var:gui_tt
+								}
+								if = { 
+									limit = { 
+										var:gui_ttt < 0
+									}
+									give_nickname = gui_import
+									change_variable = { 
+										name = gui_ttt
+										multiply = -1
+									}
+								}
+								else = { 
+									give_nickname = gui_export
+								}
+							}
+							change_variable = { 
+								name = gui_t
+								add = 1
+							}
+						}
+					}
+				}
+			}
+			ordered_in_global_list = { 
+				variable = misc_chars
+				position = 0
+				save_temporary_scope_as = gui_t
+				remove_list_global_variable = { 
+					name = misc_chars
+					target = this
+				}
+			}
+			add_to_variable_list = { 
+				name = toggle_province_merchant_t
+				target = scope:gui_t
+			}
+			scope:gui_t = { 
+				give_nickname = gui_salted
+				set_variable = { 
+					name = gui_t
+					value = prev.var:trade_merchant.var:trade_price_salted
+				}
+				set_variable = { 
+					name = gui_tt
+					value = prev.var:trade_merchant.var:trade_has_salted
+				}
+				prev.var:trade_merchant = { 
+					set_variable = { 
+						name = gui_t
+						value = 0
+					}
+					every_in_list = { 
+						variable = trade_dat_salted
+						ordered_in_global_list = { 
+							variable = misc_chars
+							position = 0
+							save_temporary_scope_as = gui_tt
+							remove_list_global_variable = { 
+								name = misc_chars
+								target = this
+							}
+						}
+						scope:gui_t = { 
+							add_to_variable_list = { 
+								name = gui_t
+								target = scope:gui_tt
+							}
+						}
+						scope:gui_tt = { 
+							set_variable = { 
+								name = gui_t
+								value = prev
+							}
+						}
+						if = { 
+							limit = { 
+								has_variable = trade_merchant
+							}
+							scope:gui_tt = { 
+								set_variable = { 
+									name = gui_tt
+									value = 1
+								}
+							}
+						}
+						else_if = { 
+							limit = { 
+								has_variable = pop_total
+							}
+							scope:gui_tt = { 
+								set_variable = { 
+									name = gui_tt
+									value = 2
+								}
+							}
+						}
+						else = { 
+							scope:gui_tt = { 
+								set_variable = { 
+									name = gui_tt
+									value = 3
+								}
+							}
+						}
+						prev = { 
+							set_global_variable = { 
+								name = array_get_t
+								value = var:gui_t
+							}
+							if = { 
+								limit = { 
+									OR = { 
+										NOT = { 
+											has_global_variable = array_get_t
+										}
+										global_var:array_get_t = 0
+									}
+								}
+								ordered_in_list = { 
+									variable = array_trade_dat_salted
+									position = 0
+									prev = { 
+										set_variable = { 
+											name = gui_tt
+											value = prev
+										}
+									}
+								}
+							}
+							else = { 
+								ordered_in_list = { 
+									variable = array_trade_dat_salted
+									position = global_var:array_get_t.compare_value
+									prev = { 
+										set_variable = { 
+											name = gui_tt
+											value = prev
+										}
+									}
+								}
+							}
+							change_variable = { 
+								name = gui_tt
+								divide = 10
+							}
+							remove_global_variable = array_get_t
+							scope:gui_tt = { 
+								set_variable = { 
+									name = gui_ttt
+									value = prev.var:gui_tt
+								}
+								if = { 
+									limit = { 
+										var:gui_ttt < 0
+									}
+									give_nickname = gui_import
+									change_variable = { 
+										name = gui_ttt
+										multiply = -1
+									}
+								}
+								else = { 
+									give_nickname = gui_export
+								}
+							}
+							change_variable = { 
+								name = gui_t
+								add = 1
+							}
+						}
+					}
+				}
+			}
+			ordered_in_global_list = { 
+				variable = misc_chars
+				position = 0
+				save_temporary_scope_as = gui_t
+				remove_list_global_variable = { 
+					name = misc_chars
+					target = this
+				}
+			}
+			add_to_variable_list = { 
+				name = toggle_province_merchant_t
+				target = scope:gui_t
+			}
+			scope:gui_t = { 
+				give_nickname = gui_salt
+				set_variable = { 
+					name = gui_t
+					value = prev.var:trade_merchant.var:trade_price_salt
+				}
+				set_variable = { 
+					name = gui_tt
+					value = prev.var:trade_merchant.var:trade_has_salt
+				}
+				prev.var:trade_merchant = { 
+					set_variable = { 
+						name = gui_t
+						value = 0
+					}
+					every_in_list = { 
+						variable = trade_dat_salt
+						ordered_in_global_list = { 
+							variable = misc_chars
+							position = 0
+							save_temporary_scope_as = gui_tt
+							remove_list_global_variable = { 
+								name = misc_chars
+								target = this
+							}
+						}
+						scope:gui_t = { 
+							add_to_variable_list = { 
+								name = gui_t
+								target = scope:gui_tt
+							}
+						}
+						scope:gui_tt = { 
+							set_variable = { 
+								name = gui_t
+								value = prev
+							}
+						}
+						if = { 
+							limit = { 
+								has_variable = trade_merchant
+							}
+							scope:gui_tt = { 
+								set_variable = { 
+									name = gui_tt
+									value = 1
+								}
+							}
+						}
+						else_if = { 
+							limit = { 
+								has_variable = pop_total
+							}
+							scope:gui_tt = { 
+								set_variable = { 
+									name = gui_tt
+									value = 2
+								}
+							}
+						}
+						else = { 
+							scope:gui_tt = { 
+								set_variable = { 
+									name = gui_tt
+									value = 3
+								}
+							}
+						}
+						prev = { 
+							set_global_variable = { 
+								name = array_get_t
+								value = var:gui_t
+							}
+							if = { 
+								limit = { 
+									OR = { 
+										NOT = { 
+											has_global_variable = array_get_t
+										}
+										global_var:array_get_t = 0
+									}
+								}
+								ordered_in_list = { 
+									variable = array_trade_dat_salt
+									position = 0
+									prev = { 
+										set_variable = { 
+											name = gui_tt
+											value = prev
+										}
+									}
+								}
+							}
+							else = { 
+								ordered_in_list = { 
+									variable = array_trade_dat_salt
+									position = global_var:array_get_t.compare_value
+									prev = { 
+										set_variable = { 
+											name = gui_tt
+											value = prev
+										}
+									}
+								}
+							}
+							change_variable = { 
+								name = gui_tt
+								divide = 10
+							}
+							remove_global_variable = array_get_t
+							scope:gui_tt = { 
+								set_variable = { 
+									name = gui_ttt
+									value = prev.var:gui_tt
+								}
+								if = { 
+									limit = { 
+										var:gui_ttt < 0
+									}
+									give_nickname = gui_import
+									change_variable = { 
+										name = gui_ttt
+										multiply = -1
+									}
+								}
+								else = { 
+									give_nickname = gui_export
+								}
+							}
+							change_variable = { 
+								name = gui_t
+								add = 1
+							}
+						}
+					}
+				}
+			}
+			ordered_in_global_list = { 
+				variable = misc_chars
+				position = 0
+				save_temporary_scope_as = gui_t
+				remove_list_global_variable = { 
+					name = misc_chars
+					target = this
+				}
+			}
+			add_to_variable_list = { 
+				name = toggle_province_merchant_t
+				target = scope:gui_t
+			}
+			scope:gui_t = { 
+				give_nickname = gui_mud
+				set_variable = { 
+					name = gui_t
+					value = prev.var:trade_merchant.var:trade_price_mud
+				}
+				set_variable = { 
+					name = gui_tt
+					value = prev.var:trade_merchant.var:trade_has_mud
+				}
+				prev.var:trade_merchant = { 
+					set_variable = { 
+						name = gui_t
+						value = 0
+					}
+					every_in_list = { 
+						variable = trade_dat_mud
+						ordered_in_global_list = { 
+							variable = misc_chars
+							position = 0
+							save_temporary_scope_as = gui_tt
+							remove_list_global_variable = { 
+								name = misc_chars
+								target = this
+							}
+						}
+						scope:gui_t = { 
+							add_to_variable_list = { 
+								name = gui_t
+								target = scope:gui_tt
+							}
+						}
+						scope:gui_tt = { 
+							set_variable = { 
+								name = gui_t
+								value = prev
+							}
+						}
+						if = { 
+							limit = { 
+								has_variable = trade_merchant
+							}
+							scope:gui_tt = { 
+								set_variable = { 
+									name = gui_tt
+									value = 1
+								}
+							}
+						}
+						else_if = { 
+							limit = { 
+								has_variable = pop_total
+							}
+							scope:gui_tt = { 
+								set_variable = { 
+									name = gui_tt
+									value = 2
+								}
+							}
+						}
+						else = { 
+							scope:gui_tt = { 
+								set_variable = { 
+									name = gui_tt
+									value = 3
+								}
+							}
+						}
+						prev = { 
+							set_global_variable = { 
+								name = array_get_t
+								value = var:gui_t
+							}
+							if = { 
+								limit = { 
+									OR = { 
+										NOT = { 
+											has_global_variable = array_get_t
+										}
+										global_var:array_get_t = 0
+									}
+								}
+								ordered_in_list = { 
+									variable = array_trade_dat_mud
+									position = 0
+									prev = { 
+										set_variable = { 
+											name = gui_tt
+											value = prev
+										}
+									}
+								}
+							}
+							else = { 
+								ordered_in_list = { 
+									variable = array_trade_dat_mud
+									position = global_var:array_get_t.compare_value
+									prev = { 
+										set_variable = { 
+											name = gui_tt
+											value = prev
+										}
+									}
+								}
+							}
+							change_variable = { 
+								name = gui_tt
+								divide = 10
+							}
+							remove_global_variable = array_get_t
+							scope:gui_tt = { 
+								set_variable = { 
+									name = gui_ttt
+									value = prev.var:gui_tt
+								}
+								if = { 
+									limit = { 
+										var:gui_ttt < 0
+									}
+									give_nickname = gui_import
+									change_variable = { 
+										name = gui_ttt
+										multiply = -1
+									}
+								}
+								else = { 
+									give_nickname = gui_export
+								}
+							}
+							change_variable = { 
+								name = gui_t
+								add = 1
+							}
+						}
+					}
+				}
+			}
+			ordered_in_global_list = { 
+				variable = misc_chars
+				position = 0
+				save_temporary_scope_as = gui_t
+				remove_list_global_variable = { 
+					name = misc_chars
+					target = this
+				}
+			}
+			add_to_variable_list = { 
+				name = toggle_province_merchant_t
+				target = scope:gui_t
+			}
+			scope:gui_t = { 
+				give_nickname = gui_fuel
+				set_variable = { 
+					name = gui_t
+					value = prev.var:trade_merchant.var:trade_price_fuel
+				}
+				set_variable = { 
+					name = gui_tt
+					value = prev.var:trade_merchant.var:trade_has_fuel
+				}
+				prev.var:trade_merchant = { 
+					set_variable = { 
+						name = gui_t
+						value = 0
+					}
+					every_in_list = { 
+						variable = trade_dat_fuel
+						ordered_in_global_list = { 
+							variable = misc_chars
+							position = 0
+							save_temporary_scope_as = gui_tt
+							remove_list_global_variable = { 
+								name = misc_chars
+								target = this
+							}
+						}
+						scope:gui_t = { 
+							add_to_variable_list = { 
+								name = gui_t
+								target = scope:gui_tt
+							}
+						}
+						scope:gui_tt = { 
+							set_variable = { 
+								name = gui_t
+								value = prev
+							}
+						}
+						if = { 
+							limit = { 
+								has_variable = trade_merchant
+							}
+							scope:gui_tt = { 
+								set_variable = { 
+									name = gui_tt
+									value = 1
+								}
+							}
+						}
+						else_if = { 
+							limit = { 
+								has_variable = pop_total
+							}
+							scope:gui_tt = { 
+								set_variable = { 
+									name = gui_tt
+									value = 2
+								}
+							}
+						}
+						else = { 
+							scope:gui_tt = { 
+								set_variable = { 
+									name = gui_tt
+									value = 3
+								}
+							}
+						}
+						prev = { 
+							set_global_variable = { 
+								name = array_get_t
+								value = var:gui_t
+							}
+							if = { 
+								limit = { 
+									OR = { 
+										NOT = { 
+											has_global_variable = array_get_t
+										}
+										global_var:array_get_t = 0
+									}
+								}
+								ordered_in_list = { 
+									variable = array_trade_dat_fuel
+									position = 0
+									prev = { 
+										set_variable = { 
+											name = gui_tt
+											value = prev
+										}
+									}
+								}
+							}
+							else = { 
+								ordered_in_list = { 
+									variable = array_trade_dat_fuel
+									position = global_var:array_get_t.compare_value
+									prev = { 
+										set_variable = { 
+											name = gui_tt
+											value = prev
+										}
+									}
+								}
+							}
+							change_variable = { 
+								name = gui_tt
+								divide = 10
+							}
+							remove_global_variable = array_get_t
+							scope:gui_tt = { 
+								set_variable = { 
+									name = gui_ttt
+									value = prev.var:gui_tt
+								}
+								if = { 
+									limit = { 
+										var:gui_ttt < 0
+									}
+									give_nickname = gui_import
+									change_variable = { 
+										name = gui_ttt
+										multiply = -1
+									}
+								}
+								else = { 
+									give_nickname = gui_export
+								}
+							}
+							change_variable = { 
+								name = gui_t
+								add = 1
+							}
+						}
+					}
+				}
+			}
+			ordered_in_global_list = { 
+				variable = misc_chars
+				position = 0
+				save_temporary_scope_as = gui_t
+				remove_list_global_variable = { 
+					name = misc_chars
+					target = this
+				}
+			}
+			add_to_variable_list = { 
+				name = toggle_province_merchant_t
+				target = scope:gui_t
+			}
+			scope:gui_t = { 
+				give_nickname = gui_fiber
+				set_variable = { 
+					name = gui_t
+					value = prev.var:trade_merchant.var:trade_price_fiber
+				}
+				set_variable = { 
+					name = gui_tt
+					value = prev.var:trade_merchant.var:trade_has_fiber
+				}
+				prev.var:trade_merchant = { 
+					set_variable = { 
+						name = gui_t
+						value = 0
+					}
+					every_in_list = { 
+						variable = trade_dat_fiber
+						ordered_in_global_list = { 
+							variable = misc_chars
+							position = 0
+							save_temporary_scope_as = gui_tt
+							remove_list_global_variable = { 
+								name = misc_chars
+								target = this
+							}
+						}
+						scope:gui_t = { 
+							add_to_variable_list = { 
+								name = gui_t
+								target = scope:gui_tt
+							}
+						}
+						scope:gui_tt = { 
+							set_variable = { 
+								name = gui_t
+								value = prev
+							}
+						}
+						if = { 
+							limit = { 
+								has_variable = trade_merchant
+							}
+							scope:gui_tt = { 
+								set_variable = { 
+									name = gui_tt
+									value = 1
+								}
+							}
+						}
+						else_if = { 
+							limit = { 
+								has_variable = pop_total
+							}
+							scope:gui_tt = { 
+								set_variable = { 
+									name = gui_tt
+									value = 2
+								}
+							}
+						}
+						else = { 
+							scope:gui_tt = { 
+								set_variable = { 
+									name = gui_tt
+									value = 3
+								}
+							}
+						}
+						prev = { 
+							set_global_variable = { 
+								name = array_get_t
+								value = var:gui_t
+							}
+							if = { 
+								limit = { 
+									OR = { 
+										NOT = { 
+											has_global_variable = array_get_t
+										}
+										global_var:array_get_t = 0
+									}
+								}
+								ordered_in_list = { 
+									variable = array_trade_dat_fiber
+									position = 0
+									prev = { 
+										set_variable = { 
+											name = gui_tt
+											value = prev
+										}
+									}
+								}
+							}
+							else = { 
+								ordered_in_list = { 
+									variable = array_trade_dat_fiber
+									position = global_var:array_get_t.compare_value
+									prev = { 
+										set_variable = { 
+											name = gui_tt
+											value = prev
+										}
+									}
+								}
+							}
+							change_variable = { 
+								name = gui_tt
+								divide = 10
+							}
+							remove_global_variable = array_get_t
+							scope:gui_tt = { 
+								set_variable = { 
+									name = gui_ttt
+									value = prev.var:gui_tt
+								}
+								if = { 
+									limit = { 
+										var:gui_ttt < 0
+									}
+									give_nickname = gui_import
+									change_variable = { 
+										name = gui_ttt
+										multiply = -1
+									}
+								}
+								else = { 
+									give_nickname = gui_export
+								}
+							}
+							change_variable = { 
+								name = gui_t
+								add = 1
+							}
+						}
+					}
+				}
+			}
+			ordered_in_global_list = { 
+				variable = misc_chars
+				position = 0
+				save_temporary_scope_as = gui_t
+				remove_list_global_variable = { 
+					name = misc_chars
+					target = this
+				}
+			}
+			add_to_variable_list = { 
+				name = toggle_province_merchant_t
+				target = scope:gui_t
+			}
+			scope:gui_t = { 
+				give_nickname = gui_timber
+				set_variable = { 
+					name = gui_t
+					value = prev.var:trade_merchant.var:trade_price_timber
+				}
+				set_variable = { 
+					name = gui_tt
+					value = prev.var:trade_merchant.var:trade_has_timber
+				}
+				prev.var:trade_merchant = { 
+					set_variable = { 
+						name = gui_t
+						value = 0
+					}
+					every_in_list = { 
+						variable = trade_dat_timber
+						ordered_in_global_list = { 
+							variable = misc_chars
+							position = 0
+							save_temporary_scope_as = gui_tt
+							remove_list_global_variable = { 
+								name = misc_chars
+								target = this
+							}
+						}
+						scope:gui_t = { 
+							add_to_variable_list = { 
+								name = gui_t
+								target = scope:gui_tt
+							}
+						}
+						scope:gui_tt = { 
+							set_variable = { 
+								name = gui_t
+								value = prev
+							}
+						}
+						if = { 
+							limit = { 
+								has_variable = trade_merchant
+							}
+							scope:gui_tt = { 
+								set_variable = { 
+									name = gui_tt
+									value = 1
+								}
+							}
+						}
+						else_if = { 
+							limit = { 
+								has_variable = pop_total
+							}
+							scope:gui_tt = { 
+								set_variable = { 
+									name = gui_tt
+									value = 2
+								}
+							}
+						}
+						else = { 
+							scope:gui_tt = { 
+								set_variable = { 
+									name = gui_tt
+									value = 3
+								}
+							}
+						}
+						prev = { 
+							set_global_variable = { 
+								name = array_get_t
+								value = var:gui_t
+							}
+							if = { 
+								limit = { 
+									OR = { 
+										NOT = { 
+											has_global_variable = array_get_t
+										}
+										global_var:array_get_t = 0
+									}
+								}
+								ordered_in_list = { 
+									variable = array_trade_dat_timber
+									position = 0
+									prev = { 
+										set_variable = { 
+											name = gui_tt
+											value = prev
+										}
+									}
+								}
+							}
+							else = { 
+								ordered_in_list = { 
+									variable = array_trade_dat_timber
+									position = global_var:array_get_t.compare_value
+									prev = { 
+										set_variable = { 
+											name = gui_tt
+											value = prev
+										}
+									}
+								}
+							}
+							change_variable = { 
+								name = gui_tt
+								divide = 10
+							}
+							remove_global_variable = array_get_t
+							scope:gui_tt = { 
+								set_variable = { 
+									name = gui_ttt
+									value = prev.var:gui_tt
+								}
+								if = { 
+									limit = { 
+										var:gui_ttt < 0
+									}
+									give_nickname = gui_import
+									change_variable = { 
+										name = gui_ttt
+										multiply = -1
+									}
+								}
+								else = { 
+									give_nickname = gui_export
+								}
+							}
+							change_variable = { 
+								name = gui_t
+								add = 1
+							}
+						}
+					}
+				}
+			}
+			ordered_in_global_list = { 
+				variable = misc_chars
+				position = 0
+				save_temporary_scope_as = gui_t
+				remove_list_global_variable = { 
+					name = misc_chars
+					target = this
+				}
+			}
+			add_to_variable_list = { 
+				name = toggle_province_merchant_t
+				target = scope:gui_t
+			}
+			scope:gui_t = { 
+				give_nickname = gui_metal
+				set_variable = { 
+					name = gui_t
+					value = prev.var:trade_merchant.var:trade_price_metal
+				}
+				set_variable = { 
+					name = gui_tt
+					value = prev.var:trade_merchant.var:trade_has_metal
+				}
+				prev.var:trade_merchant = { 
+					set_variable = { 
+						name = gui_t
+						value = 0
+					}
+					every_in_list = { 
+						variable = trade_dat_metal
+						ordered_in_global_list = { 
+							variable = misc_chars
+							position = 0
+							save_temporary_scope_as = gui_tt
+							remove_list_global_variable = { 
+								name = misc_chars
+								target = this
+							}
+						}
+						scope:gui_t = { 
+							add_to_variable_list = { 
+								name = gui_t
+								target = scope:gui_tt
+							}
+						}
+						scope:gui_tt = { 
+							set_variable = { 
+								name = gui_t
+								value = prev
+							}
+						}
+						if = { 
+							limit = { 
+								has_variable = trade_merchant
+							}
+							scope:gui_tt = { 
+								set_variable = { 
+									name = gui_tt
+									value = 1
+								}
+							}
+						}
+						else_if = { 
+							limit = { 
+								has_variable = pop_total
+							}
+							scope:gui_tt = { 
+								set_variable = { 
+									name = gui_tt
+									value = 2
+								}
+							}
+						}
+						else = { 
+							scope:gui_tt = { 
+								set_variable = { 
+									name = gui_tt
+									value = 3
+								}
+							}
+						}
+						prev = { 
+							set_global_variable = { 
+								name = array_get_t
+								value = var:gui_t
+							}
+							if = { 
+								limit = { 
+									OR = { 
+										NOT = { 
+											has_global_variable = array_get_t
+										}
+										global_var:array_get_t = 0
+									}
+								}
+								ordered_in_list = { 
+									variable = array_trade_dat_metal
+									position = 0
+									prev = { 
+										set_variable = { 
+											name = gui_tt
+											value = prev
+										}
+									}
+								}
+							}
+							else = { 
+								ordered_in_list = { 
+									variable = array_trade_dat_metal
+									position = global_var:array_get_t.compare_value
+									prev = { 
+										set_variable = { 
+											name = gui_tt
+											value = prev
+										}
+									}
+								}
+							}
+							change_variable = { 
+								name = gui_tt
+								divide = 10
+							}
+							remove_global_variable = array_get_t
+							scope:gui_tt = { 
+								set_variable = { 
+									name = gui_ttt
+									value = prev.var:gui_tt
+								}
+								if = { 
+									limit = { 
+										var:gui_ttt < 0
+									}
+									give_nickname = gui_import
+									change_variable = { 
+										name = gui_ttt
+										multiply = -1
+									}
+								}
+								else = { 
+									give_nickname = gui_export
+								}
+							}
+							change_variable = { 
+								name = gui_t
+								add = 1
+							}
+						}
+					}
+				}
+			}
+			ordered_in_global_list = { 
+				variable = misc_chars
+				position = 0
+				save_temporary_scope_as = gui_t
+				remove_list_global_variable = { 
+					name = misc_chars
+					target = this
+				}
+			}
+			add_to_variable_list = { 
+				name = toggle_province_merchant_t
+				target = scope:gui_t
+			}
+			scope:gui_t = { 
+				give_nickname = gui_exotics_w
+				set_variable = { 
+					name = gui_t
+					value = prev.var:trade_merchant.var:trade_price_exotics_w
+				}
+				set_variable = { 
+					name = gui_tt
+					value = prev.var:trade_merchant.var:trade_has_exotics_w
+				}
+				prev.var:trade_merchant = { 
+					set_variable = { 
+						name = gui_t
+						value = 0
+					}
+					every_in_list = { 
+						variable = trade_dat_exotics_w
+						ordered_in_global_list = { 
+							variable = misc_chars
+							position = 0
+							save_temporary_scope_as = gui_tt
+							remove_list_global_variable = { 
+								name = misc_chars
+								target = this
+							}
+						}
+						scope:gui_t = { 
+							add_to_variable_list = { 
+								name = gui_t
+								target = scope:gui_tt
+							}
+						}
+						scope:gui_tt = { 
+							set_variable = { 
+								name = gui_t
+								value = prev
+							}
+						}
+						if = { 
+							limit = { 
+								has_variable = trade_merchant
+							}
+							scope:gui_tt = { 
+								set_variable = { 
+									name = gui_tt
+									value = 1
+								}
+							}
+						}
+						else_if = { 
+							limit = { 
+								has_variable = pop_total
+							}
+							scope:gui_tt = { 
+								set_variable = { 
+									name = gui_tt
+									value = 2
+								}
+							}
+						}
+						else = { 
+							scope:gui_tt = { 
+								set_variable = { 
+									name = gui_tt
+									value = 3
+								}
+							}
+						}
+						prev = { 
+							set_global_variable = { 
+								name = array_get_t
+								value = var:gui_t
+							}
+							if = { 
+								limit = { 
+									OR = { 
+										NOT = { 
+											has_global_variable = array_get_t
+										}
+										global_var:array_get_t = 0
+									}
+								}
+								ordered_in_list = { 
+									variable = array_trade_dat_exotics_w
+									position = 0
+									prev = { 
+										set_variable = { 
+											name = gui_tt
+											value = prev
+										}
+									}
+								}
+							}
+							else = { 
+								ordered_in_list = { 
+									variable = array_trade_dat_exotics_w
+									position = global_var:array_get_t.compare_value
+									prev = { 
+										set_variable = { 
+											name = gui_tt
+											value = prev
+										}
+									}
+								}
+							}
+							change_variable = { 
+								name = gui_tt
+								divide = 10
+							}
+							remove_global_variable = array_get_t
+							scope:gui_tt = { 
+								set_variable = { 
+									name = gui_ttt
+									value = prev.var:gui_tt
+								}
+								if = { 
+									limit = { 
+										var:gui_ttt < 0
+									}
+									give_nickname = gui_import
+									change_variable = { 
+										name = gui_ttt
+										multiply = -1
+									}
+								}
+								else = { 
+									give_nickname = gui_export
+								}
+							}
+							change_variable = { 
+								name = gui_t
+								add = 1
+							}
+						}
+					}
+				}
+			}
+			ordered_in_global_list = { 
+				variable = misc_chars
+				position = 0
+				save_temporary_scope_as = gui_t
+				remove_list_global_variable = { 
+					name = misc_chars
+					target = this
+				}
+			}
+			add_to_variable_list = { 
+				name = toggle_province_merchant_t
+				target = scope:gui_t
+			}
+			scope:gui_t = { 
+				give_nickname = gui_exotics_e
+				set_variable = { 
+					name = gui_t
+					value = prev.var:trade_merchant.var:trade_price_exotics_e
+				}
+				set_variable = { 
+					name = gui_tt
+					value = prev.var:trade_merchant.var:trade_has_exotics_e
+				}
+				prev.var:trade_merchant = { 
+					set_variable = { 
+						name = gui_t
+						value = 0
+					}
+					every_in_list = { 
+						variable = trade_dat_exotics_e
+						ordered_in_global_list = { 
+							variable = misc_chars
+							position = 0
+							save_temporary_scope_as = gui_tt
+							remove_list_global_variable = { 
+								name = misc_chars
+								target = this
+							}
+						}
+						scope:gui_t = { 
+							add_to_variable_list = { 
+								name = gui_t
+								target = scope:gui_tt
+							}
+						}
+						scope:gui_tt = { 
+							set_variable = { 
+								name = gui_t
+								value = prev
+							}
+						}
+						if = { 
+							limit = { 
+								has_variable = trade_merchant
+							}
+							scope:gui_tt = { 
+								set_variable = { 
+									name = gui_tt
+									value = 1
+								}
+							}
+						}
+						else_if = { 
+							limit = { 
+								has_variable = pop_total
+							}
+							scope:gui_tt = { 
+								set_variable = { 
+									name = gui_tt
+									value = 2
+								}
+							}
+						}
+						else = { 
+							scope:gui_tt = { 
+								set_variable = { 
+									name = gui_tt
+									value = 3
+								}
+							}
+						}
+						prev = { 
+							set_global_variable = { 
+								name = array_get_t
+								value = var:gui_t
+							}
+							if = { 
+								limit = { 
+									OR = { 
+										NOT = { 
+											has_global_variable = array_get_t
+										}
+										global_var:array_get_t = 0
+									}
+								}
+								ordered_in_list = { 
+									variable = array_trade_dat_exotics_e
+									position = 0
+									prev = { 
+										set_variable = { 
+											name = gui_tt
+											value = prev
+										}
+									}
+								}
+							}
+							else = { 
+								ordered_in_list = { 
+									variable = array_trade_dat_exotics_e
+									position = global_var:array_get_t.compare_value
+									prev = { 
+										set_variable = { 
+											name = gui_tt
+											value = prev
+										}
+									}
+								}
+							}
+							change_variable = { 
+								name = gui_tt
+								divide = 10
+							}
+							remove_global_variable = array_get_t
+							scope:gui_tt = { 
+								set_variable = { 
+									name = gui_ttt
+									value = prev.var:gui_tt
+								}
+								if = { 
+									limit = { 
+										var:gui_ttt < 0
+									}
+									give_nickname = gui_import
+									change_variable = { 
+										name = gui_ttt
+										multiply = -1
+									}
+								}
+								else = { 
+									give_nickname = gui_export
+								}
+							}
+							change_variable = { 
+								name = gui_t
+								add = 1
+							}
+						}
+					}
+				}
+			}
+			ordered_in_global_list = { 
+				variable = misc_chars
+				position = 0
+				save_temporary_scope_as = gui_t
+				remove_list_global_variable = { 
+					name = misc_chars
+					target = this
+				}
+			}
+			add_to_variable_list = { 
+				name = toggle_province_merchant_t
+				target = scope:gui_t
+			}
+			scope:gui_t = { 
+				give_nickname = gui_exotics_g
+				set_variable = { 
+					name = gui_t
+					value = prev.var:trade_merchant.var:trade_price_exotics_g
+				}
+				set_variable = { 
+					name = gui_tt
+					value = prev.var:trade_merchant.var:trade_has_exotics_g
+				}
+				prev.var:trade_merchant = { 
+					set_variable = { 
+						name = gui_t
+						value = 0
+					}
+					every_in_list = { 
+						variable = trade_dat_exotics_g
+						ordered_in_global_list = { 
+							variable = misc_chars
+							position = 0
+							save_temporary_scope_as = gui_tt
+							remove_list_global_variable = { 
+								name = misc_chars
+								target = this
+							}
+						}
+						scope:gui_t = { 
+							add_to_variable_list = { 
+								name = gui_t
+								target = scope:gui_tt
+							}
+						}
+						scope:gui_tt = { 
+							set_variable = { 
+								name = gui_t
+								value = prev
+							}
+						}
+						if = { 
+							limit = { 
+								has_variable = trade_merchant
+							}
+							scope:gui_tt = { 
+								set_variable = { 
+									name = gui_tt
+									value = 1
+								}
+							}
+						}
+						else_if = { 
+							limit = { 
+								has_variable = pop_total
+							}
+							scope:gui_tt = { 
+								set_variable = { 
+									name = gui_tt
+									value = 2
+								}
+							}
+						}
+						else = { 
+							scope:gui_tt = { 
+								set_variable = { 
+									name = gui_tt
+									value = 3
+								}
+							}
+						}
+						prev = { 
+							set_global_variable = { 
+								name = array_get_t
+								value = var:gui_t
+							}
+							if = { 
+								limit = { 
+									OR = { 
+										NOT = { 
+											has_global_variable = array_get_t
+										}
+										global_var:array_get_t = 0
+									}
+								}
+								ordered_in_list = { 
+									variable = array_trade_dat_exotics_g
+									position = 0
+									prev = { 
+										set_variable = { 
+											name = gui_tt
+											value = prev
+										}
+									}
+								}
+							}
+							else = { 
+								ordered_in_list = { 
+									variable = array_trade_dat_exotics_g
+									position = global_var:array_get_t.compare_value
+									prev = { 
+										set_variable = { 
+											name = gui_tt
+											value = prev
+										}
+									}
+								}
+							}
+							change_variable = { 
+								name = gui_tt
+								divide = 10
+							}
+							remove_global_variable = array_get_t
+							scope:gui_tt = { 
+								set_variable = { 
+									name = gui_ttt
+									value = prev.var:gui_tt
+								}
+								if = { 
+									limit = { 
+										var:gui_ttt < 0
+									}
+									give_nickname = gui_import
+									change_variable = { 
+										name = gui_ttt
+										multiply = -1
+									}
+								}
+								else = { 
+									give_nickname = gui_export
+								}
+							}
+							change_variable = { 
+								name = gui_t
+								add = 1
+							}
+						}
+					}
+				}
+			}
+			ordered_in_global_list = { 
+				variable = misc_chars
+				position = 0
+				save_temporary_scope_as = gui_t
+				remove_list_global_variable = { 
+					name = misc_chars
+					target = this
+				}
+			}
+			add_to_variable_list = { 
+				name = toggle_province_merchant_t
+				target = scope:gui_t
+			}
+			scope:gui_t = { 
+				give_nickname = gui_textile
+				set_variable = { 
+					name = gui_t
+					value = prev.var:trade_merchant.var:trade_price_textile
+				}
+				set_variable = { 
+					name = gui_tt
+					value = prev.var:trade_merchant.var:trade_has_textile
+				}
+				prev.var:trade_merchant = { 
+					set_variable = { 
+						name = gui_t
+						value = 0
+					}
+					every_in_list = { 
+						variable = trade_dat_textile
+						ordered_in_global_list = { 
+							variable = misc_chars
+							position = 0
+							save_temporary_scope_as = gui_tt
+							remove_list_global_variable = { 
+								name = misc_chars
+								target = this
+							}
+						}
+						scope:gui_t = { 
+							add_to_variable_list = { 
+								name = gui_t
+								target = scope:gui_tt
+							}
+						}
+						scope:gui_tt = { 
+							set_variable = { 
+								name = gui_t
+								value = prev
+							}
+						}
+						if = { 
+							limit = { 
+								has_variable = trade_merchant
+							}
+							scope:gui_tt = { 
+								set_variable = { 
+									name = gui_tt
+									value = 1
+								}
+							}
+						}
+						else_if = { 
+							limit = { 
+								has_variable = pop_total
+							}
+							scope:gui_tt = { 
+								set_variable = { 
+									name = gui_tt
+									value = 2
+								}
+							}
+						}
+						else = { 
+							scope:gui_tt = { 
+								set_variable = { 
+									name = gui_tt
+									value = 3
+								}
+							}
+						}
+						prev = { 
+							set_global_variable = { 
+								name = array_get_t
+								value = var:gui_t
+							}
+							if = { 
+								limit = { 
+									OR = { 
+										NOT = { 
+											has_global_variable = array_get_t
+										}
+										global_var:array_get_t = 0
+									}
+								}
+								ordered_in_list = { 
+									variable = array_trade_dat_textile
+									position = 0
+									prev = { 
+										set_variable = { 
+											name = gui_tt
+											value = prev
+										}
+									}
+								}
+							}
+							else = { 
+								ordered_in_list = { 
+									variable = array_trade_dat_textile
+									position = global_var:array_get_t.compare_value
+									prev = { 
+										set_variable = { 
+											name = gui_tt
+											value = prev
+										}
+									}
+								}
+							}
+							change_variable = { 
+								name = gui_tt
+								divide = 10
+							}
+							remove_global_variable = array_get_t
+							scope:gui_tt = { 
+								set_variable = { 
+									name = gui_ttt
+									value = prev.var:gui_tt
+								}
+								if = { 
+									limit = { 
+										var:gui_ttt < 0
+									}
+									give_nickname = gui_import
+									change_variable = { 
+										name = gui_ttt
+										multiply = -1
+									}
+								}
+								else = { 
+									give_nickname = gui_export
+								}
+							}
+							change_variable = { 
+								name = gui_t
+								add = 1
+							}
+						}
+					}
+				}
+			}
+			ordered_in_global_list = { 
+				variable = misc_chars
+				position = 0
+				save_temporary_scope_as = gui_t
+				remove_list_global_variable = { 
+					name = misc_chars
+					target = this
+				}
+			}
+			add_to_variable_list = { 
+				name = toggle_province_merchant_t
+				target = scope:gui_t
+			}
+			scope:gui_t = { 
+				give_nickname = gui_pottery
+				set_variable = { 
+					name = gui_t
+					value = prev.var:trade_merchant.var:trade_price_pottery
+				}
+				set_variable = { 
+					name = gui_tt
+					value = prev.var:trade_merchant.var:trade_has_pottery
+				}
+				prev.var:trade_merchant = { 
+					set_variable = { 
+						name = gui_t
+						value = 0
+					}
+					every_in_list = { 
+						variable = trade_dat_pottery
+						ordered_in_global_list = { 
+							variable = misc_chars
+							position = 0
+							save_temporary_scope_as = gui_tt
+							remove_list_global_variable = { 
+								name = misc_chars
+								target = this
+							}
+						}
+						scope:gui_t = { 
+							add_to_variable_list = { 
+								name = gui_t
+								target = scope:gui_tt
+							}
+						}
+						scope:gui_tt = { 
+							set_variable = { 
+								name = gui_t
+								value = prev
+							}
+						}
+						if = { 
+							limit = { 
+								has_variable = trade_merchant
+							}
+							scope:gui_tt = { 
+								set_variable = { 
+									name = gui_tt
+									value = 1
+								}
+							}
+						}
+						else_if = { 
+							limit = { 
+								has_variable = pop_total
+							}
+							scope:gui_tt = { 
+								set_variable = { 
+									name = gui_tt
+									value = 2
+								}
+							}
+						}
+						else = { 
+							scope:gui_tt = { 
+								set_variable = { 
+									name = gui_tt
+									value = 3
+								}
+							}
+						}
+						prev = { 
+							set_global_variable = { 
+								name = array_get_t
+								value = var:gui_t
+							}
+							if = { 
+								limit = { 
+									OR = { 
+										NOT = { 
+											has_global_variable = array_get_t
+										}
+										global_var:array_get_t = 0
+									}
+								}
+								ordered_in_list = { 
+									variable = array_trade_dat_pottery
+									position = 0
+									prev = { 
+										set_variable = { 
+											name = gui_tt
+											value = prev
+										}
+									}
+								}
+							}
+							else = { 
+								ordered_in_list = { 
+									variable = array_trade_dat_pottery
+									position = global_var:array_get_t.compare_value
+									prev = { 
+										set_variable = { 
+											name = gui_tt
+											value = prev
+										}
+									}
+								}
+							}
+							change_variable = { 
+								name = gui_tt
+								divide = 10
+							}
+							remove_global_variable = array_get_t
+							scope:gui_tt = { 
+								set_variable = { 
+									name = gui_ttt
+									value = prev.var:gui_tt
+								}
+								if = { 
+									limit = { 
+										var:gui_ttt < 0
+									}
+									give_nickname = gui_import
+									change_variable = { 
+										name = gui_ttt
+										multiply = -1
+									}
+								}
+								else = { 
+									give_nickname = gui_export
+								}
+							}
+							change_variable = { 
+								name = gui_t
+								add = 1
+							}
+						}
+					}
+				}
+			}
+			ordered_in_global_list = { 
+				variable = misc_chars
+				position = 0
+				save_temporary_scope_as = gui_t
+				remove_list_global_variable = { 
+					name = misc_chars
+					target = this
+				}
+			}
+			add_to_variable_list = { 
+				name = toggle_province_merchant_t
+				target = scope:gui_t
+			}
+			scope:gui_t = { 
+				give_nickname = gui_tools
+				set_variable = { 
+					name = gui_t
+					value = prev.var:trade_merchant.var:trade_price_tools
+				}
+				set_variable = { 
+					name = gui_tt
+					value = prev.var:trade_merchant.var:trade_has_tools
+				}
+				prev.var:trade_merchant = { 
+					set_variable = { 
+						name = gui_t
+						value = 0
+					}
+					every_in_list = { 
+						variable = trade_dat_tools
+						ordered_in_global_list = { 
+							variable = misc_chars
+							position = 0
+							save_temporary_scope_as = gui_tt
+							remove_list_global_variable = { 
+								name = misc_chars
+								target = this
+							}
+						}
+						scope:gui_t = { 
+							add_to_variable_list = { 
+								name = gui_t
+								target = scope:gui_tt
+							}
+						}
+						scope:gui_tt = { 
+							set_variable = { 
+								name = gui_t
+								value = prev
+							}
+						}
+						if = { 
+							limit = { 
+								has_variable = trade_merchant
+							}
+							scope:gui_tt = { 
+								set_variable = { 
+									name = gui_tt
+									value = 1
+								}
+							}
+						}
+						else_if = { 
+							limit = { 
+								has_variable = pop_total
+							}
+							scope:gui_tt = { 
+								set_variable = { 
+									name = gui_tt
+									value = 2
+								}
+							}
+						}
+						else = { 
+							scope:gui_tt = { 
+								set_variable = { 
+									name = gui_tt
+									value = 3
+								}
+							}
+						}
+						prev = { 
+							set_global_variable = { 
+								name = array_get_t
+								value = var:gui_t
+							}
+							if = { 
+								limit = { 
+									OR = { 
+										NOT = { 
+											has_global_variable = array_get_t
+										}
+										global_var:array_get_t = 0
+									}
+								}
+								ordered_in_list = { 
+									variable = array_trade_dat_tools
+									position = 0
+									prev = { 
+										set_variable = { 
+											name = gui_tt
+											value = prev
+										}
+									}
+								}
+							}
+							else = { 
+								ordered_in_list = { 
+									variable = array_trade_dat_tools
+									position = global_var:array_get_t.compare_value
+									prev = { 
+										set_variable = { 
+											name = gui_tt
+											value = prev
+										}
+									}
+								}
+							}
+							change_variable = { 
+								name = gui_tt
+								divide = 10
+							}
+							remove_global_variable = array_get_t
+							scope:gui_tt = { 
+								set_variable = { 
+									name = gui_ttt
+									value = prev.var:gui_tt
+								}
+								if = { 
+									limit = { 
+										var:gui_ttt < 0
+									}
+									give_nickname = gui_import
+									change_variable = { 
+										name = gui_ttt
+										multiply = -1
+									}
+								}
+								else = { 
+									give_nickname = gui_export
+								}
+							}
+							change_variable = { 
+								name = gui_t
+								add = 1
+							}
+						}
+					}
+				}
+			}
+			ordered_in_global_list = { 
+				variable = misc_chars
+				position = 0
+				save_temporary_scope_as = gui_t
+				remove_list_global_variable = { 
+					name = misc_chars
+					target = this
+				}
+			}
+			add_to_variable_list = { 
+				name = toggle_province_merchant_t
+				target = scope:gui_t
+			}
+			scope:gui_t = { 
+				give_nickname = gui_armaments
+				set_variable = { 
+					name = gui_t
+					value = prev.var:trade_merchant.var:trade_price_armaments
+				}
+				set_variable = { 
+					name = gui_tt
+					value = prev.var:trade_merchant.var:trade_has_armaments
+				}
+				prev.var:trade_merchant = { 
+					set_variable = { 
+						name = gui_t
+						value = 0
+					}
+					every_in_list = { 
+						variable = trade_dat_armaments
+						ordered_in_global_list = { 
+							variable = misc_chars
+							position = 0
+							save_temporary_scope_as = gui_tt
+							remove_list_global_variable = { 
+								name = misc_chars
+								target = this
+							}
+						}
+						scope:gui_t = { 
+							add_to_variable_list = { 
+								name = gui_t
+								target = scope:gui_tt
+							}
+						}
+						scope:gui_tt = { 
+							set_variable = { 
+								name = gui_t
+								value = prev
+							}
+						}
+						if = { 
+							limit = { 
+								has_variable = trade_merchant
+							}
+							scope:gui_tt = { 
+								set_variable = { 
+									name = gui_tt
+									value = 1
+								}
+							}
+						}
+						else_if = { 
+							limit = { 
+								has_variable = pop_total
+							}
+							scope:gui_tt = { 
+								set_variable = { 
+									name = gui_tt
+									value = 2
+								}
+							}
+						}
+						else = { 
+							scope:gui_tt = { 
+								set_variable = { 
+									name = gui_tt
+									value = 3
+								}
+							}
+						}
+						prev = { 
+							set_global_variable = { 
+								name = array_get_t
+								value = var:gui_t
+							}
+							if = { 
+								limit = { 
+									OR = { 
+										NOT = { 
+											has_global_variable = array_get_t
+										}
+										global_var:array_get_t = 0
+									}
+								}
+								ordered_in_list = { 
+									variable = array_trade_dat_armaments
+									position = 0
+									prev = { 
+										set_variable = { 
+											name = gui_tt
+											value = prev
+										}
+									}
+								}
+							}
+							else = { 
+								ordered_in_list = { 
+									variable = array_trade_dat_armaments
+									position = global_var:array_get_t.compare_value
+									prev = { 
+										set_variable = { 
+											name = gui_tt
+											value = prev
+										}
+									}
+								}
+							}
+							change_variable = { 
+								name = gui_tt
+								divide = 10
+							}
+							remove_global_variable = array_get_t
+							scope:gui_tt = { 
+								set_variable = { 
+									name = gui_ttt
+									value = prev.var:gui_tt
+								}
+								if = { 
+									limit = { 
+										var:gui_ttt < 0
+									}
+									give_nickname = gui_import
+									change_variable = { 
+										name = gui_ttt
+										multiply = -1
+									}
+								}
+								else = { 
+									give_nickname = gui_export
+								}
+							}
+							change_variable = { 
+								name = gui_t
+								add = 1
+							}
+						}
+					}
+				}
+			}
+			var:trade_merchant = { 
+				remove_variable = gui_t
+				remove_variable = gui_tt
+			}
+		}
+	}
+}
+close_province_merchant = { 
+	scope = province
+	is_shown = { 
+		always = yes
+	}
+	is_valid = { 
+		always = yes
+	}
+	effect = { 
+		if = { 
+			limit = { 
+				has_variable = show_province_merchant
+			}
+			remove_variable = show_province_merchant
+			every_in_list = { 
+				variable = toggle_province_merchant_t
+				remove_variable = gui_t
+				remove_variable = gui_tt
+				remove_variable = gui_ttt
+				every_in_list = { 
+					variable = gui_t
+					remove_variable = gui_t
+					remove_variable = gui_tt
+					add_to_global_variable_list = { 
+						name = misc_chars
+						target = this
+					}
+				}
+				clear_variable_list = gui_t
+				add_to_global_variable_list = { 
+					name = misc_chars
+					target = this
+				}
+			}
+			clear_variable_list = toggle_province_merchant_t
+		}
+	}
+}
