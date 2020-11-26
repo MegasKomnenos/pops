@@ -1,4 +1,35 @@
-﻿get_land_cost = {
+﻿set_characters = {
+	while = {
+		count = 1000
+		
+		create_character = {
+			save_temporary_scope_as = set_characters_t
+			gender = male
+			trait = character_not_1
+			employer = global_var:arhat
+			faith = global_var:arhat.faith
+			culture = global_var:arhat.culture
+			dynasty = none
+		}
+		
+		add_to_global_variable_list = { name = misc_chars target = scope:set_characters_t }
+	}
+}
+get_character = {
+	ordered_in_global_list = {
+		variable = misc_chars
+		position = 0
+		
+		save_temporary_scope_as = $return$
+		
+		remove_list_global_variable = { name = misc_chars target = this }
+	}
+}
+return_character = {
+	add_to_global_variable_list = { name = misc_chars target = $char$ }
+}
+
+get_land_cost = {
 	if = {
 		limit = {
 			var:prov_sea = 2

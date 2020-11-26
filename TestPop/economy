@@ -1,1 +1,145 @@
-﻿
+﻿toggle_county_commerce = {
+	scope = province
+	
+	is_shown = {
+		always = yes
+	}
+	is_valid = {
+		always = yes
+	}
+	
+	effect = {
+		if = {
+			limit = {
+				has_variable = show_county_commerce
+			}
+			remove_variable = show_county_commerce
+			
+			every_in_list = {
+				variable = toggle_county_commerce_t
+				
+				remove_variable = gui_t
+				
+				every_in_list = {
+					variable = gui_t
+					
+					remove_variable = gui_t
+					remove_variable = gui_tt
+					
+					return_character = { char = this }
+				}
+				
+				clear_variable_list = gui_t
+				
+				return_character = { char = this }
+			}
+			
+			clear_variable_list = toggle_county_commerce_t
+		}
+		else = {
+			set_variable = { name = show_county_commerce value = 1 }
+			
+			^^goods^
+				get_character = { return = gui_t }
+				
+				add_to_variable_list = { name = toggle_county_commerce_t target = scope:gui_t }
+				
+				scope:gui_t = {
+					give_nickname = gui_&goods&
+					
+					set_variable = { name = gui_t value = prev.county.var:trade_price_&goods& }
+					
+					prev.county = {
+						set_variable = { name = gui_t value = 0 }
+						
+						every_in_list = {
+							variable = trade_dat_&goods&
+							
+							scope:gui_t = {
+								get_character = { return = gui_tt }
+								
+								add_to_variable_list = { name = gui_t target = scope:gui_tt }
+							}
+							
+							scope:gui_tt = {
+								set_variable = { name = gui_t value = prev }
+							}
+							
+							prev = {
+								array_get = { name = trade_dat_&goods& value = var:gui_t return = gui_tt dec = 10 }
+								
+								if = {
+									limit = {
+										var:gui_tt > 0
+									}
+									scope:gui_tt = {
+										give_nickname = gui_import
+										
+										set_variable = { name = gui_tt value = prev.var:gui_tt }
+									}
+								}
+								else = {
+									scope:gui_tt = {
+										give_nickname = gui_export
+										
+										set_variable = { name = gui_tt value = prev.var:gui_tt }
+										change_variable = { name = gui_tt multiply = -1 }
+									}
+								}
+							}
+							
+							prev = {
+								change_variable = { name = gui_t add = 1 }
+							}
+						}
+					}
+				}
+			^
+			
+			county = {
+				remove_variable = gui_t
+				remove_variable = gui_tt
+			}
+		}
+	}
+}
+close_county_commerce = {
+	scope = province
+	
+	is_shown = {
+		always = yes
+	}
+	is_valid = {
+		always = yes
+	}
+	
+	effect = {
+		if = {
+			limit = {
+				has_variable = show_county_commerce
+			}
+			remove_variable = show_county_commerce
+			
+			every_in_list = {
+				variable = toggle_county_commerce_t
+				
+				remove_variable = gui_t
+				
+				every_in_list = {
+					variable = gui_t
+					
+					remove_variable = gui_t
+					remove_variable = gui_tt
+					
+					return_character = { char = this }
+				}
+				
+				clear_variable_list = gui_t
+				
+				return_character = { char = this }
+			}
+			
+			clear_variable_list = toggle_county_commerce_t
+		}
+	}
+}
