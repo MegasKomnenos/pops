@@ -100038,16 +100038,16 @@ census.99 = {
 			name = sim_i
 			value = 1
 		}
-		set_variable = { 
+		set_global_variable = { 
 			name = sim_ii
 			value = 5
 		}
 		while = { 
 			limit = { 
-				has_variable = sim_ii
-				var:sim_ii > 0
+				has_global_variable = sim_ii
+				global_var:sim_ii > 0
 			}
-			change_variable = { 
+			change_global_variable = { 
 				name = sim_ii
 				subtract = 1
 			}
@@ -100081,17 +100081,17 @@ census.99 = {
 			trigger_event = { 
 				id = census.11
 			}
-			set_variable = { 
-				name = sim_t
+			set_global_variable = { 
+				name = sim_iii
 				value = 12
 			}
 			while = { 
 				limit = { 
-					has_variable = sim_t
-					var:sim_t > 0
+					has_global_variable = sim_iii
+					global_var:sim_iii > 0
 				}
-				change_variable = { 
-					name = sim_t
+				change_global_variable = { 
+					name = sim_iii
 					subtract = 1
 				}
 				trigger_event = { 
@@ -100502,10 +100502,10 @@ census.99 = {
 					remove_variable = sim_balance
 				}
 			}
-			remove_variable = sim_t
 		}
 		remove_global_variable = sim_i
-		remove_variable = sim_ii
+		remove_global_variable = sim_ii
+		remove_global_variable = sim_iii
 		remove_global_variable = setup_rulers_t
 	}
 	option = { }

@@ -310,6 +310,8 @@ if __name__ == '__main__':
                         outout.append('\t\tadd_to_global_variable_list = { name = build_templates target = scope:save_data_t }\n')
                 else:
                     outout.append(helper(('\t\tset_global_variable', 'value'), name, data, id_to_title))
+            for var in glob_lsts['every_water']:
+                outout.append(helper(('\t\tadd_to_global_variable_list', 'target'), 'every_water', var, id_to_title))
 
             out.append(event % (1, ''.join(outout), nxt % 2))
 
