@@ -70,12 +70,13 @@
 								
 								if = {
 									limit = {
-										var:gui_tt > 0
+										var:gui_tt < 0
 									}
 									scope:gui_tt = {
 										give_nickname = gui_import
 										
 										set_variable = { name = gui_tt value = prev.var:gui_tt }
+										change_variable = { name = gui_tt multiply = -1 }
 									}
 								}
 								else = {
@@ -83,7 +84,6 @@
 										give_nickname = gui_export
 										
 										set_variable = { name = gui_tt value = prev.var:gui_tt }
-										change_variable = { name = gui_tt multiply = -1 }
 									}
 								}
 							}
@@ -140,6 +140,257 @@ close_county_commerce = {
 			}
 			
 			clear_variable_list = toggle_county_commerce_t
+		}
+	}
+}
+
+toggle_province_economy = {
+	scope = province
+	
+	is_shown = {
+		always = yes
+	}
+	is_valid = {
+		always = yes
+	}
+	
+	effect = {
+		if = {
+			limit = {
+				has_variable = show_province_economy
+			}
+			remove_variable = show_province_economy
+			
+			every_in_list = {
+				variable = toggle_province_economy_t
+				
+				remove_variable = gui_t
+				remove_variable = gui_tt
+				remove_variable = gui_ttt
+				remove_variable = gui_tttt
+				
+				return_character = { char = this }
+			}
+			
+			clear_variable_list = toggle_province_economy_t
+		}
+		else = {
+			set_variable = { name = show_province_economy value = 1 }
+			
+			^^goods^
+				get_character = { return = gui_t }
+				
+				add_to_variable_list = { name = toggle_province_economy_t target = scope:gui_t }
+				
+				scope:gui_t = {
+					give_nickname = gui_&goods&
+					
+					set_variable = { name = gui_t value = prev.var:prod_has_&goods& }
+					
+					set_variable = { name = gui_tt value = 0 }
+					set_variable = { name = gui_ttt value = 0 }
+					set_variable = { name = gui_tttt value = 0 }
+					
+					prev = {
+						if = {
+							limit = {
+								has_variable = pop_calorie_&goods&
+								
+								var:pop_calorie_&goods& > 0
+							}
+							prev = {
+								change_variable = { name = gui_tt add = prev.var:pop_calorie_&goods& }
+							}
+						}
+						if = {
+							limit = {
+								has_variable = pop_calorie_actual_&goods&
+								
+								var:pop_calorie_actual_&goods& > 0
+							}
+							prev = {
+								change_variable = { name = gui_ttt add = prev.var:pop_calorie_actual_&goods& }
+							}
+						}
+						if = {
+							limit = {
+								has_variable = pop_nutrient_&goods&
+								
+								var:pop_nutrient_&goods& > 0
+							}
+							prev = {
+								change_variable = { name = gui_tt add = prev.var:pop_nutrient_&goods& }
+							}
+						}
+						if = {
+							limit = {
+								has_variable = pop_nutrient_actual_&goods&
+								
+								var:pop_nutrient_actual_&goods& > 0
+							}
+							prev = {
+								change_variable = { name = gui_ttt add = prev.var:pop_nutrient_actual_&goods& }
+							}
+						}
+						if = {
+							limit = {
+								has_variable = pop_comfort_&goods&
+								
+								var:pop_comfort_&goods& > 0
+							}
+							prev = {
+								change_variable = { name = gui_tt add = prev.var:pop_comfort_&goods& }
+							}
+						}
+						if = {
+							limit = {
+								has_variable = pop_comfort_actual_&goods&
+								
+								var:pop_comfort_actual_&goods& > 0
+							}
+							prev = {
+								change_variable = { name = gui_ttt add = prev.var:pop_comfort_actual_&goods& }
+							}
+						}
+						if = {
+							limit = {
+								has_variable = pop_luxury_&goods&
+								
+								var:pop_luxury_&goods& > 0
+							}
+							prev = {
+								change_variable = { name = gui_tt add = prev.var:pop_luxury_&goods& }
+							}
+						}
+						if = {
+							limit = {
+								has_variable = pop_luxury_actual_&goods&
+								
+								var:pop_luxury_actual_&goods& > 0
+							}
+							prev = {
+								change_variable = { name = gui_ttt add = prev.var:pop_luxury_actual_&goods& }
+							}
+						}
+						if = {
+							limit = {
+								has_variable = mil_supply_&goods&
+								
+								var:mil_supply_&goods& > 0
+							}
+							prev = {
+								change_variable = { name = gui_tt add = prev.var:mil_supply_&goods& }
+							}
+						}
+						if = {
+							limit = {
+								has_variable = mil_supply_in_&goods&
+								
+								var:mil_supply_in_&goods& > 0
+							}
+							prev = {
+								change_variable = { name = gui_ttt add = prev.var:mil_supply_in_&goods& }
+							}
+						}
+						
+						every_in_list = {
+							variable = prod_instances
+							
+							if = {
+								limit = {
+									has_variable = prod_sply_old_&goods&
+									
+									var:prod_sply_old_&goods& > 0
+								}
+								scope:gui_t = {
+									change_variable = { name = gui_tttt add = prev.var:prod_sply_old_&goods& }
+								}
+							}
+							if = {
+								limit = {
+									has_variable = prod_dmnd_old_&goods&
+									
+									var:prod_dmnd_old_&goods& > 0
+								}
+								scope:gui_t = {
+									change_variable = { name = gui_tt add = prev.var:prod_dmnd_old_&goods& }
+								}
+							}
+							if = {
+								limit = {
+									has_variable = prod_in_old_&goods&
+									
+									var:prod_in_old_&goods& > 0
+								}
+								scope:gui_t = {
+									change_variable = { name = gui_ttt add = prev.var:prod_in_old_&goods& }
+								}
+							}
+						}
+						every_in_list = {
+							variable = build_slots
+							
+							if = {
+								limit = {
+									has_variable = build_&goods&
+									
+									var:build_&goods& > 0
+								}
+								scope:gui_t = {
+									change_variable = { name = gui_tt add = prev.var:build_&goods& }
+								}
+							}
+							if = {
+								limit = {
+									has_variable = build_in_&goods&
+									
+									var:build_in_&goods& > 0
+								}
+								scope:gui_t = {
+									change_variable = { name = gui_ttt add = prev.var:build_in_&goods& }
+								}
+							}
+						}
+					}
+				}
+			^
+			
+			county = {
+				remove_variable = gui_t
+				remove_variable = gui_tt
+			}
+		}
+	}
+}
+close_province_economy = {
+	scope = province
+	
+	is_shown = {
+		always = yes
+	}
+	is_valid = {
+		always = yes
+	}
+	
+	effect = {
+		if = {
+			limit = {
+				has_variable = show_province_economy
+			}
+			remove_variable = show_province_economy
+			
+			every_in_list = {
+				variable = toggle_province_economy_t
+				
+				remove_variable = gui_t
+				remove_variable = gui_tt
+				remove_variable = gui_ttt
+				remove_variable = gui_tttt
+				
+				return_character = { char = this }
+			}
+			
+			clear_variable_list = toggle_province_economy_t
 		}
 	}
 }
