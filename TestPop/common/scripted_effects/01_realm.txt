@@ -310,7 +310,19 @@
 			change_variable = { name = realm_suppression_base_liege add = { value = var:realm_update_t.prestige divide = 200 } }
 			set_variable = { name = realm_suppression_base_self value = var:mil_power }
 			change_variable = { name = realm_suppression_base_self add = { value = prestige divide = 200 } }
-			change_variable = { name = realm_suppression_base_self add = 0.001 }
+			change_variable = { name = realm_suppression_base_self add = 0.01 }
+			if = {
+				limit = {
+					OR = {
+						NOT = {
+							has_variable = realm_suppression_base_self
+						}
+						
+						var:realm_suppression_base_self < 0.01
+					}
+				}
+				set_variable = { name = realm_suppression_base_self value = 0.01 }
+			}
 			set_variable = { name = realm_suppression value = var:realm_suppression_base_liege }
 			change_variable = { name = realm_suppression divide = var:realm_suppression_base_self }
 			change_variable = { name = realm_suppression divide = var:realm_dist }

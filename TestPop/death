@@ -5,8 +5,119 @@ death.01 = {
 	hidden = yes
 	
 	immediate = { 
-		trade_death_handler = yes
-		mil_death_handler = yes
+		if = {
+			limit = {
+				is_character = yes
+				is_ruler = yes
+				is_landed = yes
+			}
+			set_variable = { name = death_t value = 0 }
+			
+			every_held_title = {
+				set_variable = { name = death_t value = 0 }
+				
+				if = {
+					limit = {
+						tier > tier_barony
+					}
+					every_in_de_facto_hierarchy = {
+						limit = {
+							tier = tier_barony
+						}
+						prev = {
+							change_variable = { name = death_t add = prev.title_province.var:pop_total }
+						}
+					}
+				}
+				else = {
+					change_variable = { name = death_t add = title_province.var:pop_total }
+				}
+				
+				prev = {
+					change_variable = { name = death_t add = prev.var:death_t }
+				}
+			}
+			every_held_title = {
+				change_variable = { name = death_t divide = prev.var:death_t }
+				change_variable = { name = death_t multiply = 0.667 }
+			}
+			primary_title = {
+				change_variable = { name = death_t add = 0.333 }
+			}
+			
+			every_held_title = {
+				set_variable = { name = has_data }
+				
+				set_variable = { name = realm_resentment value = prev.var:realm_resentment }
+				
+				if = {
+					limit = {
+						prev = {
+							has_variable = realm_privilege
+						}
+					}
+					set_variable = { name = realm_privilege value = prev.var:realm_privilege }
+				}
+				
+				^^goods^
+					if = {
+						limit = {
+							prev = {
+								has_variable = trade_price_&goods&
+							}
+						}
+						set_variable = { name = death_price_&goods& value = prev.var:trade_price_&goods& }
+					
+						set_variable = { name = death_has_&goods& value = var:death_t }
+						set_variable = { name = death_want_&goods& value = var:death_t }
+						
+						change_variable = { name = death_has_&goods& multiply = prev.var:trade_has_&goods& }
+						change_variable = { name = death_want_&goods& multiply = prev.var:trade_want_&goods& }
+					}
+				^
+				
+				^^tasks_passive^
+					if = {
+						limit = {
+							prev = {
+								has_variable = task_&tasks_passive&_prog
+							}
+						}
+						set_variable = { name = task_&tasks_passive&_prog value = var:death_t }
+						change_variable = { name = task_&tasks_passive&_prog multiply = prev.var:task_&tasks_passive&_prog }
+					}
+				^
+				
+				set_variable = { name = mil_mp value = var:death_t }
+				set_variable = { name = mil_supply value = var:death_t }
+				
+				change_variable = { name = mil_mp multiply = prev.var:mil_mp }
+				change_variable = { name = mil_supply multiply = prev.var:mil_supply }
+				
+				remove_variable = death_t
+			}
+			
+			every_in_list = {
+				limit = {
+					is_alive = yes
+					
+					OR = {
+						is_landed = no
+						is_ruler = no
+						primary_title.tier = tier_barony
+					}
+				}
+				variable = task_workers
+				
+				remove_variable = task_time_has
+				remove_variable = task_time_spent
+				remove_variable = task_prestige
+			}
+			
+			clear_variable_list = task_workers
+			
+			remove_variable = death_t
+		}
 	}
 	
 	option = {
@@ -18,13 +129,220 @@ death.02 = {
 	hidden = yes
 	
 	immediate = { 
-		set_variable = { name = is_character value = 1 }
-		
-		add_character_modifier = base_lord
-		
-		trade_rank_up_handler = yes
-		mil_rank_up_handler = yes
-		task_rank_up_handler = yes
+		if = {
+			limit = {
+				is_character = yes
+				is_ruler = yes
+				is_landed = yes
+			}
+			if = {
+				limit = {
+					NOT = {
+						has_character_modifier = base_lord
+					}
+				}
+				add_character_modifier = base_lord
+				
+				set_variable = { name = realm_resentment value = 0 }
+				
+				^^goods^
+					set_variable = { name = trade_price_&goods& value = 0 }
+					set_variable = { name = trade_has_&goods& value = 0 }
+					set_variable = { name = trade_want_&goods& value = 0 }
+				^
+				
+				set_variable = { name = mil_mp value = 0 }
+				set_variable = { name = mil_supply value = 0 }
+				
+				task_setup = yes
+				task_ai = yes
+				task_update = yes
+				
+				if = {
+					limit = {
+						NOT = {
+							any_held_title = {
+								has_variable = has_data
+							}
+						}
+					}
+					^^tasks_passive^
+						set_variable = { name = task_&tasks_passive&_prog value = 1 }
+					^
+					
+					every_held_title = {
+						limit = {
+							tier = tier_barony
+						}
+						prev = {
+							^^goods^
+								change_variable = { 
+									name = trade_price_&goods& 
+									add = { 
+										value = prev.county.var:trade_price_&goods& 
+										multiply = prev.title_province.var:prod_has_&goods&
+									} 
+								}
+								change_variable = { name = trade_has_&goods& add = prev.title_province.var:prod_has_&goods& }
+							^
+							
+							change_variable = { name = mil_mp add = prev.title_province.var:mil_levy }
+							change_variable = { name = mil_supply add = prev.title_province.var:mil_supply }
+						}
+					}
+					
+					^^goods^
+						if = {
+							limit = {
+								has_variable = trade_has_&goods&
+								
+								var:trade_has_&goods& > 0
+							}
+							change_variable = { name = trade_price_&goods& divide = var:trade_has_&goods& }
+							set_variable = { name = trade_want_&goods& value = var:trade_has_&goods& }
+						}
+						else = {
+							set_variable = { name = trade_price_&goods& value = capital_county.var:trade_price_&goods& }
+							set_variable = { name = trade_want_&goods& value = 0 }
+						}
+					^
+					
+					set_variable = { name = mil_power value = var:mil_mp }
+					change_variable = { name = mil_power multiply = var:mil_supply }
+					
+					sqrt_effect = {
+						inp = var:mil_power
+						return = mil_power
+					}
+				}
+			}
+			
+			if = {
+				limit = {
+					any_held_title = {
+						has_variable = has_data
+					}
+				}
+				change_variable = { name = realm_resentment multiply = { value = var:mil_mp add = var:mil_supply } }
+				
+				^^goods^
+					change_variable = { name = trade_price_&goods& multiply = { value = var:trade_has_&goods& add = var:trade_want_&goods& } }
+				^
+				
+				every_held_title = {
+					limit = {
+						has_variable = has_data
+					}
+					remove_variable = has_data
+					
+					prev = {
+						change_variable = { name = realm_resentment add = { value = prev.var:realm_resentment multiply = { value = prev.var:mil_mp add = prev.var:mil_supply } } }
+						change_variable = { name = mil_mp add = prev.var:mil_mp }
+						change_variable = { name = mil_supply add = prev.var:mil_supply }
+						
+						if = {
+							limit = {
+								prev = {
+									has_variable = realm_privilege
+								}
+								
+								OR = {
+									NOT = {
+										has_variable = realm_privilege
+									}
+									
+									prev.var:realm_privilege = {
+										compare_value > prev.var:realm_privilege
+									}
+								}
+							}
+							set_variable = { name = realm_privilege value = prev.var:realm_privilege }
+						}
+						
+						^^goods^
+							if = {
+								limit = {
+									prev = {
+										has_variable = death_price_&goods&
+									}
+								}
+								change_variable = { name = trade_price_&goods& add = { value = prev.var:death_price_&goods& multiply = { value = prev.var:death_has_&goods& add = prev.var:death_want_&goods& } } }
+								change_variable = { name = trade_has_&goods& add = prev.var:death_has_&goods& }
+								change_variable = { name = trade_want_&goods& add = prev.var:death_want_&goods& }
+							}
+						^
+						
+						^^tasks_passive^
+							if = {
+								limit = {
+									prev = {
+										has_variable = task_&tasks_passive&_prog
+									}
+								}
+								change_variable = { name = task_&tasks_passive&_prog add = prev.var:task_&tasks_passive&_prog }
+							}
+						^
+					}
+					
+					remove_variable = realm_resentment
+					remove_variable = realm_privilege
+					remove_variable = mil_mp
+					remove_variable = mil_supply
+					
+					^^goods^
+						remove_variable = death_price_&goods&
+						remove_variable = death_has_&goods&
+						remove_variable = death_want_&goods&
+					^
+					^^tasks_passive^
+						remove_variable = task_&tasks_passive&_prog
+					^
+				}
+				
+				change_variable = { name = realm_resentment divide = { value = var:mil_mp add = var:mil_supply } }
+				
+				^^goods^
+					if = {
+						limit = {
+							OR = {
+								AND = {
+									has_variable = trade_has_&goods&
+									var:trade_has_&goods& > 0
+								}
+								AND = {
+									has_variable = trade_want_&goods&
+									var:trade_want_&goods& > 0
+								}
+							}
+						}
+						change_variable = { name = trade_price_&goods& divide = { value = var:trade_has_&goods& add = var:trade_want_&goods& } }
+					}
+					else = {
+						set_variable = { name = trade_price_&goods& value = capital_county.var:trade_price_&goods& }
+					}
+					
+					if = { limit = { NOT = { has_variable = trade_price_&goods& } } set_variable = { name = trade_price_&goods& value = capital_county.var:trade_price_&goods& } }
+					if = { limit = { NOT = { has_variable = trade_want_&goods& } } set_variable = { name = trade_want_&goods& value = 0 } }
+					if = { limit = { NOT = { has_variable = trade_has_&goods& } } set_variable = { name = trade_has_&goods& value = 0 } }
+				^
+				
+				set_variable = { name = mil_power value = var:mil_mp }
+				change_variable = { name = mil_power multiply = var:mil_supply }
+				
+				sqrt_effect = {
+					inp = var:mil_power
+					return = mil_power
+				}
+			}
+			
+			if = {
+				limit = {
+					has_variable = realm_privilege
+					var:realm_privilege = 0
+				}
+				remove_variable = realm_privilege
+			}
+		}
 	}
 	
 	option = {
@@ -36,8 +354,34 @@ death.03 = {
 	hidden = yes
 	
 	immediate = { 
-		stat_rank_down_handler = yes
-		task_rank_down_handler = yes
+		if = {
+			limit = {
+				is_character = yes
+				is_ruler = no
+				is_landed = no
+				
+				has_character_modifier = base_lord
+			}
+			remove_character_modifier = base_lord
+			
+			^^goods^
+				remove_variable = trade_price_&goods&
+				remove_variable = trade_has_&goods&
+				remove_variable = trade_want_&goods&
+			^
+			
+			remove_variable = mil_mp
+			remove_variable = mil_supply
+			remove_variable = realm_resentment
+			remove_variable = realm_privilege
+			
+			^^tasks_passive^
+				remove_variable = task_&tasks_passive&_prog
+				remove_variable = task_&tasks_passive&_prestige
+				remove_variable = task_&tasks_passive&_lord
+				^^skills^ remove_variable = task_&tasks_passive&_&skills& ^
+			^
+		}
 	}
 	
 	option = {

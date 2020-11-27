@@ -146,6 +146,27 @@ monthly_pulse.14 = {
 	hidden = yes
 	
 	immediate = {
+		every_ruler = {
+			limit = {
+				is_character = yes
+				is_landed = yes
+				
+				any_sub_realm_barony = {
+					title_province = {
+						is_valid_prov = yes
+						is_city = yes
+					}
+					
+					prev = {
+						NOT = {
+							is_target_in_variable_list = { name = realm_dist target = prev.title_province }
+						}
+					}
+				}
+			}
+			realm_set_dist = yes
+		}
+		
 		trigger_event = { id = census.12 }
 	}
 	

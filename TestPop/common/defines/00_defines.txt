@@ -934,13 +934,13 @@ NCulture = {
 }
 
 NMercenary = {
-	LEVELS = { 0 7 14 }						# Defines how many different sizes of mercenary companies are there and how many are spawned for a given culture
+	LEVELS = { 0 0 0 }						# Defines how many different sizes of mercenary companies are there and how many are spawned for a given culture
 											# The numbers correspond to numbers of counties of the culture. No company exists if the number is lower than the first value specified here.
-	HIRE_RANGE = 500						# The maximum distance of mercenaries that can be hired (capital to mercenary location)
-	LEVIES = { 400 800 1200 }				# The base numbers of levies for levels of mercenary bands
-	MAA_REGIMENTS = { 1 2 3 }				# The number of MAA regiments for levels of mercenary bands
-	NUM_KNIGHTS = { 2 3 4 }					# The number of knights for levels of mercenary bands
-	MAA_REGIMENT_SIZES = { 3 3 3 }	# The base sizes of MAA regiments for levels of mercenary bands, in number of sub-regiments
+	HIRE_RANGE = 0							# The maximum distance of mercenaries that can be hired (capital to mercenary location)
+	LEVIES = { 0 0 0 }					# The base numbers of levies for levels of mercenary bands
+	MAA_REGIMENTS = { 0 0 0 }				# The number of MAA regiments for levels of mercenary bands
+	NUM_KNIGHTS = { 0 0 0 }					# The number of knights for levels of mercenary bands
+	MAA_REGIMENT_SIZES = { 0 0 0 }	# The base sizes of MAA regiments for levels of mercenary bands, in number of sub-regiments
 	SKIP_CULTURAL_CHANCE = { 0.5 0.33 0.2 }	# The chance that we skip including a cultural MaA in a merc company
 	
 	SIZE_INNOVATIONS_RATIO = 1.0			# How much are mercenary companies growing with the ratio of discovered to all cultural innovations of the culture. 1.0 means +100%
@@ -948,47 +948,47 @@ NMercenary = {
 	
 	HIRE_MONTHS = 36						# The length of the period mercenaries are hired for in months
 	
-	LEVY_COST_PER_100_SOLDIERS = 12.0		# The cost of the levy regiment part of mercenary companies, per 100 soldiers for better precision
-	MAA_COST_RATIO = 0.5					# The cost of the MAA regiments of mercenary companies as a fraction of what those regiments cost when buying them
+	LEVY_COST_PER_100_SOLDIERS = 0			# The cost of the levy regiment part of mercenary companies, per 100 soldiers for better precision
+	MAA_COST_RATIO = 0						# The cost of the MAA regiments of mercenary companies as a fraction of what those regiments cost when buying them
 	
 	ALLOWED_DEBT_MONTHS = 24				# How many months of monthly income in dept are characters allowed to have before being blocked from hiring mercenaries
 	
 	REINFORCEMENT_FACTOR = 3.0				# How much faster do mercenary regiments reinforce than regular regiments
 
-	COUNTY_REMOVAL_FACTOR = 1.2				# When removing mercenaries from shrinking cultures, first multiply culture size with this
+	COUNTY_REMOVAL_FACTOR = 0				# When removing mercenaries from shrinking cultures, first multiply culture size with this
 }
 
 NHolyOrder = {
 	# In addition to the holding levies, a holy order has levies according to this formula:
 	# NUM_LEVIES_BASE + <num holdings> * NUM_LEVIES_PER_HOLDING
-	NUM_LEVIES_BASE = 500
-	NUM_LEVIES_PER_HOLDING = 200
+	NUM_LEVIES_BASE = 0
+	NUM_LEVIES_PER_HOLDING = 0
 
 	# The holy order starts out with NUM_MAA_BASE Men-At-Arms sub-regiments. These will always try to use the holy_order_maa defined in the religion, if any are available.
-	NUM_MAA_BASE = 2
+	NUM_MAA_BASE = 0
 
 	# The holy order also gets NUM_MAA_PER_HOLDING additional Men-At-Arms sub-regiments for each holding leased to it.
-	NUM_MAA_PER_HOLDING = 1
+	NUM_MAA_PER_HOLDING = 0
 	# The MaA from this many holdings will all go into the same regiment
-	NUM_HOLDINGS_PER_MAA_REGIMENT = 3
+	NUM_HOLDINGS_PER_MAA_REGIMENT = 1
 	# The regiment type of these additional Men-At-Arms has a chance of RELIGION_MAA_RATIO % (multiplied by 100) to use a religious type, like NUM_MAA_BASE.
 	# Otherwise it will use a random type with the holy_order_fallback = yes flag.
-	RELIGION_MAA_RATIO = 0.7
+	RELIGION_MAA_RATIO = 0
 
-	PATRON_MIN_TIER = 4						# minimum tier for a ruler to be a patron of a holy order
+	PATRON_MIN_TIER = 6						# minimum tier for a ruler to be a patron of a holy order
 
-	LEVY_COST_PER_100_SOLDIERS = 5.0		# The piety cost of the levy regiment part of holy orders, per 100 soldiers for better precision
-	MAA_COST_RATIO = 0.2					# The piety cost of the MAA regiments of holy orders as a fraction of what those regiments cost when buying them
+	LEVY_COST_PER_100_SOLDIERS = 0			# The piety cost of the levy regiment part of holy orders, per 100 soldiers for better precision
+	MAA_COST_RATIO = 0						# The piety cost of the MAA regiments of holy orders as a fraction of what those regiments cost when buying them
 	PATRON_HIRE_COST_MULT = 0				# The patron pays only a fraction for hiring a holy order. Set to 0 to make it free.
 
 	# One character can hire up to this many holy orders. Set to -1 to disable the limit.
-	HIRE_LIMIT = 1
+	HIRE_LIMIT = 0
 
 	# Must be at war with someone with at least this hostility level to be able to hire holy orders. Once hired hey can be used against all enemies, though.
-	ENEMY_MIN_HOSTILITY_LEVEL = 2
+	ENEMY_MIN_HOSTILITY_LEVEL = 10
 	
-	BASE_NUM_KNIGHTS = 2					# How many knights do holy orders have?
-	EXTRA_KNIGHTS_PER_HOLDING = 0.5			# How many knights do holy orders get for each holding? Rounds down
+	BASE_NUM_KNIGHTS = 0					# How many knights do holy orders have?
+	EXTRA_KNIGHTS_PER_HOLDING = 0			# How many knights do holy orders get for each holding? Rounds down
 
 	COAT_OF_ARMS_LIST = "religious_title"
 }

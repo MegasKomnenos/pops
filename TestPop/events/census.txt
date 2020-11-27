@@ -15282,6 +15282,7 @@ census.03 = {
 			}
 			every_in_list = { 
 				limit = { 
+					is_alive = yes
 					OR = { 
 						is_landed = no
 						is_ruler = no
@@ -88053,7 +88054,21 @@ census.12 = {
 				}
 				change_variable = { 
 					name = realm_suppression_base_self
-					add = 0.001
+					add = 0.01
+				}
+				if = { 
+					limit = { 
+						OR = { 
+							NOT = { 
+								has_variable = realm_suppression_base_self
+							}
+							var:realm_suppression_base_self < 0.01
+						}
+					}
+					set_variable = { 
+						name = realm_suppression_base_self
+						value = 0.01
+					}
 				}
 				set_variable = { 
 					name = realm_suppression
@@ -93620,7 +93635,6 @@ census.12 = {
 		}
 		every_in_global_list = { 
 			variable = stat_main_t
-			add_character_modifier = base_lord
 			if = { 
 				limit = { 
 					has_variable = task_manage_domain_prog
@@ -97168,6 +97182,7 @@ census.99 = {
 				is_character = yes
 				is_landed = yes
 			}
+			add_character_modifier = base_lord
 			set_variable = { 
 				name = init_main_t
 				value = 0

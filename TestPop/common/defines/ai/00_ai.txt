@@ -81,26 +81,26 @@
 	}
 	
 	BUDGET_CATEGORY_SHORT_TERM_MIN = {					# Under this amount of short term gold the AI will be hesitant to spend/save on other categories (per tier)
-		25
-		25
-		200
-		200
-		400
-		400
+		0
+		0
+		0
+		0
+		0
+		0
 	}
 	
 	MIN_RESERVED_GOLD_SPIRITUAL_HEAD_OF_FAITH = 750		# Character will avoid actively using gold if under this value
 	MIN_RESERVED_GOLD_HOLY_ORDER = 500					# Character will avoid actively using gold if under this value
 	MIN_WAR_CHEST = {									# The desired war chest will always be at least this much money, by tier
-		25
-		25
-		50
-		100
-		200
-		300
+		0
+		0
+		0
+		0
+		0
+		0
 	}
 	MONTHS_OF_MAINTENANCE_IN_WAR_CHEST = 18				# The AI will want this many months of max maintenance in their war chest, if that's more than what MIN_WAR_CHEST says
-	PERCENTAGE_INTO_WAR_CHEST = 0.6						# When the war chest hasn't been filled, the AI will put this much of the money it earns into the war chest (reserved gold still gets filled first)
+	PERCENTAGE_INTO_WAR_CHEST = 0						# When the war chest hasn't been filled, the AI will put this much of the money it earns into the war chest (reserved gold still gets filled first)
 	BUILDING_MIN_SCORE_COMPARED_TO_BEST = 0.8			# Any potential building with a score lower than this ratio of the best available building (even if the AI can't afford it right now) will be discarded
 	
 	GOALS_PER_TYPE = {									# Number goals per type (per tier)
@@ -210,9 +210,9 @@
 	RAISE_TROOPS_MIN_RATIO_OF_SELF = 0.3				# If the AI doesn't have troops raised, it won't raise them unless the troops amount to at least this much compared to its max troops
 	RAISE_TROOPS_MIN_RATIO_OF_ENEMY = 0.5				# Or this much compared to its enemy
 	REDUCED_EFFECTIVE_WEALTH_PER_HIRED_MERC = 100		# For each hired merc, the AI pretends to have less money so that it ends up keeping some reserves
-	MAX_WEALTH_EXPENDITURE_MERCS = 0.8					# The AI will never spend more than this fraction of its current wealth on buying mercs
+	MAX_WEALTH_EXPENDITURE_MERCS = 0					# The AI will never spend more than this fraction of its current wealth on buying mercs
 	MERC_OVERMATCHING_TARGET = 1.25						# The AI will try to outnumber the enemy by this ratio if it can afford it based on its warchest
-	MAX_WAR_CHEST_EXPENDITURE_MERC_OVERMATCHING = 0.7	# The AI will use up to this much of its warchest when trying to outnumber the enemy
+	MAX_WAR_CHEST_EXPENDITURE_MERC_OVERMATCHING = 0		# The AI will use up to this much of its warchest when trying to outnumber the enemy
 	MIN_HIRING_GOAL = 500								# If missing less than this amount to outnumber its enemies, the AI will hire as if were actually missing this amount
 	MAX_HIRING_GOAL_OVERFLOW_RATIO = 1.5				# The AI won't hire more than this times as many men as it is missing (using MERC_OVERMATCHING_TARGET). It'll hire the most expensive merc that fits within this. E.G., this means that if the AI is missing 1000 men, it'll hire the most expensive merc with less than 2000 men
 	MONTHS_BEFORE_CONTRACT_END_TO_REHIRE = 3			# This many months before a merc contract ends, the AI will rehire mercs if it can afford it and thinks it still needs them
@@ -266,14 +266,14 @@
 	MAX_RAID_DISTANCE = {								# How far away will the AI raid? Uses naval distance
 		0
 		0
-		1000 # Agder to Britanny/Ireland
-		1200 # Agder to Western France
-		3000 # Agder to southern Spain
-		4000 # Agder to Rome
+		0 	# Agder to Britanny/Ireland
+		0	# Agder to Western France
+		0	# Agder to southern Spain
+		0	# Agder to Rome
 	}							
-	MAX_RAID_DISTANCE_NEXT_COUNTY = 200					# After raiding one county, how far is the AI willing to go to the next?
-	MIN_STRENGTH_TO_RAID_VASSAL = 500					# How strong do vassals have to be for the AI to go raiding?
-	MIN_STRENGTH_TO_RAID_INDEPENDENT = 300				# How strong do independent rulers have to be for the AI to go raiding?
+	MAX_RAID_DISTANCE_NEXT_COUNTY = 0					# After raiding one county, how far is the AI willing to go to the next?
+	MIN_STRENGTH_TO_RAID_VASSAL = 1000000				# How strong do vassals have to be for the AI to go raiding?
+	MIN_STRENGTH_TO_RAID_INDEPENDENT = 1000000			# How strong do independent rulers have to be for the AI to go raiding?
 	MAX_RAID_TARGET_STRENGTH = 1.5						# Don't raid enemies too strong
 	MAX_RAID_TARGET_STRENGTH_AT_WAR = 5.0				# But if they're at war, the risk might be worth it
 	MIN_STRENGTH_FOR_RAIDER_TO_AVOID = 0.9				# If there's hostile units in this county and neighboring counties that are combined this strong compared to the raid army, flee home
