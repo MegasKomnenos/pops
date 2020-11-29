@@ -97,7 +97,7 @@ if __name__ == '__main__':
 
         chars = dict()
 
-        for name in ['prod_templates', 'prod_instances', 'trade_merchants', 'tech_techs', 'tech_eras', 'build_templates', 'build_slots_active']:
+        for name in ['prod_templates', 'prod_instances', 'trade_merchants', 'build_templates', 'build_slots_active']:
             for var in glob_lsts[name]:
                 if not var[1] in chars:
                     chars[var[1]] = (dict(), dict())
@@ -302,10 +302,6 @@ if __name__ == '__main__':
 
                     if ('char', data[1]) in glob_lsts['prod_templates']:
                         outout.append('\t\tadd_to_global_variable_list = { name = prod_templates target = scope:save_data_t }\n')
-                    elif ('char', data[1]) in glob_lsts['tech_techs']:
-                        outout.append('\t\tadd_to_global_variable_list = { name = tech_techs target = scope:save_data_t }\n')
-                    elif ('char', data[1]) in glob_lsts['tech_eras']:
-                        outout.append('\t\tadd_to_global_variable_list = { name = tech_eras target = scope:save_data_t }\n')
                     elif ('char', data[1]) in glob_lsts['build_templates']:
                         outout.append('\t\tadd_to_global_variable_list = { name = build_templates target = scope:save_data_t }\n')
                 else:

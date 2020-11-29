@@ -1,0 +1,126 @@
+﻿culture_main = {
+	every_county = {
+		limit = {
+			is_valid_prov = yes
+		}
+		add_to_global_variable_list = { name = culture_main_t target = this.culture }
+		
+		every_county_province = {
+			limit = {
+				is_valid_prov = yes
+			}
+			^^phenomenas^
+				remove_variable = culture_&phenomenas&_eff
+			^
+		}
+	}
+	
+	every_in_global_list = {
+		limit = {
+			NOT = {
+				is_target_in_global_variable_list = { name = culture_main_t target = this }
+			}
+		}
+		variable = culture_cultures
+		
+		culture_pop = yes
+	}
+	
+	clear_global_variable_list = culture_cultures
+	
+	every_in_global_list = {
+		variable = culture_main_t
+		
+		add_to_global_variable_list = { name = culture_cultures target = this }
+	}
+	
+	clear_global_variable_list = culture_main_t
+	
+	every_in_global_list = {
+		variable = culture_cultures
+		
+		set_variable = { name = culture_main_t value = 0 }
+		
+		every_county = {
+			limit = {
+				culture = prev
+				
+				is_valid_prov = yes
+			}
+			every_county_province = {
+				limit = {
+					is_valid_prov = yes
+				}
+				prev.culture = {
+					change_variable = { name = culture_main_t add = prev.var:pop_total }
+				}
+			}
+		}
+		
+		^^phenomenas^
+			if = {
+				limit = {
+					has_variable = culture_&phenomenas&
+				}
+				set_variable = { name = culture_&phenomenas&_eff value = var:culture_&phenomenas&_prog }
+				change_variable = { name = culture_&phenomenas&_eff multiply = 0.05 }
+				change_variable = { name = culture_&phenomenas&_eff add = { value = var:culture_main_t divide = 10 } }
+				
+				if = {
+					limit = {
+						var:culture_&phenomenas&_eff = {
+							compare_value > prev.var:culture_&phenomenas&_prog
+						}
+					}
+					set_variable = { name = culture_&phenomenas&_eff value = var:culture_&phenomenas&_prog }
+				}
+				
+				change_variable = { name = culture_&phenomenas&_prog subtract = var:culture_&phenomenas&_eff }
+				
+				change_variable = { name = culture_&phenomenas&_eff multiply = 10 }
+				change_variable = { name = culture_&phenomenas&_eff divide = var:culture_main_t }
+				
+				every_county = {
+					limit = {
+						culture = prev
+						
+						is_valid_prov = yes
+					}
+					every_county_province = {
+						limit = {
+							is_valid_prov = yes
+						}
+						set_variable = { name = culture_&phenomenas&_eff value = prev.culture.var:culture_&phenomenas&_eff }
+						change_variable = { name = culture_&phenomenas&_eff multiply = var:pop_total }
+						change_variable = { name = culture_&phenomenas&_eff divide = 10 }
+					}
+				}
+				
+				if = {
+					limit = {
+						OR = {
+							NOT = {
+								has_variable = culture_&phenomenas&_prog
+							}
+							
+							var:culture_&phenomenas&_prog <= 0
+						}
+					}
+					remove_variable = culture_&phenomenas&
+					remove_variable = culture_&phenomenas&_eff
+					remove_variable = culture_&phenomenas&_prog
+				}
+			}
+		^
+		
+		remove_variable = culture_main_t
+	}
+}
+
+culture_pop = {
+	^^phenomenas^
+		remove_variable = culture_&phenomenas&
+		remove_variable = culture_&phenomenas&_eff
+		remove_variable = culture_&phenomenas&_prog
+	^
+}

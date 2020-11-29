@@ -2107,7 +2107,7 @@ trade_resolve_trade = {
 		set_variable = { name = pop_pay_luxury value = 0 }
 		set_variable = { name = pop_pay_supply value = 0 }
 		
-		^^goods^set_variable = { name = prod_earn_&goods& value = 0 }^
+		^^lands^set_variable = { name = prod_earn_&lands& value = 0 }^
 	}
 	every_in_global_list = {
 		variable = prod_instances
@@ -2317,24 +2317,24 @@ trade_resolve_trade = {
 		
 		set_variable = { name = trade_resolve_trade_t value = 0 }
 		
-		^^goods^
-			if = {
-				limit = {
-					has_variable = prod_earn_&goods&
-					
-					var:prod_earn_&goods& > 0
-				}
-				change_variable = { name = trade_resolve_trade_t add = var:prod_earn_&goods& }
-			}
-			else = {
-				remove_variable = prod_earn_&goods&
-			}
-		^
-		
 		every_in_list = {
 			variable = prod_instances
 			
+			^^lands^
+				if = {
+					limit = {
+						var:prod_template = {
+							has_variable = prod_land_&lands&
+						}
+					}
+					prev = {
+						change_variable = { name = prod_earn_&lands& add = prev.var:prod_profit }
+					}
+				}
+			^
+			
 			prev = {
+				change_variable = { name = trade_resolve_trade_t add = prev.var:prod_earn }
 				change_variable = { name = trade_resolve_trade_t subtract = prev.var:prod_pay }
 			}
 		}
@@ -2447,32 +2447,18 @@ trade_resolve_trade_helper_0 = {
 			
 			var:trade_earn_$good$ > 0
 		}
-		every_county_province = {
+		every_in_list = {
 			limit = {
 				has_variable = prod_has_$good$
-					
 				var:prod_has_$good$ > 0
 			}
+			variable = prod_instances
+			
 			set_variable = { name = prod_earn_$good$ value = var:prod_has_$good$ }
 			change_variable = { name = prod_earn_$good$ multiply = 100 }
 			change_variable = { name = prod_earn_$good$ divide = prev.var:trade_has_$good$ }
 			change_variable = { name = prod_earn_$good$ multiply = prev.var:trade_earn_$good$ }
 			change_variable = { name = prod_earn_$good$ divide = 100 }
-			
-			every_in_list = {
-				limit = {
-					has_variable = prod_has_$good$
-					
-					var:prod_has_$good$ > 0
-				}
-				variable = prod_instances
-				
-				set_variable = { name = prod_earn_$good$ value = var:prod_has_$good$ }
-				change_variable = { name = prod_earn_$good$ multiply = 100 }
-				change_variable = { name = prod_earn_$good$ divide = prev.var:prod_has_$good$ }
-				change_variable = { name = prod_earn_$good$ multiply = prev.var:prod_earn_$good$ }
-				change_variable = { name = prod_earn_$good$ divide = 100 }
-			}
 		}
 	}
 }

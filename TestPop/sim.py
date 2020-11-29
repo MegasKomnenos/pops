@@ -336,49 +336,6 @@ sim_run.02 = {
 				}
 				
 				trigger_event = { id = census.03 }
-				
-				every_province = {
-					limit = {
-						is_valid_prov = yes
-					}
-					if = {
-						limit = {
-							has_variable = farm_potential
-							
-							var:farm_potential >= 1
-						}
-						set_variable = { name = sim_t value = var:farm_potential }
-						change_variable = { name = sim_t divide = 5 }
-						
-						build_start_project = {
-							name = farm
-							size = var:farm_potential
-							para = var:sim_t
-							owner = 2
-						}
-						
-						set_variable = { name = farm_potential value = 0 }
-					}
-					if = {
-						limit = {
-							has_variable = pasture_potential
-							
-							var:pasture_potential >= 1
-						}
-						set_variable = { name = sim_t value = var:pasture_potential }
-						change_variable = { name = sim_t divide = 5 }
-						
-						build_start_project = {
-							name = pasture
-							size = var:pasture_potential
-							para = var:sim_t
-							owner = 2
-						}
-						
-						set_variable = { name = pasture_potential value = 0 }
-					}
-				}
-				
 				trigger_event = { id = census.04 }
 				trigger_event = { id = census.05 }
 				

@@ -79,6 +79,24 @@ census.04 = {
 				is_valid_prov = yes
 			}
 			pop_update_demand = yes
+			
+			if = {
+				limit = {
+					OR = {
+						NOT = {
+							has_variable = build_counter
+						}
+						
+						var:build_counter = 0
+					}
+				}
+				set_variable = { name = build_counter value = 5 }
+				
+				build_prov = yes
+			}
+			else = {
+				change_variable = { name = build_counter subtract = 1 }
+			}
 		}
 	}
 	
@@ -149,7 +167,7 @@ census.08 = {
 			limit = {
 				has_global_variable_list = build_slots_active
 					
-				global_variable_list_size = { name = build_slots_active value >= 1}
+				global_variable_list_size = { name = build_slots_active value >= 1 }
 			}
 			every_in_global_list = {
 				variable = build_slots_active

@@ -33,6 +33,121 @@ build_new_slot = {
 	add_to_global_variable_list = { name = build_slots target = scope:build_new_slot_temp }
 }
 
+build_prov = {
+	set_variable = { name = workshop_potential value = 10000 }
+	
+	^^buildings^
+		if = {
+			limit = {
+				has_variable = prod_earn_&buildings&
+				
+				has_variable = &buildings&_potential
+				var:&buildings&_potential > 0
+				
+				has_variable = &buildings&_total
+				var:&buildings&_total > 0
+				
+				OR = {
+					NOT = {
+						has_variable_list = build_slots
+					}
+					NOT = {
+						any_in_list = {
+							variable = build_slots
+							
+							var:build_name = global_var:&buildings&
+						}
+					}
+				}
+			}
+			global_var:&buildings& = {
+				^^goods^
+					if = {
+						limit = {
+							has_variable = build_&goods&
+						}
+						prev = {
+							set_variable = { name = build_&goods& value = prev.var:build_&goods& }
+						}
+					}
+				^
+			}
+			
+			set_variable = { name = build_set_dmnd_t value = 0 }
+	
+			^^goods^
+				if = {
+					limit = {
+						has_variable = build_&goods&
+					}
+					change_variable = { name = build_&goods& multiply = 10 }
+					change_variable = { name = build_&goods& divide = county.var:trade_price_&goods& }
+					change_variable = { name = build_&goods& multiply = var:build_&goods& }
+					change_variable = { name = build_&goods& add = 0.001 }
+					change_variable = { name = build_set_dmnd_t add = var:build_&goods& }
+				}
+			^
+			
+			set_variable = { name = build_set_dmnd_tt value = 0 }
+			
+			^^goods^
+				if = {
+					limit = {
+						has_variable = build_&goods&
+					}
+					change_variable = { name = build_&goods& multiply = 10 }
+					change_variable = { name = build_&goods& divide = var:build_set_dmnd_t }
+					change_variable = { name = build_&goods& divide = global_var:&buildings&.var:build_&goods& }
+					change_variable = { name = build_&goods& multiply = county.var:trade_price_&goods& }
+					change_variable = { name = build_set_dmnd_tt add = var:build_&goods& }
+					
+					remove_variable = build_&goods&
+				}
+			^
+			
+			set_variable = { name = build_set_dmnd_t value = var:prod_earn_&buildings& }
+			change_variable = { name = build_set_dmnd_t multiply = 50 }
+			change_variable = { name = build_set_dmnd_t divide = var:&buildings&_total }
+			
+			if = {
+				limit = {
+					var:build_set_dmnd_t = {
+						compare_value >= prev.var:build_set_dmnd_tt
+					}
+				}
+				set_variable = { name = build_set_dmnd_t value = var:prod_earn_&buildings& }
+				change_variable = { name = build_set_dmnd_t multiply = 2 }
+				change_variable = { name = build_set_dmnd_t divide = var:build_set_dmnd_tt }
+				
+				if = {
+					limit = {
+						var:build_set_dmnd_t = {
+							compare_value > prev.var:&buildings&_potential
+						}
+					}
+					set_variable = { name = build_set_dmnd_t value = var:&buildings&_potential }
+				}
+				
+				change_variable = { name = &buildings&_potential subtract = var:build_set_dmnd_t }
+				
+				set_variable = { name = build_set_dmnd_tt value = var:build_set_dmnd_t }
+				change_variable = { name = build_set_dmnd_tt divide = 5 }
+				
+				build_start_project = {
+					name = &buildings&
+					size = var:build_set_dmnd_t
+					para = var:build_set_dmnd_tt
+					owner = 2
+				}
+			}
+		}
+	^
+	
+	remove_variable = workshop_potential
+	remove_variable = build_set_dmnd_t
+	remove_variable = build_set_dmnd_tt
+}
+
 build_start_project = {
 	if = {
 		limit = {
@@ -51,8 +166,9 @@ build_start_project = {
 	set_variable = { name = build_start_project_tt value = $para$ }
 	set_variable = { name = build_start_project_ttt value = $owner$ }
 	
-	random_in_global_list = {
+	ordered_in_global_list = {
 		variable = build_slots
+		position = 0
 		
 		add_to_global_variable_list = { name = build_slots_active target = this }
 		remove_list_global_variable = { name = build_slots target = this }
