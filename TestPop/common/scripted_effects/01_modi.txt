@@ -26,6 +26,30 @@ modi_prod = {
 		change_variable = { name = modi_prod_dmnd_&goods& multiply = var:prod_effic }
 		change_variable = { name = modi_prod_sply_&goods& multiply = var:prod_effic }
 	^
+	
+	every_in_list = {
+		limit = {
+			var:prod_template = {
+				has_variable = prod_land_workshop
+			}
+		}
+		variable = prod_instances
+		
+		sqrt_effect = {
+			inp = var:prod_size
+			return = modi_prod_t
+		}
+		
+		change_variable = { name = modi_prod_t value = 20 }
+		
+		set_variable = { name = modi_prod_sply value = 1 }
+		change_variable = { name = modi_prod_sply add = var:modi_prod_t }
+		
+		set_variable = { name = modi_prod_dmnd value = 1 }
+		change_variable = { name = modi_prod_dmnd add = { value = var:modi_prod_t divide = 2 } }
+		
+		remove_variable = modi_prod_t
+	}
 }
 
 modi_pop = {
