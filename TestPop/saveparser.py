@@ -97,7 +97,7 @@ if __name__ == '__main__':
 
         chars = dict()
 
-        for name in ['prod_templates', 'prod_instances', 'trade_merchants', 'build_templates', 'build_slots_active']:
+        for name in ['prod_templates', 'prod_instances', 'trade_merchants', 'build_templates']:
             for var in glob_lsts[name]:
                 if not var[1] in chars:
                     chars[var[1]] = (dict(), dict())
