@@ -1,3 +1,97 @@
 ﻿prod_update_instances_order_value = {
 	value = var:prod_update_instances_diff
 }
+
+prod_prog_rank_0 = {
+	value = 0
+}
+prod_prog_rank_1 = {
+	value = 100
+}
+prod_prog_rank_2 = {
+	value = 500
+}
+prod_prog_rank_3 = {
+	value = 2000
+}
+prod_prog_rank_4 = {
+	value = 6000
+}
+prod_prog_rank_5 = {
+	value = 12000
+}
+prod_rank = {
+	value = 0
+	
+	if = {
+		limit = {
+			has_variable = prod_prog
+		}
+		if = {
+			limit = {
+				var:prod_prog >= prod_prog_rank_5
+			}
+			add = 5
+		}
+		else_if = {
+			limit = {
+				var:prod_prog >= prod_prog_rank_4
+			}
+			add = 4
+		}
+		else_if = {
+			limit = {
+				var:prod_prog >= prod_prog_rank_3
+			}
+			add = 3
+		}
+		else_if = {
+			limit = {
+				var:prod_prog >= prod_prog_rank_2
+			}
+			add = 2
+		}
+		else_if = {
+			limit = {
+				var:prod_prog >= prod_prog_rank_1
+			}
+			add = 1
+		}
+	}
+}
+
+prod_prog_gain = {
+	value = var:prod_size
+	
+	if = {
+		limit = {
+			OR = {
+				var:prod_template = {
+					NOT = {
+						has_variable = prod_land_extraction
+						has_variable = prod_land_workshop
+					}
+				}
+				
+				var:prod_location.var:pop_density > 1
+			}
+		}
+		multiply = var:prod_location.var:pop_density
+	}
+}
+
+prod_tools_mud = {
+	value = 4
+}
+prod_tools_fuel = {
+	value = 4
+}
+prod_tools_timber = {
+	value = 5
+}
+prod_tools_metal = {
+	value = 10
+}
+prod_tools_tools = {
+	value = 20
+}

@@ -5,6 +5,18 @@ census.01 = {
 	hidden = yes
 	
 	immediate = {
+		every_province = {
+			limit = {
+				is_valid_prov = yes
+			}
+			pop_density = yes
+		}
+		every_in_global_list = {
+			variable = prod_instances
+			
+			prod_update_rank = yes
+		}
+		
 		modi_refresh = yes
 		
 		prod_update_instances = yes
@@ -79,24 +91,6 @@ census.04 = {
 				is_valid_prov = yes
 			}
 			pop_update_demand = yes
-			
-			if = {
-				limit = {
-					OR = {
-						NOT = {
-							has_variable = build_counter
-						}
-						
-						var:build_counter = 0
-					}
-				}
-				set_variable = { name = build_counter value = 5 }
-				
-				build_prov = yes
-			}
-			else = {
-				change_variable = { name = build_counter subtract = 1 }
-			}
 		}
 	}
 	

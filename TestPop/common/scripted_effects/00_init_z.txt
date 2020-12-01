@@ -80,36 +80,10 @@
 			set_variable = { name = trade_sum_sply_&goods& value = 0 }
 		^
 		
-		set_variable = { name = prod_tools value = 0 }
-		set_variable = { name = prod_effic value = 1 }
-		
-		set_variable = { name = prod_tools_mud value = 0.25 }
-		set_variable = { name = prod_tools_timber value = 0.5 }
-		set_variable = { name = prod_tools_metal value = 1 }
-		set_variable = { name = prod_tools_tools value = 8 }
-		
-		set_variable = { name = prod_tools_dmnd_mud value = 0 }
-		set_variable = { name = prod_tools_dmnd_timber value = 0 }
-		set_variable = { name = prod_tools_dmnd_metal value = 0 }
-		set_variable = { name = prod_tools_dmnd_tools value = 0 }
-		
-		set_variable = { name = prod_tools_in_mud value = 0 }
-		set_variable = { name = prod_tools_in_timber value = 0 }
-		set_variable = { name = prod_tools_in_metal value = 0 }
-		set_variable = { name = prod_tools_in_tools value = 0 }
-		
 		every_county_province = {
 			limit = {
 				is_valid_prov = yes
 			}	
-			random_list = {
-				1 = { set_variable = { name = build_counter value = 1 } }
-				1 = { set_variable = { name = build_counter value = 2 } }
-				1 = { set_variable = { name = build_counter value = 3 } }
-				1 = { set_variable = { name = build_counter value = 4 } }
-				1 = { set_variable = { name = build_counter value = 5 } }
-			}
-			
 			if = {
 				limit = {
 					is_city = yes
@@ -184,10 +158,6 @@
 					}
 				}
 				set_variable = { name = extraction_total value = 0 }
-				set_variable = { name = extraction_potential value = 0 }
-			}
-			else = {
-				set_variable = { name = extraction_potential value = var:extraction_total }
 			}
 			
 			set_variable = { name = pop_pay_serf value = 0 }

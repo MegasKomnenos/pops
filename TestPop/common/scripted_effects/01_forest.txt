@@ -80,13 +80,13 @@
 			change_variable = { name = forest_main_tt multiply = var:forest_farm }
 			change_variable = { name = forest_main_tt divide = 100 }
 			change_variable = { name = forest_farm subtract = var:forest_main_tt }
-			change_variable = { name = farm_potential add = var:forest_main_tt }
+			change_variable = { name = farm_total add = var:forest_main_tt }
 			
 			set_variable = { name = forest_main_tt value = var:forest_main_t }
 			change_variable = { name = forest_main_tt multiply = var:forest_pasture }
 			change_variable = { name = forest_main_tt divide = 100 }
 			change_variable = { name = forest_pasture subtract = var:forest_main_tt }
-			change_variable = { name = pasture_potential add = var:forest_main_tt }
+			change_variable = { name = pasture_total add = var:forest_main_tt }
 			
 			set_variable = { name = forest_main_tt value = var:forest_main_t }
 			change_variable = { name = forest_main_tt multiply = var:forest_wasteland }
@@ -109,22 +109,10 @@
 			change_variable = { name = farm_total subtract = var:forest_main_tt }
 			
 			set_variable = { name = forest_main_tt value = var:forest_main_t }
-			change_variable = { name = forest_main_tt multiply = var:farm_potential }
-			change_variable = { name = forest_main_tt divide = 100 }
-			change_variable = { name = forest_farm add = var:forest_main_tt }
-			change_variable = { name = farm_potential subtract = var:forest_main_tt }
-			
-			set_variable = { name = forest_main_tt value = var:forest_main_t }
 			change_variable = { name = forest_main_tt multiply = var:pasture_total }
 			change_variable = { name = forest_main_tt divide = 100 }
 			change_variable = { name = forest_pasture add = var:forest_main_tt }
 			change_variable = { name = pasture_total subtract = var:forest_main_tt }
-			
-			set_variable = { name = forest_main_tt value = var:forest_main_t }
-			change_variable = { name = forest_main_tt multiply = var:pasture_potential }
-			change_variable = { name = forest_main_tt divide = 100 }
-			change_variable = { name = forest_pasture add = var:forest_main_tt }
-			change_variable = { name = pasture_potential subtract = var:forest_main_tt }
 			
 			set_variable = { name = forest_main_tt value = var:forest_main_t }
 			change_variable = { name = forest_main_tt multiply = var:wasteland_forest }
