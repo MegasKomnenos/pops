@@ -8,40 +8,27 @@ census.01 = {
 				is_valid_prov = yes
 			}
 			set_variable = { 
-				name = pop_density_t
+				name = pop_density
 				value = var:pop_total
 			}
 			change_variable = { 
-				name = pop_density_t
-				multiply = 2
+				name = pop_density
+				divide = 5
 			}
 			change_variable = { 
-				name = pop_density_t
-				divide = var:prov_size
+				name = pop_density
+				divide = { 
+					value = 1
+					add = var:prov_size
+				}
 			}
 			change_variable = { 
-				name = pop_density_t
+				name = pop_density
 				divide = var:prov_cost
 			}
 			if = { 
 				limit = { 
-					var:pop_density_t >= 1
-				}
-				set_variable = { 
-					name = pop_density
-					value = var:pop_density_t
-				}
-				change_variable = { 
-					name = pop_density
-					subtract = 1
-				}
-				change_variable = { 
-					name = pop_density
-					divide = 3
-				}
-				change_variable = { 
-					name = pop_density
-					add = 1
+					var:pop_density < 1
 				}
 				set_variable = { 
 					name = math_sqrt_i
@@ -122,220 +109,21 @@ census.01 = {
 					}
 				}
 				remove_variable = math_sqrt_i
+				change_variable = { 
+					name = pop_density
+					add = 1
+				}
+				change_variable = { 
+					name = pop_density
+					divide = 2
+				}
 			}
 			else = { 
 				set_variable = { 
 					name = pop_density
-					value = 0
+					value = 1
 				}
-				set_variable = { 
-					name = pop_density_tt
-					value = var:pop_density_t
-				}
-				change_variable = { 
-					name = pop_density_tt
-					add = 0.334
-				}
-				change_variable = { 
-					name = pop_density_tt
-					divide = 1.334
-				}
-				set_variable = { 
-					name = math_sqrt_i
-					value = var:pop_density_tt
-				}
-				if = { 
-					limit = { 
-						has_variable = math_sqrt_i
-						var:math_sqrt_i > 0
-					}
-					set_variable = { 
-						name = math_sqrt_x
-						value = var:math_sqrt_i
-					}
-					set_variable = { 
-						name = math_sqrt_n
-						value = var:math_sqrt_i
-					}
-					change_variable = { 
-						name = math_sqrt_n
-						divide = 2
-					}
-					set_variable = { 
-						name = math_sqrt_tt
-						value = 0.5
-					}
-					while = { 
-						limit = { 
-							has_variable = math_sqrt_n
-							var:math_sqrt_n > 0
-							OR = { 
-								var:math_sqrt_tt < 0.995
-								var:math_sqrt_tt > 1.005
-							}
-						}
-						set_variable = { 
-							name = math_sqrt_x
-							value = var:math_sqrt_n
-						}
-						set_variable = { 
-							name = math_sqrt_t
-							value = var:math_sqrt_i
-						}
-						change_variable = { 
-							name = math_sqrt_t
-							divide = var:math_sqrt_n
-						}
-						change_variable = { 
-							name = math_sqrt_n
-							add = var:math_sqrt_t
-						}
-						change_variable = { 
-							name = math_sqrt_n
-							divide = 2
-						}
-						set_variable = { 
-							name = math_sqrt_tt
-							value = var:math_sqrt_x
-						}
-						change_variable = { 
-							name = math_sqrt_tt
-							divide = var:math_sqrt_n
-						}
-					}
-					set_variable = { 
-						name = pop_density_tt
-						value = var:math_sqrt_n
-					}
-					remove_variable = math_sqrt_x
-					remove_variable = math_sqrt_t
-					remove_variable = math_sqrt_n
-					remove_variable = math_sqrt_tt
-				}
-				else = { 
-					set_variable = { 
-						name = pop_density_tt
-						value = 0
-					}
-				}
-				remove_variable = math_sqrt_i
-				change_variable = { 
-					name = pop_density_tt
-					multiply = { 
-						value = 1
-						subtract = var:pop_density_t
-					}
-				}
-				change_variable = { 
-					name = pop_density
-					add = var:pop_density_tt
-				}
-				set_variable = { 
-					name = pop_density_tt
-					value = var:pop_density_t
-				}
-				change_variable = { 
-					name = pop_density_tt
-					subtract = 1
-				}
-				change_variable = { 
-					name = pop_density_tt
-					divide = 3
-				}
-				change_variable = { 
-					name = pop_density_tt
-					add = 1
-				}
-				set_variable = { 
-					name = math_sqrt_i
-					value = var:pop_density_tt
-				}
-				if = { 
-					limit = { 
-						has_variable = math_sqrt_i
-						var:math_sqrt_i > 0
-					}
-					set_variable = { 
-						name = math_sqrt_x
-						value = var:math_sqrt_i
-					}
-					set_variable = { 
-						name = math_sqrt_n
-						value = var:math_sqrt_i
-					}
-					change_variable = { 
-						name = math_sqrt_n
-						divide = 2
-					}
-					set_variable = { 
-						name = math_sqrt_tt
-						value = 0.5
-					}
-					while = { 
-						limit = { 
-							has_variable = math_sqrt_n
-							var:math_sqrt_n > 0
-							OR = { 
-								var:math_sqrt_tt < 0.995
-								var:math_sqrt_tt > 1.005
-							}
-						}
-						set_variable = { 
-							name = math_sqrt_x
-							value = var:math_sqrt_n
-						}
-						set_variable = { 
-							name = math_sqrt_t
-							value = var:math_sqrt_i
-						}
-						change_variable = { 
-							name = math_sqrt_t
-							divide = var:math_sqrt_n
-						}
-						change_variable = { 
-							name = math_sqrt_n
-							add = var:math_sqrt_t
-						}
-						change_variable = { 
-							name = math_sqrt_n
-							divide = 2
-						}
-						set_variable = { 
-							name = math_sqrt_tt
-							value = var:math_sqrt_x
-						}
-						change_variable = { 
-							name = math_sqrt_tt
-							divide = var:math_sqrt_n
-						}
-					}
-					set_variable = { 
-						name = pop_density_tt
-						value = var:math_sqrt_n
-					}
-					remove_variable = math_sqrt_x
-					remove_variable = math_sqrt_t
-					remove_variable = math_sqrt_n
-					remove_variable = math_sqrt_tt
-				}
-				else = { 
-					set_variable = { 
-						name = pop_density_tt
-						value = 0
-					}
-				}
-				remove_variable = math_sqrt_i
-				change_variable = { 
-					name = pop_density_tt
-					multiply = var:pop_density_t
-				}
-				change_variable = { 
-					name = pop_density
-					add = var:pop_density_tt
-				}
-				remove_variable = pop_density_tt
 			}
-			remove_variable = pop_density_t
 		}
 		every_in_global_list = { 
 			variable = prod_instances
