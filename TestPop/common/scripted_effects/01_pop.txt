@@ -1,27 +1,4 @@
-﻿pop_density = {
-	set_variable = { name = pop_density value = var:pop_total }
-	change_variable = { name = pop_density divide = 5 }
-	change_variable = { name = pop_density divide = { value = 1 add = var:prov_size } }
-	change_variable = { name = pop_density divide = var:prov_cost }
-	
-	if = {
-		limit = {
-			var:pop_density < 1
-		}
-		sqrt_effect = {
-			inp = var:pop_density
-			return = pop_density
-		}
-		change_variable = { name = pop_density add = 1 }
-		change_variable = { name = pop_density divide = 2 }
-	}
-	else = {
-		set_variable = { name = pop_density value = 1 }
-	}
-}
-
-
-pop_resolve_demand = {
+﻿pop_resolve_demand = {
 	set_variable = { name = pop_calorie value = 0 }
 	set_variable = { name = pop_nutrient value = 0 }
 	set_variable = { name = pop_comfort value = 0 }

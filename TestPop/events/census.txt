@@ -3,128 +3,6 @@ census.01 = {
 	type = empty
 	hidden = yes
 	immediate = { 
-		every_province = { 
-			limit = { 
-				is_valid_prov = yes
-			}
-			set_variable = { 
-				name = pop_density
-				value = var:pop_total
-			}
-			change_variable = { 
-				name = pop_density
-				divide = 5
-			}
-			change_variable = { 
-				name = pop_density
-				divide = { 
-					value = 1
-					add = var:prov_size
-				}
-			}
-			change_variable = { 
-				name = pop_density
-				divide = var:prov_cost
-			}
-			if = { 
-				limit = { 
-					var:pop_density < 1
-				}
-				set_variable = { 
-					name = math_sqrt_i
-					value = var:pop_density
-				}
-				if = { 
-					limit = { 
-						has_variable = math_sqrt_i
-						var:math_sqrt_i > 0
-					}
-					set_variable = { 
-						name = math_sqrt_x
-						value = var:math_sqrt_i
-					}
-					set_variable = { 
-						name = math_sqrt_n
-						value = var:math_sqrt_i
-					}
-					change_variable = { 
-						name = math_sqrt_n
-						divide = 2
-					}
-					set_variable = { 
-						name = math_sqrt_tt
-						value = 0.5
-					}
-					while = { 
-						limit = { 
-							has_variable = math_sqrt_n
-							var:math_sqrt_n > 0
-							OR = { 
-								var:math_sqrt_tt < 0.995
-								var:math_sqrt_tt > 1.005
-							}
-						}
-						set_variable = { 
-							name = math_sqrt_x
-							value = var:math_sqrt_n
-						}
-						set_variable = { 
-							name = math_sqrt_t
-							value = var:math_sqrt_i
-						}
-						change_variable = { 
-							name = math_sqrt_t
-							divide = var:math_sqrt_n
-						}
-						change_variable = { 
-							name = math_sqrt_n
-							add = var:math_sqrt_t
-						}
-						change_variable = { 
-							name = math_sqrt_n
-							divide = 2
-						}
-						set_variable = { 
-							name = math_sqrt_tt
-							value = var:math_sqrt_x
-						}
-						change_variable = { 
-							name = math_sqrt_tt
-							divide = var:math_sqrt_n
-						}
-					}
-					set_variable = { 
-						name = pop_density
-						value = var:math_sqrt_n
-					}
-					remove_variable = math_sqrt_x
-					remove_variable = math_sqrt_t
-					remove_variable = math_sqrt_n
-					remove_variable = math_sqrt_tt
-				}
-				else = { 
-					set_variable = { 
-						name = pop_density
-						value = 0
-					}
-				}
-				remove_variable = math_sqrt_i
-				change_variable = { 
-					name = pop_density
-					add = 1
-				}
-				change_variable = { 
-					name = pop_density
-					divide = 2
-				}
-			}
-			else = { 
-				set_variable = { 
-					name = pop_density
-					value = 1
-				}
-			}
-		}
 		every_in_global_list = { 
 			variable = prod_instances
 			if = { 
@@ -70383,10 +70261,6 @@ census.07 = {
 			else = { 
 				remove_variable = prod_earn_armaments
 			}
-			change_variable = { 
-				name = prod_pay
-				add = var:prod_pay_tools_foo
-			}
 			remove_variable = trade_resolve_trade_t
 		}
 		if = { 
@@ -70826,6 +70700,10 @@ census.07 = {
 					change_variable = { 
 						name = trade_resolve_trade_t
 						subtract = prev.var:prod_pay
+					}
+					change_variable = { 
+						name = trade_resolve_trade_t
+						subtract = prev.var:prod_pay_tools_foo
 					}
 				}
 			}

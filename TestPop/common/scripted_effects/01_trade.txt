@@ -2187,8 +2187,6 @@ trade_resolve_trade = {
 			}
 		^
 		
-		change_variable = { name = prod_pay add = var:prod_pay_tools_foo }
-		
 		remove_variable = trade_resolve_trade_t
 	}
 	
@@ -2306,6 +2304,7 @@ trade_resolve_trade = {
 			prev = {
 				change_variable = { name = trade_resolve_trade_t add = prev.var:prod_earn }
 				change_variable = { name = trade_resolve_trade_t subtract = prev.var:prod_pay }
+				change_variable = { name = trade_resolve_trade_t subtract = prev.var:prod_pay_tools_foo }
 			}
 		}
 		

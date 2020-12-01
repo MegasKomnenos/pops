@@ -62,22 +62,6 @@ prod_rank = {
 
 prod_prog_gain = {
 	value = var:prod_size
-	
-	if = {
-		limit = {
-			OR = {
-				var:prod_template = {
-					NOT = {
-						has_variable = prod_land_extraction
-						has_variable = prod_land_workshop
-					}
-				}
-				
-				var:prod_location.var:pop_density > 1
-			}
-		}
-		multiply = var:prod_location.var:pop_density
-	}
 }
 
 prod_tools_mud = {
