@@ -164,14 +164,89 @@ census.01 = {
 				name = prod_update_rank_ttt
 				add = var:prod_update_rank_tt_profit
 			}
+			set_variable = { 
+				name = math_sqrt_i
+				value = prod_prog_gain
+			}
+			if = { 
+				limit = { 
+					has_variable = math_sqrt_i
+					var:math_sqrt_i > 0
+				}
+				set_variable = { 
+					name = math_sqrt_x
+					value = var:math_sqrt_i
+				}
+				set_variable = { 
+					name = math_sqrt_n
+					value = var:math_sqrt_i
+				}
+				change_variable = { 
+					name = math_sqrt_n
+					divide = 2
+				}
+				set_variable = { 
+					name = math_sqrt_tt
+					value = 0.5
+				}
+				while = { 
+					limit = { 
+						has_variable = math_sqrt_n
+						var:math_sqrt_n > 0
+						OR = { 
+							var:math_sqrt_tt < 0.995
+							var:math_sqrt_tt > 1.005
+						}
+					}
+					set_variable = { 
+						name = math_sqrt_x
+						value = var:math_sqrt_n
+					}
+					set_variable = { 
+						name = math_sqrt_t
+						value = var:math_sqrt_i
+					}
+					change_variable = { 
+						name = math_sqrt_t
+						divide = var:math_sqrt_n
+					}
+					change_variable = { 
+						name = math_sqrt_n
+						add = var:math_sqrt_t
+					}
+					change_variable = { 
+						name = math_sqrt_n
+						divide = 2
+					}
+					set_variable = { 
+						name = math_sqrt_tt
+						value = var:math_sqrt_x
+					}
+					change_variable = { 
+						name = math_sqrt_tt
+						divide = var:math_sqrt_n
+					}
+				}
+				set_variable = { 
+					name = prod_prog_gain
+					value = var:math_sqrt_n
+				}
+				remove_variable = math_sqrt_x
+				remove_variable = math_sqrt_t
+				remove_variable = math_sqrt_n
+				remove_variable = math_sqrt_tt
+			}
+			else = { 
+				set_variable = { 
+					name = prod_prog_gain
+					value = 0
+				}
+			}
+			remove_variable = math_sqrt_i
 			if = { 
 				limit = { 
 					has_variable = prod_update_rank_ttt
 					var:prod_update_rank_ttt > 0
-				}
-				set_variable = { 
-					name = prod_prog_gain
-					value = prod_prog_gain
 				}
 				set_variable = { 
 					name = prod_prog_spend
@@ -191,17 +266,13 @@ census.01 = {
 			}
 			else = { 
 				set_variable = { 
-					name = prod_prog_gain
-					value = prod_prog_gain
-				}
-				set_variable = { 
 					name = prod_prog_spend
 					value = 0
 				}
 			}
 			set_variable = { 
 				name = prod_prog_decay
-				value = 0.05
+				value = 0.02
 			}
 			change_variable = { 
 				name = prod_prog_decay

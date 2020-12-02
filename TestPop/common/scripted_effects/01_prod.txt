@@ -235,22 +235,25 @@ prod_update_rank = {
 	set_variable = { name = prod_update_rank_ttt value = var:prod_update_rank_t_profit }
 	change_variable = { name = prod_update_rank_ttt add = var:prod_update_rank_tt_profit }
 	
+	sqrt_effect = {
+		inp = prod_prog_gain
+		return = prod_prog_gain
+	}
+	
 	if = {
 		limit = {
 			has_variable = prod_update_rank_ttt
 			var:prod_update_rank_ttt > 0
 		}
-		set_variable = { name = prod_prog_gain value = prod_prog_gain }
 		set_variable = { name = prod_prog_spend value = var:prod_prog_gain }
 		change_variable = { name = prod_prog_spend multiply = { value = var:prod_update_rank_t_profit divide = var:prod_update_rank_ttt } }
 		change_variable = { name = prod_prog_gain subtract = var:prod_prog_spend }
 	}
 	else = {
-		set_variable = { name = prod_prog_gain value = prod_prog_gain }
 		set_variable = { name = prod_prog_spend value = 0 }
 	}
 	
-	set_variable = { name = prod_prog_decay value = 0.05 }
+	set_variable = { name = prod_prog_decay value = 0.02 }
 	change_variable = { name = prod_prog_decay multiply = var:prod_prog }
 	
 	change_variable = { name = prod_prog add = var:prod_prog_gain }
