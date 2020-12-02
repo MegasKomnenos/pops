@@ -36767,6 +36767,1077 @@ toggle_province_townhall = {
 						}
 					}
 				}
+				if = { 
+					limit = { 
+						var:prod_template = global_var:cottage
+					}
+					scope:gui_t = { 
+						give_nickname = gui_ind_cottage
+					}
+					if = { 
+						limit = { 
+							global_var:cottage = { 
+								has_variable = prod_land_farm
+							}
+						}
+						scope:gui_t = { 
+							set_variable = { 
+								name = gui_farm
+								value = 1
+							}
+						}
+					}
+					if = { 
+						limit = { 
+							global_var:cottage = { 
+								has_variable = prod_land_pasture
+							}
+						}
+						scope:gui_t = { 
+							set_variable = { 
+								name = gui_pasture
+								value = 1
+							}
+						}
+					}
+					if = { 
+						limit = { 
+							global_var:cottage = { 
+								has_variable = prod_land_forest
+							}
+						}
+						scope:gui_t = { 
+							set_variable = { 
+								name = gui_forest
+								value = 1
+							}
+						}
+					}
+					if = { 
+						limit = { 
+							global_var:cottage = { 
+								has_variable = prod_land_extraction
+							}
+						}
+						scope:gui_t = { 
+							set_variable = { 
+								name = gui_extraction
+								value = 1
+							}
+						}
+					}
+					if = { 
+						limit = { 
+							global_var:cottage = { 
+								has_variable = prod_land_workshop
+							}
+						}
+						scope:gui_t = { 
+							set_variable = { 
+								name = gui_workshop
+								value = 1
+							}
+						}
+					}
+					scope:gui_t = { 
+						set_variable = { 
+							name = gui_t
+							value = prev
+						}
+						if = { 
+							limit = { 
+								prev = { 
+									has_variable = prod_dmnd_old_food
+								}
+							}
+							ordered_in_global_list = { 
+								variable = misc_chars
+								position = 0
+								save_temporary_scope_as = gui_tt
+								remove_list_global_variable = { 
+									name = misc_chars
+									target = this
+								}
+							}
+							add_to_variable_list = { 
+								name = gui_t
+								target = scope:gui_tt
+							}
+							prev = { 
+								scope:gui_tt = { 
+									give_nickname = gui_food
+									set_variable = { 
+										name = gui_t
+										value = prev.var:prod_dmnd_old_food
+									}
+									change_variable = { 
+										name = gui_t
+										multiply = -1
+									}
+								}
+							}
+						}
+						if = { 
+							limit = { 
+								prev = { 
+									has_variable = prod_dmnd_old_cereal
+								}
+							}
+							ordered_in_global_list = { 
+								variable = misc_chars
+								position = 0
+								save_temporary_scope_as = gui_tt
+								remove_list_global_variable = { 
+									name = misc_chars
+									target = this
+								}
+							}
+							add_to_variable_list = { 
+								name = gui_t
+								target = scope:gui_tt
+							}
+							prev = { 
+								scope:gui_tt = { 
+									give_nickname = gui_cereal
+									set_variable = { 
+										name = gui_t
+										value = prev.var:prod_dmnd_old_cereal
+									}
+									change_variable = { 
+										name = gui_t
+										multiply = -1
+									}
+								}
+							}
+						}
+						if = { 
+							limit = { 
+								prev = { 
+									has_variable = prod_dmnd_old_salted
+								}
+							}
+							ordered_in_global_list = { 
+								variable = misc_chars
+								position = 0
+								save_temporary_scope_as = gui_tt
+								remove_list_global_variable = { 
+									name = misc_chars
+									target = this
+								}
+							}
+							add_to_variable_list = { 
+								name = gui_t
+								target = scope:gui_tt
+							}
+							prev = { 
+								scope:gui_tt = { 
+									give_nickname = gui_salted
+									set_variable = { 
+										name = gui_t
+										value = prev.var:prod_dmnd_old_salted
+									}
+									change_variable = { 
+										name = gui_t
+										multiply = -1
+									}
+								}
+							}
+						}
+						if = { 
+							limit = { 
+								prev = { 
+									has_variable = prod_dmnd_old_salt
+								}
+							}
+							ordered_in_global_list = { 
+								variable = misc_chars
+								position = 0
+								save_temporary_scope_as = gui_tt
+								remove_list_global_variable = { 
+									name = misc_chars
+									target = this
+								}
+							}
+							add_to_variable_list = { 
+								name = gui_t
+								target = scope:gui_tt
+							}
+							prev = { 
+								scope:gui_tt = { 
+									give_nickname = gui_salt
+									set_variable = { 
+										name = gui_t
+										value = prev.var:prod_dmnd_old_salt
+									}
+									change_variable = { 
+										name = gui_t
+										multiply = -1
+									}
+								}
+							}
+						}
+						if = { 
+							limit = { 
+								prev = { 
+									has_variable = prod_dmnd_old_mud
+								}
+							}
+							ordered_in_global_list = { 
+								variable = misc_chars
+								position = 0
+								save_temporary_scope_as = gui_tt
+								remove_list_global_variable = { 
+									name = misc_chars
+									target = this
+								}
+							}
+							add_to_variable_list = { 
+								name = gui_t
+								target = scope:gui_tt
+							}
+							prev = { 
+								scope:gui_tt = { 
+									give_nickname = gui_mud
+									set_variable = { 
+										name = gui_t
+										value = prev.var:prod_dmnd_old_mud
+									}
+									change_variable = { 
+										name = gui_t
+										multiply = -1
+									}
+								}
+							}
+						}
+						if = { 
+							limit = { 
+								prev = { 
+									has_variable = prod_dmnd_old_fuel
+								}
+							}
+							ordered_in_global_list = { 
+								variable = misc_chars
+								position = 0
+								save_temporary_scope_as = gui_tt
+								remove_list_global_variable = { 
+									name = misc_chars
+									target = this
+								}
+							}
+							add_to_variable_list = { 
+								name = gui_t
+								target = scope:gui_tt
+							}
+							prev = { 
+								scope:gui_tt = { 
+									give_nickname = gui_fuel
+									set_variable = { 
+										name = gui_t
+										value = prev.var:prod_dmnd_old_fuel
+									}
+									change_variable = { 
+										name = gui_t
+										multiply = -1
+									}
+								}
+							}
+						}
+						if = { 
+							limit = { 
+								prev = { 
+									has_variable = prod_dmnd_old_fiber
+								}
+							}
+							ordered_in_global_list = { 
+								variable = misc_chars
+								position = 0
+								save_temporary_scope_as = gui_tt
+								remove_list_global_variable = { 
+									name = misc_chars
+									target = this
+								}
+							}
+							add_to_variable_list = { 
+								name = gui_t
+								target = scope:gui_tt
+							}
+							prev = { 
+								scope:gui_tt = { 
+									give_nickname = gui_fiber
+									set_variable = { 
+										name = gui_t
+										value = prev.var:prod_dmnd_old_fiber
+									}
+									change_variable = { 
+										name = gui_t
+										multiply = -1
+									}
+								}
+							}
+						}
+						if = { 
+							limit = { 
+								prev = { 
+									has_variable = prod_dmnd_old_timber
+								}
+							}
+							ordered_in_global_list = { 
+								variable = misc_chars
+								position = 0
+								save_temporary_scope_as = gui_tt
+								remove_list_global_variable = { 
+									name = misc_chars
+									target = this
+								}
+							}
+							add_to_variable_list = { 
+								name = gui_t
+								target = scope:gui_tt
+							}
+							prev = { 
+								scope:gui_tt = { 
+									give_nickname = gui_timber
+									set_variable = { 
+										name = gui_t
+										value = prev.var:prod_dmnd_old_timber
+									}
+									change_variable = { 
+										name = gui_t
+										multiply = -1
+									}
+								}
+							}
+						}
+						if = { 
+							limit = { 
+								prev = { 
+									has_variable = prod_dmnd_old_metal
+								}
+							}
+							ordered_in_global_list = { 
+								variable = misc_chars
+								position = 0
+								save_temporary_scope_as = gui_tt
+								remove_list_global_variable = { 
+									name = misc_chars
+									target = this
+								}
+							}
+							add_to_variable_list = { 
+								name = gui_t
+								target = scope:gui_tt
+							}
+							prev = { 
+								scope:gui_tt = { 
+									give_nickname = gui_metal
+									set_variable = { 
+										name = gui_t
+										value = prev.var:prod_dmnd_old_metal
+									}
+									change_variable = { 
+										name = gui_t
+										multiply = -1
+									}
+								}
+							}
+						}
+						if = { 
+							limit = { 
+								prev = { 
+									has_variable = prod_dmnd_old_exotics_w
+								}
+							}
+							ordered_in_global_list = { 
+								variable = misc_chars
+								position = 0
+								save_temporary_scope_as = gui_tt
+								remove_list_global_variable = { 
+									name = misc_chars
+									target = this
+								}
+							}
+							add_to_variable_list = { 
+								name = gui_t
+								target = scope:gui_tt
+							}
+							prev = { 
+								scope:gui_tt = { 
+									give_nickname = gui_exotics_w
+									set_variable = { 
+										name = gui_t
+										value = prev.var:prod_dmnd_old_exotics_w
+									}
+									change_variable = { 
+										name = gui_t
+										multiply = -1
+									}
+								}
+							}
+						}
+						if = { 
+							limit = { 
+								prev = { 
+									has_variable = prod_dmnd_old_exotics_e
+								}
+							}
+							ordered_in_global_list = { 
+								variable = misc_chars
+								position = 0
+								save_temporary_scope_as = gui_tt
+								remove_list_global_variable = { 
+									name = misc_chars
+									target = this
+								}
+							}
+							add_to_variable_list = { 
+								name = gui_t
+								target = scope:gui_tt
+							}
+							prev = { 
+								scope:gui_tt = { 
+									give_nickname = gui_exotics_e
+									set_variable = { 
+										name = gui_t
+										value = prev.var:prod_dmnd_old_exotics_e
+									}
+									change_variable = { 
+										name = gui_t
+										multiply = -1
+									}
+								}
+							}
+						}
+						if = { 
+							limit = { 
+								prev = { 
+									has_variable = prod_dmnd_old_exotics_g
+								}
+							}
+							ordered_in_global_list = { 
+								variable = misc_chars
+								position = 0
+								save_temporary_scope_as = gui_tt
+								remove_list_global_variable = { 
+									name = misc_chars
+									target = this
+								}
+							}
+							add_to_variable_list = { 
+								name = gui_t
+								target = scope:gui_tt
+							}
+							prev = { 
+								scope:gui_tt = { 
+									give_nickname = gui_exotics_g
+									set_variable = { 
+										name = gui_t
+										value = prev.var:prod_dmnd_old_exotics_g
+									}
+									change_variable = { 
+										name = gui_t
+										multiply = -1
+									}
+								}
+							}
+						}
+						if = { 
+							limit = { 
+								prev = { 
+									has_variable = prod_dmnd_old_textile
+								}
+							}
+							ordered_in_global_list = { 
+								variable = misc_chars
+								position = 0
+								save_temporary_scope_as = gui_tt
+								remove_list_global_variable = { 
+									name = misc_chars
+									target = this
+								}
+							}
+							add_to_variable_list = { 
+								name = gui_t
+								target = scope:gui_tt
+							}
+							prev = { 
+								scope:gui_tt = { 
+									give_nickname = gui_textile
+									set_variable = { 
+										name = gui_t
+										value = prev.var:prod_dmnd_old_textile
+									}
+									change_variable = { 
+										name = gui_t
+										multiply = -1
+									}
+								}
+							}
+						}
+						if = { 
+							limit = { 
+								prev = { 
+									has_variable = prod_dmnd_old_pottery
+								}
+							}
+							ordered_in_global_list = { 
+								variable = misc_chars
+								position = 0
+								save_temporary_scope_as = gui_tt
+								remove_list_global_variable = { 
+									name = misc_chars
+									target = this
+								}
+							}
+							add_to_variable_list = { 
+								name = gui_t
+								target = scope:gui_tt
+							}
+							prev = { 
+								scope:gui_tt = { 
+									give_nickname = gui_pottery
+									set_variable = { 
+										name = gui_t
+										value = prev.var:prod_dmnd_old_pottery
+									}
+									change_variable = { 
+										name = gui_t
+										multiply = -1
+									}
+								}
+							}
+						}
+						if = { 
+							limit = { 
+								prev = { 
+									has_variable = prod_dmnd_old_tools
+								}
+							}
+							ordered_in_global_list = { 
+								variable = misc_chars
+								position = 0
+								save_temporary_scope_as = gui_tt
+								remove_list_global_variable = { 
+									name = misc_chars
+									target = this
+								}
+							}
+							add_to_variable_list = { 
+								name = gui_t
+								target = scope:gui_tt
+							}
+							prev = { 
+								scope:gui_tt = { 
+									give_nickname = gui_tools
+									set_variable = { 
+										name = gui_t
+										value = prev.var:prod_dmnd_old_tools
+									}
+									change_variable = { 
+										name = gui_t
+										multiply = -1
+									}
+								}
+							}
+						}
+						if = { 
+							limit = { 
+								prev = { 
+									has_variable = prod_dmnd_old_armaments
+								}
+							}
+							ordered_in_global_list = { 
+								variable = misc_chars
+								position = 0
+								save_temporary_scope_as = gui_tt
+								remove_list_global_variable = { 
+									name = misc_chars
+									target = this
+								}
+							}
+							add_to_variable_list = { 
+								name = gui_t
+								target = scope:gui_tt
+							}
+							prev = { 
+								scope:gui_tt = { 
+									give_nickname = gui_armaments
+									set_variable = { 
+										name = gui_t
+										value = prev.var:prod_dmnd_old_armaments
+									}
+									change_variable = { 
+										name = gui_t
+										multiply = -1
+									}
+								}
+							}
+						}
+						if = { 
+							limit = { 
+								prev = { 
+									has_variable = prod_sply_old_food
+								}
+							}
+							ordered_in_global_list = { 
+								variable = misc_chars
+								position = 0
+								save_temporary_scope_as = gui_tt
+								remove_list_global_variable = { 
+									name = misc_chars
+									target = this
+								}
+							}
+							add_to_variable_list = { 
+								name = gui_t
+								target = scope:gui_tt
+							}
+							prev = { 
+								scope:gui_tt = { 
+									give_nickname = gui_food
+									set_variable = { 
+										name = gui_t
+										value = prev.var:prod_sply_old_food
+									}
+								}
+							}
+						}
+						if = { 
+							limit = { 
+								prev = { 
+									has_variable = prod_sply_old_cereal
+								}
+							}
+							ordered_in_global_list = { 
+								variable = misc_chars
+								position = 0
+								save_temporary_scope_as = gui_tt
+								remove_list_global_variable = { 
+									name = misc_chars
+									target = this
+								}
+							}
+							add_to_variable_list = { 
+								name = gui_t
+								target = scope:gui_tt
+							}
+							prev = { 
+								scope:gui_tt = { 
+									give_nickname = gui_cereal
+									set_variable = { 
+										name = gui_t
+										value = prev.var:prod_sply_old_cereal
+									}
+								}
+							}
+						}
+						if = { 
+							limit = { 
+								prev = { 
+									has_variable = prod_sply_old_salted
+								}
+							}
+							ordered_in_global_list = { 
+								variable = misc_chars
+								position = 0
+								save_temporary_scope_as = gui_tt
+								remove_list_global_variable = { 
+									name = misc_chars
+									target = this
+								}
+							}
+							add_to_variable_list = { 
+								name = gui_t
+								target = scope:gui_tt
+							}
+							prev = { 
+								scope:gui_tt = { 
+									give_nickname = gui_salted
+									set_variable = { 
+										name = gui_t
+										value = prev.var:prod_sply_old_salted
+									}
+								}
+							}
+						}
+						if = { 
+							limit = { 
+								prev = { 
+									has_variable = prod_sply_old_salt
+								}
+							}
+							ordered_in_global_list = { 
+								variable = misc_chars
+								position = 0
+								save_temporary_scope_as = gui_tt
+								remove_list_global_variable = { 
+									name = misc_chars
+									target = this
+								}
+							}
+							add_to_variable_list = { 
+								name = gui_t
+								target = scope:gui_tt
+							}
+							prev = { 
+								scope:gui_tt = { 
+									give_nickname = gui_salt
+									set_variable = { 
+										name = gui_t
+										value = prev.var:prod_sply_old_salt
+									}
+								}
+							}
+						}
+						if = { 
+							limit = { 
+								prev = { 
+									has_variable = prod_sply_old_mud
+								}
+							}
+							ordered_in_global_list = { 
+								variable = misc_chars
+								position = 0
+								save_temporary_scope_as = gui_tt
+								remove_list_global_variable = { 
+									name = misc_chars
+									target = this
+								}
+							}
+							add_to_variable_list = { 
+								name = gui_t
+								target = scope:gui_tt
+							}
+							prev = { 
+								scope:gui_tt = { 
+									give_nickname = gui_mud
+									set_variable = { 
+										name = gui_t
+										value = prev.var:prod_sply_old_mud
+									}
+								}
+							}
+						}
+						if = { 
+							limit = { 
+								prev = { 
+									has_variable = prod_sply_old_fuel
+								}
+							}
+							ordered_in_global_list = { 
+								variable = misc_chars
+								position = 0
+								save_temporary_scope_as = gui_tt
+								remove_list_global_variable = { 
+									name = misc_chars
+									target = this
+								}
+							}
+							add_to_variable_list = { 
+								name = gui_t
+								target = scope:gui_tt
+							}
+							prev = { 
+								scope:gui_tt = { 
+									give_nickname = gui_fuel
+									set_variable = { 
+										name = gui_t
+										value = prev.var:prod_sply_old_fuel
+									}
+								}
+							}
+						}
+						if = { 
+							limit = { 
+								prev = { 
+									has_variable = prod_sply_old_fiber
+								}
+							}
+							ordered_in_global_list = { 
+								variable = misc_chars
+								position = 0
+								save_temporary_scope_as = gui_tt
+								remove_list_global_variable = { 
+									name = misc_chars
+									target = this
+								}
+							}
+							add_to_variable_list = { 
+								name = gui_t
+								target = scope:gui_tt
+							}
+							prev = { 
+								scope:gui_tt = { 
+									give_nickname = gui_fiber
+									set_variable = { 
+										name = gui_t
+										value = prev.var:prod_sply_old_fiber
+									}
+								}
+							}
+						}
+						if = { 
+							limit = { 
+								prev = { 
+									has_variable = prod_sply_old_timber
+								}
+							}
+							ordered_in_global_list = { 
+								variable = misc_chars
+								position = 0
+								save_temporary_scope_as = gui_tt
+								remove_list_global_variable = { 
+									name = misc_chars
+									target = this
+								}
+							}
+							add_to_variable_list = { 
+								name = gui_t
+								target = scope:gui_tt
+							}
+							prev = { 
+								scope:gui_tt = { 
+									give_nickname = gui_timber
+									set_variable = { 
+										name = gui_t
+										value = prev.var:prod_sply_old_timber
+									}
+								}
+							}
+						}
+						if = { 
+							limit = { 
+								prev = { 
+									has_variable = prod_sply_old_metal
+								}
+							}
+							ordered_in_global_list = { 
+								variable = misc_chars
+								position = 0
+								save_temporary_scope_as = gui_tt
+								remove_list_global_variable = { 
+									name = misc_chars
+									target = this
+								}
+							}
+							add_to_variable_list = { 
+								name = gui_t
+								target = scope:gui_tt
+							}
+							prev = { 
+								scope:gui_tt = { 
+									give_nickname = gui_metal
+									set_variable = { 
+										name = gui_t
+										value = prev.var:prod_sply_old_metal
+									}
+								}
+							}
+						}
+						if = { 
+							limit = { 
+								prev = { 
+									has_variable = prod_sply_old_exotics_w
+								}
+							}
+							ordered_in_global_list = { 
+								variable = misc_chars
+								position = 0
+								save_temporary_scope_as = gui_tt
+								remove_list_global_variable = { 
+									name = misc_chars
+									target = this
+								}
+							}
+							add_to_variable_list = { 
+								name = gui_t
+								target = scope:gui_tt
+							}
+							prev = { 
+								scope:gui_tt = { 
+									give_nickname = gui_exotics_w
+									set_variable = { 
+										name = gui_t
+										value = prev.var:prod_sply_old_exotics_w
+									}
+								}
+							}
+						}
+						if = { 
+							limit = { 
+								prev = { 
+									has_variable = prod_sply_old_exotics_e
+								}
+							}
+							ordered_in_global_list = { 
+								variable = misc_chars
+								position = 0
+								save_temporary_scope_as = gui_tt
+								remove_list_global_variable = { 
+									name = misc_chars
+									target = this
+								}
+							}
+							add_to_variable_list = { 
+								name = gui_t
+								target = scope:gui_tt
+							}
+							prev = { 
+								scope:gui_tt = { 
+									give_nickname = gui_exotics_e
+									set_variable = { 
+										name = gui_t
+										value = prev.var:prod_sply_old_exotics_e
+									}
+								}
+							}
+						}
+						if = { 
+							limit = { 
+								prev = { 
+									has_variable = prod_sply_old_exotics_g
+								}
+							}
+							ordered_in_global_list = { 
+								variable = misc_chars
+								position = 0
+								save_temporary_scope_as = gui_tt
+								remove_list_global_variable = { 
+									name = misc_chars
+									target = this
+								}
+							}
+							add_to_variable_list = { 
+								name = gui_t
+								target = scope:gui_tt
+							}
+							prev = { 
+								scope:gui_tt = { 
+									give_nickname = gui_exotics_g
+									set_variable = { 
+										name = gui_t
+										value = prev.var:prod_sply_old_exotics_g
+									}
+								}
+							}
+						}
+						if = { 
+							limit = { 
+								prev = { 
+									has_variable = prod_sply_old_textile
+								}
+							}
+							ordered_in_global_list = { 
+								variable = misc_chars
+								position = 0
+								save_temporary_scope_as = gui_tt
+								remove_list_global_variable = { 
+									name = misc_chars
+									target = this
+								}
+							}
+							add_to_variable_list = { 
+								name = gui_t
+								target = scope:gui_tt
+							}
+							prev = { 
+								scope:gui_tt = { 
+									give_nickname = gui_textile
+									set_variable = { 
+										name = gui_t
+										value = prev.var:prod_sply_old_textile
+									}
+								}
+							}
+						}
+						if = { 
+							limit = { 
+								prev = { 
+									has_variable = prod_sply_old_pottery
+								}
+							}
+							ordered_in_global_list = { 
+								variable = misc_chars
+								position = 0
+								save_temporary_scope_as = gui_tt
+								remove_list_global_variable = { 
+									name = misc_chars
+									target = this
+								}
+							}
+							add_to_variable_list = { 
+								name = gui_t
+								target = scope:gui_tt
+							}
+							prev = { 
+								scope:gui_tt = { 
+									give_nickname = gui_pottery
+									set_variable = { 
+										name = gui_t
+										value = prev.var:prod_sply_old_pottery
+									}
+								}
+							}
+						}
+						if = { 
+							limit = { 
+								prev = { 
+									has_variable = prod_sply_old_tools
+								}
+							}
+							ordered_in_global_list = { 
+								variable = misc_chars
+								position = 0
+								save_temporary_scope_as = gui_tt
+								remove_list_global_variable = { 
+									name = misc_chars
+									target = this
+								}
+							}
+							add_to_variable_list = { 
+								name = gui_t
+								target = scope:gui_tt
+							}
+							prev = { 
+								scope:gui_tt = { 
+									give_nickname = gui_tools
+									set_variable = { 
+										name = gui_t
+										value = prev.var:prod_sply_old_tools
+									}
+								}
+							}
+						}
+						if = { 
+							limit = { 
+								prev = { 
+									has_variable = prod_sply_old_armaments
+								}
+							}
+							ordered_in_global_list = { 
+								variable = misc_chars
+								position = 0
+								save_temporary_scope_as = gui_tt
+								remove_list_global_variable = { 
+									name = misc_chars
+									target = this
+								}
+							}
+							add_to_variable_list = { 
+								name = gui_t
+								target = scope:gui_tt
+							}
+							prev = { 
+								scope:gui_tt = { 
+									give_nickname = gui_armaments
+									set_variable = { 
+										name = gui_t
+										value = prev.var:prod_sply_old_armaments
+									}
+								}
+							}
+						}
+					}
+				}
 			}
 		}
 	}
