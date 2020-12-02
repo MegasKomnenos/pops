@@ -64,18 +64,48 @@ prod_prog_gain = {
 	value = var:prod_size
 }
 
-prod_tools_mud = {
-	value = 4
-}
-prod_tools_fuel = {
-	value = 4
-}
-prod_tools_timber = {
-	value = 5
-}
-prod_tools_metal = {
-	value = 10
-}
-prod_tools_tools = {
-	value = 25
+prod_tools = {
+	value = 0.05
+	
+	if = {
+		limit = {
+			has_variable = prod_rank
+		}
+		if = {
+			limit = {
+				var:prod_rank = 5
+			}
+			multiply = 1.5 
+		}
+		else_if = {
+			limit = {
+				var:prod_rank = 4
+			}
+			multiply = 1
+		}
+		else_if = {
+			limit = {
+				var:prod_rank = 3
+			}
+			multiply = 0.6
+		}
+		else_if = {
+			limit = {
+				var:prod_rank = 2
+			}
+			multiply = 0.3
+		}
+		else_if = {
+			limit = {
+				var:prod_rank = 1
+			}
+			multiply = 0.1
+		}
+		else = {
+			multiply = 0
+		}
+	}
+	else = {
+		multiply = 0
+	}
 }

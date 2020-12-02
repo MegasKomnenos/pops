@@ -5,1119 +5,168 @@ census.01 = {
 	immediate = { 
 		every_in_global_list = { 
 			variable = prod_instances
+			set_variable = { 
+				name = prod_update_rank_t
+				value = var:prod_rank
+			}
 			if = { 
 				limit = { 
 					has_variable = prod_rank
 					var:prod_rank >= 5
 				}
 				set_variable = { 
-					name = prod_update_rank_t
+					name = prod_update_rank_tt
 					value = 5
 				}
 			}
 			else = { 
 				set_variable = { 
-					name = prod_update_rank_t
+					name = prod_update_rank_tt
 					value = var:prod_rank
 				}
 				change_variable = { 
-					name = prod_update_rank_t
+					name = prod_update_rank_tt
 					add = 1
 				}
 			}
-			if = { 
-				limit = { 
-					OR = { 
-						NOT = { 
-							has_variable = prod_rank
-						}
-						var:prod_rank <= 0
-					}
-				}
-				set_variable = { 
-					name = prod_update_rank_tt
-					value = 0
+			set_variable = { 
+				name = prod_update_rank_t_profit
+				value = var:prod_profit
+			}
+			change_variable = { 
+				name = prod_update_rank_t_profit
+				subtract = { 
+					value = prod_tools
+					multiply = var:prod_size
+					multiply = var:prod_location.county.var:trade_price_tools
 				}
 			}
-			else = { 
-				set_variable = { 
-					name = prod_update_rank_tt
-					value = var:prod_rank
+			set_variable = { 
+				name = prod_rank
+				value = var:prod_update_rank_tt
+			}
+			set_variable = { 
+				name = prod_update_rank_tt_profit
+				value = var:prod_profit
+			}
+			change_variable = { 
+				name = prod_update_rank_tt_profit
+				multiply = { 
+					value = var:prod_update_rank_tt
+					multiply = var:prod_template.var:prod_rank_per
+					add = 1
+					divide = { 
+						value = var:prod_update_rank_t
+						multiply = var:prod_template.var:prod_rank_per
+						add = 1
+					}
+					add = 1
+					divide = 2
+				}
+			}
+			change_variable = { 
+				name = prod_update_rank_tt_profit
+				subtract = { 
+					value = prod_tools
+					multiply = var:prod_size
+					multiply = var:prod_location.county.var:trade_price_tools
+				}
+			}
+			set_variable = { 
+				name = prod_rank
+				value = var:prod_update_rank_t
+			}
+			if = { 
+				limit = { 
+					has_variable = prod_profit
+					var:prod_profit >= 100
 				}
 				change_variable = { 
-					name = prod_update_rank_tt
-					subtract = 1
+					name = prod_update_rank_t_profit
+					divide = 100
 				}
+				change_variable = { 
+					name = prod_update_rank_tt_profit
+					divide = 100
+				}
+			}
+			else_if = { 
+				limit = { 
+					has_variable = prod_profit
+					var:prod_profit >= 50
+				}
+				change_variable = { 
+					name = prod_update_rank_t_profit
+					divide = 50
+				}
+				change_variable = { 
+					name = prod_update_rank_tt_profit
+					divide = 50
+				}
+			}
+			else_if = { 
+				limit = { 
+					has_variable = prod_profit
+					var:prod_profit >= 10
+				}
+				change_variable = { 
+					name = prod_update_rank_t_profit
+					divide = 10
+				}
+				change_variable = { 
+					name = prod_update_rank_tt_profit
+					divide = 10
+				}
+			}
+			change_variable = { 
+				name = prod_update_rank_t_profit
+				multiply = var:prod_update_rank_t_profit
+			}
+			change_variable = { 
+				name = prod_update_rank_tt_profit
+				multiply = var:prod_update_rank_tt_profit
 			}
 			set_variable = { 
 				name = prod_update_rank_ttt
-				value = var:prod_rank
-			}
-			set_variable = { 
-				name = prod_get_tools_dmnd_t
-				value = 5
+				value = var:prod_update_rank_t_profit
 			}
 			change_variable = { 
-				name = prod_get_tools_dmnd_t
-				subtract = var:prod_update_rank_t
-			}
-			change_variable = { 
-				name = prod_get_tools_dmnd_t
-				divide = 2.5
-			}
-			set_variable = { 
-				name = prod_get_tools_dmnd_tt
-				value = 0
-			}
-			set_variable = { 
-				name = prod_update_rank_t_mud
-				value = var:prod_get_tools_dmnd_t
-			}
-			change_variable = { 
-				name = prod_update_rank_t_mud
-				multiply = prod_tools_mud
-			}
-			change_variable = { 
-				name = prod_update_rank_t_mud
-				divide = var:prod_location.county.var:trade_price_mud
-			}
-			change_variable = { 
-				name = prod_update_rank_t_mud
-				multiply = var:prod_update_rank_t_mud
-			}
-			change_variable = { 
-				name = prod_get_tools_dmnd_tt
-				add = var:prod_update_rank_t_mud
-			}
-			set_variable = { 
-				name = prod_update_rank_t_fuel
-				value = var:prod_get_tools_dmnd_t
-			}
-			change_variable = { 
-				name = prod_update_rank_t_fuel
-				multiply = prod_tools_fuel
-			}
-			change_variable = { 
-				name = prod_update_rank_t_fuel
-				divide = var:prod_location.county.var:trade_price_fuel
-			}
-			change_variable = { 
-				name = prod_update_rank_t_fuel
-				multiply = var:prod_update_rank_t_fuel
-			}
-			change_variable = { 
-				name = prod_get_tools_dmnd_tt
-				add = var:prod_update_rank_t_fuel
-			}
-			set_variable = { 
-				name = prod_update_rank_t_timber
-				value = var:prod_get_tools_dmnd_t
-			}
-			change_variable = { 
-				name = prod_update_rank_t_timber
-				multiply = prod_tools_timber
-			}
-			change_variable = { 
-				name = prod_update_rank_t_timber
-				divide = var:prod_location.county.var:trade_price_timber
-			}
-			change_variable = { 
-				name = prod_update_rank_t_timber
-				multiply = var:prod_update_rank_t_timber
-			}
-			change_variable = { 
-				name = prod_get_tools_dmnd_tt
-				add = var:prod_update_rank_t_timber
-			}
-			set_variable = { 
-				name = prod_update_rank_t_metal
-				value = var:prod_get_tools_dmnd_t
-			}
-			change_variable = { 
-				name = prod_update_rank_t_metal
-				multiply = prod_tools_metal
-			}
-			change_variable = { 
-				name = prod_update_rank_t_metal
-				divide = var:prod_location.county.var:trade_price_metal
-			}
-			change_variable = { 
-				name = prod_update_rank_t_metal
-				multiply = var:prod_update_rank_t_metal
-			}
-			change_variable = { 
-				name = prod_get_tools_dmnd_tt
-				add = var:prod_update_rank_t_metal
-			}
-			set_variable = { 
-				name = prod_update_rank_t_tools
-				value = 1
-			}
-			change_variable = { 
-				name = prod_update_rank_t_tools
-				multiply = prod_tools_tools
-			}
-			change_variable = { 
-				name = prod_update_rank_t_tools
-				divide = var:prod_location.county.var:trade_price_tools
-			}
-			change_variable = { 
-				name = prod_update_rank_t_tools
-				multiply = var:prod_update_rank_t_tools
-			}
-			change_variable = { 
-				name = prod_get_tools_dmnd_tt
-				add = var:prod_update_rank_t_tools
+				name = prod_update_rank_ttt
+				add = var:prod_update_rank_tt_profit
 			}
 			if = { 
 				limit = { 
-					has_variable = prod_update_rank_t_mud
-					var:prod_update_rank_t_mud > 0
+					has_variable = prod_update_rank_ttt
+					var:prod_update_rank_ttt > 0
+				}
+				set_variable = { 
+					name = prod_prog_gain
+					value = prod_prog_gain
+				}
+				set_variable = { 
+					name = prod_prog_spend
+					value = var:prod_prog_gain
 				}
 				change_variable = { 
-					name = prod_update_rank_t_mud
-					multiply = 100
+					name = prod_prog_spend
+					multiply = { 
+						value = var:prod_update_rank_t_profit
+						divide = var:prod_update_rank_ttt
+					}
 				}
 				change_variable = { 
-					name = prod_update_rank_t_mud
-					divide = var:prod_get_tools_dmnd_tt
-				}
-				change_variable = { 
-					name = prod_update_rank_t_mud
-					multiply = var:prod_size
-				}
-				change_variable = { 
-					name = prod_update_rank_t_mud
-					divide = prod_tools_mud
-				}
-				change_variable = { 
-					name = prod_update_rank_t_mud
-					divide = var:prod_get_tools_dmnd_t
-				}
-				change_variable = { 
-					name = prod_update_rank_t_mud
-					divide = 100
+					name = prod_prog_gain
+					subtract = var:prod_prog_spend
 				}
 			}
 			else = { 
-				remove_variable = prod_update_rank_t_mud
-			}
-			if = { 
-				limit = { 
-					has_variable = prod_update_rank_t_fuel
-					var:prod_update_rank_t_fuel > 0
-				}
-				change_variable = { 
-					name = prod_update_rank_t_fuel
-					multiply = 100
-				}
-				change_variable = { 
-					name = prod_update_rank_t_fuel
-					divide = var:prod_get_tools_dmnd_tt
-				}
-				change_variable = { 
-					name = prod_update_rank_t_fuel
-					multiply = var:prod_size
-				}
-				change_variable = { 
-					name = prod_update_rank_t_fuel
-					divide = prod_tools_fuel
-				}
-				change_variable = { 
-					name = prod_update_rank_t_fuel
-					divide = var:prod_get_tools_dmnd_t
-				}
-				change_variable = { 
-					name = prod_update_rank_t_fuel
-					divide = 100
-				}
-			}
-			else = { 
-				remove_variable = prod_update_rank_t_fuel
-			}
-			if = { 
-				limit = { 
-					has_variable = prod_update_rank_t_timber
-					var:prod_update_rank_t_timber > 0
-				}
-				change_variable = { 
-					name = prod_update_rank_t_timber
-					multiply = 100
-				}
-				change_variable = { 
-					name = prod_update_rank_t_timber
-					divide = var:prod_get_tools_dmnd_tt
-				}
-				change_variable = { 
-					name = prod_update_rank_t_timber
-					multiply = var:prod_size
-				}
-				change_variable = { 
-					name = prod_update_rank_t_timber
-					divide = prod_tools_timber
-				}
-				change_variable = { 
-					name = prod_update_rank_t_timber
-					divide = var:prod_get_tools_dmnd_t
-				}
-				change_variable = { 
-					name = prod_update_rank_t_timber
-					divide = 100
-				}
-			}
-			else = { 
-				remove_variable = prod_update_rank_t_timber
-			}
-			if = { 
-				limit = { 
-					has_variable = prod_update_rank_t_metal
-					var:prod_update_rank_t_metal > 0
-				}
-				change_variable = { 
-					name = prod_update_rank_t_metal
-					multiply = 100
-				}
-				change_variable = { 
-					name = prod_update_rank_t_metal
-					divide = var:prod_get_tools_dmnd_tt
-				}
-				change_variable = { 
-					name = prod_update_rank_t_metal
-					multiply = var:prod_size
-				}
-				change_variable = { 
-					name = prod_update_rank_t_metal
-					divide = prod_tools_metal
-				}
-				change_variable = { 
-					name = prod_update_rank_t_metal
-					divide = var:prod_get_tools_dmnd_t
-				}
-				change_variable = { 
-					name = prod_update_rank_t_metal
-					divide = 100
-				}
-			}
-			else = { 
-				remove_variable = prod_update_rank_t_metal
-			}
-			if = { 
-				limit = { 
-					has_variable = prod_update_rank_t_tools
-					var:prod_update_rank_t_tools > 0
-				}
-				change_variable = { 
-					name = prod_update_rank_t_tools
-					multiply = 100
-				}
-				change_variable = { 
-					name = prod_update_rank_t_tools
-					divide = var:prod_get_tools_dmnd_tt
-				}
-				change_variable = { 
-					name = prod_update_rank_t_tools
-					multiply = var:prod_size
-				}
-				change_variable = { 
-					name = prod_update_rank_t_tools
-					divide = prod_tools_tools
-				}
-				change_variable = { 
-					name = prod_update_rank_t_tools
-					divide = 1
-				}
-				change_variable = { 
-					name = prod_update_rank_t_tools
-					divide = 100
-				}
-			}
-			else = { 
-				remove_variable = prod_update_rank_t_tools
-			}
-			remove_variable = prod_get_tools_dmnd_t
-			remove_variable = prod_get_tools_dmnd_tt
-			set_variable = { 
-				name = prod_get_tools_dmnd_t
-				value = 5
-			}
-			change_variable = { 
-				name = prod_get_tools_dmnd_t
-				subtract = var:prod_update_rank_tt
-			}
-			change_variable = { 
-				name = prod_get_tools_dmnd_t
-				divide = 2.5
-			}
-			set_variable = { 
-				name = prod_get_tools_dmnd_tt
-				value = 0
-			}
-			set_variable = { 
-				name = prod_update_rank_tt_mud
-				value = var:prod_get_tools_dmnd_t
-			}
-			change_variable = { 
-				name = prod_update_rank_tt_mud
-				multiply = prod_tools_mud
-			}
-			change_variable = { 
-				name = prod_update_rank_tt_mud
-				divide = var:prod_location.county.var:trade_price_mud
-			}
-			change_variable = { 
-				name = prod_update_rank_tt_mud
-				multiply = var:prod_update_rank_tt_mud
-			}
-			change_variable = { 
-				name = prod_get_tools_dmnd_tt
-				add = var:prod_update_rank_tt_mud
-			}
-			set_variable = { 
-				name = prod_update_rank_tt_fuel
-				value = var:prod_get_tools_dmnd_t
-			}
-			change_variable = { 
-				name = prod_update_rank_tt_fuel
-				multiply = prod_tools_fuel
-			}
-			change_variable = { 
-				name = prod_update_rank_tt_fuel
-				divide = var:prod_location.county.var:trade_price_fuel
-			}
-			change_variable = { 
-				name = prod_update_rank_tt_fuel
-				multiply = var:prod_update_rank_tt_fuel
-			}
-			change_variable = { 
-				name = prod_get_tools_dmnd_tt
-				add = var:prod_update_rank_tt_fuel
-			}
-			set_variable = { 
-				name = prod_update_rank_tt_timber
-				value = var:prod_get_tools_dmnd_t
-			}
-			change_variable = { 
-				name = prod_update_rank_tt_timber
-				multiply = prod_tools_timber
-			}
-			change_variable = { 
-				name = prod_update_rank_tt_timber
-				divide = var:prod_location.county.var:trade_price_timber
-			}
-			change_variable = { 
-				name = prod_update_rank_tt_timber
-				multiply = var:prod_update_rank_tt_timber
-			}
-			change_variable = { 
-				name = prod_get_tools_dmnd_tt
-				add = var:prod_update_rank_tt_timber
-			}
-			set_variable = { 
-				name = prod_update_rank_tt_metal
-				value = var:prod_get_tools_dmnd_t
-			}
-			change_variable = { 
-				name = prod_update_rank_tt_metal
-				multiply = prod_tools_metal
-			}
-			change_variable = { 
-				name = prod_update_rank_tt_metal
-				divide = var:prod_location.county.var:trade_price_metal
-			}
-			change_variable = { 
-				name = prod_update_rank_tt_metal
-				multiply = var:prod_update_rank_tt_metal
-			}
-			change_variable = { 
-				name = prod_get_tools_dmnd_tt
-				add = var:prod_update_rank_tt_metal
-			}
-			set_variable = { 
-				name = prod_update_rank_tt_tools
-				value = 1
-			}
-			change_variable = { 
-				name = prod_update_rank_tt_tools
-				multiply = prod_tools_tools
-			}
-			change_variable = { 
-				name = prod_update_rank_tt_tools
-				divide = var:prod_location.county.var:trade_price_tools
-			}
-			change_variable = { 
-				name = prod_update_rank_tt_tools
-				multiply = var:prod_update_rank_tt_tools
-			}
-			change_variable = { 
-				name = prod_get_tools_dmnd_tt
-				add = var:prod_update_rank_tt_tools
-			}
-			if = { 
-				limit = { 
-					has_variable = prod_update_rank_tt_mud
-					var:prod_update_rank_tt_mud > 0
-				}
-				change_variable = { 
-					name = prod_update_rank_tt_mud
-					multiply = 100
-				}
-				change_variable = { 
-					name = prod_update_rank_tt_mud
-					divide = var:prod_get_tools_dmnd_tt
-				}
-				change_variable = { 
-					name = prod_update_rank_tt_mud
-					multiply = var:prod_size
-				}
-				change_variable = { 
-					name = prod_update_rank_tt_mud
-					divide = prod_tools_mud
-				}
-				change_variable = { 
-					name = prod_update_rank_tt_mud
-					divide = var:prod_get_tools_dmnd_t
-				}
-				change_variable = { 
-					name = prod_update_rank_tt_mud
-					divide = 100
-				}
-			}
-			else = { 
-				remove_variable = prod_update_rank_tt_mud
-			}
-			if = { 
-				limit = { 
-					has_variable = prod_update_rank_tt_fuel
-					var:prod_update_rank_tt_fuel > 0
-				}
-				change_variable = { 
-					name = prod_update_rank_tt_fuel
-					multiply = 100
-				}
-				change_variable = { 
-					name = prod_update_rank_tt_fuel
-					divide = var:prod_get_tools_dmnd_tt
-				}
-				change_variable = { 
-					name = prod_update_rank_tt_fuel
-					multiply = var:prod_size
-				}
-				change_variable = { 
-					name = prod_update_rank_tt_fuel
-					divide = prod_tools_fuel
-				}
-				change_variable = { 
-					name = prod_update_rank_tt_fuel
-					divide = var:prod_get_tools_dmnd_t
-				}
-				change_variable = { 
-					name = prod_update_rank_tt_fuel
-					divide = 100
-				}
-			}
-			else = { 
-				remove_variable = prod_update_rank_tt_fuel
-			}
-			if = { 
-				limit = { 
-					has_variable = prod_update_rank_tt_timber
-					var:prod_update_rank_tt_timber > 0
-				}
-				change_variable = { 
-					name = prod_update_rank_tt_timber
-					multiply = 100
-				}
-				change_variable = { 
-					name = prod_update_rank_tt_timber
-					divide = var:prod_get_tools_dmnd_tt
-				}
-				change_variable = { 
-					name = prod_update_rank_tt_timber
-					multiply = var:prod_size
-				}
-				change_variable = { 
-					name = prod_update_rank_tt_timber
-					divide = prod_tools_timber
-				}
-				change_variable = { 
-					name = prod_update_rank_tt_timber
-					divide = var:prod_get_tools_dmnd_t
-				}
-				change_variable = { 
-					name = prod_update_rank_tt_timber
-					divide = 100
-				}
-			}
-			else = { 
-				remove_variable = prod_update_rank_tt_timber
-			}
-			if = { 
-				limit = { 
-					has_variable = prod_update_rank_tt_metal
-					var:prod_update_rank_tt_metal > 0
-				}
-				change_variable = { 
-					name = prod_update_rank_tt_metal
-					multiply = 100
-				}
-				change_variable = { 
-					name = prod_update_rank_tt_metal
-					divide = var:prod_get_tools_dmnd_tt
-				}
-				change_variable = { 
-					name = prod_update_rank_tt_metal
-					multiply = var:prod_size
-				}
-				change_variable = { 
-					name = prod_update_rank_tt_metal
-					divide = prod_tools_metal
-				}
-				change_variable = { 
-					name = prod_update_rank_tt_metal
-					divide = var:prod_get_tools_dmnd_t
-				}
-				change_variable = { 
-					name = prod_update_rank_tt_metal
-					divide = 100
-				}
-			}
-			else = { 
-				remove_variable = prod_update_rank_tt_metal
-			}
-			if = { 
-				limit = { 
-					has_variable = prod_update_rank_tt_tools
-					var:prod_update_rank_tt_tools > 0
-				}
-				change_variable = { 
-					name = prod_update_rank_tt_tools
-					multiply = 100
-				}
-				change_variable = { 
-					name = prod_update_rank_tt_tools
-					divide = var:prod_get_tools_dmnd_tt
-				}
-				change_variable = { 
-					name = prod_update_rank_tt_tools
-					multiply = var:prod_size
-				}
-				change_variable = { 
-					name = prod_update_rank_tt_tools
-					divide = prod_tools_tools
-				}
-				change_variable = { 
-					name = prod_update_rank_tt_tools
-					divide = 1
-				}
-				change_variable = { 
-					name = prod_update_rank_tt_tools
-					divide = 100
-				}
-			}
-			else = { 
-				remove_variable = prod_update_rank_tt_tools
-			}
-			remove_variable = prod_get_tools_dmnd_t
-			remove_variable = prod_get_tools_dmnd_tt
-			set_variable = { 
-				name = prod_get_tools_dmnd_t
-				value = 5
-			}
-			change_variable = { 
-				name = prod_get_tools_dmnd_t
-				subtract = var:prod_update_rank_ttt
-			}
-			change_variable = { 
-				name = prod_get_tools_dmnd_t
-				divide = 2.5
-			}
-			set_variable = { 
-				name = prod_get_tools_dmnd_tt
-				value = 0
-			}
-			set_variable = { 
-				name = prod_update_rank_ttt_mud
-				value = var:prod_get_tools_dmnd_t
-			}
-			change_variable = { 
-				name = prod_update_rank_ttt_mud
-				multiply = prod_tools_mud
-			}
-			change_variable = { 
-				name = prod_update_rank_ttt_mud
-				divide = var:prod_location.county.var:trade_price_mud
-			}
-			change_variable = { 
-				name = prod_update_rank_ttt_mud
-				multiply = var:prod_update_rank_ttt_mud
-			}
-			change_variable = { 
-				name = prod_get_tools_dmnd_tt
-				add = var:prod_update_rank_ttt_mud
-			}
-			set_variable = { 
-				name = prod_update_rank_ttt_fuel
-				value = var:prod_get_tools_dmnd_t
-			}
-			change_variable = { 
-				name = prod_update_rank_ttt_fuel
-				multiply = prod_tools_fuel
-			}
-			change_variable = { 
-				name = prod_update_rank_ttt_fuel
-				divide = var:prod_location.county.var:trade_price_fuel
-			}
-			change_variable = { 
-				name = prod_update_rank_ttt_fuel
-				multiply = var:prod_update_rank_ttt_fuel
-			}
-			change_variable = { 
-				name = prod_get_tools_dmnd_tt
-				add = var:prod_update_rank_ttt_fuel
-			}
-			set_variable = { 
-				name = prod_update_rank_ttt_timber
-				value = var:prod_get_tools_dmnd_t
-			}
-			change_variable = { 
-				name = prod_update_rank_ttt_timber
-				multiply = prod_tools_timber
-			}
-			change_variable = { 
-				name = prod_update_rank_ttt_timber
-				divide = var:prod_location.county.var:trade_price_timber
-			}
-			change_variable = { 
-				name = prod_update_rank_ttt_timber
-				multiply = var:prod_update_rank_ttt_timber
-			}
-			change_variable = { 
-				name = prod_get_tools_dmnd_tt
-				add = var:prod_update_rank_ttt_timber
-			}
-			set_variable = { 
-				name = prod_update_rank_ttt_metal
-				value = var:prod_get_tools_dmnd_t
-			}
-			change_variable = { 
-				name = prod_update_rank_ttt_metal
-				multiply = prod_tools_metal
-			}
-			change_variable = { 
-				name = prod_update_rank_ttt_metal
-				divide = var:prod_location.county.var:trade_price_metal
-			}
-			change_variable = { 
-				name = prod_update_rank_ttt_metal
-				multiply = var:prod_update_rank_ttt_metal
-			}
-			change_variable = { 
-				name = prod_get_tools_dmnd_tt
-				add = var:prod_update_rank_ttt_metal
-			}
-			set_variable = { 
-				name = prod_update_rank_ttt_tools
-				value = 1
-			}
-			change_variable = { 
-				name = prod_update_rank_ttt_tools
-				multiply = prod_tools_tools
-			}
-			change_variable = { 
-				name = prod_update_rank_ttt_tools
-				divide = var:prod_location.county.var:trade_price_tools
-			}
-			change_variable = { 
-				name = prod_update_rank_ttt_tools
-				multiply = var:prod_update_rank_ttt_tools
-			}
-			change_variable = { 
-				name = prod_get_tools_dmnd_tt
-				add = var:prod_update_rank_ttt_tools
-			}
-			if = { 
-				limit = { 
-					has_variable = prod_update_rank_ttt_mud
-					var:prod_update_rank_ttt_mud > 0
-				}
-				change_variable = { 
-					name = prod_update_rank_ttt_mud
-					multiply = 100
-				}
-				change_variable = { 
-					name = prod_update_rank_ttt_mud
-					divide = var:prod_get_tools_dmnd_tt
-				}
-				change_variable = { 
-					name = prod_update_rank_ttt_mud
-					multiply = var:prod_size
-				}
-				change_variable = { 
-					name = prod_update_rank_ttt_mud
-					divide = prod_tools_mud
-				}
-				change_variable = { 
-					name = prod_update_rank_ttt_mud
-					divide = var:prod_get_tools_dmnd_t
-				}
-				change_variable = { 
-					name = prod_update_rank_ttt_mud
-					divide = 100
-				}
-			}
-			else = { 
-				remove_variable = prod_update_rank_ttt_mud
-			}
-			if = { 
-				limit = { 
-					has_variable = prod_update_rank_ttt_fuel
-					var:prod_update_rank_ttt_fuel > 0
-				}
-				change_variable = { 
-					name = prod_update_rank_ttt_fuel
-					multiply = 100
-				}
-				change_variable = { 
-					name = prod_update_rank_ttt_fuel
-					divide = var:prod_get_tools_dmnd_tt
-				}
-				change_variable = { 
-					name = prod_update_rank_ttt_fuel
-					multiply = var:prod_size
-				}
-				change_variable = { 
-					name = prod_update_rank_ttt_fuel
-					divide = prod_tools_fuel
-				}
-				change_variable = { 
-					name = prod_update_rank_ttt_fuel
-					divide = var:prod_get_tools_dmnd_t
-				}
-				change_variable = { 
-					name = prod_update_rank_ttt_fuel
-					divide = 100
-				}
-			}
-			else = { 
-				remove_variable = prod_update_rank_ttt_fuel
-			}
-			if = { 
-				limit = { 
-					has_variable = prod_update_rank_ttt_timber
-					var:prod_update_rank_ttt_timber > 0
-				}
-				change_variable = { 
-					name = prod_update_rank_ttt_timber
-					multiply = 100
-				}
-				change_variable = { 
-					name = prod_update_rank_ttt_timber
-					divide = var:prod_get_tools_dmnd_tt
-				}
-				change_variable = { 
-					name = prod_update_rank_ttt_timber
-					multiply = var:prod_size
-				}
-				change_variable = { 
-					name = prod_update_rank_ttt_timber
-					divide = prod_tools_timber
-				}
-				change_variable = { 
-					name = prod_update_rank_ttt_timber
-					divide = var:prod_get_tools_dmnd_t
-				}
-				change_variable = { 
-					name = prod_update_rank_ttt_timber
-					divide = 100
-				}
-			}
-			else = { 
-				remove_variable = prod_update_rank_ttt_timber
-			}
-			if = { 
-				limit = { 
-					has_variable = prod_update_rank_ttt_metal
-					var:prod_update_rank_ttt_metal > 0
-				}
-				change_variable = { 
-					name = prod_update_rank_ttt_metal
-					multiply = 100
-				}
-				change_variable = { 
-					name = prod_update_rank_ttt_metal
-					divide = var:prod_get_tools_dmnd_tt
-				}
-				change_variable = { 
-					name = prod_update_rank_ttt_metal
-					multiply = var:prod_size
-				}
-				change_variable = { 
-					name = prod_update_rank_ttt_metal
-					divide = prod_tools_metal
-				}
-				change_variable = { 
-					name = prod_update_rank_ttt_metal
-					divide = var:prod_get_tools_dmnd_t
-				}
-				change_variable = { 
-					name = prod_update_rank_ttt_metal
-					divide = 100
-				}
-			}
-			else = { 
-				remove_variable = prod_update_rank_ttt_metal
-			}
-			if = { 
-				limit = { 
-					has_variable = prod_update_rank_ttt_tools
-					var:prod_update_rank_ttt_tools > 0
-				}
-				change_variable = { 
-					name = prod_update_rank_ttt_tools
-					multiply = 100
-				}
-				change_variable = { 
-					name = prod_update_rank_ttt_tools
-					divide = var:prod_get_tools_dmnd_tt
-				}
-				change_variable = { 
-					name = prod_update_rank_ttt_tools
-					multiply = var:prod_size
-				}
-				change_variable = { 
-					name = prod_update_rank_ttt_tools
-					divide = prod_tools_tools
-				}
-				change_variable = { 
-					name = prod_update_rank_ttt_tools
-					divide = 1
-				}
-				change_variable = { 
-					name = prod_update_rank_ttt_tools
-					divide = 100
-				}
-			}
-			else = { 
-				remove_variable = prod_update_rank_ttt_tools
-			}
-			remove_variable = prod_get_tools_dmnd_t
-			remove_variable = prod_get_tools_dmnd_tt
-			set_variable = { 
-				name = prod_update_rank_t_cost
-				value = var:prod_profit
-			}
-			set_variable = { 
-				name = prod_update_rank_tt_cost
-				value = var:prod_profit
-			}
-			set_variable = { 
-				name = prod_update_rank_ttt_cost
-				value = var:prod_profit
-			}
-			change_variable = { 
-				name = prod_update_rank_t_cost
-				multiply = { 
-					value = var:prod_template.var:prod_rank_per
-					multiply = var:prod_update_rank_t
-					add = 1
-					divide = { 
-						value = var:prod_template.var:prod_rank_per
-						multiply = var:prod_update_rank_ttt
-						add = 1
-					}
-				}
-			}
-			change_variable = { 
-				name = prod_update_rank_tt_cost
-				multiply = { 
-					value = var:prod_template.var:prod_rank_per
-					multiply = var:prod_update_rank_tt
-					add = 1
-					divide = { 
-						value = var:prod_template.var:prod_rank_per
-						multiply = var:prod_update_rank_ttt
-						add = 1
-					}
-				}
-			}
-			if = { 
-				limit = { 
-					has_variable = prod_update_rank_t_mud
-				}
-				change_variable = { 
-					name = prod_update_rank_t_cost
-					subtract = { 
-						value = var:prod_update_rank_t_mud
-						multiply = var:prod_location.county.var:trade_price_mud
-					}
-				}
-			}
-			if = { 
-				limit = { 
-					has_variable = prod_update_rank_t_fuel
-				}
-				change_variable = { 
-					name = prod_update_rank_t_cost
-					subtract = { 
-						value = var:prod_update_rank_t_fuel
-						multiply = var:prod_location.county.var:trade_price_fuel
-					}
-				}
-			}
-			if = { 
-				limit = { 
-					has_variable = prod_update_rank_t_timber
-				}
-				change_variable = { 
-					name = prod_update_rank_t_cost
-					subtract = { 
-						value = var:prod_update_rank_t_timber
-						multiply = var:prod_location.county.var:trade_price_timber
-					}
-				}
-			}
-			if = { 
-				limit = { 
-					has_variable = prod_update_rank_t_metal
-				}
-				change_variable = { 
-					name = prod_update_rank_t_cost
-					subtract = { 
-						value = var:prod_update_rank_t_metal
-						multiply = var:prod_location.county.var:trade_price_metal
-					}
-				}
-			}
-			if = { 
-				limit = { 
-					has_variable = prod_update_rank_t_tools
-				}
-				change_variable = { 
-					name = prod_update_rank_t_cost
-					subtract = { 
-						value = var:prod_update_rank_t_tools
-						multiply = var:prod_location.county.var:trade_price_tools
-					}
-				}
-			}
-			if = { 
-				limit = { 
-					has_variable = prod_update_rank_tt_mud
-				}
-				change_variable = { 
-					name = prod_update_rank_tt_cost
-					subtract = { 
-						value = var:prod_update_rank_tt_mud
-						multiply = var:prod_location.county.var:trade_price_mud
-					}
-				}
-			}
-			if = { 
-				limit = { 
-					has_variable = prod_update_rank_tt_fuel
-				}
-				change_variable = { 
-					name = prod_update_rank_tt_cost
-					subtract = { 
-						value = var:prod_update_rank_tt_fuel
-						multiply = var:prod_location.county.var:trade_price_fuel
-					}
-				}
-			}
-			if = { 
-				limit = { 
-					has_variable = prod_update_rank_tt_timber
-				}
-				change_variable = { 
-					name = prod_update_rank_tt_cost
-					subtract = { 
-						value = var:prod_update_rank_tt_timber
-						multiply = var:prod_location.county.var:trade_price_timber
-					}
-				}
-			}
-			if = { 
-				limit = { 
-					has_variable = prod_update_rank_tt_metal
-				}
-				change_variable = { 
-					name = prod_update_rank_tt_cost
-					subtract = { 
-						value = var:prod_update_rank_tt_metal
-						multiply = var:prod_location.county.var:trade_price_metal
-					}
-				}
-			}
-			if = { 
-				limit = { 
-					has_variable = prod_update_rank_tt_tools
-				}
-				change_variable = { 
-					name = prod_update_rank_tt_cost
-					subtract = { 
-						value = var:prod_update_rank_tt_tools
-						multiply = var:prod_location.county.var:trade_price_tools
-					}
-				}
-			}
-			if = { 
-				limit = { 
-					has_variable = prod_update_rank_ttt_mud
-				}
-				change_variable = { 
-					name = prod_update_rank_ttt_cost
-					subtract = { 
-						value = var:prod_update_rank_ttt_mud
-						multiply = var:prod_location.county.var:trade_price_mud
-					}
-				}
-			}
-			if = { 
-				limit = { 
-					has_variable = prod_update_rank_ttt_fuel
-				}
-				change_variable = { 
-					name = prod_update_rank_ttt_cost
-					subtract = { 
-						value = var:prod_update_rank_ttt_fuel
-						multiply = var:prod_location.county.var:trade_price_fuel
-					}
-				}
-			}
-			if = { 
-				limit = { 
-					has_variable = prod_update_rank_ttt_timber
-				}
-				change_variable = { 
-					name = prod_update_rank_ttt_cost
-					subtract = { 
-						value = var:prod_update_rank_ttt_timber
-						multiply = var:prod_location.county.var:trade_price_timber
-					}
-				}
-			}
-			if = { 
-				limit = { 
-					has_variable = prod_update_rank_ttt_metal
-				}
-				change_variable = { 
-					name = prod_update_rank_ttt_cost
-					subtract = { 
-						value = var:prod_update_rank_ttt_metal
-						multiply = var:prod_location.county.var:trade_price_metal
-					}
-				}
-			}
-			if = { 
-				limit = { 
-					has_variable = prod_update_rank_ttt_tools
-				}
-				change_variable = { 
-					name = prod_update_rank_ttt_cost
-					subtract = { 
-						value = var:prod_update_rank_ttt_tools
-						multiply = var:prod_location.county.var:trade_price_tools
-					}
+				set_variable = { 
+					name = prod_prog_gain
+					value = prod_prog_gain
+				}
+				set_variable = { 
+					name = prod_prog_spend
+					value = 0
 				}
 			}
 			set_variable = { 
@@ -1127,63 +176,6 @@ census.01 = {
 			change_variable = { 
 				name = prod_prog_decay
 				multiply = var:prod_prog
-			}
-			set_variable = { 
-				name = prod_prog_gain
-				value = prod_prog_gain
-			}
-			set_variable = { 
-				name = prod_prog_spend
-				value = 0
-			}
-			if = { 
-				limit = { 
-					var:prod_update_rank_ttt_cost = { 
-						compare_value >= prev.var:prod_update_rank_t_cost
-					}
-					var:prod_update_rank_ttt_cost = { 
-						compare_value >= prev.var:prod_update_rank_tt_cost
-					}
-				}
-				if = { 
-					limit = { 
-						OR = { 
-							NOT = { 
-								has_variable = prod_prog_decay
-							}
-							var:prod_prog_decay = { 
-								compare_value < prev.var:prod_prog_gain
-							}
-						}
-					}
-					set_variable = { 
-						name = prod_prog_spend
-						value = var:prod_prog_gain
-					}
-					change_variable = { 
-						name = prod_prog_spend
-						subtract = var:prod_prog_decay
-					}
-					set_variable = { 
-						name = prod_prog_gain
-						value = var:prod_prog_decay
-					}
-				}
-			}
-			else_if = { 
-				limit = { 
-					var:prod_update_rank_tt_cost = { 
-						compare_value > prev.var:prod_update_rank_t_cost
-					}
-				}
-				set_variable = { 
-					name = prod_prog_spend
-					value = var:prod_prog_gain
-				}
-				set_variable = { 
-					name = prod_prog_gain
-					value = 0
-				}
 			}
 			change_variable = { 
 				name = prod_prog
@@ -1221,317 +213,21 @@ census.01 = {
 				add = 1
 			}
 			set_variable = { 
-				name = prod_update_rank_t
-				value = var:prod_size
-			}
-			change_variable = { 
-				name = prod_update_rank_t
-				add = var:prod_prog_gain
-			}
-			set_variable = { 
-				name = prod_get_tools_dmnd_t
-				value = 5
-			}
-			change_variable = { 
-				name = prod_get_tools_dmnd_t
-				subtract = var:prod_rank
-			}
-			change_variable = { 
-				name = prod_get_tools_dmnd_t
-				divide = 2.5
-			}
-			set_variable = { 
-				name = prod_get_tools_dmnd_tt
-				value = 0
-			}
-			set_variable = { 
-				name = prod_dmnd_tools_mud
-				value = var:prod_get_tools_dmnd_t
-			}
-			change_variable = { 
-				name = prod_dmnd_tools_mud
-				multiply = prod_tools_mud
-			}
-			change_variable = { 
-				name = prod_dmnd_tools_mud
-				divide = var:prod_location.county.var:trade_price_mud
-			}
-			change_variable = { 
-				name = prod_dmnd_tools_mud
-				multiply = var:prod_dmnd_tools_mud
-			}
-			change_variable = { 
-				name = prod_get_tools_dmnd_tt
-				add = var:prod_dmnd_tools_mud
-			}
-			set_variable = { 
-				name = prod_dmnd_tools_fuel
-				value = var:prod_get_tools_dmnd_t
-			}
-			change_variable = { 
-				name = prod_dmnd_tools_fuel
-				multiply = prod_tools_fuel
-			}
-			change_variable = { 
-				name = prod_dmnd_tools_fuel
-				divide = var:prod_location.county.var:trade_price_fuel
-			}
-			change_variable = { 
-				name = prod_dmnd_tools_fuel
-				multiply = var:prod_dmnd_tools_fuel
-			}
-			change_variable = { 
-				name = prod_get_tools_dmnd_tt
-				add = var:prod_dmnd_tools_fuel
-			}
-			set_variable = { 
-				name = prod_dmnd_tools_timber
-				value = var:prod_get_tools_dmnd_t
-			}
-			change_variable = { 
-				name = prod_dmnd_tools_timber
-				multiply = prod_tools_timber
-			}
-			change_variable = { 
-				name = prod_dmnd_tools_timber
-				divide = var:prod_location.county.var:trade_price_timber
-			}
-			change_variable = { 
-				name = prod_dmnd_tools_timber
-				multiply = var:prod_dmnd_tools_timber
-			}
-			change_variable = { 
-				name = prod_get_tools_dmnd_tt
-				add = var:prod_dmnd_tools_timber
-			}
-			set_variable = { 
-				name = prod_dmnd_tools_metal
-				value = var:prod_get_tools_dmnd_t
-			}
-			change_variable = { 
-				name = prod_dmnd_tools_metal
-				multiply = prod_tools_metal
-			}
-			change_variable = { 
-				name = prod_dmnd_tools_metal
-				divide = var:prod_location.county.var:trade_price_metal
-			}
-			change_variable = { 
-				name = prod_dmnd_tools_metal
-				multiply = var:prod_dmnd_tools_metal
-			}
-			change_variable = { 
-				name = prod_get_tools_dmnd_tt
-				add = var:prod_dmnd_tools_metal
-			}
-			set_variable = { 
 				name = prod_dmnd_tools_tools
-				value = 1
+				value = prod_tools
 			}
 			change_variable = { 
 				name = prod_dmnd_tools_tools
-				multiply = prod_tools_tools
-			}
-			change_variable = { 
-				name = prod_dmnd_tools_tools
-				divide = var:prod_location.county.var:trade_price_tools
-			}
-			change_variable = { 
-				name = prod_dmnd_tools_tools
-				multiply = var:prod_dmnd_tools_tools
-			}
-			change_variable = { 
-				name = prod_get_tools_dmnd_tt
-				add = var:prod_dmnd_tools_tools
-			}
-			if = { 
-				limit = { 
-					has_variable = prod_dmnd_tools_mud
-					var:prod_dmnd_tools_mud > 0
-				}
-				change_variable = { 
-					name = prod_dmnd_tools_mud
-					multiply = 100
-				}
-				change_variable = { 
-					name = prod_dmnd_tools_mud
-					divide = var:prod_get_tools_dmnd_tt
-				}
-				change_variable = { 
-					name = prod_dmnd_tools_mud
-					multiply = var:prod_update_rank_t
-				}
-				change_variable = { 
-					name = prod_dmnd_tools_mud
-					divide = prod_tools_mud
-				}
-				change_variable = { 
-					name = prod_dmnd_tools_mud
-					divide = var:prod_get_tools_dmnd_t
-				}
-				change_variable = { 
-					name = prod_dmnd_tools_mud
-					divide = 100
+				multiply = { 
+					value = var:prod_size
+					add = var:prod_prog_gain
 				}
 			}
-			else = { 
-				remove_variable = prod_dmnd_tools_mud
-			}
-			if = { 
-				limit = { 
-					has_variable = prod_dmnd_tools_fuel
-					var:prod_dmnd_tools_fuel > 0
-				}
-				change_variable = { 
-					name = prod_dmnd_tools_fuel
-					multiply = 100
-				}
-				change_variable = { 
-					name = prod_dmnd_tools_fuel
-					divide = var:prod_get_tools_dmnd_tt
-				}
-				change_variable = { 
-					name = prod_dmnd_tools_fuel
-					multiply = var:prod_update_rank_t
-				}
-				change_variable = { 
-					name = prod_dmnd_tools_fuel
-					divide = prod_tools_fuel
-				}
-				change_variable = { 
-					name = prod_dmnd_tools_fuel
-					divide = var:prod_get_tools_dmnd_t
-				}
-				change_variable = { 
-					name = prod_dmnd_tools_fuel
-					divide = 100
-				}
-			}
-			else = { 
-				remove_variable = prod_dmnd_tools_fuel
-			}
-			if = { 
-				limit = { 
-					has_variable = prod_dmnd_tools_timber
-					var:prod_dmnd_tools_timber > 0
-				}
-				change_variable = { 
-					name = prod_dmnd_tools_timber
-					multiply = 100
-				}
-				change_variable = { 
-					name = prod_dmnd_tools_timber
-					divide = var:prod_get_tools_dmnd_tt
-				}
-				change_variable = { 
-					name = prod_dmnd_tools_timber
-					multiply = var:prod_update_rank_t
-				}
-				change_variable = { 
-					name = prod_dmnd_tools_timber
-					divide = prod_tools_timber
-				}
-				change_variable = { 
-					name = prod_dmnd_tools_timber
-					divide = var:prod_get_tools_dmnd_t
-				}
-				change_variable = { 
-					name = prod_dmnd_tools_timber
-					divide = 100
-				}
-			}
-			else = { 
-				remove_variable = prod_dmnd_tools_timber
-			}
-			if = { 
-				limit = { 
-					has_variable = prod_dmnd_tools_metal
-					var:prod_dmnd_tools_metal > 0
-				}
-				change_variable = { 
-					name = prod_dmnd_tools_metal
-					multiply = 100
-				}
-				change_variable = { 
-					name = prod_dmnd_tools_metal
-					divide = var:prod_get_tools_dmnd_tt
-				}
-				change_variable = { 
-					name = prod_dmnd_tools_metal
-					multiply = var:prod_update_rank_t
-				}
-				change_variable = { 
-					name = prod_dmnd_tools_metal
-					divide = prod_tools_metal
-				}
-				change_variable = { 
-					name = prod_dmnd_tools_metal
-					divide = var:prod_get_tools_dmnd_t
-				}
-				change_variable = { 
-					name = prod_dmnd_tools_metal
-					divide = 100
-				}
-			}
-			else = { 
-				remove_variable = prod_dmnd_tools_metal
-			}
-			if = { 
-				limit = { 
-					has_variable = prod_dmnd_tools_tools
-					var:prod_dmnd_tools_tools > 0
-				}
-				change_variable = { 
-					name = prod_dmnd_tools_tools
-					multiply = 100
-				}
-				change_variable = { 
-					name = prod_dmnd_tools_tools
-					divide = var:prod_get_tools_dmnd_tt
-				}
-				change_variable = { 
-					name = prod_dmnd_tools_tools
-					multiply = var:prod_update_rank_t
-				}
-				change_variable = { 
-					name = prod_dmnd_tools_tools
-					divide = prod_tools_tools
-				}
-				change_variable = { 
-					name = prod_dmnd_tools_tools
-					divide = 1
-				}
-				change_variable = { 
-					name = prod_dmnd_tools_tools
-					divide = 100
-				}
-			}
-			else = { 
-				remove_variable = prod_dmnd_tools_tools
-			}
-			remove_variable = prod_get_tools_dmnd_t
-			remove_variable = prod_get_tools_dmnd_tt
 			remove_variable = prod_update_rank_t
-			remove_variable = prod_update_rank_t_cost
-			remove_variable = prod_update_rank_t_mud
-			remove_variable = prod_update_rank_t_fuel
-			remove_variable = prod_update_rank_t_timber
-			remove_variable = prod_update_rank_t_metal
-			remove_variable = prod_update_rank_t_tools
 			remove_variable = prod_update_rank_tt
-			remove_variable = prod_update_rank_tt_cost
-			remove_variable = prod_update_rank_tt_mud
-			remove_variable = prod_update_rank_tt_fuel
-			remove_variable = prod_update_rank_tt_timber
-			remove_variable = prod_update_rank_tt_metal
-			remove_variable = prod_update_rank_tt_tools
 			remove_variable = prod_update_rank_ttt
-			remove_variable = prod_update_rank_ttt_cost
-			remove_variable = prod_update_rank_ttt_mud
-			remove_variable = prod_update_rank_ttt_fuel
-			remove_variable = prod_update_rank_ttt_timber
-			remove_variable = prod_update_rank_ttt_metal
-			remove_variable = prod_update_rank_ttt_tools
+			remove_variable = prod_update_rank_t_profit
+			remove_variable = prod_update_rank_tt_profit
 		}
 		every_county = { 
 			limit = { 
@@ -3600,15 +2296,67 @@ census.01 = {
 			limit = { 
 				is_valid_prov = yes
 			}
+			set_variable = { 
+				name = prod_update_instances_t
+				value = 0
+			}
+			every_in_list = { 
+				limit = { 
+					var:prod_template = { 
+						has_variable = prod_land_farm
+					}
+				}
+				variable = prod_instances
+				set_variable = { 
+					name = prod_land
+					value = var:prod_profit
+				}
+				change_variable = { 
+					name = prod_land
+					add = 0.01
+				}
+				change_variable = { 
+					name = prod_land
+					multiply = var:prod_template.var:prod_land
+				}
+				prev = { 
+					change_variable = { 
+						name = prod_update_instances_t
+						add = prev.var:prod_land
+					}
+				}
+			}
 			if = { 
 				limit = { 
-					has_variable = farm_total
-					var:farm_total > 0
+					has_variable = prod_update_instances_t
+					var:prod_update_instances_t > 0
 				}
-				set_variable = { 
-					name = prod_update_instances_t
-					value = 0
+				every_in_list = { 
+					limit = { 
+						var:prod_template = { 
+							has_variable = prod_land_farm
+						}
+					}
+					variable = prod_instances
+					change_variable = { 
+						name = prod_land
+						multiply = 100
+					}
+					change_variable = { 
+						name = prod_land
+						divide = prev.var:prod_update_instances_t
+					}
+					change_variable = { 
+						name = prod_land
+						multiply = prev.var:farm_total
+					}
+					change_variable = { 
+						name = prod_land
+						divide = 100
+					}
 				}
+			}
+			else = { 
 				every_in_list = { 
 					limit = { 
 						var:prod_template = { 
@@ -3618,77 +2366,71 @@ census.01 = {
 					variable = prod_instances
 					set_variable = { 
 						name = prod_land
-						value = var:prod_profit
-					}
-					change_variable = { 
-						name = prod_land
-						add = 0.01
-					}
-					change_variable = { 
-						name = prod_land
-						multiply = var:prod_template.var:prod_land
-					}
-					prev = { 
-						change_variable = { 
-							name = prod_update_instances_t
-							add = prev.var:prod_land
-						}
+						value = 0
 					}
 				}
-				if = { 
-					limit = { 
-						has_variable = prod_update_instances_t
-						var:prod_update_instances_t > 0
-					}
-					every_in_list = { 
-						limit = { 
-							var:prod_template = { 
-								has_variable = prod_land_farm
-							}
-						}
-						variable = prod_instances
-						change_variable = { 
-							name = prod_land
-							multiply = 100
-						}
-						change_variable = { 
-							name = prod_land
-							divide = prev.var:prod_update_instances_t
-						}
-						change_variable = { 
-							name = prod_land
-							multiply = prev.var:farm_total
-						}
-						change_variable = { 
-							name = prod_land
-							divide = 100
-						}
+			}
+			set_variable = { 
+				name = prod_update_instances_t
+				value = 0
+			}
+			every_in_list = { 
+				limit = { 
+					var:prod_template = { 
+						has_variable = prod_land_pasture
 					}
 				}
-				else = { 
-					every_in_list = { 
-						limit = { 
-							var:prod_template = { 
-								has_variable = prod_land_farm
-							}
-						}
-						variable = prod_instances
-						set_variable = { 
-							name = prod_land
-							value = 0
-						}
+				variable = prod_instances
+				set_variable = { 
+					name = prod_land
+					value = var:prod_profit
+				}
+				change_variable = { 
+					name = prod_land
+					add = 0.01
+				}
+				change_variable = { 
+					name = prod_land
+					multiply = var:prod_template.var:prod_land
+				}
+				prev = { 
+					change_variable = { 
+						name = prod_update_instances_t
+						add = prev.var:prod_land
 					}
 				}
 			}
 			if = { 
 				limit = { 
-					has_variable = pasture_total
-					var:pasture_total > 0
+					has_variable = prod_update_instances_t
+					var:prod_update_instances_t > 0
 				}
-				set_variable = { 
-					name = prod_update_instances_t
-					value = 0
+				every_in_list = { 
+					limit = { 
+						var:prod_template = { 
+							has_variable = prod_land_pasture
+						}
+					}
+					variable = prod_instances
+					change_variable = { 
+						name = prod_land
+						multiply = 100
+					}
+					change_variable = { 
+						name = prod_land
+						divide = prev.var:prod_update_instances_t
+					}
+					change_variable = { 
+						name = prod_land
+						multiply = prev.var:pasture_total
+					}
+					change_variable = { 
+						name = prod_land
+						divide = 100
+					}
 				}
+			}
+			else = { 
 				every_in_list = { 
 					limit = { 
 						var:prod_template = { 
@@ -3698,77 +2440,71 @@ census.01 = {
 					variable = prod_instances
 					set_variable = { 
 						name = prod_land
-						value = var:prod_profit
-					}
-					change_variable = { 
-						name = prod_land
-						add = 0.01
-					}
-					change_variable = { 
-						name = prod_land
-						multiply = var:prod_template.var:prod_land
-					}
-					prev = { 
-						change_variable = { 
-							name = prod_update_instances_t
-							add = prev.var:prod_land
-						}
+						value = 0
 					}
 				}
-				if = { 
-					limit = { 
-						has_variable = prod_update_instances_t
-						var:prod_update_instances_t > 0
-					}
-					every_in_list = { 
-						limit = { 
-							var:prod_template = { 
-								has_variable = prod_land_pasture
-							}
-						}
-						variable = prod_instances
-						change_variable = { 
-							name = prod_land
-							multiply = 100
-						}
-						change_variable = { 
-							name = prod_land
-							divide = prev.var:prod_update_instances_t
-						}
-						change_variable = { 
-							name = prod_land
-							multiply = prev.var:pasture_total
-						}
-						change_variable = { 
-							name = prod_land
-							divide = 100
-						}
+			}
+			set_variable = { 
+				name = prod_update_instances_t
+				value = 0
+			}
+			every_in_list = { 
+				limit = { 
+					var:prod_template = { 
+						has_variable = prod_land_forest
 					}
 				}
-				else = { 
-					every_in_list = { 
-						limit = { 
-							var:prod_template = { 
-								has_variable = prod_land_pasture
-							}
-						}
-						variable = prod_instances
-						set_variable = { 
-							name = prod_land
-							value = 0
-						}
+				variable = prod_instances
+				set_variable = { 
+					name = prod_land
+					value = var:prod_profit
+				}
+				change_variable = { 
+					name = prod_land
+					add = 0.01
+				}
+				change_variable = { 
+					name = prod_land
+					multiply = var:prod_template.var:prod_land
+				}
+				prev = { 
+					change_variable = { 
+						name = prod_update_instances_t
+						add = prev.var:prod_land
 					}
 				}
 			}
 			if = { 
 				limit = { 
-					has_variable = forest_total
-					var:forest_total > 0
+					has_variable = prod_update_instances_t
+					var:prod_update_instances_t > 0
 				}
-				set_variable = { 
-					name = prod_update_instances_t
-					value = 0
+				every_in_list = { 
+					limit = { 
+						var:prod_template = { 
+							has_variable = prod_land_forest
+						}
+					}
+					variable = prod_instances
+					change_variable = { 
+						name = prod_land
+						multiply = 100
+					}
+					change_variable = { 
+						name = prod_land
+						divide = prev.var:prod_update_instances_t
+					}
+					change_variable = { 
+						name = prod_land
+						multiply = prev.var:forest_total
+					}
+					change_variable = { 
+						name = prod_land
+						divide = 100
+					}
 				}
+			}
+			else = { 
 				every_in_list = { 
 					limit = { 
 						var:prod_template = { 
@@ -3778,77 +2514,71 @@ census.01 = {
 					variable = prod_instances
 					set_variable = { 
 						name = prod_land
-						value = var:prod_profit
-					}
-					change_variable = { 
-						name = prod_land
-						add = 0.01
-					}
-					change_variable = { 
-						name = prod_land
-						multiply = var:prod_template.var:prod_land
-					}
-					prev = { 
-						change_variable = { 
-							name = prod_update_instances_t
-							add = prev.var:prod_land
-						}
+						value = 0
 					}
 				}
-				if = { 
-					limit = { 
-						has_variable = prod_update_instances_t
-						var:prod_update_instances_t > 0
-					}
-					every_in_list = { 
-						limit = { 
-							var:prod_template = { 
-								has_variable = prod_land_forest
-							}
-						}
-						variable = prod_instances
-						change_variable = { 
-							name = prod_land
-							multiply = 100
-						}
-						change_variable = { 
-							name = prod_land
-							divide = prev.var:prod_update_instances_t
-						}
-						change_variable = { 
-							name = prod_land
-							multiply = prev.var:forest_total
-						}
-						change_variable = { 
-							name = prod_land
-							divide = 100
-						}
+			}
+			set_variable = { 
+				name = prod_update_instances_t
+				value = 0
+			}
+			every_in_list = { 
+				limit = { 
+					var:prod_template = { 
+						has_variable = prod_land_workshop
 					}
 				}
-				else = { 
-					every_in_list = { 
-						limit = { 
-							var:prod_template = { 
-								has_variable = prod_land_forest
-							}
-						}
-						variable = prod_instances
-						set_variable = { 
-							name = prod_land
-							value = 0
-						}
+				variable = prod_instances
+				set_variable = { 
+					name = prod_land
+					value = var:prod_profit
+				}
+				change_variable = { 
+					name = prod_land
+					add = 0.01
+				}
+				change_variable = { 
+					name = prod_land
+					multiply = var:prod_template.var:prod_land
+				}
+				prev = { 
+					change_variable = { 
+						name = prod_update_instances_t
+						add = prev.var:prod_land
 					}
 				}
 			}
 			if = { 
 				limit = { 
-					has_variable = workshop_total
-					var:workshop_total > 0
+					has_variable = prod_update_instances_t
+					var:prod_update_instances_t > 0
 				}
-				set_variable = { 
-					name = prod_update_instances_t
-					value = 0
+				every_in_list = { 
+					limit = { 
+						var:prod_template = { 
+							has_variable = prod_land_workshop
+						}
+					}
+					variable = prod_instances
+					change_variable = { 
+						name = prod_land
+						multiply = 100
+					}
+					change_variable = { 
+						name = prod_land
+						divide = prev.var:prod_update_instances_t
+					}
+					change_variable = { 
+						name = prod_land
+						multiply = prev.var:workshop_total
+					}
+					change_variable = { 
+						name = prod_land
+						divide = 100
+					}
 				}
+			}
+			else = { 
 				every_in_list = { 
 					limit = { 
 						var:prod_template = { 
@@ -3858,77 +2588,71 @@ census.01 = {
 					variable = prod_instances
 					set_variable = { 
 						name = prod_land
-						value = var:prod_profit
-					}
-					change_variable = { 
-						name = prod_land
-						add = 0.01
-					}
-					change_variable = { 
-						name = prod_land
-						multiply = var:prod_template.var:prod_land
-					}
-					prev = { 
-						change_variable = { 
-							name = prod_update_instances_t
-							add = prev.var:prod_land
-						}
+						value = 0
 					}
 				}
-				if = { 
-					limit = { 
-						has_variable = prod_update_instances_t
-						var:prod_update_instances_t > 0
-					}
-					every_in_list = { 
-						limit = { 
-							var:prod_template = { 
-								has_variable = prod_land_workshop
-							}
-						}
-						variable = prod_instances
-						change_variable = { 
-							name = prod_land
-							multiply = 100
-						}
-						change_variable = { 
-							name = prod_land
-							divide = prev.var:prod_update_instances_t
-						}
-						change_variable = { 
-							name = prod_land
-							multiply = prev.var:workshop_total
-						}
-						change_variable = { 
-							name = prod_land
-							divide = 100
-						}
+			}
+			set_variable = { 
+				name = prod_update_instances_t
+				value = 0
+			}
+			every_in_list = { 
+				limit = { 
+					var:prod_template = { 
+						has_variable = prod_land_extraction
 					}
 				}
-				else = { 
-					every_in_list = { 
-						limit = { 
-							var:prod_template = { 
-								has_variable = prod_land_workshop
-							}
-						}
-						variable = prod_instances
-						set_variable = { 
-							name = prod_land
-							value = 0
-						}
+				variable = prod_instances
+				set_variable = { 
+					name = prod_land
+					value = var:prod_profit
+				}
+				change_variable = { 
+					name = prod_land
+					add = 0.01
+				}
+				change_variable = { 
+					name = prod_land
+					multiply = var:prod_template.var:prod_land
+				}
+				prev = { 
+					change_variable = { 
+						name = prod_update_instances_t
+						add = prev.var:prod_land
 					}
 				}
 			}
 			if = { 
 				limit = { 
-					has_variable = extraction_total
-					var:extraction_total > 0
+					has_variable = prod_update_instances_t
+					var:prod_update_instances_t > 0
 				}
-				set_variable = { 
-					name = prod_update_instances_t
-					value = 0
+				every_in_list = { 
+					limit = { 
+						var:prod_template = { 
+							has_variable = prod_land_extraction
+						}
+					}
+					variable = prod_instances
+					change_variable = { 
+						name = prod_land
+						multiply = 100
+					}
+					change_variable = { 
+						name = prod_land
+						divide = prev.var:prod_update_instances_t
+					}
+					change_variable = { 
+						name = prod_land
+						multiply = prev.var:extraction_total
+					}
+					change_variable = { 
+						name = prod_land
+						divide = 100
+					}
 				}
+			}
+			else = { 
 				every_in_list = { 
 					limit = { 
 						var:prod_template = { 
@@ -3938,65 +2662,7 @@ census.01 = {
 					variable = prod_instances
 					set_variable = { 
 						name = prod_land
-						value = var:prod_profit
-					}
-					change_variable = { 
-						name = prod_land
-						add = 0.01
-					}
-					change_variable = { 
-						name = prod_land
-						multiply = var:prod_template.var:prod_land
-					}
-					prev = { 
-						change_variable = { 
-							name = prod_update_instances_t
-							add = prev.var:prod_land
-						}
-					}
-				}
-				if = { 
-					limit = { 
-						has_variable = prod_update_instances_t
-						var:prod_update_instances_t > 0
-					}
-					every_in_list = { 
-						limit = { 
-							var:prod_template = { 
-								has_variable = prod_land_extraction
-							}
-						}
-						variable = prod_instances
-						change_variable = { 
-							name = prod_land
-							multiply = 100
-						}
-						change_variable = { 
-							name = prod_land
-							divide = prev.var:prod_update_instances_t
-						}
-						change_variable = { 
-							name = prod_land
-							multiply = prev.var:extraction_total
-						}
-						change_variable = { 
-							name = prod_land
-							divide = 100
-						}
-					}
-				}
-				else = { 
-					every_in_list = { 
-						limit = { 
-							var:prod_template = { 
-								has_variable = prod_land_extraction
-							}
-						}
-						variable = prod_instances
-						set_variable = { 
-							name = prod_land
-							value = 0
-						}
+						value = 0
 					}
 				}
 			}
