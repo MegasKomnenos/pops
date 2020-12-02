@@ -60,7 +60,7 @@ prod_new_instance = {
 			set_variable = { name = prod_template value = global_var:$template$ }
 			set_variable = { name = prod_location value = $location$ }
 			
-			set_variable = { name = prod_size value = 0.1 }
+			set_variable = { name = prod_size value = 1 }
 			set_variable = { name = prod_labor value = 0 }
 			set_variable = { name = prod_land value = 0 }
 			set_variable = { name = prod_profit value = 0 }
@@ -70,8 +70,10 @@ prod_new_instance = {
 			set_variable = { name = prod_earn_old value = 0 }
 			
 			set_variable = { name = prod_effic value = 1 }
-			set_variable = { name = prod_rank value = 0 }
-			set_variable = { name = prod_prog value = 0 }
+			set_variable = { name = prod_rank value = 1 }
+			set_variable = { name = prod_prog value = prod_prog_rank_1 }
+			change_variable = { name = prod_prog add = prod_prog_rank_2 }
+			change_variable = { name = prod_prog divide = 2 }
 			set_variable = { name = prod_prog_gain value = 0 }
 			set_variable = { name = prod_prog_spend value = 0 }
 			set_variable = { name = prod_prog_decay value = 0 }
@@ -202,6 +204,26 @@ prod_update_rank = {
 		limit = {
 			has_variable = prod_profit
 			var:prod_profit >= 10
+		}
+		change_variable = { name = prod_update_rank_t_profit divide = 10 }
+		change_variable = { name = prod_update_rank_tt_profit divide = 10 }
+	}
+	
+	change_variable = { name = prod_update_rank_t_profit multiply = var:prod_update_rank_t_profit }
+	change_variable = { name = prod_update_rank_tt_profit multiply = var:prod_update_rank_tt_profit }
+	
+	if = {
+		limit = {
+			OR = {
+				AND = {
+					has_variable = prod_update_rank_t_profit
+					var:prod_update_rank_t_profit >= 10
+				}
+				AND = {
+					has_variable = prod_update_rank_tt_profit
+					var:prod_update_rank_tt_profit >= 10
+				}
+			}
 		}
 		change_variable = { name = prod_update_rank_t_profit divide = 10 }
 		change_variable = { name = prod_update_rank_tt_profit divide = 10 }

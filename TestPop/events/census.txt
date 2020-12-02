@@ -126,6 +126,36 @@ census.01 = {
 				name = prod_update_rank_tt_profit
 				multiply = var:prod_update_rank_tt_profit
 			}
+			if = { 
+				limit = { 
+					OR = { 
+						AND = { 
+							has_variable = prod_update_rank_t_profit
+							var:prod_update_rank_t_profit >= 10
+						}
+						AND = { 
+							has_variable = prod_update_rank_tt_profit
+							var:prod_update_rank_tt_profit >= 10
+						}
+					}
+				}
+				change_variable = { 
+					name = prod_update_rank_t_profit
+					divide = 10
+				}
+				change_variable = { 
+					name = prod_update_rank_tt_profit
+					divide = 10
+				}
+			}
+			change_variable = { 
+				name = prod_update_rank_t_profit
+				multiply = var:prod_update_rank_t_profit
+			}
+			change_variable = { 
+				name = prod_update_rank_tt_profit
+				multiply = var:prod_update_rank_tt_profit
+			}
 			set_variable = { 
 				name = prod_update_rank_ttt
 				value = var:prod_update_rank_t_profit
